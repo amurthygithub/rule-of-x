@@ -356,8 +356,33 @@ def bridge_md():
 def sec_text():
     """Sample-audit paragraphs that depend on the SEC inputs of 29 Oct 2026 (empty strings when absent)."""
     t = {}
-    r2 = BUILD.get('R2_named')
-    if r2:
+    r2, r2m, r2r = BUILD.get('R2_named'), BUILD.get('R2'), BUILD.get('R2_readers')
+    if r2m:
+        soft_hits = '; '.join(f"{n} {h}" for n, h in r2m['hits_named'].items() if r2m['named_classes'][n] == 'software'
+                              and (h['interactive_entertainment'] or h['gambling'] or h['compute_infrastructure']))
+        t['R2'] = (f"Applied to the main sample since 3 Nov 2026: the descriptions of all {r2m['n_described']} core registrants "
+                   f"exist ({r2m['sources']['named']} for the named firms, {r2m['sources']['others']} for the others, merged into "
+                   f"{r2m['sources']['merged']}). The classifier, run as defined before any description was read (keyword lists "
+                   f"unchanged), classes {len(r2m['non_software'])} registrants non-software: "
+                   + '; '.join(f"{n} ({c_})" for n, c_ in r2m['non_software'].items())
+                   + f". They carry {r2m['non_software_firm_years_core_v2']} v2 core firm-years, of which {r2m['excluded_firm_years']} "
+                   f"are excluded under R2 (the others are already excluded by R1); by period {r2m['excluded_by_period']}. "
+                   f"It is a partial check: its keyword lists miss game publishers and an AI-cloud provider whose openings do not use "
+                   f"the listed phrases (named firms with non-software hits below three: {soft_hits}), and it has no class for "
+                   f"hardware, payments or interiors, so such firms are software by default.")
+        if r2r:
+            t['R2'] += (f" Sensitivity: two readers (LLM agents on different models, blind to all outcome data) classed every "
+                        f"description as software, interactive entertainment, gambling, compute infrastructure or other non-software "
+                        f"({', '.join(r2r['files'])}). Not software: reader A {r2r['non_software']['a']}, reader B "
+                        f"{r2r['non_software']['b']}, both {r2r['non_software']['both']}, either {r2r['non_software']['either']} of "
+                        f"{r2r['n_firms']}; they agree on {r2r['agree']} (Cohen's kappa {r2r['kappa']:.2f}). Of the "
+                        f"{r2r['classifier_non_software']['n']} firms the classifier excludes, {r2r['classifier_non_software']['also_both']} "
+                        f"are not software for both readers. The sensitivity `r2both` drops from the main sample the firms both "
+                        f"readers class as not software ({r2r['v3_firm_years_dropped']['both']} firm-years of "
+                        f"{r2r['v3_firms_dropped']['both']} firms), `r2either` those either reader does "
+                        f"({r2r['v3_firm_years_dropped']['either']} firm-years of {r2r['v3_firms_dropped']['either']} firms). "
+                        f"Both readers: {'; '.join(r2r['both_firms'])}.")
+    elif r2:
         soft_hits = '; '.join(f"{n} {h}" for n, h in r2['hits'].items() if r2['classes'][n] == 'software'
                               and (h['interactive_entertainment'] or h['gambling'] or h['compute_infrastructure']))
         t['R2'] = (f"The classifier, run as defined before the descriptions were read (keyword lists unchanged), classes "
@@ -368,6 +393,18 @@ def sec_text():
                    f"three: {soft_hits}), and it has no class for hardware, payments or interiors, so 3D Systems, DIRTT, Block, "
                    f"Mobileye, Xperi and Xunlei are software by default. The sensitivity `r2named` drops the firms it classes "
                    f"non-software; `clean` drops all named firms. Applying R2 as a rule needs the description of every registrant.")
+    cs = BUILD.get('capsw')
+    if cs:
+        t['C1'] = (f"**C1, capitalized software from the filing (applied).** The panel's capitalized software is PaymentsForSoftware "
+                   f"plus PaymentsToDevelopSoftware, so a filer that tags it with a company-specific element shows 0 and its free cash "
+                   f"flow is overstated. The data audit of 3 Nov 2026 read the cash-flow statement of every firm-year with cap_sw = 0 "
+                   f"and capex reported (code/audit/capsw_scan_parse.py). Where the XBRL value is 0 and the statement shows a "
+                   f"capitalized-software outflow on its own line, cap_sw takes the filing value ({cs['source']}) and the free-cash-flow "
+                   f"margins, scores and capital intensity are recomputed: {cs['v3']} v3 firm-years of {cs['v3_firms']} firms, by "
+                   f"period {cs['v3_by_period']}; median {100 * cs['v3_share_of_revenue']['median']:.2f}% of revenue, at most "
+                   f"{100 * cs['v3_share_of_revenue']['max']:.2f}%. Column cap_sw_source says which value was used; cap_sw_xbrl keeps "
+                   f"the XBRL value. Check: Box fiscal 2023 (fiscal year ending {cs['box_fy2023']['fy_end']}), cap_sw "
+                   f"{cs['box_fy2023']['cap_sw'] / 1e3:,.0f} thousand.")
     x = BUILD['R3'].get('xbrl')
     if x:
         t['R3'] = (f"XBRL related-party revenue (SEC frames): {x['core_v2_firm_years_with_fact']} v2 core firm-years of {x['firms_with_fact']} "
@@ -959,7 +996,8 @@ samp_tab = '\n'.join(f"| {lab} | {so[a]['n']:,} ({so[a]['firms']}) | {S_[a]['n']
     '\n'.join(f"| {LAB4[a]} | {V2X['samples'][a]['n']:,} ({V2X['samples'][a]['firms']}) | {S_[a]['n']:,} ({S_[a]['firms']}) |" for a in ['E2imp4', 'E2imp8'] if V2X)
 SV = [('primary', 'E1', 'E2'), ('keeping fiscal-2010 backfills', 'E1k2010', 'E2k2010'),
       ('without named non-software firms', 'E1clean', 'E2clean'), ('without named debt-only filers', 'E1nodebt', 'E2nodebt')]
-SV += [x for x in [('without named firms R2 classes non-software', 'E1r2named', 'E2r2named'),
+SV += [x for x in [('without firms both R2 readers class non-software', 'E1r2both', 'E2r2both'),
+                   ('without firms either R2 reader classes non-software', 'E1r2either', 'E2r2either'),
                    ('without R5 no-listed-equity firm-years', 'E1nolist', 'E2nolist')] if x[1] in R['slope_op_pooled']]
 SKEYS = [('Psi_0.90 slope, GAAP', 'cone_op_slope_c90_w60', 'se2'), ('Psi_0.90 slope, cash', 'cone_cash_slope_c90_w60', 'se2'),
          ('Local slope, GAAP', 'slope_op_pooled', 'se2'), ('Local slope, cash', 'slope_cash_pooled', 'se2'), ('Spend ratio', 'spend_ratio', 'se2'),
@@ -998,13 +1036,14 @@ published). Numbers are written by the script; do not edit by hand. Review sourc
   and business descriptions through the author's browser (provenance and transfer hashes in
   `data/v3_inputs/README_retrieval.md`). SEC frames hold only non-dimensional facts and keep the latest filed value for
   each company and period, so these inputs are not first reported, unlike the rest of the panel.
-- Applied to every firm-year: R1 (first reported); R3 (captive related-party revenue: XBRL related-party revenue, and the
-  filing text where it was read); R4 (acquisition flag, criteria a, b and c).
+- Applied to every firm-year: R1 (first reported); R2 (business classification, by the keyword classifier fixed before
+  any description was read; since 3 Nov 2026 the descriptions of every core registrant exist, in
+  `data/v3_inputs/business_descriptions.json`); R3 (captive related-party revenue: XBRL related-party revenue, and the
+  filing text where it was read); R4 (acquisition flag, criteria a, b and c); C1 (capitalized software read from the
+  cash-flow statement where the XBRL elements give 0).
 - Flag and sensitivity, not an exclusion: R5 (no listed equity), as designed.
-- Sensitivity only: R2 (business classification), run on the 16 firms the review panels named, the only firms whose
-  descriptions were retrieved. A rule applied only to reviewer-named firms must not change the main sample, so
-  `data/v3_inputs/business_descriptions.json` (the file `build_panel_v3.py` reads to apply R2 to the main sample) is not
-  created; applying R2 as a rule needs the description of every registrant.
+- Sensitivity only: the classes two independent readers gave the business descriptions (R2), and the 16 firms the
+  review panels named.
 
 ## 2. Rules and the firm-years they affect (v2 core sample: {BUILD['core_v2']:,} firm-years, {BUILD['firms_v2']} firms)
 
@@ -1022,13 +1061,15 @@ years, so all {r1n['fy2010_before_first_xbrl_report']} are excluded from the pri
 - Before the first annual report: {r1['before_first_annual_report']}
 - Later vintage only: {r1['later_vintage_only']}
 
-**R2, business classification (named firms only: sensitivity; main sample not classified).** The principal business is read from the opening of Item 1 of
+**R2, business classification ({'applied to the main sample' if BUILD.get('R2') else 'named firms only: sensitivity; main sample not classified'}).** The principal business is read from the opening of Item 1 of
 the latest 10-K (Item 4.B of a 20-F; the AIF of a 40-F) and classified by keyword counts as interactive entertainment,
 gambling, compute infrastructure or software. A firm is excluded when a non-software class has at least three keyword
 hits and more hits than the software class (code in `build_panel_v3.py`). SIC codes cannot do this alone: every core
-firm is SIC 7372 by construction, and EDGAR codes are current, not historical. The panels named these firms, which
-enter only sensitivities: {named}. They carry {BUILD['panel_named']['firm_years_in_v3']} firm-years of the v3 sample.
+firm is SIC 7372 by construction, and EDGAR codes are current, not historical. The panels named these firms: {named}.
+They carry {BUILD['panel_named']['firm_years_in_v3']} firm-years of the v3 sample; the sensitivity `clean` drops all of them.
 {SECT.get('R2', '')}
+
+{SECT.get('C1', '')}
 
 **R3, captive related-party revenue (applied).** A firm-year is excluded when related-party revenue is at least 50% of
 revenue: XBRL RevenueFromRelatedParties or RelatedPartyTransactionRevenuesFromTransactionsWithRelatedParty over revenue,
@@ -1113,8 +1154,11 @@ v3 shifts by fiscal year.
   - `backfill`, `backfill_type`: rule R1.
   - `acq_now_v3`, `acq_flag_v3`, `acq_reason_v3`, `gw_jump_v3`, `acq_spend_share`, `accel_rel`: rule R4. Use
     `acq_flag_v3` in place of `acq_flag`.
-  - `panel_named`, `debt_only_named`, `business_class_named`: sensitivities only.
-  - `business_class`: R2 on the main sample, blank until descriptions of every registrant exist.
+  - `panel_named`, `debt_only_named`, `business_class_named`, `business_class_reader_a`, `business_class_reader_b`:
+    sensitivities only.
+  - `business_class`: R2 on the main sample (keyword classifier on the descriptions of every core registrant).
+  - `cap_sw_source`, `cap_sw_xbrl`: C1 (`cap_sw` and the free-cash-flow columns use the filing value where
+    `cap_sw_source` is `filing_cash_flow_statement`).
   - `rp_revenue_share`, `captive_verified`, `captive`: R3.
   - `acquiree_rev_share`: R4(c).
   - `r5_status`, `no_listed_equity`: R5 (flag).
@@ -1158,8 +1202,8 @@ inputs for calibrate_horizons.py: `notes/calibration_anchor_v3.json` (same forma
 
 ## 7. Still open
 
-- R2 as a rule: the opening of Item 1 (Item 4.B for a 20-F) of the latest annual report of every core registrant, saved as
-  `data/v3_inputs/business_descriptions.json`; `build_panel_v3.py` then applies R2 to the main sample.
+- R2 beyond keywords: the classifier misses game publishers and the AI-cloud provider whose openings do not use its
+  phrases; the independent readings enter only as sensitivities.
 - R5 for foreign filers: the Section 12(b) table on the 20-F and 40-F cover pages (exchange-listed ADSs or shares).
 - R4(c) beyond non-dimensional facts: the acquiree-revenue element on its business-combination axis, which only the
   filings' XBRL instance documents carry (frames and companyfacts drop dimensions).

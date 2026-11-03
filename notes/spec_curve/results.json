@@ -2,11 +2,11 @@
  "meta": {
   "script": "code/spec_curve.py",
   "design": "notes/spec_curve/design.md (pre-specification, 2026-11-03 14:36 UTC)",
-  "run_utc": "2026-11-03 15:06:43 UTC",
-  "git_head": "be86d2436e64a1d82bb5ad40f897d5ce44f0587a",
-  "runtime_seconds": 936.5801477432251,
-  "grid_seconds": 45.0208477973938,
-  "bootstrap_seconds": 869.5340678691864,
+  "run_utc": "2026-11-03 15:20:04 UTC",
+  "git_head": "651e67b5ef4298200866d31ed557278f959ef565",
+  "runtime_seconds": 749.8983223438263,
+  "grid_seconds": 50.31923818588257,
+  "bootstrap_seconds": 678.926860332489,
   "n_samples": 720,
   "n_specifications": 116496,
   "n_specifications_forward": 103680,
@@ -1652,7 +1652,7 @@
     "n_samples": 169,
     "share_interval_on_claimed_side": 1.0,
     "share_point_holds_same_specs": 1.0,
-    "n_without_interval": 95,
+    "n_without_interval": 0,
     "share_interval_below_zero": 0.9655172413793104,
     "baseline_ci90": [
      -0.431393875836197,
@@ -2087,7 +2087,7 @@
     "n_samples": 169,
     "share_interval_on_claimed_side": 1.0,
     "share_point_holds_same_specs": 1.0,
-    "n_without_interval": 525,
+    "n_without_interval": 0,
     "share_interval_below_zero": 0.9942794279427942,
     "baseline_ci90": [
      -0.29399109834042547,
@@ -2511,7 +2511,7 @@
     "n_samples": 169,
     "share_interval_on_claimed_side": 0.31864406779661014,
     "share_point_holds_same_specs": 0.9677966101694915,
-    "n_without_interval": 2200,
+    "n_without_interval": 0,
     "baseline_ci90": [
      -0.6007806972878658,
      -0.1626367840492159
@@ -2968,7 +2968,7 @@
     "n_samples": 169,
     "share_interval_on_claimed_side": 0.9748484848484849,
     "share_point_holds_same_specs": 0.566969696969697,
-    "n_without_interval": 6840,
+    "n_without_interval": 0,
     "baseline_ci90": [
      -0.3726703204782276,
      0.042523616094144366

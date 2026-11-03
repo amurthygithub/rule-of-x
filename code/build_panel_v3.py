@@ -14,16 +14,19 @@ R1  First reported (applied to all firm-years). A firm-year is excluded when its
     values come from a restated later report). Sensitivity kept for the estimation: the fiscal-2010 years of
     registrants that were already public were reported in real time, so the look-ahead objection does not apply to
     them; the variant k2010 adds all fiscal-2010 backfilled years back.
-R2  Business classification (defined; applied to the main sample only when the business description of every
-    registrant is available in data/v3_inputs/business_descriptions.json). The principal business, read from the
+R2  Business classification (applied to the main sample when the business description of every registrant is in
+    data/v3_inputs/business_descriptions.json; since 3 Nov 2026 it is). The principal business, read from the
     opening of Item 1 of the latest 10-K (Item 4.B of a 20-F; the AIF of a 40-F), is classified by keyword counts into
     interactive entertainment (video, mobile or online games), gambling (casino gaming equipment or systems, wagering,
     lottery, social casino), compute infrastructure (renting compute or data-centre capacity), or software; a firm is
-    excluded when a non-software class has at least three keyword hits and more hits than the software class.
-    Descriptions exist only for the 16 firms the review panels named (data/v3_inputs/business_descriptions_named.json,
-    retrieved 29 Oct 2026). A rule applied only to reviewer-named firms must not change the main sample, so the
-    classifier's result for them is carried as business_class_named for a labelled sensitivity, and business_class
-    (the main-sample column) stays blank.
+    excluded when a non-software class has at least three keyword hits and more hits than the software class. The rule
+    and its keyword lists were fixed before any description was read and are not changed. Descriptions: the 16 firms
+    the review panels named (data/v3_inputs/business_descriptions_named.json, retrieved 29 Oct 2026) and every other
+    core registrant (retrieved 3 Nov 2026), merged by code/audit/r2_descriptions.py. The classifier is a partial check:
+    it misses game publishers and the AI-cloud provider whose openings do not use its phrases. Sensitivities: the
+    classes that two independent readers gave each description (data/v3_inputs/business_class_reader_{a,b}.csv, columns
+    cik, name, class, subclass, confidence, reason, quote, note) in business_class_reader_a and _b; and the classifier
+    on the 16 named firms alone (business_class_named), which now coincides with the main-sample classes of those firms.
 R3  Captive related-party revenue (applied). A firm-year is excluded when related-party revenue is at least 50% of
     revenue: XBRL elements RevenueFromRelatedParties or RelatedPartyTransactionRevenuesFromTransactionsWithRelatedParty
     over revenue (data/v3_inputs/related_party.json, SEC frames: non-dimensional facts, latest filed value), or the
@@ -58,6 +61,14 @@ B5  Cash-score bridge (columns only). Interest paid and income taxes paid by fir
     InterestPaidNet, else InterestPaid; IncomeTaxesPaidNet, else IncomeTaxesPaid; SEC frames, latest filed value, not
     first reported). A missing element counts as zero when the firm-year reports any of the four; the columns are
     missing when it reports none.
+C1  Capitalized software from the filing (data/v3_inputs/capitalized_software_filings.json, {cik: {fy_end: {value, accn,
+    label}}}). The panel's cap_sw is PaymentsForSoftware + PaymentsToDevelopSoftware (build_panel_v2.py), so a filer
+    that tags capitalized software with a company-specific element shows 0 and its free cash flow is overstated. Where
+    the XBRL cap_sw is 0 and the file holds the outflow read from the cash-flow statement of the same filing
+    (code/audit/capsw_scan_parse.py; data audit of 3 Nov 2026), cap_sw takes the filing value and every column built
+    on it is recomputed as in build_panel_v2.py: m_fcf, m_fcf_sbc, m_fcf_sbc_lease (margins outside [-3, 1] missing in
+    the core sample), R_fcf, R_fcf_sbc, R_fcf_sbc_lease, capex_int and capex_lease_int. cap_sw_xbrl keeps the XBRL
+    value and cap_sw_source says which was used ('xbrl' or 'filing_cash_flow_statement').
 
 Inputs : data/panel_v2_all.csv, data/panel.csv, data/companyfacts_extract.json, data/v3_inputs/* (optional)
 Outputs: data/panel_v3_all.csv (all firm-years, v2 columns plus audit columns), data/panel_v3_core_full.csv (the
@@ -91,6 +102,37 @@ DEBT_NAMED = {1337272: 'SunGard', 1556148: 'Infor, Inc.', 1517393: 'Epicor Softw
 raw = {c: b for c, b in json.load(open(f'{BASE}/data/companyfacts_extract.json')).items() if not is_excluded(c)}
 P = drop_excluded(pd.read_csv(f'{BASE}/data/panel_v2_all.csv')).sort_values(['cik', 'fy_end'], kind='stable').reset_index(drop=True)
 core = drop_excluded(pd.read_csv(f'{BASE}/data/panel.csv')).reset_index(drop=True)
+
+# ------------------------------------------------------------------------------------------- C1 capitalized software
+_csw_path = f'{INP}/capitalized_software_filings.json'
+csw = json.load(open(_csw_path)) if os.path.exists(_csw_path) else {}      # {cik: {fy_end: {value, accn, label}}}
+N_CSW = sum(len(v) for v in csw.values())
+
+
+def capsw_fix(df, trim):
+    """C1: the filing's capitalized-software outflow where the XBRL elements give 0, and the columns built on it."""
+    rec_ = [csw.get(str(c), {}).get(e) for c, e in zip(df.cik, df.fy_end)]
+    hit = pd.Series([r_ is not None for r_ in rec_], index=df.index) & (df.cap_sw == 0)
+    assert all(r_['accn'] == a_ for r_, a_, h_ in zip(rec_, df.accn, hit) if h_), 'filing value read from another filing'
+    df['cap_sw_xbrl'] = df.cap_sw
+    df['cap_sw_source'] = np.where(hit, 'filing_cash_flow_statement', 'xbrl')
+    df.loc[hit, 'cap_sw'] = [float(r_['value']) for r_, h_ in zip(rec_, hit) if h_]
+    fcf = df.ocf - df.capex_ppe - df.cap_sw                  # as build_panel_v2.py (NaN when capex is not reported)
+    new = dict(m_fcf=fcf / df.rev, m_fcf_sbc=(fcf - df.sbc) / df.rev, m_fcf_sbc_lease=(fcf - df.sbc - df.lease_rou) / df.rev,
+               capex_int=(df.capex_ppe + df.cap_sw) / df.rev, capex_lease_int=(df.capex_ppe + df.cap_sw + df.lease_rou) / df.rev)
+    for c_, v_ in new.items():
+        if trim and c_.startswith('m_'):
+            v_ = v_.where((v_ >= -3) & (v_ <= 1))               # analysis bounds of build_panel_v2.py
+        df.loc[hit, c_] = v_[hit]
+    for mm in ('m_fcf', 'm_fcf_sbc', 'm_fcf_sbc_lease'):
+        df.loc[hit, 'R_' + mm[2:]] = (df.g + df[mm])[hit]
+    if trim:                                                  # build_panel_v2.py keeps a core row with m_op or m_fcf
+        assert (df.m_op.notna() | df.m_fcf.notna())[hit].all()
+    return hit
+
+
+csw_hit_all, csw_hit_core = capsw_fix(P, trim=False), capsw_fix(core, trim=True)
+assert int(csw_hit_core.sum()) == int(csw_hit_all.sum()) == N_CSW, 'a filing value matched no firm-year with cap_sw = 0'
 
 # ------------------------------------------------------------------------------------------- R1 first reported
 own, filed, gw = {}, {}, {}
@@ -215,15 +257,29 @@ def classify(desc):
     return cls, hits_all
 
 
+NONSW = ['interactive_entertainment', 'gambling', 'compute_infrastructure']   # classes R2 excludes
 P['business_class'] = ''                                   # R2, main sample: only from descriptions of every registrant
 r2_applied = os.path.exists(f'{INP}/business_descriptions.json')
+cls, hits_main = {}, {}
 if r2_applied:
-    cls, _ = classify(json.load(open(f'{INP}/business_descriptions.json')))      # {cik: text}
+    cls, hits_main = classify(json.load(open(f'{INP}/business_descriptions.json')))      # {cik: text}
+    assert set(core.cik) <= set(cls), 'R2 applied without the description of every core registrant'
     P['business_class'] = P.cik.map(cls).fillna('')
 P['business_class_named'] = ''                             # R2 on the review panels' named firms only (sensitivity)
 r2_named = os.path.exists(f'{INP}/business_descriptions_named.json')
 cls_named, hits_named = classify(json.load(open(f'{INP}/business_descriptions_named.json'))) if r2_named else ({}, {})
 P['business_class_named'] = P.cik.map(cls_named).fillna('')
+assert all(cls[c_] == k_ for c_, k_ in cls_named.items()) if r2_applied else True   # same text, same class
+RCLS = {'software', 'interactive_entertainment', 'gambling', 'compute_infrastructure', 'other_non_software'}
+readers = {}                                               # R2 sensitivity: independent readings of the same descriptions
+for rd in ('a', 'b'):
+    P[f'business_class_reader_{rd}'] = ''
+    f_ = f'{INP}/business_class_reader_{rd}.csv'
+    if os.path.exists(f_):
+        x_ = pd.read_csv(f_)
+        assert x_.cik.is_unique and set(x_['class']) <= RCLS and set(core.cik) <= set(x_.cik), f_
+        readers[rd] = dict(zip(x_.cik.astype(int), x_['class']))
+        P[f'business_class_reader_{rd}'] = P.cik.map(readers[rd]).fillna('')
 # B5: interest paid and income taxes paid (cash-score bridge)
 CF_ELEMS = ['InterestPaid', 'InterestPaidNet', 'IncomeTaxesPaid', 'IncomeTaxesPaidNet']
 P['interest_paid'], P['income_taxes_paid'], P['interest_paid_element'], P['income_taxes_paid_element'] = np.nan, np.nan, '', ''
@@ -251,17 +307,20 @@ P['captive_verified'] = [(c, y) in ver_keys for c, y in zip(P.cik, P.year)]
 P['captive'] = (P.rp_revenue_share >= RP_MAX) | P.captive_verified
 
 # ------------------------------------------------------------------------------------------- exclusion reason
-excl_class = P.business_class.isin(['interactive_entertainment', 'gambling', 'compute_infrastructure'])
+excl_class = P.business_class.isin(NONSW)
 P['v3_exclude'] = np.select([P.backfill, P.captive, excl_class],
                             ['R1_not_first_reported', 'R3_captive_related_party', 'R2_not_software'], '')
 AUD = ['filed', 'src_period_end', 'backfill', 'backfill_type', 'first_own_fy_end', 'gw_cur', 'gw_prior_fallback', 'gw_jump_v3',
        'acq_spend_share', 'g_prev', 'accel_rel', 'acquiree_rev_share', 'acq_now_v3', 'acq_flag_v3', 'acq_reason_v3', 'v2_flag_across_gap',
        'panel_named', 'debt_only_named', 'no_listed_equity', 'business_class', 'rp_revenue_share', 'captive_verified', 'captive', 'v3_exclude',
-       'r5_status', 'business_class_named', 'interest_paid', 'income_taxes_paid', 'interest_paid_element', 'income_taxes_paid_element']
+       'r5_status', 'business_class_named', 'interest_paid', 'income_taxes_paid', 'interest_paid_element', 'income_taxes_paid_element',
+       'business_class_reader_a', 'business_class_reader_b']
 P['in_core_v2'] = P.set_index(['cik', 'year', 'fy_end']).index.isin(core.set_index(['cik', 'year', 'fy_end']).index)
 P.to_csv(f'{BASE}/data/panel_v3_all.csv', index=False)
 cf = core.merge(P[['cik', 'year', 'fy_end'] + AUD], on=['cik', 'year', 'fy_end'], how='left', validate='one_to_one')
 assert cf.v3_exclude.notna().all() and len(cf) == len(core)
+_chk = cf.merge(P[['cik', 'fy_end', 'cap_sw', 'capex_int']], on=['cik', 'fy_end'], suffixes=('', '_all'))   # C1 in both files
+assert (_chk.cap_sw == _chk.cap_sw_all).all() and np.allclose(_chk.capex_int, _chk.capex_int_all, equal_nan=True)
 cf.to_csv(f'{BASE}/data/panel_v3_core_full.csv', index=False)
 v3 = cf[cf.v3_exclude == '']
 v3.to_csv(f'{BASE}/data/panel_v3.csv', index=False)
@@ -271,7 +330,8 @@ lst = lambda d: sorted({f'{n} {y}' for n, y in zip(d.name, d.year)})
 firms = lambda d: sorted(d.name.unique().tolist())
 newflag = cf[(cf.acq_flag_v3 == 1) & (cf.acq_flag == 0)]
 rec = dict(
-    rules=dict(R1='applied', R2='applied' if r2_applied else ('main sample: not applied (descriptions exist only for the 16 named firms); '
+    rules=dict(R1='applied', R2=(f'applied to the main sample (keyword classifier fixed before any description was read, run on '
+                                 f'the descriptions of all {len(cls)} core registrants; a partial check)') if r2_applied else ('main sample: not applied (descriptions exist only for the 16 named firms); '
                                                                 'named firms: classified, sensitivity only' if r2_named else
                                                                 'defined, not applied: no business descriptions available locally'),
                R3=('applied (XBRL related-party revenue, and filing text where verified)' if r3_xbrl else
@@ -328,6 +388,62 @@ if r2_named:
                            non_software=sorted({n for c, n in zip(cf.cik, cf.name) if cls_named.get(int(c), 'software') != 'software'}),
                            firm_years_v3_non_software=int(v3.business_class_named.isin(['interactive_entertainment', 'gambling', 'compute_infrastructure']).sum()),
                            note='rule as defined before the descriptions were read; keyword lists not changed after reading them')
+firm_names = dict(zip(cf.cik.astype(int), cf.name))
+if r2_applied:
+    ex2 = cf[cf.v3_exclude == 'R2_not_software']
+    ns_firms = sorted({int(c) for c in cf.cik if cls[int(c)] in NONSW})
+    rec['R2'] = dict(
+        n_described=len(cls), n_core_registrants=int(cf.cik.nunique()),
+        class_counts_core_registrants={k: int(v) for k, v in pd.Series([cls[int(c)] for c in cf.cik.unique()]).value_counts().items()},
+        non_software={firm_names[c]: cls[c] for c in ns_firms},
+        hits_non_software={firm_names[c]: hits_main[c] for c in ns_firms},
+        non_software_firm_years_core_v2=int(cf.business_class.isin(NONSW).sum()),
+        excluded_firm_years=int(len(ex2)), excluded_firms=int(ex2.cik.nunique()),
+        excluded_by_period={k: int(v) for k, v in ex2.groupby('period').size().items()},
+        excluded={n: sorted(int(y) for y in g_.year) for n, g_ in ex2.groupby('name')},
+        named_classes={firm_names[c]: cls[c] for c in sorted(PANEL_NAMED) if c in firm_names},
+        hits_named={firm_names[c]: hits_main[c] for c in sorted(PANEL_NAMED) if c in firm_names},
+        sources=dict(named='data/v3_inputs/business_descriptions_named.json (29 Oct 2026)',
+                     others='data/v3_inputs/raw/business_descriptions_raw_2026-11-03.json (3 Nov 2026)',
+                     merged='data/v3_inputs/business_descriptions.json (code/audit/r2_descriptions.py)'),
+        note='rule and keyword lists as defined before any description was read; firm-years excluded by R1 or R3 are '
+             'counted under that rule')
+if len(readers) == 2:                                      # R2 sensitivity: two independent readings (software vs not)
+    ids = sorted({int(c) for c in cf.cik})
+    ns_r = {rd: {c for c in ids if readers[rd][c] != 'software'} for rd in readers}
+    n_, agree = len(ids), sum((c in ns_r['a']) == (c in ns_r['b']) for c in ids)
+    pa, pb = len(ns_r['a']) / n_, len(ns_r['b']) / n_
+    po, pe = agree / n_, pa * pb + (1 - pa) * (1 - pb)
+    both, either = ns_r['a'] & ns_r['b'], ns_r['a'] | ns_r['b']
+    cls_ns = {c for c in ids if cls.get(c) in NONSW}
+    rec['R2_readers'] = dict(
+        n_firms=n_, agree=int(agree), p_observed=po, p_expected=pe, kappa=(po - pe) / (1 - pe),
+        non_software=dict(a=len(ns_r['a']), b=len(ns_r['b']), both=len(both), either=len(either)),
+        class_counts={rd: {k: int(v) for k, v in pd.Series([readers[rd][c] for c in ids]).value_counts().items()} for rd in readers},
+        v3_firm_years_dropped=dict(both=int(v3.cik.isin(both).sum()), either=int(v3.cik.isin(either).sum())),
+        v3_firms_dropped=dict(both=int(v3[v3.cik.isin(both)].cik.nunique()), either=int(v3[v3.cik.isin(either)].cik.nunique())),
+        both_firms=sorted(firm_names[c] for c in both), either_only_one=sorted(firm_names[c] for c in either - both),
+        classifier_non_software=dict(n=len(cls_ns), also_a=len(cls_ns & ns_r['a']), also_b=len(cls_ns & ns_r['b']),
+                                     also_both=len(cls_ns & both), also_either=len(cls_ns & either),
+                                     software_for_a=sorted(firm_names[c] for c in cls_ns - ns_r['a']),
+                                     software_for_b=sorted(firm_names[c] for c in cls_ns - ns_r['b'])),
+        files=['data/v3_inputs/business_class_reader_a.csv', 'data/v3_inputs/business_class_reader_b.csv'],
+        note='kappa: Cohen, software against the four other classes, over the core registrants; the sensitivities drop, '
+             'from the main sample, the firms both readers (or either reader) class as not software')
+if csw:
+    v3c = v3[v3.cap_sw_source == 'filing_cash_flow_statement']
+    cfc = cf[cf.cap_sw_source == 'filing_cash_flow_statement']
+    box = cf[(cf.cik == 1372612) & (cf.fy_end == '2024-01-31')].iloc[0]
+    assert box.cap_sw == 16561000 and box.cap_sw_xbrl == 0 and box.cap_sw_source == 'filing_cash_flow_statement'
+    _dm = (v3c.m_fcf_sbc - (v3c.ocf - v3c.capex_ppe - v3c.cap_sw_xbrl - v3c.sbc) / v3c.rev).dropna()
+    rec['capsw'] = dict(
+        source='data/v3_inputs/capitalized_software_filings.json (code/audit/capsw_scan_parse.py; cash-flow statements read 3 Nov 2026)',
+        n_filing_values=N_CSW, n_firms=len(csw), panel_all=int(csw_hit_all.sum()), core_v2=int(len(cfc)),
+        core_v2_firms=int(cfc.cik.nunique()), v3=int(len(v3c)), v3_firms=int(v3c.cik.nunique()),
+        v3_by_period={k: int(v) for k, v in v3c.groupby('period').size().items()},
+        v3_share_of_revenue=dict(median=float((v3c.cap_sw / v3c.rev).median()), max=float((v3c.cap_sw / v3c.rev).max())),
+        v3_cash_margin_change=dict(median=float(_dm.median()), min=float(_dm.min())),
+        box_fy2023=dict(fy_end=box.fy_end, accn=box.accn, cap_sw=float(box.cap_sw), cap_sw_xbrl=float(box.cap_sw_xbrl)))
 # (b) cash-score basis: elements available locally for a before-interest-and-tax variant
 CF_ELEMS = ['InterestPaid', 'InterestPaidNet', 'IncomeTaxesPaid', 'IncomeTaxesPaidNet']
 frames_concepts = set()

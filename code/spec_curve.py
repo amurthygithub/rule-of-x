@@ -97,7 +97,7 @@ spend_ratio, anchor_vec, ANCH_STATS = EV['spend_ratio'], EV['anchor_vec'], EV['A
 STAT_RATE, MIN_CELL, NU, U, TAUS, GRIDF = EV['STAT_RATE'], EV['MIN_CELL'], EV['NU'], EV['U'], EV['TAUS'], EV['GRIDF']
 seed_for, PERIODS = EV['seed_for'], EV['PERIODS']
 fin = np.isfinite
-assert TAUS == [0.80, 0.85, 0.90, 0.95] and MIN_CELL == 30 and NU == 292
+assert TAUS == [0.80, 0.85, 0.90, 0.95] and MIN_CELL == 30        # the grid of chi and the cell rule this script assumes
 log('executed code/estimate_v3.py up to its point-estimate section;', len(V), 'paper frames')
 
 J3 = json.load(open(os.path.join(BASE, 'notes', 'empirics_v3.json')))
@@ -1055,6 +1055,7 @@ def write_outputs(R):
                                                                             'PSI|cash|c90|w60', 'DIFF|op|c90|w40|A'))))
     put('ScLoDiffCashReversalsEtwo', str(LOFO['E2']['DIFF|cash|c90|w40|A']['n_sign_reversals']))
     put('ScLoDiffCashReversalsImpFour', str(LOFO['E2imp4']['DIFF|cash|c90|w40|A']['n_sign_reversals']))
+    # firm names of the leave-one-firm-out extremes are in results.json, not in the macros
     if 'boot' in EXTRA:
         EB = EXTRA['boot']
         put('ScTopOpBootCoreShare', pct_share(EB['top_op_core'])); put('ScTopCashBootCoreShare', pct_share(EB['top_cash_core']))

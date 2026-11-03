@@ -25,7 +25,11 @@ v2 for the like-for-like comparison). Added here:
   E2testrule      E2 under the first test run's rule (additive pro forma formula on every firm-year with disclosures,
                   no ambiguity rule; protocol record in notes/estimand_notes.md). Point estimates only.
   E1r2named, E2r2named  without the review panels' named firms that the R2 classifier classes non-software (the
-                  classifier run on the 16 named firms only; sensitivity, point estimates).
+                  classifier run on the 16 named firms only). Since R2 applies to the main sample (3 Nov 2026) these
+                  firms are already excluded, so the two variants equal E1 and E2; kept for continuity.
+  E1r2both, E2r2both, E1r2either, E2r2either  R2 sensitivity from two independent readings of the business
+                  descriptions (build_panel_v3.py, business_class_reader_a and _b): the main sample without the firms
+                  that both readers (or either reader) class as not software (point estimates).
   E1nolist, E2nolist  without the firm-years rule R5 flags as no listed equity (sensitivity, point estimates).
 Cash-score bridge (B5, v3 only): the cash score before interest paid and cash taxes, R_cash_pre = g + (FCF - SBC +
 interest paid + income taxes paid) / revenue, and before interest only, R_cash_bi = g + (FCF - SBC + interest paid x
@@ -138,8 +142,16 @@ if PANEL == 'v3':                                                   # sensitivit
     V['E2r2named'] = variant(_prim & ~_ns & ~_ce.unver & _ce.gorg25.notna(), 'gorg25', frame=_ce)
     V['E1nolist'] = variant(_prim & ~_nl, frame=_ce)
     V['E2nolist'] = variant(_prim & ~_nl & ~_ce.unver & _ce.gorg25.notna(), 'gorg25', frame=_ce)
-    VLAB.update(E1r2named='E1 without the named firms the R2 classifier classes non-software (classifier run on the 16 named firms only)',
-                E2r2named='E2 without the named firms the R2 classifier classes non-software (classifier run on the 16 named firms only)',
+    if 'business_class_reader_b' in _ce.columns and _ce.business_class_reader_b.fillna('').ne('').all():
+        _ra = _ce.business_class_reader_a.fillna('software') != 'software'
+        _rb = _ce.business_class_reader_b.fillna('software') != 'software'
+        for _k, _m in [('both', _ra & _rb), ('either', _ra | _rb)]:
+            V[f'E1r2{_k}'] = variant(_prim & ~_m, frame=_ce)
+            V[f'E2r2{_k}'] = variant(_prim & ~_m & ~_ce.unver & _ce.gorg25.notna(), 'gorg25', frame=_ce)
+            VLAB.update({f'E1r2{_k}': f'E1 without the firms {_k} of two independent readers class as not software (R2 sensitivity)',
+                         f'E2r2{_k}': f'E2 without the firms {_k} of two independent readers class as not software (R2 sensitivity)'})
+    VLAB.update(E1r2named='E1 without the named firms the R2 classifier classes non-software (equals E1 since R2 applies to the main sample)',
+                E2r2named='E2 without the named firms the R2 classifier classes non-software (equals E2 since R2 applies to the main sample)',
                 E1nolist='E1 without the firm-years rule R5 flags as no listed equity',
                 E2nolist='E2 without the firm-years rule R5 flags as no listed equity')
 STAT_RATE = lambda fy_end: np.where(pd.to_datetime(fy_end) < pd.Timestamp('2018-01-01'), 0.35, 0.21)
@@ -1202,6 +1214,8 @@ if not REPORT_ONLY:
     ANCH = {'E2': anchor_block(V['E2'], False), 'E1': anchor_block(V['E1'], True), 'E1all': anchor_block(V['E1'], False)}
     for vn in [x for x in ['E2x25', 'E2imp4', 'E2imp8', 'E2clean', 'E2k2010', 'E2nodebt', 'E2testrule'] if x in V]:
         ANCH[vn] = anchor_block(V[vn], False)
+    for vn in [x for x in ['E1r2both', 'E1r2either'] if x in V]:           # R2 reader sensitivities, E1 calibration rule
+        ANCH[vn] = anchor_block(V[vn], True)
     assert ANCH['E2']['n'] == PE['anchor']['E2'][ANCH_NAMES.index('anchor_p95_n')]
     assert np.isclose(ANCH['E2']['Pi_ub'][1], PE['anchor']['E2'][ANCH_NAMES.index('anchor_p95_Pi_ub_med')])
     ANCH_CUT = {f'{vn}|{cq}': {k_: v_ for k_, v_ in anchor_block(V[vn], vn == 'E1', cq).items() if k_ != 'firm_years'}

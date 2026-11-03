@@ -1,0 +1,28 @@
+{
+ "frame": "data/panel.csv rows kept by rules R1 and R3 (the v3 core sample of 3 Nov before R2: 1,788 firm-years)",
+ "n_frame": 1788,
+ "n_scanned": 1213,
+ "n_not_read": 1,
+ "n_candidates": 121,
+ "n_candidate_firms": 27,
+ "dropped": {
+  "not_outflow": 3,
+  "combined_capex_line": 9,
+  "capex_may_contain_line": 0
+ },
+ "kept_separate_line_productive_assets": 7,
+ "n_kept": 109,
+ "n_kept_firms": 23,
+ "kept_by_period": {
+  "2010-15": 45,
+  "2016-19": 27,
+  "2020-22": 18,
+  "2023-25": 19
+ },
+ "kept_pct_rev": {
+  "median": 1.5844287041785394,
+  "p90": 3.6472724285357634,
+  "max": 9.212284494465024
+ },
+ "keep_separate_line": true
+}

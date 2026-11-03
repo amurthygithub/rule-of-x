@@ -1,7 +1,7 @@
 {
  "rules": {
   "R1": "applied",
-  "R2": "main sample: not applied (descriptions exist only for the 16 named firms); named firms: classified, sensitivity only",
+  "R2": "applied to the main sample (keyword classifier fixed before any description was read, run on the descriptions of all 293 core registrants; a partial check)",
   "R3": "applied (XBRL related-party revenue, and filing text where verified)",
   "R4": "applied (criteria a, b and c)",
   "R5": "applied (flag and sensitivity, not an exclusion)",
@@ -9,11 +9,12 @@
   "related_party_max_share": 0.5
  },
  "core_v2": 1929,
- "core_v3": 1788,
+ "core_v3": 1732,
  "firms_v2": 293,
- "firms_v3": 292,
+ "firms_v3": 284,
  "excluded": {
   "R1_not_first_reported": 140,
+  "R2_not_software": 56,
   "R3_captive_related_party": 1
  },
  "R1": {
@@ -194,7 +195,7 @@
   ],
   "xbrl": {
    "core_v2_firm_years_with_fact": 81,
-   "core_v3_firm_years_with_fact": 74,
+   "core_v3_firm_years_with_fact": 72,
    "firms_with_fact": 25,
    "n_at_or_above_50pct": 0,
    "max_share": 0.2694485669417227,
@@ -296,11 +297,11 @@
    "ipo_timing_unresolved": 3
   },
   "status_counts_v3": {
-   "listed": 1534,
-   "foreign_not_tested": 186,
+   "listed": 1488,
+   "foreign_not_tested": 177,
    "no_listed_equity": 24,
    "ipo_timing": 20,
-   "unknown": 19,
+   "unknown": 18,
    "ipo_timing_unresolved": 3,
    "no_listed_equity_untagged": 2
   },
@@ -517,13 +518,13 @@
    "PLAYSTUDIOS, Inc.": "games (IB, FR)",
    "Mobileye Global Inc.": "driver-assistance chips (FR)"
   },
-  "firm_years_in_v3": 120
+  "firm_years_in_v3": 82
  },
  "v3_by_period": {
-  "2010-15": 465,
-  "2016-19": 418,
-  "2020-22": 458,
-  "2023-25": 447
+  "2010-15": 444,
+  "2016-19": 405,
+  "2020-22": 446,
+  "2023-25": 437
  },
  "R2_named": {
   "classes": {
@@ -648,8 +649,312 @@
    "ELECTRONIC ARTS INC.",
    "PLAYSTUDIOS, Inc."
   ],
-  "firm_years_v3_non_software": 38,
+  "firm_years_v3_non_software": 0,
   "note": "rule as defined before the descriptions were read; keyword lists not changed after reading them"
+ },
+ "R2": {
+  "n_described": 293,
+  "n_core_registrants": 293,
+  "class_counts_core_registrants": {
+   "software": 285,
+   "interactive_entertainment": 6,
+   "gambling": 2
+  },
+  "non_software": {
+   "BALLY TECHNOLOGIES, INC.": "gambling",
+   "ELECTRONIC ARTS INC.": "interactive_entertainment",
+   "Activision Blizzard, Inc.": "interactive_entertainment",
+   "Changyou.com Ltd": "interactive_entertainment",
+   "Inspired Entertainment, Inc.": "gambling",
+   "PLAYSTUDIOS, Inc.": "interactive_entertainment",
+   "Snail, Inc.": "interactive_entertainment",
+   "GCL Global Holdings Ltd": "interactive_entertainment"
+  },
+  "hits_non_software": {
+   "BALLY TECHNOLOGIES, INC.": {
+    "interactive_entertainment": 0,
+    "gambling": 4,
+    "compute_infrastructure": 0,
+    "software": 3
+   },
+   "ELECTRONIC ARTS INC.": {
+    "interactive_entertainment": 25,
+    "gambling": 0,
+    "compute_infrastructure": 0,
+    "software": 3
+   },
+   "Activision Blizzard, Inc.": {
+    "interactive_entertainment": 3,
+    "gambling": 0,
+    "compute_infrastructure": 0,
+    "software": 0
+   },
+   "Changyou.com Ltd": {
+    "interactive_entertainment": 16,
+    "gambling": 1,
+    "compute_infrastructure": 0,
+    "software": 7
+   },
+   "Inspired Entertainment, Inc.": {
+    "interactive_entertainment": 0,
+    "gambling": 7,
+    "compute_infrastructure": 0,
+    "software": 3
+   },
+   "PLAYSTUDIOS, Inc.": {
+    "interactive_entertainment": 9,
+    "gambling": 8,
+    "compute_infrastructure": 0,
+    "software": 2
+   },
+   "Snail, Inc.": {
+    "interactive_entertainment": 5,
+    "gambling": 0,
+    "compute_infrastructure": 0,
+    "software": 4
+   },
+   "GCL Global Holdings Ltd": {
+    "interactive_entertainment": 13,
+    "gambling": 0,
+    "compute_infrastructure": 0,
+    "software": 1
+   }
+  },
+  "non_software_firm_years_core_v2": 60,
+  "excluded_firm_years": 56,
+  "excluded_firms": 8,
+  "excluded_by_period": {
+   "2010-15": 21,
+   "2016-19": 13,
+   "2020-22": 12,
+   "2023-25": 10
+  },
+  "excluded": {
+   "Activision Blizzard, Inc.": [
+    2010,
+    2011,
+    2012,
+    2013,
+    2014,
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022
+   ],
+   "BALLY TECHNOLOGIES, INC.": [
+    2011,
+    2012,
+    2013,
+    2014
+   ],
+   "Changyou.com Ltd": [
+    2011,
+    2012,
+    2013,
+    2014,
+    2015,
+    2016,
+    2017,
+    2018
+   ],
+   "ELECTRONIC ARTS INC.": [
+    2010,
+    2011,
+    2012,
+    2013,
+    2014,
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025
+   ],
+   "GCL Global Holdings Ltd": [
+    2025
+   ],
+   "Inspired Entertainment, Inc.": [
+    2017,
+    2018,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025
+   ],
+   "PLAYSTUDIOS, Inc.": [
+    2021,
+    2022,
+    2023,
+    2024,
+    2025
+   ],
+   "Snail, Inc.": [
+    2022
+   ]
+  },
+  "named_classes": {
+   "BALLY TECHNOLOGIES, INC.": "gambling",
+   "ELECTRONIC ARTS INC.": "interactive_entertainment",
+   "Activision Blizzard, Inc.": "interactive_entertainment",
+   "THQ INC": "software",
+   "3D SYSTEMS CORP": "software",
+   "TAKE TWO INTERACTIVE SOFTWARE INC": "software",
+   "Roblox Corp": "software",
+   "DIRTT ENVIRONMENTAL SOLUTIONS LTD": "software",
+   "Xunlei Ltd": "software",
+   "Block, Inc.": "software",
+   "Mobileye B.V.": "software",
+   "CoreWeave, Inc.": "software",
+   "Xperi Inc.": "software",
+   "Unity Software Inc.": "software",
+   "PLAYSTUDIOS, Inc.": "interactive_entertainment",
+   "Mobileye Global Inc.": "software"
+  },
+  "hits_named": {
+   "BALLY TECHNOLOGIES, INC.": {
+    "interactive_entertainment": 0,
+    "gambling": 4,
+    "compute_infrastructure": 0,
+    "software": 3
+   },
+   "ELECTRONIC ARTS INC.": {
+    "interactive_entertainment": 25,
+    "gambling": 0,
+    "compute_infrastructure": 0,
+    "software": 3
+   },
+   "Activision Blizzard, Inc.": {
+    "interactive_entertainment": 3,
+    "gambling": 0,
+    "compute_infrastructure": 0,
+    "software": 0
+   },
+   "THQ INC": {
+    "interactive_entertainment": 4,
+    "gambling": 0,
+    "compute_infrastructure": 0,
+    "software": 5
+   },
+   "3D SYSTEMS CORP": {
+    "interactive_entertainment": 0,
+    "gambling": 0,
+    "compute_infrastructure": 0,
+    "software": 17
+   },
+   "TAKE TWO INTERACTIVE SOFTWARE INC": {
+    "interactive_entertainment": 2,
+    "gambling": 2,
+    "compute_infrastructure": 0,
+    "software": 5
+   },
+   "Roblox Corp": {
+    "interactive_entertainment": 1,
+    "gambling": 0,
+    "compute_infrastructure": 0,
+    "software": 22
+   },
+   "DIRTT ENVIRONMENTAL SOLUTIONS LTD": {
+    "interactive_entertainment": 0,
+    "gambling": 0,
+    "compute_infrastructure": 0,
+    "software": 10
+   },
+   "Xunlei Ltd": {
+    "interactive_entertainment": 0,
+    "gambling": 0,
+    "compute_infrastructure": 0,
+    "software": 6
+   },
+   "Block, Inc.": {
+    "interactive_entertainment": 0,
+    "gambling": 0,
+    "compute_infrastructure": 0,
+    "software": 4
+   },
+   "Mobileye B.V.": {
+    "interactive_entertainment": 0,
+    "gambling": 0,
+    "compute_infrastructure": 0,
+    "software": 0
+   },
+   "CoreWeave, Inc.": {
+    "interactive_entertainment": 0,
+    "gambling": 0,
+    "compute_infrastructure": 2,
+    "software": 20
+   },
+   "Xperi Inc.": {
+    "interactive_entertainment": 0,
+    "gambling": 0,
+    "compute_infrastructure": 0,
+    "software": 5
+   },
+   "Unity Software Inc.": {
+    "interactive_entertainment": 2,
+    "gambling": 0,
+    "compute_infrastructure": 0,
+    "software": 13
+   },
+   "PLAYSTUDIOS, Inc.": {
+    "interactive_entertainment": 9,
+    "gambling": 8,
+    "compute_infrastructure": 0,
+    "software": 2
+   },
+   "Mobileye Global Inc.": {
+    "interactive_entertainment": 0,
+    "gambling": 0,
+    "compute_infrastructure": 0,
+    "software": 5
+   }
+  },
+  "sources": {
+   "named": "data/v3_inputs/business_descriptions_named.json (29 Oct 2026)",
+   "others": "data/v3_inputs/raw/business_descriptions_raw_2026-11-03.json (3 Nov 2026)",
+   "merged": "data/v3_inputs/business_descriptions.json (code/audit/r2_descriptions.py)"
+  },
+  "note": "rule and keyword lists as defined before any description was read; firm-years excluded by R1 or R3 are counted under that rule"
+ },
+ "capsw": {
+  "source": "data/v3_inputs/capitalized_software_filings.json (code/audit/capsw_scan_parse.py; cash-flow statements read 3 Nov 2026)",
+  "n_filing_values": 109,
+  "n_firms": 23,
+  "panel_all": 109,
+  "core_v2": 109,
+  "core_v2_firms": 23,
+  "v3": 109,
+  "v3_firms": 23,
+  "v3_by_period": {
+   "2010-15": 45,
+   "2016-19": 27,
+   "2020-22": 18,
+   "2023-25": 19
+  },
+  "v3_share_of_revenue": {
+   "median": 0.015844287041785393,
+   "max": 0.09212284494465024
+  },
+  "v3_cash_margin_change": {
+   "median": -0.015844287041785393,
+   "min": -0.09212284494465026
+  },
+  "box_fy2023": {
+   "fy_end": "2024-01-31",
+   "accn": "0000950170-24-029241",
+   "cap_sw": 16561000.0,
+   "cap_sw_xbrl": 0.0
+  }
  },
  "cash_score_basis": {
   "operating_cash_flow_elements": [
@@ -669,15 +974,15 @@
    "IncomeTaxesPaid": false,
    "IncomeTaxesPaidNet": false
   },
-  "coverage_core": "1762 of 1788 v3 core firm-years report at least one of the four elements",
+  "coverage_core": "1706 of 1732 v3 core firm-years report at least one of the four elements",
   "retrieved": "data/v3_inputs/cash_interest_taxes.json (SEC frames, 29 Oct 2026; latest filed values, not first reported)",
   "coverage_v3": {
-   "any_element": 1762,
-   "interest_element": 1397,
-   "taxes_element": 1736,
-   "both": 1371,
-   "interest_net_element": 1040,
-   "taxes_net_element": 1242
+   "any_element": 1706,
+   "interest_element": 1341,
+   "taxes_element": 1681,
+   "both": 1316,
+   "interest_net_element": 1004,
+   "taxes_net_element": 1192
   },
   "rule": "InterestPaidNet, else InterestPaid; IncomeTaxesPaidNet, else IncomeTaxesPaid; a missing element is zero when the firm-year reports any of the four"
  },
@@ -740,10 +1045,10 @@
   },
   "core analysis sample v3 (data/panel_v3.csv)": {
    "rev_1b_10b": {
-    "n_firms": 61,
-    "p5": 0.05975337659226639,
-    "p10": 0.08090085373012561,
-    "median": 0.12775007507388852
+    "n_firms": 60,
+    "p5": 0.05965865559717314,
+    "p10": 0.08067817332453664,
+    "median": 0.12884852897414628
    },
    "rev_over_10b": {
     "n_firms": 8,
