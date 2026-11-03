@@ -79,8 +79,7 @@ python3 code/mc_claims.py --n 10000 --workers 4 --out notes/mc
 
 which writes `mc_claims.json`, `mc_claims_report.md` and `draws_lhs.csv` to `notes/mc/` (about 75 seconds on
 four cores; seeds 20261102 for the draws and 20261103 for the corners by default, `--seed` to change them). The results that stage
-`stress_report` formats are in `notes/mc_results_2026-11-03/` (seed 20261102, and the second seed 20261104 in `seed2/`), from that
-command (`--out` aside) after the compute-share fix of 3 Nov 2026. `notes/mc_results_2026-11-02/` holds the earlier run, which predates the
+`stress_report` formats are in `notes/mc_results_2026-11-03_1m/`: a million draws per seed (seed 20261102, and the second seed 20261104 in `seed2/`), run on the author's computer on 3 Nov 2026 with the commands of `notes/mc_claims_method.md` section 8a (the per-draw file is gzipped, `draws_lhs.csv.gz`; `run_stress.sh` and `logs/` record how the run was made). `notes/mc_results_2026-11-03/` holds the 10,000-draw run of the same box, from the command above (`--out` aside), after the compute-share fix of 3 Nov 2026. `notes/mc_results_2026-11-02/` holds the earlier run, which predates the
 fix (its `draws_lhs.csv` and `amin_points.csv` were taken from its checkpoint for the dashboard). `MC_DIR=notes/mc python3 code/mc_report_tex.py` formats
 a new run. A second seed, recorded against the first:
 `python3 code/mc_claims.py --n 10000 --seed 20261104 --workers 4 --out notes/mc/seed2 --compare-to notes/mc`;

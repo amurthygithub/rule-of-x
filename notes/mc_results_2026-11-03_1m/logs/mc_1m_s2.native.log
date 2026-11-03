@@ -1,0 +1,50 @@
+[mc_claims 15:01:21] executing code/calibrate_horizons.py into /Users/amurthy/workspace/stress_runs_2026-11-03/mc_1m_s2/_shadow (outputs redirected)
+[mc_claims 15:01:24] reproduction checks: 87 passed, 0 failed; shadow outputs byte-identical: False (JSON: 69 leaves differ, max rel. 1.8736e-07, blocks ell_psi,r2,r3)
+[mc_claims 15:01:24] box: 51 dimensions; config 2feadf083557; checkpoint /Users/amurthy/workspace/stress_runs_2026-11-03/mc_1m_s2/ckpt/2feadf083557
+[mc_claims 15:01:26] draws: 1000000 LHS + 100002 corners = 1100002 points, 5501 chunks to run (0 done)
+[mc_claims 15:03:36]   draws chunk 275/5501 (422.1 draws/s)
+[mc_claims 15:05:31]   draws chunk 550/5501 (447.6 draws/s)
+[mc_claims 15:07:23]   draws chunk 825/5501 (462.3 draws/s)
+[mc_claims 15:09:16]   draws chunk 1100/5501 (468.1 draws/s)
+[mc_claims 15:11:07]   draws chunk 1375/5501 (473.4 draws/s)
+[mc_claims 15:12:39]   draws chunk 1650/5501 (490.1 draws/s)
+[mc_claims 15:14:34]   draws chunk 1925/5501 (488.5 draws/s)
+[mc_claims 15:16:23]   draws chunk 2200/5501 (490.2 draws/s)
+[mc_claims 15:18:13]   draws chunk 2475/5501 (491.2 draws/s)
+[mc_claims 15:19:44]   draws chunk 2750/5501 (500.7 draws/s)
+[mc_claims 15:21:15]   draws chunk 3025/5501 (508.6 draws/s)
+[mc_claims 15:22:40]   draws chunk 3300/5501 (517.8 draws/s)
+[mc_claims 15:24:03]   draws chunk 3575/5501 (526.7 draws/s)
+[mc_claims 15:25:28]   draws chunk 3850/5501 (533.9 draws/s)
+[mc_claims 15:26:52]   draws chunk 4125/5501 (540.4 draws/s)
+[mc_claims 15:28:17]   draws chunk 4400/5501 (546.2 draws/s)
+[mc_claims 15:29:40]   draws chunk 4675/5501 (551.7 draws/s)
+[mc_claims 15:31:04]   draws chunk 4950/5501 (556.8 draws/s)
+[mc_claims 15:32:27]   draws chunk 5225/5501 (561.5 draws/s)
+[mc_claims 15:33:49]   draws chunk 5500/5501 (566.0 draws/s)
+[mc_claims 15:33:49]   draws chunk 5501/5501 (566.0 draws/s)
+[mc_claims 15:33:49] draws done: 1100002 points in 1943.7 s = 565.95 draws/s (1.8 s per 1,000) with 11 workers; maxrss main 1180 MB, largest worker 78 MB
+[mc_claims 15:40:01] executing code/calibrate_horizons.py into /Users/amurthy/workspace/stress_runs_2026-11-03/mc_1m_s2/_shadow (outputs redirected)
+[mc_claims 15:40:05] reproduction checks: 87 passed, 0 failed; shadow outputs byte-identical: False (JSON: 69 leaves differ, max rel. 1.8736e-07, blocks ell_psi,r2,r3)
+[mc_claims 15:40:05] box: 51 dimensions; config 2feadf083557; checkpoint /Users/amurthy/workspace/stress_runs_2026-11-03/mc_1m_s2/ckpt/2feadf083557
+[mc_claims 15:40:05] draws: 1000000 LHS + 100002 corners = 1100002 points, 0 chunks to run (5501 done)
+[mc_claims 15:40:51] searches: 142 extremum searches to run (0 done)
+[mc_claims 15:40:51]   search 10/142
+[mc_claims 15:40:51]   search 20/142
+[mc_claims 15:40:51]   search 30/142
+[mc_claims 15:40:52]   search 40/142
+[mc_claims 15:40:52]   search 50/142
+[mc_claims 15:40:53]   search 60/142
+[mc_claims 15:40:53]   search 70/142
+[mc_claims 15:40:53]   search 80/142
+[mc_claims 15:40:53]   search 90/142
+[mc_claims 15:40:53]   search 100/142
+[mc_claims 15:40:54]   search 110/142
+[mc_claims 15:40:54]   search 120/142
+[mc_claims 15:40:54]   search 130/142
+[mc_claims 15:40:55]   search 140/142
+[mc_claims 15:40:55]   search 142/142
+[mc_claims 15:41:11] sobol: N = 65536, 20 blocks, 4718592 evaluations to run (scrambled Sobol sequence (scipy.stats.qmc); factor indices by SALib)
+[mc_claims 15:44:56] failure scans: 254 univariate scans
+[mc_claims 15:44:57] seed comparison with /Users/amurthy/workspace/stress_runs_2026-11-03/mc_1m_s1/mc_claims.json (seed 20261102): 69 of 69 tests agree on holds-everywhere; largest change of a box extreme 1.10 points
+[mc_claims 15:45:09] wrote /Users/amurthy/workspace/stress_runs_2026-11-03/mc_1m_s2/mc_claims.json, /Users/amurthy/workspace/stress_runs_2026-11-03/mc_1m_s2/mc_claims_report.md and draws_lhs.csv

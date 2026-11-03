@@ -1,0 +1,145 @@
+[mc_claims 20:38:28] executing code/calibrate_horizons.py into /sessions/rcw-016kbnsxzouh27dgnjmtas1f/mc_1m_s1/_shadow (outputs redirected)
+[mc_claims 20:38:32] reproduction checks: 87 passed, 0 failed; shadow outputs byte-identical: False (JSON: 94 leaves differ, max rel. 1.8736e-07, blocks ell_psi,r2,r3)
+[mc_claims 20:38:32] box: 51 dimensions; config e291b0637f62; checkpoint /sessions/rcw-016kbnsxzouh27dgnjmtas1f/mc_1m_s1/ckpt/e291b0637f62
+[mc_claims 20:38:33] draws: 1000000 LHS + 100002 corners = 1100002 points, 5501 chunks to run (0 done)
+/sessions/rcw-016kbnsxzouh27dgnjmtas1f/.local/share/uv/python/cpython-3.13.18-linux-aarch64-gnu/lib/python3.13/multiprocessing/resource_tracker.py:479: UserWarning: resource_tracker: There appear to be 6 leaked semaphore objects to clean up at shutdown: {'/mp-c8865643', '/mp-abh0zrt3', '/mp-c5xjmabu', '/mp-oj_l8n50', '/mp-5cpm1t8r', '/mp-7ziz7l7k'}
+  warnings.warn(
+[mc_claims 20:41:17] executing code/calibrate_horizons.py into /sessions/rcw-016kbnsxzouh27dgnjmtas1f/mc_1m_s1/_shadow (outputs redirected)
+[mc_claims 20:41:21] reproduction checks: 87 passed, 0 failed; shadow outputs byte-identical: False (JSON: 94 leaves differ, max rel. 1.8736e-07, blocks ell_psi,r2,r3)
+[mc_claims 20:41:21] box: 51 dimensions; config e291b0637f62; checkpoint /sessions/rcw-016kbnsxzouh27dgnjmtas1f/mc_1m_s1/ckpt/e291b0637f62
+[mc_claims 20:41:21] draws: 1000000 LHS + 100002 corners = 1100002 points, 5313 chunks to run (188 done)
+/sessions/rcw-016kbnsxzouh27dgnjmtas1f/.local/share/uv/python/cpython-3.13.18-linux-aarch64-gnu/lib/python3.13/multiprocessing/resource_tracker.py:479: UserWarning: resource_tracker: There appear to be 6 leaked semaphore objects to clean up at shutdown: {'/mp-r08i2n80', '/mp-2apw7hpp', '/mp-vs9bh4j2', '/mp-dvrkl7pj', '/mp-e8anxqjw', '/mp-ep3vnzp4'}
+  warnings.warn(
+[mc_claims 20:44:08] executing code/calibrate_horizons.py into /sessions/rcw-016kbnsxzouh27dgnjmtas1f/mc_1m_s1/_shadow (outputs redirected)
+[mc_claims 20:44:12] reproduction checks: 87 passed, 0 failed; shadow outputs byte-identical: False (JSON: 94 leaves differ, max rel. 1.8736e-07, blocks ell_psi,r2,r3)
+[mc_claims 20:44:12] box: 51 dimensions; config e291b0637f62; checkpoint /sessions/rcw-016kbnsxzouh27dgnjmtas1f/mc_1m_s1/ckpt/e291b0637f62
+[mc_claims 20:44:13] draws: 1000000 LHS + 100002 corners = 1100002 points, 5132 chunks to run (369 done)
+/sessions/rcw-016kbnsxzouh27dgnjmtas1f/.local/share/uv/python/cpython-3.13.18-linux-aarch64-gnu/lib/python3.13/multiprocessing/resource_tracker.py:479: UserWarning: resource_tracker: There appear to be 6 leaked semaphore objects to clean up at shutdown: {'/mp-zygxycp7', '/mp-fe445jfy', '/mp-wd96ewef', '/mp-5x62hsry', '/mp-9uzxpu0m', '/mp-8s45lwkq'}
+  warnings.warn(
+[mc_claims 20:46:59] executing code/calibrate_horizons.py into /sessions/rcw-016kbnsxzouh27dgnjmtas1f/mc_1m_s1/_shadow (outputs redirected)
+[mc_claims 20:47:03] reproduction checks: 87 passed, 0 failed; shadow outputs byte-identical: False (JSON: 94 leaves differ, max rel. 1.8736e-07, blocks ell_psi,r2,r3)
+[mc_claims 20:47:03] box: 51 dimensions; config e291b0637f62; checkpoint /sessions/rcw-016kbnsxzouh27dgnjmtas1f/mc_1m_s1/ckpt/e291b0637f62
+[mc_claims 20:47:04] draws: 1000000 LHS + 100002 corners = 1100002 points, 4948 chunks to run (553 done)
+/sessions/rcw-016kbnsxzouh27dgnjmtas1f/.local/share/uv/python/cpython-3.13.18-linux-aarch64-gnu/lib/python3.13/multiprocessing/resource_tracker.py:479: UserWarning: resource_tracker: There appear to be 6 leaked semaphore objects to clean up at shutdown: {'/mp-b55e7ny2', '/mp-4zd7fmuc', '/mp-f4qkvauk', '/mp-1g5w2f76', '/mp-u_lewv83', '/mp-vbrxfkpk'}
+  warnings.warn(
+[mc_claims 21:51:45] executing code/calibrate_horizons.py into /sessions/rcw-016kbnsxzouh27dgnjmtas1f/mc_1m_s1/_shadow (outputs redirected)
+[mc_claims 21:51:48] reproduction checks: 87 passed, 0 failed; shadow outputs byte-identical: False (JSON: 94 leaves differ, max rel. 1.8736e-07, blocks ell_psi,r2,r3)
+[mc_claims 21:51:48] box: 51 dimensions; config e291b0637f62; checkpoint /sessions/rcw-016kbnsxzouh27dgnjmtas1f/mc_1m_s1/ckpt/e291b0637f62
+[mc_claims 21:51:49] draws: 1000000 LHS + 100002 corners = 1100002 points, 4761 chunks to run (740 done)
+/sessions/rcw-016kbnsxzouh27dgnjmtas1f/.local/share/uv/python/cpython-3.13.18-linux-aarch64-gnu/lib/python3.13/multiprocessing/resource_tracker.py:479: UserWarning: resource_tracker: There appear to be 6 leaked semaphore objects to clean up at shutdown: {'/mp-jh6f7_6e', '/mp-v3r5cw6b', '/mp-kb8ipmio', '/mp-7atkhaep', '/mp-a74lbyg8', '/mp-jgek3akd'}
+  warnings.warn(
+[mc_claims 21:54:35] executing code/calibrate_horizons.py into /sessions/rcw-016kbnsxzouh27dgnjmtas1f/mc_1m_s1/_shadow (outputs redirected)
+[mc_claims 21:54:40] reproduction checks: 87 passed, 0 failed; shadow outputs byte-identical: False (JSON: 94 leaves differ, max rel. 1.8736e-07, blocks ell_psi,r2,r3)
+[mc_claims 21:54:40] box: 51 dimensions; config e291b0637f62; checkpoint /sessions/rcw-016kbnsxzouh27dgnjmtas1f/mc_1m_s1/ckpt/e291b0637f62
+[mc_claims 21:54:41] draws: 1000000 LHS + 100002 corners = 1100002 points, 4574 chunks to run (927 done)
+/sessions/rcw-016kbnsxzouh27dgnjmtas1f/.local/share/uv/python/cpython-3.13.18-linux-aarch64-gnu/lib/python3.13/multiprocessing/resource_tracker.py:479: UserWarning: resource_tracker: There appear to be 6 leaked semaphore objects to clean up at shutdown: {'/mp-wcjx5i4m', '/mp-ww0ln_l0', '/mp-sc7_rxlv', '/mp-5azfv1ot', '/mp-xevgh2g6', '/mp-kq35u2p7'}
+  warnings.warn(
+[mc_claims 21:57:24] executing code/calibrate_horizons.py into /sessions/rcw-016kbnsxzouh27dgnjmtas1f/mc_1m_s1/_shadow (outputs redirected)
+[mc_claims 21:57:28] reproduction checks: 87 passed, 0 failed; shadow outputs byte-identical: False (JSON: 94 leaves differ, max rel. 1.8736e-07, blocks ell_psi,r2,r3)
+[mc_claims 21:57:28] box: 51 dimensions; config e291b0637f62; checkpoint /sessions/rcw-016kbnsxzouh27dgnjmtas1f/mc_1m_s1/ckpt/e291b0637f62
+[mc_claims 21:57:28] draws: 1000000 LHS + 100002 corners = 1100002 points, 4406 chunks to run (1095 done)
+/sessions/rcw-016kbnsxzouh27dgnjmtas1f/.local/share/uv/python/cpython-3.13.18-linux-aarch64-gnu/lib/python3.13/multiprocessing/resource_tracker.py:479: UserWarning: resource_tracker: There appear to be 6 leaked semaphore objects to clean up at shutdown: {'/mp-kiw1yx_r', '/mp-327kdwei', '/mp-2ysys9p5', '/mp-ei7nuvdo', '/mp-j8im9tm4', '/mp-1qisicme'}
+  warnings.warn(
+[mc_claims 22:00:20] executing code/calibrate_horizons.py into /sessions/rcw-016kbnsxzouh27dgnjmtas1f/mc_1m_s1/_shadow (outputs redirected)
+[mc_claims 22:00:23] reproduction checks: 87 passed, 0 failed; shadow outputs byte-identical: False (JSON: 94 leaves differ, max rel. 1.8736e-07, blocks ell_psi,r2,r3)
+[mc_claims 22:00:23] box: 51 dimensions; config e291b0637f62; checkpoint /sessions/rcw-016kbnsxzouh27dgnjmtas1f/mc_1m_s1/ckpt/e291b0637f62
+[mc_claims 22:00:24] draws: 1000000 LHS + 100002 corners = 1100002 points, 4214 chunks to run (1287 done)
+/sessions/rcw-016kbnsxzouh27dgnjmtas1f/.local/share/uv/python/cpython-3.13.18-linux-aarch64-gnu/lib/python3.13/multiprocessing/resource_tracker.py:479: UserWarning: resource_tracker: There appear to be 6 leaked semaphore objects to clean up at shutdown: {'/mp-96oh8lhe', '/mp-zxg0zu1n', '/mp-p47rlcvw', '/mp-x2oishbk', '/mp-us000e60', '/mp-_5lbgwgz'}
+  warnings.warn(
+[mc_claims 22:03:11] executing code/calibrate_horizons.py into /sessions/rcw-016kbnsxzouh27dgnjmtas1f/mc_1m_s1/_shadow (outputs redirected)
+[mc_claims 22:03:15] reproduction checks: 87 passed, 0 failed; shadow outputs byte-identical: False (JSON: 94 leaves differ, max rel. 1.8736e-07, blocks ell_psi,r2,r3)
+[mc_claims 22:03:15] box: 51 dimensions; config e291b0637f62; checkpoint /sessions/rcw-016kbnsxzouh27dgnjmtas1f/mc_1m_s1/ckpt/e291b0637f62
+[mc_claims 22:03:15] draws: 1000000 LHS + 100002 corners = 1100002 points, 4022 chunks to run (1479 done)
+/sessions/rcw-016kbnsxzouh27dgnjmtas1f/.local/share/uv/python/cpython-3.13.18-linux-aarch64-gnu/lib/python3.13/multiprocessing/resource_tracker.py:479: UserWarning: resource_tracker: There appear to be 6 leaked semaphore objects to clean up at shutdown: {'/mp-vo0b707u', '/mp-mubwm4tz', '/mp-y63njl5l', '/mp-v1698wza', '/mp-fqi97n47', '/mp-c012rr0k'}
+  warnings.warn(
+[mc_claims 22:06:01] executing code/calibrate_horizons.py into /sessions/rcw-016kbnsxzouh27dgnjmtas1f/mc_1m_s1/_shadow (outputs redirected)
+[mc_claims 22:06:04] reproduction checks: 87 passed, 0 failed; shadow outputs byte-identical: False (JSON: 94 leaves differ, max rel. 1.8736e-07, blocks ell_psi,r2,r3)
+[mc_claims 22:06:04] box: 51 dimensions; config e291b0637f62; checkpoint /sessions/rcw-016kbnsxzouh27dgnjmtas1f/mc_1m_s1/ckpt/e291b0637f62
+[mc_claims 22:06:05] draws: 1000000 LHS + 100002 corners = 1100002 points, 3830 chunks to run (1671 done)
+[mc_claims 22:08:44]   draws chunk 191/3830 (239.2 draws/s)
+/sessions/rcw-016kbnsxzouh27dgnjmtas1f/.local/share/uv/python/cpython-3.13.18-linux-aarch64-gnu/lib/python3.13/multiprocessing/resource_tracker.py:479: UserWarning: resource_tracker: There appear to be 6 leaked semaphore objects to clean up at shutdown: {'/mp-7ttqpdve', '/mp-d06b52y7', '/mp-9j2f3_9w', '/mp-4ldv8zel', '/mp-5mi3bavz', '/mp-kw3dtoj6'}
+  warnings.warn(
+[mc_claims 22:08:49] executing code/calibrate_horizons.py into /sessions/rcw-016kbnsxzouh27dgnjmtas1f/mc_1m_s1/_shadow (outputs redirected)
+[mc_claims 22:08:53] reproduction checks: 87 passed, 0 failed; shadow outputs byte-identical: False (JSON: 94 leaves differ, max rel. 1.8736e-07, blocks ell_psi,r2,r3)
+[mc_claims 22:08:53] box: 51 dimensions; config e291b0637f62; checkpoint /sessions/rcw-016kbnsxzouh27dgnjmtas1f/mc_1m_s1/ckpt/e291b0637f62
+[mc_claims 22:08:53] draws: 1000000 LHS + 100002 corners = 1100002 points, 3638 chunks to run (1863 done)
+[mc_claims 22:11:24]   draws chunk 181/3638 (239.9 draws/s)
+/sessions/rcw-016kbnsxzouh27dgnjmtas1f/.local/share/uv/python/cpython-3.13.18-linux-aarch64-gnu/lib/python3.13/multiprocessing/resource_tracker.py:479: UserWarning: resource_tracker: There appear to be 6 leaked semaphore objects to clean up at shutdown: {'/mp-y_1bdh5n', '/mp-dp0wh5_i', '/mp-n9sx1ajc', '/mp-k38mtmse', '/mp-rongs0m4', '/mp-4yj_zhxg'}
+  warnings.warn(
+[mc_claims 22:12:21] executing code/calibrate_horizons.py into /sessions/rcw-016kbnsxzouh27dgnjmtas1f/mnt/workspace/stress_runs_2026-11-03/mc_1m_s1/_shadow (outputs redirected)
+Traceback (most recent call last):
+  File "/sessions/rcw-016kbnsxzouh27dgnjmtas1f/rox_06a6338/code/mc_claims.py", line 2960, in <module>
+    sys.exit(main())
+             ~~~~^^
+  File "/sessions/rcw-016kbnsxzouh27dgnjmtas1f/rox_06a6338/code/mc_claims.py", line 2928, in main
+    run.setup()
+    ~~~~~~~~~^^
+  File "/sessions/rcw-016kbnsxzouh27dgnjmtas1f/rox_06a6338/code/mc_claims.py", line 1663, in setup
+    g = load_calibration(os.path.join(self.out, "_shadow"))
+  File "/sessions/rcw-016kbnsxzouh27dgnjmtas1f/rox_06a6338/code/mc_claims.py", line 325, in load_calibration
+    _build_shadow(shadow)
+    ~~~~~~~~~~~~~^^^^^^^^
+  File "/sessions/rcw-016kbnsxzouh27dgnjmtas1f/rox_06a6338/code/mc_claims.py", line 311, in _build_shadow
+    shutil.rmtree(shadow)
+    ~~~~~~~~~~~~~^^^^^^^^
+  File "/sessions/rcw-016kbnsxzouh27dgnjmtas1f/.local/share/uv/python/cpython-3.13.18-linux-aarch64-gnu/lib/python3.13/shutil.py", line 770, in rmtree
+    _rmtree_safe_fd(stack, onexc)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/sessions/rcw-016kbnsxzouh27dgnjmtas1f/.local/share/uv/python/cpython-3.13.18-linux-aarch64-gnu/lib/python3.13/shutil.py", line 708, in _rmtree_safe_fd
+    onexc(func, path, err, direntry=orig_entry, dir_fd=parent_fd)
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/sessions/rcw-016kbnsxzouh27dgnjmtas1f/.local/share/uv/python/cpython-3.13.18-linux-aarch64-gnu/lib/python3.13/shutil.py", line 701, in _rmtree_safe_fd
+    onexc(os.unlink, fullname, err, direntry=entry, dir_fd=topfd)
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/sessions/rcw-016kbnsxzouh27dgnjmtas1f/.local/share/uv/python/cpython-3.13.18-linux-aarch64-gnu/lib/python3.13/shutil.py", line 697, in _rmtree_safe_fd
+    os.unlink(entry.name, dir_fd=topfd)
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [Errno 1] Operation not permitted: '/sessions/rcw-016kbnsxzouh27dgnjmtas1f/mnt/workspace/stress_runs_2026-11-03/mc_1m_s1/_shadow/data'
+[mc_claims 22:13:19] executing code/calibrate_horizons.py into /sessions/rcw-016kbnsxzouh27dgnjmtas1f/mc_1m_s1/_shadow (outputs redirected)
+[mc_claims 22:13:23] reproduction checks: 87 passed, 0 failed; shadow outputs byte-identical: False (JSON: 94 leaves differ, max rel. 1.8736e-07, blocks ell_psi,r2,r3)
+[mc_claims 22:13:23] box: 51 dimensions; config e291b0637f62; checkpoint /sessions/rcw-016kbnsxzouh27dgnjmtas1f/mc_1m_s1/ckpt/e291b0637f62
+[mc_claims 22:13:23] draws: 1000000 LHS + 100002 corners = 1100002 points, 3444 chunks to run (2057 done)
+/sessions/rcw-016kbnsxzouh27dgnjmtas1f/.local/share/uv/python/cpython-3.13.18-linux-aarch64-gnu/lib/python3.13/multiprocessing/resource_tracker.py:479: UserWarning: resource_tracker: There appear to be 6 leaked semaphore objects to clean up at shutdown: {'/mp-498g63f6', '/mp-mkckxt7_', '/mp-5vzauelw', '/mp-6c_jrl6o', '/mp-w1rcdyql', '/mp-goarg48f'}
+  warnings.warn(
+[mc_claims 22:15:46] executing code/calibrate_horizons.py into /sessions/rcw-016kbnsxzouh27dgnjmtas1f/mc_1m_s1/_shadow (outputs redirected)
+[mc_claims 22:15:50] reproduction checks: 87 passed, 0 failed; shadow outputs byte-identical: False (JSON: 94 leaves differ, max rel. 1.8736e-07, blocks ell_psi,r2,r3)
+[mc_claims 22:15:50] box: 51 dimensions; config e291b0637f62; checkpoint /sessions/rcw-016kbnsxzouh27dgnjmtas1f/mc_1m_s1/ckpt/e291b0637f62
+[mc_claims 22:15:50] draws: 1000000 LHS + 100002 corners = 1100002 points, 3286 chunks to run (2215 done)
+[mc_claims 22:18:09]   draws chunk 164/3286 (236.7 draws/s)
+/sessions/rcw-016kbnsxzouh27dgnjmtas1f/.local/share/uv/python/cpython-3.13.18-linux-aarch64-gnu/lib/python3.13/multiprocessing/resource_tracker.py:479: UserWarning: resource_tracker: There appear to be 6 leaked semaphore objects to clean up at shutdown: {'/mp-1rnnzx4r', '/mp-e5v2akoj', '/mp-tck2jix9', '/mp-0b5rkwxq', '/mp-f0p_hygw', '/mp-99e5lkvt'}
+  warnings.warn(
+[mc_claims 22:18:22] executing code/calibrate_horizons.py into /sessions/rcw-016kbnsxzouh27dgnjmtas1f/mc_1m_s1/_shadow (outputs redirected)
+[mc_claims 22:18:26] reproduction checks: 87 passed, 0 failed; shadow outputs byte-identical: False (JSON: 94 leaves differ, max rel. 1.8736e-07, blocks ell_psi,r2,r3)
+[mc_claims 22:18:26] box: 51 dimensions; config e291b0637f62; checkpoint /sessions/rcw-016kbnsxzouh27dgnjmtas1f/mc_1m_s1/ckpt/e291b0637f62
+[mc_claims 22:18:26] draws: 1000000 LHS + 100002 corners = 1100002 points, 3114 chunks to run (2387 done)
+[mc_claims 22:20:38]   draws chunk 155/3114 (235.6 draws/s)
+/sessions/rcw-016kbnsxzouh27dgnjmtas1f/.local/share/uv/python/cpython-3.13.18-linux-aarch64-gnu/lib/python3.13/multiprocessing/resource_tracker.py:479: UserWarning: resource_tracker: There appear to be 6 leaked semaphore objects to clean up at shutdown: {'/mp-7vajnzv3', '/mp-u2zgpmib', '/mp-i877rern', '/mp-7ytlk0lv', '/mp-vcon6nbl', '/mp-pfd2gyyt'}
+  warnings.warn(
+[mc_claims 22:20:58] executing code/calibrate_horizons.py into /sessions/rcw-016kbnsxzouh27dgnjmtas1f/mc_1m_s1/_shadow (outputs redirected)
+[mc_claims 22:21:02] reproduction checks: 87 passed, 0 failed; shadow outputs byte-identical: False (JSON: 94 leaves differ, max rel. 1.8736e-07, blocks ell_psi,r2,r3)
+[mc_claims 22:21:02] box: 51 dimensions; config e291b0637f62; checkpoint /sessions/rcw-016kbnsxzouh27dgnjmtas1f/mc_1m_s1/ckpt/e291b0637f62
+[mc_claims 22:21:02] draws: 1000000 LHS + 100002 corners = 1100002 points, 2942 chunks to run (2559 done)
+[mc_claims 22:23:08]   draws chunk 147/2942 (234.8 draws/s)
+/sessions/rcw-016kbnsxzouh27dgnjmtas1f/.local/share/uv/python/cpython-3.13.18-linux-aarch64-gnu/lib/python3.13/multiprocessing/resource_tracker.py:479: UserWarning: resource_tracker: There appear to be 6 leaked semaphore objects to clean up at shutdown: {'/mp-gqg72duo', '/mp-u1izeqp7', '/mp-_lb59txo', '/mp-c8_j7lxi', '/mp-47fyvo8h', '/mp-syupv36h'}
+  warnings.warn(
+[mc_claims 22:23:37] executing code/calibrate_horizons.py into /sessions/rcw-016kbnsxzouh27dgnjmtas1f/mc_1m_s1/_shadow (outputs redirected)
+[mc_claims 22:23:40] reproduction checks: 87 passed, 0 failed; shadow outputs byte-identical: False (JSON: 94 leaves differ, max rel. 1.8736e-07, blocks ell_psi,r2,r3)
+[mc_claims 22:23:40] box: 51 dimensions; config e291b0637f62; checkpoint /sessions/rcw-016kbnsxzouh27dgnjmtas1f/mc_1m_s1/ckpt/e291b0637f62
+[mc_claims 22:23:41] draws: 1000000 LHS + 100002 corners = 1100002 points, 2771 chunks to run (2730 done)
+[mc_claims 22:25:38]   draws chunk 138/2771 (234.6 draws/s)
+/sessions/rcw-016kbnsxzouh27dgnjmtas1f/.local/share/uv/python/cpython-3.13.18-linux-aarch64-gnu/lib/python3.13/multiprocessing/resource_tracker.py:479: UserWarning: resource_tracker: There appear to be 6 leaked semaphore objects to clean up at shutdown: {'/mp-o8y4ki9x', '/mp-djdsskj_', '/mp-w1gkx9y2', '/mp-g2nkximo', '/mp-q32t3pz4', '/mp-c1shr528'}
+  warnings.warn(
+[mc_claims 22:26:12] executing code/calibrate_horizons.py into /sessions/rcw-016kbnsxzouh27dgnjmtas1f/mc_1m_s1/_shadow (outputs redirected)
+[mc_claims 22:26:16] reproduction checks: 87 passed, 0 failed; shadow outputs byte-identical: False (JSON: 94 leaves differ, max rel. 1.8736e-07, blocks ell_psi,r2,r3)
+[mc_claims 22:26:16] box: 51 dimensions; config e291b0637f62; checkpoint /sessions/rcw-016kbnsxzouh27dgnjmtas1f/mc_1m_s1/ckpt/e291b0637f62
+[mc_claims 22:26:16] draws: 1000000 LHS + 100002 corners = 1100002 points, 2599 chunks to run (2902 done)
+[mc_claims 22:28:06]   draws chunk 129/2599 (234.7 draws/s)
+/sessions/rcw-016kbnsxzouh27dgnjmtas1f/.local/share/uv/python/cpython-3.13.18-linux-aarch64-gnu/lib/python3.13/multiprocessing/resource_tracker.py:479: UserWarning: resource_tracker: There appear to be 6 leaked semaphore objects to clean up at shutdown: {'/mp-3mh2yg3v', '/mp-zqdhv1kl', '/mp-g6i77z2l', '/mp-tz_8p00t', '/mp-i0derjcz', '/mp-r8mea__i'}
+  warnings.warn(
+[mc_claims 22:28:48] executing code/calibrate_horizons.py into /sessions/rcw-016kbnsxzouh27dgnjmtas1f/mc_1m_s1/_shadow (outputs redirected)
+[mc_claims 22:28:52] reproduction checks: 87 passed, 0 failed; shadow outputs byte-identical: False (JSON: 94 leaves differ, max rel. 1.8736e-07, blocks ell_psi,r2,r3)
+[mc_claims 22:28:52] box: 51 dimensions; config e291b0637f62; checkpoint /sessions/rcw-016kbnsxzouh27dgnjmtas1f/mc_1m_s1/ckpt/e291b0637f62
+[mc_claims 22:28:52] draws: 1000000 LHS + 100002 corners = 1100002 points, 2427 chunks to run (3074 done)
+[mc_claims 22:30:36]   draws chunk 121/2427 (234.0 draws/s)
+/sessions/rcw-016kbnsxzouh27dgnjmtas1f/.local/share/uv/python/cpython-3.13.18-linux-aarch64-gnu/lib/python3.13/multiprocessing/resource_tracker.py:479: UserWarning: resource_tracker: There appear to be 6 leaked semaphore objects to clean up at shutdown: {'/mp-hk2ccbfq', '/mp-q8gh3w_c', '/mp-5jxwn1ry', '/mp-svto12j0', '/mp-d1xlhnou', '/mp-6_eqc2so'}
+  warnings.warn(

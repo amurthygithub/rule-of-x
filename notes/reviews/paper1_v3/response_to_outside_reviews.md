@@ -7,6 +7,7 @@ Prepared by the editor-author agent on 2 November 2026 for the revision of the t
 - DS-*, DeepSeek V4 Pro (high effort): `notes/reviews/paper1_v3/author_reviews/deepseek_v4_pro_high/issue_log.md`
 - GPT-*, GPT-6.2 Sol (extra-high effort): `notes/reviews/paper1_v3/author_reviews/gpt_6_2_sol_xhigh/issue_log.md`
 - GLM-*, GLM 5.3 (high effort): `notes/reviews/paper1_v3/author_reviews/glm_5_3_high/issue_log.md`
+- Million-draw rerun (3 Nov, afternoon, at the author's request): `notes/mc_results_2026-11-03_1m/` (1,000,000 draws per seed) replaces the 10,000-draw run in the paper. All 69 tests have the same verdict in both, and in both million-draw seeds; the extremes quoted in the ST rows are unchanged, and in Table tab:stress only two ranges move (flow crossing 0.65 to 15.97 becomes 0.64 to 15.95 years; the gains-to-dip ratio's highest value 74.42 becomes 79.44); percentiles move within the 10,000-draw run's Monte Carlo error (for example the 95th percentile of the netted 2036 score, 67.2 at 10,000 draws, is 66.7).
 - ST-1 to ST-6: the joint-parameter stress test, `notes/mc_claims_method.md` and `notes/mc_results_2026-11-02/mc_claims_report.md` (rerun of 3 Nov over the corrected compute range: `notes/mc_results_2026-11-03/` and its `seed2/`)
 
 This document continues the round-2 response, `notes/reviews/paper1_v2/response_to_reviewers_r2.md`, which links here.

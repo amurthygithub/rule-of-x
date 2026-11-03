@@ -2,8 +2,8 @@
 """Supplement table, macros and figure of the joint-parameter stress test (round 3, decision 7 of the outside-review plan).
 
 Reads the committed outputs of code/mc_claims.py (it does not re-run the Monte Carlo):
-  notes/mc_results_2026-11-03/mc_claims.json   claim tests, quantities over the box, levels, Sobol indices, accountability sub-box
-  notes/mc_results_2026-11-03/draws_lhs.csv    the 10,000 Latin-hypercube draws (selected outputs per draw)
+  notes/mc_results_2026-11-03_1m/mc_claims.json      claim tests, quantities over the box, levels, Sobol indices, accountability sub-box
+  notes/mc_results_2026-11-03_1m/draws_lhs.csv.gz    the 1,000,000 Latin-hypercube draws (selected outputs per draw; gzipped)
 and writes
   sections/tables/tab_stress.tex   Table tab:stress: the headline claim tests, whether each holds at every evaluated point of
                                    the box of the paper's stated ranges, the central value and the lowest-highest over the box
@@ -34,7 +34,7 @@ import numpy as np
 import pandas as pd
 
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-MC = os.environ.get('MC_DIR', os.path.join(BASE, 'notes', 'mc_results_2026-11-03'))
+MC = os.environ.get('MC_DIR', os.path.join(BASE, 'notes', 'mc_results_2026-11-03_1m'))
 J = json.load(open(os.path.join(MC, 'mc_claims.json')))
 _DP = os.path.join(MC, 'draws_lhs.csv')
 D = pd.read_csv(_DP if os.path.exists(_DP) else _DP + '.gz')   # the million-draw run ships the per-draw file gzipped
@@ -233,7 +233,7 @@ for nm_, col_, q_, ref_ in (('StNetSixPFive', 'R2036_net', 0.05, L36['lhs_p05'])
                             ('StGstarPNinetyFive', 'Gstar_2025', 0.95, G['lhs_p95'])):
     lo_, hi_ = _q_ci(col_, q_, 1.0)
     assert lo_ <= 100 * ref_ + 1e-6 and 100 * ref_ - 1e-6 <= hi_, (nm_, lo_, hi_, ref_)   # the draws file is in points
-    put(nm_ + 'CiLo', fnum(lo_, 1)); put(nm_ + 'CiHi', fnum(hi_, 1))
+    put(nm_ + 'CiLo', fnum(lo_, 2)); put(nm_ + 'CiHi', fnum(hi_, 2))   # two decimals: at a million draws the interval is narrower than 0.1
 put('StSobolN', f"{J['meta']['args']['sobol_n']:,}".replace(',', '{,}'))
 put('StSearchBudget', f"{J['meta']['args']['search_budget']:,}".replace(',', '{,}'))
 S1 = {s['id']: s for s in J['sensitivity_claims']}
@@ -250,6 +250,8 @@ for nm_, out_, grp_, val_ in (('StSobolExec', 'net.R_2036', 'execution', S1['S1'
     if _ci:
         assert _SG[out_]['groups'][grp_]['ST'] == val_ and _ci[0] <= _ci[1], (nm_, _ci, val_)
         num(nm_ + 'Lo', _ci[0], 2, False); num(nm_ + 'Hi', _ci[1], 2, False)
+        if nm_ == 'StSobolCc':   # the S9/S10 sentence on estimates above one appears only when the interval reaches above one
+            put('StSobolCcAboveOne', '; an index cannot exceed one, and estimates above it are sampling error' if _ci[1] > 1 else '')
 S36 = QUANT['s_2036']
 num('StRealMin', S36['min']); num('StRealMax', S36['max'])
 num('StCompleteMin', QUANT['complete_year']['min'], 0, False); num('StCompleteMax', QUANT['complete_year']['max'], 0, False)
@@ -322,7 +324,7 @@ if J2 is not None:
             _dmax = max(_dmax, abs(100 * (b_[2] - a_[2])), abs(100 * (b_[3] - a_[3])))
     put('StSeedTwo', str(J2['meta']['args']['seed'])); put('StSeedTwoDraws', f"{J2['design']['n_lhs']:,}".replace(',', '{,}'))
     put('StSeedTwoAgree', str(_agree)); put('StSeedTwoRows', str(len(ROWS)))
-    num('StSeedTwoMaxDiff', _dmax / 100, 1)
+    num('StSeedTwoMaxDiff', _dmax / 100, 2)
     _L2, _Q2 = J2['levels']['net.R_2036'], {q['key']: q for q in J2['quantities']}
     num('StSeedTwoNetSixPFive', _L2['lhs_p05']); num('StSeedTwoNetSixPNinetyFive', _L2['lhs_p95'])
     num('StSeedTwoGstarMin', _Q2['Gstar_2025']['min']); num('StSeedTwoGstarMax', _Q2['Gstar_2025']['max'])

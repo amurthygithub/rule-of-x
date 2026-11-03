@@ -335,6 +335,34 @@ sequence); SALib is optional (factor indices). Tested on Python 3.13 (numpy 2.5,
 Python 3.11 (numpy 2.2, pandas 2.2, scipy 1.14). The syntax was checked against the 3.10 grammar (`ast` with
 `feature_version=(3, 10)`). The SALib 1.6 backend was tested from the wheel in `notes/`.
 
+## 8a. The million-draw run of 3 November 2026 (the results in the paper)
+
+At the author's request (3 Nov, 12:26: "redesign the runs to add more precision") the stored run was redone with a
+larger design. The code and inputs are those of commit 06a6338 (unchanged `mc_claims.py` v1.1); only the options differ:
+
+```
+python3 code/mc_claims.py --n 1000000 --corners 100000 --sobol-n 65536 --amin-n 100000 --search-budget 6000 \
+    --seed 20261102 --out notes/mc_results_2026-11-03_1m                       # checkpoint key e291b0637f62
+python3 code/mc_claims.py --n 1000000 --corners 100000 --sobol-n 65536 --amin-n 100000 --search-budget 6000 \
+    --seed 20261104 --compare-to notes/mc_results_2026-11-03_1m --out notes/mc_results_2026-11-03_1m/seed2   # key 2feadf083557
+```
+
+- Design per seed: 1,000,000 Latin-hypercube draws, 100,002 corner points (100,000 random vertices, the all-low and
+  all-high vertices), the directional vertex search with 6,000 model evaluations per extremum, Sobol indices from a
+  Saltelli design with 65,536 base samples (4,718,592 evaluations), and 100,000 draws of the accountability sub-box.
+- Where it ran (the author's computer): seed 1's draws in the Claude desktop app's Linux sandbox on her Mac (aarch64,
+  4 cores, resumed from checkpoints over several 3-minute calls); seed 2's draws and both seeds' searches, Sobol
+  indices, sub-box and analysis natively on the same Mac (macOS arm64, 12 cores, 24 GB), by
+  `stress_runs_2026-11-03/run_stress.sh` in her workspace, with the package versions of the sandbox environment
+  (numpy 2.5.3, pandas 3.0.5, scipy 1.18.1, SALib 1.6.0). The checkpoint key does not depend on the platform; the
+  87 reproduction checks passed on both, and the shadow outputs differ from the committed ones by at most 1.9e-7
+  relative (floating point on another processor). Seed 2's draws took 32 minutes on 11 workers; each seed's final
+  phases about 6 minutes; peak memory of the main process about 4 GB (the reason the final phases could not run in
+  the sandbox, which has 3.9 GB and a 3-minute limit per command).
+- Stored: `mc_claims.json`, `mc_claims_report.md` and `draws_lhs.csv.gz` (gzipped per-draw file, seed 1 only;
+  seed 2's is kept with the author) and the run logs. The checkpoints (about 3 GB per seed) are not stored; rerunning
+  the commands above reproduces them.
+
 ## 9. Small-N test (n = 500), for orientation only
 
 Full outputs: `notes/mc_smalln_test/mc_claims_report.md` and `mc_claims.json`. These are small-N numbers; the full run
