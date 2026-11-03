@@ -1,11 +1,17 @@
-"""Statistics quoted in the text that no table reports (Sections 4, 5, 6 and 7). Writes notes/paper_stats.json."""
+"""Statistics quoted in the text that no table reports (Sections 4, 5, 6 and 7). Writes notes/paper_stats.json.
+
+Round 3 (GLM-M2): reads the audited sample data/panel_v3.csv (was the v2 panel data/panel.csv, 1,929 firm-years, which
+left the committed JSON a stale v2 artifact) and the v3 acquisition flag (acq_flag_v3). The fields the paper prints
+(G&A by size, Microsoft and Oracle, Palantir 2025, AppLovin) are unchanged by the switch; the others now match the v3
+macros of code/paper1_macros.py. PAPER_STATS_OUT overrides the output path (for comparisons)."""
 import json
 import os
 import numpy as np
 import pandas as pd
 
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-core = pd.read_csv(f'{BASE}/data/panel.csv')
+core = pd.read_csv(f'{BASE}/data/panel_v3.csv')
+core['acq_flag'] = core['acq_flag_v3']                      # the v3 acquisition flag (rule R4), as the paper's v3 numbers
 broad = pd.read_csv(f'{BASE}/data/panel_broad.csv')
 S = {}
 
@@ -79,5 +85,7 @@ hi = x[x.capex_int > med].dropna(subset=['R_fcf_sbc'])
 S['capint_median_2023_25'] = float(med)
 S['capint_hi_top_by_cash_score'] = hi.sort_values('R_fcf_sbc', ascending=False)[['name', 'year', 'capex_int', 'R_fcf_sbc']].head(8).round(4).values.tolist()
 
-json.dump(S, open(f'{BASE}/notes/paper_stats.json', 'w'), indent=1)
+S['meta'] = dict(panel='data/panel_v3.csv', n=int(len(core)), firms=int(core.cik.nunique()), acq_flag='acq_flag_v3 (rule R4)',
+                 written_by='code/paper_stats.py')
+json.dump(S, open(os.environ.get('PAPER_STATS_OUT', f'{BASE}/notes/paper_stats.json'), 'w'), indent=1)
 print(json.dumps(S, indent=1))

@@ -472,7 +472,7 @@ FC_DIMS = [   # key, label, class, group
     ("kappa_rv", "Revalidation cost per build", "d", "maintenance"),
     ("T_up", "Model-upgrade interval T_up (years)", "c", "maintenance"),
     ("B", "Build stock per revenue", "d", "maintenance"),
-    ("u_rev", "Error rate with no review", "b", "ai_failure"),
+    ("u_rev", "Error rate with no review", "d", "ai_failure"),   # round 3 (GPT-21): a sum of rates per sentence and per output
     ("ell_e", "Loss per undetected error", "d", "ai_failure"),
     ("mu_m", "Consequential misbehavior per task", "d", "ai_failure"),
     ("d_m", "Monitor recall", "a", "ai_failure"),

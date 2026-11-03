@@ -5,6 +5,11 @@ Within each growth band (0-10, 10-20, 20-30, 30-40, 40-60%), firm-years in the t
 operating margin = gross margin - S&M - R&D - G&A - other operating items (all as shares of revenue), the margin gap
 splits exactly into the gaps in each line. Firm-years must report gross profit (or cost of revenue), S&M, R&D and
 G&A separately. Band results are averaged with equal weights; 90% intervals come from a firm-cluster bootstrap.
+
+Round 3 (GLM-M2): this is the first version's (v2) decomposition on data/panel.csv. It is kept only as the v2
+reproduction reference that code/estimate_organic.py checks against on the v2 sample; no Paper 1 number comes from it
+(the paper's gap decomposition is the v3 one of code/estimate_v3.py, macros GapV*, and code/paper1_macros.py no longer
+reads this file). Its JSON says so in a 'meta' block.
 """
 import json
 import os
@@ -58,7 +63,9 @@ boot = pd.DataFrame(boot)
 ci = {c: [float(boot[c].quantile(.05)), float(boot[c].quantile(.95))] for c in boot}
 
 out = dict(n=int(len(s)), n_firms=int(s.cik.nunique()), coverage=float(ok.sum() / d.g.between(0, 0.6, inclusive='left').sum()),
-           bands=base.to_dict(orient='records'), avg=avg.to_dict(), ci90=ci)
+           bands=base.to_dict(orient='records'), avg=avg.to_dict(), ci90=ci,
+           meta=dict(panel='data/panel.csv (first version, v2)', status='v2 reproduction reference for code/estimate_organic.py; '
+                     'not a source of any Paper 1 number (the v3 decomposition is in notes/empirics_v3.json, gap_* keys)'))
 json.dump(out, open(f'{BASE}/notes/gap_decomposition.json', 'w'), indent=1)
 
 lab = ['0--10', '10--20', '20--30', '30--40', '40--60']

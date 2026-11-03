@@ -300,3 +300,6 @@ Plan items (A1-F5, grouped as in the plan): Fixed 39, Partly 7.
 | FA-m18 | Competing interests | Fixed | The author confirmed on 2 November (10:45) that the research is independent; the title footnote states no funding and no competing interests. At her instruction (14:50) one registrant, not named, was removed from all data, code and replication files (notes/r2_exclusion.md); it is outside the estimation sample and no reported figure changed. Section 4.1, Appendix S6 and Table 8 say so. |
 | FA-m19 | METR 0.4 to 1.1% | Fixed | Section S2.8: '0.4 to 1.1% of it, rounded to 1%'. |
 
+## Round 3: outside reviews
+
+The three outside reviews the author commissioned on the third version (DeepSeek V4 Pro, GPT-6.2 Sol and GLM 5.3, run outside this workflow) and the joint-parameter stress test are answered in `notes/reviews/paper1_v3/response_to_outside_reviews.md`: one row per finding of the three issue logs, with its status and where and how it was handled, a counts table, and rows ST-1 to ST-6 for the six claims the stress test shows to be conditional. The red \todo marker of Appendix A that this document mentions above was removed in that round (X-2, GPT-11, GLM-F4); the AU-* items it anticipated are the DS-*, GPT-* and GLM-* rows there.

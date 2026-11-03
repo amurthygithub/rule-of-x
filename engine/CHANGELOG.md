@@ -1,5 +1,14 @@
 # Changelog
 
+## Round 3 notes change: acquirer worked numbers relabelled (DS-65, 2 Nov 2026; notes/r3_code_changes.md)
+
+Source: outside review DS-65 (notes/reviews/paper1_v3/author_reviews/deepseek_v4_pro_high/issue_log.md), approved with
+the round-3 plan. notes/acquirer_notes.md section 4 now gives Paper 1's Table 3 before-interest values (level annuity
+84.5-90.5 / 92.7-101.1, fully charged -25.0 / -16.5) and keeps the round-1 after-interest values (80.9-86.8 / 84.4-92.8,
+-28.7 / -24.8) as superseded, for the regression check E7 of code/verify_part2_acquirer.py. Re-checked: the engine
+implements none of these worked numbers (no source or test uses them), and no formula, parameter or default changes;
+the lock is re-accepted for this one file.
+
 ## S&M basis: maintenance-netted is central (author decision 7, 2 Nov 2026; notes/r2_propagation.md)
 
 Source: coordinator message of 2 Nov 2026 (about 12:35 UTC-8): maintenance-netted is central everywhere, matching

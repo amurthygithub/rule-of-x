@@ -105,8 +105,8 @@ Slopes by period and their differences (firm-cluster bootstrap; referee 3 findin
 ## 3. Every model-facing statistic under the four estimands (D-3)
 
 Sign / significance flags: 'yes' when the claim's sign, or its 90% interval, holds in E1, E2 and both imputation columns
-(count of the four otherwise). For frontier points at 0 and 20% and the anchor's Pi_ub the claim is "no change": the flag
-says whether the interval includes zero in all four.
+(count of the four otherwise). For frontier points at 0 and 20% and the anchor's Pi_ub no directional claim is made (no
+equivalence margin is tested): the flag says whether the interval includes zero in all four.
 
 | Statistic | Claim | E1 (baseline) | E2 | Imputed, M = 4 | Imputed, M = 8 | Sign in all four | 90% interval in all four (percentile) | 90% interval in all four (basic) |
 |---|---|---|---|---|---|---|---|---|
@@ -147,10 +147,10 @@ says whether the interval includes zero in all four.
 | Capital-intensity gap, capex added back, firm-median sort | below 0 | +1.9 [-8.6, +12.6] | -0.0 [-9.2, +15.4] | +2.6 [-7.6, +14.1] | +2.4 [-7.8, +13.8] | no (1/4) | no (0/4) | no (0/4) |
 | Capital-intensity gap 2023-25, GAAP | none (reported) | -1.8 [-9.5, +4.5] | -0.7 [-7.9, +5.4] | -0.8 [-8.3, +5.7] | -1.2 [-8.8, +5.3] |  |  |  |
 | g x high intensity, tau = 0.90 regression of the cash margin (Proposition 5) | below 0 | -0.14 (0.19) | 0.05 (0.24) | -0.00 (0.21) | 0.01 (0.19) | no (2/4) | no (0/4) | no (0/4) |
-| Change in T(0%), GAAP | no change (includes 0) | +0.8 [-4.7, +4.5] | +0.4 [-4.9, +5.4] | +0.4 [-4.9, +4.9] | +0.8 [-4.8, +4.9] |  | yes | yes |
-| Change in T(0%), cash | no change (includes 0) | -3.3 [-6.4, -0.2] | -2.5 [-6.5, +1.2] | -3.3 [-6.4, -0.4] | -3.2 [-6.2, +0.1] |  | no (2/4) | no (1/4) |
-| Change in T(20%), GAAP | no change (includes 0) | -10.2 [-15.1, +1.1] | -9.7 [-15.1, +3.0] | -7.2 [-12.8, +4.2] | -6.3 [-12.0, +3.7] |  | yes | no (0/4) |
-| Change in T(20%), cash | no change (includes 0) | -3.0 [-10.9, +3.4] | -1.1 [-7.7, +13.0] | -1.3 [-8.7, +8.6] | -1.8 [-8.7, +5.8] |  | yes | yes |
+| Change in T(0%), GAAP | no directional claim (interval includes 0) | +0.8 [-4.7, +4.5] | +0.4 [-4.9, +5.4] | +0.4 [-4.9, +4.9] | +0.8 [-4.8, +4.9] |  | yes | yes |
+| Change in T(0%), cash | no directional claim (interval includes 0) | -3.3 [-6.4, -0.2] | -2.5 [-6.5, +1.2] | -3.3 [-6.4, -0.4] | -3.2 [-6.2, +0.1] |  | no (2/4) | no (1/4) |
+| Change in T(20%), GAAP | no directional claim (interval includes 0) | -10.2 [-15.1, +1.1] | -9.7 [-15.1, +3.0] | -7.2 [-12.8, +4.2] | -6.3 [-12.0, +3.7] |  | yes | no (0/4) |
+| Change in T(20%), cash | no directional claim (interval includes 0) | -3.0 [-10.9, +3.4] | -1.1 [-7.7, +13.0] | -1.3 [-8.7, +8.6] | -1.8 [-8.7, +5.8] |  | yes | yes |
 | Change in T(40%), GAAP | none (reported) | -9.9 (n.e.) | n/a | +1.0 (n.e.) | -2.0 (n.e.) |  |  |  |
 | Change in T(40%), cash | none (reported) | +1.6 (n.e.) | n/a | +7.6 (n.e.) | +7.2 (n.e.) |  |  |  |
 | Near-frontier margin gap (GAAP) | above 0 | 34.5 [28.6, 37.7] | 32.7 [26.6, 35.8] | 33.5 [28.0, 36.6] | 34.7 [28.9, 38.0] | yes | yes | yes |
@@ -159,9 +159,9 @@ says whether the interval includes zero in all four.
 | of which gross margin | above 0 | 5.7 [-1.4, 9.4] | 2.9 [-1.7, 7.8] | 4.0 [-0.7, 8.7] | 4.9 [-0.7, 9.2] | yes | no (0/4) | no (2/4) |
 | of which G&A | none (reported) | 5.5 [3.4, 7.5] | 6.2 [3.3, 7.6] | 5.7 [3.4, 7.4] | 5.8 [3.4, 7.4] |  |  |  |
 | S&M part, 40-60% band | above 0 | 29.4 [18.8, 36.2] | 31.2 [19.4, 37.0] | 30.1 [20.1, 36.2] | 25.6 [17.0, 33.8] | yes | yes | yes |
-| Anchor: median Pi, all S&M buys growth (Pi_ub) | no change (includes 0) | -1.3 [-18.2, +16.4] | -7.0 [-17.0, +15.4] | -0.5 [-13.6, +14.5] | -0.7 [-13.7, +15.9] |  | yes | yes |
+| Anchor: median Pi, all S&M buys growth (Pi_ub) | no directional claim (interval includes 0) | -1.3 [-18.2, +16.4] | -7.0 [-17.0, +15.4] | -0.5 [-13.6, +14.5] | -0.7 [-13.7, +15.9] |  | yes | yes |
 | Anchor: median Pi, no S&M buys growth (Pi_lb) | above 0 | +19.5 [+8.1, +26.5] | +18.5 [+6.8, +26.0] | +20.0 [+11.3, +26.9] | +20.2 [+12.2, +27.1] | yes | yes | yes |
-| Anchor: transient share of the median top score, upper bound of spend | no change (includes 0) | -2 [-39, +28] | -14 [-38, +27] | -1 [-30, +26] | -1 [-29, +29] |  | yes | yes |
+| Anchor: transient share of the median top score, upper bound of spend | no directional claim (interval includes 0) | -2 [-39, +28] | -14 [-38, +27] | -1 [-30, +26] | -1 [-29, +29] |  | yes | yes |
 | Anchor: transient share, lower bound of spend | above 0 | +36 [+18, +47] | +37 [+15, +46] | +40 [+24, +51] | +39 [+25, +52] | yes | yes | yes |
 | Stochastic frontier, 2023-25: 2019+ entrants minus earlier cohorts, GAAP | above 0 | +13.8 [+8.8, +19.4] | +12.0 [+7.1, +18.5] | +13.8 [+8.7, +19.5] | +13.7 [+8.7, +19.4] | yes | yes | yes |
 | same, cash | above 0 | +10.2 [+6.4, +14.5] | +9.8 [+6.0, +13.9] | +10.1 [+6.3, +14.4] | +10.0 [+6.3, +14.3] | yes | yes | yes |

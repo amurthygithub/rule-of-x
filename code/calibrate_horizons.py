@@ -149,7 +149,8 @@ FC = {  # favorable, central, conservative; c_c by horizon is in CC_CASES; the h
     'T_up': (1.75, 1.22, 0.99),                     # c: median GA model life from 2025; 0.99 = shortest observed
     'B': (0.012, 0.024, 0.048),                     # 48 processes x $0.5M (b) at $1B revenue (d)
     # c_err = errors and hallucination + misbehavior (Proposition tasks-cerr) + common-mode (Proposition ext-commonmode(a));
-    # rates from data/tasks/params_reliability.yaml (a, b), loss severities and exposure scenario (d)
+    # rates from data/tasks/params_reliability.yaml (a, b), loss severities and exposure scenario (d); the no-review rate
+    # u_rev below adds rates with different denominators, so as used it is a scenario value, class d (round 3, GPT-21)
     # in-house cost of the automated work, share of revenue (round 2, B4 / IO2-6): the same base as the compute share,
     # s_L = 0.60 of revenue in automated labor (CC_PATH); earlier drafts charged errors on 0.30 with no stated reason
     'A_auto': (0.60, 0.60, 0.60),
@@ -1105,6 +1106,204 @@ R2['anchor_interest'] = dict(n_with_ii=int(len(_ai)), n=int(len(_anc)), ii_media
 
 out['r2'] = R2
 
+# ==============================================================================================================
+# ROUND 3 REVISION (2 Nov 2026; outside reviews, notes/reviews/paper1_v3/author_reviews/*/issue_log.md; change log
+# notes/r3_code_changes.md). Everything below is written to out['r3'] and read by code/paper1_macros.py. New keys only:
+# no value computed above changes (checked against the committed JSON when this block was added).
+# ==============================================================================================================
+R3 = {}
+
+# ---- GPT-M1. The frontier-slope mapping through the sample's growth distribution. Under a common frontier
+# m* = m0 - (Delta/ell)^beta (k = 0, window read as excess growth) every firm-year sits on m*, so the cone statistic is
+# Psi_chi(g0) = m*(q_chi(g0)), m* at the (1 - chi)-quantile of growth among firm-years growing at least g0. Its
+# least-squares slope on the estimator's grid g0 = 0, 0.05, ..., W is -S_F / ell^beta, with S_F that slope at ell = 1
+# computed on the E1 firm-years of each basis exactly as code/estimate_v3.py cone_mat does (type-7 quantiles, chi = 0.90,
+# cells of at least 30 firm-years). A measured slope -b therefore implies ell^beta = S_F / b and a steepest frontier slope
+# at Delta = W of beta W^(beta-1) b / S_F: the multiplier beta W^(beta-1) / S_F depends on alpha and on the growth
+# distribution, not on b. It replaces, for the text, the approximation (beta+1)(beta+2)/6 of block ell_psi, which assumes
+# q_chi(g0) = g0 (kept unchanged above for the record).
+_GRID_CONE = np.round(np.arange(0, 0.6 + 1e-9, 0.05), 2)
+
+
+def _cone_S(gv, beta, chi=0.90, W=0.6):
+    gr = _GRID_CONE[_GRID_CONE <= W + 1e-9]
+    o = np.sort(gv)                                     # cells: firm-years with g >= g0 (negative growth enters no cell)
+    cells = [np.sort(-(o[o >= g0]) ** beta) for g0 in gr]
+    assert min(len(c_) for c_ in cells) >= 30, 'a cone cell has fewer than 30 firm-years'
+    c = np.array([np.quantile(c_, chi) for c_ in cells])
+    return -float(np.polyfit(gr, c, 1)[0]), [int(len(c_)) for c_ in cells]
+
+
+_cone = {}
+for _b, _col in (('op', 'm_op'), ('cash', 'm_fcf_sbc')):
+    _gv = _full.loc[_full.g.notna() & _full[_col].notna(), 'g'].to_numpy(float)
+    _bb = abs(FS3['central'][_b]['E1']['est'])
+    _rows_b = {}
+    for _al in (0.25, 0.30, 0.35, 0.45):
+        _be = 1 / _al
+        _S, _cells = _cone_S(_gv, _be)
+        _mult = _be * 0.6 ** (_be - 1) / _S
+        _rows_b[f'{_al:.2f}'] = dict(S_F=_S, ell=(_S / _bb) ** _al, multiplier=_mult, steepest=_mult * _bb,
+                                    multiplier_ls_identity=out['ell_psi'][f'E1_{_b}_w60'][f'{_al:.2f}']['steepest'] / _bb,
+                                    multiplier_approx=(_be + 1) * (_be + 2) / 6)
+    _cone[_b] = dict(b=_bb, n=int(len(_gv)), W=0.6, chi=0.90, cells=_cells, by_alpha=_rows_b)
+_mults = [_cone[_b]['by_alpha'][_al]['multiplier'] for _b in _cone for _al in ('0.25', '0.45')]
+R3['ell_psi_cone'] = dict(by_basis=_cone, multiplier_range=[min(_mults), max(_mults)],
+                          note='steepest slope = multiplier x |Psi slope|; multiplier = beta W^(beta-1)/S_F at the E1 growth '
+                               'values of each basis (GPT-M1)')
+
+# ---- GPT-M2. psi substituted into the margin is a tax-PV-equivalent; on a steady growth path at g the period cash
+# deduction per dollar of current investment is psi_T evaluated at g (half-year convention, the same schedule as psi_T)
+R3['psi_period_cash'] = dict(
+    psi15_at_g={f'{g_:.2f}': psi_T(15, r=g_) for g_ in (0.05, 0.10, 0.15, 0.30)},
+    ceiling_k15_G30_loss_period_cash={f'{t:.2f}': (1 - psi_T(15, r=0.30) * t) * 1.5 * 0.30 for t in FC['tau']},
+    ceiling_k15_G30_loss_pv={f'{t:.2f}': (1 - PSI['foreign_15y'] * t) * 1.5 * 0.30 for t in FC['tau']},
+    note='period cash on a mature vintage history growing at G = 0.30; the PV-equivalent (psi_15 at r = 0.10) is the '
+         'psi_sensitivity block')
+
+# ---- GPT-M4. Exit value: what a five-year owner who sells recovers. PV at 0 of the net flows after year 5 is
+# NPV - discounted cumulative cash at 5; capitalized at the same rate it is the value at year 5; the owner who sells
+# rejects the program only if the sale recovers less than -cum_disc(5) / PV(after 5) of that value.
+def _exit_value(pb):
+    npv_, cd5, r_ = pb['npv_points_years'], pb['hold'][5]['cum_disc'], pb['r']
+    cont = npv_ - cd5
+    return dict(npv=npv_, cum_disc_5=cd5, pv0_after_5=cont, value_at_5=cont * (1 + r_) ** 5, r=r_,
+                breakeven_recovery=(max(-cd5, 0.0) / cont) if cont > 0 else None)
+
+
+R3['exit_value'] = {pc: _exit_value(R2['payback'][pc]) for pc in ('central', 'central_r10', 'fast', 'slow')}
+
+# ---- GLM-M5. The PV ratio of gains to the dip counting only gains until the capped upper bound reaches the program
+_Tdone = R2['payback']['central']['complete_years']
+R3['payback_to_completion'] = dict(T=_Tdone, central=payback(CPc, PACE['central'], T=_Tdone))
+
+
+# ---- GPT-4. The exact expected recurrence of the divisible program: wave w attempts min(c, U_{w-1}) of the unembedded
+# mass U (c = rho T_par, the wave's capacity) and embeds q of it, U_w = U_{w-1} - q min(c, U_{w-1}). It equals the capped
+# bound min(1, q c n) of pace() while U >= c and then approaches one geometrically, U_w = (1 - q) U_{w-1}, so the program
+# is never embedded at a finite date; attempts (and the dip they cost) continue on the residual. Reported: the date of
+# 99% embedded, and payback, NPV and the PV ratio with the exact recurrence (the printed values keep the bound).
+def _exact_U(q_, c_, nmax):
+    U = np.empty(nmax + 2)
+    U[0] = 1.0
+    for w_ in range(1, nmax + 2):
+        U[w_] = U[w_ - 1] - q_ * min(c_, U[w_ - 1])
+    return U
+
+
+def exact_recurrence(path, pace_p, r=R_WACC, dt=1 / 365, T=200.0, share=0.99):
+    m0A_ = path['m0A']
+    dM = {int(h): path[h]['target'] - m0A_ for h in HZ}
+    yrs = sorted(dM)
+    rr = rates(pace_p)
+    c_ = rr['rho'] * pace_p['Tpar']
+    t = np.arange(0, T, dt)
+    tR = t / rr['clock']
+    n = np.where(tR < pace_p['Temb'], 0, np.floor((tR - pace_p['Temb']) / pace_p['Tpar'] + 1e-12) + 1).astype(int)
+    U = _exact_U(rr['q'], c_, int(n.max()) + 1)
+    emb = 1.0 - U[n]
+    in_flight = np.minimum(c_, U[n]) / c_                              # attempts of the next wave, share of a full wave
+    dm = np.interp(H0 + t, yrs, [dM[y] for y in yrs])
+    gain = pace_p['bbar'] * emb * dm
+    dip = rr['attempt_rate'] * pace_p['Tpb'] * dm * in_flight
+    disc = (1 + r) ** (-t)
+    cu, cd = np.cumsum(gain - dip) * dt, np.cumsum((gain - dip) * disc) * dt
+    first = lambda m: float(t[np.argmax(m)]) if m.any() else None
+    pv_gain, pv_dip = float(np.sum(gain * disc) * dt), float(np.sum(dip * disc) * dt)
+    n_sh = int(np.argmax(1.0 - U >= share))
+    n_full = math.ceil(1 / (rr['q'] * c_) - 1e-9)                       # waves at which the capped bound reaches one
+    s_h = {h: pace_p['bbar'] * (1.0 - U[(lambda tr: 0 if tr < pace_p['Temb'] else
+                                         math.floor((tr - pace_p['Temb']) / pace_p['Tpar'] + 1e-12) + 1)((int(h) - H0) / rr['clock'])])
+           for h in HZ}
+    return dict(payback_undiscounted=first((cu >= 0) & (np.cumsum(cu < 0) > 0)),
+                payback_discounted=first((cd >= 0) & (np.cumsum(cd < 0) > 0)),
+                npv_points_years=pv_gain - pv_dip, pv_gain=pv_gain, pv_dip=pv_dip, ratio=pv_gain / pv_dip,
+                waves_to_share=n_sh, share=share, year_share=H0 + rr['clock'] * (pace_p['Temb'] + (n_sh - 1) * pace_p['Tpar']),
+                waves_bound_full=n_full, year_bound_full=H0 + rr['clock'] * (pace_p['Temb'] + (n_full - 1) * pace_p['Tpar']),
+                embedded_at_bound_full=float(1.0 - U[n_full]), realized_by_horizon=s_h,
+                hold={yr: dict(cum=float(cu[int(round(yr / dt)) - 1]), cum_disc=float(cd[int(round(yr / dt)) - 1]))
+                      for yr in (3, 5)}, r=r)
+
+
+R3['exact_recurrence'] = {pc: exact_recurrence(central_path(pace_case=pc), PACE[pc]) for pc in ('slow', 'central', 'fast')}
+R3['exact_recurrence']['central_r10'] = exact_recurrence(CPc, PACE['central'], r=0.10)
+for _pc, _P in (('central', PL), ('fast', PH)):                         # the bound's dates are the ones pace() prints
+    assert abs(R3['exact_recurrence'][_pc]['year_bound_full'] - _P['complete_year']) < 1e-9
+assert abs(R3['exact_recurrence']['central']['year_bound_full'] - (H0 + R2['payback']['central']['complete_years'])) < 2 / 365
+assert all(abs(R3['exact_recurrence']['central']['realized_by_horizon'][h] - CPc[h]['s']) < 1e-12 for h in HZ)
+
+# ---- GLM-F1 / GPT-2. Shape of the decision weight v'(s) in the worked example of Section S2.2 (r 0.10, G 0.04, k 0,
+# alpha 0.3, m0 0.35, v0 = 10, share cap 0.5): the upwind backward sweep of code/verify_theory.py (solve_hjb, copied so
+# that this generator does not run the checks), with v' read from the HJB optimality condition
+# v' = k + [((r - G) v/s - (m0 - kG)) / C_alpha]^(1-alpha) / ell(s) rather than by differencing. verify_theory.py checks
+# 15l-15p recompute the profile with np.gradient on its own grid and compare it with the macros.
+from scipy.optimize import minimize_scalar as _minsc
+
+
+def _solve_hjb(m0_, k_, G_, r_, lam_, a_, sbar_, N=4000, smin=1e-9):
+    half = N // 2
+    u = np.concatenate([np.geomspace(smin, 0.5, half, endpoint=False), 1 - np.geomspace(0.5, 1e-9, N - half)])
+    s = sbar_ * u
+    v = np.zeros(N)
+    sig = np.zeros(N)
+    v[-1] = s[-1] * (m0_ - k_ * G_) / (r_ - G_)
+    grid = np.concatenate([[0.0], np.geomspace(1e-10, 50, 240)])
+    for i in range(N - 2, -1, -1):
+        ell_i = lam_ * (1 - s[i] / sbar_)
+        ds = s[i + 1] - s[i]
+
+        def val(sg):
+            D_ = ell_i * sg ** a_
+            ai = s[i] * D_ / ds
+            return (s[i] * (m0_ - sg - k_ * (G_ + D_)) + ai * v[i + 1]) / ((r_ - G_) + ai)
+
+        vals = np.array([val(x) for x in grid])
+        j = int(np.argmax(vals))
+        lo, hi = grid[max(j - 1, 0)], grid[min(j + 1, len(grid) - 1)]
+        res = _minsc(lambda x: -val(x), bounds=(lo, hi), method='bounded', options={'xatol': 1e-13})
+        if -res.fun >= vals[j]:
+            v[i], sig[i] = -res.fun, res.x
+        else:
+            v[i], sig[i] = vals[j], grid[j]
+    return s, v, sig
+
+
+_r_e, _G_e, _k_e, _sbar_e = 0.10, _Ge, 0.0, 0.5
+assert _a == 0.3 and _m0e == 0.35 and _G_e == 0.04, 'worked example inputs of block B10 were overwritten'
+_Ca = (1 - _a) * _a ** (_a / (1 - _a))
+_sh, _vh, _sgh = _solve_hjb(_m0e, _k_e, _G_e, _r_e, _lam, _a, _sbar_e)
+_z = _sh / _sbar_e
+_ell = _lam * (1 - _z)
+with np.errstate(divide='ignore', invalid='ignore'):
+    _vp = _k_e + np.maximum((_r_e - _G_e) * _vh / _sh - (_m0e - _k_e * _G_e), 0.0) ** (1 - _a) / _Ca ** (1 - _a) / _ell
+_at = lambda arr, zz: float(np.interp(zz, _z, arr))
+_FR = (0.01, 0.10, 0.25, 0.50, 0.60, 0.70, 0.75, 0.80, 0.85, 0.90, 0.95, 0.98, 0.99, 0.999, 0.9999)
+_mask = (_z > 0.02) & (_z < 0.9999)
+_imin = int(np.argmin(np.where(_mask, _vp, np.inf)))
+R3['vprime_shape'] = dict(
+    example='S2.2: r 0.10, G 0.04, k 0, alpha 0.3, m0 0.35, v0 = 10, sbar 0.5; N = 4000 grid of verify_theory.solve_hjb',
+    lam=_lam, profile={f'{zz:g}': dict(vprime=_at(_vp, zz), v_over_s=_at(_vh / _sh, zz), sigma=_at(_sgh, zz)) for zz in _FR},
+    min=dict(vprime=float(_vp[_imin]), at_share_of_cap=float(_z[_imin])),
+    limit_never_spend=(_m0e - _k_e * _G_e) / (_r_e - _G_e),
+    near_saturation=dict(lo=float(_vp[_imin]), hi=_at(_vp, 0.999), range='minimum to 99.9% of the cap'),
+    max_vprime_minus_v_over_s=float(np.max((_vp - _vh / _sh)[_mask])))
+
+# ---- GLM-M11 / GPT-22. The compute share's low credible bound per completed process. METR's run costs (0.4 to 1.1% of
+# the human cost, rounded to 1%) are for successful runs only (code/data_part2/08_params.py keeps score_binarized == 1);
+# at the 50% success rate of the time-horizon definition the cost per completed task is about twice that, 2%.
+CC_LO_SUCCESSFUL_RUNS = 0.01
+METR_SUCCESS_RATE = 0.50
+CC_CREDIBLE = dict(lo=CC_LO_SUCCESSFUL_RUNS / METR_SUCCESS_RATE, lo_successful_runs=CC_LO_SUCCESSFUL_RUNS,
+                   success_rate=METR_SUCCESS_RATE, hi=CC_VALUE_TEST_CAP)
+CC_CREDIBLE['G'] = {k_: G100_central(CC_CREDIBLE[k_]) for k_ in ('lo', 'lo_successful_runs', 'hi')}
+assert f"{CC_CREDIBLE['lo']:.2f}" in out['cc_sensitivity'] and abs(CC_CREDIBLE['hi'] - max(CC_GRID)) < 1e-12
+R3['compute_credible'] = CC_CREDIBLE
+
+# ---- GPT-26. The execution cases' inputs as used (wave length T_par and the rest), for the parameter table
+R3['pace_params'] = {pc: dict(PACE[pc]) for pc in ('slow', 'central', 'fast')}
+
+out['r3'] = R3
+
 def rng(t):
     a, b = int(np.floor(100 * t[0] + 0.5)), int(np.floor(100 * t[1] + 0.5))
     if a == b:
@@ -1256,7 +1455,7 @@ FT = [
     r"Builds $c_{\rm bld}$ & " + v3c('B', lambda x: f"{100 * x:.1f}") + r" & 48 processes at \$0.5 million (b), at \$1 billion of revenue (d)\\",
     r"$c_{\mathrm{mnt}}=(\delta_M+\varrho_{\rm rv}/T_{\mathrm{up}})c_{\rm bld}$ & " + ' & '.join(two(F[c]['c_mnt']) for c in CASES[:3]) + r" & Lemma~\ref{lem:fullcost}(a)\\",
     r"\multicolumn{5}{@{}l}{\emph{AI failure, $c_{\mathrm{err}}$}}\\",
-    r"Error rate with no review $\bar u=\varepsilon^{\rm o}+\varepsilon^{\rm h}$ (per unit) & " + v3c('u_rev', lambda x: f"{x:.3f}") + r" & (a, b) omission and hallucination rates of retrieval-grounded work; no review at full automation, Lemma~\ref{lem:fullcost}(c)\\",
+    r"Error rate with no review $\bar u=\varepsilon^{\rm o}+\varepsilon^{\rm h}$ (per unit) & " + v3c('u_rev', lambda x: f"{x:.3f}") + r" & (d) scenario value: an omission rate per source sentence plus a hallucination rate per output sentence (favorable) or per summary or answer (central, conservative), which have different denominators, from source-grounded summarization and retrieval-based legal research; no review at full automation, Lemma~\ref{lem:fullcost}(c)\\",
     r"Loss per undetected error $L_{\rm err}$ (multiple of the unit's cost) & " + v3c('ell_e', g3) + r" & (d)\\",
     r"Errors and hallucination, $W_A\bar uL_{\rm err}$, with $W_A=" + f"{100 * FC['A_auto'][1]:g}" + r"\%$ (d) & " + ' & '.join(two(F[c]['c_err_e']) for c in CASES[:3]) + r" & Lemma~\ref{lem:fullcost}(c)\\",
     r"Misbehavior, $W_A\varepsilon^{\rm m}(1-d^{\rm m})L_{\rm mis}\mathbb E\min\{Y,\bar Y\}$ & " + ' & '.join(two(F[c]['c_err_m']) for c in CASES[:3]) + r" & $\varepsilon^{\rm m}$ " + ', '.join(f"{100 * x:g}" for x in FC['mu_m']) + r"\% per task and $L_{\rm mis}=" + f"{FC['ell_m'][1]:g}" + r"$, $\bar Y=" + f"{FC['Zcap'][1]:g}" + r"$ (d); recall $d^{\rm m}$ " + ', '.join(f"{x:g}" for x in FC['d_m']) + r" (a); tail index $p_Y$ " + ', '.join(f"{x:g}" for x in FC['p_tail']) + r" (b); Lemma~\ref{lem:fullcost}(d)\\",

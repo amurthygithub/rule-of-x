@@ -53,7 +53,7 @@ Parameter & Value used & Source & What the source measures & Class\\
 Change capacity: employees whose work changes a year
 & \PaceCapCen\% [\PaceCapSlow, \PaceCapFast\%]: slow, central and fast cases
 & \citet{wef2025futurejobs}
-& Forum survey of over 1,000 employers (more than 14 million workers, 55 economies): 59 of 100 workers need training by 2030, about 12 a year. Measures workers whose work changes, the concept needed, from stated expectations, not outcomes.
+& Forum survey of over 1,000 employers (more than 14 million workers, 55 economies): 59 of 100 workers need training by 2030, about 12 a year if spread evenly. Employers' expectations of training need, cumulative over 2025--2030: a proxy for work changed, not a measure of it.
 & b\\
 Change capacity: one-year workforce reductions
 & 6\% to 22\% of headcount in a year (bracket)
@@ -85,6 +85,11 @@ Embedding time
 & \citet{salesforce2023form8k,salesforce2024form10k,mckinsey2021losing}
 & Salesforce: reduction announced 4 January 2023, employee actions ``substantially complete'' by the end of fiscal 2024 (31 January 2024), about 13 months. McKinsey: about half of transformation value within 18 months. An analogy from disclosed restructurings, not a measurement of automation programs. Gartner's 8 months from prototype to production is secondary and was not verified.
 & b\\
+Wave length (parallel run) $T_{\rm par}$
+& \PaceTparCen{} years (central), \PaceTparFast{} (fast), \PaceTparSlow{} (slow)
+& none; scenario
+& The calendar time one wave of transitions takes; with the binding capacity $\rho$ it sets the capacity of a wave, $c_w=\rho T_{\rm par}$ (\autoref{prop:expected}(e)), and so the number of waves by each horizon.
+& d\\
 Leadership turnover hazard
 & 0.204 a year (1 over 4.9 years)
 & \citet{kornferry2020tenure}
@@ -109,9 +114,9 @@ Compute share: bound from internal spending
 & Same survey: spending on AI for internal productivity, ``direct and indirect'', not itemized; the report does not say what it includes and says many companies underestimate it. All-in spend at partial adoption: if it contains more than compute, it bounds today's internal compute share from above; it is not a measure of compute at full automation.
 & d\\
 Compute per dollar of labor replaced, agent runs
-& 0.01 (single-attempt runs; our computation)
+& 0.02 per completed task (0.01 per successful run; our computation)
 & \citet{kwa2025measuring,metr2026evalanalysis}
-& Kwa et al. report that, at a human wage of 143.61 dollars an hour, more than 80\% of successful runs cost under 10\% of the human cost. The 0.4\% to 1.1\% of human cost used here comes from METR's public run data and is our computation (software tasks, 50\% success, no review); the run file carries per-run generation and human costs (fields generation\_cost and human\_cost, checked at the source on 2 November 2026).
+& Kwa et al. report that, at a human wage of 143.61 dollars an hour, more than 80\% of successful runs cost under 10\% of the human cost. The 0.4\% to 1.1\% of human cost used here comes from METR's public run data and is our computation (software tasks, successful runs only, no review); at a 50\% success rate the cost per completed task is about twice that; the run file carries per-run generation and human costs (fields generation\_cost and human\_cost, checked at the source on 2 November 2026).
 & c\\
 Compute per dollar of labor replaced, field evidence
 & 0.03
@@ -195,8 +200,8 @@ Manual step pass rate $q_M$
 AI error rate with no review $\bar u$ (per unit)
 & 0.050 favorable; 0.085 central and conservative
 & \citet{asgari2025framework,magesh2025hallucination,vectara2026leaderboard}
-& Asgari et al.: GPT-4 clinical notes from 450 transcript-note pairs, 191 of 12,999 sentences hallucinated (1.47\%; 44\% of them major) and 3.45\% of transcript sentences omitted (figures read in the preprint). Magesh et al. (peer reviewed): 202 preregistered legal queries, tools tested in spring 2024, about 17\% (Lexis+ AI) to 33\% (Westlaw AI-AR) hallucinated. Vectara: vendor leaderboard scored by its own classifier, 1.8\% to 24.2\% of summaries by model (May 2026).
-& a\\
+& Asgari et al.: GPT-4 clinical notes from 450 transcript-note pairs, 191 of 12,999 sentences hallucinated (1.47\%; 44\% of them major) and 3.45\% of transcript sentences omitted (figures read in the preprint). Magesh et al. (peer reviewed): 202 preregistered legal queries, tools tested in spring 2024, about 17\% (Lexis+ AI) to 33\% (Westlaw AI-AR) hallucinated. Vectara: vendor leaderboard scored by its own classifier, 1.8\% to 24.2\% of summaries by model (May 2026). The value adds an omission rate per source sentence (3.45\%, Asgari et al.) to a hallucination rate (1.5\% per output sentence, favorable, Asgari et al.; 5\% per summary or answer, central and conservative, a scenario value within the ranges of Magesh et al. and Vectara). The two rates have different denominators and come from summarization of a given source (Asgari et al.) and retrieval-based legal research (Magesh et al.), so the sum is a scenario value.
+& d\\
 Catch rate of ordinary errors
 & 0.65 [0.45, 0.85]
 & \citet{panko1999applying}

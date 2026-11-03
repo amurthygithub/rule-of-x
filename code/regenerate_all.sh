@@ -28,6 +28,11 @@
 #     sections/tables/acquired_macros.tex, which paper1_macros.py and paper1.tex read: acquirer runs first.
 #   * verify_part2_labor.py reads invoice_macros.tex and labor_macros.tex: after invoice_chain.py and make_labor_macros.py.
 #   * verify_theory.py reads notes/calibration_results.json: after calibrate_horizons.py.
+#   * stage stress_report (round 3) runs code/mc_report_tex.py, which formats the committed output of the joint-parameter
+#     stress test (notes/mc_results_2026-11-02/mc_claims.json, draws_lhs.csv) into sections/tables/tab_stress.tex,
+#     paper1/stress_macros.tex and figures/fig_stress.pdf. It does not re-run the Monte Carlo (about a minute on four
+#     cores; command in code/REPLICATION_README.md). It runs after calibrate so the table sits beside the calibration's
+#     tables, and before paper1_macros.py, which inputs stress_macros.tex from paper1/macros.tex.
 #   * verify_part2_playbook.py reads notes/playbook_results.json and part2/tables/playbook_macros.tex, both written by
 #     run_archetypes.py: after it.
 #   * backtest.py and run_archetypes.py read data/panel_v2_all.csv (and run_archetypes data/panel.csv), and the P1
@@ -57,7 +62,7 @@ PY="${PYTHON:-python3}"
 LOGDIR="$ROOT/build_logs"
 
 STAGES=(engine_defaults params invoice_chain labor_macros verify_part2 panel empirics empirics_v3 backtest calibrate
-        verify_theory paper1_macros playbook verify_playbook engine_tests latex_p1 latex_p2)
+        stress_report verify_theory paper1_macros playbook verify_playbook engine_tests latex_p1 latex_p2)
 
 FROM="" TO="" KEEP_GOING=0
 while [[ $# -gt 0 ]]; do
@@ -161,6 +166,7 @@ stage_empirics_v3() {
   run estimate_v3_on_v2 gen env V3_PANEL=v2 "$PY" code/estimate_v3.py
   run estimate_v3 gen "$PY" code/estimate_v3.py
 }
+stage_stress_report() { run mc_report_tex gen "$PY" code/mc_report_tex.py; }   # reads the committed MC outputs only
 stage_verify_theory() {
   run verify_theory check bash -c "$PY code/verify_theory.py > notes/verify_theory_output.txt 2>&1; rc=\$?; \
 tail -n 5 notes/verify_theory_output.txt; exit \$rc"
