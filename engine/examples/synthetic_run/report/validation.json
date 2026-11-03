@@ -1,0 +1,15 @@
+{
+ "issues": [
+  {
+   "severity": "info",
+   "code": "unknown_columns",
+   "file": "tier3_products",
+   "row": null,
+   "column": null,
+   "message": "columns not used by the engine: seat_share_of_bill, billing_in_advance, agent_unit_cost, entrant_unit_cost, entry_hazard",
+   "fix": "",
+   "fallback": "ignored"
+  }
+ ],
+ "tier_reached": 4
+}

@@ -1,0 +1,31 @@
+process_id,process_name,function_id,output_unit,typical_volume_per_musd_revenue,volume_source
+ticket_to_resolution,Ticket to resolution,customer_support,ticket,1200,assumed
+knowledge_upkeep,Knowledge base upkeep,customer_support,article,15,assumed
+onboard_to_adopt,Onboarding to adoption,customer_success,onboarding,3,assumed
+renewal_management,Renewal management,customer_success,renewal,6,assumed
+implementation_project,Implementation project,professional_services,project,1.2,assumed
+lead_to_close,Lead to close,sales,opportunity,25,assumed
+quote_to_contract,Quote to contract,sales,quote,30,assumed
+campaign_to_lead,Campaign to lead,marketing,campaign,2,assumed
+content_production,Content production,marketing,asset,40,assumed
+idea_to_release,Idea to release,product_engineering,feature release,2,assumed
+defect_to_fix,Defect to fix,product_engineering,defect,40,assumed
+incident_to_restore,Incident to restore,operations_fulfilment,incident,5,assumed
+provision_to_serve,Provision to serve,operations_fulfilment,provisioning request,60,assumed
+procure_to_pay,Procure to pay,finance_accounting,supplier invoice,250,assumed
+order_to_cash,Order to cash,finance_accounting,customer invoice,150,assumed
+record_to_report,Record to report,finance_accounting,journal entry,120,assumed
+plan_to_forecast,Plan to forecast,finance_accounting,forecast cycle,0.02,assumed
+hire_to_onboard,Hire to onboard,hr,hire,1.0,assumed
+payroll_and_benefits,Payroll and benefits,hr,employee-month,60,assumed
+employee_service_request,Employee service request,hr,HR ticket,20,assumed
+contract_review,Contract review,legal_compliance,contract,3,assumed
+compliance_monitoring,Regulatory compliance monitoring,legal_compliance,obligation review,1,assumed
+it_service_request,IT service request,it,IT ticket,30,assumed
+access_management,Access management,it,access request,25,assumed
+source_to_contract,Source to contract,procurement,sourcing event,0.5,assumed
+requisition_to_po,Requisition to purchase order,procurement,purchase order,20,assumed
+workplace_service,Workplace service,facilities,work order,4,assumed
+control_testing,SOX control testing,risk_audit_governance,control test,1.5,assumed
+risk_assessment,Risk assessment,risk_audit_governance,assessment,0.2,assumed
+board_reporting,Board reporting,executive,board pack,0.01,assumed

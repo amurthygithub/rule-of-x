@@ -1,0 +1,43 @@
+\begin{table}[tbp]
+\centering
+\caption{Headline tests and a Bonferroni correction for 28 tests}\label{tab:backtest-tests}
+\footnotesize
+\begin{tabular}{@{}lccccc@{}}
+\toprule
+Test (coefficient on the named score, 1 sd) & Estimate & (s.e.) & $|t|$ & Bonferroni $p$ & Survives\\
+\midrule
+Exposure, log employment & $-$0.052 & (0.017) & 3.12 & 0.050 & no\\
+Model share, log employment & $-$0.046 & (0.012) & 3.77 & 0.004 & yes\\
+Model share, with exposure & $-$0.039 & (0.015) & 2.54 & 0.306 & no\\
+Exposure, with model share & $-$0.015 & (0.021) & 0.71 & 1.000 & no\\
+Non-physical, permissible exposure & $-$0.058 & (0.015) & 3.91 & 0.003 & yes\\
+Capability-feasible share & $-$0.047 & (0.012) & 3.87 & 0.003 & yes\\
+Capability-feasible share, with exposure & $-$0.041 & (0.016) & 2.60 & 0.259 & no\\
+Automate-or-augment share & $-$0.052 & (0.014) & 3.78 & 0.004 & yes\\
+Capability timing, given non-physical exposure & $-$0.044 & (0.018) & 2.44 & 0.409 & no\\
+Model share, employment-weighted & $-$0.023 & (0.010) & 2.17 & 0.831 & no\\
+Model share, three confounder groups excluded & $-$0.032 & (0.014) & 2.37 & 0.498 & no\\
+Model share, 2016--21 trend control & $-$0.056 & (0.011) & 4.93 & 0.000 & yes\\
+Model share, review ratio 0.8 & $-$0.009 & (0.010) & 0.91 & 1.000 & no\\
+Exposure, log wage-bill share & $-$0.064 & (0.018) & 3.53 & 0.012 & yes\\
+Model share, log wage-bill share & $-$0.045 & (0.013) & 3.40 & 0.019 & yes\\
+Model share with exposure, log mean wage & 0.013 & (0.005) & 2.34 & 0.539 & no\\
+Placebo 2016--21: exposure & $-$0.039 & (0.024) & 1.58 & 1.000 & no\\
+Placebo 2016--21: model share & $-$0.016 & (0.016) & 0.99 & 1.000 & no\\
+Firms: model mix, total cost share & 2.23 & (1.99) & 1.12 & 1.000 & no\\
+Firms: exposure mix, total cost share & 4.10 & (1.46) & 2.80 & 0.141 & no\\
+Cells: exposure, industry effects & $-$0.056 & (0.022) & 2.61 & 0.254 & no\\
+Cells: model share, industry effects & $-$0.031 & (0.014) & 2.27 & 0.654 & no\\
+Cells: model share with exposure, industry effects & $-$0.007 & (0.016) & 0.40 & 1.000 & no\\
+Cells: model share within occupation (wage-driven) & 0.006 & (0.004) & 1.40 & 1.000 & no\\
+Placebo 2016--19: exposure & $-$0.022 & (0.020) & 1.06 & 1.000 & no\\
+Placebo 2016--19: model share & $-$0.025 & (0.011) & 2.23 & 0.722 & no\\
+Model share, 2019--21 trend control & $-$0.055 & (0.012) & 4.65 & 0.000 & yes\\
+Model share, 2016--19 trend control & $-$0.050 & (0.011) & 4.63 & 0.000 & yes\\
+\bottomrule
+\end{tabular}
+\smallskip
+\begin{minipage}{0.97\linewidth}\footnotesize
+Notes: the family is fixed in \texttt{code/\allowbreak validation/\allowbreak backtest.py}. Bonferroni $p$ is $\min(1, 28p)$; a test survives if it is below 0.05, which needs $|t|\ge3.12$. Holm's step-down procedure differs (see the JSON). For the placebo rows, surviving would count against the model. Log employment is the outcome unless stated; firm rows are in percentage points of revenue; the within-occupation cell row is per standard deviation of the score within occupations.
+\end{minipage}
+\end{table}

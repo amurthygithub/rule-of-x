@@ -1,0 +1,64 @@
+soc,onet_soc,title,wage_median,wage_mean,employment,physical_share,licensed_signoff,family,wage_note
+11-1011,11-1011.00,Chief Executives,200000,240000,,0.0,1,executive,placeholder assumed
+11-1021,11-1021.00,General and Operations Managers,105000,130000,,0.0,0,manager,placeholder assumed
+11-2021,11-2021.00,Marketing Managers,155000,170000,,0.0,0,manager,placeholder assumed
+11-2022,11-2022.00,Sales Managers,135000,155000,,0.0,0,manager,placeholder assumed
+11-2032,11-2032.00,Public Relations Managers,135000,150000,,0.0,0,manager,placeholder assumed
+11-3013,11-3013.00,Facilities Managers,100000,110000,,0.2,0,manager,placeholder assumed
+11-3021,11-3021.00,Computer and Information Systems Managers,170000,180000,,0.0,0,manager,placeholder assumed
+11-3031,11-3031.00,Financial Managers,155000,170000,,0.0,1,manager,placeholder assumed
+11-3061,11-3061.00,Purchasing Managers,135000,140000,,0.0,0,manager,placeholder assumed
+11-3111,11-3111.00,Compensation and Benefits Managers,135000,145000,,0.0,0,manager,placeholder assumed
+11-3121,11-3121.00,Human Resources Managers,135000,150000,,0.0,0,manager,placeholder assumed
+11-3131,11-3131.00,Training and Development Managers,125000,135000,,0.0,0,manager,placeholder assumed
+11-9199,11-9199.00,"Managers, All Other",135000,145000,,0.0,0,manager,placeholder assumed
+13-1023,13-1023.00,"Purchasing Agents, Except Wholesale, Retail, and Farm Products",71000,76000,,0.0,0,purchasing,placeholder assumed
+13-1041,13-1041.00,Compliance Officers,76000,82000,,0.0,0,legal,placeholder assumed
+13-1071,13-1071.00,Human Resources Specialists,68000,76000,,0.0,0,hr,placeholder assumed
+13-1081,13-1081.00,Logisticians,80000,84000,,0.0,0,analyst,placeholder assumed
+13-1082,13-1082.00,Project Management Specialists,98000,105000,,0.0,0,consultant,placeholder assumed
+13-1111,13-1111.00,Management Analysts,100000,110000,,0.0,0,consultant,placeholder assumed
+13-1121,13-1121.00,"Meeting, Convention, and Event Planners",57000,62000,,0.1,0,clerical,placeholder assumed
+13-1141,13-1141.00,"Compensation, Benefits, and Job Analysis Specialists",72000,78000,,0.0,0,analyst,placeholder assumed
+13-1151,13-1151.00,Training and Development Specialists,65000,71000,,0.0,0,trainer,placeholder assumed
+13-1161,13-1161.00,Market Research Analysts and Marketing Specialists,75000,84000,,0.0,0,marketing,placeholder assumed
+13-1199,13-1199.00,"Business Operations Specialists, All Other",80000,88000,,0.0,0,analyst,placeholder assumed
+13-2011,13-2011.00,Accountants and Auditors,80000,90000,,0.0,0,accounting,placeholder assumed
+13-2041,13-2041.00,Credit Analysts,80000,95000,,0.0,0,analyst,placeholder assumed
+13-2051,13-2051.00,Financial and Investment Analysts,100000,115000,,0.0,0,analyst,placeholder assumed
+13-2054,13-2054.00,Financial Risk Specialists,105000,120000,,0.0,0,analyst,placeholder assumed
+15-1211,15-1211.00,Computer Systems Analysts,104000,110000,,0.0,0,analyst,placeholder assumed
+15-1212,15-1212.00,Information Security Analysts,120000,125000,,0.0,0,it_ops,placeholder assumed
+15-1232,15-1232.00,Computer User Support Specialists,60000,64000,,0.1,0,support_agent,placeholder assumed
+15-1241,15-1241.00,Computer Network Architects,130000,135000,,0.0,0,it_ops,placeholder assumed
+15-1242,15-1242.00,Database Administrators,102000,105000,,0.0,0,it_ops,placeholder assumed
+15-1244,15-1244.00,Network and Computer Systems Administrators,96000,101000,,0.1,0,it_ops,placeholder assumed
+15-1252,15-1252.00,Software Developers,132000,140000,,0.0,0,software,placeholder assumed
+15-1253,15-1253.00,Software Quality Assurance Analysts and Testers,102000,108000,,0.0,0,software,placeholder assumed
+15-1255,15-1255.00,Web and Digital Interface Designers,92000,105000,,0.0,0,design,placeholder assumed
+15-1299,15-1299.00,"Computer Occupations, All Other",105000,110000,,0.0,0,it_ops,placeholder assumed
+15-2051,15-2051.00,Data Scientists,108000,120000,,0.0,0,analyst,placeholder assumed
+23-1011,23-1011.00,Lawyers,146000,175000,,0.0,1,legal,placeholder assumed
+23-2011,23-2011.00,Paralegals and Legal Assistants,60000,64000,,0.0,0,legal,placeholder assumed
+27-1024,27-1024.00,Graphic Designers,58000,65000,,0.0,0,design,placeholder assumed
+27-3031,27-3031.00,Public Relations Specialists,67000,79000,,0.0,0,marketing,placeholder assumed
+27-3042,27-3042.00,Technical Writers,80000,85000,,0.0,0,design,placeholder assumed
+27-3043,27-3043.00,Writers and Authors,72000,85000,,0.0,0,design,placeholder assumed
+33-9032,33-9032.00,Security Guards,36000,39000,,0.8,0,security_guard,placeholder assumed
+37-2011,37-2011.00,"Janitors and Cleaners, Except Maids and Housekeeping Cleaners",34000,37000,,0.95,0,facilities_phys,placeholder assumed
+41-3091,41-3091.00,"Sales Representatives of Services, Except Advertising, Insurance, Financial Services, and Travel",65000,80000,,0.0,0,sales,placeholder assumed
+41-4011,41-4011.00,"Sales Representatives, Wholesale and Manufacturing, Technical and Scientific Products",99000,110000,,0.1,0,sales,placeholder assumed
+41-9031,41-9031.00,Sales Engineers,117000,125000,,0.0,0,consultant,placeholder assumed
+43-1011,43-1011.00,First-Line Supervisors of Office and Administrative Support Workers,65000,69000,,0.0,0,manager,placeholder assumed
+43-3011,43-3011.00,Bill and Account Collectors,45000,47000,,0.0,0,clerical,placeholder assumed
+43-3021,43-3021.00,Billing and Posting Clerks,46000,48000,,0.0,0,clerical,placeholder assumed
+43-3031,43-3031.00,"Bookkeeping, Accounting, and Auditing Clerks",47000,49000,,0.0,0,clerical,placeholder assumed
+43-3051,43-3051.00,Payroll and Timekeeping Clerks,52000,54000,,0.0,0,clerical,placeholder assumed
+43-4051,43-4051.00,Customer Service Representatives,40000,43000,,0.05,0,support_agent,placeholder assumed
+43-4161,43-4161.00,"Human Resources Assistants, Except Payroll and Timekeeping",47000,49000,,0.0,0,clerical,placeholder assumed
+43-4171,43-4171.00,Receptionists and Information Clerks,36000,38000,,0.2,0,reception,placeholder assumed
+43-6011,43-6011.00,Executive Secretaries and Executive Administrative Assistants,72000,75000,,0.0,0,clerical,placeholder assumed
+43-6012,43-6012.00,Legal Secretaries and Administrative Assistants,52000,56000,,0.0,0,clerical,placeholder assumed
+43-6014,43-6014.00,"Secretaries and Administrative Assistants, Except Legal, Medical, and Executive",44000,46000,,0.0,0,clerical,placeholder assumed
+43-9061,43-9061.00,"Office Clerks, General",40000,42000,,0.1,0,clerical,placeholder assumed
+49-9071,49-9071.00,"Maintenance and Repair Workers, General",46000,49000,,0.9,0,facilities_phys,placeholder assumed

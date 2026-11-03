@@ -1,0 +1,7 @@
+E1 m_op: pooled -0.209 (0.072); FE +0.080 (0.069) n=1918; FE with lagged g: g +0.085 (0.065), g_lag -0.019 (0.039)
+E1 m_fcf_sbc: pooled -0.235 (0.047); FE -0.019 (0.041) n=1863; FE with lagged g: g +0.010 (0.043), g_lag -0.048 (0.038)
+E2 m_op: pooled -0.212 (0.085); FE +0.069 (0.097) n=1509; FE with lagged g: g +0.092 (0.106), g_lag -0.058 (0.064)
+E2 m_fcf_sbc: pooled -0.259 (0.052); FE -0.033 (0.056) n=1468; FE with lagged g: g +0.041 (0.068), g_lag -0.097 (0.057)
+E2x25 m_op: pooled -0.199 (0.087); FE +0.075 (0.100) n=1451; FE with lagged g: g +0.095 (0.110), g_lag -0.053 (0.066)
+E2x25 m_fcf_sbc: pooled -0.255 (0.054); FE -0.024 (0.058) n=1410; FE with lagged g: g +0.045 (0.070), g_lag -0.095 (0.059)
+E1 within-firm share of growth variance: 0.51

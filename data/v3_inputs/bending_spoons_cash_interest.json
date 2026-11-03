@@ -1,0 +1,41 @@
+{
+ "source": "Bending Spoons S.p.A. (CIK 2004711), read on sec.gov in the author's built-in browser, 2 Nov 2026",
+ "units": "thousands of US dollars",
+ "annual_cash_flow_supplemental": {
+  "document": "https://www.sec.gov/Archives/edgar/data/2004711/000110465926079884/tm2613674-14_424b4.htm",
+  "page": "F-34 to F-35, Consolidated statements of cash flows, years ended December 31",
+  "interests_paid": {
+   "2023": 16581,
+   "2024": 19168,
+   "2025": 130881
+  },
+  "income_taxes_paid": {
+   "2023": 7732,
+   "2024": 6456,
+   "2025": 14615
+  }
+ },
+ "q1_cash_flow_supplemental": {
+  "document": "same prospectus, F-6 to F-7, condensed consolidated statements of cash flows (unaudited), three months ended March 31 (2025 as restated, note 16)",
+  "interests_paid": {
+   "Q1 2025": 30166,
+   "Q1 2026": 89037
+  }
+ },
+ "h1_2026": {
+  "document": "https://www.sec.gov/Archives/edgar/data/2004711/000200471126000011/bsp_ex99-2.htm",
+  "note": "Exhibit 99.2 to the 6-K of 13 Aug 2026, condensed consolidated interim financial statements (unaudited)",
+  "interests_paid": {
+   "H1 2025": 49737,
+   "H1 2026": 161153
+  },
+  "interest_expense_income_statement": {
+   "Q2 2025": 35733,
+   "Q2 2026": 108970,
+   "H1 2025": 55049,
+   "H1 2026": 202154
+  },
+  "total_future_principal_payments_at_2026-06-30": 4983469
+ },
+ "six_k_texts": "data/v3_inputs/raw/bending_spoons_6k_2026-11-02.json"
+}

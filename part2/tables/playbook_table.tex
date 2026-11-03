@@ -1,0 +1,32 @@
+\begin{table}[p]
+\centering
+\caption{The playbook by archetype at the reference setup (public owner, today's readiness 0.4, standalone firm). Lever values are points of the maximal score per 10\% of a line automated, at the owner's weight (Proposition~\ref{prop:playbook-rank}(a)); levers to avoid cite the items of Corollary~\ref{cor:playbook-nopay}; the first wave is the engine's (Section~\ref{sec:playbook-table})}\label{tab:playbook}
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.1}
+\newcolumntype{Q}[1]{>{\raggedright\arraybackslash}p{#1}}
+\begin{tabular}{@{}Q{1.8cm}Q{2.1cm}Q{1.9cm}Q{2.4cm}Q{4.0cm}Q{2.9cm}@{}}
+\toprule
+Archetype & Position (panel) & Binding: largest gap; scarcest capacity & First two levers (points) & Levers to avoid & First wave (engine)\\
+\midrule
+A1 Growth corner & $g=29\%$ (p88), $m=-23\%$ (p12); $n=28$ & S\&M 27 pts; bandwidth & 1. R\&D 3.2; 2. growth engine 2.5 & (iii) owned compute below 0.54 of opex per \$ of capital; (ii) cost of revenue as a margin lever (keeps 0.53 of the cut); (i) growth engine under a sponsor ($X=0.4<4.1$); (iv) automating 27 ICFR steps that fail the catch-rate gate at $\iota=0.9$ & Lead to close (2026; NPV \$343M) \\
+\addlinespace
+A2 Balanced upper quartile & $g=21\%$ (p73), $m=14\%$ (p79); $n=43$ & R\&D 4 pts; bandwidth & 1. R\&D 2.0; 2. G\&A 1.0 & (iii) owned compute below 0.46 of opex per \$ of capital; (ii) cost of revenue as a margin lever (keeps 0.60 of the cut); (i) growth engine under a sponsor ($X=3.3<21.1$); (iv) automating 29 ICFR steps that fail the catch-rate gate at $\iota=0.9$ & Lead to close (2026; NPV \$404M) \\
+\addlinespace
+A3 Mature cash generator & $g=8\%$ (p31), $m=20\%$ (p88); $n=52$ & R\&D 4 pts; bandwidth & 1. R\&D 1.5; 2. G\&A 1.0 & (iii) owned compute below 0.33 of opex per \$ of capital; (ii) cost of revenue as a margin lever (keeps 0.62 of the cut); (i) growth engine: no S\&M above the maintenance base; (iv) automating 29 ICFR steps that fail the catch-rate gate at $\iota=0.9$ & Ticket to resolution (2026; NPV \$59M) \\
+\addlinespace
+A4 Sub-40 grower & $g=17\%$ (p64), $m=-5\%$ (p32); $n=48$ & S\&M 27 pts; bandwidth & 1. R\&D 2.6; 2. G\&A 1.9 & (iii) owned compute below 0.42 of opex per \$ of capital; (ii) cost of revenue as a margin lever (keeps 0.59 of the cut); (i) growth engine under a sponsor ($X=1.1<4.4$); (iv) automating 28 ICFR steps that fail the catch-rate gate at $\iota=0.9$ & Product and engineering (other work), Finance and accounting (other work) (2026; NPV \$87M) \\
+\addlinespace
+A5 Stalled & $g=2\%$ (p18), $m=-12\%$ (p22); $n=84$ & R\&D 14 pts; bandwidth & 1. R\&D 2.5; 2. G\&A 2.0 & (iii) owned compute below 0.27 of opex per \$ of capital; (ii) cost of revenue as a margin lever (keeps 0.49 of the cut); (i) growth engine under a sponsor ($X=-0.1<10.0$); (iv) automating 28 ICFR steps that fail the catch-rate gate at $\iota=0.9$ & Information technology and security (other work) (2026; NPV \$5M) \\
+\addlinespace
+A6 Near-frontier elite & $g=36\%$ (p95), $m=22\%$ (p92); $n=13$ & R\&D 8 pts; bandwidth & 1. R\&D 2.1; 2. G\&A 1.5 & (iii) owned compute below 0.61 of opex per \$ of capital; (ii) cost of revenue as a margin lever (keeps 0.63 of the cut); (i) growth engine: no S\&M above the maintenance base; (iv) automating 28 ICFR steps that fail the catch-rate gate at $\iota=0.9$ & Information technology and security (other work), Sales (other work) (2026; NPV \$168M) \\
+\addlinespace
+A7 Acquisition-driven compounder & reported $g=126\%$, organic 3\%; $m_{op}=34\%$ (Q2 2026) & base shrinks ($G_i=-5.1\%$): the treadmill & 1. owner capability (platform, rebuild); 2. G\&A and R\&D cost-out & (viii) acquisitions above $X^G=0.77$ times revenue; (i) growth spend & \emph{not generated: the engine models no acquisitions or platform owner (W12)} \\
+\bottomrule
+\end{tabular}
+
+\smallskip
+\begin{minipage}{0.98\linewidth}\scriptsize
+Notes: positions are cell medians of 2023--25 non-acquisition core firm-years of the audited v3 sample (Definition~\ref{def:playbook-archetypes}); p$q$ is the population quantile rank. Binding: the cost line with the largest gap of the archetype's median to the top decile of operating margin in its growth band (bands with edges at 0, 10, 20, 30, 40 and 60\% and the sample of \texttt{code/decompose\_gap.py}), in points of revenue, and the engine's most used capacity in the first plan year. Lever values at the public owner's weight, the revealed weight $\hat X$ (the panel's firms are public, so their spending reveals a public owner's net weight $X^{\rm my}$ of eq.~\eqref{eq:reg-Xmy}); the growth engine is automation of the selling and marketing that buys growth, S\&M above a maintenance base of 25.1\% of revenue (first order $x\sigma^*$; Part~I's central, maintenance-netted basis, with S\&M up to the base a cost line); R\&D treats all R\&D as maintenance, an upper bound; cost of revenue at the margin share a replicated cut keeps, $1-\bar\varphi^{\rm ind}C_0$, at the engine's central pass-through rate of 0.50 and the archetype's unit cost per dollar of price $C_0$ (Part~I's round-2 mapping: the rate applies to the unit-cost saving and the margin is computed at the lower price; the durable share 0.625, a dollar share, does not enter the score). With all S\&M as growth spend, Part~I's upper bound, the growth engine would be the first lever at five archetypes, and with none of it at none (Section~\ref{sec:playbook-limits}). Levers to avoid: owned compute below its score hurdle $g^*+\delta_K$ (after tax with domestic servers fully expensed, $\psi=1$; times $(1-\psi\tau)/(1-\tau)$ for servers abroad); growth engine under a sponsor when the sponsor's weight is below $X^\ddagger_0$ for the line that ranks first; ICFR steps counted at readiness 0.9. Waves from the engine's roadmap; residual work streams are named by function. Generated by \texttt{code/playbook/run\_archetypes.py}.
+\end{minipage}
+\end{table}

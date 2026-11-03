@@ -1,0 +1,28 @@
+\begin{table}[tbp]
+\centering
+\caption{The main result across the sourced range of the review-time ratio (change in log employment)}\label{tab:backtest-sweep}
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}lccccccc@{}}
+\toprule
+Review & Automation & \multicolumn{2}{c}{Model share (1 sd)} & Exposure & \multicolumn{3}{c}{Out-of-sample $R^2$}\\
+\cmidrule(lr){3-4}\cmidrule(lr){6-8}
+ratio & cheapest (\%) & alone & with exposure & with model & Exposure & Model & Both\\
+\midrule
+0.370 & 100 & $-$0.047 (0.012) & $-$0.041 (0.016) & $-$0.012 (0.022) & 0.160 & 0.169 & 0.167\\
+0.472 & 100 & $-$0.047 (0.012) & $-$0.041 (0.016) & $-$0.012 (0.022) & 0.160 & 0.169 & 0.167\\
+0.575$^{a}$ & 99 & $-$0.046 (0.012) & $-$0.039 (0.015) & $-$0.015 (0.021) & 0.160 & 0.168 & 0.166\\
+0.677 & 86 & $-$0.032 (0.012) & $-$0.021 (0.013) & $-$0.038 (0.019) & 0.160 & 0.159 & 0.161\\
+0.780 & 42 & $-$0.011 (0.010) & $-$0.004 (0.010) & $-$0.051 (0.017) & 0.160 & 0.149 & 0.158\\
+0.800$^{b}$ & 37 & $-$0.009 (0.010) & $-$0.003 (0.010) & $-$0.051 (0.016) & 0.160 & 0.148 & 0.158\\
+0.882 & 24 & $-$0.006 (0.010) & $-$0.005 (0.010) & $-$0.052 (0.017) & 0.160 & 0.148 & 0.158\\
+0.985 & 17 & $-$0.007 (0.009) & $-$0.007 (0.009) & $-$0.052 (0.017) & 0.160 & 0.148 & 0.158\\
+1.087 & 8 & $-$0.002 (0.010) & $-$0.001 (0.010) & $-$0.052 (0.017) & 0.160 & 0.146 & 0.157\\
+1.190 & 3 & 0.007 (0.011) & 0.007 (0.011) & $-$0.052 (0.017) & 0.160 & 0.146 & 0.156\\
+\bottomrule
+\end{tabular}
+\smallskip
+\begin{minipage}{0.97\linewidth}\footnotesize
+Notes: the specification of Table~\ref{tab:backtest-occ}, panel A, re-estimated with the review-time ratio $t^R_j/t_j$ set to each value; the range is the sourced range in \texttt{data/\allowbreak tasks/\allowbreak params.yaml}. $^{a}$Current sourced value. $^{b}$Value assumed by the engine before the assumptions audit. ``Automation cheapest'' is the share of exposed time, among activities where automation is capability-feasible and permitted in May 2025, on which automation is the cheapest mode. Re-estimated on a 0.01 grid, the model share alone stops being significant at 5\% at a ratio of 0.71; with exposure in the regression, at 0.63. It stops beating exposure out of sample at 0.66 (with exposure, at 0.69). Thresholds interpolate linearly between grid points; controls and standard errors as in Table~\ref{tab:backtest-occ}.
+\end{minipage}
+\end{table}

@@ -1,0 +1,773 @@
+{
+ "rules": {
+  "R1": "applied",
+  "R2": "main sample: not applied (descriptions exist only for the 16 named firms); named firms: classified, sensitivity only",
+  "R3": "applied (XBRL related-party revenue, and filing text where verified)",
+  "R4": "applied (criteria a, b and c)",
+  "R5": "applied (flag and sensitivity, not an exclusion)",
+  "cheap_acquisition_min_share": 0.1,
+  "related_party_max_share": 0.5
+ },
+ "core_v2": 1929,
+ "core_v3": 1788,
+ "firms_v2": 293,
+ "firms_v3": 292,
+ "excluded": {
+  "R1_not_first_reported": 140,
+  "R3_captive_related_party": 1
+ },
+ "R1": {
+  "n": 140,
+  "by_type": {
+   "before_first_annual_report": 98,
+   "fy2010_before_first_xbrl_report": 40,
+   "later_vintage_only": 2
+  },
+  "by_period": {
+   "2010-15": 52,
+   "2016-19": 40,
+   "2020-22": 38,
+   "2023-25": 10
+  },
+  "median_growth_backfilled": 0.24415829841915376,
+  "median_growth_other": 0.1537162162162162,
+  "later_vintage_only": [
+   "AVID TECHNOLOGY, INC. 2012",
+   "DESCARTES SYSTEMS GROUP INC 2024"
+  ],
+  "firm_years": [
+   "3D SYSTEMS CORP 2010",
+   "ACTIVE NETWORK INC 2010",
+   "ACTUATE CORP 2010",
+   "APPIAN CORP 2016",
+   "ASIAINFO-LINKAGE, INC 2010",
+   "AVALARA, INC. 2017",
+   "AVG Technologies N.V. 2010",
+   "AVID TECHNOLOGY, INC. 2010",
+   "AVID TECHNOLOGY, INC. 2012",
+   "Alarm.com Holdings, Inc. 2014",
+   "Altair Engineering Inc. 2016",
+   "Anaplan, Inc. 2017",
+   "Apptio Inc 2015",
+   "Atlassian Corp 2022",
+   "AvePoint, Inc. 2020",
+   "AvidXchange Holdings, Inc. 2020",
+   "BALLY TECHNOLOGIES, INC. 2010",
+   "BENTLEY SYSTEMS INC 2019",
+   "BLACKBERRY Ltd 2010",
+   "BOTTOMLINE TECHNOLOGIES INC 2010",
+   "BOX INC 2014",
+   "Bandwidth Inc. 2016",
+   "Block, Inc. 2015",
+   "CCC Intelligent Solutions Holdings Inc. 2020",
+   "CISION LTD. 2016",
+   "CONCUR TECHNOLOGIES INC 2010",
+   "CVENT HOLDING CORP. 2020",
+   "Carbon Black, Inc. 2017",
+   "Cellebrite DI Ltd. 2020",
+   "Cerence Inc. 2019",
+   "Certara, Inc. 2020",
+   "Changyou.com Ltd 2010",
+   "Clear Secure, Inc. 2020",
+   "Clearwater Analytics Holdings, Inc. 2020",
+   "Cloudera, Inc. 2016",
+   "Cloudflare, Inc. 2018",
+   "Cognyte Software Ltd. 2019",
+   "Confluent, Inc. 2020",
+   "Consensus Cloud Solutions, Inc. 2020",
+   "Coursera, Inc. 2020",
+   "CrowdStrike Holdings, Inc. 2018",
+   "DATTO HOLDING CORP. 2019",
+   "DESCARTES SYSTEMS GROUP INC 2024",
+   "DIRTT ENVIRONMENTAL SOLUTIONS LTD 2018",
+   "DOCUSIGN, INC. 2017",
+   "DROPBOX, INC. 2017",
+   "DUCK CREEK TECHNOLOGIES, INC. 2020",
+   "Datadog, Inc. 2018",
+   "Dayforce, Inc. 2017",
+   "Dynatrace, Inc. 2018",
+   "Endurance International Group Holdings, Inc. 2013",
+   "EverCommerce Inc. 2020",
+   "ExactTarget, Inc. 2011",
+   "Fastly, Inc. 2018",
+   "Figma, Inc. 2024",
+   "ForgeRock, Inc. 2020",
+   "Freshworks Inc. 2020",
+   "GXS Worldwide, Inc. 2010",
+   "Guidewire Software, Inc. 2011",
+   "Infor, Inc. 2011",
+   "Informatica Inc. 2020",
+   "Inspired Entertainment, Inc. 2016",
+   "Intapp, Inc. 2021",
+   "Interactive Intelligence Group, Inc. 2010",
+   "IntraLinks Holdings, Inc. 2010",
+   "Jamf Holding Corp. 2019",
+   "KENEXA CORP 2010",
+   "Klaviyo, Inc. 2022",
+   "MANHATTAN ASSOCIATES INC 2010",
+   "MARKETWISE, INC. 2020",
+   "MULESOFT, INC 2016",
+   "Marqeta, Inc. 2020",
+   "McAfee Corp. 2019",
+   "Medical Information Technology, Inc. 2010",
+   "Medidata Solutions, Inc. 2010",
+   "MeridianLink, Inc. 2020",
+   "MiX Telematics Ltd 2018",
+   "Mobileye Global Inc. 2021",
+   "N-able, Inc. 2020",
+   "NETSUITE INC 2010",
+   "NETWORK ENGINES INC 2010",
+   "Navan, Inc. 2024",
+   "Netskope Inc 2024",
+   "Nutanix, Inc. 2016",
+   "OPNET TECHNOLOGIES INC 2010",
+   "OneStream, Inc. 2023",
+   "PLAYSTUDIOS, Inc. 2020",
+   "POWERSCHOOL HOLDINGS, INC. 2020",
+   "PROCORE TECHNOLOGIES, INC. 2020",
+   "Palantir Technologies Inc. 2019",
+   "Ping Identity Holding Corp. 2018",
+   "Pivotal Software, Inc. 2017",
+   "QAD INC 2010",
+   "QLIK TECHNOLOGIES INC 2010",
+   "Qualtrics International Inc. 2020",
+   "RETALIX LTD 2010",
+   "ROSETTA STONE INC 2010",
+   "RealPage, Inc. 2010",
+   "Roblox Corp 2020",
+   "Rubrik, Inc. 2023",
+   "SEACHANGE INTERNATIONAL INC 2010",
+   "SERENA SOFTWARE INC 2010",
+   "SMITH MICRO SOFTWARE, INC. 2010",
+   "SS&C Technologies Holdings Inc 2010",
+   "SailPoint, Inc. 2024",
+   "Sailpoint Technologies Holdings, Inc. 2017",
+   "SecureWorks Corp 2015",
+   "ServiceTitan, Inc. 2023",
+   "Slack Technologies, Inc. 2018",
+   "SolarWinds, Inc. 2010",
+   "Sprinklr, Inc. 2020",
+   "Squarespace, Inc. 2020",
+   "SuccessFactors, Inc. 2010",
+   "Sumo Logic, Inc. 2019",
+   "SunGard 2010",
+   "TAKE TWO INTERACTIVE SOFTWARE INC 2010",
+   "TALEO CORP 2010",
+   "TELECOMMUNICATION SYSTEMS INC /FA/ 2010",
+   "THQ INC 2010",
+   "TYLER TECHNOLOGIES INC 2010",
+   "Talend S.A. 2017",
+   "Taoping Inc. 2011",
+   "Tenable Holdings, Inc. 2017",
+   "Tuya Inc. 2020",
+   "ULTIMATE SOFTWARE GROUP INC 2010",
+   "UiPath, Inc. 2020",
+   "Unity Software Inc. 2019",
+   "VTEX 2024",
+   "Vertex, Inc. 2019",
+   "Via Transportation, Inc. 2024",
+   "WEB.COM GROUP, INC. 2010",
+   "WM TECHNOLOGY, INC. 2020",
+   "WalkMe Ltd. 2020",
+   "Xperi Inc. 2021",
+   "Xunlei Ltd 2013",
+   "ZUORA INC 2017",
+   "Zeta Global Holdings Corp. 2020",
+   "ZoomInfo Technologies Inc. 2019",
+   "i3 Verticals, Inc. 2017",
+   "nCino, Inc. 2020"
+  ]
+ },
+ "R3": {
+  "firm_years": [
+   "Exzeo Group, Inc. 2025"
+  ],
+  "sources": [
+   {
+    "cik": 1873951,
+    "name": "Exzeo Group, Inc.",
+    "year": 2025,
+    "source": "https://www.sec.gov/Archives/edgar/data/1873951/000119312526076686/xzo-20251231.htm",
+    "evidence": "Form 10-K FY2025, risk factors: substantially all revenue from a small number of customers, all affiliated with HCI; no meaningful revenue from non-HCI affiliated customers in fiscal 2025",
+    "verified": "2026-10-29"
+   }
+  ],
+  "xbrl": {
+   "core_v2_firm_years_with_fact": 81,
+   "core_v3_firm_years_with_fact": 74,
+   "firms_with_fact": 25,
+   "n_at_or_above_50pct": 0,
+   "max_share": 0.2694485669417227,
+   "top": [
+    "SINA CORP 2015: 26.9%",
+    "SINA CORP 2014: 25.4%",
+    "SINA CORP 2018: 15.1%",
+    "SINA CORP 2016: 14.5%",
+    "SINA CORP 2017: 13.4%"
+   ]
+  }
+ },
+ "R4": {
+  "v2_flagged": 469,
+  "v3_flagged": 485,
+  "new_acquisition_years": {
+   "goodwill_fallback": [
+    "Carbon Black, Inc. 2017"
+   ],
+   "cheap_acquisition": [
+    "ARIBA INC 2011",
+    "AVALARA, INC. 2019",
+    "AVG Technologies N.V. 2015",
+    "ELLIE MAE INC 2015",
+    "GCL Global Holdings Ltd 2025",
+    "Guidance Software, Inc. 2012",
+    "KENEXA CORP 2011",
+    "LogMeIn, Inc. 2014",
+    "Paylocity Holding Corp 2022",
+    "SEACHANGE INTERNATIONAL INC 2015",
+    "VARONIS SYSTEMS INC 2020",
+    "Xunlei Ltd 2025"
+   ]
+  },
+  "new_following_years": [
+   "Carbon Black, Inc. 2018",
+   "ELLIE MAE INC 2016",
+   "Guidance Software, Inc. 2013",
+   "Majesco 2016",
+   "Paylocity Holding Corp 2023",
+   "SEACHANGE INTERNATIONAL INC 2016",
+   "VARONIS SYSTEMS INC 2021"
+  ],
+  "v2_following_flags_across_gaps": [],
+  "v2_following_flags_across_gaps_all_panel": [
+   "BigBear.ai Holdings, Inc. 2021",
+   "E2open Parent Holdings, Inc. 2021",
+   "Epicor Software Corp 2012",
+   "IonQ, Inc. 2023",
+   "QUANTUM X LABS INC. 2018",
+   "System1, Inc. 2023",
+   "Veradigm Inc. 2011"
+  ],
+  "removed_by_year_shift": [],
+  "acquiree_revenue_extra": 3,
+  "acquiree_revenue": {
+   "facts_matched_panel": 63,
+   "core_v2_firm_years_with_fact": 30,
+   "core_v2_at_or_above_10pct": [
+    "EverCommerce Inc. 2020",
+    "i3 Verticals, Inc. 2021",
+    "i3 Verticals, Inc. 2022"
+   ],
+   "core_v3_at_or_above_10pct": [
+    "i3 Verticals, Inc. 2021",
+    "i3 Verticals, Inc. 2022"
+   ],
+   "new_flags_core_v2": [],
+   "new_flags_all_panel": [
+    "PERFICIENT INC 2014",
+    "SYKES ENTERPRISES INC 2010"
+   ],
+   "note": "frames keep only non-dimensional facts; the element is usually tagged on a business-combination axis, so coverage is thin"
+  }
+ },
+ "R5": {
+  "debt_only_named": [
+   "Epicor Software Corp",
+   "Infor, Inc.",
+   "SSI Investments II Ltd",
+   "SunGard"
+  ],
+  "firm_years_core_v2": 15,
+  "firm_years_v3": 13,
+  "informatica_llc_annual_reports": [
+   "2011",
+   "2012",
+   "2013",
+   "2014",
+   "2015"
+  ],
+  "status_counts_core_v2": {
+   "listed": 1549,
+   "foreign_not_tested": 198,
+   "unknown": 125,
+   "no_listed_equity": 24,
+   "ipo_timing": 23,
+   "no_listed_equity_untagged": 7,
+   "ipo_timing_unresolved": 3
+  },
+  "status_counts_v3": {
+   "listed": 1534,
+   "foreign_not_tested": 186,
+   "no_listed_equity": 24,
+   "ipo_timing": 20,
+   "unknown": 19,
+   "ipo_timing_unresolved": 3,
+   "no_listed_equity_untagged": 2
+  },
+  "no_listed_equity_core_v2": {
+   "Epicor Software Corp": [
+    2013,
+    2014
+   ],
+   "GXS Worldwide, Inc.": [
+    2010,
+    2011,
+    2012
+   ],
+   "Infor, Inc.": [
+    2011,
+    2012,
+    2013,
+    2016,
+    2017,
+    2018
+   ],
+   "Medical Information Technology, Inc.": [
+    2010,
+    2011,
+    2012,
+    2013,
+    2014,
+    2015,
+    2016,
+    2017,
+    2018,
+    2019
+   ],
+   "SERENA SOFTWARE INC": [
+    2010,
+    2011,
+    2012
+   ],
+   "SSI Investments II Ltd": [
+    2012,
+    2013
+   ],
+   "SunGard": [
+    2010,
+    2011,
+    2012,
+    2013,
+    2014
+   ]
+  },
+  "no_listed_equity_v3": {
+   "Epicor Software Corp": [
+    2013,
+    2014
+   ],
+   "GXS Worldwide, Inc.": [
+    2011,
+    2012
+   ],
+   "Infor, Inc.": [
+    2012,
+    2013,
+    2016,
+    2017,
+    2018
+   ],
+   "Medical Information Technology, Inc.": [
+    2011,
+    2012,
+    2013,
+    2014,
+    2015,
+    2016,
+    2017,
+    2018,
+    2019
+   ],
+   "SERENA SOFTWARE INC": [
+    2011,
+    2012
+   ],
+   "SSI Investments II Ltd": [
+    2012,
+    2013
+   ],
+   "SunGard": [
+    2011,
+    2012,
+    2013,
+    2014
+   ]
+  },
+  "firm_years_no_listed_equity_v3": 26,
+  "ipo_timing": {
+   "BENTLEY SYSTEMS INC": [
+    2020
+   ],
+   "CCC Intelligent Solutions Holdings Inc.": [
+    2020
+   ],
+   "Clearwater Analytics Holdings, Inc.": [
+    2021
+   ],
+   "Consensus Cloud Solutions, Inc.": [
+    2021
+   ],
+   "DATTO HOLDING CORP.": [
+    2020
+   ],
+   "Duolingo, Inc.": [
+    2021
+   ],
+   "Endurance International Group Holdings, Inc.": [
+    2013
+   ],
+   "EngageSmart, Inc.": [
+    2021
+   ],
+   "EverCommerce Inc.": [
+    2021
+   ],
+   "ForgeRock, Inc.": [
+    2021
+   ],
+   "Jamf Holding Corp.": [
+    2020
+   ],
+   "KALTURA INC": [
+    2021
+   ],
+   "MARKETWISE, INC.": [
+    2020
+   ],
+   "MeridianLink, Inc.": [
+    2021
+   ],
+   "N-able, Inc.": [
+    2021
+   ],
+   "PAYCOR HCM, INC.": [
+    2021
+   ],
+   "POWERSCHOOL HOLDINGS, INC.": [
+    2021
+   ],
+   "Ping Identity Holding Corp.": [
+    2019
+   ],
+   "ServiceTitan, Inc.": [
+    2024
+   ],
+   "SolarWinds Corp": [
+    2018
+   ],
+   "Vertex, Inc.": [
+    2020
+   ],
+   "Xperi Inc.": [
+    2022
+   ],
+   "i3 Verticals, Inc.": [
+    2018
+   ]
+  },
+  "ipo_timing_unresolved": {
+   "Figma, Inc.": [
+    2025
+   ],
+   "Netskope Inc": [
+    2025
+   ],
+   "Via Transportation, Inc.": [
+    2025
+   ]
+  },
+  "foreign_zero_float": {
+   "AutoNavi Holdings Ltd": [
+    2012,
+    2013
+   ],
+   "Changyou.com Ltd": [
+    2010,
+    2011,
+    2012,
+    2013,
+    2014,
+    2015,
+    2016,
+    2017,
+    2018
+   ],
+   "RETALIX LTD": [
+    2010,
+    2011
+   ]
+  }
+ },
+ "panel_named": {
+  "firms": {
+   "BALLY TECHNOLOGIES, INC.": "casino gaming (IB)",
+   "ELECTRONIC ARTS INC.": "games (IB, FR)",
+   "Activision Blizzard, Inc.": "games (IB, FR)",
+   "THQ INC": "games (FR)",
+   "3D SYSTEMS CORP": "3D printers (FR)",
+   "TAKE TWO INTERACTIVE SOFTWARE INC": "games (IB, FR)",
+   "Roblox Corp": "games (IB, FR)",
+   "DIRTT ENVIRONMENTAL SOLUTIONS LTD": "modular interiors (FR)",
+   "Xunlei Ltd": "internet services (IB)",
+   "Block, Inc.": "payments, bitcoin revenue gross (FR)",
+   "Mobileye B.V.": "driver-assistance chips (FR)",
+   "CoreWeave, Inc.": "compute infrastructure (IB)",
+   "Xperi Inc.": "licensing and devices (FR)",
+   "Unity Software Inc.": "game engine (FR)",
+   "PLAYSTUDIOS, Inc.": "games (IB, FR)",
+   "Mobileye Global Inc.": "driver-assistance chips (FR)"
+  },
+  "firm_years_in_v3": 120
+ },
+ "v3_by_period": {
+  "2010-15": 465,
+  "2016-19": 418,
+  "2020-22": 458,
+  "2023-25": 447
+ },
+ "R2_named": {
+  "classes": {
+   "BALLY TECHNOLOGIES, INC.": "gambling",
+   "ELECTRONIC ARTS INC.": "interactive_entertainment",
+   "Activision Blizzard, Inc.": "interactive_entertainment",
+   "THQ INC": "software",
+   "3D SYSTEMS CORP": "software",
+   "TAKE TWO INTERACTIVE SOFTWARE INC": "software",
+   "Roblox Corp": "software",
+   "DIRTT ENVIRONMENTAL SOLUTIONS LTD": "software",
+   "Xunlei Ltd": "software",
+   "Block, Inc.": "software",
+   "Mobileye B.V.": "software",
+   "CoreWeave, Inc.": "software",
+   "Xperi Inc.": "software",
+   "Unity Software Inc.": "software",
+   "PLAYSTUDIOS, Inc.": "interactive_entertainment",
+   "Mobileye Global Inc.": "software"
+  },
+  "hits": {
+   "BALLY TECHNOLOGIES, INC.": {
+    "interactive_entertainment": 0,
+    "gambling": 4,
+    "compute_infrastructure": 0,
+    "software": 3
+   },
+   "ELECTRONIC ARTS INC.": {
+    "interactive_entertainment": 25,
+    "gambling": 0,
+    "compute_infrastructure": 0,
+    "software": 3
+   },
+   "Activision Blizzard, Inc.": {
+    "interactive_entertainment": 3,
+    "gambling": 0,
+    "compute_infrastructure": 0,
+    "software": 0
+   },
+   "THQ INC": {
+    "interactive_entertainment": 4,
+    "gambling": 0,
+    "compute_infrastructure": 0,
+    "software": 5
+   },
+   "3D SYSTEMS CORP": {
+    "interactive_entertainment": 0,
+    "gambling": 0,
+    "compute_infrastructure": 0,
+    "software": 17
+   },
+   "TAKE TWO INTERACTIVE SOFTWARE INC": {
+    "interactive_entertainment": 2,
+    "gambling": 2,
+    "compute_infrastructure": 0,
+    "software": 5
+   },
+   "Roblox Corp": {
+    "interactive_entertainment": 1,
+    "gambling": 0,
+    "compute_infrastructure": 0,
+    "software": 22
+   },
+   "DIRTT ENVIRONMENTAL SOLUTIONS LTD": {
+    "interactive_entertainment": 0,
+    "gambling": 0,
+    "compute_infrastructure": 0,
+    "software": 10
+   },
+   "Xunlei Ltd": {
+    "interactive_entertainment": 0,
+    "gambling": 0,
+    "compute_infrastructure": 0,
+    "software": 6
+   },
+   "Block, Inc.": {
+    "interactive_entertainment": 0,
+    "gambling": 0,
+    "compute_infrastructure": 0,
+    "software": 4
+   },
+   "Mobileye B.V.": {
+    "interactive_entertainment": 0,
+    "gambling": 0,
+    "compute_infrastructure": 0,
+    "software": 0
+   },
+   "CoreWeave, Inc.": {
+    "interactive_entertainment": 0,
+    "gambling": 0,
+    "compute_infrastructure": 2,
+    "software": 20
+   },
+   "Xperi Inc.": {
+    "interactive_entertainment": 0,
+    "gambling": 0,
+    "compute_infrastructure": 0,
+    "software": 5
+   },
+   "Unity Software Inc.": {
+    "interactive_entertainment": 2,
+    "gambling": 0,
+    "compute_infrastructure": 0,
+    "software": 13
+   },
+   "PLAYSTUDIOS, Inc.": {
+    "interactive_entertainment": 9,
+    "gambling": 8,
+    "compute_infrastructure": 0,
+    "software": 2
+   },
+   "Mobileye Global Inc.": {
+    "interactive_entertainment": 0,
+    "gambling": 0,
+    "compute_infrastructure": 0,
+    "software": 5
+   }
+  },
+  "non_software": [
+   "Activision Blizzard, Inc.",
+   "BALLY TECHNOLOGIES, INC.",
+   "ELECTRONIC ARTS INC.",
+   "PLAYSTUDIOS, Inc."
+  ],
+  "firm_years_v3_non_software": 38,
+  "note": "rule as defined before the descriptions were read; keyword lists not changed after reading them"
+ },
+ "cash_score_basis": {
+  "operating_cash_flow_elements": [
+   "NetCashProvidedByUsedInOperatingActivitiesContinuingOperations",
+   "NetCashProvidedByUsedInOperatingActivities"
+  ],
+  "reading": "US GAAP classifies interest paid and income taxes paid as operating cash outflows (ASC 230-10-45-17(c), (d)), so operating cash flow, and the cash score built on it, is after interest paid and cash taxes",
+  "elements_in_extract": {
+   "InterestPaid": false,
+   "InterestPaidNet": false,
+   "IncomeTaxesPaid": false,
+   "IncomeTaxesPaidNet": false
+  },
+  "elements_in_frames": {
+   "InterestPaid": false,
+   "InterestPaidNet": false,
+   "IncomeTaxesPaid": false,
+   "IncomeTaxesPaidNet": false
+  },
+  "coverage_core": "1762 of 1788 v3 core firm-years report at least one of the four elements",
+  "retrieved": "data/v3_inputs/cash_interest_taxes.json (SEC frames, 29 Oct 2026; latest filed values, not first reported)",
+  "coverage_v3": {
+   "any_element": 1762,
+   "interest_element": 1397,
+   "taxes_element": 1736,
+   "both": 1371,
+   "interest_net_element": 1040,
+   "taxes_net_element": 1242
+  },
+  "rule": "InterestPaidNet, else InterestPaid; IncomeTaxesPaidNet, else IncomeTaxesPaid; a missing element is zero when the firm-year reports any of the four"
+ },
+ "ga_floor": {
+  "as_in_08_params (panel_v2_all, SIC 7370-7374, all revenue)": {
+   "rev_1b_10b": {
+    "n_firms": 96,
+    "p5": 0.04598886161359468,
+    "p10": 0.06250783202031868,
+    "median": 0.11794202575045906
+   },
+   "rev_over_10b": {
+    "n_firms": 12,
+    "p5": 0.029118746256503344,
+    "p10": 0.03180352005438034,
+    "median": 0.06905367601615495
+   }
+  },
+  "panel_v2_all, SIC 7372 only": {
+   "rev_1b_10b": {
+    "n_firms": 64,
+    "p5": 0.05814311967568119,
+    "p10": 0.07934209089100283,
+    "median": 0.12492770258291902
+   },
+   "rev_over_10b": {
+    "n_firms": 9,
+    "p5": 0.028555470831767054,
+    "p10": 0.03005753863106382,
+    "median": 0.07002655268060105
+   }
+  },
+  "core analysis sample v2 (data/panel.csv)": {
+   "rev_1b_10b": {
+    "n_firms": 61,
+    "p5": 0.05975337659226639,
+    "p10": 0.08090085373012561,
+    "median": 0.12775007507388852
+   },
+   "rev_over_10b": {
+    "n_firms": 8,
+    "p5": 0.02836771235685496,
+    "p10": 0.02968202168123963,
+    "median": 0.07164344693823604
+   }
+  },
+  "core analysis sample v2, by prior-year revenue": {
+   "rev_1b_10b": {
+    "n_firms": 47,
+    "p5": 0.05443707057892576,
+    "p10": 0.0764342620518143,
+    "median": 0.11619936240935133
+   },
+   "rev_over_10b": {
+    "n_firms": 7,
+    "p5": 0.028179953881942863,
+    "p10": 0.02930650473141544,
+    "median": 0.07326034119587105
+   }
+  },
+  "core analysis sample v3 (data/panel_v3.csv)": {
+   "rev_1b_10b": {
+    "n_firms": 61,
+    "p5": 0.05975337659226639,
+    "p10": 0.08090085373012561,
+    "median": 0.12775007507388852
+   },
+   "rev_over_10b": {
+    "n_firms": 8,
+    "p5": 0.02836771235685496,
+    "p10": 0.02968202168123963,
+    "median": 0.07164344693823604
+   }
+  }
+ },
+ "backfill_counts": {
+  "R1 (source filing reports a later own period)": 140,
+  "filed more than 400 days after fiscal year-end (finance referee)": 139,
+  "accession year later than the normal filing year (IM T1)": 141,
+  "IM T1 restricted to first core year": 138,
+  "R1 restricted to first core year": 138,
+  "R1 but filed within 400 days": [
+   "Medical Information Technology, Inc. 2010"
+  ],
+  "IM T1 but not R1 (late original filing)": [
+   "Avaya Holdings Corp. 2022"
+  ],
+  "R1 but not first core year": [
+   "AVID TECHNOLOGY, INC. 2012",
+   "DESCARTES SYSTEMS GROUP INC 2024"
+  ]
+ }
+}

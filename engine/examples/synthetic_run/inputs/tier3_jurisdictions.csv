@@ -1,0 +1,8 @@
+site,country,headcount,works_council,union_coverage,data_residency
+"Austin, TX",US,938.0,0,0.0,none
+"Bangalore, India",IN,175.0,0,0.0,none
+"Dublin, Ireland",IE,358.0,0,0.1,region
+"Krakow, Poland",PL,87.0,1,0.1,region
+"Manila, Philippines",PH,52.0,0,0.0,none
+Remote US,US,786.0,0,0.0,none
+"San Francisco, CA",US,826.0,0,0.0,none

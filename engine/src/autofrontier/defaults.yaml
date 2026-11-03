@@ -1,0 +1,741 @@
+# Copyright (c) 2026 Akshaya Bangalore Sreenivasa Murthy. Licensed under the PolyForm Noncommercial License 1.0.0 (see LICENSE.md).
+# Commercial use requires prior written permission from the copyright holder.
+#
+# autofrontier default parameters.
+#
+# Each leaf is a mapping with:
+#   value     the fallback value (used when data/tasks/params.yaml is absent or lacks the entry)
+#   range     [low, high]: the span used by the sensitivity tornado and the scenarios
+#   params    optional dotted path into data/tasks/params.yaml; when that file is found, its value, range,
+#             source and assumed flag replace the fallback (the spec's rule: params.yaml values are the
+#             defaults where they exist). `pick` selects a key of a mapping-valued entry; `transform`
+#             converts units (days_to_years, date_to_year, months_to_years, ln).
+#   source    where a sourced value comes from (verified references are in notes/ref_verification_part2.md)
+#   assumed   true when the value is an engine assumption; `basis` then says what informs it
+#   flag      quality flag of the evidence (survey, practitioner, unverified)
+#   section   the section of notes/unified_model_spec.md or the paper result the parameter belongs to
+#
+#   rate      for rates: "continuous" (used in e^{-rt}; annual sources enter through transform to_continuous, ln(1 + r))
+#             or "annual" (used as (1 + r)^t, or measured annually)
+#   grounding the class of spec Section 21.1: a sourced, b grounded by precedent, c calibrated from our own data
+#             or the firm's inputs, d a free scenario parameter (reported over its range, never as a point);
+#             `setting` marks numerical settings and `policy` marks the firm's own choices (risk appetite,
+#             exclusions, budget). Linked leaves take the class of their params.yaml block.
+#
+# Nothing here cites a source it does not come from. A value only informed by a source is assumed, and the
+# source is named in `basis`.
+
+finance:
+  r: {value: 0.0893, range: [0.0677, 0.1013], params: "ownership_regimes.public.r_own_wacc", transform: to_continuous, rate: "continuous", basis: "continuous; ln(1 + annual WACC), Damodaran Jan 2026", section: "Part I; spec 9 (discount rate outside a regime preset)"}
+  alpha: {value: 0.30, range: [0.25, 0.45], source: "Part I calibration range of the spend elasticity, sections/model.tex (0.3 in examples)", note: "Paper 1 round 2 (F5, IM2-N10/N12; notes/assumptions_register.md, 2 Nov 2026) reclassifies alpha as class d: the data identify only alpha(X - k), so [0.25, 0.45] is a scenario range (0.35 on Paper 1's central path, 0.3 in its levers table). The engine keeps the value 0.30 and does not draw alpha in the Monte Carlo (grounding left as c pending the engine owner's decision: alpha enters only the Part I state, not plan values, and adding it to the drawn set would reshuffle every later draw)", section: "Part I", grounding: "c"}
+  tau: {value: 0.21, range: [0.15, 0.30], source: "U.S. federal statutory corporate rate, 26 U.S.C. 11(b); a firm input tax_rate overrides", note: "the marginal statutory rate, right for marginal decisions on savings; Part I uses an average effective rate (central 0.18, params.yaml part1_ceiling.tau_cash_tax_rate) for the full-automation ceiling", section: "spec 5 (taxes)", grounding: "a"}
+  psi: {value: null, range: [0.532, 1.0], assumed: true, grounding: "setting", basis: "null: computed as domestic_dev_share x psi_domestic + (1 - domestic_dev_share) x psi_15(r) (prop:acct-tax); a value overrides (the spec 5 tornado uses it)", section: "spec 5, 24.4 (tax deductibility of AI development)"}
+  psi_domestic: {value: 1.0, range: [1.0, 1.0], assumed: false, grounding: "a", source: "26 U.S.C. sec. 174A(a), (d)(3): domestic research and experimental expenditure, including software development, is deducted when paid or incurred for taxable years beginning after 31 Dec 2024 (verified in notes/accounting_notes.md Section 2)", section: "spec 24.4"}
+  psi_foreign_years: {value: 15, range: [15, 15], assumed: false, grounding: "a", source: "26 U.S.C. sec. 174(a): foreign research is amortized over 15 years from the midpoint of the year (psi_15 = 0.532 at r = 0.10)", section: "spec 24.4"}
+  psi_equipment: {value: 1.0, range: [0.80, 1.0], assumed: false, grounding: "a", source: "current law for domestic servers: qualified property acquired after 19 Jan 2025 gets the 100 percent first-year allowance (26 U.S.C. 168(k) as amended by P.L. 119-21 sec. 70301; IRS Notice 2026-11, read by the Paper 2 theory pass on 29 Oct 2026); computers are five-year property (168(e)(3)(B)(iv), (i)(2)(A))", note: "the value for domestic servers without an election. Electing out of the allowance (168(k)(7)) gives no bonus: MACRS five-year, psi 0.86 at the software cost of capital. The 40 percent (60 percent for certain property) is the transitional election of 168(k)(10) for property placed in service in the first taxable year ending after 19 Jan 2025, with the rest under MACRS (psi 0.92). Servers used predominantly outside the United States are ADS property (168(g)(1)(A)) with no bonus (26 CFR 1.168(k)-2(b)(2)(ii)(B)), straight line over five years (168(g)(3)(C)): psi 0.81. Firm inputs bonus_election and foreign_server_share select these (formulas.psi_equipment); the range runs from the ADS value to 1. With psi < 1 the capital hurdles of cor:capital rise by Upsilon = (1 - psi tau)/(1 - tau)", section: "spec 24.4 (equipment); prop:acct-tax(d)"}
+  domestic_dev_share: {value: 1.0, range: [0.0, 1.0], assumed: true, grounding: "policy", section: "spec 24.4 (share of development work done in the U.S.; a firm input overrides)"}
+  fees_f: {value: 0.025, range: [0.02, 0.03], grounding: "d", source: "Part I Cor ceiling calibration, central case", note: "class d: no processor price page could be read (assumptions memo)", section: "Part I"}
+  a_min_fixed: {value: 0.03, range: [0.005, 0.046], params: "part1_ceiling.a_min_accountability_floor", section: "Part I; spec 8, 22"}
+  market_growth_G: {value: 0.10, range: [0.05, 0.15], assumed: true, rate: "annual", section: "Part I", note: "used when the firm gives no market growth", grounding: "d"}
+  revenue_growth_g: {value: 0.12, range: [0.0, 0.30], assumed: true, rate: "annual", section: "Part I", note: "used when the firm gives no revenue growth", grounding: "d"}
+  rd_expansion_share: {value: 0.5, range: [0.3, 0.7], assumed: true, section: "Part I (sigma = S&M plus expansion R&D)", grounding: "d"}
+  capital_intensity_k: {value: 0.645, range: [0.22, 2.03], assumed: false, grounding: "b", source: "Damodaran (January 2026) invested capital per dollar of sales on the unadjusted basis (after-tax operating margin over unadjusted after-tax ROC), data/tasks/industry_benchmarks.csv k_ic_per_sales with k_variant unadj: Total Market (without financials) 0.645; range P10 0.22 to P90 2.03 across non-financial groups. The engine uses the firm's industry row through xw_damodaran_naics.csv (Software System & Application 0.574); a firm input capital_intensity_k overrides", note: "Part I k: invested capital per dollar of revenue (investment = k dS). Aggregates over listed US firms, so large firms dominate; book capital includes goodwill", section: "Part I; spec 24.10"}
+  X_default: {value: 5.0, range: [2.5, 9.0], assumed: true, grounding: "setting", basis: "the middle evaluation point, not an estimate: Paper 1 withdrew the spend-based weight of 7 to 13 (decision D-1; revision plan A1); the data do not identify the decision weight, and the bounds on alpha (X - k) run from 0.05 to 10.1 by method (notes/sample_audit.md Section 4; X - k from below 1 to about 12 at alpha in [0.25, 0.45]). Used only when the Gordon equation has no root and the firm gives no EV/revenue multiple; every output whose recommendation depends on the level of X is also reported at finance.X_eval_points or the firm's range (lever_map x_levels)", section: "Part I prop:dynamic(e) (no root); D-1"}
+  X_eval_points: {value: [2.5, 5.0, 9.0], range: [null, null], assumed: true, grounding: "setting", basis: "evaluation points of the growth weight X used by Papers 1 and 2 (the Bessemer screening range; the CAC-baseline and netted estimates; the middle tercile; notes/cross_paper_impacts.md, growth-weight bounds row); conclusions that flip below 2.5 are flagged, since the levels methods imply lower values. A firm range (tier0 growth_weight_low, growth_weight_high) replaces them with low, midpoint, high", section: "D-1; prop:playbook-rank, prop:acquired-score(a), cor:prod-dilution"}
+  terminal_growth: {value: 0.02, range: [0.0, 0.04], assumed: true, rate: "continuous", section: "spec 9 (firm value)", note: "growth of savings after the planning horizon, for the terminal value", grounding: "b"}
+  spend_ratio: {value: 3.3, range: [1.9, 7.4], assumed: false, grounding: "c", source: "Paper 1 empirics (sections/empirics.tex): median S&M share of revenue over excess growth, interquartile range 1.9 to 7.4; the all-S&M basis (a bound since 2 Nov 2026; finance.spend_ratio_netted is central)", section: "ass:playbook-calib, lem:playbook-calib (calibration of the position when no EV multiple or market growth is given)"}
+  sm_maint_base: {value: 0.25056806425127603, range: [0.232622, 0.275722], assumed: false, grounding: "c", source: "Paper 1 maintenance base (round 2, author decision 4; macro MaintBase 25.1): median lagged S&M share of revenue of core firm-years growing at or below market, E1, 2023-25 audited v3 sample (notes/empirics_v3.json spend_maint_base, 90% firm-cluster bootstrap interval as range)", note: "with finance.sm_basis netted (central, author decision of 2 Nov 2026) growth spend is sigma = max(S&M share - base, 0) (+ rd_expansion_share x R&D) and min(S&M share, base) is a non-discretionary cost line; all S&M and no S&M are bounds (levers.sm_basis_bounds)", section: "Part I decisions 4 and 7 (S&M basis); spec 2.2"}
+  sm_basis: {value: "netted", range: ["netted", "all", "none"], assumed: true, grounding: "setting", basis: "basis of growth spend: maintenance-netted, Paper 1's central basis (author decisions 4 and 7, 2 Nov 2026: the 2036 path, the lever ranking and the playbook); all (every S&M dollar buys growth, the convention before 2 Nov) and none (no S&M buys growth) are the bounds the lever map reports", section: "Part I decisions 4 and 7; spec 2.2 (impute.part1_baseline, levers.state)"}
+  spend_ratio_netted: {value: 0.9875436841017979, range: [0.670456, 1.140252], assumed: false, grounding: "c", source: "Paper 1 empirics (notes/empirics_v3.json spend_maint_ratio, E1, 2023-25): median of (S&M share - maintenance base)/(g - G) over firm-years growing above market, 90% firm-cluster bootstrap interval as range; the netted counterpart of finance.spend_ratio", section: "ass:playbook-calib, lem:playbook-calib (calibration of the position on the netted basis when no EV multiple or market growth is given)"}
+  terminal_multiple_cap: {value: 20.0, range: [12.0, 30.0], assumed: true, section: "spec 9 (firm value)", grounding: "d"}
+  pass_through_phi: {value: 0.0, range: [0.0, 1.0], source: "Part I Cor priorities (iv): savings in cost of revenue at given prices unless competition passes them through", note: "an extra pass-through RATE (the ai_native_entrant scenario sets it), combined with the industry rate as phi = 1 - (1 - phi_ind)(1 - phi_extra) on unit-cost savings, margins at the post-cut price (Part I round 2, B1; formulas.passthrough_terms); in dollars it scales the durable share. The industry pass-through scenario dimension {0, 0.5, 0.7} enters through competition.phi_ind (named scenarios pass_through_*), not here: applying it to both would count pass-through twice", section: "spec 6", grounding: "d"}
+  c_c_full_automation: {value: {"2025": 0.06, "2028": 0.12, "2031": 0.08, "2036": 0.05}, range: [0.01, 0.30], assumed: false, grounding: "d", source: "data/tasks/params.yaml part1_ceiling.c_c_compute_share: 0.06 [0.01, 0.20] at 2025 prices (b-anchored: METR run costs, Stevens 2026, AI-native products); by horizon 2028 0.12 [0.02, 0.30], 2031 0.08 [0.01, 0.25], 2036 0.05 [0.01, 0.20] (d: explicit path c_c(H) = s_L [omega_H kappa_front + (1 - omega_H) kappa_fixed(H)], Gundlach et al. 2026 price decline, value-test cap); assumptions round 2 Section 2, read 29 Oct 2026; tests/test_regression.py keeps this map equal to params.yaml", note: "Part I's compute share at full automation, by calendar year (linear between knots, flat outside). The range [0.01, 0.30] is the envelope of the scenario-path ranges by horizon in params.yaml, used for the tornado; it is not Paper 1's credible range for the 2025-price share, which since round 2 runs from 1% to the value-test cap of 60% (s_L); used only for the full-automation ceiling report (security.ceiling_terms), not for the plan's own compute costs, which are built bottom-up from prices.*", section: "Part I Cor ceiling; spec 22 (params commit 29 Oct 2026)"}
+
+labor:
+  tau_L: {value: 0.2896, range: [0.2791, 0.3359], params: "payroll_loading.tau_L_on_annual_wage", section: "spec 3, 5 (payroll loading on an OEWS annual wage)"}
+  hours_per_fte: {value: 1877.5, range: [1795.5, 1877.5], params: "payroll_loading.worked_hours_per_fte_year", section: "spec 2 (standard unit of work)"}
+  tau_L_contractor: {value: 0.10, range: [0.0, 0.25], assumed: true, section: "spec 3", grounding: "d"}
+  training_hours_per_fte: {value: 20.0, range: [8.0, 60.0], params: "security_and_maintenance.people_and_ancillary.ai_reskilling_hours_per_affected_fte", section: "spec 18.3 (training per affected FTE)"}
+  training_cost_per_hour: {value: 50.7, range: [50.7, 91.5], params: "security_and_maintenance.people_and_ancillary.training_cost_per_learning_hour_usd", section: "spec 18.3 (cost per learning hour, beyond the wage)"}
+  change_mgmt_cost_per_fte: {value: 2000.0, range: [500.0, 8000.0], params: "security_and_maintenance.people_and_ancillary.change_management_cost_per_affected_fte_usd", section: "spec 18.3"}
+  # theory_labor.tex (sec:labor), notes/labor_notes.md Section 5. Statutory rules are in formulas.statutory_terms.
+  rules_as_of: {value: "2026-10-29", range: [null, null], assumed: false, grounding: "setting", section: "spec 24.5 (date the statutory rules were read at their primary sources; notes/ref_verification_labor.md)"}
+  nu_q: {value: 0.132, range: [0.12, 0.252], assumed: false, grounding: "a", source: "BLS JOLTS, August 2026: quits 1.1 percent a month in information (x 12 = 0.132); finance 0.120, professional and business services 0.252", section: "prop:labor-survivor (baseline quit hazard nu^q, a year)"}
+  survivor_excess_quits: {value: 0.0235, range: [0.01, 0.05], assumed: false, grounding: "b", source: "Sajjadiani et al. (2023): 2.2 induced quits per store of about 93.6 workers after a layoff announcement (eta_0 T_s); retail stores, range widened for transfer", section: "prop:labor-survivor(a,b) (excess quits per announced wave, share of survivors)"}
+  survivor_quits_per_share: {value: 0.0, range: [0.0, 0.10], assumed: true, grounding: "d", section: "prop:labor-survivor (eta_1 T_s: excess quits per unit of displacement share; 0 in the default fit)"}
+  T_s: {value: 1.0, range: [0.5, 2.0], assumed: false, grounding: "b", source: "Sajjadiani et al. (2023): most induced quits in the first six months of a 22-month panel", section: "prop:labor-survivor (survivor window, years)"}
+  delta_eff: {value: 0.0, range: [0.0, 0.10], assumed: true, grounding: "d", basis: "direction from Drzensky and Heinz (lab) and Friebel et al. (shops under announcement); size does not transfer", section: "prop:labor-survivor(a) (productivity loss of survivors per year, delta_0)"}
+  c_rep: {value: 0.56, range: [0.29, 0.76], assumed: false, grounding: "b", source: "Blatter et al. (2012): hiring cost 10 to 17 weeks of wages (13.5 central), plus a shortfall delta^rp T^rp = 0.15 x 2 years (Bidwell 2011 direction)", section: "prop:labor-survivor(a) (cost of replacing a leaver, years of wages)"}
+  nu_x: {value: 0.5, range: [0.0, 1.0], assumed: true, grounding: "d", basis: "excess quit hazard of knowledge holders under announcement (nu^D - nu^q for holders to be displaced); direction from Schwerdt 2011 and Lengermann and Vilhuber 2002, no rate", section: "eq:labor-success"}
+  kappa_doc: {value: 0.2, range: [0.0, 0.5], assumed: true, grounding: "d", section: "eq:labor-success (documented share of a holder's knowledge)"}
+  kappa_ret: {value: 0.8, range: [0.5, 0.9], assumed: true, grounding: "d", section: "prop:labor-survivor(d) (share of the excess hazard a retention award removes)"}
+  C_ret: {value: 60000.0, range: [30000.0, 120000.0], assumed: true, grounding: "d", section: "prop:labor-survivor(d) (retention award per holder)"}
+  knowledge_holders_per_process: {value: 0.0, range: [0.0, 5.0], assumed: true, grounding: "d", section: "eq:labor-success (critical knowledge holders n_K per process; a firm input; 0 means no adjustment)"}
+  varpi_rd: {value: 0.3, range: [0.1, 0.5], assumed: true, grounding: "d", basis: "no measure found; retraining effects turn positive after 2 to 3 years (Card et al. 2018)", section: "prop:labor-survivor(e) (placement probability per vacancy)"}
+  c_ann_share: {value: 0.3, range: [0.0, 0.6], assumed: true, grounding: "d", basis: "theory_labor example: c^ann $0.3M a year against W $1M", section: "prop:labor-lead(d) (cost flow of the announced state, share of the process saving W)"}
+  C_wd_share: {value: 0.2, range: [0.0, 0.5], assumed: true, grounding: "d", basis: "theory_labor example: C^wd $0.2M against W $1M", section: "prop:labor-lead(d) (withdrawal cost, share of W)"}
+  dismissal_share_prior: {value: 0.15, range: [0.05, 0.40], assumed: true, grounding: "d", section: "spec 24.5 (program dismissals at a site, share of its headcount, used for the trigger tests while the plan is built; the people plan re-tests with planned separations)"}
+  tenure_default: {value: 3.9, range: [2.0, 8.0], assumed: false, grounding: "a", source: "BLS, Employee Tenure (CPS, January 2024): median tenure with current employer 3.9 years (params.yaml note)", section: "tab:labor-rules (tenure for statutory floors and notice when the roster has none)"}
+  age_default: {value: 40.0, range: [30.0, 50.0], assumed: true, grounding: "d", section: "tab:labor-rules (age for the UK redundancy ladder when the roster has none)"}
+  T_proc_DE: {value: 0.25, range: [0.0833, 0.5], assumed: true, grounding: "d", basis: "consultation on the reconciliation of interests (BetrVG s.111-112) has no statutory length", section: "prop:labor-lead (Germany, years)"}
+  T_tech_DE: {value: 0.25, range: [0.0, 0.5], assumed: true, grounding: "d", basis: "BetrVG s.87(1) Nr. 6 and s.90 have no time limit", section: "prop:labor-lead (Germany technology consultation, years)"}
+  T_tech_FR: {value: 0.1667, range: [0.0833, 0.25], assumed: false, grounding: "a", source: "Code du travail R2312-6: CSE consultation periods of 1, 2 or 3 months (2 with an expert)", section: "prop:labor-lead (France technology consultation, years)"}
+  T_bld_default: {value: 0.25, range: [0.1, 0.5], assumed: true, grounding: "d", section: "prop:labor-lead (build length per process, years, against which the technology consultation runs)"}
+  eu_option: {value: "30day", range: [null, null], assumed: true, grounding: "setting", section: "Directive 98/59/EC Art. 1(1)(a) (Member State option: 30day or 90day)"}
+  release_early: {value: false, range: [false, true], assumed: true, grounding: "policy", section: "labor notes 3.2 (pay notice in lieu and release staff before the notice ends)"}
+  sub_threshold_pacing: {value: false, range: [false, true], assumed: true, grounding: "policy", section: "prop:labor-lead(c) (pace dismissals below collective thresholds; off by default: all program dismissals at an establishment in a window are counted together)"}
+  union_cov_US: {value: 0.112, range: [0.10, 0.112], assumed: false, grounding: "a", source: "BLS Union Members 2025 (Feb 2026): 11.2 percent represented, 10.0 percent members", section: "labor notes 4 (flag only)"}
+
+capability:
+  H0_hours: {value: 11.98, range: [8.99, 14.98], params: "capability_path.H0_hours_p50", section: "spec 6 (H0)"}
+  t0: {value: 2026.10, range: [2026.10, 2026.10], params: "capability_path.t0", transform: date_to_year, section: "spec 6 (t0)"}
+  Td_years: {value: 0.5671, range: [0.3918, 0.6575], source: "Kwa et al. (2025), METR, arXiv:2503.14499 (verified in notes/ref_verification_part2.md): the 50 percent horizon doubled every 207 days (95 percent CI 166 to 240), 143 days for models since 2024; central 207/365, range 143/365 to 240/365", section: "spec 6 (T_d)", note: "Software tasks at 50 percent reliability. params.yaml uses 143 days as its base; the lead author set 207 days as the central default.", grounding: "a"}
+  logistic_slope_b: {value: 0.597, range: [0.536, 0.693], params: "capability_path.logistic_slope_b", section: "spec 6 (chi and the capability error)"}
+  eta_r: {value: 1.161, range: [1.00, 1.29], source: "eta_r = ln 2 / b with b = 0.597 (METR refit); chi(0.8) = 5.0, inside the 4 to 6 times shorter 80 percent horizons of Kwa et al. (2025)", section: "spec 6 (chi(r) = (r/(1-r))^eta_r)", note: "anchored only at 80 percent; values above extrapolate", grounding: "c"}
+  r_A: {value: 0.80, range: [0.65, 0.95], assumed: true, basis: "METR's 80 percent horizon is the published reliability anchor (Kwa et al. 2025)", section: "spec 6 (reliability the capability test requires for mode A)", grounding: "b"}
+  r_U: {value: 0.50, range: [0.50, 0.80], assumed: true, section: "spec 3 (augmentation needs less capability than automation)", grounding: "d"}
+  transfer: {value: 1.0, range: [0.5, 9.5], params: "capability_path.domain_transfer_factor", section: "spec 6 (domain transfer of the benchmark horizon)"}
+  xi_exposure: {value: 1.0, range: [0.5, 2.0], assumed: true, section: "spec 6 (effective task length rises as LLM exposure falls)", grounding: "d"}
+  exposure_floor: {value: 0.05, range: [0.02, 0.10], assumed: true, section: "spec 6", grounding: "d"}
+  xi_context: {value: 0.5, range: [0.3, 0.8], assumed: true, basis: "notes/theory_ext_notes.md Section 4", section: "spec 6 (context share of task length)", grounding: "d"}
+  context_coverage: {value: 0.0, range: [0.0, 0.9], assumed: true, section: "spec 6 (context-engine coverage C; a firm input overrides)", grounding: "d"}
+  L_W: {value: 5.0, range: [2.0, 15.0], params: "capability_path.physical_lag_years", section: "spec 6 (world-model lag for physical work)"}
+  physical_threshold: {value: 0.5, range: [0.3, 0.7], assumed: true, section: "spec 6 (physical flag)", grounding: "d"}
+  agi_year: {value: null, range: [null, null], assumed: true, section: "spec 6 (AGI: H to infinity for cognitive work)", note: "set by the agi scenario", grounding: "d"}
+  e0: {value: 0.25, range: [0.10, 0.45], params: "ai_cost.raw_error_rate_e.low_readiness_e0", section: "spec 4 (raw error at zero readiness)"}
+  e1: {value: 0.033, range: [0.01, 0.14], params: "ai_cost.raw_error_rate_e.full_readiness_e1", section: "spec 4 (raw error at full readiness)"}
+  chi_form: {value: "logistic", range: ["logistic", "constant_hazard"], assumed: true, grounding: "d", basis: "two reliability forms (notes/modern_theory_map.md change 4): logistic in log length fits METR; constant hazard (Ord 2025) gives chi(q) = 1/log2(1/q)", section: "spec 6, 20 (scenario switch)"}
+  domain_mode: {value: "domain", range: ["domain", "transfer_only"], assumed: true, grounding: "d", section: "spec 6, 20 (domain-specific horizons)"}
+  computer_use_mult: {value: 0.0159, range: [0.01, 0.025], assumed: true, grounding: "b", basis: "GUI computer-use tasks start 40 to 100 times lower than software tasks at similar doubling rates (Kwa et al. 2025b, METR cross-domain; notes/modern_theory_map.md change 4); central 1/63", section: "spec 6 (horizon multiplier for work done through a user interface)"}
+  computer_use_gwas: {value: ["4.A.3.b.6", "4.A.3.b.1", "4.A.2.a.1", "4.A.1.a.2"], range: [null, null], assumed: true, grounding: "d", basis: "information-handling activity classes that run through enterprise user interfaces when no API exists", section: "spec 6"}
+  api_readiness: {value: 0.6, range: [0.4, 0.8], assumed: true, grounding: "d", section: "spec 4, 6 (readiness above which agents reach data through APIs rather than user interfaces)"}
+  physical_mode: {value: "slow_doubling", range: ["slow_doubling", "lag"], assumed: true, grounding: "d", section: "spec 6 (physical work: slower doubling from a lagged start, or a pure lag)"}
+  Td_physical_years: {value: 1.667, range: [1.0, 2.5], assumed: true, grounding: "b", basis: "self-driving capability improves about 0.6 doublings a year (Kwa et al. 2025b; notes/modern_theory_map.md change 4)", section: "spec 6"}
+  plateau_year: {value: null, range: [null, null], assumed: true, grounding: "d", section: "spec 24.2 (capability plateau scenario: horizons stop growing after this year)"}
+
+prices:
+  pi_h0: {value: 1.27, range: [0.381, 3.81], params: "ai_cost.inference_cost_usd_per_human_hour", pick: "frontier", range_from: "range_multiplier", section: "spec 3, 6 (inference cost per human-hour-equivalent at the frontier)"}
+  t_ref: {value: 2026.83, range: [2026.83, 2026.83], assumed: true, basis: "list prices retrieved 29 Oct 2026 (data/tasks/params.yaml inference_price.list_prices_usd_per_mtok)", section: "spec 6", grounding: "a"}
+  delta_pi: {value: 2.303, range: [1.609, 2.303], params: "inference_price.delta_pi_continuous", range_override: true, rate: "continuous", section: "spec 6 (price decline at fixed difficulty, continuous rate)", note: "the lead author's verified range is 5 to 10 times a year: ln 5 to ln 10"}
+  frontier_factor: {value: 1.0, range: [1.0, 18.0], params: "inference_price.frontier_price_change_factor_per_year", section: "spec 6 (price change at first feasibility, factor a year)"}
+  floor_share: {value: 0.005, range: [0.001, 0.02], assumed: true, section: "spec 6 (floor on the price of a fixed task, share of pi_h0)", grounding: "d"}
+  s_E: {value: 0.07, range: [0.02, 0.10], params: "energy_share_s_E", section: "spec 6 (energy share of inference cost)"}
+  energy_index: {value: 1.0, range: [0.1, 3.0], assumed: true, section: "spec 6 (energy price relative to today; fusion lowers it)", grounding: "d"}
+  u_tok: {value: 0.25, range: [0.10, 0.50], assumed: true, section: "spec 3 (augmentation uses a share of the tokens of automation)", grounding: "d"}
+  tau_A: {value: 0.0, range: [0.0, 0.3], assumed: true, section: "spec 5 (hypothetical automation tax on AI spend)", grounding: "d"}
+  class_multiplier: {value: {"4.A.1": 0.5, "4.A.2": 1.0, "4.A.3.b": 1.0, "4.A.4": 1.5, "4.A.3.a": 1.0}, range: [0.3, 3.0], params: "ai_cost.activity_class_multiplier", transform: gwa_class_map, section: "spec 3 (pi n by activity class)"}
+  retry_cap: {value: 0.8, range: [0.5, 0.95], assumed: true, basis: "params.yaml ai_cost note: multiply by 1/success probability for retries", section: "spec 3", grounding: "setting"}
+
+build:
+  em_base: {value: 3.0, range: [1.0, 8.0], assumed: true, basis: "calibrated so a five-step process costs about $0.5M, params.yaml ai_cost.build_fixed_cost_F_A (assumed, 0.1 to 2M)", section: "spec 3 (F_A)", grounding: "d"}
+  xi_d: {value: 0.5, range: [0.25, 1.0], assumed: true, section: "spec 3 (build effort rises with task length)", grounding: "d"}
+  regulated_mult: {value: 1.5, range: [1.1, 2.0], params: "security_and_maintenance.compliance.regulated_build_multiplier", assumed: false, grounding: "b", basis: "derived from the KPMG 2025 SOX Survey (n = 146, FY2024; read 29 Oct 2026): $16k to $57.5k a year per in-scope system is 13 to 46 percent of an amortized $500k build. Covers only the one-time premium on the build (documentation, validation, test evidence); excludes the ICFR lines (accounting.itgc_* a year, itgc_setup and interface_control_setup once, icfr_redesign_cost, C_val per forced upgrade), which are charged separately: the multiplier scales build months only (economics.py), so the lines are not counted twice (assumptions round 2 Section 5.3)", section: "spec 3 (build-effort multiplier for a regulated activity: regulated class, EU AI Act high-risk, licensed sign-off or ICFR scope; independent of the reliability target)"}
+  physical_mult: {value: 5.0, range: [2.0, 10.0], assumed: true, section: "spec 3 (robotics builds)", grounding: "d"}
+  vendor_share: {value: 0.3, range: [0.0, 0.6], assumed: true, section: "spec 3 (platform and vendor cost on top of engineering labor)", grounding: "d"}
+  scope_elasticity: {value: 0.3, range: [0.0, 0.6], assumed: true, section: "spec 3 (build effort rises with the scope of an activity unit, hours^this)", grounding: "d"}
+  U_share: {value: 0.15, range: [0.05, 0.3], assumed: true, section: "spec 3 (augmentation build as a share of the automation build)", grounding: "d"}
+  delta_F: {value: 0.3, range: [0.0, 0.5], assumed: true, rate: "annual", basis: "notes/theory_ext_notes.md Section 4", section: "spec 6 (decline of build and integration cost; option to wait)", grounding: "d"}
+  T_A: {value: 4.0, range: [3.0, 5.0], params: "ai_cost.amortization_years_T_A", section: "spec 3 (amortization years of F_A)"}
+  ai_engineer_premium: {value: 1.11, range: [1.05, 1.28], assumed: false, grounding: "a", source: "1 + talent.premium: AI-skill wage premium of 11 percent within firm (Alekseeva et al. 2021, Labour Economics; 5 percent within title); range to 28 percent (Lightcast 2025, method not stated); theory_labor prop:labor-talent(a)", section: "spec 7; prop:labor-talent(a) (multiplier on the software-developer wage)"}
+  ai_engineer_base_wage: {value: 135980.0, range: [135980.0, 148100.0], assumed: false, grounding: "a", source: "OEWS May 2025 national median for SOC 15-1252 Software Developers, $135,980 (data/tasks/occupations.csv; mean $148,100); a roster wage overrides", section: "prop:labor-talent(a) (w^SE)"}
+  int_convexity: {value: 1.0, range: [0.5, 1.5], assumed: true, grounding: "d", basis: "exponent kappa of the integration cost f(iota) = iota/(1 - iota)^kappa; kappa = 1 is the paper's iota/(1 - iota), which with int_cost_per_system decides the sign of the core transition example (notes/competition_notes.md item 17)", section: "spec 4; core prop:tasks-readiness"}
+  int_cost_per_system: {value: 60000.0, range: [20000.0, 200000.0], assumed: true, section: "spec 4 (integration cost per system per unit of iota/(1 - iota))", grounding: "d", note: "unchanged by the params commit of 29 Oct 2026: no credible source (vendor blogs only); bounded above by the Svanberg et al. (2024) implementation band ($165k to $1.765M for a whole system); decides the sign of the core transition example, so it is reported over its range (assumptions round 2 Section 5.4)"}
+  T_int: {value: 0.5, range: [0.25, 1.0], assumed: true, section: "spec 9 (data integration precedes the automation it gates)", grounding: "d"}
+  redesign_months: {value: 3.0, range: [1.0, 6.0], assumed: true, section: "spec 7 (process owners scale with redesigned processes)", grounding: "d"}
+  capitalized_share_F: {value: 0.5, range: [0.0, 0.7], params: "capital_per_unit.capitalized_share_of_build_cost", range_override: true, section: "spec 13.1 (capitalized internal-use software)"}
+  capitalized_share_I: {value: 0.5, range: [0.2, 0.7], assumed: true, section: "spec 13.1 (capitalized integration builds)", grounding: "d"}
+
+readiness:
+  targets: {value: [0.7, 0.9], range: [null, null], assumed: true, section: "spec 4 (readiness levels the optimizer may invest to)", grounding: "setting"}
+  iota_min_regulated_add: {value: 0.1, range: [0.0, 0.2], assumed: true, section: "spec 4 (higher minimum readiness for regulated work)", grounding: "d"}
+  iota_N: {value: 0.8, range: [0.6, 0.9], assumed: true, section: "spec 3 (elimination needs integrated data)", grounding: "d"}
+  weights: {value: {sor: 0.25, api: 0.2, mdq: 0.2, idr: 0.1, systems: 0.1, unstructured: 0.15}, range: [null, null], assumed: true, section: "spec 4 (readiness index from proxies)", grounding: "setting"}
+  n_systems_ref: {value: 3.0, range: [2.0, 6.0], assumed: true, section: "spec 4", grounding: "d"}
+  default_n_systems: {value: 4.0, range: [2.0, 8.0], assumed: true, section: "spec 4", grounding: "d"}
+  personal_data_cap: {value: 1.0, range: [0.7, 1.0], assumed: true, section: "spec 5 (data-protection limit on iota)", grounding: "d"}
+  stakes_rule: {value: "min", range: ["min", "product"], assumed: true, basis: "notes/theory_core_notes.md 4.7: min when stakes are common along the process", section: "spec 4", grounding: "setting"}
+
+outsourcing:
+  rho_O_default: {value: 0.75, range: [0.5, 1.0], assumed: true, basis: "params.yaml outsourcing.price_ratio_pO_over_wt (function-level values override)", section: "spec 3 (p_O/(w t))", grounding: "d"}
+  kappa_O: {value: 0.10, range: [0.05, 0.15], params: "outsourcing.coordination_overhead_kappa_O", section: "spec 3"}
+  zeta_O: {value: 0.03, range: [0.0, 0.10], params: "outsourcing.risk_premium_zeta_O", section: "spec 3 (risk and quality premium, share of w t)"}
+  delta_O: {value: 0.05, range: [0.0, 0.15], params: "outsourcing.vendor_price_decline_per_year", section: "spec 3 (vendors adopt AI)"}
+  separable_threshold: {value: 0.5, range: [0.3, 0.7], assumed: true, section: "spec 3 (only separable work can be outsourced)", grounding: "d"}
+  ups_O: {value: 0.15, range: [0.05, 0.30], assumed: true, section: "spec 3(a) (vendor markup in the window result)", grounding: "d"}
+
+augment:
+  beta_U: {value: 0.25, range: [-0.16, 1.27], params: "ai_cost.augmentation_gain_beta_U", section: "spec 3 (augmentation gain at reference exposure)"}
+  exposure_ref: {value: 0.5, range: [0.3, 0.7], assumed: true, section: "spec 3 (beta_U scales with exposure / exposure_ref)", grounding: "d"}
+  e_H: {value: 0.02, range: [0.009, 0.05], params_rel: "human_baseline.in_house_error_rate", assumed: false, grounding: "b", basis: "APQC top performers 98% first-time error free (secondary); Medius 2.5% average, 0.9% best (vendor data); read 29 Oct 2026 (assumptions round 2 Section 5.1)", section: "spec 3, 20 (error rate of in-house work, for the augmentation quality term)"}
+  u_decision: {value: 0.25, range: [0.0, 0.6], assumed: true, grounding: "d", basis: "human-AI combinations underperform the better of the two on decision tasks (Vaccaro, Almaatouq and Malone 2024, meta-analysis); magnitude assumed", section: "spec 3, 20 (extra error of augmented decision work, share of e_H)"}
+  u_creation: {value: 0.15, range: [0.0, 0.4], assumed: true, grounding: "d", basis: "combinations gain on creation tasks (Vaccaro et al. 2024); magnitude assumed", section: "spec 3, 20"}
+  decision_gwas: {value: ["4.A.2.b.1", "4.A.2.a.2", "4.A.2.a.3", "4.A.2.a.4", "4.A.1.b.3"], range: [null, null], assumed: true, grounding: "d", section: "spec 3 (decision tasks: judging, evaluating, deciding)"}
+  creation_gwas: {value: ["4.A.2.b.2", "4.A.2.b.4", "4.A.2.b.5", "4.A.3.b.2", "4.A.4.a"], range: [null, null], assumed: true, grounding: "d", section: "spec 3 (creation tasks: thinking creatively, drafting, communicating)"}
+
+review:
+  rho_rev: {value: 0.575, range: [0.37, 1.19], params: "ai_cost.review_time_ratio_rho_rev", section: "spec 3 (review hours relative to doing hours)"}
+  wage_premium: {value: 1.2, range: [1.0, 1.6], assumed: true, grounding: "d", basis: "expertise-adjusted reviewer wage w^R >= w (notes/modern_theory_map.md change 6; Autor and Thompson 2025)", section: "spec 3, 20 (review wage relative to the doer's)"}
+  L_mult: {value: 2.0, range: [0.5, 5.0], assumed: true, section: "spec 3 (loss per undetected error, multiple of the step's labor cost)", grounding: "d"}
+  L_mult_regulated: {value: 10.0, range: [5.0, 30.0], assumed: true, section: "spec 3", grounding: "d", note: "unchanged by the params commit of 29 Oct 2026; precedent bounds: rework alone 6 to 30 times unit labor (Ardent cost per exception, derived, weak); the misstatement consequence belongs to the pass/fail ICFR constraint (RA-1), not to a per-error loss (assumptions round 2 Section 5.2)"}
+  lambda_out: {value: 1.0, range: [0.0, 3.0], assumed: true, section: "spec 3 (O-ring: loss on a failed process output, multiple of its labor cost)", grounding: "d"}
+  q_M: {value: 0.995, range: [0.99, 0.998], params_rel: "human_baseline.manual_step_pass_rate", assumed: false, grounding: "b", basis: "derived: 98% process reliability (APQC top performers, secondary) over a four-step chain; read 29 Oct 2026 (assumptions round 2 Section 5.1)", section: "spec 3 (pass rate of a manual step)"}
+  r_bar_high: {value: 0.98, range: [0.975, 0.995], params_rel: "human_baseline.reliability_target_high_stakes", assumed: false, grounding: "b", basis: "human parity at top-performer accounts-payable accuracy: APQC 98% (secondary), Medius best 99.1% (vendor); 0.99 is the stretch case; read 29 Oct 2026 (assumptions round 2 Section 5.1)", section: "spec 3 (finance, legal and risk steps)"}
+  r_bar_licensed: {value: 0.999, range: [0.99, 0.9999], assumed: true, section: "spec 3", grounding: "d"}
+  xi_min_none: {value: 0.0, range: [0.0, 0.05], params: "regulatory_oversight_floor_psi_min", pick: "none", section: "spec 5 (oversight floor, no risk class)"}
+  xi_min_high_risk: {value: 0.25, range: [0.1, 1.0], params: "regulatory_oversight_floor_psi_min", pick: "high_risk_eu", section: "spec 5 (EU AI Act Art. 14 sets no number; floor assumed)"}
+  xi_min_licensed: {value: 0.30, range: [0.15, 0.6], params: "regulatory_oversight_floor_psi_min", pick: "licensed", section: "spec 5 (applies only if licensed_blocks_A is false)"}
+
+handoff:
+  h_MM: {value: 0.0089, range: [0.0, 0.03], assumed: true, basis: "notes/theory_core_notes.md Section 7: eta(M,M) = $0.40 at $45/h", section: "spec 3 (handoff hours per unit between manual steps)", grounding: "d"}
+  h_AM: {value: 0.0156, range: [0.005, 0.05], assumed: true, basis: "core Section 7: eta(A,M) = $0.70 at $45/h", section: "spec 3", grounding: "d"}
+  h_AA0: {value: 0.0111, range: [0.0, 0.03], assumed: true, basis: "core Section 7: eta(A,A) = $0.50 (1 - iota) at $45/h", section: "spec 3 (vanishes as iota goes to 1)", grounding: "d"}
+  h_O: {value: 0.02, range: [0.005, 0.06], assumed: true, section: "spec 3 (crossing an organizational boundary)", grounding: "d"}
+  Xi_share: {value: 0.074, range: [0.0, 0.15], assumed: true, basis: "core Section 7: Xi_p = $120k on a $1.62M chain", section: "spec 3(b) (process overhead released by end-to-end automation)", grounding: "d"}
+
+eliminate:
+  delta_N: {value: 0.3, range: [0.1, 0.6], assumed: true, section: "spec 3 (value loss when redesign drops an activity)", grounding: "d"}
+
+permissibility:
+  licensed_blocks_A: {value: true, range: [false, true], assumed: true, section: "spec 5 (licensing requires a human signatory)", grounding: "policy"}
+  licensed_share_threshold: {value: 0.5, range: [0.3, 0.7], assumed: true, section: "spec 5", grounding: "d"}
+  ethics_exclusions: {value: [], range: [null, null], assumed: true, section: "spec 5 (exclusion set of activity or GWA ids)", grounding: "policy"}
+  exclude_sensitive: {value: false, range: [false, true], assumed: true, section: "spec 5 (exclude ethics-sensitive activities, e.g. judgments of persons)", grounding: "policy"}
+  omega: {value: 0.0, range: [0.0, 0.5], assumed: true, section: "spec 5 (penalty per automated unit of ethics-sensitive work, share of w t)", grounding: "policy"}
+  omega_h: {value: 0.0, range: [0.0, 15.0], assumed: true, basis: "notes/theory_ext_notes.md Section 4 (set by the firm)", section: "spec 5 (altruism: after-tax $ per own hour retained)", grounding: "policy"}
+  delta_G: {value: 0.0, range: [-0.002, 0.005], assumed: true, basis: "direction from Dietvorst et al. 2015, Longoni et al. 2019, Luo et al. 2019 (notes/theory_ext_notes.md Section 4)", section: "spec 5 (retention loss of customer-facing AI)", grounding: "d"}
+  delta_lambda: {value: 0.0, range: [0.0, 0.05], assumed: true, section: "spec 5 (loss of demand pull from customer-facing AI)", grounding: "d"}
+  offshore_block_personal_data: {value: false, range: [false, true], assumed: true, section: "spec 5 (data protection limits outsourcing)", grounding: "policy"}
+  risk_appetite_max_class: {value: "restricted", range: ["internal", "restricted"], assumed: true, section: "spec 18.2 (highest data class AI may touch)", grounding: "policy"}
+  eu_ai_act_annex_iii_from: {value: "2027-12-02", range: [null, null], assumed: false, grounding: "a", source: "Regulation (EU) 2026/1744 (in force 27 July 2026) amending the AI Act: high-risk obligations for the Annex III areas apply from 2 December 2027 (recitals 40 and 46 read at eur-lex.europa.eu, CELEX 32026R1744, by the Paper 2 theory pass on 29 Oct 2026; the operative amendment of Article 113 was not reached)", note: "an Annex III unit (here the employment area: staffing and judging people with personal data) counts as high risk only with an EU nexus and a plan horizon that runs past this date (theory_ext.tex ass:ext-theta(ii))", section: "spec 5, 24.5 (EU AI Act high-risk date, Annex III)"}
+  eu_ai_act_annex_i_from: {value: "2028-08-02", range: [null, null], assumed: false, grounding: "a", source: "Regulation (EU) 2026/1744: Article 6(1) and Annex I (AI systems that are safety components of products under Union harmonisation legislation) apply from 2 August 2028 (recitals 40 and 46; Article 113 as amended not read)", note: "recorded for the report; the engine's activity library has no Annex I system", section: "spec 5 (EU AI Act high-risk date, Annex I)"}
+
+constraints:
+  horizon_years: {value: 10, range: [6, 15], assumed: true, section: "spec 9 (planning horizon)", grounding: "setting"}
+  launch_years: {value: 6, range: [3, 8], assumed: true, section: "spec 9 (years in which a process may start)", grounding: "setting"}
+  budget_share: {value: 0.03, range: [0.01, 0.06], assumed: true, section: "spec 9 (one-time transformation spend a year, share of revenue)", grounding: "policy"}
+  dual_budget_share: {value: 0.01, range: [0.003, 0.03], assumed: true, section: "spec 13.2 (dual-running budget a year, share of revenue)", grounding: "policy"}
+  kappa_abs: {value: 0.10, range: [0.05, 0.22], params: "change_capacity.affected_fte_share_per_year", section: "spec 9, 13.2 (affected FTE a year the firm can absorb)"}
+  max_columns_milp: {value: 400, range: [100, 5000], assumed: true, section: "spec 9 (above this many candidate plans the heuristic is used)", grounding: "setting"}
+
+org:
+  residual_chunk_fte: {value: 40.0, range: [20.0, 100.0], assumed: true, section: "spec 9 (residual work of a function is split into workstreams of at most this many FTE)", grounding: "setting"}
+  max_residual_streams: {value: 80, range: [40, 200], assumed: true, section: "spec 9 (the chunk grows for very large firms so there are at most this many workstreams)", grounding: "setting"}
+  span_base: {value: 4.29, range: [4.29, 7.26], params: "organization.span_of_control_oews", section: "spec 7 (span of control today)"}
+  span_ai_uplift: {value: 0.5, range: [0.0, 1.0], assumed: true, basis: "Garicano (2000): cheaper knowledge widens spans; magnitude assumed", section: "spec 7", grounding: "d"}
+  chi_h: {value: 0.03, range: [0.01, 0.06], assumed: true, basis: "notes/theory_ext_notes.md Section 4", section: "spec 7 (coordination per human pair, person-years)", grounding: "d"}
+  team_scope_fte: {value: 6.0, range: [2.0, 12.0], assumed: true, section: "spec 7 (typical team scope W0 in unaided person-years)", grounding: "d"}
+  l_DI: {value: 0.6, range: [0.4, 0.8], assumed: true, basis: "notes/theory_ext_notes.md Section 4", section: "spec 7", grounding: "d"}
+  l_AI: {value: 0.6, range: [0.4, 0.8], assumed: true, basis: "notes/theory_ext_notes.md Section 4", section: "spec 7", grounding: "d"}
+  e_mnt: {value: 0.48, range: [0.29, 1.14], params: "organization.ai_engineers_per_automated_process_run", section: "spec 7 (AI engineers per automated process in run mode)"}
+  e_bld: {value: 1.5, range: [0.75, 3.0], assumed: true, grounding: "d", basis: "theory_labor example", section: "prop:labor-talent(b) (engineer person-years to build one process)"}
+  e_PO: {value: 0.5, range: [0.25, 1.0], assumed: true, basis: "notes/theory_ext_notes.md Section 4", section: "spec 7", grounding: "d"}
+  e_RG: {value: 0.5, range: [0.25, 1.0], assumed: true, basis: "notes/theory_ext_notes.md Section 4", section: "spec 7", grounding: "d"}
+  e_SME: {value: 0.25, range: [0.1, 0.5], assumed: true, basis: "notes/theory_ext_notes.md Section 4", section: "spec 7", grounding: "d"}
+  N_CM: {value: 100.0, range: [50.0, 200.0], assumed: true, basis: "notes/theory_ext_notes.md Section 4", section: "spec 7 (affected FTE per change manager a year)", grounding: "d"}
+
+competition:
+  hhi: {value: 0.25, range: [0.1, 0.5], assumed: true, grounding: "d", basis: "free scenario parameter (notes/competition_notes.md 3.1): no default exists; central n_c = 4, range n_c = 2 to 10; a firm input market_hhi overrides", section: "spec 24.7; cor:ext-game-engine (market concentration of the firm's cost-of-revenue markets)"}
+  phi_ind: {value: 0.5, range: [0.0, 0.7], assumed: false, grounding: "b", basis: "industry pass-through RATE of a common unit-cost change (the share that reaches the output price) when the firm gives none. Paper 1 round 2 (B1, 2 Nov 2026): in the score it applies to every unit-cost saving the rivals make, margins at the post-cut price, so a replicated saving keeps 1 - phi C0 of its margin gain (C0 today's unit cost per dollar of price; economics info pass_through); dur = 1 - phi (1 - HHI) is the share of the DOLLAR saving the firm keeps with its volume gain (cor:ext-game-engine(a)) and values plans in dollars, not the score. Central 0.5 of the scenario set {0, 0.5, 0.7} (Paper 2 calibration of the industry pass-through, theory_competition.tex, notes/p2_theory_fixes_v2.md Section 5): Choi (Analysis Group) 2025, near zero in the short run for differentiated software; Ganapati, Shapiro and Walker (AEJ Applied 2020) about 0.7 for energy-driven cost changes; Benedek, de Mooij and Wingender (IMF WP 15/214) 0.3 to 1.0. The derived homogeneous-Cournot value n_c/(n_c + 1 - e) (lem:ext-game-pass(b); 0.8 at HHI 0.25) lies above every software or industry-wide anchor and outside the scenario set; it is reported as a benchmark (economics info game.cournot). A firm input industry_pass_through or a pass_through_* scenario overrides; null derives it", section: "spec 24.7; cor:ext-game-engine"}
+  phi_ind_scenarios: {value: [0.0, 0.5, 0.7], range: [null, null], params: "pass_through.industry_pass_through_scenarios", grounding: "b", basis: "scenario set of the industry pass-through rate phi (score: rate on every unit-cost saving, margins at the post-cut price, Paper 1 round 2; dollars: dur = 1 - phi (1 - HHI)): 0 fixed prices, 0.5 central medium run, 0.7 industry-wide cost shock (Apple/Analysis Group DMA study 2025; Ganapati, Shapiro and Walker 2020; Benedek et al., IMF WP 15/214; assumptions round 2 Section 4, read 29 Oct 2026); each value is a named scenario pass_through_<phi>", section: "spec 24.7; cor:ext-game-engine (scenario dimension, params commit 29 Oct 2026)"}
+  curvature_e: {value: 0.0, range: [0.0, 1.5], assumed: true, grounding: "d", basis: "0 = linear demand (base case of notes/competition_notes.md)", section: "spec 24.7 (curvature -QP''/P' of inverse demand)"}
+  rep: {value: 1.0, range: [0.0, 1.0], assumed: true, grounding: "d", basis: "1 for commodity automation, 0 for data- or context-dependent savings (notes/competition_notes.md 3.1)", section: "spec 24.7 (share of rivals that can replicate a saving)"}
+  n_rivals: {value: 8, range: [3, 20], assumed: true, basis: "notes/theory_ext_notes.md 3.4", section: "spec 6", grounding: "d"}
+  replication_share: {value: 0.6, range: [0.0, 1.0], assumed: true, section: "spec 6 (share of a saving rivals replicate)", grounding: "d"}
+  p_sw: {value: 0.05, range: [0.0, 0.15], assumed: true, section: "spec 6, 8.7 (switching premium, share of price)", grounding: "d"}
+  entrant_markup: {value: 0.15, range: [0.05, 0.30], assumed: true, section: "spec 6 (AI-native entrant's markup over its unit cost)", grounding: "d"}
+  entrant_iota: {value: 1.0, range: [0.9, 1.0], assumed: true, section: "spec 6 (entrants have iota near 1)", grounding: "d"}
+
+transition:
+  T_par_default: {value: 0.17, range: [0.04, 0.5], params: "transition.parallel_run_T_par_years", pick: "ai_agent_shadow_mode", section: "spec 13.2 (fixed parallel run, used when policy is fixed)"}
+  T_par_O: {value: 0.25, range: [0.08, 0.5], params: "transition.parallel_run_T_par_years", pick: "outsourcing_transition", section: "spec 13.2"}
+  policy: {value: "optimal", range: ["fixed", "optimal"], assumed: true, basis: "T_par* of notes/theory_core_notes.md 4.9", section: "spec 13.2", grounding: "setting"}
+  T_par_min: {value: 0.04, range: [0.0, 0.1], assumed: true, section: "spec 13.2", grounding: "d"}
+  T_par_min_regulated: {value: 0.17, range: [0.08, 0.25], params: "transition.parallel_run_T_par_years", pick: "finance_close", section: "spec 13.2 (one quarterly cycle for regulated work)"}
+  T_par_max: {value: 0.5, range: [0.25, 1.0], assumed: true, section: "spec 13.2", grounding: "d"}
+  T_learn_U: {value: 0.25, range: [0.1, 0.5], assumed: true, section: "spec 13.2 (ramp of augmentation, which has no parallel run)", grounding: "d"}
+  omega_par: {value: 0.8, range: [0.5, 1.0], params: "transition.duplication_premium_omega_par", section: "spec 13.2 (duplication premium)"}
+  nu_rec: {value: 0.10, range: [0.05, 0.25], params: "transition.reconciliation_effort_nu_rec", section: "spec 13.2 (reconciliation)"}
+  dup_license_months: {value: 3.0, range: [0.0, 12.0], params: "transition.duplicate_license_months", section: "spec 13.2 (duplicate licenses)"}
+  license_cost_per_system: {value: 60000.0, range: [20000.0, 200000.0], assumed: true, section: "spec 13.2 (annual license of a legacy system)", grounding: "d"}
+  severance_months_US: {value: 3.0, range: [1.0, 6.0], params: "transition.severance_s_w_months", pick: "US", section: "spec 13.2"}
+  severance_months_UK: {value: 0.9, range: [0.5, 3.0], params: "transition.severance_s_w_months", pick: "UK", section: "spec 13.2"}
+  severance_months_EU: {value: 1.5, range: [1.0, 6.0], assumed: true, basis: "mean of the DE 2.0 and FR 1.0 anchors in params.yaml transition.severance_s_w_months", section: "spec 13.2", grounding: "b"}
+  severance_months_other: {value: 1.0, range: [0.5, 3.0], assumed: true, section: "spec 13.2", grounding: "d"}
+  u_d: {value: 0.25, range: [0.1, 0.5], params: "transition.redeployment_share_rho_d", section: "spec 13.2 (redeployment share; the spec's rho_d)"}
+  redeploy_months: {value: 2.0, range: [1.0, 4.0], assumed: true, section: "spec 13.2 (retraining a redeployed FTE, months of wages)", grounding: "d"}
+  break_months_O: {value: 4.0, range: [2.0, 9.0], params: "transition.contract_break_fee_months", pick: "outsourcing", section: "spec 13.2 (outsourcing break fee, months of spend)"}
+  break_months_license: {value: 6.0, range: [0.0, 24.0], params: "transition.contract_break_fee_months", pick: "saas", section: "spec 13.2 (license break fee, months)"}
+  retire_fraction: {value: 0.5, range: [0.2, 1.0], assumed: true, section: "spec 13.2 (share of a process's systems retired when its work moves to A or N)", grounding: "d"}
+  legacy_book_value_per_system: {value: 150000.0, range: [0.0, 500000.0], assumed: true, section: "spec 13.2 (write-off, GAAP only)", grounding: "d"}
+  dip_share: {value: 0.10, range: [0.01, 0.30], params: "transition.j_curve.dip_share_of_process_productivity", section: "spec 13.2 (J-curve productivity dip)"}
+  dip_years: {value: 1.0, range: [0.5, 3.0], params: "transition.j_curve.dip_duration_years", section: "spec 13.2"}
+  T_det: {value: 0.25, range: [0.1, 0.5], assumed: true, basis: "notes/theory_core_notes.md 4.9 and Section 7 example; no peer-reviewed figure", section: "spec 13.2, 14.1 (mean time to detect a failure)", grounding: "d"}
+  L_roll_mult: {value: 1.0, range: [0.3, 3.0], assumed: true, basis: "core Section 7 example: L_roll = $2.0M on a chain of about $1.6M a year", section: "spec 13.2 (rollback loss, multiple of the legacy annual cost)", grounding: "d"}
+
+program:
+  O_w_share: {value: 0.01, range: [0.0, 0.03], assumed: true, basis: "notes/theory_ext_notes.md Section 4: 1 percent of program budget", section: "spec 13.2 (fixed overhead per wave)", grounding: "d"}
+  d2_share: {value: 0.25, range: [0.0, 0.5], assumed: true, basis: "notes/theory_ext_notes.md Section 4: d_2 = 0.25 x savings per process", section: "spec 13.2 (congestion in dual running)", grounding: "d"}
+  O_re_share: {value: 0.5, range: [0.0, 1.0], assumed: true, section: "spec 15.2 (re-mobilizing a frozen wave, share of O_w)", grounding: "d"}
+
+success:
+  a0: {value: 2.12, range: [1.19, 3.51], assumed: false, grounding: "b", flag: "survey", source: "calibrated (engine pass of 29 Oct 2026, coordinator decision; assumptions round 2 Section 1.1, last paragraph) so that a reference five-step process (readiness 0.6, exposure 0.6, 50 affected FTE, average team and sponsor, log capability margin 0) creates some value with probability varpi = 0.70 [0.54, 0.80], Paper 1's value (varpi is the share of attempts that create some value, not a success rate; Paper 1 round 2, B9; the calibration target is the per-attempt yield varpi x b_bar = 0.47) (params.yaml project_outcomes.transformation_attempt_creates_value_varpi: BCG 2020, 74 percent of 825 transformations created value, rounded down for self-report; low end S&P Global pilot attrition 0.54; high end BCG's six-factor rate 0.80). With success.b_bar 0.67 (McKinsey's realized share for successful transformations) the per-attempt expected realization is 0.70 x 0.67 = 0.47 [0.20, 0.68], Paper 1's product and McKinsey's unconditional 0.46. The rule's first branch (production probability 0.50, the params commit's 1.87) gave 0.50 x 0.67 = 0.34, below the rule's own target. The reference's failure hazard is split equally between the process factor and the five activity factors (each sqrt(0.70) = 0.837; the split is not measured, class d; the previous split put two thirds on the process factor, which capped the reference at 0.63); the range maps the reference to 0.54 and 0.80 with success.c0 at its default", section: "spec 14.1; Lemma lem:tasks-success"}
+  a_iota: {value: 2.0, range: [1.0, 3.0], assumed: true, section: "spec 14.1 (readiness)", grounding: "d"}
+  a_H: {value: 0.5, range: [0.2, 1.0], assumed: true, section: "spec 14.1 (log capability margin)", grounding: "d"}
+  a_R: {value: 0.5, range: [0.0, 1.0], assumed: true, section: "spec 14.1 (regulated step)", grounding: "d"}
+  c0: {value: 2.31, range: [1.11, 3.11], assumed: true, basis: "process-factor intercept: expit(c0 - c_exc 0.4 - c_fte ln 2) = sqrt(0.70) = 0.837 for the reference five-step process (readiness 0.6, exposure 0.6, 50 affected FTE, average team and sponsor), its equal share of the reference's failure hazard; with success.a0 the reference creates some value with probability 0.70 (the share of attempts that create some value, not a success rate; engine pass of 29 Oct 2026; was 1.2, a process factor of 0.63 that capped the reference below 0.70); range keeps the previous offsets (-1.2, +0.8): reference 0.51 to 0.77 with a0 at its default", section: "spec 14.1 (process factor intercept)", grounding: "d"}
+  c_exc: {value: 1.0, range: [0.0, 2.0], assumed: true, section: "spec 14.1 (exception share, proxied by 1 - LLM exposure)", grounding: "d"}
+  c_fte: {value: 0.4, range: [0.0, 0.8], assumed: true, section: "spec 14.1 (change intensity)", grounding: "d"}
+  c_team: {value: 1.0, range: [0.3, 2.0], assumed: true, section: "spec 14.1 (team experience)", grounding: "d"}
+  c_sponsor: {value: 0.8, range: [0.2, 1.5], assumed: true, section: "spec 14.1 (sponsorship)", grounding: "d"}
+  c_past: {value: 1.0, range: [0.3, 1.5], assumed: true, section: "spec 14.1 (record of past transformations, logit shift)", grounding: "d"}
+  U_bonus: {value: 1.0, range: [0.3, 2.0], assumed: true, section: "spec 14.1 (augmentation and outsourcing transitions are less risky)", grounding: "d"}
+  b_bar: {value: 0.67, range: [0.37, 0.85], params: "project_outcomes.transformation_value_realized_share_b_bar", assumed: false, grounding: "a", flag: "survey (self-reported)", basis: "McKinsey Global Survey (7 Dec 2021, n = 1,034): successful transformations realize 67 percent of the maximum financial benefits, all others 37 percent; read 29 Oct 2026 (assumptions round 2 Section 1.4); replaces the unsourced 0.85", section: "spec 14.1 (benefit realization given success)"}
+  b_conc: {value: 8.0, range: [4.0, 20.0], assumed: true, basis: "Beta(8 b, 8(1 - b)) in code/verify_part2_core.py", section: "spec 14.1", grounding: "d"}
+  upsilon_L: {value: 1.0, range: [0.5, 1.5], assumed: true, basis: "notes/theory_ext_notes.md Section 4", section: "spec 14.1 (learning slope per log experience)", grounding: "d"}
+  delta_E: {value: 0.3, range: [0.1, 0.5], assumed: true, rate: "annual", basis: "direction: Argote, Beckman and Epple (1990); Darr, Argote and Epple (1995)", section: "spec 14.1 (experience decays)", grounding: "d"}
+  eta_tr: {value: 0.5, range: [0.2, 1.0], assumed: true, basis: "Darr, Argote and Epple (1995): transfer within a unit, not across (notes/theory_ext_notes.md Section 4)", section: "spec 14.1 (transfer across units below 1)", grounding: "d"}
+  p_P: {value: 0.9, range: [0.7, 0.97], assumed: true, basis: "notes/theory_ext_notes.md Section 4", section: "spec 14.1 (shared platform sound)", grounding: "d"}
+  past_prior_a: {value: 2.0, range: [1.0, 5.0], assumed: true, section: "spec 14.1 (Beta prior on the past success rate)", grounding: "d"}
+  past_prior_b: {value: 2.0, range: [1.0, 5.0], assumed: true, section: "spec 14.1", grounding: "d"}
+  team_prior: {value: 0.5, range: [0.25, 0.75], assumed: true, section: "spec 14.1 (team capability when not given)", grounding: "d"}
+  sponsor_prior: {value: 0.5, range: [0.2, 0.9], assumed: true, section: "spec 14.1 (engaged sponsor when not given)", grounding: "d"}
+  progress_ratio: {value: 0.85, range: [0.70, 1.0], params: "learning.progress_ratio_per_doubling_of_completed_waves", section: "spec 14.1 (build costs fall per doubling of completed waves)"}
+  target_share: {value: 0.8, range: [0.5, 1.0], assumed: true, section: "spec 14.1 (program target: share of planned value)", grounding: "d"}
+  target_r40: {value: 0.40, range: [0.30, 0.50], source: "Rule of 40 pass mark, Part I Definition frontier", section: "spec 14.1", grounding: "a"}
+  b_bar_U: {value: 0.6, range: [0.3, 0.85], assumed: true, grounding: "d", basis: "benefit realization well below one for augmentation-led programs (Humlum and Vestergaard 2025; Bick, Blandin and Deming 2026; notes/modern_theory_map.md change 7)", note: "unchanged by the params commit of 29 Oct 2026; still below success.b_bar (0.67), which round 2 grounded for transformations in general", section: "spec 13.2, 20"}
+  a_J: {value: 0.3, range: [0.0, 1.0], assumed: true, grounding: "d", basis: "driver ln(J_max/J) of the activity logit (core 4.13, coefficient assumed)", section: "spec 14.1, 23"}
+
+pilot:
+  T_pil: {value: 0.25, range: [0.1, 0.5], assumed: true, section: "spec 14.1 (pilot duration)", grounding: "d"}
+  cost_share: {value: 0.15, range: [0.05, 0.3], params: "learning.pilot_cost_share_of_F_A", section: "spec 14.1 (pilot cost, share of the build)"}
+  fixed_cost: {value: 50000.0, range: [10000.0, 200000.0], assumed: true, section: "spec 14.1", grounding: "d"}
+  overrun_cap: {value: 3.0, range: [2.0, 5.0], assumed: true, section: "spec 14.1 (a stage gate abandons a build whose cost exceeds this multiple; ext prop:ext-portfolio(d))", grounding: "d"}
+
+decisions:
+  Phi_base: {value: 5.0, range: [3.0, 10.0], params: "decision_capacity.concurrent_major_initiatives_capacity_Phi", section: "spec 14.2 (decision units a year of the executive team)"}
+  e_launch: {value: 1.0, range: [0.5, 2.0], params: "decision_capacity.decision_units_per_initiative_launch_and_gate", section: "spec 14.2"}
+  e_gate: {value: 0.5, range: [0.25, 1.0], assumed: true, section: "spec 14.2 (a stage gate)", grounding: "d"}
+  e_regulated: {value: 0.5, range: [0.0, 1.0], assumed: true, section: "spec 14.2 (regulated initiatives need more approvals)", grounding: "d"}
+  e_appr_share: {value: 0.3, range: [0.2, 0.5], assumed: true, basis: "notes/theory_ext_notes.md Section 4", section: "spec 14.2 (accountable approval share of decision time)", grounding: "d"}
+  A_Phi: {value: 0.25, range: [0.0, 1.0], assumed: true, basis: "params.yaml decision_capacity.ai_decision_support_bandwidth_gain 0.2 (assumed) as the bandwidth gain at e_appr 0.3", section: "spec 14.2 (AI analysis leverage)", grounding: "d"}
+  phi_per_TO_fte: {value: 0.5, range: [0.2, 1.0], assumed: true, section: "spec 14.2 (bandwidth per transformation-office FTE)", grounding: "d"}
+  phi_per_sponsor: {value: 0.5, range: [0.2, 1.0], assumed: true, section: "spec 14.2 (bandwidth per engaged sponsor)", grounding: "d"}
+  delegation_uplift: {value: 0.5, range: [0.2, 1.0], assumed: true, section: "spec 14.2 (bandwidth gain at full delegation)", grounding: "d"}
+  delegation_risk: {value: 0.5, range: [0.0, 1.0], assumed: true, section: "spec 14.2 (logit cost of delegating a high-risk decision)", grounding: "d"}
+  ell0_weeks_per_layer: {value: 2.0, range: [1.0, 4.0], params: "decision_capacity.latency_weeks_per_governance_layer", section: "spec 14.2 (decision latency per governance layer)"}
+  ell0_base_weeks: {value: 2.0, range: [0.0, 8.0], assumed: true, grounding: "b", basis: "base plus three layers at the linked 3.3 weeks per layer gives about 12 weeks, the mean decision time of fast firms in Eisenhardt (1989) (params.yaml reference block)", section: "spec 14.2"}
+  delta_V: {value: 0.4, range: [0.1, 1.0], assumed: true, rate: "continuous", basis: "notes/theory_ext_notes.md Section 4 (r_d = r + 0.4)", section: "spec 14.2 (erosion of value while a decision waits)", grounding: "d"}
+  eta_q: {value: 1.0, range: [0.5, 2.0], assumed: true, basis: "notes/theory_ext_notes.md Section 4", section: "spec 14.2 (quality congestion)", grounding: "d"}
+  x_cap: {value: 0.95, range: [0.8, 0.99], assumed: true, section: "spec 14.2 (largest load ratio)", grounding: "d"}
+  bands: {value: [0.25, 0.5, 0.7, 0.85, 1.0, 1.25, 1.6, 2.0], range: [null, null], assumed: true, section: "spec 14.2 (load bands that linearize congestion in the MILP)", grounding: "setting"}
+  governance_layers: {value: 3.0, range: [2.0, 5.0], assumed: true, section: "spec 14.2 (prior when not given)", grounding: "d"}
+  concurrent_initiatives: {value: 4.0, range: [1.0, 10.0], assumed: true, section: "spec 14.2 (prior when not given)", grounding: "d"}
+  transformation_office_fte: {value: 2.0, range: [0.0, 10.0], assumed: true, section: "spec 14.2 (prior)", grounding: "d"}
+  sponsors: {value: 3.0, range: [1.0, 8.0], assumed: true, section: "spec 14.2 (prior: engaged sponsors)", grounding: "d"}
+  delegation: {value: 0.0, range: [0.0, 1.0], assumed: true, section: "spec 14.2 (prior)", grounding: "d"}
+  existing_load_years: {value: 1.0, range: [0.5, 2.0], assumed: true, section: "spec 14.2 (years today's initiatives keep using bandwidth)", grounding: "d"}
+
+overrun:
+  tail_prob: {value: 0.1667, range: [0.10, 0.25], params: "project_outcomes.it_black_swan_share", section: "spec 14.1 (share of IT projects in the heavy tail; Flyvbjerg and Budzier 2011)"}
+  tail_alpha: {value: 2.3, range: [2.1, 2.6], source: "Flyvbjerg, Budzier, Lee, Keil, Lunn and Bester (2022), JMIS 39(3): power-law tail exponent 2.3 (sd 0.058) above an actual-to-estimate ratio of 2.0 (verified in notes/ref_verification_part2.md)", section: "spec 14.1", grounding: "a"}
+  tail_xmin: {value: 2.0, range: [1.5, 2.5], source: "Flyvbjerg et al. (2022), JMIS: the power law holds above a ratio of 2.0", section: "spec 14.1", grounding: "a"}
+  body_median: {value: 1.0, range: [0.9, 1.1], source: "Flyvbjerg et al. (2022), JMIS: median actual-to-estimate ratio 1.0", section: "spec 14.1", grounding: "a"}
+  body_sigma: {value: 0.25, range: [0.1, 0.4], assumed: true, section: "spec 14.1 (log sd of the overrun outside the tail)", grounding: "d"}
+
+shocks:
+  enabled: {value: true, range: [false, true], assumed: true, section: "spec 15.4", grounding: "setting"}
+  disruption_haircut: {value: false, range: [false, true], assumed: true, grounding: "setting", basis: "whether leadership-change and vision-overhaul disruptions (nu_D = nu_L (1 - kappa_keep) + nu_V) cancel work in flight on top of the realized share and the success logit. Off in the base case: success.b_bar (McKinsey 2021) and the success logit (calibrated to Gartner and S&P Global production rates) come from outcome surveys that already include leadership and strategy changes, so applying the shocks as well counts disruption twice (assumptions round 2 Sections 1.1 and 1.6; Paper 1 drops exp(-nu_D T_emb) from q; QA/ISSUES.md 9). nu_D keeps pricing the timing of disruptions (prop:ext-shocks); the named scenario disruption_shocks turns the haircut on. Reorganization freezes (nu_R, T_frz) delay work and stay on, as Paper 1's clock 1 + nu_R T_frz does", section: "spec 15.4; prop:ext-shocks"}
+  nu_L: {value: 0.204, range: [0.15, 0.30], params: "leadership_and_context.sponsor_change_hazard_h_L_exec", flag: "practitioner (Korn Ferry C-suite tenure)", section: "spec 15.1 (sponsor change hazard)", note: "CEO turnover is 0.168 a year (Kaplan and Minton 2012, peer reviewed): params.yaml leadership_and_context.ceo_turnover_hazard_h_L"}
+  kappa_keep: {value: 0.6, range: [0.3, 0.85], params: "leadership_and_context.new_leader_program_outcome", pick: "keep", section: "spec 15.2"}
+  nu_V: {value: 0.15, range: [0.05, 0.30], params: "leadership_and_context.vision_overhaul_hazard_h_V", section: "spec 15.1"}
+  vision_jump: {value: 3.0, range: [1.5, 6.0], params: "leadership_and_context.vision_overhaul_multiplier_after_leadership_change", section: "spec 15.1"}
+  nu_R: {value: 0.46, range: [0.30, 0.60], params: "leadership_and_context.reorganization_hazard_h_R", flag: "practitioner survey (McKinsey 2015), sample size not given", section: "spec 15.1"}
+  T_frz: {value: 0.25, range: [0.1, 0.5], params: "leadership_and_context.reorg_freeze_T_freeze_years", section: "spec 15.2"}
+  owner_turnover: {value: 0.3, range: [0.1, 0.5], params: "leadership_and_context.reorg_process_owner_turnover_share", section: "spec 15.2 (process owners who turn over in a reorganization)"}
+  nu_K: {value: 0.15, range: [0.08, 0.30], params: "leadership_and_context.key_person_departure_hazard_h_K", section: "spec 15.1"}
+  eta_K: {value: 1.0, range: [0.5, 2.0], assumed: true, basis: "example value of theory_ext.tex Proposition prop:ext-continuity", section: "spec 15.2 (relearning rate of the context stock)", grounding: "d"}
+  kappa_doc: {value: 0.5, range: [0.2, 0.9], params: "leadership_and_context.documentation_protection_kappa_doc", section: "spec 15.2 (context captured by documentation; a firm input overrides)"}
+  key_persons_per_function: {value: 2.0, range: [1.0, 6.0], assumed: true, section: "spec 15.4 (prior)", grounding: "d"}
+  ctx_iota_loss: {value: 1.0, range: [0.5, 2.0], assumed: true, section: "spec 15.2 (lost context lowers effective readiness: iota x E[m]^this)", grounding: "d"}
+  s_reuse_platform: {value: 0.8, range: [0.6, 0.95], params: "leadership_and_context.reuse_fraction_vartheta_reuse", pick: "data_and_integration_platform", section: "spec 15.2"}
+  s_reuse_on_platform: {value: 0.5, range: [0.3, 0.7], params: "leadership_and_context.reuse_fraction_vartheta_reuse", pick: "process_automation_on_platform", section: "spec 15.2"}
+  s_reuse_specific: {value: 0.2, range: [0.0, 0.4], params: "leadership_and_context.reuse_fraction_vartheta_reuse", pick: "vision_specific_build", section: "spec 15.2"}
+  C_rep_share: {value: 0.1, range: [0.05, 0.2], params: "leadership_and_context.replan_cost_C_replan_share_of_annual_program_budget", section: "spec 15.2 (re-planning, share of the annual budget)"}
+
+security:
+  delta_M: {value: 0.17, range: [0.10, 0.40], params: "security_and_maintenance.maintenance.mu_m_share_of_F_A_per_year", section: "spec 18.1 (maintenance, share of the build a year)"}
+  T_up: {value: 1.22, range: [0.5, 1.75], params: "security_and_maintenance.model_lifecycle.T_up_years", section: "spec 18.1 (years between forced model upgrades)"}
+  reval_share: {value: 0.10, range: [0.03, 0.30], params: "security_and_maintenance.model_lifecycle.revalidation_cost_C_reval_share_of_F_A", section: "spec 18.1 (revalidation cost, share of the build)"}
+  c_int: {value: 3000.0, range: [1000.0, 10000.0], assumed: true, basis: "core Section 7 example", section: "spec 18.1 (technical debt per integration a year)", grounding: "d"}
+  c_cpl: {value: 2000.0, range: [0.0, 5000.0], assumed: true, basis: "core Section 7 example", section: "spec 18.1 (technical debt per coupled automated pair a year)", grounding: "d"}
+  class_sensitivity: {value: {public: 0.0, internal: 0.3, confidential: 0.6, restricted: 1.0}, range: [null, null], assumed: true, section: "spec 18.2 (data sensitivity by class)", grounding: "d"}
+  autonomy_A: {value: 1.0, range: [0.7, 1.0], assumed: true, section: "spec 18.2 (write and transaction rights of an autonomous agent)", grounding: "d"}
+  autonomy_U: {value: 0.3, range: [0.1, 0.5], assumed: true, section: "spec 18.2 (a person approves actions under augmentation)", grounding: "d"}
+  h_f: {value: 0.05, range: [0.01, 0.2], assumed: true, section: "spec 18.2 (incidents a year per process at exposure 1)", grounding: "d"}
+  h_u: {value: 2.0e-7, range: [0.0, 1.0e-6], assumed: true, section: "spec 18.2 (incidents per unit of work at exposure 1)", grounding: "d"}
+  L_inc: {value: {public: 0.02, internal: 0.15, confidential: 1.0, restricted: 2.3}, range: [null, null], assumed: true, grounding: "d", basis: "class factors on the per-process loss; restricted = the U.S. to global ratio of IBM 2026 breach costs (11.5 / 4.99)", section: "spec 18.2 (loss per incident by data class, multiple of breach_avg x per_process_share)"}
+  L_inc_scale: {value: 1.0, range: [0.3, 3.0], assumed: true, section: "spec 18.2 (multiplier on the loss per incident)", grounding: "d"}
+  C_s: {value: 20000.0, range: [5000.0, 60000.0], assumed: true, basis: "core Section 7 example: spending that cuts the hazard by a factor e", section: "spec 18.2", grounding: "d"}
+  L_max: {value: 50000000.0, range: [5000000.0, 200000000.0], assumed: true, section: "spec 18.2 (largest single loss the firm tolerates)", grounding: "d"}
+  tail_multiple: {value: 10.0, range: [5.0, 30.0], assumed: true, section: "spec 18.2 (worst incident as a multiple of the mean loss)", grounding: "d"}
+  reviews_per_fte: {value: 12.0, range: [6.0, 24.0], assumed: true, section: "spec 18.2 (security reviews a year per reviewer)", grounding: "d"}
+  reviewer_share: {value: 0.004, range: [0.001, 0.01], assumed: true, section: "spec 18.2 (security reviewers per employee when not given)", grounding: "d"}
+  p_sec: {value: 60000.0, range: [30000.0, 120000.0], assumed: true, basis: "core Section 7 example ($60k per unit of review capacity a year)", section: "spec 18.4", grounding: "d"}
+  buy_markup: {value: 0.25, range: [0.1, 0.5], assumed: true, basis: "core Section 7 example", section: "spec 18.1 (vendor platform markup)", grounding: "d"}
+  buy_pooled_share: {value: 0.10, range: [0.02, 0.3], assumed: true, section: "spec 18.1 (vendor's pooled fixed cost per unit, share of the in-house labor cost of the unit)", grounding: "d"}
+  buy_integration_share: {value: 0.3, range: [0.1, 0.6], assumed: true, basis: "core example: $150k integration against $520k of builds", section: "spec 18.1 (integration of a bought platform, share of the build)", grounding: "d"}
+  switching_cost_share: {value: 0.6, range: [0.2, 1.5], assumed: true, basis: "core example: $300k switching cost", section: "spec 18.1 (switching cost, share of the build)", grounding: "d"}
+  contract_years: {value: 3.0, range: [1.0, 5.0], assumed: true, section: "spec 18.1 (vendor contract term)", grounding: "d"}
+  preference: {value: "either", range: ["build", "buy", "either"], assumed: true, section: "spec 18.5 (vendor versus build preference; a firm input overrides)", grounding: "policy"}
+  pia_cost: {value: 10000.0, range: [3000.0, 40000.0], params: "security_and_maintenance.compliance.privacy_impact_assessment_usd_per_process", section: "spec 18.2 (privacy impact assessment per process with personal data)"}
+  redteam_cost: {value: 30000.0, range: [10000.0, 150000.0], params: "security_and_maintenance.compliance.ai_red_team_usd_per_system_per_year", section: "spec 18.2 (AI red-teaming per high-exposure deployment a year)"}
+  legal_review_cost: {value: 15000.0, range: [5000.0, 50000.0], params: "security_and_maintenance.people_and_ancillary.legal_and_contract_review_usd_per_vendor", section: "spec 18.3 (legal, IP and contract review per process)"}
+  eval_data_cost: {value: 20000.0, range: [5000.0, 100000.0], params: "security_and_maintenance.people_and_ancillary.eval_dataset_build_usd_per_process", section: "spec 18.3 (evaluation sets per automated process)"}
+  finops_share: {value: 0.03, range: [0.01, 0.08], params: "security_and_maintenance.people_and_ancillary.finops_share_of_inference_spend", section: "spec 18.3 (FinOps for inference, share of inference spend)"}
+  vendor_mgmt_fte_per_vendor: {value: 0.1, range: [0.05, 0.3], assumed: true, section: "spec 18.3 (vendor management)", grounding: "d"}
+  incident_response_fte_per_10: {value: 0.5, range: [0.2, 1.0], assumed: true, section: "spec 18.3 (incident response per ten high-exposure deployments)", grounding: "d"}
+  breach_avg: {value: 4990000.0, range: [4440000.0, 11500000.0], params: "security_and_maintenance.breach_cost.global_average_usd", section: "spec 18.2 (average cost of a breach)"}
+  per_process_share: {value: 0.3, range: [0.05, 1.0], params: "security_and_maintenance.breach_cost.per_process_loss_share_of_average_L_inc", section: "spec 18.2 (loss of an incident confined to one process, share of the average breach)"}
+  soc2_first_year: {value: 80000.0, range: [25000.0, 350000.0], params: "security_and_maintenance.compliance.soc2_first_year_total_usd", section: "spec 18.2 (SOC 2 first year)"}
+  soc2_annual: {value: 35000.0, range: [10000.0, 60000.0], params: "security_and_maintenance.compliance.soc2_annual_maintenance_usd", section: "spec 18.2"}
+  iso42001_audit: {value: 13500.0, range: [5000.0, 20000.0], params: "security_and_maintenance.compliance.iso42001_certification_audit_usd", section: "spec 18.2"}
+  iso42001_readiness: {value: 30000.0, range: [13000.0, 50000.0], params: "security_and_maintenance.compliance.iso42001_readiness_and_implementation_usd", section: "spec 18.2"}
+  iso42001_annual: {value: 6000.0, range: [2500.0, 9000.0], params: "security_and_maintenance.compliance.iso42001_surveillance_audit_usd_per_year", section: "spec 18.2"}
+  nist_rmf_initial_fte_months: {value: 3.0, range: [1.0, 12.0], params: "security_and_maintenance.compliance.nist_ai_rmf_alignment_fte_months_initial", section: "spec 18.2"}
+  nist_rmf_ongoing_fte: {value: 0.25, range: [0.1, 1.0], params: "security_and_maintenance.compliance.nist_ai_rmf_ongoing_fte", section: "spec 18.2"}
+  cyber_insurance_share: {value: 0.001, range: [0.0003, 0.003], params: "security_and_maintenance.compliance.cyber_insurance_premium_share_of_revenue", section: "spec 18.2 (cyber insurance premium, share of revenue, added once AI is deployed in proportion to the AI exposure)"}
+  ir_retainer: {value: 50000.0, range: [20000.0, 200000.0], params: "security_and_maintenance.people_and_ancillary.incident_response_retainer_usd_per_year", section: "spec 18.3"}
+  vendor_mgmt_share: {value: 0.03, range: [0.01, 0.06], params: "security_and_maintenance.people_and_ancillary.vendor_management_share_of_vendor_spend", section: "spec 18.3"}
+
+product:
+  bass_frak_p: {value: 0.027, range: [0.012, 0.03], params: "product.bass_diffusion.p_innovation", flag: "consumer durables (Van den Bulte and Stremersch 2004 meta-analytic mean), not B2B software", section: "spec 17.1; prop:prod-seats (Bass innovation coefficient, notes' fraktur p)"}
+  bass_frak_q: {value: 0.419, range: [0.38, 0.42], params: "product.bass_diffusion.q_imitation", flag: "consumer durables, not B2B software", section: "spec 17.1; prop:prod-seats (imitation coefficient, fraktur q)"}
+  fast_frak_p: {value: 0.10, range: [0.03, 0.15], assumed: true, grounding: "d", basis: "fast-diffusion case of notes/theory_product_notes.md (AI adoption is faster: Bick, Blandin and Deming 2026; Fradkin 2025)", section: "prop:prod-seats"}
+  fast_frak_q: {value: 0.80, range: [0.4, 0.9], assumed: true, grounding: "d", section: "prop:prod-seats"}
+  feature_frak_p: {value: 0.05, range: [0.01, 0.15], params: "product.bass_diffusion.ai_feature_within_installed_base.p", section: "prop:prod-portfolio (adoption of an AI feature within the installed base)"}
+  feature_frak_q: {value: 0.5, range: [0.25, 0.9], params: "product.bass_diffusion.ai_feature_within_installed_base.q", section: "prop:prod-portfolio"}
+  eps_seat: {value: 1.0, range: [0.25, 1.0], params: "product.seat_compression.seat_elasticity_epsilon_seat", range_override: true, flag: "class d, scenario only: reported as a range", section: "prop:prod-seats (seat elasticity; notes range 0.25 to 1)"}
+  seat_lag_years: {value: 1.0, range: [0.5, 2.0], params: "product.seat_compression.seat_lag_years", section: "prop:prod-seats (seats follow work with a lag at renewal)"}
+  xbar_low_mult: {value: 0.7, range: [0.5, 0.9], assumed: true, grounding: "d", basis: "central exposure = the lower of the Eloundou beta and Tomlinson applicability, low end 0.7 times it, high end the higher of the two (CSR: 0.40, 0.28, 0.57; notes Section 3.2)", section: "prop:prod-seats"}
+  xbar_default: {value: 0.40, range: [0.28, 0.57], assumed: true, grounding: "d", basis: "customer-service example of notes/theory_product_notes.md, used when the firm names no seat occupations", section: "prop:prod-seats"}
+  kappa_cap: {value: 0.10, range: [0.03, 0.30], params: "product.capture_share.theta_cap_default", source_public: "grounded by list-price-implied capture shares across vendors (0.028 to 0.111; product notes Section 6); central 0.10 near the upper shares; the high end 0.30 allows for scarce-input rents (data, workflow, distribution, trust) and is not sourced", section: "prop:prod-price (capture share of in-house cost when the line gives no customer economics; the theory derives kappa* from customer value)"}
+  eps_ad: {value: 1.0, range: [0.5, 3.0], assumed: true, grounding: "d", section: "ass:prod-value (adoption elasticity)"}
+  c_H_outcome: {value: 18.09, range: [9.04, 27.13], params: "product.capture_share.human_cost_per_resolution_usd", section: "prop:prod-price (customer in-house cost per outcome, support example)"}
+  outcome_hours: {value: 0.588, range: [0.25, 1.0], assumed: true, grounding: "c", basis: "1/1.7 hours per resolution (Brynjolfsson, Li and Raymond 2025, never-treated agents; params.yaml)", section: "prop:prod-price (customer staff hours per outcome when the line gives none)"}
+  outsource_ratio: {value: 0.55, range: [0.4, 0.8], assumed: true, grounding: "d", basis: "params.yaml outsourcing F05 (support)", section: "prop:prod-price (customer outsourcing price, share of in-house cost)"}
+  aug_gain: {value: 0.14, range: [0.14, 0.26], assumed: false, grounding: "a", source: "Brynjolfsson, Li and Raymond (2025), QJE 140(2): 14 percent productivity gain (params.yaml)", section: "prop:prod-price (customer augmentation)"}
+  e_I: {value: 0.04, range: [0.02, 0.08], assumed: true, grounding: "d", section: "prop:prod-price (incumbent agent error rate)"}
+  e_E: {value: 0.066, range: [0.03, 0.12], assumed: true, grounding: "d", section: "prop:prod-price (entrant agent error rate)"}
+  L_outcome_mult: {value: 1.66, range: [0.5, 5.0], assumed: true, grounding: "d", basis: "loss per undetected error $30 on an $18.09 resolution (notes example), as a multiple of in-house cost", section: "prop:prod-price"}
+  tR_ratio: {value: 0.8, range: [0.3, 1.2], assumed: true, grounding: "d", section: "prop:prod-price (customer review time per outcome, share of in-house time)"}
+  eta_I_share: {value: 0.0028, range: [0.0, 0.02], assumed: true, grounding: "d", basis: "integration cost per outcome $0.05 on $18.09 (notes example)", section: "prop:prod-price (incumbent integration cost, share of in-house cost)"}
+  eta_E_share: {value: 0.011, range: [0.0, 0.05], assumed: true, grounding: "d", basis: "$0.20 on $18.09 (notes example)", section: "prop:prod-price (entrant integration cost)"}
+  p_sw_share: {value: 0.011, range: [0.0, 0.03], assumed: true, grounding: "d", basis: "$0.20 per outcome on $18.09 (notes example)", section: "prop:prod-price (switching premium per outcome)"}
+  ups_E: {value: 0.0, range: [0.0, 1.0], assumed: true, grounding: "d", basis: "0 is the free-entry limit; above 0 under concentrated foundation-model supply (Korinek and Vipra 2025; literature finding 20)", section: "ass:prod-entry (entrant markup)"}
+  chat_share: {value: 0.022, range: [0.008, 0.055], assumed: true, grounding: "d", basis: "$0.40 per outcome ($0.15 to $1.00) on $18.09 (notes example: inference per human-hour x 0.25 h x 1.5)", section: "prop:prod-price (agent unit cost, share of in-house cost, when not given)"}
+  c_E_inf_share: {value: 0.0055, range: [0.0028, 0.0166], assumed: true, grounding: "d", basis: "$0.10 ($0.05 to $0.30) on $18.09", section: "prop:prod-price (entrant long-run cost floor)"}
+  delta_u: {value: 0.3, range: [0.0, 1.609], assumed: true, rate: "continuous", grounding: "d", basis: "decline of the inference cost a product actually uses, far below the fixed-capability decline (Gundlach et al. 2025; Demirer et al. 2025)", section: "prop:prod-margin"}
+  ai_gm_2025: {value: 0.45, range: [0.40, 0.50], params: "product.gross_margin.ai_product_gross_margin_by_year", pick: "2025", section: "prop:prod-margin (ICONIQ 2026)"}
+  ai_gm_2027: {value: 0.59, range: [0.5, 0.7], source: "ICONIQ (2026): projected 59 percent in 2027", section: "prop:prod-margin", grounding: "a"}
+  gamma_sub: {value: 0.734, range: [0.695, 0.734], params: "product.gross_margin.subscription_software_gross_margin_reference", section: "prop:prod-margin (subscription gross margin)"}
+  u_h_share: {value: 0.23, range: [0.0, 0.4], assumed: true, grounding: "d", basis: "fit 2 of notes Section 3.6: 1 - gamma = 0.23 + 0.32 exp(-0.288 t) to ICONIQ 2025 to 2027", section: "prop:prod-margin (non-declining share of AI unit cost)"}
+  phi_margin: {value: 0.51, range: [0.0, 0.91], assumed: true, grounding: "d", basis: "pass-through implied by ICONIQ fit 1 at delta_u = 0.30 (0.91 at ln 5); not identified (notes 3.6)", section: "prop:prod-margin"}
+  gamma_seat: {value: 0.80, range: [0.70, 0.85], assumed: true, grounding: "d", section: "prop:prod-cannibal (seat gross margin when the line gives none)"}
+  seat_price_default: {value: 1050.0, range: [660.0, 1200.0], params: "product.seat_list_prices.annual_seat_price_professional_tier", section: "prop:prod-seats (seat price a year, USD per seat billed annually, when the line gives none)"}
+  outcome_price_low: {value: 0.5, range: [0.5, 0.5], params: "product.outcome_and_usage_list_prices.hubspot_customer_agent_per_resolution", section: "prop:prod-price (lowest outcome list price; multi-vendor range)"}
+  outcome_price_high: {value: 2.0, range: [2.0, 2.0], params: "product.outcome_and_usage_list_prices.salesforce_agentforce_per_conversation", section: "prop:prod-price (highest outcome list price)"}
+  entry_hazard: {value: 0.25, range: [0.05, 1.0], assumed: true, grounding: "d", section: "prop:prod-cannibal (AI-native entries a year)"}
+  g_v: {value: 0.04, range: [0.0, 0.10], assumed: true, rate: "continuous", grounding: "d", section: "prop:prod-migrate (volume growth of a line when not given)"}
+  k_def: {value: 0.25, range: [0.0, 0.5], assumed: true, grounding: "d", section: "prop:prod-aggregate (deferred revenue per dollar of annual revenue under annual prepaid billing)"}
+  screening_weight: {value: 2.5, range: [2.0, 3.0], source: "Part I: investor screening weight (Bessemer range)", grounding: "c", section: "prop:prod-portfolio (rankings at the screening weight)"}
+  migration_targets: {value: {usage: {delta: 0.15, omega: 0.25, varpi: 0.75, e: 0.0}, two_part: {delta: 0.08, omega: 0.25, varpi: 0.80, e: 0.0}, hybrid: {delta: 0.04, omega: 0.15, varpi: 0.85, e: 0.5}}, range: [null, null], assumed: true, grounding: "d", basis: "notes Section 5 scenario values (class d); direction from Lambrecht and Skiera 2006, Sundararajan 2004, Essegaier et al. 2002, Balasubramanian et al. 2015", section: "prop:prod-migrate (delta concession, omega one-time cost in years of gross profit, varpi success, e share still per seat)"}
+  migration_years: {value: 1.5, range: [1.0, 3.0], params: "product.pricing_migration.migration_duration_years", section: "prop:prod-migrate (the one-time cost is spread over renewals in this period)"}
+  mig_delta_range: {value: 0.08, range: [0.0, 0.3], assumed: true, grounding: "d", section: "prop:prod-migrate (scenario range of the concession)"}
+  mig_omega_range: {value: 0.25, range: [0.1, 1.0], assumed: true, grounding: "d", section: "prop:prod-migrate (scenario range of the one-time cost)"}
+  mig_varpi_range: {value: 0.8, range: [0.5, 0.95], assumed: true, grounding: "d", section: "prop:prod-migrate (scenario range of success)"}
+  feature_dev_share: {value: 0.02, range: [0.005, 0.05], assumed: true, grounding: "d", section: "prop:prod-portfolio (development cost of an AI feature, share of the line's revenue, when not given)"}
+  uplift_share: {value: 0.05, range: [0.0, 0.15], assumed: true, grounding: "d", section: "prop:prod-portfolio (uplift per dollar of base revenue at full adoption, when not given)"}
+  feature_cost_share: {value: 0.015, range: [0.002, 0.02], assumed: true, grounding: "d", section: "prop:prod-portfolio (inference cost per dollar of base revenue at full adoption, when not given)"}
+  retention_dG: {value: 0.001, range: [0.0, 0.003], assumed: true, grounding: "d", section: "prop:prod-portfolio (retention points a year at full adoption, when not given)"}
+  engineer_years_per_musd: {value: 2.5, range: [1.0, 5.0], assumed: true, grounding: "d", section: "prop:prod-portfolio (engineer-years per $1M of feature build cost)"}
+  engineer_capacity_share: {value: 0.1, range: [0.05, 0.3], assumed: true, grounding: "policy", section: "prop:prod-portfolio (share of R&D engineers available for AI features)"}
+  platform_cost_share: {value: 0.03, range: [0.01, 0.05], assumed: true, grounding: "d", section: "prop:prod-portfolio (shared AI platform, share of revenue, once)"}
+  sourcing: {value: {api: {cv: 1.0, ci: 0.75, dec: 1.609, K: 0.0, Ft: 1000000.0, rho_add: 0.0}, open: {cv: 0.55, ci: 0.3, dec: 0.0, K: 0.25, Ft: 4000000.0, rho_add: 0.25}, own: {cv: 0.375, ci: 0.125, dec: 0.0, K: 0.2, Ft: 15000000.0, rho_add: 0.75}}, range: [null, null], assumed: true, grounding: "d", basis: "notes Section 10 sourcing example scaled to the agent's unit cost (cv, ci, K and rho_add as multiples of the API's cost per outcome)", section: "prop:prod-model"}
+
+mc:
+  imputation_draws: {value: 30, range: [20, 500], assumed: true, section: "spec 9 (confidence intervals from imputation uncertainty)", grounding: "setting"}
+  outcome_draws: {value: 200, range: [50, 2000], assumed: true, section: "spec 14.1 (outcome draws per imputation draw)", grounding: "setting"}
+  ci_level: {value: 0.8, range: [0.8, 0.95], assumed: true, section: "spec 9 (P10 to P90)", grounding: "setting"}
+  seed: {value: 20261029, range: [null, null], assumed: true, section: "spec 19.2 (determinism)", grounding: "setting"}
+  sd_function_share_prior: {value: 0.35, range: [0.2, 0.5], assumed: true, section: "spec 9", grounding: "setting"}
+  sd_function_share_tier1: {value: 0.03, range: [0.01, 0.08], assumed: true, section: "spec 9", grounding: "setting"}
+  sd_labor_share_prior: {value: 0.15, range: [0.05, 0.3], assumed: true, section: "spec 9", grounding: "setting"}
+  sd_labor_share_tier1: {value: 0.03, range: [0.01, 0.08], assumed: true, section: "spec 9", grounding: "setting"}
+  conc_occ_prior: {value: 15.0, range: [5.0, 50.0], assumed: true, section: "spec 9", grounding: "setting"}
+  sd_wage_prior: {value: 0.2, range: [0.1, 0.3], assumed: true, section: "spec 9", grounding: "setting"}
+  sd_wage_tier2: {value: 0.03, range: [0.01, 0.08], assumed: true, section: "spec 9", grounding: "setting"}
+  conc_activity_prior: {value: 20.0, range: [5.0, 100.0], assumed: true, section: "spec 9 (O*NET time shares are proxies)", grounding: "setting"}
+  conc_activity_tier4: {value: 400.0, range: [100.0, 2000.0], assumed: true, section: "spec 9", grounding: "setting"}
+  sd_volume_prior: {value: 0.5, range: [0.3, 0.8], assumed: true, section: "spec 9", grounding: "setting"}
+  sd_volume_tier3: {value: 0.05, range: [0.02, 0.15], assumed: true, section: "spec 9", grounding: "setting"}
+  sd_iota_prior: {value: 0.15, range: [0.05, 0.25], assumed: true, section: "spec 9", grounding: "setting"}
+  sd_iota_tier3: {value: 0.05, range: [0.02, 0.1], assumed: true, section: "spec 9", grounding: "setting"}
+
+capital:
+  delta_K_compute: {value: 0.25, range: [0.20, 0.33], params: "depreciation.accelerators_economic_delta_K", rate: "continuous", section: "spec 13.1 (accelerators)"}
+  delta_K_robot: {value: 0.143, range: [0.10, 0.20], assumed: true, rate: "continuous", basis: "1 / robotics life of 7 years, params.yaml depreciation.robotics_equipment_life_years (assumed)", section: "spec 13.1", grounding: "b"}
+  owned_compute_share: {value: 0.0, range: [0.0, 1.0], assumed: true, section: "spec 13.1 (a firm input overrides)", grounding: "d"}
+  compute_capital_per_annual_dollar: {value: 3.0, range: [2.0, 4.0], params: "capital_per_unit.owned_compute_capex_per_usd_annual_compute_cost", section: "spec 13.1"}
+  owned_opex_share: {value: 0.3, range: [0.2, 0.5], assumed: true, section: "spec 13.1 (running cost of owned inference, share of the rented price)", grounding: "d"}
+  robot_capital_per_fte: {value: 250000.0, range: [100000.0, 600000.0], params: "capital_per_unit.robotics_and_devices_usd_per_displaced_fte", section: "spec 13.1"}
+  server_life_years: {value: 5.5, range: [5.0, 6.0], params: "depreciation.servers_book_life_years", section: "spec 13.1 (GAAP depreciation of owned compute)"}
+
+regime:
+  default: {value: "public", range: ["public", "private_family", "pe", "vc", "hybrid", "permanent_capital"], assumed: true, section: "spec 16.1 (a firm input overrides)", grounding: "setting"}
+  public_r: {value: 0.0893, range: [0.0677, 0.1013], params: "ownership_regimes.public.r_own_wacc", transform: to_continuous, rate: "continuous", basis: "continuous; ln(1 + annual WACC)", flag: "practitioner dataset (Damodaran, January 2026)", section: "spec 16.1"}
+  public_myopia: {value: 0.3, range: [0.0, 0.6], params: "ownership_regimes.public.myopia_weight_theta_my", flag: "evidence is a survey (Graham, Harvey and Rajgopal 2005)", section: "spec 16.1"}
+  public_myopia_years: {value: 2, range: [1, 3], assumed: true, section: "spec 16.1", grounding: "d"}
+  public_latency_mult: {value: 1.0, range: [0.8, 1.5], params: "ownership_regimes.public.decision_latency_multiplier", section: "spec 16.1"}
+  pe_irr_target: {value: 0.1989, range: [0.1823, 0.2231], params: "ownership_regimes.pe_backed.target_gross_irr", transform: to_continuous, rate: "continuous", basis: "continuous; ln(1 + annual target IRR): 22 percent is 19.9 percent", flag: "survey (Gompers, Kaplan and Mukharlyamov 2016)", section: "spec 16.1"}
+  pe_moic_target: {value: 2.5, range: [2.5, 2.85], params: "ownership_regimes.pe_backed.target_moic", flag: "survey", section: "spec 16.1"}
+  pe_hold: {value: 6.0, range: [4.0, 7.0], params: "ownership_regimes.pe_backed.hold_period_T_hold_years", section: "spec 16.1 (median hold, Kaplan and Stromberg 2009)"}
+  pe_entry_leverage: {value: 5.2, range: [4.2, 6.1], params: "ownership_regimes.pe_backed.entry_leverage_debt_to_ebitda", section: "spec 16.1 (Axelson et al. 2013)"}
+  pe_covenant: {value: 7.0, range: [6.0, 8.0], params: "ownership_regimes.pe_backed.covenant_max_net_debt_to_ebitda", section: "spec 16.1"}
+  pe_M_exit: {value: 14.0, range: [10.0, 17.0], params: "ownership_regimes.pe_backed.exit_multiple_M_exit_software_ev_to_ebitda", flag: "practitioner data, small sample", section: "spec 16.1"}
+  pe_latency_mult: {value: 0.5, range: [0.3, 0.8], params: "ownership_regimes.pe_backed.decision_latency_multiplier", section: "spec 16.1"}
+  pe_carry: {value: 0.2, range: [0.15, 0.25], params: "ownership_regimes.pe_backed.carried_interest", section: "spec 16.1"}
+  pe_fee: {value: 0.02, range: [0.015, 0.025], params: "ownership_regimes.pe_backed.management_fee", section: "spec 16.1"}
+  vc_r: {value: 0.27, range: [0.2469, 0.3001], params: "ownership_regimes.vc_backed.target_irr", transform: to_continuous, rate: "continuous", basis: "continuous; ln(1 + annual target IRR)", flag: "survey (Gompers, Gornall, Kaplan and Strebulaev 2020)", section: "spec 16.1"}
+  vc_horizon: {value: 7.0, range: [5.0, 10.0], params: "ownership_regimes.vc_backed.horizon_years", section: "spec 16.1"}
+  vc_revenue_multiple: {value: 8.0, range: [4.0, 15.0], assumed: true, section: "spec 16.1 (EV/revenue at a VC exit, when the firm gives none)", grounding: "d"}
+  family_r_spread: {value: -0.01, range: [-0.03, 0.02], params: "ownership_regimes.private_family.r_own_spread_over_public_wacc", rate: "continuous", section: "spec 16.1"}
+  family_horizon: {value: 30.0, range: [15.0, 50.0], params: "ownership_regimes.private_family.horizon_years", section: "spec 16.1"}
+  family_employment_pref: {value: 0.10, range: [0.0, 0.3], params: "ownership_regimes.private_family.employment_preference_b_share_of_wage", section: "spec 16.1 (owner value per job kept, share of the wage)"}
+  family_latency_mult: {value: 0.7, range: [0.5, 1.0], params: "ownership_regimes.private_family.decision_latency_multiplier", section: "spec 16.1"}
+  hybrid_myopia: {value: 0.15, range: [0.0, 0.3], params: "ownership_regimes.hybrid_dual_class_myopia_weight", section: "spec 16.1 (dual-class public firm)"}
+  control_premium: {value: 0.3, range: [0.15, 0.5], params: "ownership_regimes.hybrid_take_private_control_premium", section: "spec 16.2 (take-private)"}
+  debt_rate: {value: 0.077, range: [0.0583, 0.1044], assumed: true, grounding: "d", rate: "continuous", basis: "continuous; ln(1 + annual 8 percent)", note: "floor: 2-year Treasury 3.80 percent annual (Federal Reserve Financial Stability Report, May 2026; params.yaml ownership_regimes.pe_backed.debt_rate_reference)", section: "spec 16.1 (cost of buyout debt)"}
+  public_payout: {value: 0.3, range: [0.0, 0.6], assumed: true, section: "spec 16.1 (dividends and buybacks, share of FCF; lowers the transformation budget)", grounding: "d"}
+  budget_mult: {value: {public: 1.0, private_family: 0.8, pe: 1.2, vc: 0.7, hybrid: 1.0, permanent_capital: 1.2}, range: [null, null], assumed: true, section: "spec 16.1 (financing constraint on the transformation budget)", grounding: "d"}
+  pe_pref: {value: 0.08, range: [0.06, 0.08], params: "ownership_regimes.pe_backed.preferred_return_hurdle", rate: "annual", basis: "annual: the waterfall compounds (1 + r_pref)^T (lem:reg-waterfall)", section: "lem:reg-waterfall (preferred return)"}
+  c_tx: {value: 0.02, range: [0.01, 0.04], assumed: true, grounding: "d", section: "prop:reg-lbo, prop:reg-metrics (transaction costs, share of price)"}
+  w_cov: {value: 1.0, range: [0.5, 1.0], assumed: true, grounding: "d", section: "prop:reg-dip (weight of the current wave's flow in tested EBITDA)"}
+  Y_m: {value: 2, range: [1, 3], assumed: true, grounding: "d", section: "prop:reg-value (myopia window in years)"}
+  g_slack: {value: 0.0, range: [0.0, 0.02], assumed: true, grounding: "policy", basis: "guided slack in reported operating income, share of revenue (firm input; 0 by default)", section: "prop:reg-value, prop:reg-dip"}
+  minority_board_weight: {value: 0.0, range: [0.0, 0.5], assumed: true, grounding: "policy", section: "prop:reg-hybrid (minority investor's board weight; 0 = none)"}
+  vc_theta: {value: 1.0, range: [0.5, 1.0], assumed: true, grounding: "d", section: "prop:reg-weight (margin persistence theta in the market rule frakA_T for a VC exit)"}
+  h_x: {value: 1.0, range: [0.0, 1.0], assumed: true, grounding: "d", basis: "share of the seasoned run-rate saving that buyers capitalize at exit (theory_regimes.tex prop:reg-value, zeta_pe; assumptions memo 2.6)", section: "spec 16.1, 16.3"}
+  T_sea: {value: 1.0, range: [0.0, 2.0], assumed: true, grounding: "d", basis: "a saving must have run this long before exit to count in exit EBITDA (theory_regimes.tex, K_x)", section: "spec 16.3"}
+  pc_irr_unlevered: {value: 0.2231, range: [0.2231, 0.2231], params: "ownership_regimes.permanent_capital.hurdle_unlevered_irr_annual", transform: to_continuous, rate: "continuous", basis: "continuous; ln(1 + 25 percent annual unlevered IRR hurdle)", section: "ass:acq-pc(ii), prop:acq-pc (permanent capital: unlevered method-IRR hurdle; the regime's rate for internal decisions, prop:acq-pc(d))"}
+  pc_irr_levered: {value: 0.5008, range: [0.5008, 0.5008], params: "ownership_regimes.permanent_capital.hurdle_levered_irr_annual", transform: to_continuous, rate: "continuous", basis: "continuous; ln(1 + 65 percent annual levered IRR hurdle)", section: "ass:acq-pc(ii) (levered method-IRR hurdle)"}
+  pc_window_years: {value: 5.0, range: [5.0, 5.0], params: "ownership_regimes.permanent_capital.irr_window_years", section: "eq:acq-method (years of free cash flow before the terminal value)"}
+  pc_ltv: {value: 0.85, range: [0.85, 0.85], params: "ownership_regimes.permanent_capital.debt_ltv_cap_share_of_ev", section: "ass:acq-pc(iii) (acquisition debt cap, share of enterprise value)"}
+  pc_repay_years: {value: 5.0, range: [5.0, 5.0], params: "ownership_regimes.permanent_capital.debt_repayment_years", section: "ass:acq-pc(iii) (debt the projected free cash flow repays within these years)"}
+  pc_covenant: {value: 4.0, range: [4.0, 4.0], params: "ownership_regimes.permanent_capital.covenant_max_leverage", section: "ass:acq-pc(iii) (consolidated leverage covenant)"}
+  pc_r_tv: {value: 0.0893, range: [0.0677, 0.1013], params: "ownership_regimes.permanent_capital.terminal_value_rate_r_tv_annual", transform: to_continuous, rate: "continuous", basis: "continuous; ln(1 + annual r_tv), linked to the public WACC", section: "eq:acq-method (rate of the terminal value after the IRR window)"}
+  pc_debt_rate: {value: 0.0919, range: [0.0827, 0.0919], params: "ownership_regimes.permanent_capital.debt_rate_r_debt_annual", transform: to_continuous, rate: "continuous", basis: "continuous; ln(1 + annual r_debt)", section: "ass:acq-pc(iii), prop:acq-pc(c), prop:acq-limits(a) (permanent-capital owner's cost of debt)"}
+  pc_myopia: {value: 0.0, range: [0.0, 0.15], assumed: true, grounding: "d", basis: "frak w_pc in [0, frak w_dc] (ass:acq-pc(iv)): 0 while private, up to the dual-class weight once listed", section: "ass:acq-pc(iv) (myopia weight of a permanent-capital owner)"}
+
+limits:
+  nd: {value: null, neutral_value: 0.0, range: null, limit: true, params: "acquirer.limits.debt_and_deal_capacity.net_debt_per_dollar_revenue_nd", assumed: true, grounding: "d", section: "ass:acq-limits(i), prop:acq-limits(a) (net debt per dollar of revenue; the firm's balance sheet overrides; neutral 0 = no debt)"}
+  n_dl: {value: null, neutral_value: null, range: null, limit: true, params: "acquirer.limits.debt_and_deal_capacity.max_deals_per_year_n_dl", assumed: true, grounding: "d", section: "ass:acq-limits(ii), prop:acq-limits(b) (deals a year; neutral = no cap)"}
+  eps_sz: {value: null, neutral_value: 0.0, range: null, limit: true, params: "acquirer.limits.debt_and_deal_capacity.hurdle_headroom_elasticity_eps_sz", assumed: true, grounding: "d", section: "ass:acq-limits(ii), prop:acq-limits(b) (elasticity of hurdle headroom to target size; neutral 0 = no size limit)"}
+  h_0: {value: null, neutral_value: null, range: null, limit: true, params: "acquirer.limits.debt_and_deal_capacity.hurdle_headroom_at_reference_size_h_0", assumed: true, grounding: "d", section: "ass:acq-limits(ii) (hurdle headroom at the reference target size; irrelevant when eps_sz = 0)"}
+  a_ch: {value: null, neutral_value: 0.0, range: null, limit: true, params: "acquirer.limits.series_review.challenge_curvature_a", assumed: true, grounding: "d", section: "ass:acq-limits(iii), prop:acq-limits(c) (curvature a of p^ch(s) = min(1, a s^2); neutral 0 = no challenge risk)"}
+  delta_s: {value: null, neutral_value: null, range: null, limit: true, params: "acquirer.limits.series_review.niche_share_per_deal_delta_s", assumed: true, grounding: "d", section: "ass:acq-limits(iii) (niche share added per deal)"}
+  L_ch: {value: null, neutral_value: null, range: null, limit: true, params: "acquirer.limits.series_review.loss_if_challenged_L_ch", assumed: true, grounding: "d", section: "ass:acq-limits(iii), prop:acq-limits(c) (loss if a deal is challenged, per dollar of price)"}
+  p_fdi: {value: null, neutral_value: 0.0, range: null, limit: true, params: "acquirer.limits.series_review.fdi_review_probability_p_fdi", assumed: true, grounding: "d", section: "ass:acq-limits(iii), prop:acq-limits(c) (probability of a foreign-investment review; neutral 0)"}
+  T_fdi: {value: null, neutral_value: 0.0, range: null, limit: true, params: "acquirer.limits.series_review.fdi_review_delay_T_fdi_years", assumed: true, grounding: "d", section: "ass:acq-limits(iii), prop:acq-limits(c) (review delay, years; neutral 0)"}
+  h_cp: {value: null, neutral_value: 1.0, range: null, limit: true, params: "acquirer.limits.consumer_law.switching_cost_scale_h_cp", assumed: true, grounding: "d", section: "ass:acq-limits(iv), prop:acq-limits(d) (scale on switching costs from consumer law; neutral 1 = no effect)"}
+  upsilon_cp: {value: null, neutral_value: null, range: null, limit: true, params: "acquirer.limits.consumer_law.repricing_cap_upsilon_cp", assumed: true, grounding: "d", section: "ass:acq-limits(iv), prop:acq-limits(d) (cap on a repricing, share of the old price; neutral = no cap)"}
+
+playbook:
+  tier_c_prob: {value: 0.8, range: [0.8, 0.8], assumed: true, grounding: "setting", basis: "coordinator decision 29 Oct 2026 (def:playbook-tier): a step is Tier C when its process's value is positive in fewer than this share of the Monte Carlo draws", section: "spec 29; notes/playbook_engine_spec.md Section 5 (playbook.robust_share)"}
+  flip_sections: {value: ["capability", "prices", "build", "readiness", "review", "reliability", "augment", "outsourcing", "eliminate", "permissibility", "security", "capital", "labor"], range: [null, null], assumed: true, grounding: "setting", basis: "sections whose class d parameters can move a step's mode choice; each is tested one at a time at both range ends", section: "def:playbook-tier (one-at-a-time class d test)"}
+  match_min_score: {value: 0.25, range: [0.25, 0.25], assumed: true, grounding: "setting", basis: "least word overlap (Jaccard on content words) for mapping a firm task to an O*NET task statement", section: "spec 29 (a firm's own task list overrides the defaults)"}
+
+levers:
+  proportion: {value: 0.10, range: [0.10, 0.10], assumed: true, grounding: "setting", basis: "common proportional change x at which every lever is valued (notes/playbook_engine_spec.md 2.3)", section: "prop:playbook-rank(a)"}
+
+reliability:
+  enabled: {value: true, range: [false, true], assumed: true, section: "spec 23 (failure taxonomy; off reduces to the core review model)", grounding: "setting"}
+  h_retrieval: {value: 0.05, range: [0.015, 0.2], params_rel: "hallucination.retrieval_grounded_rate", section: "spec 23.1(ii) (hallucination rate of retrieval-grounded output units)"}
+  h_open: {value: 0.15, range: [0.05, 0.5], params_rel: "hallucination.open_ended_rate", section: "spec 23.1(ii) (open-ended output units)"}
+  grounding: {value: 0.5, range: [0.2, 0.9], assumed: true, section: "spec 23.1(ii) (integrated data grounds the model: h falls by this share at iota = 1)", grounding: "d"}
+  h_floor_share: {value: 0.1, range: [0.05, 0.3], params_rel: "hallucination.floor_share_h", section: "spec 23.1(ii) (hallucination does not vanish with capability)"}
+  d_e: {value: 0.65, range: [0.45, 0.85], params_rel: "review.catch_rate_ordinary", section: "spec 23.1; core prop:tasks-review with detection rate d (reviewer catch rate, ordinary errors)"}
+  d_h: {value: 0.4, range: [0.2, 0.6], params_rel: "review.catch_rate_hallucination", section: "spec 23.1; core prop:tasks-halluc (catch rate, hallucination; d_h < d_e)"}
+  d_m_review: {value: 0.3, range: [0.1, 0.5], params_rel: "review.catch_rate_misbehavior_human_post_hoc", section: "spec 23.1 (human post-hoc catch of misbehavior, per reviewed unit)"}
+  d_m_approval: {value: 0.85, range: [0.6, 0.95], assumed: true, section: "spec 23.1 (approval before an action catches misbehavior)", grounding: "d"}
+  approval_thoroughness: {value: 0.6, range: [0.4, 0.9], assumed: true, section: "spec 23.1 (approval catches this share of what a full review catches of ordinary errors and hallucinations)", grounding: "d"}
+  rho_appr: {value: 0.25, range: [0.1, 0.5], assumed: true, section: "spec 23.1 (approval hours relative to doing hours)", grounding: "d"}
+  b_ab: {value: 0.3, range: [0.0, 0.6], params_rel: "automation_bias.catch_rate_decline", section: "spec 23.1 (automation bias: catch rate falls by this share as accuracy goes from acc0 to 1)"}
+  acc0: {value: 0.75, range: [0.7, 0.85], params_rel: "automation_bias.accuracy_threshold_acc0", section: "spec 23.1"}
+  phi_v: {value: 0.3, range: [0.0, 0.6], assumed: true, section: "spec 23.1 (vigilance decrement: catch rate falls with the review share)", grounding: "d"}
+  m0: {value: 0.001, range: [0.00005, 0.01], params_rel: "agentic.misbehavior_rate_per_task", section: "spec 23.1(iii) (consequential misbehavior events per autonomous one-hour task)"}
+  autonomy_mult: {value: {read: 0.0, draft: 0.05, act_with_approval: 0.5, act_autonomously: 1.0}, range: [null, null], params_rel: "agentic.autonomy_multiplier", section: "spec 23.1(iii) (misbehavior rises with the autonomy level)"}
+  kappa_h: {value: 0.5, range: [0.2, 1.0], params_rel: "agentic.horizon_elasticity_kappa_h", section: "spec 23.1(iii) (rise with task horizon)"}
+  injection_mult: {value: 1.0, range: [0.0, 3.0], assumed: true, section: "spec 23.1(iii), 18.2 (following injected instructions; external inputs)", grounding: "d"}
+  guard_cut: {value: 0.5, range: [0.3, 0.97], params_rel: "agentic.guardrail_reduction_share", section: "spec 23.1 (targeted mitigations cut misbehavior and attack success)"}
+  sev_mult: {value: 5.0, range: [1.0, 20.0], assumed: true, section: "spec 23.1 (minimum misbehavior loss, multiple of the loss per undetected error)", grounding: "d"}
+  alpha_tail: {value: 1.5, range: [1.15, 2.3], params_rel: "agentic.loss_tail_index", section: "spec 23.1; core prop:tasks-autonomy (Pareto tail index p of misbehavior losses)"}
+  lp_cut: {value: 0.5, range: [0.2, 0.8], assumed: true, section: "spec 23.1 (least privilege cuts loss severity)", grounding: "d"}
+  lp_cost: {value: 15000.0, range: [5000.0, 50000.0], assumed: true, section: "spec 23.1 (least-privilege engineering per process a year)", grounding: "d"}
+  mon_cut: {value: 0.3, range: [0.1, 0.6], assumed: true, section: "spec 23.1 (monitoring with detection lag cuts severity)", grounding: "d"}
+  mon_lag_days: {value: 1.0, range: [0.1, 7.0], assumed: true, section: "spec 23.1 (detection lag of monitoring)", grounding: "d"}
+  mon_cost: {value: 20000.0, range: [5000.0, 60000.0], assumed: true, section: "spec 23.1 (monitoring per process a year)", grounding: "d"}
+  kill_cap_mult: {value: 20.0, range: [5.0, 100.0], assumed: true, section: "spec 23.1 (a kill switch and rollback cap one loss at this multiple of the minimum loss)", grounding: "d"}
+  kill_cost: {value: 10000.0, range: [2000.0, 40000.0], assumed: true, section: "spec 23.1 (kill switch and rollback per process a year)", grounding: "d"}
+  irreversible_gwas: {value: ["4.A.2.b.1", "4.A.4.c.2", "4.A.2.a.1", "4.A.4.a.7", "4.A.4.c.3"], range: [null, null], assumed: true, section: "spec 23.1 (decisions, staffing, judging people, negotiating, purchasing and payments are irreversible actions)", grounding: "d"}
+  open_ended_gwas: {value: ["4.A.2.b.2", "4.A.2.b.3", "4.A.4.a.1", "4.A.4.b.6", "4.A.2.a.4", "4.A.2.b.4"], range: [null, null], assumed: true, section: "spec 23.1(ii) (open-ended task types)", grounding: "d"}
+  high_stakes_mult: {value: 5.0, range: [2.0, 20.0], assumed: true, section: "spec 23.1 (high stakes: loss per error at least this multiple of the labor cost)", grounding: "d"}
+  cvar_q: {value: 0.95, range: [0.9, 0.99], assumed: true, section: "spec 23.1 (CVaR level)", grounding: "d"}
+  kappa_cvar: {value: 0.1, range: [0.0, 0.5], assumed: true, section: "spec 23.1 (weight on tail loss CVaR - EL in the autonomy and mode choice)", grounding: "d"}
+  cascade: {value: 0.5, range: [0.0, 1.0], assumed: true, grounding: "d", section: "spec 23.1(v) (error propagation along agent pipelines, for the Monte Carlo)"}
+  nu_cm: {value: 2.0, range: [0.5, 6.0], params_rel: "common_mode.provider_incidents_per_year", section: "spec 23.1(iv) (full-day-equivalent provider outages and regressions a year)"}
+  cm_days: {value: 14.0, range: [3.0, 45.0], params_rel: "common_mode.regression_episode.duration_days", section: "spec 23.1(iv) (duration of a provider regression episode)"}
+  cm_burst: {value: 0.16, range: [0.008, 0.3], params_rel: "common_mode.regression_episode.peak_share_of_requests_affected", section: "spec 23.1(iv) (share of requests degraded in a regression episode)"}
+  providers: {value: 1, range: [1, 3], assumed: true, section: "spec 23.1(iv) (model providers in use; a firm input overrides)", grounding: "policy"}
+  provider_correlation: {value: 1.0, range: [0.3, 1.0], params_rel: "common_mode.provider_correlation", section: "spec 23.1(iv) (correlation of failures across processes on one provider)"}
+  regression_share: {value: 0.5, range: [0.25, 0.75], assumed: false, grounding: "b", basis: "share of provider common-mode events that are regressions from model, prompt or tool changes rather than outages: params_reliability.yaml common_mode.provider_incidents_per_year counts 0.2 to 2.2 outage day-equivalents plus 1 to 2 disclosed regressions a year per provider", section: "ass:ext-commonmode (nu^cm = nu^out + nu^chg); Part I lem:fullcost(e) (nu_reg)"}
+  q_chg: {value: 0.0, range: [0.0, 0.9], assumed: true, grounding: "d", basis: "share of regressions that change-management controls stop (pinned versions, testing before promotion, rollback; prop:ext-commonmode(f)); no credit unless the firm reports its controls (tier3_security change_controls_share); the disclosed regressions reached users without them", section: "ass:ext-commonmode (nu^chg(kappa_itgc)); Part I lem:fullcost(e) (q_chg)"}
+  ai_review_layers: {value: 1, range: [1, 3], assumed: true, grounding: "setting", basis: "AI review layers left at full automation in the sensitivity of the ceiling's error floor (prop:tasks-cerr(c), Part I lem:fullcost(c) n_r); the ceiling itself uses no review", section: "prop:tasks-cerr(c)"}
+  ai_review_joint_error: {value: 0.5, range: [0.1, 1.0], assumed: true, grounding: "d", basis: "P(the reviewing model on another provider also errs | the producing model errs): not measured by Kim et al. (2025) or any source found (notes/p2_theory_fixes_v2.md Section 12); a value of 1 is a reviewer on the same model", section: "prop:tasks-cerr(c) (first factor of rho^cm)"}
+  ai_review_agreement: {value: 0.6, range: [0.42, 0.6], params_rel: "common_mode.cross_provider_identical_error_share_given_joint_error", section: "prop:tasks-cerr(c) (second factor of rho^cm: P(same wrong answer | both models wrong), Kim, Garg, Peng and Garg 2025; never used as a conditional error rate)"}
+  downtime_hours: {value: 30.0, range: [5.0, 55.0], params_rel: "common_mode.downtime_hours_per_year", section: "spec 23.1(iv) (provider downtime a year)"}
+  inj_defended: {value: 0.08, range: [0.0, 0.12], params_rel: "injection.success_rate_per_attempt_defended", section: "spec 23.1(iii), 18.2 (prompt-injection success with defenses)"}
+  inj_undefended: {value: 0.25, range: [0.11, 0.48], params_rel: "injection.success_rate_per_attempt_undefended", section: "spec 23.1(iii), 18.2"}
+  diversity_cost: {value: 20000.0, range: [5000.0, 80000.0], assumed: true, section: "spec 23.1 (second provider: evaluation and integration per process a year)", grounding: "d"}
+  a_fm: {value: 0.5, range: [0.0, 1.0], assumed: true, section: "spec 23.1, 14.1 (success logit penalty per ln(1 + 100 x failure rate))", grounding: "d"}
+  churn_per_failure: {value: 0.5, range: [0.0, 2.0], assumed: true, section: "spec 23.1 (customer churn per unit of customer-facing residual failure rate)", grounding: "d"}
+  bias_prevalence_ratio: {value: 1.0, range: [0.5, 2.0], assumed: true, grounding: "d", basis: "error prevalence at which the reviewer catch rate was measured, relative to the AI's raw error rate (prop:tasks-bias(d) reference ebar_0)", section: "spec 23.1 (reported flag only)"}
+  eps_d: {value: 0.5, range: [0.1, 1.0], assumed: true, grounding: "d", basis: "elasticity of vigilance, theory_core.tex prop:tasks-bias example", section: "spec 23.1 (automation bias: review share capped at exp(-eps_d))"}
+  d_h_open_mult: {value: 0.75, range: [0.5, 1.0], assumed: true, grounding: "d", section: "spec 23.1 (hallucination catch rate on open-ended tasks, relative to grounded tasks)"}
+  d_mon: {value: 0.6, range: [0.42, 0.95], params_rel: "review.catch_rate_misbehavior_automated_monitor", section: "spec 23.1 (automated monitor recall for misbehavior)"}
+  L_max_event: {value: 5000000.0, range: [1000000.0, 50000000.0], assumed: true, grounding: "d", section: "spec 23.1 (risk appetite: largest tolerable conditional tail loss of one misbehavior event; a firm input overrides)"}
+  J_s: {value: 3, range: [2, 6], assumed: true, grounding: "d", section: "spec 23.1 (checkpoint every J_s automated steps)"}
+  d_c: {value: 0.5, range: [0.2, 0.9], assumed: true, grounding: "d", section: "spec 23.1 (checkpoint catch probability)"}
+  L_c_share: {value: 0.2, range: [0.05, 0.5], assumed: true, grounding: "d", section: "spec 23.1 (cascade loss per later step, share of the loss per undetected error)"}
+
+measurement:
+  inventory_cost_per_system: {value: 5000.0, range: [2000.0, 15000.0], assumed: true, grounding: "d", section: "spec 24.9 (systems and data inventory, per system)"}
+  classification_cost_per_system: {value: 3000.0, range: [1000.0, 10000.0], assumed: true, grounding: "d", section: "spec 24.9 (data classification, per system)"}
+  inventory_years: {value: 0.25, range: [0.15, 0.5], assumed: true, grounding: "d", section: "spec 24.9"}
+  process_mining_cost: {value: 40000.0, range: [15000.0, 120000.0], assumed: true, grounding: "d", section: "spec 24.9 (event logs or process mining, per process)"}
+  time_study_cost: {value: 15000.0, range: [5000.0, 40000.0], assumed: true, grounding: "d", section: "spec 24.9 (time study, per process)"}
+  process_years: {value: 0.25, range: [0.1, 0.5], assumed: true, grounding: "d", section: "spec 24.9 (duration of process measurement)"}
+  sd_after_measurement: {value: 0.3, range: [0.15, 0.5], assumed: true, grounding: "d", section: "spec 24.9 (posterior sd after measurement, share of the prior sd)"}
+  decision_years: {value: 3.0, range: [1.0, 5.0], assumed: true, grounding: "setting", section: "core prop:tasks-granularity (years of decisions the measurement informs)"}
+
+accounting:
+  severance_standard: {value: "asc420", range: ["asc420", "asc712"], assumed: true, grounding: "d", basis: "ASC 420-10 one-time termination benefits are recognized when communicated (ratably if service continues past the minimum retention period); ASC 712 ongoing benefit plans are accrued when probable and estimable", section: "spec 24.4 (recognition of severance; a firm input overrides)"}
+  retention_days: {value: 60.0, range: [0.0, 180.0], assumed: true, grounding: "b", basis: "ASC 420-10-25-9: service beyond the minimum retention period (no longer than the legal notification period, 60 days under the WARN Act) is recognized ratably", section: "spec 24.4"}
+  icfr_gwas: {value: [], range: [null, null], assumed: true, grounding: "d", section: "spec 24.4 (activity classes that touch financial reporting, beyond the finance function)"}
+  icfr_scope_basis: {value: "process and step lists", range: [null, null], assumed: false, grounding: "b", source: "process-level ICFR scope (full, partial, none) and in-scope steps of partial processes: priors/icfr_scope.csv and priors/icfr_steps.csv, or the icfr_scope and icfr_step columns of data/tasks/processes.csv and process_activities.csv; precedent PCAOB AS 2201 (significant accounts and relevant assertions, ITGCs) and common SOX process scoping (coordinator decision of 29 Oct 2026); a firm input in tier3_volumes wins", section: "spec 24.4 (replaces function-level icfr_functions)"}
+  icfr_redesign_cost: {value: 50000.0, range: [20000.0, 150000.0], assumed: true, grounding: "d", basis: "control redesign, documentation and auditor walkthrough per process; the SEC OEA 2009 Section 404 study (params.yaml reference) gives firm totals, not per-process costs", section: "spec 24.4 (ICFR control redesign per process)"}
+  icfr_min_parallel: {value: 0.25, range: [0.25, 0.5], assumed: true, grounding: "b", basis: "a redesigned control must operate through at least one quarter-end close before it can be tested", section: "spec 24.4 (gating: minimum parallel run for financial-reporting processes)"}
+  T_B: {value: null, range: [3.0, 5.0], assumed: true, grounding: "d", basis: "book life of capitalized builds (ASC 350-40-35-5); null = the economic life T_A; hosted builds use the contract term plus reasonably certain renewals", section: "spec 24.4; prop:acct-path"}
+  go_live: {value: "after_parallel", range: ["start", "after_parallel"], assumed: true, grounding: "policy", basis: "amortization starts when the software is ready for its intended use (ASC 350-40-35-6): after the parallel run if it counts as testing", section: "spec 24.4; prop:acct-path"}
+  asu_2025_06_year: {value: 2028, range: [2026, 2028], assumed: false, grounding: "a", source: "ASU 2025-06: required for annual periods beginning after 15 Dec 2027; early adoption allowed (a firm input overrides)", section: "spec 24.4"}
+  u_novel: {value: 0.4, range: [0.0, 0.8], assumed: true, grounding: "d", basis: "share of build spending incurred while significant development uncertainty exists, for novel agentic functions (notes/accounting_notes.md 5.1)", section: "spec 24.4; ASC 350-40-25-12A"}
+  dc_share: {value: 0.167, range: [0.0, 0.4], assumed: true, grounding: "d", basis: "data conversion and training share of build spending (always expensed; accounting example: (1 - 0.4)(1 - 1/6) = 0.5)", section: "spec 24.4"}
+  T_cl: {value: 0.167, range: [0.08, 0.25], assumed: true, grounding: "d", section: "spec 24.4 (close length, years)"}
+  T_op: {value: 0.25, range: [0.1, 0.5], assumed: true, grounding: "d", basis: "minimum operating period of a new control before assessment (judgment; no standard sets it)", section: "spec 24.4"}
+  T_rem: {value: 0.1, range: [0.0, 0.25], assumed: true, grounding: "d", section: "spec 24.4 (time to remediate a deficiency)"}
+  T_dc: {value: 0.25, range: [0.1, 0.5], assumed: true, grounding: "d", section: "spec 24.4 (decay of deficiency risk with operating time)"}
+  p_def: {value: 0.2, range: [0.05, 0.4], assumed: true, grounding: "d", section: "spec 24.4 (chance a redesigned control has a deficiency)"}
+  p_mw: {value: 0.2, range: [0.05, 0.5], assumed: true, grounding: "d", section: "spec 24.4 (chance a deficiency is a material weakness)"}
+  L_mw: {value: 5000000.0, range: [1000000.0, 20000000.0], assumed: true, grounding: "d", basis: "illustrative (notes/accounting_notes.md 5.3): audit fees and the cost-of-equity channel", section: "spec 24.4 (loss from a material weakness)"}
+  C_itgc: {value: 185000.0, range: [16000.0, 330000.0], assumed: true, grounding: "d", basis: "ITGC line of the application that runs the a_min design's own AI control layers, a year, before the upgrade retest: eq:acct-itgc at the counts of Paper 2's invoice application (3 service identities and 12 tool permissions at accounting.itgc_c_acc $2,000, 24 changes at itgc_c_chg $2,500, operations $55,000, 4 interfaces at itgc_c_ifc $10,000) = $185,000; with the retest C_val/security.T_up ($24,000/1.22 = $19,672) the design's line is $204,672, Paper 1's ITGC_LINE_DESIGN (round 2, C6) and Paper 2's acctAminLine. Range: the KPMG-anchored per-application line [$16k, $350k] (params.yaml icfr_line_per_in_scope_ai_application_usd) less the retest at the top", note: "was $50,000 (unsourced) plus the retest, $69,672 in all; Paper 1 used $350,000 before round 2", section: "spec 24.4 (IT general controls over the a_min design's own AI control layer a year; the plan's in-scope AI applications carry their own lines, eq:acct-itgc)"}
+  itgc_setup: {value: 25000.0, range: [10000.0, 75000.0], assumed: true, grounding: "d", basis: "documenting an AI agent that performs in-scope steps as an in-scope application: risk and control matrix, service identities, walkthrough (cor:acct-npv C_ctl)", note: "kept by the params commit of 29 Oct 2026: about 160 hours at a loaded $150 an hour (KPMG 2025: 16 testing hours per control, about 10 controls per application; assumptions round 2 Section 5.5)", section: "spec 25 (one-time, per in-scope AI application)"}
+  itgc_c_acc: {value: 2000.0, range: [1000.0, 5000.0], assumed: true, grounding: "d", basis: "accounting notes 5.6 illustrative unit cost: logical access per service identity or tool permission (provisioning evidence, reviews, segregation of duties)", note: "kept by the params commit of 29 Oct 2026 (assumptions round 2 Section 5.5)", section: "eq:acct-itgc (c_acc, a year)"}
+  itgc_n_id: {value: 2.0, range: [1.0, 5.0], assumed: true, grounding: "d", basis: "service identities per AI application (accounting example: 1 for a refund agent, 3 for the invoice application)", section: "eq:acct-itgc (n_id)"}
+  itgc_perm_per_step: {value: 2.0, range: [1.0, 4.0], assumed: true, grounding: "d", basis: "tool permissions per automated in-scope step (accounting example: 4 to 12 per application)", section: "eq:acct-itgc (n_perm = this x automated in-scope steps)"}
+  itgc_c_chg: {value: 2500.0, range: [1000.0, 5000.0], assumed: false, grounding: "b", basis: "change management per model, prompt, tool or configuration change (ticket, approval, test evidence); scaled 5k -> 2.5k toward the KPMG-anchored total per in-scope AI application of $80k [$16k, $350k] a year (params.yaml security_and_maintenance.compliance.icfr_line_per_in_scope_ai_application_usd; KPMG 2025 SOX Survey: $57.5k per in-scope system all-in, $16k ITGC share; read 29 Oct 2026; assumptions round 2 Section 5.5)", section: "eq:acct-itgc (c_chg)"}
+  itgc_n_chg: {value: 12.0, range: [6.0, 24.0], assumed: true, grounding: "d", basis: "changes a year per AI application (accounting example: 6 to 24)", section: "eq:acct-itgc (n_chg)"}
+  itgc_c_ops: {value: 20000.0, range: [10000.0, 55000.0], assumed: false, grounding: "b", basis: "IT operations over the application: monitoring evidence, job scheduling, incident handling; monitoring engineering is in reliability.mon_cost; scaled 30k -> 20k toward the KPMG-anchored total per in-scope AI application of $80k [$16k, $350k] (params.yaml icfr_line_per_in_scope_ai_application_usd; read 29 Oct 2026; assumptions round 2 Section 5.5)", section: "eq:acct-itgc (c_ops, a year)"}
+  itgc_c_ifc: {value: 10000.0, range: [5000.0, 30000.0], assumed: false, grounding: "b", basis: "interface controls (record counts, control totals, reconciliations) per integration feeding an in-scope system, a year; scaled 15k -> 10k toward the KPMG-anchored total per in-scope AI application of $80k [$16k, $350k] (params.yaml icfr_line_per_in_scope_ai_application_usd; read 29 Oct 2026; assumptions round 2 Section 5.5)", section: "eq:acct-itgc (c_ifc)"}
+  interface_control_setup: {value: 15000.0, range: [5000.0, 50000.0], assumed: true, grounding: "d", basis: "design of interface controls for a new integration feeding an in-scope system (cor:acct-npv C_ctl)", section: "spec 25 (one-time, per interface)"}
+  n_cl: {value: 12.0, range: [4.0, 12.0], assumed: true, grounding: "setting", basis: "closes a year (monthly; 4 if only quarter-ends are time-critical); a firm input", section: "prop:acct-itgc(d)"}
+  T_cw: {value: 0.0192, range: [0.0137, 0.0384], assumed: true, grounding: "d", basis: "close-window length, years (7 calendar days; accounting example 10 business days = 0.04)", section: "prop:acct-itgc(d)"}
+  D_bar: {value: 0.125, range: [0.02, 1.0], assumed: true, grounding: "d", basis: "mean provider incident duration, days (status histories: major incidents about 3 hours; day-long incidents in the example); incidents a year = reliability.downtime_hours/(24 D_bar)", section: "prop:acct-itgc(d)"}
+  T_sl: {value: 2.0, range: [0.5, 5.0], assumed: true, grounding: "d", section: "prop:acct-itgc(d) (slack to the filing deadline, days)"}
+  c_del: {value: 50000.0, range: [10000.0, 200000.0], assumed: true, grounding: "d", basis: "accounting example; an increment over the ordinary outage loss in the error floor", section: "prop:acct-itgc(d) (delay cost per day of a close)"}
+  L_late: {value: 2000000.0, range: [500000.0, 10000000.0], assumed: true, grounding: "d", basis: "accounting example (late filing: auditor, market and regulatory costs)", section: "prop:acct-itgc(d) (loss from missing the filing deadline)"}
+  C_fb: {value: 100000.0, range: [25000.0, 200000.0], assumed: true, grounding: "d", basis: "accounting example: standing cost of a manual fallback (runbook, trained staff, drills) a year; excludes c_ops", section: "prop:acct-itgc(d)"}
+  c_fb: {value: 30000.0, range: [10000.0, 100000.0], assumed: true, grounding: "d", section: "prop:acct-itgc(d) (running cost of the fallback per day)"}
+  t_sw: {value: 0.1, range: [0.0, 0.5], assumed: true, grounding: "d", section: "prop:acct-itgc(d) (time to switch to the fallback, days)"}
+  C_val: {value: 24000.0, range: [12000.0, 48000.0], assumed: false, grounding: "b", basis: "ICFR retest of the controls an in-scope AI application performs at each forced model upgrade (rate 1/security.T_up), priced at KPMG test effort: 10 controls per application (class d; assumptions round 2 Section 5.5) x 16 hours per control test (KPMG 2025 SOX Survey, n = 146, FY2024; class b) x $150 an hour (the itgc_setup basis; class d) = $24,000 (Paper 2 theory pass, notes/p2_theory_fixes_v2.md Section 2; P2 check 6c1); range halves and doubles the control count", note: "FT-20 resolved by definition (ass:acct-itgc): a forced upgrade appears in three non-overlapping lines, the functional regression suite in the run costs (security.reval_share of the build at each upgrade), the change ticket in itgc_c_chg x itgc_n_chg, and the re-testing of the application's controls here; was $100,000 (about 42 control tests, which the survey does not support)", section: "spec 24.4, 25 (C_val); eq:acct-itgc"}
+  N_o: {value: 24.0, range: [12.0, 48.0], assumed: true, grounding: "d", basis: "opportunities a year for a material misstatement in one in-scope control objective (Paper 1 rem:amin-values and Paper 2 prop:acct-amin example: 24; 48 needs two human layers); the engine treats the financial reporting its plan automates as one objective", section: "def:acct-admissible, prop:acct-amin (N_o); Part I prop:amin"}
+  eps_bar: {value: 0.05, range: [0.01, 0.05], assumed: true, grounding: "policy", basis: "the firm's operational reading of 'remote' (no reasonable possibility of a material misstatement not prevented or detected on a timely basis, AS 2201.A7 and Regulation S-K Item 308(a)(3), with FAS 5's 'remote': the chance is slight); no auditing or SEC standard sets a number (notes/p2_theory_fixes_v2.md Section 1). A scenario value with no central value (Paper 1 round 2, C1: class d): every floor is reported at 1 percent and at 5 percent side by side (accountability_floor by_eps_bar), and this key only sets which of the two the single-number ceiling (ceiling_terms a_min_used) uses; it is not drawn in the Monte Carlo because admissibility is pass/fail. The engine pass of 29 Oct 2026 had called 5 percent central; that label is withdrawn", note: "evidence that bears on the 5 percent value, not a grounding of a central value: most audited filers, whose controls are mostly human-run, obtain effective opinions. Audit Analytics, SOX 404 Disclosures: A Seventeen-Year Review (2 Nov 2021, blog.auditanalytics.com): 4.6 percent of SOX 404(b) auditor attestations were adverse for fiscal 2020. Audit Analytics, SOX 404 Disclosures: An Eighteen-Year Review (July 2022, blog.auditanalytics.com; the latest edition that could be read at the source on 29 Oct 2026): 5.8 percent for fiscal 2021 and 4.8 percent for fiscal 2019. A later edition (Ideagen, 2026) is behind a download form and was not read. At 1 percent the reference human-only design fails in the Paper 1 and Paper 2 examples. Per objective, 5 percent at firm level over about 10 objectives is about 0.5 percent each (Paper 1 round 2, C1)", section: "def:acct-admissible (eps_bar); Part I prop:amin(b) (pi-bar)"}
+  p_cc: {value: 0.0, range: [0.0, 0.002], assumed: true, grounding: "d", basis: "cause shared by every control layer (management override, defective shared data or information produced by the entity, failure of the ITGCs every layer relies on, reviewers accepting wrong AI output): Part I ass:layers p^cc; the Paper 1 and Paper 2 examples set none", section: "prop:acct-amin(a) (p^cm_0), Part I prop:amin(a) (p^cc)"}
+  N_nm: {value: 2000.0, range: [200.0, 20000.0], assumed: true, grounding: "d", basis: "errors below materiality a year per $1B of revenue (Part I prop:amin(c): only errors below materiality enter the floor as an expected cost); was accounting.N_mm", section: "spec 24.4; Part I prop:amin(c) (N^nm)"}
+  L_nm: {value: 20000.0, range: [5000.0, 100000.0], assumed: true, grounding: "d", basis: "loss per undetected error below materiality (rework, adjustment); was accounting.L_mm", section: "spec 24.4; Part I prop:amin(c) (L^nm)"}
+  L_mm: {value: 10000000.0, range: [2000000.0, 50000000.0], assumed: true, grounding: "d", basis: "consequence cost of an undetected material misstatement (restatement, remediation, audit, cost of capital, litigation, clawback): Paper 2 prop:acct-amin example $10 million; reported as the residual expected consequence N_o L_mm P of the chosen design, never traded against cost inside a_min (prop:acct-amin(d))", section: "prop:acct-amin(d) (L_mm, reported only)"}
+  control_types: {value: {human: {p: 0.05, p_cm: 0.002, c: 500000.0, kind: human}, ai: {p: 0.02, p_cm: 0.005, c: 50000.0, ai: true, kind: ai}}, range: [null, null], assumed: true, grounding: "d", basis: "illustrative layered-control parameters of the Paper 1 and Paper 2 examples (rem:amin-values; prop:acct-amin example): per layer a year, miss probability p, common-mode probability p_cm and cost c; human 0.05, 0.002 (Paper 1 notes it is high for an effective control environment), $500,000; AI 0.02, 0.005 with effective ITGCs, $50,000. At N_o = 24 the cheapest admissible design is one human over one AI layer at eps_bar 5 percent and one over two at 1 percent; no all-AI design on one provider is admissible (floor 11.3 percent a year). The designs are conditional on these illustrative values: one over one stays admissible at 5 percent only up to a cross-type common mode p_cc of about 0.0008 per opportunity and a human miss rate on AI-missed items of about 8.4 percent (Paper 1 round 2, C2; the engine reports both break-evens with every design). Replaces the engine's earlier three-type set (human, automated, ai), which had no source; a firm can set its own types", section: "spec 24.4; prop:acct-amin; Part I ass:layers"}
+  audit_fee: {value: 1492375.0, range: [343000.0, 5327646.0], assumed: false, grounding: "a", source: "Ideagen Audit Analytics, Audit Fee Trends 2003-2022 (July 2023), p. 14: 'In FY2022, average audit fees paid by accelerated filers increased 31% from FY2021 to $1,492,375' (read in the PDF by the lead agent, 2 Nov 2026; bib key auditanalytics2023fees; params.yaml security_and_maintenance.compliance.audit_fee_accelerated_filer_reference). The size-matched fee for a firm of about $1 billion of revenue; a lower bound if the firm is a large accelerated filer", note: "central fee of C_acct since Paper 1 round 2 (C3, lead-agent ruling of 2 Nov 2026); range: the S&P 500 ratio at $1 billion of revenue (low; accounting.audit_fee_per_musd) to the large-accelerated-filer average (high; accounting.audit_fee_high)", section: "spec 24.4 (C_acct); Part I prop:amin"}
+  audit_fee_high: {value: 5327646.0, range: [null, null], assumed: false, grounding: "a", source: "Ideagen Audit Analytics, Audit Fee Trends 2003-2022 (July 2023), p. 14: FY2022 average audit fee of large accelerated filers, $5,327,646 (read by the lead agent, 2 Nov 2026)", section: "spec 24.4 (C_acct, high case)"}
+  audit_fee_per_musd: {value: 343.0, range: [200.0, 600.0], assumed: false, grounding: "a", source: "Audit Analytics: S&P 500 audit fees of $343 per $1M of revenue, FY2022 (params.yaml compliance reference)", note: "the LOW bound of the audit fee in C_acct since Paper 1 round 2 (the S&P 500 ratio understates the fee of a $1 billion filer); before round 2 it was the central fee, with the SEC OEA 2009 median Section 404 cost of $1.04M (accounting.sox404_median, removed)", section: "spec 24.4 (C_acct, low bound)"}
+  sox_program_by_size: {value: [[5000000000.0, 1500000.0], [25000000000.0, 2700000.0], [null, 4700000.0]], range: [null, null], assumed: false, grounding: "b", flag: "values read from a text extraction; chart layout and labels verified", source: "KPMG, The 2025 SOX Survey, archived copy (https://web.archive.org/web/20260318224741/https://kpmg.com/kpmg-us/content/dam/kpmg/pdf/2025/the-2025-sox-survey.pdf, p. 12; bib key kpmg2025sox): average SOX program budget by revenue size, 'including both internal and external resources' (co-source providers, not the auditor's fee), FY2024: under $5 billion $1.5M, $5-25 billion $2.7M, $25 billion and above $4.7M (average $2.3M). The values were read from a text extraction; the chart's layout and labels were verified by the lead agent (2 Nov 2026); params.yaml security_and_maintenance.compliance.sox_program_cost_kpmg_2025_reference", note: "replaces the SEC OEA 2009 median Section 404 cost ($1.04M) in C_acct (Paper 1 round 2, C3); each entry is [upper revenue bound, budget], the last with no bound", section: "spec 24.4 (C_acct); Part I prop:amin"}
+  restructuring_charge_share: {value: 1.0, range: [0.5, 1.0], assumed: true, grounding: "d", section: "spec 24.4 (share of severance and exit costs reported as a restructuring charge, excluded from adjusted metrics)"}
+
+jurisdiction:
+  warn_days_US: {value: 60.0, range: [60.0, 90.0], assumed: false, grounding: "a", source: "WARN Act, 29 U.S.C. 2102: 60 days notice of a plant closing or mass layoff (some states, e.g. New York, require 90)", section: "spec 24.5"}
+  warn_threshold_US: {value: 50.0, range: [25.0, 50.0], assumed: false, grounding: "a", source: "29 U.S.C. 2101: a mass layoff affects at least 50 employees at a single site (state laws lower it)", section: "spec 24.5"}
+  eu_consultation_days: {value: 30.0, range: [30.0, 90.0], assumed: false, grounding: "a", source: "Council Directive 98/59/EC, Art. 4: collective redundancies take effect no earlier than 30 days after notification to the authority; consultation must come first", section: "spec 24.5"}
+  works_council_months: {value: 4.0, range: [2.0, 9.0], assumed: true, grounding: "d", section: "spec 24.5 (consultation with a works council before a change in work organization)"}
+  union_months: {value: 3.0, range: [1.0, 6.0], assumed: true, grounding: "d", section: "spec 24.5 (bargaining over effects where a union covers the roles)"}
+  survivor_attrition: {value: 0.05, range: [0.01, 0.10], assumed: true, grounding: "d", basis: "superseded in the engine by prop:labor-survivor (labor.survivor_excess_quits, labor.c_rep); kept for code/examples/invoice_chain.py, which still reads it", section: "spec 24.6 (legacy placeholder)"}
+  replacement_cost_months: {value: 6.0, range: [3.0, 12.0], assumed: true, grounding: "d", basis: "superseded in the engine by labor.c_rep (0.56 years of wages); kept for code/examples/invoice_chain.py", section: "spec 24.6 (legacy placeholder)"}
+  hiring_lead_months: {value: 3.0, range: [1.2, 6.0], assumed: false, grounding: "b", basis: "equals talent.T_lead: T^lead = T^vac + T^cn = 0.25 years (prop:labor-talent(c)); kept in months for the people plan", section: "spec 24.6 (time to hire AI engineers and data engineers)"}
+  eu_works_council_prior: {value: 0.5, range: [0.0, 1.0], assumed: true, grounding: "d", section: "spec 24.5 (chance an EU site has a works council when the firm gives no site data)"}
+  union_prior: {value: {US: 0.06, UK: 0.2, EU: 0.5, other: 0.1}, range: [null, null], assumed: true, grounding: "d", section: "spec 24.5 (union coverage by region when the firm gives no site data)"}
+
+talent:
+  premium: {value: 0.11, range: [0.05, 0.28], assumed: false, grounding: "a", source: "Alekseeva et al. (2021), Labour Economics: AI-skill premium 11 percent within firm, 5 percent within title (U.S. postings 2010 to 2019); Stephany and Teutloff (2024) 21 percent (freelance platform); Lightcast (2025) 28 percent (method not stated)", section: "prop:labor-talent(a) (AI wage premium p)"}
+  premium_agent: {value: 0.11, range: [0.05, 0.40], assumed: true, grounding: "d", basis: "no measure of an agent-engineering premium; set equal to p", section: "prop:labor-talent"}
+  T_vac_days: {value: 32.0, range: [29.0, 39.0], assumed: false, grounding: "b", source: "Davis, Faberman and Haltiwanger (2013), JOLTS 2001 to 2006: mean vacancy duration about a month (29 to 35 days in information and FIRE, 39 at 5,000+ establishments); AI roles likely longer", section: "prop:labor-talent(c)"}
+  T_cn_months: {value: 1.0, range: [0.5, 3.0], assumed: true, grounding: "d", basis: "candidate notice; German employee notice is 4 weeks under BGB 622(1)", section: "prop:labor-talent(c)"}
+  T_lead: {value: 0.25, range: [0.1, 0.5], assumed: false, grounding: "b", basis: "T^lead = T^vac + T^cn", section: "prop:labor-talent(c) (hiring lead, years)"}
+  delta_rp: {value: 0.15, range: [0.05, 0.30], assumed: true, grounding: "d", basis: "Bidwell (2011): external hires underperform insiders for about two years; no percentage", section: "prop:labor-talent(c,d) (ramp shortfall)"}
+  T_rp: {value: 2.0, range: [1.0, 3.0], assumed: false, grounding: "b", source: "Bidwell (2011), ASQ", section: "prop:labor-talent(c,d) (ramp length, years)"}
+  c_hire_weeks: {value: 13.5, range: [10.0, 24.0], assumed: false, grounding: "b", source: "Blatter, Muehlemann and Schenker (2012): hiring costs of 10 to 17 weeks of wages for skilled hires, marginal up to 24", section: "prop:labor-talent(d)"}
+  u_ct: {value: 0.5, range: [0.3, 1.0], assumed: true, grounding: "d", section: "prop:labor-talent(d) (contractor markup over the loaded wage)"}
+  T_ct_months: {value: 1.0, range: [0.0, 2.0], assumed: true, grounding: "d", section: "prop:labor-talent(d) (time to engage a contractor)"}
+  hires_per_1000: {value: 2.0, range: [0.5, 5.0], assumed: true, grounding: "d", section: "prop:labor-talent(c) (AI engineers the firm can hire a year per 1,000 employees, when the firm gives no hiring capacity)"}
+  ai_share_of_developers: {value: 0.1, range: [0.02, 0.3], assumed: true, grounding: "d", section: "prop:labor-talent (share of roster software developers and data scientists who can work as AI or agent engineers today, Gamma_0)"}
+
+location:
+  wage_index_default: {value: {US: 1.0, DE: 0.932, UK: 0.912, FR: 0.663, JP: 0.490, PL: 0.332, CN: 0.240, MX: 0.137, IN: 0.042}, range: [null, null], assumed: false, grounding: "a", source: "OECD Pensions at a Glance 2025, Table 7.5: gross average wage 2024 at market exchange rates, U.S. = 1 (OECD Taxing Wages; ILO for China and India); all employees, not occupation-specific", section: "lem:labor-location (site wage index when the roster has none)"}
+  onet_widening: {value: 1.5, range: [1.0, 2.0], assumed: true, grounding: "d", basis: "within-occupation task content differs across countries (Lewandowski et al. 2022; De La Rica et al. 2020; Handel 2016)", section: "labor notes 3.5 (dispersion of activity time shares outside the U.S.)"}
+
+residency:
+  vendor_regions: {value: ["US"], range: [null, null], assumed: true, grounding: "setting", section: "prop:labor-residency (AI vendor deployment regions when the firm gives none: one global U.S. region; flagged)"}
+  vendor_dpf_certified: {value: false, range: [false, true], assumed: true, grounding: "setting", section: "prop:labor-residency (vendor certified under the EU-U.S. Data Privacy Framework; a firm input)"}
+  transfer_mechanism: {value: "none", range: [null, null], assumed: true, grounding: "setting", section: "prop:labor-residency (transfer mechanisms in place when the firm gives none)"}
+  nu_inv_EU_US: {value: 0.089, range: [0.04, 0.15], assumed: false, grounding: "b", source: "two invalidations (Safe Harbour 2015, Privacy Shield 2020) in 22.5 framework-years to 29 Oct 2026; DPF appeal C-703/25 P pending", section: "prop:labor-residency(c) (mechanism hazard, a year)"}
+  nu_inv_SCC: {value: 0.0, range: [0.0, 0.05], assumed: true, grounding: "d", basis: "SCCs upheld in Schrems II; supervisory authorities may suspend them case by case", section: "prop:labor-residency(c)"}
+  C_sw: {value: 500000.0, range: [100000.0, 2000000.0], assumed: true, grounding: "d", section: "prop:labor-residency(c) (cost of switching to in-region processing if a mechanism falls)"}
+  F_tr: {value: 50000.0, range: [10000.0, 200000.0], assumed: true, grounding: "d", section: "prop:labor-residency(c) (legal and transfer-impact-assessment cost of a mechanism; a firm input)"}
+  p_reg: {value: 0.0, range: [0.0, 0.3], assumed: true, grounding: "d", basis: "vendor price lists not verified; 0 when the firm gives none (flagged)", section: "prop:labor-residency(a,c) (in-region price premium)"}
+  T_lag: {value: 0.0, range: [0.0, 1.0], assumed: true, grounding: "d", section: "prop:labor-residency(a) (model availability lag in a region, years)"}
+  cn_threshold_exempt: {value: 100000, range: [100000, 100000], assumed: false, grounding: "a", source: "CAC Provisions on Promoting and Regulating Cross-Border Data Flows (2024): exempt below 100,000 non-sensitive subjects since 1 January", section: "labor notes 3.6"}
+  cn_threshold_assessment: {value: 1000000, range: [1000000, 1000000], assumed: false, grounding: "a", source: "CAC 2024 provisions: security assessment above 1 million non-sensitive or 10,000 sensitive subjects", section: "labor notes 3.6"}
+
+pqc:
+  cost_share_it: {value: 0.10, range: [0.03, 0.30], assumed: true, grounding: "d", basis: "only aggregate public-sector estimates exist (OMB 2024: about $7.1 billion for U.S. federal civilian systems, 2025 to 2035); per-firm cost assumed as a share of one year of IT spend", section: "spec 20.2, 24 (one-time post-quantum cryptography migration)"}
+  it_share_revenue: {value: 0.05, range: [0.03, 0.10], assumed: true, grounding: "d", section: "spec 20.2 (IT spend, share of revenue, when Tier 1 gives none)"}
+  deprecate_year: {value: 2030, range: [2030, 2030], assumed: false, grounding: "a", source: "NIST IR 8547 (final, October 2026): quantum-vulnerable public-key algorithms deprecated after 2030", section: "spec 20.2"}
+  disallow_year: {value: 2035, range: [2035, 2035], assumed: false, grounding: "a", source: "NIST IR 8547: disallowed after 2035", section: "spec 20.2"}
+  federal_year: {value: 2030, range: [2030, 2031], assumed: false, grounding: "b", source: "EO 14412 and OMB M-26-15: federal high-value systems by 31 Dec 2030; a proposed FAR rule would extend it to covered contractors", section: "spec 20.2 (applies when the firm sells to the U.S. government)"}
+  inventory_years: {value: 1.0, range: [0.5, 2.0], assumed: false, grounding: "b", source: "OMB M-26-15 phases: cryptographic inventory 2026 to 2027", section: "spec 20.2"}
+  quantum_scenario: {value: false, range: [false, true], assumed: true, grounding: "d", section: "spec 20.2 (quantum scenario flag: changes only the PQC cost)"}
+  quantum_cost_mult: {value: 2.0, range: [1.5, 3.0], assumed: true, grounding: "d", section: "spec 20.2 (PQC cost and urgency under the quantum scenario)"}
+  quantum_deadline: {value: 2030, range: [2029, 2032], assumed: true, grounding: "d", section: "spec 20.2 (all systems must migrate by this year under the quantum scenario)"}
+
+gsa:
+  morris_trajectories: {value: 4, range: [4, 20], assumed: true, grounding: "setting", section: "spec 24.2 (Morris screening)"}
+  morris_levels: {value: 4, range: [4, 8], assumed: true, grounding: "setting", section: "spec 24.2"}
+  sobol_n: {value: 32, range: [32, 1024], assumed: true, grounding: "setting", section: "spec 24.2 (Saltelli base sample)"}
+  sobol_top_k: {value: 6, range: [3, 12], assumed: true, grounding: "setting", section: "spec 24.2 (parameters carried from Morris to Sobol)"}
+  param_draws: {value: 40, range: [20, 400], assumed: true, grounding: "setting", section: "spec 21.1, 24.2 (draws over class b and d ranges in the Monte Carlo)"}

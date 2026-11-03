@@ -1,0 +1,36 @@
+\begin{table}[tbp]
+\centering
+\caption{Where the predictive content lies: the model score layer by layer (change in log employment)}\label{tab:backtest-decomp}
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}lcccccc@{}}
+\toprule
+ & (1) & (2) & (3) & (4) & (5) & (6)\\
+ & Exposure & Non-physical, & Capability- & Automate & Automate & Automate,\\
+ & & permissible & feasible & or augment & & review 0.8\\
+\midrule
+Score alone (1 sd) & $-$0.052 & $-$0.058 & $-$0.047 & $-$0.052 & $-$0.046 & $-$0.009\\
+ & (0.017) & (0.015) & (0.012) & (0.014) & (0.012) & (0.010)\\
+Score, with exposure (1 sd) &  & $-$0.048 & $-$0.041 & $-$0.051 & $-$0.039 & $-$0.003\\
+ &  & (0.019) & (0.016) & (0.021) & (0.015) & (0.010)\\
+Exposure in that regression &  & $-$0.014 & $-$0.012 & $-$0.001 & $-$0.015 & $-$0.051\\
+ &  & (0.022) & (0.022) & (0.025) & (0.021) & (0.016)\\
+Score alone, employment-weighted & $-$0.034 & $-$0.017 & $-$0.023 & $-$0.028 & $-$0.023 & $-$0.004\\
+ & (0.016) & (0.016) & (0.011) & (0.014) & (0.010) & (0.007)\\
+Score alone, 2016--21 trend control & $-$0.049 & $-$0.061 & $-$0.056 & $-$0.058 & $-$0.056 & $-$0.013\\
+ & (0.017) & (0.014) & (0.012) & (0.013) & (0.011) & (0.010)\\
+Placebo: 2016--21 change & $-$0.039 & $-$0.027 & $-$0.020 & $-$0.022 & $-$0.016 & $-$0.004\\
+ & (0.024) & (0.019) & (0.017) & (0.018) & (0.016) & (0.014)\\
+\addlinespace
+Out-of-sample $R^2$, score alone & 0.160 & 0.166 & 0.169 & 0.168 & 0.168 & 0.148\\
+Out-of-sample $R^2$, with exposure & & 0.165 & 0.167 & 0.165 & 0.166 & 0.158\\
+Share of repetitions improving on exposure & & 1.00 & 0.98 & 0.96 & 0.98 & 0.00\\
+Mean of score & 0.329 & 0.243 & 0.034 & 0.101 & 0.033 & 0.009\\
+Correlation with exposure & 1 & 0.88 & 0.64 & 0.88 & 0.64 & 0.44\\
+\bottomrule
+\end{tabular}
+\smallskip
+\begin{minipage}{0.97\linewidth}\footnotesize
+Notes: each score is the time-weighted sum over an occupation's activities of LLM exposure times an indicator, averaged over December 2021 to May 2025: (1) none; (2) the activity is non-physical and not reserved for a licensed signatory; (3) in addition, the 80\% horizon covers the activity's length (Section~\ref{sec:ext-dynamics}); (4) automation or augmentation is feasible and is the cheapest mode (augmentation needs only the 50\% horizon to cover the activity, so (4) is not nested in (3)); (5) automation is feasible and is the cheapest mode (the main score of Table~\ref{tab:backtest-occ}); (6) as (5) with review taking 0.8 of the doing time, the value the engine assumed before its parameters were sourced (the current value is 0.575). Controls, fixed effects and standard errors as in Table~\ref{tab:backtest-occ}; $N=782$, and $N=689$ in the trend and placebo rows. Columns (1), (3), (4) and (5) were specified before estimation; columns (2) and (6) and the layer-by-layer arrangement were added after the first estimates, so the comparison across columns is exploratory.
+\end{minipage}
+\end{table}

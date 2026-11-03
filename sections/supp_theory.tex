@@ -1,0 +1,166 @@
+% Supporting theoretical results moved from Appendix A of the main paper (sections/appendix_proofs.tex) in revision v2.
+\section{Additional Theoretical Results}\label{supp:theory}
+
+This section collects supporting results referred to in Section~\ref{sec:model} of the main paper. Table~\ref{tab:notation} lists the notation; in particular $\Delta^*(\ell,X)$ and $\sigma^*(\ell,X)$ denote \eqref{eq:Dstar} and \eqref{eq:sigstar} with $\lambda h$ replaced by $\ell$ and $X-k$ by $(X-k)_+$. Results stated here carry the prefix S; proofs are in Section~\ref{app:proofs}.
+
+\begin{table}[p]
+\centering
+\caption{Notation}\label{tab:notation}
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.0}
+\begin{tabular}{@{}p{0.15\linewidth}p{0.325\linewidth}p{0.15\linewidth}p{0.325\linewidth}@{}}
+\toprule
+Symbol & Meaning & Symbol & Meaning\\
+\midrule
+\multicolumn{2}{@{}l}{\emph{Firm, market and growth technology}} & \multicolumn{2}{l@{}}{\emph{Costs, capital and taxes}}\\
+$S,\ M,\ s$ & revenue, market size, share $S/M$ & $\gamma$ & gross margin $1-c_h-c_c-f$\\
+$\bar s,\ h(s)$ & share cap, headroom $1-s/\bar s$ & $c_h,\ c_c,\ f$ & human service, compute and fee shares\\
+$G,\ G_i$ & market growth, firm zero-spend growth & $a,\ a_{\min}$ & non-discretionary cost, its floor\\
+$g,\ \Delta$ & revenue growth, excess growth $g-G$ & $m_0$ & margin intercept $\gamma-a$\\
+$\sigma,\ \bar\sigma$ & growth spend, financing cap & $m_{op},\ m$ & operating margin, FCF margin\\
+$\lambda,\ \alpha$ & demand pull, spend elasticity & $k$ & capital per dollar of revenue\\
+$\ell$ & opportunity $\lambda h(s)$ & $\delta_K$ & depreciation (replacement) rate of capital\\
+$\beta,\ \kappa,\ C_\alpha$ & $1/\alpha$, $\ell^{-\beta}$, $(1-\alpha)\alpha^{\alpha/(1-\alpha)}$ & $\tau$ & cash tax rate\\
+$\mathcal F$ & feasible set & $\psi,\ \psi_T$ & PV of deductions per dollar of capital\\
+\multicolumn{2}{@{}l}{\emph{Scores}} & \multicolumn{2}{l@{}}{\emph{Value and weights}}\\
+$X,\ y$ & score weight, $X-k$ & $r$ & discount rate, cost of capital\\
+$R_X,\ R_X^*$ & score $Xg+m$, its maximum & $V,\ v(s),\ v_0$ & value, value per dollar of market, small-share multiple\\
+$m^*(g)$ & efficient frontier & $X^{\mathrm{dyn}},\ X^{\mathrm{scr}}$ & firm's and investor's growth weights\\
+$\Pi$ & growth surplus & $D,\ D_{TV}$ & duration of the revenue stream\\
+$R_\infty,\ R^0$ & saturated score, small-base bound & $\eta,\ \mathcal N_T(\eta)$ & $(1+g)/(1+r)$, $\sum_{t\le T}\eta^t$\\
+$\Lambda(\bar R)$ & demand pull needed for score $\bar R$ & $\theta,\ \bar m,\ m_{LR}$ & margin persistence, mature and long-run margins\\
+$\mathcal T(\bar R)$ & periods with score at least $\bar R$ & $\mathcal M_\infty,\ G_\infty$ & terminal Gordon multiple and growth\\
+$R_{\max}$ & full-automation ceiling & $e,\ \mathrm{ROIC},\ q_K$ & economic margin, return on capital, $X/k$\\
+\multicolumn{2}{@{}l}{\emph{Industry and competition}} & \multicolumn{2}{l@{}}{\emph{Transformation program}}\\
+$\Phi,\ \Psi,\ \Psi_\chi$ & possibility envelope, observed and quantile frontiers & $\vartheta,\ \delta\vartheta_p$ & parameters $(m_0,k,\ln\lambda,G)$, increment of process $p$\\
+$\omega,\ \Omega$ & quality type and its set & $\mathcal P,\ N$ & program of processes, their number\\
+$P,\ A,\ B$ & price, inverse-demand parameters & $T_{\mathrm{par}},\ T_{\mathrm{emb}}$ & parallel run (wave length), embedding time\\
+$F,\ \hat F$ & replication cost, $(r-G)F$ & $\Gamma_i,\ c^i_p$ & capacity of resource $i$, use by process $p$\\
+$u,\ k_u,\ a_c$ & unit cost; capital and acquisition cost per unit of output & $\mathcal Z_n,\ n(t),\ n_{\mathrm{cap}}$ & sets packable in $n$ waves, waves embedded by $t$, processes per wave\\
+$\hat c,\ k_a$ & $u+r(k_u+a_c)$, customer capital $a_c/P$ & $c_w,\ \mathcal E$ & wave capacity (share of program), embedded share\\
+$n,\ L_n$ & number of firms, Lerner index & $\mathcal A_t,\ R^{\mathrm{att}}_X$ & attainable set and score\\
+$Z,\ w_n,\ \rho$ & scarce input, its price, rent per dollar of revenue & $\varpi_p,\ b_p$ & success probability, realized benefit share\\
+$\varphi,\ \epsilon_p,\ \eta_D$ & pass-through rate and elasticity, demand elasticity & $\nu_D;\ \nu^{\rm L},p_{\rm keep},\nu^{\rm V}$ & disruption rate; leader changes, keep probability, strategy changes\\
+$\zeta$ & AI adoption index & $\nu^{\rm R},\ T_{\rm frz},\ t_R,\ \tilde t$ & reorganization rate, freeze, program time (uniform clock, random freezes)\\
+ & & $p^{\rm emb},\ \bar R_X$ & embedding probability, expected attainable score\\
+\multicolumn{2}{@{}l}{\emph{Full-cost floors (\autoref{lem:fullcost})}} & \multicolumn{2}{l@{}}{\emph{Accountability floor (\autoref{prop:amin})}}\\
+$c_{\mathrm{mnt}},c_{\mathrm{sec}},c_{\mathrm{err}},c_{\mathrm{anc}}$ & maintenance, security, AI failure, other & $\mathcal O,\ N_o$ & control objectives, opportunities for a material misstatement\\
+$c_{\mathrm{full}}$ & sum of the four floors & $n_{oj},\ c_j$ & layers of control type $j$ for objective $o$, cost per layer\\
+$c_{\rm bld},\ \delta_M,\ \varrho_{\rm rv},\ T_{\rm up}$ & builds, upkeep rate, revalidation share, upgrade interval & $p_j,\ p^{\mathrm{cm}}_j,\ p^{\mathrm{cc}}$ & independent, common-mode and cross-type failure probabilities\\
+$c^{\rm inc},\ c^{\rm sp},\ c_{\rm eff}$ & incident loss, security spending, its effectiveness scale & $P_o,\ \pi_o,\ \bar\pi$ & miss probability per opportunity and per period, threshold for remote\\
+$L_{\rm sec},\ \xi_{\rm exp}$ & log loss-to-scale ratio today, exposure multiplier & $C^{\mathrm{acct}},\ C^{\mathrm{itgc}}_{\mathsf a}(\theta)$ & accountability cost, IT general controls of application $\mathsf a$ at quality $\theta$\\
+$\chi,\ q_{\rm chg}$ & review failures common with the model, regressions stopped by change control & $N^{\mathrm{nm}}_o,\ L^{\mathrm{nm}}_o$ & opportunities for and loss from errors below materiality\\
+$W_A,\ \bar u,\ L_{\rm err}$ & automated work, review-proof error rate, loss per error & \multicolumn{2}{l@{}}{\emph{Calibration (Section~\ref{sec:horizons})}}\\
+$\varepsilon^{\rm o},\varepsilon^{\rm h},\varepsilon^{\rm m};\ d^{\rm o},d^{\rm h},d^{\rm m}$ & error, fabrication, misbehavior rates; catch rates & $m_{0A},\ m_{0F}$ & anchor and full-cost margin intercepts\\
+$L_{\rm mis},\ Y,\ \bar Y,\ p_Y$ & misbehavior loss scale, Pareto multiple, cap, tail index & $\bar b\,\mathcal E$ & expected realized share of the program\\
+$W_{\rm cm},\ w_m,\ H_{\rm cm}$ & exposure to a provider outage, shares, concentration & $\mu$ & demand pull relative to 2025\\
+$\nu_{\rm cm},\ T_{\rm con},\ Y_{\rm fb}$ & common-mode rate, containment time, fallback capacity & & \\
+\bottomrule
+\end{tabular}
+
+\smallskip
+\begin{minipage}{0.97\linewidth}\scriptsize
+Notes: margins, costs and spend are shares of revenue; growth rates are continuously compounded unless stated. Symbols used only inside one proof, and the local parameters of \autoref{prop:industry-full}(iv), are defined where they appear.\IfFileExists{sections/measurement_acquired.tex}{ Section~\ref{sec:acquired-growth} defines the symbols it uses for acquired growth.}{}
+\end{minipage}
+\end{table}
+
+\begin{remark}[Four simplifying assumptions]\label{rem:assumptions}
+\begin{enumerate}
+\item[(a)] (Fixed costs.) If part of the cost floor is fixed in dollars, $a=a_v+\Xi/S$ with $\Xi>0$, then $m_0=\gamma-a_v-\Xi/S$ rises with revenue. Lemmas~\ref{prop:frontier}, \ref{prop:score} and \ref{prop:envelope} hold at each date with this $m_0$, but $R_\infty=\gamma-a_v-\Xi/(sM)+(X-k)G$ rises with revenue at a given share, and $R_X^*(s)$ rises with $s$ at small shares, because at fixed $M$ its derivative is $\Xi/(s^2M)-(X-k)\Delta^*/(\bar s-s)$. Tests of \autoref{prop:saturation} that sort firms by revenue therefore confound share with absolute size. \autoref{prop:budget} holds with $R_\infty$ evaluated at the largest revenue reached on the path. A constant fixed cost $\Xi$ does not affect the optimal policy, so \autoref{prop:dynamic} holds with $m_0=\gamma-a_v$ and firm value $M\,v(S/M)-\Xi/r$ (for $r>0$): the growth weight is still $v'(s)$.
+\item[(b)] (Firm-specific zero-spend growth.) In subscription software, the growth a firm gets without acquisition spend is set largely by its net revenue retention, so it varies across firms. With $g=G_i+\ell\sigma^{\alpha}$, Lemmas~\ref{prop:frontier}--\ref{prop:saturation} and \ref{prop:envelope} hold at each date with $G$ replaced by $G_i$ (so $R_\infty=m_0+(X-k)G_i$). Share now drifts at rate $G_i-G$ without spend, and \autoref{prop:budget}(a) holds with $(X-k)\bigl[\ln(s(T)/s_0)+(G-G_i)T\bigr]$ on the right side. A firm whose retention lags its market ($G_i<G$) loses share without spend and can buy it back repeatedly, so its budget grows with time: the finite budget of \autoref{prop:budget} needs zero-spend growth of at least $G$. Retention is achieved with spending on customer success and expansion, so $G_i$ is not zero-spend growth in a literal sense; the model treats that spending as part of $a$ and $G_i$ as given. Across firms, \autoref{prop:industry}(i) can fail (\autoref{rem:segments}).
+\item[(c)] (Negative capital intensity and depreciation.) Prepaid subscriptions create deferred revenue, which finances growth: with deferred revenue equal to a fraction $k_{\mathrm{def}}$ of annual revenue, the cash capital intensity is $k=k_{\mathrm{fix}}-k_{\mathrm{def}}$ and can be negative. The closed forms of Lemmas~\ref{prop:score}, \ref{prop:saturation} and \ref{prop:envelope} and the score budget hold for $k<0$, but the frontier then rises at first (its slope at $G$ is $-k>0$): points with $g-G<\Delta_0:=[-k/(\beta\kappa)]^{1/(\beta-1)}$ are dominated, \autoref{prop:frontier}(c) holds only for $g\ge G+\Delta_0$, and \autoref{prop:industry}(i) can fail; \autoref{prop:dynamic}(d) uses $k\ge 0$. If growth capital depreciates at rate $\delta_K$, so that investment is $k(g+\delta_K)S$, the results of Sections~\ref{sec:model-frontier}--\ref{sec:model-statics} and \autoref{prop:dynamic} hold with $m_0$ replaced by $m_0-\delta_Kk$; in particular $\partial R_X^*/\partial k=-(g^*+\delta_K)$, and \autoref{cor:capital} holds with $g^*$ replaced by $g^*+\delta_K$. Compute fleets depreciate at about 20\% to 33\% a year; with $\delta_K=0.25$, raising $k$ by 0.10 at 10\% growth requires opex savings of about 3.5 points rather than 1.
+\item[(d)] (Network effects.) A decreasing headroom $h$ rules out network effects, which would raise the productivity of spend as share grows. Monotonicity of $h$ is used only in \autoref{prop:saturation}(a) and (c), in the attainability statement of \autoref{prop:saturation}(d), in the bound $\ell(s)\le\lambda$ of \autoref{prop:dynamic}(d) and (e), and, through the logistic form, in \autoref{prop:myopic}. Lemmas~\ref{prop:frontier}, \ref{prop:score} and \ref{prop:envelope}, \autoref{prop:industry}, and the score budget (\autoref{prop:budget} and \autoref{cor:transient}(a) and the first bound of (b)) do not use it: the budget needs only share accounting, the cap $s\le\bar s$ and zero-spend growth of at least $G$.
+\end{enumerate}
+\end{remark}
+
+\begin{lemma}[Timing of growth capital]\label{lem:timing}
+\begin{enumerate}
+\item[(a)] Equation \eqref{eq:fcf} is exact in continuous time. In discrete time it holds exactly when capital is installed one period ahead, $I_t=k(S_{t+1}-S_t)$, with $g$ the forward growth rate.
+\item[(b)] If capital is installed contemporaneously, $I_t=k(S_t-S_{t-1})$ with $g=S_t/S_{t-1}-1>-1$, then $m=m_{op}-kg/(1+g)$, and the frontier becomes $\tilde m(g)=m_0-kg/(1+g)-\kappa(g-G)^{\beta}$. The two conventions differ by $kg^2/(1+g)\ge 0$, which is second order in $g$; at $k=0.5$ and $g=0.3$ the gap is about $0.035$.
+\item[(c)] If $\alpha<1/2$ and $k>0$, then $\tilde m$ is strictly convex on an interval $(G,G+\varepsilon)$, and the feasible set under convention (b) is not convex, so the Rule-of-$X$ problem can have several local maxima. For example, take $\alpha=0.3$, $k=1.25$, $\kappa=0.5$, $G=0.1$, $m_0=0.5$ and $X=1$. Then the corner $g=G$ is a local maximum of $Xg+\tilde m(g)$ (score $0.486$), and there is a second, interior local maximum at $g\approx 0.74$ (score $\approx 0.595$). Under \eqref{eq:fcf} the same parameters give the unique optimum $g=G$, because $X<k$.
+\item[(d)] The condition in (c) is sufficient, not necessary. If $\alpha=1/2$, then $\tilde m$ is strictly convex exactly on $(G,(k/\kappa)^{1/3}-1)$, which is nonempty if and only if $k>\kappa(1+G)^3$. If $\alpha>1/2$, $\tilde m$ is strictly concave near $G$, but it is strictly convex on an interval whenever $2k(g-G)^{2-\beta}/(1+g)^3>\beta(\beta-1)\kappa$ at some $g>G$, which holds when $k$ is large relative to $\kappa$. For an asset-light firm the non-convex region is a sliver: with $\alpha=0.3$, $k=0.05$, $\ell=0.86$ and $G=0.1$ it ends about 2 points of excess growth above $G$.
+\end{enumerate}
+\end{lemma}
+
+We adopt \eqref{eq:fcf} because it is exact in continuous time, matches capacity that must be in place before revenue arrives, and keeps the feasible set convex for every $\alpha\in(0,1)$ and every $k\ge0$.
+
+\begin{remark}[Binding financing cap]\label{rem:cap}
+If $\sigma^*>\bar\sigma$, the optimum is at the cap: $\sigma=\bar\sigma$, $g=G+\ell\bar\sigma^{\alpha}$ and $R_X^*=m_0+(X-k)G+(X-k)\ell\bar\sigma^{\alpha}-\bar\sigma$, because $\sigma\mapsto(X-k)\ell\sigma^{\alpha}-\sigma$ is strictly concave and increasing below $\sigma^*$. Where the cap binds strictly, the envelope formulas of \autoref{prop:envelope} continue to hold with $(\sigma^*,\Delta^*)$ replaced by $(\bar\sigma,\ell\bar\sigma^{\alpha})$.
+\end{remark}
+
+\begin{remark}[The Rule of 40 is a pass mark, not a choice rule]\label{rem:r40}
+Along the frontier, $g\mapsto g+m^*(g)$ is strictly concave. The frontier points that pass the Rule of 40 therefore form an interval, possibly empty, and if the interval is nonempty it contains the Rule-of-1 optimum. The rule accepts a range of strategies, and a point that passes may still be dominated. The Rule of $X$, by contrast, selects a single point: the tangency.
+\end{remark}
+
+\begin{remark}[Which results need the isoelastic form]\label{rem:general-phi}
+Replace \eqref{eq:growth} by $g=G+\ell\phi(\sigma)$ with $\phi$ continuous, strictly increasing and concave on $[0,\infty)$, $\phi(0)=0$, and $\phi$ differentiable on $(0,\infty)$. Then:
+\begin{enumerate}
+\item[(a)] (General results.) The frontier $m^*(g)=m_0-kg-\phi^{-1}((g-G)/\ell)$ is concave and strictly decreasing, so the feasible set is convex; every maximizer of $R_X$ lies on the frontier; the tangency $m^{*\prime}(g^*)=-X$ holds at interior optima, and if $\phi$ is strictly concave the optimum is unique and the duality of \autoref{prop:score}(d) holds; the score budget (\autoref{prop:budget}, \autoref{cor:transient}(a) and the first bound of (b)) holds unchanged, because it uses only $g\ge G$ and share accounting; non-identification (\autoref{prop:industry}(iv)) holds a fortiori, because the isoelastic technologies are a subclass; \autoref{prop:entry} does not involve the growth technology; and the envelope derivatives with respect to $m_0$, $G$, $k$ and $X$ in \autoref{prop:envelope} are unchanged.
+\item[(b)] (Spend ratio.) At an interior optimum the first-order condition is $(X-k)\ell\phi'(\sigma^*)=1$, and the ratio of spend to excess growth is $\sigma^*/\Delta^*=(X-k)\,\varepsilon(\sigma^*)$, where $\varepsilon(\sigma):=\sigma\phi'(\sigma)/\phi(\sigma)\in(0,1]$ is the local elasticity of the technology. With $\phi(\sigma)=\sigma^\alpha$, $\varepsilon\equiv\alpha$; in general the elasticity to use is the local one at the firm's own spend, which can differ across firms.
+\item[(c)] (Slope at market growth.) The right derivative of the frontier at $G$ is $-k-1/(\ell\phi'(0^+))$. It equals $-k$ only under the Inada condition $\phi'(0^+)=\infty$, which \eqref{eq:growth} satisfies; with a finite $\phi'(0^+)$, firms with $(X-k)\ell\phi'(0^+)\le1$ spend nothing, and the frontier has a kink at $G$.
+\item[(d)] (Results specific to the isoelastic form.) The closed forms with $C_\alpha$ (equations \eqref{eq:Dstar}--\eqref{eq:Rstar}), the threshold $\Lambda$ of \eqref{eq:Lambda}, the decay at rate $t^{-1/\alpha}$ in \autoref{prop:myopic}, the factor $1/\alpha$ between the two measures of a better growth engine in \autoref{cor:priorities}(ii), the second bound of \autoref{cor:transient}(b), and the constancy of $\sigma^*/\Delta^*$ across firms with a common weight are specific to $\phi(\sigma)=\sigma^\alpha$. So are the numerical claims built on them: the Rule-of-1000 thresholds and the scaling of horizon surpluses by a power $1/(1-\alpha)$ of demand pull in Section~\ref{sec:horizons}.
+\end{enumerate}
+\end{remark}
+
+\begin{proposition}[Myopic path]\label{prop:myopic}
+Let $\bar\sigma=\infty$ and $X>k$, and suppose that in continuous time the firm sets $\sigma(t)=\sigma^*(\ell(s(t)),X)$ at every date, starting from $s_0\in(0,\bar s)$. Then $s(t)\uparrow\bar s$ and $R_X^*(s(t))\downarrow R_\infty$. With $\Delta_0^*:=\Delta^*(\lambda,X)$ and $h_0:=h(s_0)$,
+\begin{equation}\label{eq:myopic}
+0<R_X^*(s(t))-R_\infty\;\le\;C_\alpha\bigl[\lambda(X-k)\bigr]^{1/(1-\alpha)}\Bigl[h_0^{-\alpha/(1-\alpha)}+\tfrac{\alpha}{1-\alpha}\,\Delta_0^*\,\tfrac{s_0}{\bar s}\,t\Bigr]^{-1/\alpha},
+\end{equation}
+so the excess over the saturated score decays at least as fast as $t^{-1/\alpha}$.
+\end{proposition}
+
+\begin{proposition}[The score budget is sharp]\label{prop:budget-sharp}
+In the setting of \autoref{prop:budget}(a), the supremum of $\int_0^T(R_X(t)-R_\infty)^+dt$ over horizons $T$ and feasible paths equals $(X-k)\ln(\bar s/s_0)$. It is approached by policies that hold excess growth at a small constant level $\underline\Delta$ until the share approaches $\bar s$.
+\end{proposition}
+
+\begin{proposition}[Non-identification and within-firm co-movement]\label{prop:industry-full}
+Under \autoref{ass:hetero}:
+\begin{enumerate}
+\item[(iv)] (Non-identification.) Let $k$ be common, $X>k$, and $\xi,\Upsilon\in\mathbb R$. Let there be one firm for each $\ell\in[\ell_{lo},\ell_{hi}]$, $0<\ell_{lo}<\ell_{hi}$, with $\sigma^*(\ell_{hi},X)\le\bar\sigma$ and $m_0(\ell)=\Upsilon+[\xi+k+\alpha(X-k)]\Delta^*(\ell,X)$. Then the chosen points fill the segment $m^c=\Upsilon-kG+\xi\,(g^c-G)$, $g^c\in[g_{lo},g_{hi}]$, of slope $\xi$, and $\Psi$ has slope $\min\{\xi,0\}$ on $(g_{lo},g_{hi})$. Yet at its chosen point every firm's frontier has slope $-X$ and curvature $-(1-\alpha)(X-k)/(\alpha\Delta_i^*)$. Moreover, for every $\alpha'\in(0,1)$ and every $X'>k$ with $\bar\sigma\ge(X'-k)(g_{hi}-G)$, the same segment is generated by firms that have spend elasticity $\alpha'$, maximize $R_{X'}$, and have suitably chosen opportunities and intercepts; their frontiers then have slope $-X'$ and curvature $-(1-\alpha')(X'-k)/(\alpha'\Delta_i^*)$ at their chosen points. The cross-section therefore identifies neither the slope nor the curvature of any firm's frontier.
+\item[(v)] (Within-firm co-movement.) Fix a firm with $X>k$ and slack caps. In each period it observes $(m_{0t},\ell_t)$ and sets $\sigma_t=\sigma^*(\ell_t,X)$. It commits the cost block $(a^f+\sigma_t)S_t^e$ in dollars against planned revenue $S_t^e=S_{t-1}(1+g_t^e)$, where $g_t^e=G+\Delta^*(\ell_t,X)$ and $a^f\in[0,a]$ is the part of the cost floor fixed in advance. Realized growth is $g_t=g_t^e+\tilde g_t$, where $\tilde g_t$ is a growth surprise (for example, a shock to $\lambda h$ that arrives after spend is committed). The realized margin is then $m_t=m_{0t}+a^f-(a^f+\sigma_t)(1+g_t^e)/(1+g_t)-kg_t$. Let $(m_{0t},\ell_t,\tilde g_t)=(\bar m_0,\bar\ell,0)+\varepsilon z_t$, where the $z_t$ are identically distributed and bounded, with mean zero, and $z_{3t}$ is uncorrelated with $(z_{1t},z_{2t})$. Then, as $\varepsilon\to 0$, the population slope of $m_t$ on $g_t$ converges to
+\begin{equation}\label{eq:bW}
+\mathcal W=\frac{C_\ell-\bigl[k+\alpha(X-k)\bigr]V_\ell+\mathcal L\,V_{\tilde g}}{V_\ell+V_{\tilde g}},\qquad \mathcal L:=\frac{a^f+\sigma^*(\bar\ell,X)}{1+\bar g^e}-k,
+\end{equation}
+where $\bar g^e=G+\Delta^*(\bar\ell,X)$, $V_\ell=\Delta^{*\prime}(\bar\ell)^2\operatorname{Var}(z_2)$, $V_{\tilde g}=\operatorname{Var}(z_3)$, $C_\ell=\Delta^{*\prime}(\bar\ell)\operatorname{Cov}(z_1,z_2)$, $\Delta^{*\prime}$ is the derivative of $\Delta^*(\cdot,X)$, and $V_\ell+V_{\tilde g}>0$ is assumed. With anticipated opportunity shocks alone, $\mathcal W=-[k+\alpha(X-k)]<0$. In general, $\mathcal W>0$ if and only if $C_\ell+\mathcal L\,V_{\tilde g}>[k+\alpha(X-k)]V_\ell$.
+\end{enumerate}
+\end{proposition}
+
+For example, with $\alpha=0.3$, $k=0$, $G=0.1$, planned excess growth $\Delta^*=0.1$ and $a^f=0.3$, the expansion-path slope is $-0.3X$ and $\mathcal L=(0.3+0.03X)/1.2$. With $C_\ell=0$, a within-firm slope of zero requires growth surprises to account for a share $0.3X/(0.3X+\mathcal L)$ of within-firm growth variance: about 71\%, 80\% and 85\% at $X=2.5$, 5 and 9, and 52\% at $X=1$. The conclusion that surprises must supply most of the variance holds at every weight above about one.
+
+\begin{remark}[Segment-specific market growth]\label{rem:segments}
+\autoref{prop:industry}(i) uses the common market growth rate $G$: every firm can grow at $G$ at its highest margin, so the possibility envelope inherits the downward slope of firm frontiers. If market growth differs across segments, $\Phi$ need not be monotone. For example, let firm 1 have $(G_1,m_{01},k_1)=(0,0.2,0)$ with $\ell_1\bar\sigma^{\alpha}\ge 0.1$, and let firm 2 have $(G_2,m_{02},k_2)=(0.3,0.5,0)$. Then $\Phi(0.1)=m_1^*(0.1)<0.2<0.5=m_2^*(0.3)=\Phi(0.3)$, because firm 2 cannot grow more slowly than its market without negative spend.
+\end{remark}
+
+\begin{remark}[Mode of competition]\label{rem:bertrand}
+The conclusion $L\to 0$ in \autoref{prop:entry} requires post-entry competition that does not punish a second entrant too severely. Under homogeneous Bertrand competition with any sunk cost $F>0$, a second entrant would earn zero and lose $F$. A single firm therefore enters (provided monopoly profit covers the entry cost) and charges the monopoly price for every $F>0$, and incumbency itself becomes the scarce input. Under contestability (a fixed flow cost $\hat F$ that is not sunk), price equals average cost, so the markup is $\hat F/(Px)$ and vanishes as $F\to 0$, as under Cournot. A firm that rents all of its capital and pays for its customers as a flow has $k=k_a=0$ in \eqref{eq:Rentry}, so its competitive-limit score is $XG$. With differentiated products under monopolistic competition \citep{dixit1977monopolistic}, free entry dissipates profit through the number of varieties, while the markup over marginal cost stays at the level that substitutability between varieties sets; the limit $L\to0$ then fails, and the competitive-limit score includes that markup.
+\end{remark}
+
+\begin{lemma}[Price channels]\label{lem:prices}
+\begin{enumerate}
+\item[(a)] Let $u$ be the non-fee unit cost (human service plus compute, $u=u_h+p_c\iota$), let $p(u)$ be the equilibrium output price, assumed differentiable, and let $\epsilon_p:=d\ln p/d\ln u$ be the pass-through elasticity. Then $\gamma=1-f-u/p$ and $d\gamma/du=-(1-\epsilon_p)/p$, so a cost reduction raises the gross margin if and only if $\epsilon_p<1$. With $f=0$ and full unit cost $\hat c=u+rk_u$: under Cournot with linear demand, $\epsilon_p=\tfrac{n}{n+1}\tfrac{u}{p}<1$; under monopoly with constant-elasticity demand and under perfect competition, $p$ is proportional to $\hat c=u+rk_u$, so $\epsilon_p=u/\hat c\le 1$, with equality if and only if $k_u=0$. The pass-through elasticity is not the pass-through rate $\varphi:=dp/du=\epsilon_p\,p/u$, which exceeds one under constant-elasticity monopoly; Section~\ref{sec:horizons-ceiling} works with the rate. The lemma is stated for the cost of revenue; because every cost in the model is a share of revenue, the same algebra applies to any unit cost, which is how Section~\ref{sec:horizons-ceiling} exposes overhead too.
+Part (a) is a special case of the general pass-through formulas of \citet{weyl2013pass}.
+\item[(b)] Suppose demand at constant prices grows at $G_Q$ with constant price elasticity $\eta_D>0$, and the output price falls at rate $\delta_p$. Then nominal market growth is $G=G_Q-(1-\eta_D)\delta_p$. Price deflation therefore lowers $G$ when demand is inelastic ($\eta_D<1$) and raises it when demand is elastic ($\eta_D>1$).
+\end{enumerate}
+\end{lemma}
+
+Table~\ref{tab:passthrough-recon} reports the growth threshold of Section~\ref{sec:horizons-ceiling} under each reading of pass-through: the central reading, in which the price falls by the industry rate $\varphi$ times the whole unit-cost saving and the margin is taken at the lower price, the alternatives in which only the cost-of-revenue saving is exposed or the rate is $\varphi(1-H)$, and the first version's reading.
+
+\IfFileExists{sections/tables/tab_passthrough_recon.tex}{\input{sections/tables/tab_passthrough_recon.tex}}{}
+
+\begin{remark}[AI shifts of the frontier]\label{prop:ai-shift}
+Let the parameters $(m_0,k,\lambda,G)$ change from $\zeta_0$ to $\zeta_1$, with $s$, $\alpha$ and $\bar\sigma$ fixed.
+\begin{enumerate}
+\item[(a)] (Up and out.) Suppose that $\lambda$ and $G$ weakly rise, $k$ weakly falls, and $m_0-kG$ weakly rises. Then every point feasible at $\zeta_0$ is weakly dominated by a point feasible at $\zeta_1$, and $R_X^*$ weakly rises for every $X\ge 0$. The reverse changes shift the frontier down and in and weakly lower $R_X^*$ for every $X\ge 0$.
+\item[(b)] (Rotation.) If only $m_0$ and $k$ change, by $dm_0>0$ and $dk>0$, the new frontier lies above the old one for $g<dm_0/dk$ and below it for $g>dm_0/dk$.
+\end{enumerate}
+\end{remark}
+
+\begin{lemma}[Expected frontier and the value of flexibility]\label{lem:expected-frontier}
+Under \autoref{def:attainable}(b), with $m^*(g;\vartheta):=-\infty$ for $g<G(\vartheta)$, for every plan and date:
+\begin{enumerate}
+\item[(a)] $m^{\mathbb E}_t$ is concave; if every $\delta\vartheta_p$ changes only $m_0$ and $k$, then $m^{\mathbb E}_t(g)=m^*(g;\mathbb E\vartheta_t)$, the frontier at the expected parameters.
+\item[(b)] $\mathbb E\,R^*_X(\vartheta_t)\ge\sup_g[Xg+m^{\mathbb E}_t(g)]$. A firm that must fix its growth rate before the outcomes are known scores at most $\sup_g[Xg+m^{\mathbb E}_t(g)]$ in expectation, and the difference is the value of choosing growth after the outcomes are known.
+\end{enumerate}
+\end{lemma}

@@ -1,0 +1,23 @@
+benchmarks (2016, 2020, 2024): median [0.168, 0.172, 0.119] mean [0.214, 0.22, 0.125] aggregate [0.021, 0.147, 0.132]
+E2  G=median (paper)            sel g>G+0.00: n= 636 median ratio 3.26 -> weight 7.2 to 13.0
+E2  G=median (paper)            sel g>G+0.05: n= 471 median ratio 2.53 -> weight 5.6 to 10.1
+E2  G=aggregate revenue growth  sel g>G+0.00: n= 796 median ratio 2.86 -> weight 6.4 to 11.4
+E2  G=aggregate revenue growth  sel g>G+0.05: n= 605 median ratio 2.19 -> weight 4.9 to 8.8
+E2  G=median + 5pp              sel g>G+0.00: n= 471 median ratio 3.58 -> weight 8.0 to 14.3
+E2  G=median + 5pp              sel g>G+0.05: n= 351 median ratio 2.87 -> weight 6.4 to 11.5
+E2  G=median - 5pp              sel g>G+0.00: n= 828 median ratio 2.91 -> weight 6.5 to 11.7
+E2  G=median - 5pp              sel g>G+0.05: n= 637 median ratio 2.24 -> weight 5.0 to 9.0
+E2 ratio of medians 3.60; share of ratios > 10: 0.18
+E2 median S&M share among firm-years at or below the median growth: 0.255 (above: 0.414)
+E2 median of (S&M share - slow-grower median S&M) / excess growth: 1.13
+E1  G=median (paper)            sel g>G+0.00: n= 901 median ratio 2.91 -> weight 6.5 to 11.6
+E1  G=median (paper)            sel g>G+0.05: n= 684 median ratio 2.32 -> weight 5.2 to 9.3
+E1  G=aggregate revenue growth  sel g>G+0.00: n=1109 median ratio 2.61 -> weight 5.8 to 10.4
+E1  G=aggregate revenue growth  sel g>G+0.05: n= 866 median ratio 2.01 -> weight 4.5 to 8.1
+E1  G=median + 5pp              sel g>G+0.00: n= 684 median ratio 3.34 -> weight 7.4 to 13.3
+E1  G=median + 5pp              sel g>G+0.05: n= 525 median ratio 2.51 -> weight 5.6 to 10.0
+E1  G=median - 5pp              sel g>G+0.00: n=1145 median ratio 2.60 -> weight 5.8 to 10.4
+E1  G=median - 5pp              sel g>G+0.05: n= 902 median ratio 2.10 -> weight 4.7 to 8.4
+E1 ratio of medians 3.08; share of ratios > 10: 0.16
+E1 median S&M share among firm-years at or below the median growth: 0.251 (above: 0.388)
+E1 median of (S&M share - slow-grower median S&M) / excess growth: 0.99

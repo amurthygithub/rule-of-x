@@ -1,0 +1,7 @@
+field,value
+security_team_fte,13
+certifications,soc2; iso27001
+risk_appetite_max_class,confidential
+vendor_preference,either
+incidents_last_3_years,2
+max_tolerable_loss,25920000.0

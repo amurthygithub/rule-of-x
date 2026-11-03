@@ -1,0 +1,395 @@
+{
+ "binned": {
+  "(0.0, 0.1]": {
+   "n": 259,
+   "mean_exc": -0.0131,
+   "med_exc": -0.0332,
+   "q75_exc": 0.0816
+  },
+  "(0.1, 0.2]": {
+   "n": 526,
+   "mean_exc": -0.0154,
+   "med_exc": -0.0378,
+   "q75_exc": 0.085
+  },
+  "(0.2, 0.3]": {
+   "n": 585,
+   "mean_exc": 0.0064,
+   "med_exc": -0.0166,
+   "q75_exc": 0.0743
+  },
+  "(0.3, 0.4]": {
+   "n": 450,
+   "mean_exc": 0.0208,
+   "med_exc": -0.0023,
+   "q75_exc": 0.1028
+  },
+  "(0.4, 0.5]": {
+   "n": 318,
+   "mean_exc": 0.0736,
+   "med_exc": 0.0639,
+   "q75_exc": 0.1653
+  },
+  "(0.5, 0.7]": {
+   "n": 354,
+   "mean_exc": 0.1461,
+   "med_exc": 0.1275,
+   "q75_exc": 0.256
+  },
+  "(0.7, 1.5]": {
+   "n": 85,
+   "mean_exc": 0.2206,
+   "med_exc": 0.2704,
+   "q75_exc": 0.4371
+  }
+ },
+ "nls_linear": {
+  "lam": 0.359,
+  "alpha": 1.571
+ },
+ "nls_soft_l1": {
+  "lam": 0.422,
+  "alpha": 1.72
+ },
+ "opt_spend_alpha0.25_lh0.25": {
+  "sigma_star": 0.0248,
+  "Delta_star": 0.099
+ },
+ "opt_spend_alpha0.25_lh0.15": {
+  "sigma_star": 0.0126,
+  "Delta_star": 0.05
+ },
+ "opt_spend_alpha0.45_lh0.33": {
+  "sigma_star": 0.0312,
+  "Delta_star": 0.069
+ },
+ "opt_spend_alpha0.2_lh0.24": {
+  "sigma_star": 0.0225,
+  "Delta_star": 0.112
+ },
+ "obs_sm_median": 0.2862656159040838,
+ "calib_sens_fixed_lh": [
+  {
+   "alpha": 0.2,
+   "horizon": "2025 (calibrated)",
+   "typical": "47-47",
+   "exceptional": "91-127",
+   "exc_k05": "55-70",
+   "g_star_exc": "77-121"
+  },
+  {
+   "alpha": 0.2,
+   "horizon": "2028",
+   "typical": "49-69",
+   "exceptional": "129-228",
+   "exc_k05": "72-121",
+   "g_star_exc": "121-230"
+  },
+  {
+   "alpha": 0.2,
+   "horizon": "2031",
+   "typical": "57-84",
+   "exceptional": "101-202",
+   "exc_k05": "66-118",
+   "g_star_exc": "75-179"
+  },
+  {
+   "alpha": 0.2,
+   "horizon": "2036",
+   "typical": "59-103",
+   "exceptional": "72-183",
+   "exc_k05": "57-116",
+   "g_star_exc": "33-141"
+  },
+  {
+   "alpha": 0.2,
+   "horizon": "lam_h for R*=1000 (m0=.5,G=.2)",
+   "typical": "9.8",
+   "exceptional": "lam_h for R*=100 (2025): 1.13",
+   "exc_k05": "",
+   "g_star_exc": ""
+  },
+  {
+   "alpha": 0.25,
+   "horizon": "2025 (calibrated)",
+   "typical": "45-45",
+   "exceptional": "85-119",
+   "exc_k05": "52-65",
+   "g_star_exc": "73-118"
+  },
+  {
+   "alpha": 0.25,
+   "horizon": "2028",
+   "typical": "47-67",
+   "exceptional": "121-220",
+   "exc_k05": "67-114",
+   "g_star_exc": "118-234"
+  },
+  {
+   "alpha": 0.25,
+   "horizon": "2031",
+   "typical": "55-82",
+   "exceptional": "95-194",
+   "exc_k05": "63-112",
+   "g_star_exc": "71-179"
+  },
+  {
+   "alpha": 0.25,
+   "horizon": "2036",
+   "typical": "57-101",
+   "exceptional": "69-175",
+   "exc_k05": "55-111",
+   "g_star_exc": "30-138"
+  },
+  {
+   "alpha": 0.25,
+   "horizon": "lam_h for R*=1000 (m0=.5,G=.2)",
+   "typical": "9.3",
+   "exceptional": "lam_h for R*=100 (2025): 1.23",
+   "exc_k05": "",
+   "g_star_exc": ""
+  },
+  {
+   "alpha": 0.3,
+   "horizon": "2025 (calibrated)",
+   "typical": "44-44",
+   "exceptional": "80-113",
+   "exc_k05": "49-61",
+   "g_star_exc": "70-117"
+  },
+  {
+   "alpha": 0.3,
+   "horizon": "2028",
+   "typical": "46-66",
+   "exceptional": "115-215",
+   "exc_k05": "63-107",
+   "g_star_exc": "117-241"
+  },
+  {
+   "alpha": 0.3,
+   "horizon": "2031",
+   "typical": "54-81",
+   "exceptional": "90-187",
+   "exc_k05": "60-107",
+   "g_star_exc": "68-181"
+  },
+  {
+   "alpha": 0.3,
+   "horizon": "2036",
+   "typical": "56-100",
+   "exceptional": "66-169",
+   "exc_k05": "53-107",
+   "g_star_exc": "27-137"
+  },
+  {
+   "alpha": 0.3,
+   "horizon": "lam_h for R*=1000 (m0=.5,G=.2)",
+   "typical": "8.8",
+   "exceptional": "lam_h for R*=100 (2025): 1.32",
+   "exc_k05": "",
+   "g_star_exc": ""
+  },
+  {
+   "alpha": 0.35,
+   "horizon": "2025 (calibrated)",
+   "typical": "42-42",
+   "exceptional": "75-107",
+   "exc_k05": "46-57",
+   "g_star_exc": "67-116"
+  },
+  {
+   "alpha": 0.35,
+   "horizon": "2028",
+   "typical": "44-64",
+   "exceptional": "109-211",
+   "exc_k05": "59-102",
+   "g_star_exc": "116-253"
+  },
+  {
+   "alpha": 0.35,
+   "horizon": "2031",
+   "typical": "52-79",
+   "exceptional": "85-182",
+   "exc_k05": "57-102",
+   "g_star_exc": "65-185"
+  },
+  {
+   "alpha": 0.35,
+   "horizon": "2036",
+   "typical": "54-98",
+   "exceptional": "63-163",
+   "exc_k05": "52-103",
+   "g_star_exc": "25-136"
+  },
+  {
+   "alpha": 0.35,
+   "horizon": "lam_h for R*=1000 (m0=.5,G=.2)",
+   "typical": "8.1",
+   "exceptional": "lam_h for R*=100 (2025): 1.40",
+   "exc_k05": "",
+   "g_star_exc": ""
+  },
+  {
+   "alpha": 0.45,
+   "horizon": "2025 (calibrated)",
+   "typical": "40-40",
+   "exceptional": "67-98",
+   "exc_k05": "41-50",
+   "g_star_exc": "62-119"
+  },
+  {
+   "alpha": 0.45,
+   "horizon": "2028",
+   "typical": "42-62",
+   "exceptional": "100-211",
+   "exc_k05": "52-93",
+   "g_star_exc": "119-295"
+  },
+  {
+   "alpha": 0.45,
+   "horizon": "2031",
+   "typical": "50-77",
+   "exceptional": "77-176",
+   "exc_k05": "52-94",
+   "g_star_exc": "60-203"
+  },
+  {
+   "alpha": 0.45,
+   "horizon": "2036",
+   "typical": "52-96",
+   "exceptional": "58-154",
+   "exc_k05": "50-96",
+   "g_star_exc": "20-139"
+  },
+  {
+   "alpha": 0.45,
+   "horizon": "lam_h for R*=1000 (m0=.5,G=.2)",
+   "typical": "6.8",
+   "exceptional": "lam_h for R*=100 (2025): 1.53",
+   "exc_k05": "",
+   "g_star_exc": ""
+  }
+ ],
+ "calib_sens_reanchored": [
+  {
+   "alpha": 0.2,
+   "horizon": "2025 (calibrated)",
+   "lam_exc_2025": "0.90-1.39",
+   "exceptional": "86-118"
+  },
+  {
+   "alpha": 0.2,
+   "horizon": "2028",
+   "lam_exc_2025": "0.90-1.39",
+   "exceptional": "120-211"
+  },
+  {
+   "alpha": 0.2,
+   "horizon": "2031",
+   "lam_exc_2025": "0.90-1.39",
+   "exceptional": "96-189"
+  },
+  {
+   "alpha": 0.2,
+   "horizon": "2036",
+   "lam_exc_2025": "0.90-1.39",
+   "exceptional": "70-174"
+  },
+  {
+   "alpha": 0.25,
+   "horizon": "2025 (calibrated)",
+   "lam_exc_2025": "1.00-1.50",
+   "exceptional": "85-119"
+  },
+  {
+   "alpha": 0.25,
+   "horizon": "2028",
+   "lam_exc_2025": "1.00-1.50",
+   "exceptional": "121-220"
+  },
+  {
+   "alpha": 0.25,
+   "horizon": "2031",
+   "lam_exc_2025": "1.00-1.50",
+   "exceptional": "95-194"
+  },
+  {
+   "alpha": 0.25,
+   "horizon": "2036",
+   "lam_exc_2025": "1.00-1.50",
+   "exceptional": "69-175"
+  },
+  {
+   "alpha": 0.3,
+   "horizon": "2025 (calibrated)",
+   "lam_exc_2025": "1.09-1.59",
+   "exceptional": "84-121"
+  },
+  {
+   "alpha": 0.3,
+   "horizon": "2028",
+   "lam_exc_2025": "1.09-1.59",
+   "exceptional": "123-231"
+  },
+  {
+   "alpha": 0.3,
+   "horizon": "2031",
+   "lam_exc_2025": "1.09-1.59",
+   "exceptional": "94-200"
+  },
+  {
+   "alpha": 0.3,
+   "horizon": "2036",
+   "lam_exc_2025": "1.09-1.59",
+   "exceptional": "67-177"
+  },
+  {
+   "alpha": 0.35,
+   "horizon": "2025 (calibrated)",
+   "lam_exc_2025": "1.17-1.67",
+   "exceptional": "83-123"
+  },
+  {
+   "alpha": 0.35,
+   "horizon": "2028",
+   "lam_exc_2025": "1.17-1.67",
+   "exceptional": "125-246"
+  },
+  {
+   "alpha": 0.35,
+   "horizon": "2031",
+   "lam_exc_2025": "1.17-1.67",
+   "exceptional": "93-207"
+  },
+  {
+   "alpha": 0.35,
+   "horizon": "2036",
+   "lam_exc_2025": "1.17-1.67",
+   "exceptional": "66-179"
+  },
+  {
+   "alpha": 0.45,
+   "horizon": "2025 (calibrated)",
+   "lam_exc_2025": "1.32-1.77",
+   "exceptional": "81-128"
+  },
+  {
+   "alpha": 0.45,
+   "horizon": "2028",
+   "lam_exc_2025": "1.32-1.77",
+   "exceptional": "130-287"
+  },
+  {
+   "alpha": 0.45,
+   "horizon": "2031",
+   "lam_exc_2025": "1.32-1.77",
+   "exceptional": "91-226"
+  },
+  {
+   "alpha": 0.45,
+   "horizon": "2036",
+   "lam_exc_2025": "1.32-1.77",
+   "exceptional": "62-184"
+  }
+ ]
+}

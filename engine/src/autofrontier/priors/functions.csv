@@ -1,0 +1,16 @@
+function_id,function_name,description,apqc_category,cost_bucket,customer_facing
+product_engineering,Product and engineering,"Product management, design, software engineering, QA, data science",2.0 Develop and Manage Products and Services,rnd,0
+customer_support,Customer support,"Ticket handling, troubleshooting and customer communication",6.0 Manage Customer Service,cogs,1
+customer_success,Customer success,"Onboarding, adoption, renewals and account health",6.0 Manage Customer Service,sm,1
+professional_services,Professional services,"Implementation, configuration, training and consulting delivered to customers",5.0 Deliver Services,cogs,1
+sales,Sales,"Prospecting, selling, quoting and closing",3.0 Market and Sell Products and Services,sm,1
+marketing,Marketing,"Demand generation, content, brand, events and analytics",3.0 Market and Sell Products and Services,sm,0
+finance_accounting,Finance and accounting,"Payables, receivables, close, reporting, FP&A, tax and treasury",9.0 Manage Financial Resources,ga,0
+hr,Human resources,"Recruiting, onboarding, payroll, benefits, learning and employee service",7.0 Develop and Manage Human Capital,ga,0
+legal_compliance,Legal and compliance,"Contracts, counsel, regulatory compliance and privacy",11.0 Manage Enterprise Risk Compliance Remediation and Resiliency,ga,0
+it,Information technology,"Internal IT service, access, infrastructure and security operations",8.0 Manage Information Technology,ga,0
+procurement,Procurement,"Sourcing, purchasing and supplier management",4.0 Manage Supply Chain for Physical Products,ga,0
+facilities,Facilities,"Workplace, maintenance, security and reception",10.0 Acquire Construct and Manage Assets,ga,0
+operations_fulfilment,Operations and fulfilment,"Service delivery operations: hosting, provisioning, incident response",5.0 Deliver Services,cogs,0
+risk_audit_governance,"Risk, audit and governance","Internal audit, SOX controls testing, enterprise risk and AI governance",11.0 Manage Enterprise Risk Compliance Remediation and Resiliency,ga,0
+executive,Executive,"Executive leadership, strategy, board and investor relations",1.0 Develop Vision and Strategy,ga,0

@@ -1,0 +1,2 @@
+E2 n=20  median Pi_ub -0.7 [90% -15.7, 16.3]  median Pi_lb 19.8 [10.8, 26.9]  transient share ub -1% [-35, 29]  lb 39% [23, 49]
+E1 n=15  median Pi_ub 6.7 [90% -16.2, 16.7]  median Pi_lb 24.5 [11.6, 26.9]  transient share ub 12% [-36, 28]  lb 45% [23, 49]

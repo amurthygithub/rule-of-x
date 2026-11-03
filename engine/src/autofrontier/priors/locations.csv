@@ -1,0 +1,14 @@
+pattern,wage_index,region
+san francisco|bay area|san jose|palo alto|mountain view,1.25,US
+new york|nyc|manhattan,1.20,US
+seattle|boston,1.15,US
+remote us|united states|usa|us remote,1.05,US
+austin|denver|chicago|atlanta,1.00,US
+london,1.05,UK
+dublin|ireland,0.95,EU
+amsterdam|berlin|munich|paris,0.95,EU
+krakow|warsaw|poland|lisbon|portugal,0.50,EU
+bangalore|bengaluru|hyderabad|pune|india,0.30,IN
+manila|philippines|cebu,0.25,PH
+mexico city|guadalajara|mexico,0.40,LATAM
+toronto|vancouver|canada,0.85,CA

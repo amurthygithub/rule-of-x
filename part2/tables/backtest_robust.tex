@@ -1,0 +1,57 @@
+\begin{table}[tbp]
+\centering
+\caption{Backtest robustness, confounders and placebos (change in log employment)}\label{tab:backtest-robust}
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}lccccc@{}}
+\toprule
+ & Exposure & Automate & Capability- & Capability-feasible & \\
+ & & & feasible & with exposure & $N$\\
+\midrule
+\multicolumn{6}{@{}l}{\emph{Baseline and controls}}\\
+Baseline & $-$0.052 (0.017) & $-$0.046 (0.012) & $-$0.047 (0.012) & $-$0.041 (0.016) & 782\\
+Employment-weighted & $-$0.034 (0.016) & $-$0.023 (0.010) & $-$0.023 (0.011) & $-$0.016 (0.014) & 782\\
+Clustered by SOC minor group & $-$0.052 (0.017) & $-$0.046 (0.014) & $-$0.047 (0.014) & $-$0.041 (0.016) & 782\\
+Without controls or group effects & 0.007 (0.009) & $-$0.031 (0.009) & $-$0.032 (0.009) & $-$0.062 (0.010) & 782\\
+Trend sample, baseline controls & $-$0.053 (0.017) & $-$0.057 (0.011) & $-$0.058 (0.011) & $-$0.062 (0.016) & 689\\
+Trend sample, plus 2016--21 change & $-$0.049 (0.017) & $-$0.056 (0.011) & $-$0.056 (0.012) & $-$0.062 (0.016) & 689\\
+Plus BLS 2020--30 projected growth & $-$0.036 (0.016) & $-$0.043 (0.010) & $-$0.043 (0.010) & $-$0.049 (0.014) & 718\\
+2019 sample, baseline controls & $-$0.060 (0.016) & $-$0.056 (0.012) & $-$0.057 (0.012) & $-$0.054 (0.016) & 718\\
+2019 sample, plus 2019--21 change & $-$0.060 (0.016) & $-$0.055 (0.012) & $-$0.056 (0.012) & $-$0.052 (0.016) & 718\\
+2019 sample, plus 2019--20 COVID shock & $-$0.060 (0.016) & $-$0.056 (0.012) & $-$0.057 (0.012) & $-$0.054 (0.016) & 718\\
+2016--19 sample, baseline controls & $-$0.053 (0.017) & $-$0.057 (0.011) & $-$0.058 (0.011) & $-$0.062 (0.016) & 689\\
+2016--19 sample, plus 2016--19 change & $-$0.046 (0.016) & $-$0.050 (0.011) & $-$0.050 (0.011) & $-$0.053 (0.015) & 689\\
+\multicolumn{6}{@{}l}{\emph{Confounders: occupations excluded}}\\
+Computer occupations & $-$0.045 (0.016) & $-$0.042 (0.012) & $-$0.043 (0.012) & $-$0.040 (0.016) & 760\\
+Credit and real-estate occupations & $-$0.053 (0.017) & $-$0.045 (0.012) & $-$0.046 (0.012) & $-$0.039 (0.016) & 776\\
+COVID-rebound groups & $-$0.046 (0.018) & $-$0.038 (0.013) & $-$0.040 (0.013) & $-$0.035 (0.017) & 702\\
+All three & $-$0.038 (0.018) & $-$0.032 (0.014) & $-$0.034 (0.014) & $-$0.030 (0.018) & 674\\
+\multicolumn{6}{@{}l}{\emph{Model variants (scores replaced)}}\\
+Share in May 2025 only &  & $-$0.058 (0.014) &  &  & 782\\
+Capability doubling 207 days &  & $-$0.050 (0.013) & $-$0.051 (0.013) & $-$0.048 (0.017) & 782\\
+Capability path: METR TH1.0 trend &  & $-$0.025 (0.011) & $-$0.026 (0.011) & $-$0.012 (0.014) & 782\\
+Task length from AEI times &  & $-$0.020 (0.008) & $-$0.020 (0.008) & $-$0.014 (0.009) & 782\\
+Inference price $\times 10$ &  & $-$0.027 (0.011) &  &  & 782\\
+No outsourcing option &  & $-$0.046 (0.012) &  &  & 782\\
+Data readiness 0.2 &  & $-$0.045 (0.012) &  &  & 782\\
+Data readiness 0.8 &  & $-$0.047 (0.012) &  &  & 782\\
+Review time ratio 0.37 &  & $-$0.047 (0.012) &  &  & 782\\
+Review time ratio 0.8 &  & $-$0.009 (0.010) &  &  & 782\\
+Review time ratio 1.19 &  & 0.007 (0.011) &  &  & 782\\
+Human-rated exposure labels & $-$0.017 (0.018) & $-$0.034 (0.012) & $-$0.034 (0.012) & $-$0.042 (0.014) & 782\\
+\multicolumn{6}{@{}l}{\emph{Placebos: change from 2016 to 2021}}\\
+Log employment & $-$0.039 (0.024) & $-$0.016 (0.016) & $-$0.020 (0.017) & $-$0.002 (0.020) & 689\\
+Log employment, winsorized 1/99 & $-$0.028 (0.022) & $-$0.009 (0.014) & $-$0.012 (0.014) & 0.003 (0.019) & 689\\
+Log employment, split codes included & $-$0.024 (0.023) & $-$0.008 (0.015) & $-$0.011 (0.015) & 0.001 (0.019) & 744\\
+Log employment, identity rule (superseded) & $-$0.036 (0.026) & $-$0.014 (0.017) & $-$0.018 (0.018) & 0.000 (0.022) & 638\\
+Log mean wage & $-$0.002 (0.007) & $-$0.005 (0.005) & $-$0.005 (0.005) & $-$0.007 (0.007) & 689\\
+\multicolumn{6}{@{}l}{\emph{Placebos: change from 2016 to 2019 (before COVID)}}\\
+Log employment, 2016--19 & $-$0.022 (0.020) & $-$0.025 (0.011) & $-$0.027 (0.011) & $-$0.032 (0.015) & 689\\
+Log mean wage, 2016--19 & $-$0.009 (0.005) & $-$0.002 (0.003) & $-$0.002 (0.003) & 0.005 (0.005) & 689\\
+\bottomrule
+\end{tabular}
+\smallskip
+\begin{minipage}{0.97\linewidth}\footnotesize
+Notes: coefficients on standardized scores (columns 1 to 3 from separate regressions; column 4 is the capability-feasible score in a regression that also includes exposure), with the controls of Table~\ref{tab:backtest-occ} and HC1 standard errors in parentheses unless stated. The automation and capability-feasible scores are columns (5) and (3) of Table~\ref{tab:backtest-decomp}. In the variant rows a blank cell means the score is unchanged from the baseline. The 2016 rows map OEWS May 2016 (verified against BLS's national tables) to SOC 2018 with the official BLS crosswalk, using occupations whose crosswalk group contains no other 2021 occupation; the split-code and identity-rule rows are variants. The 2019 and 2020 rows use the codes that the hybrid May 2019 and May 2020 files share with SOC 2018. Computer occupations: SOC 15 and 11-3021. Credit and real-estate occupations: seven codes listed in \texttt{notes/backtest\_notes.md}. COVID-rebound groups: SOC 27, 35 and 39.
+\end{minipage}
+\end{table}

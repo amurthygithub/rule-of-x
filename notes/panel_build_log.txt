@@ -1,0 +1,7 @@
+firms: 660; firm-years (any fiscal year): 5,741
+revenue spikes dropped: 1
+duplicate registrant pairs: 7; registrants dropped: 7; predecessor overlap years dropped: 5
+broad (SIC 7370-7374): 3,619 firm-years, 540 firms; by period: 2010-15 1079, 2016-19 864, 2020-22 873, 2023-25 803
+  capex missing 0.022; sbc missing 0.010; acquisition-flagged 0.228; discontinued ops 0.098; items from a later filing 0.379; S&M available 0.769; finance-lease ROU reported 0.053
+core (SIC 7372): 1,929 firm-years, 293 firms; by period: 2010-15 517, 2016-19 458, 2020-22 496, 2023-25 458
+  capex missing 0.022; sbc missing 0.010; acquisition-flagged 0.243; discontinued ops 0.060; items from a later filing 0.351; S&M available 0.900; finance-lease ROU reported 0.051

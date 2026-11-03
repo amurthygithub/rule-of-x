@@ -1,0 +1,43 @@
+% Paper 1: The Rule of 40 as a Price Line: Efficient Frontiers, Economic Profit and the Limits of AI Automation.
+% Main paper. Its Supplementary Appendix is paper1/supplement.tex, a separate PDF; the two read each other's
+% cross-references through xr-hyper (\externaldocument), so they are built together by code/build_paper1.sh:
+%   python3 code/calibrate_horizons.py && python3 code/paper1_macros.py && bash code/build_paper1.sh
+% (code/regenerate_all.sh, stage latex_p1, runs the same script). The build runs in a scratch folder from which both
+% .aux files are visible and copies the two PDFs to paper1/ only if neither has an undefined reference or citation.
+% The arXiv abstract field takes paper1/abstract_plain.txt, generated from sections/abstract.tex by code/paper1_macros.py.
+\documentclass[11pt]{article}
+\input{paper1/p1_preamble.tex}
+\externaldocument[][nocite]{supplement}[supplement.pdf]
+\hypersetup{pdftitle={\PoneTitle},pdfauthor={Akshaya Bangalore Sreenivasa Murthy}}
+
+\title{The Rule of 40 as a Price Line:\\ Efficient Frontiers, Economic Profit and the Limits of AI Automation}
+\author{Akshaya Bangalore Sreenivasa Murthy\thanks{Independent researcher. Correspondence: \href{mailto:bs.akshay@gmail.com}{bs.akshay@gmail.com}. This paper was produced in a documented collaboration between the author and AI research agents; Appendix~\ref{app:protocol} describes the protocol, the division of labor and the decisions the author made. The author takes full responsibility for all content. Funding: the author received no funding for this work. Competing interests: the author declares no competing interests. A Supplementary Appendix, distributed with this paper, contains the proofs, the sources of the parameters, further tables and the detailed protocol records. Data and code are available from the author. \PoneRights}}
+\date{November 2026}
+
+\begin{document}
+\maketitle
+
+\input{sections/abstract.tex}
+\IfFileExists{sections/exec_summary.tex}{\input{sections/exec_summary.tex}}{}
+
+\input{sections/intro.tex}
+\input{sections/literature.tex}
+\input{sections/model.tex}
+\input{sections/data.tex}
+\input{sections/empirics.tex}
+\IfFileExists{sections/measurement_acquired.tex}{\input{sections/measurement_acquired.tex}}{}
+\input{sections/horizons.tex}
+\input{sections/discussion.tex}
+\input{sections/conclusion.tex}
+
+{\footnotesize\setstretch{1.0}
+\setlength{\bibsep}{1pt plus 1pt}
+\bibliographystyle{plainnat_p1}
+\bibliography{paper1/refs_paper1}
+}
+
+\appendix
+\small\setstretch{1.0}
+\input{sections/appendix_protocol.tex}
+
+\end{document}

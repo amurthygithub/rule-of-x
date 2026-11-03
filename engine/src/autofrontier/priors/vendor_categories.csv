@@ -1,0 +1,17 @@
+category,function_id,labor_outsourcing,family,cost_type
+bpo_customer_support,customer_support,1,support_agent,outsourcing
+bpo_finance,finance_accounting,1,clerical,outsourcing
+bpo_hr,hr,1,clerical,outsourcing
+it_outsourcing,it,1,it_ops,outsourcing
+staff_augmentation,product_engineering,1,software,outsourcing
+recruiting,hr,0,,professional_fees
+legal_services,legal_compliance,1,legal,outsourcing
+audit_tax_services,finance_accounting,0,,professional_fees
+consulting,executive,0,,professional_fees
+marketing_agency,marketing,1,marketing,outsourcing
+cloud_infrastructure,operations_fulfilment,0,,compute
+software_saas,it,0,,software
+facilities_services,facilities,1,facilities_phys,outsourcing
+real_estate,facilities,0,,facilities
+travel,executive,0,,travel
+other,executive,0,,other

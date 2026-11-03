@@ -1,0 +1,6 @@
+m_op paper 0.117 0.037 3787
+m_op organic 0.129 0.04 3336
+m_op organic, |g|<=0.6 0.171 0.055 3195
+m_fcf_sbc paper 0.042 0.031 3783
+m_fcf_sbc organic 0.063 0.033 3332
+m_fcf_sbc organic, |g|<=0.6 0.049 0.035 3191

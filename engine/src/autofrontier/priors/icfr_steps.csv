@@ -1,0 +1,137 @@
+process_id,step,dwa_id,step_name,icfr_step,icfr_condition,icfr_channel,icfr_basis,icfr_source,typical_systems,financial_system_written
+P01,1,4.A.2.a.3.a.2,Verify customer and order data,True,,process,"revenue and receivables are significant accounts (PCAOB AS 2201 para. 28-33: significant accounts and relevant assertions); common SOX process scoping; class b, PCAOB AS 2201; common SOX scoping",icfr_scope.csv (full process),CRM; billing (customer master); ERP/GL (customer master),
+P01,2,4.A.3.b.6.a.2,Prepare invoice,True,,process,"revenue and receivables are significant accounts (PCAOB AS 2201 para. 28-33: significant accounts and relevant assertions); common SOX process scoping; class b, PCAOB AS 2201; common SOX scoping",icfr_scope.csv (full process),billing; ERP/GL (AR),billing (invoice)
+P01,3,4.A.3.b.6.j.3,Record receivable,True,,process,"revenue and receivables are significant accounts (PCAOB AS 2201 para. 28-33: significant accounts and relevant assertions); common SOX process scoping; class b, PCAOB AS 2201; common SOX scoping",icfr_scope.csv (full process),ERP/GL (AR subledger),ERP/GL (AR subledger)
+P01,4,4.A.4.c.3.d.1,Collect payment,True,,process,"revenue and receivables are significant accounts (PCAOB AS 2201 para. 28-33: significant accounts and relevant assertions); common SOX process scoping; class b, PCAOB AS 2201; common SOX scoping",icfr_scope.csv (full process),billing; payment gateway; bank portal,billing (payment status)
+P01,5,4.A.2.a.2.d.1,Apply cash and reconcile,True,,process,"revenue and receivables are significant accounts (PCAOB AS 2201 para. 28-33: significant accounts and relevant assertions); common SOX process scoping; class b, PCAOB AS 2201; common SOX scoping",icfr_scope.csv (full process),"ERP/GL (AR, cash); bank feed",ERP/GL (cash application)
+P01,6,4.A.4.a.8.c.1,Resolve billing disputes,True,,process,"revenue and receivables are significant accounts (PCAOB AS 2201 para. 28-33: significant accounts and relevant assertions); common SOX process scoping; class b, PCAOB AS 2201; common SOX scoping",icfr_scope.csv (full process),ticketing; CRM; billing (credits and adjustments),"billing (credit memos, adjustments)"
+P02,1,4.A.1.a.1.g.1,Identify need and gather supplier information,True,,process,"purchases, payables and cash disbursements are significant accounts; PO approval and vendor master changes are key controls (AS 2201; common SOX scoping); class b, PCAOB AS 2201; common SOX scoping",icfr_scope.csv (full process),procurement (P2P); ERP (vendor master),ERP (vendor master)
+P02,2,4.A.4.a.7.b.10,Negotiate terms,True,,process,"purchases, payables and cash disbursements are significant accounts; PO approval and vendor master changes are key controls (AS 2201; common SOX scoping); class b, PCAOB AS 2201; common SOX scoping",icfr_scope.csv (full process),contract management (CLM); procurement (P2P),
+P02,3,4.A.4.c.3.e.6,Issue purchase order,True,,process,"purchases, payables and cash disbursements are significant accounts; PO approval and vendor master changes are key controls (AS 2201; common SOX scoping); class b, PCAOB AS 2201; common SOX scoping",icfr_scope.csv (full process),procurement (P2P); ERP (purchase order),ERP (purchase order)
+P02,4,4.A.1.b.2.f.11,Receive and inspect goods or services,True,,process,"purchases, payables and cash disbursements are significant accounts; PO approval and vendor master changes are key controls (AS 2201; common SOX scoping); class b, PCAOB AS 2201; common SOX scoping",icfr_scope.csv (full process),procurement (P2P); ERP (goods receipt),ERP (goods receipt)
+P02,5,4.A.2.a.2.d.1,Match invoice to order and receipt,True,,process,"purchases, payables and cash disbursements are significant accounts; PO approval and vendor master changes are key controls (AS 2201; common SOX scoping); class b, PCAOB AS 2201; common SOX scoping",icfr_scope.csv (full process),ERP/GL (AP subledger); procurement (P2P),ERP/GL (AP subledger)
+P02,6,4.A.4.c.1.c.4,Execute payment,True,,process,"purchases, payables and cash disbursements are significant accounts; PO approval and vendor master changes are key controls (AS 2201; common SOX scoping); class b, PCAOB AS 2201; common SOX scoping",icfr_scope.csv (full process),ERP/GL (AP); bank or payment platform,"ERP/GL (AP, cash)"
+P02,7,4.A.3.b.6.j.3,Record payable,True,,process,"purchases, payables and cash disbursements are significant accounts; PO approval and vendor master changes are key controls (AS 2201; common SOX scoping); class b, PCAOB AS 2201; common SOX scoping",icfr_scope.csv (full process),ERP/GL (AP subledger),ERP/GL (AP subledger)
+P03,1,4.A.2.a.2.c.3,Compile ledger and subledger data,True,,process,"journal entries, reconciliations and the financial reporting process (AS 2201 para. 34-38, period-end financial reporting); class b, PCAOB AS 2201; common SOX scoping",icfr_scope.csv (full process),"ERP/GL; subledgers (AR, AP, payroll, fixed assets)",
+P03,2,4.A.3.b.6.j.3,Post journal entries,True,,process,"journal entries, reconciliations and the financial reporting process (AS 2201 para. 34-38, period-end financial reporting); class b, PCAOB AS 2201; common SOX scoping",icfr_scope.csv (full process),ERP/GL,ERP/GL (journal entries)
+P03,3,4.A.2.a.2.d.1,Reconcile accounts,True,,process,"journal entries, reconciliations and the financial reporting process (AS 2201 para. 34-38, period-end financial reporting); class b, PCAOB AS 2201; common SOX scoping",icfr_scope.csv (full process),ERP/GL; reconciliation tool; bank feed,reconciliation tool (sign-off)
+P03,4,4.A.2.a.4.k.4,Analyze variances,True,,process,"journal entries, reconciliations and the financial reporting process (AS 2201 para. 34-38, period-end financial reporting); class b, PCAOB AS 2201; common SOX scoping",icfr_scope.csv (full process),ERP/GL; BI/reporting,
+P03,5,4.A.3.b.6.a.2,Prepare financial statements,True,,process,"journal entries, reconciliations and the financial reporting process (AS 2201 para. 34-38, period-end financial reporting); class b, PCAOB AS 2201; common SOX scoping",icfr_scope.csv (full process),ERP/GL; consolidation and reporting,consolidation and reporting
+P03,6,4.A.2.a.3.c.2,Review for accuracy and compliance,True,,process,"journal entries, reconciliations and the financial reporting process (AS 2201 para. 34-38, period-end financial reporting); class b, PCAOB AS 2201; common SOX scoping",icfr_scope.csv (full process),ERP/GL; close management,
+P03,7,4.A.4.a.1.d.2,Explain results to management,True,,process,"journal entries, reconciliations and the financial reporting process (AS 2201 para. 34-38, period-end financial reporting); class b, PCAOB AS 2201; common SOX scoping",icfr_scope.csv (full process),BI/reporting,
+P04,1,4.A.1.b.3.c.1,Calculate accruals and adjustments,True,,process,"period-end financial reporting process (AS 2201 para. 34); class b, PCAOB AS 2201; common SOX scoping",icfr_scope.csv (full process),ERP/GL,ERP/GL (accrual entries)
+P04,2,4.A.2.a.2.d.1,Reconcile balance sheet accounts,True,,process,"period-end financial reporting process (AS 2201 para. 34); class b, PCAOB AS 2201; common SOX scoping",icfr_scope.csv (full process),ERP/GL; reconciliation tool,reconciliation tool (sign-off)
+P04,3,4.A.2.a.2.c.3,Consolidate entities,True,,process,"period-end financial reporting process (AS 2201 para. 34); class b, PCAOB AS 2201; common SOX scoping",icfr_scope.csv (full process),consolidation; ERP/GL,consolidation (eliminations)
+P04,4,4.A.2.a.3.a.8,Review close checklist and controls,True,,process,"period-end financial reporting process (AS 2201 para. 34); class b, PCAOB AS 2201; common SOX scoping",icfr_scope.csv (full process),close management; ERP/GL,
+P04,5,4.A.3.b.6.a.2,Prepare close package,True,,process,"period-end financial reporting process (AS 2201 para. 34); class b, PCAOB AS 2201; common SOX scoping",icfr_scope.csv (full process),consolidation and reporting,consolidation and reporting
+P05,1,4.A.2.b.1.h.5,Plan staffing needs,False,,,,,HRIS; planning (FP&A),
+P05,2,4.A.4.c.2.a.8,Recruit candidates,False,,,,,ATS,
+P05,3,4.A.1.a.1.w.1,Interview candidates,False,,,,,ATS,
+P05,4,4.A.2.a.1.d.4,Evaluate and select candidates,False,,,,,ATS,
+P05,5,4.A.4.b.3.d.1,Onboard and train,True,new-hire record and pay rate set up in the HRIS feed payroll,system; integration,"new-hire pay data in the HRIS feeds payroll expense through the HRIS-to-payroll integration; class b, PCAOB AS 2201; common SOX scoping",typical_systems,"HRIS (new-hire record, pay rate); LMS; IAM (accounts)",HRIS (new-hire pay data feeding payroll)
+P05,6,4.A.4.c.2.b.2,Administer HR records and benefits,True,,system; integration,"compensation and job changes feed payroll and HR master data; class b, PCAOB AS 2201; common SOX scoping",icfr_steps.csv,HRIS; payroll (compensation and job changes); benefits administration,HRIS and payroll (compensation changes)
+P05,7,4.A.2.a.1.d.4,Review performance,False,,,,,HRIS (performance module),
+P05,8,4.A.4.c.2.b.1,Process separation,True,,system; integration,"termination changes feed payroll (final pay, access removal); class b, PCAOB AS 2201; common SOX scoping",icfr_steps.csv,HRIS; payroll (final pay); IAM (access removal),HRIS and payroll (termination)
+P06,1,4.A.2.a.2.c.3,Compile time and attendance,True,,process,"payroll expense and accruals are significant accounts (AS 2201); class b, PCAOB AS 2201; common SOX scoping",icfr_scope.csv (full process),time and attendance; HRIS,time and attendance (hours feeding pay)
+P06,2,4.A.1.b.3.c.1,Calculate pay and deductions,True,,process,"payroll expense and accruals are significant accounts (AS 2201); class b, PCAOB AS 2201; common SOX scoping",icfr_scope.csv (full process),payroll,payroll
+P06,3,4.A.4.c.1.c.5,Execute payment,True,,process,"payroll expense and accruals are significant accounts (AS 2201); class b, PCAOB AS 2201; common SOX scoping",icfr_scope.csv (full process),payroll; bank,payroll (disbursement)
+P06,4,4.A.3.b.6.j.3,Record payroll,True,,process,"payroll expense and accruals are significant accounts (AS 2201); class b, PCAOB AS 2201; common SOX scoping",icfr_scope.csv (full process),payroll; ERP/GL,ERP/GL (payroll journal)
+P06,5,4.A.3.b.6.n.7,File payroll taxes,True,,process,"payroll expense and accruals are significant accounts (AS 2201); class b, PCAOB AS 2201; common SOX scoping",icfr_scope.csv (full process),payroll (tax filing); tax agency portals,payroll (tax liabilities)
+P07,1,4.A.4.a.8.c.1,Receive and triage inquiry,False,,,,,ticketing,
+P07,2,4.A.1.a.1.d.6,Gather customer information,False,,,,,ticketing; CRM; billing (read: account and invoice history),
+P07,3,4.A.2.b.1.b.2,Diagnose problem,False,,,,,ticketing; knowledge base; product telemetry,
+P07,4,4.A.4.a.1.a.3,Explain solution,False,,,,,ticketing; knowledge base,
+P07,5,4.A.4.b.1.a.3,Escalate and coordinate fix,True,"ticket resolved with a refund, credit or billing adjustment",system,"writes billing (refunds/credits), which feeds financial reporting (accuracy and completeness of revenue, receivables, payroll or inventory); class b, PCAOB AS 2201; common SOX scoping",typical_systems,ticketing; billing (refunds/credits),billing (refunds/credits)
+P07,6,4.A.3.b.6.h.11,Record resolution,False,,,,,ticketing; CRM,
+P08,1,4.A.4.a.4.a.4,Prospect and build relationships,False,,,,,CRM,
+P08,2,4.A.4.a.2.j.4,Qualify needs,False,,,,,CRM,
+P08,3,4.A.4.a.1.a.5,Present and demonstrate,False,,,,,CRM; demo environment,
+P08,4,4.A.2.b.1.a.3,Price the offer,False,,,,,CPQ; CRM (price book),
+P08,5,4.A.4.a.7.b.7,Negotiate,False,,,,,CRM; CPQ,
+P08,6,4.A.4.a.6.b.5,Close sale,True,closed-won orders create billing records through a CRM-to-billing integration,integration,"closed-won orders create billing records through the CRM-to-billing integration; class b, PCAOB AS 2201; common SOX scoping",typical_systems,CRM; CPQ; e-signature; billing (order or subscription created through the CRM-to-billing integration),billing (order booking via integration)
+P08,7,4.A.3.b.6.j.2,Record in CRM,False,,,,,CRM,
+P09,1,4.A.4.a.2.j.3,Capture requirements,False,,,,,CRM,
+P09,2,4.A.2.b.1.a.3,Prepare quote,False,,,,,CPQ; CRM (price book),
+P09,3,4.A.3.b.6.m.1,Draft contract,False,,,,,contract management (CLM); document management,
+P09,4,4.A.2.a.3.a.4,Review terms for compliance,True,,policy,"review of non-standard terms that affect revenue recognition (ASC 606 contract terms); class b, PCAOB AS 2201; common SOX scoping",icfr_steps.csv,contract management (CLM),
+P09,5,4.A.4.a.7.b.7,Negotiate terms,False,,,,,contract management (CLM); e-signature,
+P09,6,4.A.2.b.1.c.4,Approve and sign,True,,process,"contract approval; class b, PCAOB AS 2201; common SOX scoping",icfr_steps.csv,contract management (CLM); e-signature; CPQ; billing (order booking),billing (order booking)
+P10,1,4.A.4.a.2.h.7,Gather requirements,False,,,,,issue tracker,
+P10,2,4.A.2.b.2.b.7,Design solution,False,,,,,issue tracker; documentation,
+P10,3,4.A.3.b.1.a.3,Write code,False,,,,,source control,
+P10,4,4.A.1.b.2.h.3,Test,True,,system,"change-management testing for in-scope financial systems (ITGC); class b, PCAOB AS 2201; common SOX scoping",icfr_steps.csv,CI/CD; test management,
+P10,5,4.A.3.b.6.i.5,Document,False,,,,,documentation,
+P10,6,4.A.3.b.1.c.1,Deploy,True,,system,"authorized promotion of changes to production for in-scope financial systems (ITGC); class b, PCAOB AS 2201; common SOX scoping",icfr_steps.csv,CI/CD; production systems (including in-scope financial systems),
+P10,7,4.A.1.a.2.j.3,Monitor in production,False,,,,,monitoring and observability,
+P11,1,4.A.1.a.2.j.2,Detect through monitoring,False,,,,,monitoring and observability,
+P11,2,4.A.4.a.2.g.7,Notify responders,False,,,,,incident management; paging,
+P11,3,4.A.2.b.1.b.2,Diagnose,False,,,,,monitoring and observability; logs,
+P11,4,4.A.3.b.1.d.1,Restore service,True,when the fix changes data or configuration in an in-scope system,system,"a fix that changes data or configuration in an in-scope financial system falls under data and change management (ITGC); class b, PCAOB AS 2201; common SOX scoping",typical_systems,production systems (including in-scope financial systems); change management,in-scope financial systems (data or configuration fixes)
+P11,5,4.A.3.b.6.o.4,Write post-incident report,False,,,,,incident management; documentation,
+P12,1,4.A.2.a.4.b.7,Analyze market,False,,,,,BI/web analytics,
+P12,2,4.A.2.b.2.c.3,Plan campaign,False,,,,,marketing automation,
+P12,3,4.A.2.b.2.j.1,Create content,False,,,,,content management; digital asset management,
+P12,4,4.A.4.a.6.c.10,Run promotion,False,,,,,marketing automation; ad platforms,
+P12,5,4.A.1.a.1.n.4,Measure response,False,,,,,marketing automation; BI/web analytics,
+P13,1,4.A.4.b.3.e.3,Train customer users,False,,,,,LMS; product,
+P13,2,4.A.4.b.6.b.3,Advise on adoption,False,,,,,CRM; customer success platform,
+P13,3,4.A.4.a.8.c.1,Resolve account issues,True,account issue resolved with a service credit or billing adjustment,system,"writes billing (service credits/adjustments), which feeds financial reporting (accuracy and completeness of revenue, receivables, payroll or inventory); class b, PCAOB AS 2201; common SOX scoping",typical_systems,CRM; customer success platform; billing (service credits/adjustments),billing (service credits/adjustments)
+P13,4,4.A.4.a.6.b.5,Renew and expand,True,renewal or expansion amends the billing subscription,system,"writes billing (renewal or subscription change), which feeds financial reporting (accuracy and completeness of revenue, receivables, payroll or inventory); class b, PCAOB AS 2201; common SOX scoping",typical_systems,CRM; CPQ; billing (renewal or subscription change),billing (renewal or subscription change)
+P14,1,4.A.4.a.2.j.4,Confer with client on scope,False,,,,,CRM; PSA (project system),
+P14,2,4.A.2.b.6.b.8,Plan project,True,,policy,"total estimated cost, the denominator of percent-of-completion (ASC 606 input method); no step of the library records progress; class b, PCAOB AS 2201; common SOX scoping",icfr_steps.csv,PSA (project budget and estimate at completion),PSA (estimate at completion feeding revenue)
+P14,3,4.A.3.b.1.c.4,Configure systems,True,when time or progress entries feed percent-complete revenue or billing,system; integration,"time and progress entries are the progress input of percent-complete revenue (ASC 606 input method) and of time-based billing; closes the progress-input gap in the engine list for P14; class b, PCAOB AS 2201; common SOX scoping",typical_systems,customer environment; PSA (time and progress entry),PSA (time and progress feeding revenue and billing)
+P14,4,4.A.4.b.3.e.4,Train client staff,False,,,,,LMS,
+P14,5,4.A.3.b.6.i.5,Document solution,False,,,,,documentation,
+P14,6,4.A.4.b.1.c.6,Coordinate with client and partners,False,,,,,PSA; email and collaboration,
+P15,1,4.A.2.a.4.h.1,Research law and precedent,False,,,,,legal research database,
+P15,2,4.A.2.a.3.a.8,Review documents,False,,,,,document management,
+P15,3,4.A.3.b.6.n.9,Prepare legal documents,False,,,,,document management; contract management (CLM),
+P15,4,4.A.4.b.6.h.1,Advise client,False,,,,,matter management,
+P15,5,4.A.4.a.7.b.10,Negotiate,True,when a settlement or claim feeds a loss-contingency accrual or disclosure (ASC 450),policy,"a settlement or claim feeds a loss-contingency accrual or disclosure (ASC 450): policy and estimate channel; class b, PCAOB AS 2201; common SOX scoping",typical_systems,"contract management (CLM); matter management; ERP/GL (contingency accrual, through finance)",ERP/GL (loss-contingency accrual) and disclosures
+P16,1,4.A.2.b.6.b.2,Plan test,True,,process,"the ICFR monitoring component (COSO 2013 monitoring activities; AS 2201); class b, PCAOB AS 2201; common SOX scoping",icfr_scope.csv (full process),GRC,
+P16,2,4.A.2.a.3.c.2,Examine evidence,True,,process,"the ICFR monitoring component (COSO 2013 monitoring activities; AS 2201); class b, PCAOB AS 2201; common SOX scoping",icfr_scope.csv (full process),GRC; ERP/GL and other in-scope systems (read: evidence),
+P16,3,4.A.1.a.2.k.4,Evaluate compliance,True,,process,"the ICFR monitoring component (COSO 2013 monitoring activities; AS 2201); class b, PCAOB AS 2201; common SOX scoping",icfr_scope.csv (full process),GRC,GRC (control conclusions)
+P16,4,4.A.3.b.6.o.4,Document findings,True,,process,"the ICFR monitoring component (COSO 2013 monitoring activities; AS 2201); class b, PCAOB AS 2201; common SOX scoping",icfr_scope.csv (full process),GRC,GRC (deficiencies)
+P16,5,4.A.4.b.1.g.1,Coordinate remediation,True,,process,"the ICFR monitoring component (COSO 2013 monitoring activities; AS 2201); class b, PCAOB AS 2201; common SOX scoping",icfr_scope.csv (full process),GRC,
+P17,1,4.A.3.b.1.d.2,Receive request,False,,,,,ITSM,
+P17,2,4.A.3.b.1.c.2,Provision access or system,True,,system,"access provisioning and removal for financial systems (ITGC user access); class b, PCAOB AS 2201; common SOX scoping",icfr_steps.csv,"ITSM; IAM; target systems (including ERP/GL, billing, payroll)",IAM (access to financial systems)
+P17,3,4.A.3.b.1.b.1,Apply security controls,True,,system,"logical access and security configuration of financial systems (ITGC); class b, PCAOB AS 2201; common SOX scoping",icfr_steps.csv,IAM; security tooling,IAM (access to financial systems)
+P17,4,4.A.3.b.6.h.11,Record ticket,False,,,,,ITSM,
+P17,5,4.A.4.b.3.e.4,Instruct user,False,,,,,ITSM; knowledge base,
+P18,1,4.A.1.a.1.f.1,Gather operating data,False,,,,,ERP/GL (read); BI/reporting,
+P18,2,4.A.2.a.4.k.4,Analyze financial data,False,,,,,planning (FP&A); BI/reporting,
+P18,3,4.A.2.b.2.h.2,Develop financial plan,False,,,,,planning (FP&A),
+P18,4,4.A.3.b.6.a.2,Prepare budget,False,,,,,planning (FP&A); ERP/GL (budget load),
+P18,5,4.A.4.b.4.h.2,Manage budget,False,,,,,planning (FP&A); procurement (P2P) budget checks,
+P18,6,4.A.4.a.1.d.2,Explain to management,False,,,,,BI/reporting,
+P19,1,4.A.2.a.3.a.8,Check receipts and policy,True,,process,"employee expenses and their accruals (significant accounts at most firms); class b, PCAOB AS 2201; common SOX scoping",icfr_scope.csv (full process),T&E (expense),
+P19,2,4.A.2.a.2.d.1,Reconcile to card feed,True,,process,"employee expenses and their accruals (significant accounts at most firms); class b, PCAOB AS 2201; common SOX scoping",icfr_scope.csv (full process),T&E (expense); corporate card feed,
+P19,3,4.A.4.c.1.c.5,Reimburse,True,,process,"employee expenses and their accruals (significant accounts at most firms); class b, PCAOB AS 2201; common SOX scoping",icfr_scope.csv (full process),T&E (expense); payroll or bank,payroll or bank (reimbursement)
+P19,4,4.A.3.b.6.j.3,Record expense,True,,process,"employee expenses and their accruals (significant accounts at most firms); class b, PCAOB AS 2201; common SOX scoping",icfr_scope.csv (full process),ERP/GL,ERP/GL (expense entries)
+P20,1,4.A.2.b.5.b.7,Schedule order,False,,,,,ERP (sales order); WMS,
+P20,2,4.A.4.c.3.g.4,Check inventory,True,inventory,process,"inventory existence and counts; class b, PCAOB AS 2201; common SOX scoping",icfr_steps.csv,WMS; ERP (inventory),ERP (inventory)
+P20,3,4.A.3.a.1.j.4,Pick and move goods,False,,,,,WMS,
+P20,4,4.A.3.a.2.ap.6,Pack,False,,,,,WMS,
+P20,5,4.A.4.c.1.e.5,Ship and document,True,inventory,process,"shipping cut-off for revenue and inventory relief; class b, PCAOB AS 2201; common SOX scoping",icfr_steps.csv,WMS; ERP (goods issue); billing (invoice trigger),ERP (inventory relief) and billing (invoice trigger)
+P20,6,4.A.4.c.3.a.3,Replenish stock,True,inventory,process,"inventory receipts and valuation; class b, PCAOB AS 2201; common SOX scoping",icfr_steps.csv,"ERP (purchase order, inventory receipt); WMS",ERP (inventory)
+P21,1,4.A.2.b.5.b.7,Schedule production,False,,,,,MRP/ERP (production order),
+P21,2,4.A.3.a.2.at.1,Set up equipment,False,,,,,MES,
+P21,3,4.A.3.a.3.f.13,Operate production equipment,False,,,,,MES,
+P21,4,4.A.1.b.2.f.11,Inspect output,True,scrap and yield recorded in the ERP,system,"writes ERP (inventory: scrap and yield), which feeds financial reporting (accuracy and completeness of revenue, receivables, payroll or inventory); class b, PCAOB AS 2201; common SOX scoping",typical_systems,QMS; MES; ERP (scrap and yield),ERP (inventory: scrap and yield)
+P21,5,4.A.3.b.4.a.2,Maintain equipment,False,,,,,EAM/CMMS,
+P21,6,4.A.3.b.6.h.3,Record production,True,inventory,process,"production reporting feeds inventory costing; class b, PCAOB AS 2201; common SOX scoping",icfr_steps.csv,"MES; ERP (inventory, costing)",ERP (inventory and costing)
+P22,1,4.A.4.a.8.c.1,Receive request,False,,,,,CMMS (work orders),
+P22,2,4.A.1.b.2.e.16,Inspect site,False,,,,,CMMS,
+P22,3,4.A.2.b.5.a.1,Schedule work,False,,,,,CMMS,
+P22,4,4.A.3.b.4.a.4,Repair or maintain,False,,,,,CMMS; procurement (P2P) for parts and contractors,
+P22,5,4.A.3.b.6.h.13,Record completion,False,,,,,CMMS,
+P23,1,4.A.2.a.4.b.4,Analyze market and competitors,False,,,,,BI/reporting,
+P23,2,4.A.2.b.2.v.2,Set goals,False,,,,,planning (FP&A),
+P23,3,4.A.2.b.2.h.2,Develop business plan,False,,,,,planning (FP&A),
+P23,4,4.A.4.a.2.e.3,Communicate strategy,False,,,,,collaboration,
+P23,5,4.A.4.b.4.j.39,Direct execution,False,,,,,planning (FP&A); BI/reporting,
+P24,1,4.A.2.a.2.c.3,Compile tax data,True,,process,"the income tax provision is a significant account (ASC 740; AS 2201); class b, PCAOB AS 2201; common SOX scoping",icfr_scope.csv (full process),ERP/GL; tax provision software,
+P24,2,4.A.1.b.3.c.1,Calculate liability,True,,process,"the income tax provision is a significant account (ASC 740; AS 2201); class b, PCAOB AS 2201; common SOX scoping",icfr_scope.csv (full process),tax provision software; tax engine,tax provision software
+P24,3,4.A.3.b.6.n.7,Prepare return,True,,process,"the income tax provision is a significant account (ASC 740; AS 2201); class b, PCAOB AS 2201; common SOX scoping",icfr_scope.csv (full process),tax compliance software,
+P24,4,4.A.2.a.3.c.2,Review,True,,process,"the income tax provision is a significant account (ASC 740; AS 2201); class b, PCAOB AS 2201; common SOX scoping",icfr_scope.csv (full process),tax provision software,
+P24,5,4.A.4.c.1.c.7,Pay and file,True,,process,"the income tax provision is a significant account (ASC 740; AS 2201); class b, PCAOB AS 2201; common SOX scoping",icfr_scope.csv (full process),ERP/GL (tax payments); bank,ERP/GL (tax entries)

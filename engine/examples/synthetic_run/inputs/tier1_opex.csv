@@ -1,0 +1,383 @@
+cost_center,cost_center_name,gl_account,gl_name,amount
+CC-1000,Executive and strategy Americas,6000,Salaries and wages,15044900.0
+CC-1000,Executive and strategy Americas,6010,Bonus and commissions,1290900.0
+CC-1000,Executive and strategy Americas,6100,Payroll taxes and benefits,4122500.0
+CC-1000,Executive and strategy Americas,6150,Stock-based compensation,684100.0
+CC-1000,Executive and strategy Americas,6300,Software subscriptions,1344800.0
+CC-1000,Executive and strategy Americas,6500,Rent and facilities,892700.0
+CC-1000,Executive and strategy Americas,6600,Travel and entertainment,557300.0
+CC-1000,Executive and strategy Americas,6800,Professional fees,909700.0
+CC-1010,Executive and strategy EMEA,6000,Salaries and wages,2697000.0
+CC-1010,Executive and strategy EMEA,6010,Bonus and commissions,227200.0
+CC-1010,Executive and strategy EMEA,6100,Payroll taxes and benefits,694000.0
+CC-1010,Executive and strategy EMEA,6150,Stock-based compensation,124400.0
+CC-1010,Executive and strategy EMEA,6300,Software subscriptions,227800.0
+CC-1010,Executive and strategy EMEA,6500,Rent and facilities,157800.0
+CC-1010,Executive and strategy EMEA,6600,Travel and entertainment,99300.0
+CC-1010,Executive and strategy EMEA,6800,Professional fees,156400.0
+CC-1100,Product and engineering Americas,6000,Salaries and wages,66762600.0
+CC-1100,Product and engineering Americas,6010,Bonus and commissions,5633100.0
+CC-1100,Product and engineering Americas,6100,Payroll taxes and benefits,17783700.0
+CC-1100,Product and engineering Americas,6150,Stock-based compensation,3042300.0
+CC-1100,Product and engineering Americas,6300,Software subscriptions,7872300.0
+CC-1100,Product and engineering Americas,6500,Rent and facilities,5787900.0
+CC-1100,Product and engineering Americas,6600,Travel and entertainment,3388000.0
+CC-1100,Product and engineering Americas,6800,Professional fees,5538900.0
+CC-1110,Product and engineering EMEA,6000,Salaries and wages,10265200.0
+CC-1110,Product and engineering EMEA,6010,Bonus and commissions,869900.0
+CC-1110,Product and engineering EMEA,6100,Payroll taxes and benefits,2750700.0
+CC-1110,Product and engineering EMEA,6150,Stock-based compensation,499100.0
+CC-1110,Product and engineering EMEA,6300,Software subscriptions,1285800.0
+CC-1110,Product and engineering EMEA,6500,Rent and facilities,900900.0
+CC-1110,Product and engineering EMEA,6600,Travel and entertainment,538700.0
+CC-1110,Product and engineering EMEA,6800,Professional fees,895200.0
+CC-1120,Product and engineering APAC,6000,Salaries and wages,2450700.0
+CC-1120,Product and engineering APAC,6010,Bonus and commissions,217400.0
+CC-1120,Product and engineering APAC,6100,Payroll taxes and benefits,662000.0
+CC-1120,Product and engineering APAC,6150,Stock-based compensation,116300.0
+CC-1120,Product and engineering APAC,6200,Contractors and temporary labor,169700.0
+CC-1120,Product and engineering APAC,6300,Software subscriptions,306600.0
+CC-1120,Product and engineering APAC,6500,Rent and facilities,237100.0
+CC-1120,Product and engineering APAC,6600,Travel and entertainment,138500.0
+CC-1120,Product and engineering APAC,6800,Professional fees,221700.0
+CC-1200,Marketing Americas,6000,Salaries and wages,26633400.0
+CC-1200,Marketing Americas,6010,Bonus and commissions,2259000.0
+CC-1200,Marketing Americas,6100,Payroll taxes and benefits,7033500.0
+CC-1200,Marketing Americas,6150,Stock-based compensation,1232400.0
+CC-1200,Marketing Americas,6300,Software subscriptions,16285300.0
+CC-1200,Marketing Americas,6500,Rent and facilities,10952200.0
+CC-1200,Marketing Americas,6600,Travel and entertainment,6780400.0
+CC-1200,Marketing Americas,6800,Professional fees,11011900.0
+CC-1210,Marketing EMEA,6000,Salaries and wages,3529300.0
+CC-1210,Marketing EMEA,6010,Bonus and commissions,305100.0
+CC-1210,Marketing EMEA,6100,Payroll taxes and benefits,918500.0
+CC-1210,Marketing EMEA,6150,Stock-based compensation,171600.0
+CC-1210,Marketing EMEA,6300,Software subscriptions,2184400.0
+CC-1210,Marketing EMEA,6500,Rent and facilities,1495300.0
+CC-1210,Marketing EMEA,6600,Travel and entertainment,916900.0
+CC-1210,Marketing EMEA,6800,Professional fees,1507800.0
+CC-1300,Sales Americas,6000,Salaries and wages,69710400.0
+CC-1300,Sales Americas,6010,Bonus and commissions,6220000.0
+CC-1300,Sales Americas,6100,Payroll taxes and benefits,18462000.0
+CC-1300,Sales Americas,6150,Stock-based compensation,3395100.0
+CC-1300,Sales Americas,6300,Software subscriptions,11279600.0
+CC-1300,Sales Americas,6500,Rent and facilities,8088300.0
+CC-1300,Sales Americas,6600,Travel and entertainment,5049300.0
+CC-1300,Sales Americas,6800,Professional fees,8148200.0
+CC-1310,Sales EMEA,6000,Salaries and wages,8983600.0
+CC-1310,Sales EMEA,6010,Bonus and commissions,817300.0
+CC-1310,Sales EMEA,6100,Payroll taxes and benefits,2440000.0
+CC-1310,Sales EMEA,6150,Stock-based compensation,427300.0
+CC-1310,Sales EMEA,6300,Software subscriptions,1501500.0
+CC-1310,Sales EMEA,6500,Rent and facilities,1100100.0
+CC-1310,Sales EMEA,6600,Travel and entertainment,641300.0
+CC-1310,Sales EMEA,6800,Professional fees,1062700.0
+CC-1400,Customer support Americas,6000,Salaries and wages,20011300.0
+CC-1400,Customer support Americas,6010,Bonus and commissions,1767600.0
+CC-1400,Customer support Americas,6100,Payroll taxes and benefits,5320500.0
+CC-1400,Customer support Americas,6150,Stock-based compensation,927500.0
+CC-1400,Customer support Americas,6300,Software subscriptions,3157300.0
+CC-1400,Customer support Americas,6500,Rent and facilities,2319100.0
+CC-1400,Customer support Americas,6600,Travel and entertainment,1437300.0
+CC-1400,Customer support Americas,6800,Professional fees,2403100.0
+CC-1410,Customer support EMEA,6000,Salaries and wages,3219900.0
+CC-1410,Customer support EMEA,6010,Bonus and commissions,274600.0
+CC-1410,Customer support EMEA,6100,Payroll taxes and benefits,850200.0
+CC-1410,Customer support EMEA,6150,Stock-based compensation,153500.0
+CC-1410,Customer support EMEA,6300,Software subscriptions,509400.0
+CC-1410,Customer support EMEA,6500,Rent and facilities,372900.0
+CC-1410,Customer support EMEA,6600,Travel and entertainment,214000.0
+CC-1410,Customer support EMEA,6800,Professional fees,375300.0
+CC-1420,Customer support APAC,6000,Salaries and wages,491400.0
+CC-1420,Customer support APAC,6010,Bonus and commissions,42100.0
+CC-1420,Customer support APAC,6100,Payroll taxes and benefits,134700.0
+CC-1420,Customer support APAC,6150,Stock-based compensation,22900.0
+CC-1420,Customer support APAC,6200,Contractors and temporary labor,936500.0
+CC-1420,Customer support APAC,6300,Software subscriptions,198300.0
+CC-1420,Customer support APAC,6500,Rent and facilities,134500.0
+CC-1420,Customer support APAC,6600,Travel and entertainment,81300.0
+CC-1420,Customer support APAC,6800,Professional fees,135500.0
+CC-1500,Customer success and account management Americas,6000,Salaries and wages,11792200.0
+CC-1500,Customer success and account management Americas,6010,Bonus and commissions,973000.0
+CC-1500,Customer success and account management Americas,6100,Payroll taxes and benefits,3184700.0
+CC-1500,Customer success and account management Americas,6150,Stock-based compensation,545500.0
+CC-1500,Customer success and account management Americas,6300,Software subscriptions,998700.0
+CC-1500,Customer success and account management Americas,6500,Rent and facilities,705100.0
+CC-1500,Customer success and account management Americas,6600,Travel and entertainment,429500.0
+CC-1500,Customer success and account management Americas,6800,Professional fees,739300.0
+CC-1510,Customer success and account management EMEA,6000,Salaries and wages,1368600.0
+CC-1510,Customer success and account management EMEA,6010,Bonus and commissions,116300.0
+CC-1510,Customer success and account management EMEA,6100,Payroll taxes and benefits,362100.0
+CC-1510,Customer success and account management EMEA,6150,Stock-based compensation,65000.0
+CC-1510,Customer success and account management EMEA,6300,Software subscriptions,118200.0
+CC-1510,Customer success and account management EMEA,6500,Rent and facilities,83800.0
+CC-1510,Customer success and account management EMEA,6600,Travel and entertainment,51200.0
+CC-1510,Customer success and account management EMEA,6800,Professional fees,84900.0
+CC-1520,Customer success and account management APAC,6000,Salaries and wages,154700.0
+CC-1520,Customer success and account management APAC,6010,Bonus and commissions,13200.0
+CC-1520,Customer success and account management APAC,6100,Payroll taxes and benefits,42700.0
+CC-1520,Customer success and account management APAC,6150,Stock-based compensation,7700.0
+CC-1520,Customer success and account management APAC,6200,Contractors and temporary labor,28800.0
+CC-1520,Customer success and account management APAC,6300,Software subscriptions,15400.0
+CC-1520,Customer success and account management APAC,6500,Rent and facilities,11400.0
+CC-1520,Customer success and account management APAC,6600,Travel and entertainment,6900.0
+CC-1520,Customer success and account management APAC,6800,Professional fees,11100.0
+CC-1600,Professional services Americas,6000,Salaries and wages,40734000.0
+CC-1600,Professional services Americas,6010,Bonus and commissions,3506900.0
+CC-1600,Professional services Americas,6100,Payroll taxes and benefits,10512400.0
+CC-1600,Professional services Americas,6150,Stock-based compensation,1801600.0
+CC-1600,Professional services Americas,6300,Software subscriptions,3377600.0
+CC-1600,Professional services Americas,6500,Rent and facilities,2475100.0
+CC-1600,Professional services Americas,6600,Travel and entertainment,1486500.0
+CC-1600,Professional services Americas,6800,Professional fees,2432300.0
+CC-1610,Professional services EMEA,6000,Salaries and wages,5709600.0
+CC-1610,Professional services EMEA,6010,Bonus and commissions,489200.0
+CC-1610,Professional services EMEA,6100,Payroll taxes and benefits,1502800.0
+CC-1610,Professional services EMEA,6150,Stock-based compensation,273600.0
+CC-1610,Professional services EMEA,6300,Software subscriptions,487300.0
+CC-1610,Professional services EMEA,6500,Rent and facilities,359100.0
+CC-1610,Professional services EMEA,6600,Travel and entertainment,212100.0
+CC-1610,Professional services EMEA,6800,Professional fees,356200.0
+CC-1620,Professional services APAC,6000,Salaries and wages,462100.0
+CC-1620,Professional services APAC,6010,Bonus and commissions,38500.0
+CC-1620,Professional services APAC,6100,Payroll taxes and benefits,117700.0
+CC-1620,Professional services APAC,6150,Stock-based compensation,20800.0
+CC-1620,Professional services APAC,6300,Software subscriptions,37200.0
+CC-1620,Professional services APAC,6500,Rent and facilities,28100.0
+CC-1620,Professional services APAC,6600,Travel and entertainment,16700.0
+CC-1620,Professional services APAC,6800,Professional fees,27100.0
+CC-1700,Service delivery and operations Americas,6000,Salaries and wages,2518800.0
+CC-1700,Service delivery and operations Americas,6010,Bonus and commissions,215100.0
+CC-1700,Service delivery and operations Americas,6100,Payroll taxes and benefits,676200.0
+CC-1700,Service delivery and operations Americas,6150,Stock-based compensation,115200.0
+CC-1700,Service delivery and operations Americas,6300,Software subscriptions,530000.0
+CC-1700,Service delivery and operations Americas,6500,Rent and facilities,388000.0
+CC-1700,Service delivery and operations Americas,6600,Travel and entertainment,228000.0
+CC-1700,Service delivery and operations Americas,6800,Professional fees,372100.0
+CC-1710,Service delivery and operations EMEA,6000,Salaries and wages,602200.0
+CC-1710,Service delivery and operations EMEA,6010,Bonus and commissions,53400.0
+CC-1710,Service delivery and operations EMEA,6100,Payroll taxes and benefits,160400.0
+CC-1710,Service delivery and operations EMEA,6150,Stock-based compensation,28000.0
+CC-1710,Service delivery and operations EMEA,6300,Software subscriptions,122300.0
+CC-1710,Service delivery and operations EMEA,6500,Rent and facilities,89500.0
+CC-1710,Service delivery and operations EMEA,6600,Travel and entertainment,55300.0
+CC-1710,Service delivery and operations EMEA,6800,Professional fees,85200.0
+CC-1720,Service delivery and operations APAC,6000,Salaries and wages,10700.0
+CC-1720,Service delivery and operations APAC,6010,Bonus and commissions,900.0
+CC-1720,Service delivery and operations APAC,6100,Payroll taxes and benefits,2900.0
+CC-1720,Service delivery and operations APAC,6150,Stock-based compensation,500.0
+CC-1720,Service delivery and operations APAC,6300,Software subscriptions,2100.0
+CC-1720,Service delivery and operations APAC,6500,Rent and facilities,1600.0
+CC-1720,Service delivery and operations APAC,6600,Travel and entertainment,900.0
+CC-1720,Service delivery and operations APAC,6800,Professional fees,1600.0
+CC-1800,"Supply chain, manufacturing and logistics Americas",6000,Salaries and wages,1286400.0
+CC-1800,"Supply chain, manufacturing and logistics Americas",6010,Bonus and commissions,112100.0
+CC-1800,"Supply chain, manufacturing and logistics Americas",6100,Payroll taxes and benefits,346000.0
+CC-1800,"Supply chain, manufacturing and logistics Americas",6150,Stock-based compensation,60200.0
+CC-1800,"Supply chain, manufacturing and logistics Americas",6300,Software subscriptions,272200.0
+CC-1800,"Supply chain, manufacturing and logistics Americas",6500,Rent and facilities,194900.0
+CC-1800,"Supply chain, manufacturing and logistics Americas",6600,Travel and entertainment,118100.0
+CC-1800,"Supply chain, manufacturing and logistics Americas",6800,Professional fees,194200.0
+CC-1810,"Supply chain, manufacturing and logistics EMEA",6000,Salaries and wages,109700.0
+CC-1810,"Supply chain, manufacturing and logistics EMEA",6010,Bonus and commissions,9700.0
+CC-1810,"Supply chain, manufacturing and logistics EMEA",6100,Payroll taxes and benefits,28600.0
+CC-1810,"Supply chain, manufacturing and logistics EMEA",6150,Stock-based compensation,5200.0
+CC-1810,"Supply chain, manufacturing and logistics EMEA",6300,Software subscriptions,23100.0
+CC-1810,"Supply chain, manufacturing and logistics EMEA",6500,Rent and facilities,16700.0
+CC-1810,"Supply chain, manufacturing and logistics EMEA",6600,Travel and entertainment,9800.0
+CC-1810,"Supply chain, manufacturing and logistics EMEA",6800,Professional fees,16400.0
+CC-1900,Procurement Americas,6000,Salaries and wages,1142800.0
+CC-1900,Procurement Americas,6010,Bonus and commissions,102600.0
+CC-1900,Procurement Americas,6100,Payroll taxes and benefits,305900.0
+CC-1900,Procurement Americas,6150,Stock-based compensation,55100.0
+CC-1900,Procurement Americas,6300,Software subscriptions,140900.0
+CC-1900,Procurement Americas,6500,Rent and facilities,100900.0
+CC-1900,Procurement Americas,6600,Travel and entertainment,59000.0
+CC-1900,Procurement Americas,6800,Professional fees,100900.0
+CC-1910,Procurement EMEA,6000,Salaries and wages,242500.0
+CC-1910,Procurement EMEA,6010,Bonus and commissions,20500.0
+CC-1910,Procurement EMEA,6100,Payroll taxes and benefits,64000.0
+CC-1910,Procurement EMEA,6150,Stock-based compensation,11400.0
+CC-1910,Procurement EMEA,6300,Software subscriptions,28900.0
+CC-1910,Procurement EMEA,6500,Rent and facilities,20700.0
+CC-1910,Procurement EMEA,6600,Travel and entertainment,13100.0
+CC-1910,Procurement EMEA,6800,Professional fees,20800.0
+CC-2000,Finance and accounting Americas,6000,Salaries and wages,23068600.0
+CC-2000,Finance and accounting Americas,6010,Bonus and commissions,1984500.0
+CC-2000,Finance and accounting Americas,6100,Payroll taxes and benefits,6435100.0
+CC-2000,Finance and accounting Americas,6150,Stock-based compensation,1128600.0
+CC-2000,Finance and accounting Americas,6300,Software subscriptions,3862300.0
+CC-2000,Finance and accounting Americas,6500,Rent and facilities,2745900.0
+CC-2000,Finance and accounting Americas,6600,Travel and entertainment,1628600.0
+CC-2000,Finance and accounting Americas,6800,Professional fees,2725700.0
+CC-2010,Finance and accounting EMEA,6000,Salaries and wages,2776500.0
+CC-2010,Finance and accounting EMEA,6010,Bonus and commissions,248000.0
+CC-2010,Finance and accounting EMEA,6100,Payroll taxes and benefits,763500.0
+CC-2010,Finance and accounting EMEA,6150,Stock-based compensation,135300.0
+CC-2010,Finance and accounting EMEA,6300,Software subscriptions,479500.0
+CC-2010,Finance and accounting EMEA,6500,Rent and facilities,333400.0
+CC-2010,Finance and accounting EMEA,6600,Travel and entertainment,199800.0
+CC-2010,Finance and accounting EMEA,6800,Professional fees,335400.0
+CC-2020,Finance and accounting APAC,6000,Salaries and wages,335800.0
+CC-2020,Finance and accounting APAC,6010,Bonus and commissions,30100.0
+CC-2020,Finance and accounting APAC,6100,Payroll taxes and benefits,89900.0
+CC-2020,Finance and accounting APAC,6150,Stock-based compensation,16900.0
+CC-2020,Finance and accounting APAC,6300,Software subscriptions,56100.0
+CC-2020,Finance and accounting APAC,6500,Rent and facilities,41900.0
+CC-2020,Finance and accounting APAC,6600,Travel and entertainment,24800.0
+CC-2020,Finance and accounting APAC,6800,Professional fees,40000.0
+CC-2100,Human resources Americas,6000,Salaries and wages,9683200.0
+CC-2100,Human resources Americas,6010,Bonus and commissions,851100.0
+CC-2100,Human resources Americas,6100,Payroll taxes and benefits,2734600.0
+CC-2100,Human resources Americas,6150,Stock-based compensation,469600.0
+CC-2100,Human resources Americas,6300,Software subscriptions,2567200.0
+CC-2100,Human resources Americas,6500,Rent and facilities,1880400.0
+CC-2100,Human resources Americas,6600,Travel and entertainment,1172300.0
+CC-2100,Human resources Americas,6800,Professional fees,1950600.0
+CC-2110,Human resources EMEA,6000,Salaries and wages,570200.0
+CC-2110,Human resources EMEA,6010,Bonus and commissions,50400.0
+CC-2110,Human resources EMEA,6100,Payroll taxes and benefits,155900.0
+CC-2110,Human resources EMEA,6150,Stock-based compensation,26400.0
+CC-2110,Human resources EMEA,6300,Software subscriptions,150500.0
+CC-2110,Human resources EMEA,6500,Rent and facilities,107700.0
+CC-2110,Human resources EMEA,6600,Travel and entertainment,65700.0
+CC-2110,Human resources EMEA,6800,Professional fees,107500.0
+CC-2200,Legal Americas,6000,Salaries and wages,5313600.0
+CC-2200,Legal Americas,6010,Bonus and commissions,478200.0
+CC-2200,Legal Americas,6100,Payroll taxes and benefits,1443400.0
+CC-2200,Legal Americas,6150,Stock-based compensation,251700.0
+CC-2200,Legal Americas,6300,Software subscriptions,2140300.0
+CC-2200,Legal Americas,6500,Rent and facilities,1559700.0
+CC-2200,Legal Americas,6600,Travel and entertainment,967700.0
+CC-2200,Legal Americas,6800,Professional fees,1561200.0
+CC-2210,Legal EMEA,6000,Salaries and wages,561400.0
+CC-2210,Legal EMEA,6010,Bonus and commissions,45700.0
+CC-2210,Legal EMEA,6100,Payroll taxes and benefits,144600.0
+CC-2210,Legal EMEA,6150,Stock-based compensation,25300.0
+CC-2210,Legal EMEA,6300,Software subscriptions,219400.0
+CC-2210,Legal EMEA,6500,Rent and facilities,160000.0
+CC-2210,Legal EMEA,6600,Travel and entertainment,93500.0
+CC-2210,Legal EMEA,6800,Professional fees,153700.0
+CC-2300,"Risk, compliance, audit and governance Americas",6000,Salaries and wages,3054200.0
+CC-2300,"Risk, compliance, audit and governance Americas",6010,Bonus and commissions,256700.0
+CC-2300,"Risk, compliance, audit and governance Americas",6100,Payroll taxes and benefits,806200.0
+CC-2300,"Risk, compliance, audit and governance Americas",6150,Stock-based compensation,139600.0
+CC-2300,"Risk, compliance, audit and governance Americas",6300,Software subscriptions,495200.0
+CC-2300,"Risk, compliance, audit and governance Americas",6500,Rent and facilities,347400.0
+CC-2300,"Risk, compliance, audit and governance Americas",6600,Travel and entertainment,213400.0
+CC-2300,"Risk, compliance, audit and governance Americas",6800,Professional fees,354400.0
+CC-2310,"Risk, compliance, audit and governance EMEA",6000,Salaries and wages,566500.0
+CC-2310,"Risk, compliance, audit and governance EMEA",6010,Bonus and commissions,47000.0
+CC-2310,"Risk, compliance, audit and governance EMEA",6100,Payroll taxes and benefits,142200.0
+CC-2310,"Risk, compliance, audit and governance EMEA",6150,Stock-based compensation,25000.0
+CC-2310,"Risk, compliance, audit and governance EMEA",6300,Software subscriptions,87600.0
+CC-2310,"Risk, compliance, audit and governance EMEA",6500,Rent and facilities,63800.0
+CC-2310,"Risk, compliance, audit and governance EMEA",6600,Travel and entertainment,37400.0
+CC-2310,"Risk, compliance, audit and governance EMEA",6800,Professional fees,65300.0
+CC-2320,"Risk, compliance, audit and governance APAC",6000,Salaries and wages,34600.0
+CC-2320,"Risk, compliance, audit and governance APAC",6010,Bonus and commissions,2900.0
+CC-2320,"Risk, compliance, audit and governance APAC",6100,Payroll taxes and benefits,9100.0
+CC-2320,"Risk, compliance, audit and governance APAC",6150,Stock-based compensation,1600.0
+CC-2320,"Risk, compliance, audit and governance APAC",6300,Software subscriptions,5700.0
+CC-2320,"Risk, compliance, audit and governance APAC",6500,Rent and facilities,3900.0
+CC-2320,"Risk, compliance, audit and governance APAC",6600,Travel and entertainment,2500.0
+CC-2320,"Risk, compliance, audit and governance APAC",6800,Professional fees,4000.0
+CC-2400,Information technology and security Americas,6000,Salaries and wages,6486700.0
+CC-2400,Information technology and security Americas,6010,Bonus and commissions,577300.0
+CC-2400,Information technology and security Americas,6100,Payroll taxes and benefits,1718000.0
+CC-2400,Information technology and security Americas,6150,Stock-based compensation,307700.0
+CC-2400,Information technology and security Americas,6300,Software subscriptions,4050800.0
+CC-2400,Information technology and security Americas,6500,Rent and facilities,2814600.0
+CC-2400,Information technology and security Americas,6600,Travel and entertainment,1684800.0
+CC-2400,Information technology and security Americas,6800,Professional fees,2765100.0
+CC-2410,Information technology and security EMEA,6000,Salaries and wages,699800.0
+CC-2410,Information technology and security EMEA,6010,Bonus and commissions,64300.0
+CC-2410,Information technology and security EMEA,6100,Payroll taxes and benefits,190400.0
+CC-2410,Information technology and security EMEA,6150,Stock-based compensation,35000.0
+CC-2410,Information technology and security EMEA,6300,Software subscriptions,422200.0
+CC-2410,Information technology and security EMEA,6500,Rent and facilities,313500.0
+CC-2410,Information technology and security EMEA,6600,Travel and entertainment,182700.0
+CC-2410,Information technology and security EMEA,6800,Professional fees,308300.0
+CC-2420,Information technology and security APAC,6000,Salaries and wages,82400.0
+CC-2420,Information technology and security APAC,6010,Bonus and commissions,7100.0
+CC-2420,Information technology and security APAC,6100,Payroll taxes and benefits,21900.0
+CC-2420,Information technology and security APAC,6150,Stock-based compensation,3700.0
+CC-2420,Information technology and security APAC,6300,Software subscriptions,47800.0
+CC-2420,Information technology and security APAC,6500,Rent and facilities,35900.0
+CC-2420,Information technology and security APAC,6600,Travel and entertainment,20600.0
+CC-2420,Information technology and security APAC,6800,Professional fees,34700.0
+CC-2500,Technical operations and hosting Americas,6000,Salaries and wages,21133800.0
+CC-2500,Technical operations and hosting Americas,6010,Bonus and commissions,1820900.0
+CC-2500,Technical operations and hosting Americas,6100,Payroll taxes and benefits,5506100.0
+CC-2500,Technical operations and hosting Americas,6150,Stock-based compensation,978500.0
+CC-2500,Technical operations and hosting Americas,6300,Software subscriptions,2997000.0
+CC-2500,Technical operations and hosting Americas,6400,Cloud hosting,46842400.0
+CC-2500,Technical operations and hosting Americas,6500,Rent and facilities,2021200.0
+CC-2500,Technical operations and hosting Americas,6600,Travel and entertainment,1219700.0
+CC-2500,Technical operations and hosting Americas,6800,Professional fees,2106300.0
+CC-2510,Technical operations and hosting EMEA,6000,Salaries and wages,2143600.0
+CC-2510,Technical operations and hosting EMEA,6010,Bonus and commissions,187600.0
+CC-2510,Technical operations and hosting EMEA,6100,Payroll taxes and benefits,571600.0
+CC-2510,Technical operations and hosting EMEA,6150,Stock-based compensation,100600.0
+CC-2510,Technical operations and hosting EMEA,6300,Software subscriptions,308600.0
+CC-2510,Technical operations and hosting EMEA,6400,Cloud hosting,4820400.0
+CC-2510,Technical operations and hosting EMEA,6500,Rent and facilities,211900.0
+CC-2510,Technical operations and hosting EMEA,6600,Travel and entertainment,126400.0
+CC-2510,Technical operations and hosting EMEA,6800,Professional fees,216300.0
+CC-2520,Technical operations and hosting APAC,6000,Salaries and wages,751700.0
+CC-2520,Technical operations and hosting APAC,6010,Bonus and commissions,65700.0
+CC-2520,Technical operations and hosting APAC,6100,Payroll taxes and benefits,201400.0
+CC-2520,Technical operations and hosting APAC,6150,Stock-based compensation,35200.0
+CC-2520,Technical operations and hosting APAC,6300,Software subscriptions,101600.0
+CC-2520,Technical operations and hosting APAC,6400,Cloud hosting,1604700.0
+CC-2520,Technical operations and hosting APAC,6500,Rent and facilities,72600.0
+CC-2520,Technical operations and hosting APAC,6600,Travel and entertainment,45900.0
+CC-2520,Technical operations and hosting APAC,6800,Professional fees,71500.0
+CC-2600,Facilities and real estate Americas,6000,Salaries and wages,2341100.0
+CC-2600,Facilities and real estate Americas,6010,Bonus and commissions,204900.0
+CC-2600,Facilities and real estate Americas,6100,Payroll taxes and benefits,641500.0
+CC-2600,Facilities and real estate Americas,6150,Stock-based compensation,116600.0
+CC-2600,Facilities and real estate Americas,6300,Software subscriptions,3418200.0
+CC-2600,Facilities and real estate Americas,6500,Rent and facilities,2418200.0
+CC-2600,Facilities and real estate Americas,6600,Travel and entertainment,1508300.0
+CC-2600,Facilities and real estate Americas,6800,Professional fees,2471500.0
+CC-2610,Facilities and real estate EMEA,6000,Salaries and wages,391000.0
+CC-2610,Facilities and real estate EMEA,6010,Bonus and commissions,33100.0
+CC-2610,Facilities and real estate EMEA,6100,Payroll taxes and benefits,99200.0
+CC-2610,Facilities and real estate EMEA,6150,Stock-based compensation,17700.0
+CC-2610,Facilities and real estate EMEA,6300,Software subscriptions,557600.0
+CC-2610,Facilities and real estate EMEA,6500,Rent and facilities,398900.0
+CC-2610,Facilities and real estate EMEA,6600,Travel and entertainment,231600.0
+CC-2610,Facilities and real estate EMEA,6800,Professional fees,380000.0
+CC-2700,Business operations and transformation Americas,6000,Salaries and wages,3740200.0
+CC-2700,Business operations and transformation Americas,6010,Bonus and commissions,340000.0
+CC-2700,Business operations and transformation Americas,6100,Payroll taxes and benefits,1030200.0
+CC-2700,Business operations and transformation Americas,6150,Stock-based compensation,175800.0
+CC-2700,Business operations and transformation Americas,6300,Software subscriptions,803200.0
+CC-2700,Business operations and transformation Americas,6500,Rent and facilities,558000.0
+CC-2700,Business operations and transformation Americas,6600,Travel and entertainment,346200.0
+CC-2700,Business operations and transformation Americas,6800,Professional fees,570100.0
+CC-2710,Business operations and transformation EMEA,6000,Salaries and wages,367100.0
+CC-2710,Business operations and transformation EMEA,6010,Bonus and commissions,32200.0
+CC-2710,Business operations and transformation EMEA,6100,Payroll taxes and benefits,99700.0
+CC-2710,Business operations and transformation EMEA,6150,Stock-based compensation,17500.0
+CC-2710,Business operations and transformation EMEA,6300,Software subscriptions,80100.0
+CC-2710,Business operations and transformation EMEA,6500,Rent and facilities,58500.0
+CC-2710,Business operations and transformation EMEA,6600,Travel and entertainment,34000.0
+CC-2710,Business operations and transformation EMEA,6800,Professional fees,55500.0
+CC-2800,Corporate affairs and investor relations Americas,6000,Salaries and wages,2315100.0
+CC-2800,Corporate affairs and investor relations Americas,6010,Bonus and commissions,195400.0
+CC-2800,Corporate affairs and investor relations Americas,6100,Payroll taxes and benefits,600200.0
+CC-2800,Corporate affairs and investor relations Americas,6150,Stock-based compensation,105800.0
+CC-2800,Corporate affairs and investor relations Americas,6300,Software subscriptions,482300.0
+CC-2800,Corporate affairs and investor relations Americas,6500,Rent and facilities,351100.0
+CC-2800,Corporate affairs and investor relations Americas,6600,Travel and entertainment,214900.0
+CC-2800,Corporate affairs and investor relations Americas,6800,Professional fees,351700.0
+CC-2810,Corporate affairs and investor relations EMEA,6000,Salaries and wages,315800.0
+CC-2810,Corporate affairs and investor relations EMEA,6010,Bonus and commissions,26700.0
+CC-2810,Corporate affairs and investor relations EMEA,6100,Payroll taxes and benefits,83500.0
+CC-2810,Corporate affairs and investor relations EMEA,6150,Stock-based compensation,14900.0
+CC-2810,Corporate affairs and investor relations EMEA,6300,Software subscriptions,65300.0
+CC-2810,Corporate affairs and investor relations EMEA,6500,Rent and facilities,48500.0
+CC-2810,Corporate affairs and investor relations EMEA,6600,Travel and entertainment,27600.0
+CC-2810,Corporate affairs and investor relations EMEA,6800,Professional fees,46100.0

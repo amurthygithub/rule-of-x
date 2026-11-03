@@ -1,0 +1,6961 @@
+{
+"1002388": {
+"2012-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 3791000
+},
+"2013-12-31": {
+"IncreaseDecreaseInDeferredRevenue": -4171000
+}
+},
+"1002517": {
+"2010-09-30": {
+"IncreaseDecreaseInDeferredRevenue": 39643000,
+"InvestmentIncomeInterest": 1238000
+},
+"2011-09-30": {
+"IncreaseDecreaseInDeferredRevenue": 56398000,
+"InvestmentIncomeInterest": 3159000
+},
+"2012-09-30": {
+"IncreaseDecreaseInDeferredRevenue": 39605000,
+"InvestmentIncomeInterest": 2234000
+},
+"2013-09-30": {
+"IncreaseDecreaseInDeferredRevenue": 84648000,
+"InvestmentIncomeInterest": 1615000
+},
+"2014-09-30": {
+"IncreaseDecreaseInDeferredRevenue": 141827000,
+"InvestmentIncomeInterest": 2345000
+},
+"2015-09-30": {
+"IncreaseDecreaseInDeferredRevenue": 135151000,
+"InvestmentIncomeInterest": 2635000
+},
+"2016-09-30": {
+"IncreaseDecreaseInDeferredRevenue": 61747000,
+"InvestmentIncomeInterest": 4438000
+},
+"2017-09-30": {
+"IncreaseDecreaseInDeferredRevenue": 51041000,
+"InvestmentIncomeInterest": 6922000
+},
+"2018-09-30": {
+"IncreaseDecreaseInDeferredRevenue": 47499000,
+"InvestmentIncomeInterest": 9327000
+},
+"2019-09-30": {
+"IncreaseDecreaseInContractWithCustomerLiability": 913306000,
+"IncreaseDecreaseInDeferredRevenue": -1052000,
+"InvestmentIncomeInterest": 13705000
+},
+"2020-09-30": {
+"IncreaseDecreaseInContractWithCustomerLiability": 819049000,
+"IncreaseDecreaseInDeferredRevenue": 21293000,
+"InvestmentIncomeInterest": 4527000
+},
+"2021-09-30": {
+"IncreaseDecreaseInContractWithCustomerLiability": 768827000,
+"IncreaseDecreaseInDeferredRevenue": -9317000,
+"InvestmentIncomeInterest": 547000
+}
+},
+"1003935": {
+"2010-12-31": {
+"InvestmentIncomeInterest": 1787000
+},
+"2011-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 12782000,
+"InvestmentIncomeInterest": 3154000
+},
+"2012-12-31": {
+"IncreaseDecreaseInDeferredRevenue": -27100000,
+"InvestmentIncomeInterest": 2616000
+},
+"2013-12-31": {
+"IncreaseDecreaseInDeferredRevenue": -4551000,
+"InvestmentIncomeInterest": 1505000
+},
+"2014-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 3424000,
+"InvestmentIncomeInterest": 349000
+},
+"2015-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 54914000,
+"InvestmentIncomeInterest": 430000
+},
+"2016-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 9379000,
+"IncreaseDecreaseInDeferredRevenue": 9379000,
+"InvestmentIncomeInterest": 953000
+},
+"2017-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 41624000,
+"IncreaseDecreaseInDeferredRevenue": 41624000,
+"InvestmentIncomeInterest": 1149000
+},
+"2018-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 92768000,
+"InvestmentIncomeInterest": 3778000
+},
+"2019-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 13810000,
+"InvestmentIncomeInterest": 3855000
+},
+"2020-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 63202000,
+"InvestmentIncomeInterest": 1543000
+},
+"2021-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 30770000,
+"InvestmentIncomeInterest": 200000
+},
+"2022-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 6417000,
+"InvestmentIncomeInterest": 4720000
+},
+"2023-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -45947000,
+"InvestmentIncomeInterest": 20260000
+},
+"2024-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 3049000,
+"InvestmentIncomeInterest": 24501000
+},
+"2025-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -22833000,
+"InvestmentIncomeInterest": 22025000
+}
+},
+"1011452": {
+"2011-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 1187847
+},
+"2012-12-31": {
+"IncreaseDecreaseInDeferredRevenue": -9518187
+},
+"2013-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 3990636
+},
+"2014-12-31": {
+"IncreaseDecreaseInDeferredRevenue": -15410126
+},
+"2015-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 1450941
+},
+"2016-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 12158192
+},
+"2017-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 9117378
+},
+"2018-12-31": {
+"IncreaseDecreaseInDeferredRevenue": -4952530
+},
+"2019-12-31": {
+"IncreaseDecreaseInDeferredRevenue": -12955444
+}
+},
+"1013462": {
+"2010-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 28817000,
+"InvestmentIncomeInterest": 1911000
+},
+"2011-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 49973000,
+"InvestmentIncomeInterest": 3000000
+},
+"2012-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 47748000,
+"InvestmentIncomeInterest": 3360000
+},
+"2013-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 42105000,
+"InvestmentIncomeInterest": 2841000
+},
+"2014-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 35548000,
+"InvestmentIncomeInterest": 3002000
+},
+"2015-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 40566000,
+"InvestmentIncomeInterest": 2829000
+},
+"2016-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 41430000,
+"IncreaseDecreaseInDeferredRevenue": 41430000,
+"InvestmentIncomeInterest": 4209000
+},
+"2017-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 20648000,
+"IncreaseDecreaseInDeferredRevenue": 20648000,
+"InvestmentIncomeInterest": 6962000
+},
+"2018-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 56213000,
+"InvestmentIncomeInterest": 11419000
+},
+"2019-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 17245000,
+"InvestmentIncomeInterest": 12796000
+},
+"2020-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 5448000,
+"InvestmentIncomeInterest": 5073000
+},
+"2021-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 26547000,
+"InvestmentIncomeInterest": 2078000
+},
+"2022-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 33003000,
+"InvestmentIncomeInterest": 5717000
+},
+"2023-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 34507000,
+"InvestmentIncomeInterest": 19588000
+},
+"2024-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 62005000,
+"InvestmentIncomeInterest": 51131000
+}
+},
+"1015922": {
+"2010-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 37649000
+},
+"2011-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 87487000
+},
+"2012-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 37512000
+},
+"2013-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 81933000
+},
+"2014-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 112390000
+},
+"2015-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 120559000
+},
+"2016-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 159801000,
+"IncreaseDecreaseInDeferredRevenue": 159801000
+},
+"2017-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 121000000,
+"IncreaseDecreaseInDeferredRevenue": 120989000
+},
+"2018-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 145000000
+},
+"2019-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 48700000
+},
+"2020-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 95200000
+},
+"2021-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 216800000
+},
+"2022-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 170300000
+},
+"2023-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 21800000
+},
+"2024-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 79500000
+},
+"2025-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 176200000
+}
+},
+"1016125": {
+"2011-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 8468000
+},
+"2012-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 5413000
+},
+"2013-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 9946000
+},
+"2014-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 6521000
+},
+"2015-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 36022000
+},
+"2016-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 27179000
+},
+"2017-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 24885000
+},
+"2018-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 32585000
+}
+},
+"1019671": {
+"2012-01-31": {
+"IncreaseDecreaseInDeferredRevenue": -3839000,
+"InvestmentIncomeInterest": 291000
+},
+"2013-01-31": {
+"IncreaseDecreaseInDeferredRevenue": -6283000,
+"InvestmentIncomeInterest": 180000
+},
+"2014-01-31": {
+"IncreaseDecreaseInDeferredRevenue": -4877000
+},
+"2015-01-31": {
+"IncreaseDecreaseInDeferredRevenue": -5699000
+},
+"2016-01-31": {
+"IncreaseDecreaseInDeferredRevenue": -1431000
+},
+"2017-01-31": {
+"IncreaseDecreaseInDeferredRevenue": -2417000
+}
+},
+"1031308": {
+"2020-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -565000,
+"InterestIncomeExpenseNonoperatingNet": -6780000,
+"InvestmentIncomeInterest": 437000
+},
+"2021-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 5340000,
+"InterestIncomeExpenseNonoperatingNet": -11221000,
+"InvestmentIncomeInterest": 306000
+},
+"2022-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 2292000,
+"InterestIncomeExpenseNonoperatingNet": -34635000,
+"InvestmentIncomeInterest": 421000
+},
+"2023-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 19933000,
+"InterestIncomeExpenseNonoperatingNet": -39793000,
+"InvestmentIncomeInterest": 1538000
+},
+"2024-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -1789000,
+"InterestIncomeExpenseNonoperatingNet": -22044000,
+"InvestmentIncomeInterest": 2730000
+},
+"2025-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 19006000,
+"InterestIncomeExpenseNonoperatingNet": -12435000,
+"InvestmentIncomeInterest": 2887000
+}
+},
+"1036188": {
+"2012-01-31": {
+"IncreaseDecreaseInDeferredRevenue": -1681000,
+"InvestmentIncomeInterest": 630000
+},
+"2013-01-31": {
+"IncreaseDecreaseInDeferredRevenue": 5669000,
+"InvestmentIncomeInterest": 590000
+},
+"2014-01-31": {
+"IncreaseDecreaseInDeferredRevenue": 4753000,
+"InvestmentIncomeInterest": 284000
+},
+"2015-01-31": {
+"IncreaseDecreaseInDeferredRevenue": 4912000,
+"InvestmentIncomeInterest": 242000
+},
+"2016-01-31": {
+"IncreaseDecreaseInDeferredRevenue": -2675000,
+"InvestmentIncomeInterest": 320000
+},
+"2017-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 7245000,
+"IncreaseDecreaseInDeferredRevenue": 7245000,
+"InvestmentIncomeInterest": 696000
+},
+"2018-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 7001000,
+"IncreaseDecreaseInDeferredRevenue": 7001000,
+"InvestmentIncomeInterest": 1547000
+},
+"2019-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 3031000,
+"InvestmentIncomeInterest": 2600000
+},
+"2020-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 6074000,
+"InvestmentIncomeInterest": 2782000
+},
+"2021-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 2386000,
+"InvestmentIncomeInterest": 923000
+}
+},
+"1050140": {
+"2013-01-31": {
+"IncreaseDecreaseInDeferredRevenue": -1342000
+},
+"2014-01-31": {
+"IncreaseDecreaseInDeferredRevenue": -1432000
+},
+"2015-01-31": {
+"IncreaseDecreaseInDeferredRevenue": -2492000
+},
+"2016-01-31": {
+"IncreaseDecreaseInDeferredRevenue": -2008000
+},
+"2017-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 2883000,
+"IncreaseDecreaseInDeferredRevenue": 2883000
+},
+"2018-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 902000,
+"IncreaseDecreaseInDeferredRevenue": 902000
+},
+"2019-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 2047000,
+"IncreaseDecreaseInDeferredRevenue": 2047000
+},
+"2020-01-31": {
+"IncreaseDecreaseInDeferredRevenue": -4184000
+},
+"2021-01-31": {
+"IncreaseDecreaseInDeferredRevenue": 5877000
+},
+"2022-01-31": {
+"IncreaseDecreaseInDeferredRevenue": 6142000
+},
+"2026-01-31": {
+"IncreaseDecreaseInDeferredRevenue": 4158000
+}
+},
+"1056696": {
+"2011-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 4905000
+},
+"2012-12-31": {
+"IncreaseDecreaseInDeferredRevenue": -2201000
+},
+"2013-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 6010000
+},
+"2014-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 6477000
+},
+"2015-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 10325000
+},
+"2016-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -4150000,
+"IncreaseDecreaseInDeferredRevenue": -4150000
+},
+"2017-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 13052000,
+"IncreaseDecreaseInDeferredRevenue": 13052000
+},
+"2018-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 7575000
+},
+"2019-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 11858000
+},
+"2020-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 18164000
+},
+"2021-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 40530000
+},
+"2022-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 57706000
+},
+"2023-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 27136000
+},
+"2024-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 42187000
+},
+"2025-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 52096000
+}
+},
+"1062478": {
+"2011-12-31": {
+"IncreaseDecreaseInDeferredRevenue": -1185000
+},
+"2012-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 1458000
+},
+"2013-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 1517000
+}
+},
+"1064060": {
+"2011-12-31": {
+"IncreaseDecreaseInDeferredRevenue": -720000
+}
+},
+"1066026": {
+"2011-09-30": {
+"IncreaseDecreaseInDeferredRevenue": 11623000,
+"InvestmentIncomeInterest": 2177000
+},
+"2012-09-30": {
+"IncreaseDecreaseInDeferredRevenue": 15369000,
+"InvestmentIncomeInterest": 2373000
+},
+"2013-09-30": {
+"IncreaseDecreaseInDeferredRevenue": 13466000,
+"InvestmentIncomeInterest": 2422000
+},
+"2014-09-30": {
+"IncreaseDecreaseInDeferredRevenue": 18953000,
+"InvestmentIncomeInterest": 2659000
+}
+},
+"1070235": {
+"2012-03-03": {
+"IncreaseDecreaseInDeferredRevenue": 151000000
+},
+"2013-03-02": {
+"IncreaseDecreaseInDeferredRevenue": 279000000
+},
+"2014-03-01": {
+"IncreaseDecreaseInDeferredRevenue": 38000000
+},
+"2015-02-28": {
+"IncreaseDecreaseInDeferredRevenue": -118000000
+},
+"2016-02-29": {
+"IncreaseDecreaseInDeferredRevenue": -264000000
+},
+"2017-02-28": {
+"IncreaseDecreaseInDeferredRevenue": -144000000
+},
+"2018-02-28": {
+"IncreaseDecreaseInDeferredRevenue": -44000000
+},
+"2019-02-28": {
+"IncreaseDecreaseInDeferredRevenue": -36000000
+},
+"2020-02-29": {
+"IncreaseDecreaseInDeferredRevenue": -18000000
+},
+"2021-02-28": {
+"IncreaseDecreaseInDeferredRevenue": -79000000
+},
+"2022-02-28": {
+"IncreaseDecreaseInDeferredRevenue": -50000000
+},
+"2023-02-28": {
+"IncreaseDecreaseInDeferredRevenue": -29400000
+},
+"2024-02-29": {
+"IncreaseDecreaseInDeferredRevenue": 7500000
+},
+"2025-02-28": {
+"IncreaseDecreaseInDeferredRevenue": -5900000
+},
+"2026-02-28": {
+"IncreaseDecreaseInDeferredRevenue": -14500000
+}
+},
+"1073349": {
+"2011-06-30": {
+"IncreaseDecreaseInDeferredRevenue": 2183000,
+"InvestmentIncomeInterest": 437000
+},
+"2012-06-30": {
+"IncreaseDecreaseInDeferredRevenue": 2459000,
+"InvestmentIncomeInterest": 453000
+},
+"2013-06-30": {
+"IncreaseDecreaseInDeferredRevenue": 7541000,
+"InvestmentIncomeInterest": 629000
+},
+"2014-06-30": {
+"IncreaseDecreaseInDeferredRevenue": 14915000,
+"InvestmentIncomeInterest": 667000
+},
+"2015-06-30": {
+"IncreaseDecreaseInDeferredRevenue": 7561000,
+"InvestmentIncomeInterest": 499000
+},
+"2016-06-30": {
+"IncreaseDecreaseInDeferredRevenue": 10361000,
+"InvestmentIncomeInterest": 533000
+},
+"2017-06-30": {
+"IncreaseDecreaseInDeferredRevenue": 2337000,
+"InvestmentIncomeInterest": 451000
+},
+"2018-06-30": {
+"IncreaseDecreaseInDeferredRevenue": 2852000,
+"InvestmentIncomeInterest": 273000
+},
+"2019-06-30": {
+"IncreaseDecreaseInDeferredRevenue": 1689000,
+"InvestmentIncomeInterest": 670000
+},
+"2020-06-30": {
+"IncreaseDecreaseInDeferredRevenue": 4540000,
+"InvestmentIncomeInterest": 658000
+},
+"2021-06-30": {
+"IncreaseDecreaseInContractWithCustomerLiability": 5205000,
+"IncreaseDecreaseInDeferredRevenue": -550000,
+"InvestmentIncomeInterest": 274000
+}
+},
+"1073967": {
+"2012-01-31": {
+"IncreaseDecreaseInDeferredRevenue": -889000,
+"InvestmentIncomeInterest": 168000
+},
+"2013-01-31": {
+"IncreaseDecreaseInDeferredRevenue": -2222000,
+"InvestmentIncomeInterest": 196000
+}
+},
+"1080099": {
+"2010-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 33043000,
+"InvestmentIncomeInterest": 3904000
+},
+"2011-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 34795000,
+"InvestmentIncomeInterest": 4813000
+},
+"2012-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 35127000,
+"InvestmentIncomeInterest": 3993000
+},
+"2013-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 46525000,
+"InvestmentIncomeInterest": 3486000
+},
+"2014-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 38767000,
+"InvestmentIncomeInterest": 4646000
+}
+},
+"1082526": {
+"2015-12-31": {
+"IncreaseDecreaseInDeferredRevenue": -716000,
+"InvestmentIncomeInterest": 605000
+}
+},
+"1084755": {
+"2010-09-30": {
+"IncreaseDecreaseInDeferredRevenue": -5896000
+},
+"2011-09-30": {
+"IncreaseDecreaseInDeferredRevenue": 13465000
+}
+},
+"1084817": {
+"2012-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 684000,
+"InvestmentIncomeInterest": 173000
+}
+},
+"1085280": {
+"2010-11-30": {
+"IncreaseDecreaseInDeferredRevenue": 11382000,
+"InvestmentIncomeInterest": 1349000
+},
+"2011-11-30": {
+"IncreaseDecreaseInDeferredRevenue": 20563000,
+"InvestmentIncomeInterest": 1374000
+},
+"2012-11-30": {
+"IncreaseDecreaseInDeferredRevenue": 60395000,
+"InvestmentIncomeInterest": 1109000
+},
+"2013-11-30": {
+"IncreaseDecreaseInDeferredRevenue": -8424000,
+"InvestmentIncomeInterest": 938000
+}
+},
+"1086909": {
+"2012-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 4013000,
+"InvestmentIncomeInterest": 455000
+},
+"2013-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 16473000,
+"InvestmentIncomeInterest": 454000
+},
+"2014-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 22911000
+},
+"2015-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 9099000
+},
+"2016-12-31": {
+"IncreaseDecreaseInDeferredRevenue": -2000000
+}
+},
+"1087934": {
+"2013-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 2490000
+},
+"2014-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 5899000
+},
+"2015-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 3424000
+}
+},
+"1088033": {
+"2010-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 48520000,
+"InvestmentIncomeInterest": 2393000
+},
+"2011-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 50065000,
+"InvestmentIncomeInterest": 2056000
+}
+},
+"1092699": {
+"2014-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 2440000,
+"InvestmentIncomeInterest": 187000
+},
+"2015-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 587000
+},
+"2016-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 2852000,
+"IncreaseDecreaseInDeferredRevenue": 2710000
+},
+"2017-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 5588000,
+"IncreaseDecreaseInDeferredRevenue": 5107000
+},
+"2018-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 7094000
+},
+"2019-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 6366000
+},
+"2020-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 4432000
+},
+"2021-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 14483000
+},
+"2022-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 5965000
+},
+"2023-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 6464000
+},
+"2024-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 728000
+},
+"2025-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -787000
+}
+},
+"1094005": {
+"2010-12-31": {
+"IncreaseDecreaseInDeferredRevenue": -14775000,
+"InvestmentIncomeInterest": 7400000
+},
+"2011-12-31": {
+"IncreaseDecreaseInDeferredRevenue": -16815000,
+"InvestmentIncomeInterest": 13700000
+},
+"2012-12-31": {
+"IncreaseDecreaseInDeferredRevenue": -16400000,
+"InvestmentIncomeInterest": 17000000
+},
+"2013-12-31": {
+"IncreaseDecreaseInDeferredRevenue": -7449000,
+"InvestmentIncomeInterest": 17300000
+},
+"2014-12-31": {
+"IncreaseDecreaseInDeferredRevenue": -1659000,
+"InvestmentIncomeInterest": 43900000
+},
+"2015-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 20758000,
+"InvestmentIncomeInterest": 38700000
+},
+"2016-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 10557000,
+"IncreaseDecreaseInDeferredRevenue": 10557000,
+"InvestmentIncomeInterest": 38000000
+},
+"2017-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 15973000,
+"IncreaseDecreaseInDeferredRevenue": 15973000,
+"InvestmentIncomeInterest": 43200000
+},
+"2018-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 1495000,
+"InvestmentIncomeInterest": 83200000
+},
+"2019-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -4162000,
+"InvestmentIncomeInterest": 86500000
+}
+},
+"1095291": {
+"2011-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 28768000
+},
+"2012-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 91993000
+},
+"2013-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 28961000
+},
+"2014-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 6949000
+},
+"2015-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 7986000
+},
+"2016-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 7961000
+},
+"2017-12-31": {
+"IncreaseDecreaseInDeferredRevenue": -7992000
+}
+},
+"1100969": {
+"2011-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 4415000,
+"InvestmentIncomeInterest": 5651000
+},
+"2012-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 8113000,
+"InvestmentIncomeInterest": 7910000
+}
+},
+"1102993": {
+"2011-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 447000,
+"InvestmentIncomeInterest": 63000
+},
+"2012-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 1258000,
+"InvestmentIncomeInterest": 71000
+},
+"2013-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 1413000
+},
+"2014-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 2710000
+},
+"2015-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 1869000
+},
+"2016-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 13283000
+},
+"2017-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 8418000,
+"IncreaseDecreaseInDeferredRevenue": 8418000,
+"InterestIncomeExpenseNonoperatingNet": 26000
+},
+"2018-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 19005000,
+"IncreaseDecreaseInDeferredRevenue": 19005000,
+"InterestIncomeExpenseNonoperatingNet": 22000
+},
+"2019-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 33953000,
+"InterestIncomeExpenseNonoperatingNet": -7407000
+},
+"2020-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -3118000,
+"InterestIncomeExpenseNonoperatingNet": -14334000
+},
+"2021-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 7774000,
+"InterestIncomeExpenseNonoperatingNet": -37406000
+},
+"2022-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -12341000,
+"InterestIncomeExpenseNonoperatingNet": -352000,
+"InvestmentIncomeInterest": 5151000
+},
+"2023-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -3169000,
+"InterestIncomeExpenseNonoperatingNet": 4669000,
+"InvestmentIncomeInterest": 9551000
+},
+"2024-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -23058000,
+"InvestmentIncomeInterest": 5860000
+},
+"2025-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -4315000,
+"InvestmentIncomeInterest": 4751000
+}
+},
+"1105841": {
+"2013-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 7512000,
+"InterestIncomeExpenseNonoperatingNet": 839000
+},
+"2014-12-31": {
+"IncreaseDecreaseInDeferredRevenue": -963000,
+"InterestIncomeExpenseNonoperatingNet": 1275000
+}
+},
+"1106942": {
+"2010-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 13085000,
+"InvestmentIncomeInterest": 126000
+}
+},
+"1107843": {
+"2014-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 14817000,
+"InvestmentIncomeInterest": 452000
+},
+"2015-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 21378000,
+"InvestmentIncomeInterest": 570000
+},
+"2016-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 17903000,
+"InvestmentIncomeInterest": 1320000
+},
+"2017-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 29830000,
+"IncreaseDecreaseInDeferredRevenue": 29830000,
+"InvestmentIncomeInterest": 2674000
+},
+"2018-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 24725000,
+"IncreaseDecreaseInDeferredRevenue": 24725000,
+"InvestmentIncomeInterest": 6080000
+},
+"2019-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 28060000,
+"InvestmentIncomeInterest": 8443000
+},
+"2020-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 30927000,
+"InvestmentIncomeInterest": 5385000
+},
+"2021-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 46591000,
+"InvestmentIncomeInterest": 2287000
+},
+"2022-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 25189000,
+"InvestmentIncomeInterest": 5191000
+},
+"2023-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 47720000,
+"InvestmentIncomeInterest": 16905000
+},
+"2024-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 30784000,
+"InvestmentIncomeInterest": 25784000
+},
+"2025-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 21690000,
+"InvestmentIncomeInterest": 25251000
+}
+},
+"1108524": {
+"2011-01-31": {
+"IncreaseDecreaseInDeferredRevenue": 227693000,
+"InvestmentIncomeInterest": 28273000
+},
+"2012-01-31": {
+"IncreaseDecreaseInDeferredRevenue": 444674000,
+"InvestmentIncomeInterest": 20791000
+},
+"2013-01-31": {
+"IncreaseDecreaseInDeferredRevenue": 479419000,
+"InvestmentIncomeInterest": 17903000
+},
+"2014-01-31": {
+"IncreaseDecreaseInDeferredRevenue": 612343000,
+"InvestmentIncomeInterest": 9512000
+},
+"2015-01-31": {
+"IncreaseDecreaseInDeferredRevenue": 798830000,
+"InvestmentIncomeInterest": 10129000
+},
+"2016-01-31": {
+"IncreaseDecreaseInDeferredRevenue": 969686000,
+"InvestmentIncomeInterest": 14146000
+},
+"2017-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 1186000000,
+"IncreaseDecreaseInDeferredRevenue": 1210973000,
+"InvestmentIncomeInterest": 22000000
+},
+"2018-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 1528000000,
+"IncreaseDecreaseInDeferredRevenue": 1551904000,
+"InvestmentIncomeInterest": 37000000
+},
+"2019-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 1503000000,
+"InvestmentIncomeInterest": 61000000
+},
+"2020-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 1665000000,
+"InvestmentIncomeInterest": 117000000
+},
+"2021-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 1872000000
+},
+"2022-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 2629000000
+},
+"2023-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 1744000000,
+"InvestmentIncomeInterest": 199000000
+},
+"2024-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 1623000000,
+"InvestmentIncomeInterest": 527000000
+},
+"2025-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 1584000000,
+"InvestmentIncomeInterest": 647000000
+},
+"2026-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 2924000000,
+"InvestmentIncomeInterest": 539000000
+}
+},
+"1108924": {
+"2012-03-31": {
+"IncreaseDecreaseInDeferredRevenue": 7362000
+}
+},
+"1110611": {
+"2021-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 3985000,
+"InvestmentIncomeInterest": 685000
+},
+"2022-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -12807000,
+"InvestmentIncomeInterest": 1914000
+},
+"2023-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -9095000
+},
+"2024-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -7671000
+},
+"2025-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -6412000
+}
+},
+"1110903": {
+"2011-09-30": {
+"IncreaseDecreaseInDeferredRevenue": 1963000
+}
+},
+"1111665": {
+"2011-12-31": {
+"IncreaseDecreaseInDeferredRevenue": -5893000
+},
+"2012-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 5184000
+},
+"2013-12-31": {
+"IncreaseDecreaseInDeferredRevenue": -1718000
+},
+"2014-12-31": {
+"IncreaseDecreaseInDeferredRevenue": -7429000
+}
+},
+"1114714": {
+"2011-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 12579000
+}
+},
+"1117106": {
+"2011-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 30529000
+},
+"2012-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 49524000
+},
+"2013-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 63510000
+},
+"2014-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 89668000
+},
+"2015-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 109382000
+}
+},
+"1120914": {
+"2014-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 1713000
+},
+"2015-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 411000
+},
+"2017-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -326000,
+"IncreaseDecreaseInDeferredRevenue": -326000
+},
+"2018-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 2451000
+},
+"2022-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 1822000,
+"InvestmentIncomeInterest": 2562000
+},
+"2023-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -640000,
+"InvestmentIncomeInterest": 5500000
+},
+"2024-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -2629000,
+"InvestmentIncomeInterest": 5600000
+},
+"2025-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -6866000,
+"InvestmentIncomeInterest": 1500000
+}
+},
+"1122388": {
+"2013-12-31": {
+"IncreaseDecreaseInDeferredRevenue": -127000,
+"InvestmentIncomeInterest": 78000
+},
+"2014-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 2604000
+},
+"2015-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 5849000
+},
+"2016-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 7184000,
+"IncreaseDecreaseInDeferredRevenue": 7184000
+},
+"2017-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 1798000,
+"IncreaseDecreaseInDeferredRevenue": 1798000
+},
+"2018-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -1897000
+}
+},
+"1122897": {
+"2014-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 17277000,
+"InvestmentIncomeInterest": 1595000
+},
+"2015-12-31": {
+"IncreaseDecreaseInDeferredRevenue": -5705000,
+"InvestmentIncomeInterest": 2456000
+}
+},
+"1124610": {
+"2010-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 495382000
+},
+"2011-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 840000000
+},
+"2012-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 751000000
+},
+"2013-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 756000000
+},
+"2014-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 693000000,
+"InvestmentIncomeNonoperating": 38000000
+},
+"2015-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 242000000,
+"InvestmentIncomeNonoperating": 49000000
+},
+"2016-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 534000000,
+"IncreaseDecreaseInDeferredRevenue": 547000000,
+"InvestmentIncomeNonoperating": 77000000
+},
+"2019-02-01": {
+"IncreaseDecreaseInContractWithCustomerLiability": 1302000000,
+"InvestmentIncomeNonoperating": 161000000
+},
+"2020-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 1668000000,
+"InvestmentIncomeNonoperating": 60000000
+},
+"2021-01-29": {
+"IncreaseDecreaseInContractWithCustomerLiability": 1013000000,
+"InvestmentIncomeNonoperating": 7000000
+},
+"2022-01-28": {
+"IncreaseDecreaseInContractWithCustomerLiability": 908000000,
+"InvestmentIncomeNonoperating": 2000000
+},
+"2023-02-03": {
+"IncreaseDecreaseInContractWithCustomerLiability": 1520000000,
+"InvestmentIncomeNonoperating": 65000000
+}
+},
+"1134203": {
+"2011-12-31": {
+"InvestmentIncomeInterest": 348000
+}
+},
+"1160951": {
+"2021-08-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -1199000
+},
+"2022-08-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -4554000
+}
+},
+"1163932": {
+"2011-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 6400000,
+"InvestmentIncomeInterest": 119000
+},
+"2012-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 11894000,
+"InvestmentIncomeInterest": 87000
+}
+},
+"1169561": {
+"2011-03-31": {
+"IncreaseDecreaseInDeferredRevenue": 17892000,
+"InvestmentIncomeInterest": 650000
+},
+"2012-03-31": {
+"IncreaseDecreaseInDeferredRevenue": 35599000,
+"InvestmentIncomeInterest": 750000
+},
+"2013-03-31": {
+"IncreaseDecreaseInDeferredRevenue": 38041000,
+"InvestmentIncomeInterest": 1059000
+},
+"2014-03-31": {
+"IncreaseDecreaseInDeferredRevenue": 25156000,
+"InvestmentIncomeInterest": 890000
+},
+"2015-03-31": {
+"IncreaseDecreaseInDeferredRevenue": 35818000,
+"InvestmentIncomeInterest": 773000
+},
+"2016-03-31": {
+"IncreaseDecreaseInDeferredRevenue": 16935000,
+"InvestmentIncomeInterest": 862000
+},
+"2017-03-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 36666000,
+"IncreaseDecreaseInDeferredRevenue": 36666000,
+"InvestmentIncomeInterest": 1163000
+},
+"2018-03-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 33971000,
+"IncreaseDecreaseInDeferredRevenue": 33971000,
+"InvestmentIncomeInterest": 2228000
+},
+"2019-03-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 21719000,
+"InvestmentIncomeInterest": 5519000
+},
+"2020-03-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -6230000,
+"InvestmentIncomeInterest": 4962000
+},
+"2021-03-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 31740000,
+"InvestmentIncomeInterest": 1028000
+},
+"2022-03-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 48295000,
+"InvestmentIncomeInterest": 656000
+},
+"2023-03-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 73756000,
+"InvestmentIncomeInterest": 1300000
+},
+"2024-03-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 50394000,
+"InvestmentIncomeInterest": 5423000
+},
+"2025-03-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 87659000,
+"InvestmentIncomeInterest": 6654000
+},
+"2026-03-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 136410000,
+"InvestmentIncomeInterest": 21810000
+}
+},
+"1169652": {
+"2016-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 4676000,
+"IncreaseDecreaseInDeferredRevenue": 4676000,
+"InterestIncomeExpenseNonoperatingNet": -1000
+},
+"2017-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 3581000,
+"IncreaseDecreaseInDeferredRevenue": 3581000,
+"InterestIncomeExpenseNonoperatingNet": 222000
+},
+"2018-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -3765000,
+"InterestIncomeExpenseNonoperatingNet": 510000
+},
+"2019-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -3383000,
+"InterestIncomeExpenseNonoperatingNet": 754000
+},
+"2020-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 1284000,
+"InterestIncomeExpenseNonoperatingNet": 175000
+},
+"2021-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 7701000,
+"InterestIncomeExpenseNonoperatingNet": -127000
+}
+},
+"1182325": {
+"2012-12-31": {
+"IncreaseDecreaseInDeferredRevenue": -1864000,
+"InvestmentIncomeInterest": 80000
+},
+"2013-12-31": {
+"IncreaseDecreaseInDeferredRevenue": -23000,
+"InvestmentIncomeInterest": 60000
+},
+"2014-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 1317000,
+"InvestmentIncomeInterest": 35000
+}
+},
+"1224133": {
+"2012-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 79000,
+"InvestmentIncomeInterest": 14000
+},
+"2013-12-31": {
+"IncreaseDecreaseInDeferredRevenue": -49000,
+"InvestmentIncomeInterest": 15000
+},
+"2014-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 729000,
+"InvestmentIncomeInterest": 2000
+},
+"2015-12-31": {
+"IncreaseDecreaseInDeferredRevenue": -433000,
+"InvestmentIncomeInterest": 21000
+},
+"2016-12-31": {
+"IncreaseDecreaseInDeferredRevenue": -343000,
+"InvestmentIncomeInterest": 67000
+},
+"2017-12-31": {
+"IncreaseDecreaseInDeferredRevenue": -36000
+}
+},
+"1237746": {
+"2014-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 67654000
+},
+"2015-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 34241000
+},
+"2016-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 54366000,
+"IncreaseDecreaseInDeferredRevenue": 54366000
+},
+"2017-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 8235000,
+"IncreaseDecreaseInDeferredRevenue": 8235000
+},
+"2018-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -6315000
+},
+"2019-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 3562000
+}
+},
+"1254419": {
+"2010-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 13572000
+},
+"2011-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 16477000
+},
+"2012-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 7542000
+},
+"2013-12-31": {
+"IncreaseDecreaseInDeferredRevenue": -7257000
+},
+"2014-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 10659000
+}
+},
+"1261333": {
+"2019-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 100874000
+},
+"2020-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 130266000
+},
+"2021-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 267750000
+},
+"2022-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 250482000
+},
+"2023-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 143177000
+},
+"2024-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 152247000
+},
+"2025-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 129854000
+},
+"2026-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 177203000
+}
+},
+"1280058": {
+"2010-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 13121000,
+"InvestmentIncomeInterest": 84000
+},
+"2011-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 12757000,
+"InvestmentIncomeInterest": 183000
+},
+"2012-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 12912000,
+"InvestmentIncomeInterest": 146000
+},
+"2013-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 6683000,
+"InvestmentIncomeInterest": 67000
+},
+"2014-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 17011000,
+"InvestmentIncomeInterest": 59000
+},
+"2015-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 12612000,
+"InvestmentIncomeInterest": 155000
+},
+"2016-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 14420000,
+"InvestmentIncomeInterest": 581000
+},
+"2017-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 22184000,
+"InvestmentIncomeInterest": 993000
+},
+"2018-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 19184000,
+"InvestmentIncomeInterest": 2008000
+},
+"2019-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 12464000,
+"InvestmentIncomeInterest": 2802000
+},
+"2020-12-31": {
+"IncreaseDecreaseInDeferredRevenue": -485000,
+"InvestmentIncomeInterest": 1660000
+},
+"2021-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 10526000,
+"InvestmentIncomeInterest": 392000
+},
+"2022-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 11059000,
+"InvestmentIncomeInterest": 1746000
+},
+"2023-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 7209000,
+"InvestmentIncomeInterest": 8821000
+},
+"2024-12-31": {
+"IncreaseDecreaseInDeferredRevenue": -1861000,
+"InvestmentIncomeInterest": 9846000
+},
+"2025-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 9737000,
+"InvestmentIncomeInterest": 7892000
+}
+},
+"1286225": {
+"2011-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 7810000
+},
+"2012-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 969000
+},
+"2013-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 969000
+},
+"2014-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 8443000
+},
+"2015-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 10791000
+},
+"2016-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 4452000,
+"IncreaseDecreaseInDeferredRevenue": 4452000
+},
+"2017-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 17114000,
+"IncreaseDecreaseInDeferredRevenue": 17114000
+},
+"2018-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 3478000
+},
+"2019-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 7696000
+},
+"2020-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 1794000
+}
+},
+"1303652": {
+"2013-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 34740000
+},
+"2014-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 62752000
+},
+"2015-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 71383000
+},
+"2016-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 116860000,
+"IncreaseDecreaseInDeferredRevenue": 116860000
+},
+"2017-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 123938000,
+"IncreaseDecreaseInDeferredRevenue": 123938000
+},
+"2018-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 56555000
+}
+},
+"1305294": {
+"2011-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 18552000
+},
+"2012-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 17403000,
+"InterestIncomeExpenseNonoperatingNet": 250000
+},
+"2013-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 15625000,
+"InterestIncomeExpenseNonoperatingNet": 231000
+},
+"2014-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 37669000,
+"InterestIncomeExpenseNonoperatingNet": 147000
+},
+"2015-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 56091000,
+"InterestIncomeExpenseNonoperatingNet": 128000
+}
+},
+"1315098": {
+"2021-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 819927000,
+"InterestIncomeOperating": 92000,
+"InvestmentIncomeNonoperating": 92000
+},
+"2022-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 662378000,
+"InterestIncomeOperating": 38842000,
+"InvestmentIncomeNonoperating": 38842000
+},
+"2023-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 742294000,
+"InterestIncomeOperating": 141818000,
+"InvestmentIncomeInterest": 141818000
+},
+"2024-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 795422000,
+"InterestIncomeOperating": 179531000,
+"InvestmentIncomeInterest": 179531000
+},
+"2025-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 1935318000,
+"InterestIncomeOperating": 201610000,
+"InvestmentIncomeInterest": 201610000
+}
+},
+"1321655": {
+"2020-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -230873000,
+"IncreaseDecreaseInDeferredRevenue": -30905000,
+"InvestmentIncomeInterest": 4680000
+},
+"2021-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -104944000,
+"IncreaseDecreaseInDeferredRevenue": 24732000,
+"InvestmentIncomeInterest": 1607000
+},
+"2022-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -49471000,
+"IncreaseDecreaseInDeferredRevenue": -61154000,
+"InvestmentIncomeInterest": 20309000
+},
+"2023-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 143859000,
+"IncreaseDecreaseInDeferredRevenue": 79512000,
+"InvestmentIncomeInterest": 132572000
+},
+"2024-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 76796000,
+"IncreaseDecreaseInDeferredRevenue": 22356000,
+"InvestmentIncomeInterest": 196792000
+},
+"2025-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 238688000,
+"InvestmentIncomeInterest": 229181000
+}
+},
+"1329919": {
+"2012-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 14383000,
+"InvestmentIncomeInterest": -41000
+},
+"2013-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 4869000
+}
+},
+"1330421": {
+"2013-04-30": {
+"IncreaseDecreaseInDeferredRevenue": 8633000,
+"InvestmentIncomeInterest": 217000
+},
+"2014-04-30": {
+"IncreaseDecreaseInDeferredRevenue": 2040000,
+"InvestmentIncomeInterest": 143000
+},
+"2015-04-30": {
+"IncreaseDecreaseInDeferredRevenue": 6258000,
+"InvestmentIncomeInterest": 95000
+},
+"2016-04-30": {
+"IncreaseDecreaseInDeferredRevenue": 2286000,
+"InvestmentIncomeInterest": 412000
+},
+"2017-04-30": {
+"IncreaseDecreaseInDeferredRevenue": 6980000,
+"InvestmentIncomeInterest": 629000
+}
+},
+"1337272": {
+"2011-12-31": {
+"IncreaseDecreaseInDeferredRevenue": -24000000,
+"InvestmentIncomeInterest": 3000000
+},
+"2012-12-31": {
+"IncreaseDecreaseInDeferredRevenue": -23000000,
+"InvestmentIncomeInterest": 1000000
+},
+"2013-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 33000000,
+"InvestmentIncomeInterest": 1000000
+},
+"2014-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 9000000,
+"InvestmentIncomeInterest": 1000000
+}
+},
+"1340476": {
+"2019-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -4276000,
+"InvestmentIncomeInterest": 529000
+},
+"2020-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -1754000,
+"InvestmentIncomeInterest": 238000
+},
+"2021-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 601000,
+"InvestmentIncomeInterest": 77000
+},
+"2022-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 2477000,
+"InvestmentIncomeInterest": 51000
+},
+"2023-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 243000,
+"InvestmentIncomeInterest": 490000
+},
+"2024-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -1240000,
+"InvestmentIncomeInterest": 1587000
+},
+"2025-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -543000,
+"InvestmentIncomeInterest": 941000
+}
+},
+"1341439": {
+"2011-05-31": {
+"IncreaseDecreaseInDeferredRevenue": 231000000,
+"InvestmentIncomeInterest": 163000000
+},
+"2012-05-31": {
+"IncreaseDecreaseInDeferredRevenue": 492000000,
+"InvestmentIncomeInterest": 231000000
+},
+"2013-05-31": {
+"IncreaseDecreaseInDeferredRevenue": 148000000,
+"InvestmentIncomeInterest": 237000000
+},
+"2014-05-31": {
+"IncreaseDecreaseInDeferredRevenue": 172000000,
+"InvestmentIncomeInterest": 263000000
+},
+"2015-05-31": {
+"IncreaseDecreaseInDeferredRevenue": 655000000,
+"InvestmentIncomeInterest": 349000000
+},
+"2016-05-31": {
+"IncreaseDecreaseInDeferredRevenue": 676000000,
+"InvestmentIncomeInterest": 538000000
+},
+"2017-05-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 547000000,
+"IncreaseDecreaseInDeferredRevenue": 535000000,
+"InvestmentIncomeInterest": 804000000
+},
+"2018-05-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 236000000,
+"IncreaseDecreaseInDeferredRevenue": 174000000,
+"InvestmentIncomeInterest": 1203000000
+},
+"2019-05-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 306000000,
+"InvestmentIncomeInterest": 1092000000
+},
+"2020-05-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -222000000,
+"InvestmentIncomeInterest": 527000000
+},
+"2021-05-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 405000000,
+"InvestmentIncomeInterest": 101000000
+},
+"2022-05-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 7000000,
+"InvestmentIncomeInterest": 94000000
+},
+"2023-05-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 781000000,
+"InvestmentIncomeInterest": 285000000
+},
+"2024-05-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 656000000,
+"InvestmentIncomeInterest": 451000000
+},
+"2025-05-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 154000000,
+"InvestmentIncomeInterest": 578000000
+},
+"2026-05-31": {
+"InvestmentIncomeInterest": 780000000
+}
+},
+"1348036": {
+"2018-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 42422000,
+"IncreaseDecreaseInDeferredRevenue": 42422000,
+"InvestmentIncomeInterest": 1553000
+},
+"2019-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 37558000,
+"InvestmentIncomeInterest": 6037000
+},
+"2020-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 39254000,
+"InvestmentIncomeInterest": 1678000
+},
+"2021-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 71406000,
+"InvestmentIncomeInterest": 108000
+}
+},
+"1351285": {
+"2011-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 4777000,
+"InvestmentIncomeInterest": 302000
+},
+"2012-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 11514000,
+"InvestmentIncomeInterest": 187000
+},
+"2013-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 13947000,
+"InvestmentIncomeInterest": 117000
+},
+"2014-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 48864000,
+"InvestmentIncomeInterest": 17000
+},
+"2015-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 16878000,
+"InvestmentIncomeInterest": 23000
+},
+"2016-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -192000,
+"IncreaseDecreaseInDeferredRevenue": -192000,
+"InvestmentIncomeInterest": 46000
+},
+"2017-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 8850000,
+"IncreaseDecreaseInDeferredRevenue": 8850000,
+"InvestmentIncomeInterest": 66000
+},
+"2018-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 12941000,
+"InvestmentIncomeInterest": 103000
+},
+"2019-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 14682000,
+"InvestmentIncomeInterest": 61000
+}
+},
+"1351636": {
+"2025-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -354000,
+"InterestIncomeExpenseNonoperatingNet": -19000
+}
+},
+"1353283": {
+"2013-01-31": {
+"IncreaseDecreaseInDeferredRevenue": 62047000,
+"InterestIncomeExpenseNonoperatingNet": 152000
+},
+"2014-01-31": {
+"IncreaseDecreaseInDeferredRevenue": 77421000,
+"InterestIncomeExpenseNonoperatingNet": 225000
+},
+"2015-01-31": {
+"IncreaseDecreaseInDeferredRevenue": 111764000,
+"InterestIncomeExpenseNonoperatingNet": 754000
+},
+"2016-01-31": {
+"IncreaseDecreaseInDeferredRevenue": 145418000,
+"InterestIncomeExpenseNonoperatingNet": 1798000
+},
+"2017-01-31": {
+"IncreaseDecreaseInDeferredRevenue": 174267000,
+"InterestIncomeExpenseNonoperatingNet": -2829000
+},
+"2018-01-31": {
+"IncreaseDecreaseInDeferredRevenue": 232279000,
+"InterestIncomeExpenseNonoperatingNet": 149000
+},
+"2019-01-31": {
+"IncreaseDecreaseInDeferredRevenue": 203843000
+},
+"2020-01-31": {
+"IncreaseDecreaseInDeferredRevenue": 119766000
+},
+"2021-01-31": {
+"IncreaseDecreaseInDeferredRevenue": 134402000
+},
+"2022-01-31": {
+"IncreaseDecreaseInDeferredRevenue": 328849000
+},
+"2023-01-31": {
+"IncreaseDecreaseInDeferredRevenue": 274788000
+}
+},
+"1355754": {
+"2017-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 26763000,
+"IncreaseDecreaseInDeferredRevenue": 26882000,
+"InvestmentIncomeInterest": 361000
+},
+"2018-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 19008000,
+"InvestmentIncomeInterest": 2413000
+}
+},
+"1361113": {
+"2015-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 11554000
+},
+"2016-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 11860000
+},
+"2017-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 20860000,
+"IncreaseDecreaseInDeferredRevenue": 20860000
+},
+"2018-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 14115000,
+"IncreaseDecreaseInDeferredRevenue": 14115000
+},
+"2019-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 7219000
+},
+"2020-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -169000
+},
+"2021-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 5421000
+},
+"2022-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 5266000
+},
+"2023-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 69882000
+},
+"2024-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 110389000
+},
+"2025-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 148074000
+}
+},
+"1364962": {
+"2013-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 16761000,
+"InvestmentIncomeInterest": 386000
+},
+"2014-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 18123000,
+"InvestmentIncomeInterest": 163000
+},
+"2015-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 25482000,
+"InvestmentIncomeInterest": 701000
+},
+"2016-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 23684000,
+"InvestmentIncomeInterest": 1369000
+},
+"2017-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 30237000,
+"InvestmentIncomeInterest": 2792000
+}
+},
+"1366527": {
+"2018-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 24194000,
+"InterestAndOtherIncome": 2145000
+}
+},
+"1366561": {
+"2019-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 38851000,
+"InterestIncomeExpenseNonoperatingNet": 3307000
+},
+"2020-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 61646000,
+"InterestIncomeExpenseNonoperatingNet": 8410000
+},
+"2021-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 60534000,
+"InterestIncomeExpenseNonoperatingNet": 1444000
+},
+"2022-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 110664000,
+"InterestIncomeExpenseNonoperatingNet": 48000
+},
+"2023-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 123853000,
+"InterestIncomeExpenseNonoperatingNet": 7742000
+},
+"2024-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 110781000,
+"InterestIncomeExpenseNonoperatingNet": 25641000
+}
+},
+"1372612": {
+"2016-01-31": {
+"IncreaseDecreaseInDeferredRevenue": 66356000,
+"InterestIncomeExpenseNonoperatingNet": -1157000
+},
+"2017-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 55571000,
+"IncreaseDecreaseInDeferredRevenue": 55571000,
+"InterestIncomeExpenseNonoperatingNet": -896000
+},
+"2018-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 78939000,
+"IncreaseDecreaseInDeferredRevenue": 78939000,
+"InterestIncomeExpenseNonoperatingNet": -1013000
+},
+"2019-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 63932000,
+"InterestIncomeExpenseNonoperatingNet": -316000
+},
+"2020-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 48808000,
+"InterestIncomeExpenseNonoperatingNet": -2338000
+},
+"2021-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 41764000,
+"InterestIncomeExpenseNonoperatingNet": -7010000
+},
+"2022-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 63097000
+},
+"2023-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 38025000,
+"InvestmentIncomeInterest": 5904000
+},
+"2024-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 32714000,
+"InvestmentIncomeInterest": 18714000
+},
+"2025-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 27745000,
+"InvestmentIncomeInterest": 23709000
+},
+"2026-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 46937000,
+"InvestmentIncomeInterest": 24740000
+}
+},
+"1373715": {
+"2013-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 94405000,
+"InvestmentIncomeInterest": 1053000
+},
+"2014-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 168393000,
+"InvestmentIncomeInterest": 2964000
+},
+"2015-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 195900000
+},
+"2016-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 285139000,
+"IncreaseDecreaseInDeferredRevenue": 300167000
+},
+"2017-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 369242000,
+"IncreaseDecreaseInDeferredRevenue": 381562000
+},
+"2018-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 468856000
+},
+"2019-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 537000000
+},
+"2020-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 711000000
+},
+"2021-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 960000000
+},
+"2022-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 904000000
+},
+"2023-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 1085000000
+},
+"2024-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 1179000000
+},
+"2025-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 1179000000
+}
+},
+"1374684": {
+"2017-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 76012000,
+"InterestIncomeExpenseNonoperatingNet": 2483000
+}
+},
+"1375557": {
+"2012-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 570000,
+"InvestmentIncomeInterest": 39000
+},
+"2013-12-31": {
+"IncreaseDecreaseInDeferredRevenue": -1789000,
+"InvestmentIncomeInterest": 22000
+},
+"2014-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 3697000,
+"InvestmentIncomeInterest": 13000
+},
+"2015-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 4435000,
+"InvestmentIncomeInterest": 11000
+},
+"2016-12-31": {
+"IncreaseDecreaseInDeferredRevenue": -3663000,
+"InvestmentIncomeInterest": 7000
+}
+},
+"1385867": {
+"2018-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 36072000,
+"IncreaseDecreaseInDeferredRevenue": 36072000
+},
+"2019-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 45752000
+},
+"2020-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 73673000
+},
+"2021-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 79330000
+},
+"2022-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 128835000
+}
+},
+"1393052": {
+"2014-01-31": {
+"IncreaseDecreaseInDeferredRevenue": 28473000,
+"InterestIncomeExpenseNonoperatingNet": 502000
+},
+"2015-01-31": {
+"IncreaseDecreaseInDeferredRevenue": 45580000,
+"InterestIncomeExpenseNonoperatingNet": 3537000
+},
+"2016-01-31": {
+"IncreaseDecreaseInDeferredRevenue": 39357000,
+"InterestIncomeExpenseNonoperatingNet": 4617000
+},
+"2017-01-31": {
+"IncreaseDecreaseInDeferredRevenue": 51234000,
+"InterestIncomeExpenseNonoperatingNet": 4477000
+},
+"2018-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 58240000,
+"IncreaseDecreaseInDeferredRevenue": 58240000,
+"InterestIncomeExpenseNonoperatingNet": 8383000
+},
+"2019-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 89416000,
+"IncreaseDecreaseInDeferredRevenue": 89416000,
+"InterestIncomeExpenseNonoperatingNet": 15388000
+},
+"2020-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 97753000,
+"IncreaseDecreaseInDeferredRevenue": 97753000,
+"InterestIncomeExpenseNonoperatingNet": 25185000
+},
+"2021-01-31": {
+"IncreaseDecreaseInDeferredRevenue": 147479000,
+"InterestIncomeExpenseNonoperatingNet": 15859000
+},
+"2022-01-31": {
+"IncreaseDecreaseInDeferredRevenue": 116144000,
+"InterestIncomeExpenseNonoperatingNet": 14730000
+},
+"2023-01-31": {
+"IncreaseDecreaseInDeferredRevenue": 140472000,
+"InterestIncomeExpenseNonoperatingNet": 45860000
+},
+"2024-01-31": {
+"IncreaseDecreaseInDeferredRevenue": 188164000,
+"InterestIncomeExpenseNonoperatingNet": 133748000
+},
+"2025-01-31": {
+"IncreaseDecreaseInDeferredRevenue": 227838000,
+"InterestIncomeExpenseNonoperatingNet": 207987000
+},
+"2026-01-31": {
+"IncreaseDecreaseInDeferredRevenue": 213056000,
+"InterestIncomeExpenseNonoperatingNet": 267219000
+}
+},
+"1401680": {
+"2013-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 45230000,
+"InvestmentIncomeInterest": 357000
+},
+"2014-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 55216000,
+"InvestmentIncomeInterest": 720000
+},
+"2015-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 64774000,
+"InvestmentIncomeInterest": 894000
+},
+"2016-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 43379000,
+"IncreaseDecreaseInDeferredRevenue": 43379000,
+"InvestmentIncomeInterest": 1702000
+},
+"2017-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 35829000,
+"IncreaseDecreaseInDeferredRevenue": 35829000,
+"InvestmentIncomeInterest": 2951000
+},
+"2018-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 10803000,
+"InvestmentIncomeInterest": 7796000
+},
+"2019-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 19635000,
+"InvestmentIncomeInterest": 8178000
+},
+"2020-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 29184000
+}
+},
+"1402305": {
+"2011-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 47769000,
+"InvestmentIncomeNonoperating": 1008000
+}
+},
+"1402436": {
+"2011-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 4401000,
+"InvestmentIncomeInterest": 120000
+},
+"2012-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 4021000,
+"InvestmentIncomeInterest": 417000
+},
+"2013-12-31": {
+"IncreaseDecreaseInDeferredRevenue": -1184000,
+"InvestmentIncomeInterest": 1116000
+},
+"2014-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 1284000,
+"InterestIncomeOperating": 1705000,
+"InvestmentIncomeInterest": 1705000
+},
+"2015-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 60240000,
+"InterestIncomeOperating": 1976000,
+"InvestmentIncomeInterest": 1976000
+},
+"2016-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 17100000,
+"InterestIncomeOperating": 1500000
+},
+"2017-12-31": {
+"IncreaseDecreaseInDeferredRevenue": -35400000,
+"InterestIncomeOperating": 1200000
+},
+"2018-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 16200000,
+"InterestIncomeOperating": 9100000
+},
+"2019-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 196300000,
+"InterestIncomeOperating": 4700000
+},
+"2020-12-31": {
+"IncreaseDecreaseInDeferredRevenue": -58700000,
+"InterestIncomeOperating": 4000000
+},
+"2021-12-31": {
+"IncreaseDecreaseInDeferredRevenue": -40200000,
+"InterestIncomeOperating": 4100000
+},
+"2022-12-31": {
+"IncreaseDecreaseInDeferredRevenue": -41700000,
+"InterestIncomeOperating": 4300000
+},
+"2023-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 15900000,
+"InterestIncomeOperating": 6500000
+},
+"2024-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 21200000,
+"InterestIncomeOperating": 11100000
+},
+"2025-12-31": {
+"IncreaseDecreaseInDeferredRevenue": -13700000,
+"InterestIncomeOperating": 8400000
+}
+},
+"1404655": {
+"2015-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 24666000,
+"InvestmentIncomeInterest": 390000
+},
+"2016-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 32311000,
+"IncreaseDecreaseInDeferredRevenue": 32311000,
+"InvestmentIncomeInterest": 854000
+},
+"2017-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 38999000,
+"IncreaseDecreaseInDeferredRevenue": 38999000,
+"InvestmentIncomeInterest": 3837000
+},
+"2018-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 49316000,
+"InvestmentIncomeInterest": 9176000
+},
+"2019-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 49265000,
+"InvestmentIncomeInterest": 19429000
+},
+"2020-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 72624000,
+"InvestmentIncomeInterest": 7773000
+},
+"2021-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 127716000,
+"InvestmentIncomeInterest": 1173000
+},
+"2022-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 116969000,
+"InvestmentIncomeInterest": 15000000
+},
+"2023-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 109926000,
+"InvestmentIncomeInterest": 58828000
+},
+"2024-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 131038000,
+"InvestmentIncomeInterest": 82706000
+},
+"2025-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 183875000,
+"InvestmentIncomeInterest": 66218000
+}
+},
+"1405503": {
+"2012-12-31": {
+"IncreaseDecreaseInDeferredRevenue": -483000,
+"InvestmentIncomeInterest": 6318000
+}
+},
+"1410384": {
+"2016-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 9593000,
+"IncreaseDecreaseInDeferredRevenue": 9593000
+},
+"2017-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 4837000,
+"IncreaseDecreaseInDeferredRevenue": 4837000
+},
+"2018-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 4454000
+},
+"2019-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 13400000
+},
+"2020-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 20351000
+},
+"2021-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 15743000
+},
+"2022-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 10212000,
+"InterestAndOtherIncome": 5362000
+},
+"2023-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -3092000,
+"InterestAndOtherIncome": 10098000
+},
+"2024-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 28918000,
+"InterestAndOtherIncome": 16342000
+},
+"2025-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 16840000,
+"InterestAndOtherIncome": 20237000
+}
+},
+"1412043": {
+"2015-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 9163000
+}
+},
+"1418100": {
+"2020-09-30": {
+"IncreaseDecreaseInContractWithCustomerLiability": -71000000,
+"InvestmentIncomeInterest": 6000000
+},
+"2021-09-30": {
+"IncreaseDecreaseInContractWithCustomerLiability": -161000000,
+"InvestmentIncomeInterest": 1000000
+},
+"2022-09-30": {
+"IncreaseDecreaseInContractWithCustomerLiability": -113000000,
+"InvestmentIncomeInterest": 4000000
+}
+},
+"1419625": {
+"2016-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 16908000,
+"InterestIncomeExpenseNonoperatingNet": -1533000
+},
+"2017-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 19163000,
+"InterestIncomeExpenseNonoperatingNet": 1204000
+}
+},
+"1420302": {
+"2011-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 15471000,
+"InvestmentIncomeInterest": 863000
+},
+"2012-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 10960000,
+"InvestmentIncomeInterest": 887000
+},
+"2013-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 14493000,
+"InvestmentIncomeInterest": 549000
+},
+"2014-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 23983000,
+"InvestmentIncomeInterest": 604000
+},
+"2015-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 28874000,
+"InvestmentIncomeInterest": 654000
+},
+"2016-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 26953000,
+"InvestmentIncomeInterest": 698000
+},
+"2017-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 93036000,
+"InvestmentIncomeInterest": 1389000
+},
+"2018-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 31993000,
+"InvestmentIncomeInterest": 1671000
+},
+"2019-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 28865000,
+"InvestmentIncomeInterest": 1651000
+}
+},
+"1420850": {
+"2012-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 16736000
+}
+},
+"1423774": {
+"2019-01-31": {
+"IncreaseDecreaseInDeferredRevenue": 24689000
+},
+"2020-01-31": {
+"IncreaseDecreaseInDeferredRevenue": 25522000
+},
+"2021-01-31": {
+"IncreaseDecreaseInDeferredRevenue": 16812000
+},
+"2022-01-31": {
+"IncreaseDecreaseInDeferredRevenue": 24281000
+},
+"2023-01-31": {
+"IncreaseDecreaseInDeferredRevenue": 12020000
+},
+"2024-01-31": {
+"IncreaseDecreaseInDeferredRevenue": 34830000
+}
+},
+"1428669": {
+"2011-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 19080000,
+"InvestmentIncomeInterestAndDividend": 308000
+},
+"2012-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 22539000,
+"InvestmentIncomeInterestAndDividend": 430000
+},
+"2013-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 28616000
+},
+"2014-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 32811000
+}
+},
+"1432133": {
+"2021-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 6275000
+},
+"2022-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 7465000
+},
+"2023-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 1626000
+},
+"2024-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 458000
+},
+"2025-12-31": {
+"IncreaseDecreaseInDeferredRevenue": -757000
+}
+},
+"1433195": {
+"2017-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -558000,
+"IncreaseDecreaseInDeferredRevenue": -558000
+},
+"2018-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -4589000
+},
+"2019-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 1193000
+},
+"2020-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 530000
+},
+"2021-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -186000
+},
+"2022-12-31": {
+"InterestIncomeExpenseNonoperatingNet": 1184000
+},
+"2023-12-31": {
+"InterestIncomeExpenseNonoperatingNet": 7031000
+},
+"2024-12-31": {
+"InterestIncomeExpenseNonoperatingNet": 13981000
+},
+"2025-12-31": {
+"InterestIncomeExpenseNonoperatingNet": 8157000
+}
+},
+"1437352": {
+"2018-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 13164000,
+"InvestmentIncomeInterest": 1842000
+},
+"2019-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 29704000,
+"InvestmentIncomeInterest": 4499000
+},
+"2020-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 24964000,
+"InvestmentIncomeInterest": 2007000
+},
+"2021-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 26595000,
+"InvestmentIncomeInterest": 390000
+},
+"2022-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 8746000,
+"InvestmentIncomeInterest": 5697000
+},
+"2023-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 6878000,
+"InvestmentIncomeInterest": 7120000
+}
+},
+"1437925": {
+"2025-12-31": {
+"IncreaseDecreaseInDeferredRevenue": -60378
+}
+},
+"1441683": {
+"2017-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 18344000,
+"InterestIncomeExpenseNonoperatingNet": -473000
+},
+"2018-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 23023000,
+"IncreaseDecreaseInDeferredRevenue": 23023000,
+"InterestIncomeExpenseNonoperatingNet": -198000
+},
+"2019-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 12573000,
+"IncreaseDecreaseInDeferredRevenue": 12573000,
+"InterestIncomeExpenseNonoperatingNet": -367000
+},
+"2020-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 27626000,
+"InterestIncomeExpenseNonoperatingNet": -478000
+},
+"2021-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 33378000,
+"InterestIncomeExpenseNonoperatingNet": -372000,
+"InvestmentIncomeInterest": 0
+},
+"2022-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 47534000,
+"InterestIncomeExpenseNonoperatingNet": -1673000,
+"InvestmentIncomeInterest": 900000
+},
+"2023-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 28668000,
+"InterestIncomeExpenseNonoperatingNet": -17862000,
+"InvestmentIncomeInterest": 9000000
+},
+"2024-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 49309000,
+"InvestmentIncomeInterest": 6800000
+},
+"2025-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 47200000,
+"InvestmentIncomeInterest": 6900000
+}
+},
+"1441816": {
+"2018-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 32738000,
+"IncreaseDecreaseInDeferredRevenue": 44060000,
+"InvestmentIncomeInterest": 1308000
+},
+"2019-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 36680000
+},
+"2020-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 53054000
+},
+"2021-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 48239000
+},
+"2022-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 137241000
+},
+"2023-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 85759000
+},
+"2024-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -82411000
+},
+"2025-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -16362000
+},
+"2026-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 112366000
+}
+},
+"1445305": {
+"2015-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 7297000,
+"InvestmentIncomeNonoperating": 151000
+},
+"2016-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 34211000,
+"IncreaseDecreaseInDeferredRevenue": 34211000,
+"InvestmentIncomeNonoperating": 286000
+},
+"2017-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 29367000,
+"IncreaseDecreaseInDeferredRevenue": 29367000,
+"InvestmentIncomeInterest": 586000,
+"InvestmentIncomeNonoperating": 586000
+},
+"2018-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 40144000,
+"InvestmentIncomeInterest": 1278000,
+"InvestmentIncomeNonoperating": 1278000
+},
+"2019-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 32039000,
+"InvestmentIncomeInterest": 4657000
+},
+"2020-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 37479000,
+"InvestmentIncomeInterest": 3282000
+},
+"2021-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 47419000,
+"InvestmentIncomeInterest": 1041000
+},
+"2022-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 61657000,
+"InvestmentIncomeInterest": 4880000
+},
+"2023-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 60112000,
+"InvestmentIncomeInterest": 25882000
+},
+"2024-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 73840000,
+"InvestmentIncomeInterest": 39395000
+},
+"2025-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 88703000,
+"InvestmentIncomeInterest": 34153000
+}
+},
+"1447669": {
+"2016-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 4076000
+},
+"2017-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 3560000,
+"IncreaseDecreaseInDeferredRevenue": 3560000,
+"InvestmentIncomeInterest": 2600000
+},
+"2018-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 5958000,
+"InvestmentIncomeInterest": 3000000
+},
+"2019-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 2968000,
+"InvestmentIncomeInterest": 20800000
+},
+"2020-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 13824000,
+"InvestmentIncomeInterest": 32400000
+},
+"2021-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 45634000,
+"InvestmentIncomeInterest": 55700000
+},
+"2022-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -2688000,
+"InvestmentIncomeInterest": 64600000
+},
+"2023-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 5371000,
+"InvestmentIncomeInterest": 77700000
+},
+"2024-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 11181000,
+"InvestmentIncomeInterest": 90200000
+},
+"2025-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 2038000,
+"InvestmentIncomeInterest": 70600000
+}
+},
+"1448056": {
+"2016-03-31": {
+"IncreaseDecreaseInDeferredRevenue": 45414000,
+"InvestmentIncomeInterest": 647000
+},
+"2017-03-31": {
+"IncreaseDecreaseInDeferredRevenue": 51681000,
+"InvestmentIncomeInterest": 1189000
+},
+"2018-03-31": {
+"IncreaseDecreaseInDeferredRevenue": 63878000,
+"InvestmentIncomeInterest": 2190000
+},
+"2019-03-31": {
+"IncreaseDecreaseInDeferredRevenue": 81559000,
+"InvestmentIncomeInterest": 13103000
+},
+"2020-03-31": {
+"IncreaseDecreaseInDeferredRevenue": 44730000,
+"InvestmentIncomeInterest": 15482000
+},
+"2021-03-31": {
+"IncreaseDecreaseInDeferredRevenue": 58941000,
+"InvestmentIncomeInterest": 7888000
+},
+"2022-03-31": {
+"IncreaseDecreaseInDeferredRevenue": 23594000,
+"InvestmentIncomeInterest": 2862000
+},
+"2023-03-31": {
+"IncreaseDecreaseInDeferredRevenue": -24075000,
+"InvestmentIncomeInterest": 14321000
+}
+},
+"1449278": {
+"2015-12-31": {
+"InterestIncomeExpenseNonoperatingNet": -37000
+}
+},
+"1453814": {
+"2011-12-31": {
+"IncreaseDecreaseInDeferredRevenue": -21908000,
+"InvestmentIncomeInterest": 293000
+},
+"2012-12-31": {
+"IncreaseDecreaseInDeferredRevenue": -11471000,
+"InvestmentIncomeInterest": 280000
+},
+"2013-12-31": {
+"IncreaseDecreaseInDeferredRevenue": -5465000,
+"InvestmentIncomeInterest": 555000
+},
+"2014-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 19419000,
+"InvestmentIncomeInterest": 1814000
+},
+"2015-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 28617000,
+"InvestmentIncomeInterest": 2799000
+},
+"2016-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 4222000,
+"InvestmentIncomeInterest": 4382000
+},
+"2017-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 6556000,
+"InvestmentIncomeInterest": 5717000
+},
+"2018-12-31": {
+"IncreaseDecreaseInDeferredRevenue": -7334000,
+"InvestmentIncomeInterest": 7435000
+}
+},
+"1458696": {
+"2016-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 4449000
+},
+"2017-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -3276000
+},
+"2018-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 4542000
+}
+},
+"1459200": {
+"2015-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 1081000
+},
+"2016-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 636000
+},
+"2017-12-31": {
+"IncreaseDecreaseInDeferredRevenue": -517000
+},
+"2018-12-31": {
+"IncreaseDecreaseInDeferredRevenue": -1502000
+},
+"2019-12-31": {
+"IncreaseDecreaseInDeferredRevenue": -1567000
+},
+"2020-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 2031000
+},
+"2021-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 2308000,
+"IncreaseDecreaseInDeferredRevenue": 2308000
+},
+"2022-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 3428000,
+"IncreaseDecreaseInDeferredRevenue": 3428000
+},
+"2023-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 4553000
+},
+"2024-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 3674000
+},
+"2025-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 256000
+}
+},
+"1459417": {
+"2015-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 703000,
+"InvestmentIncomeInterest": 167000
+},
+"2016-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 528000,
+"IncreaseDecreaseInDeferredRevenue": 528000,
+"InvestmentIncomeInterest": 383000
+},
+"2017-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 1661000,
+"IncreaseDecreaseInDeferredRevenue": 1661000,
+"InvestmentIncomeInterest": 371000
+},
+"2018-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 1527000,
+"InvestmentIncomeInterest": 5173000
+},
+"2019-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 10014000,
+"InvestmentIncomeInterest": 5800000
+},
+"2020-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 26061000,
+"InvestmentIncomeInterest": 1354000
+},
+"2021-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 9388000,
+"InvestmentIncomeInterest": 1475000
+},
+"2022-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 5326000,
+"InvestmentIncomeInterest": 1165000
+},
+"2023-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -8657000,
+"InvestmentIncomeInterest": 1961000
+}
+},
+"1462056": {
+"2024-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 5505000,
+"InvestmentIncomeInterest": 1422000
+},
+"2025-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 473000,
+"InvestmentIncomeInterest": 1961000
+}
+},
+"1467623": {
+"2018-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 66400000,
+"InterestIncomeExpenseNonoperatingNet": 7100000
+},
+"2019-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 68700000,
+"InterestIncomeExpenseNonoperatingNet": 12500000
+},
+"2020-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 55100000,
+"InterestIncomeExpenseNonoperatingNet": 1700000
+},
+"2021-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 59800000,
+"InterestIncomeExpenseNonoperatingNet": -5200000
+},
+"2022-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 25600000,
+"InterestIncomeExpenseNonoperatingNet": 3300000
+},
+"2023-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 21600000,
+"InterestIncomeExpenseNonoperatingNet": 19400000
+},
+"2024-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 1500000,
+"InterestIncomeExpenseNonoperatingNet": 13900000
+},
+"2025-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 2000000,
+"InterestIncomeExpenseNonoperatingNet": -78600000
+}
+},
+"1468666": {
+"2017-02-03": {
+"IncreaseDecreaseInContractWithCustomerLiability": 3934000,
+"IncreaseDecreaseInDeferredRevenue": 7185000
+},
+"2018-02-02": {
+"IncreaseDecreaseInContractWithCustomerLiability": 19560000,
+"IncreaseDecreaseInDeferredRevenue": 19585000
+},
+"2019-02-01": {
+"IncreaseDecreaseInContractWithCustomerLiability": 20942000
+},
+"2020-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 14463000
+},
+"2021-01-29": {
+"IncreaseDecreaseInContractWithCustomerLiability": -9759000
+},
+"2022-01-28": {
+"IncreaseDecreaseInContractWithCustomerLiability": 472000
+},
+"2023-02-03": {
+"IncreaseDecreaseInContractWithCustomerLiability": -16912000
+},
+"2024-02-02": {
+"IncreaseDecreaseInContractWithCustomerLiability": -17151000
+}
+},
+"1470099": {
+"2014-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 13422000
+},
+"2015-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 15701000
+},
+"2016-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 10574000,
+"IncreaseDecreaseInDeferredRevenue": 18201000
+},
+"2017-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 16434000,
+"IncreaseDecreaseInDeferredRevenue": 24425000
+},
+"2018-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 28815000
+},
+"2019-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 12374000
+}
+},
+"1476840": {
+"2022-12-31": {
+"InterestIncomeExpenseNonoperatingNet": -5411000
+},
+"2023-12-31": {
+"InterestIncomeExpenseNonoperatingNet": -5327000
+},
+"2024-12-31": {
+"InterestIncomeExpenseNonoperatingNet": -1572000,
+"InvestmentIncomeInterest": 1100000
+},
+"2025-12-31": {
+"InvestmentIncomeInterest": 1900000
+}
+},
+"1477333": {
+"2019-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 14610000,
+"InvestmentIncomeNonoperating": 5787000
+},
+"2020-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 25189000,
+"InvestmentIncomeNonoperating": 6588000
+},
+"2021-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 64390000,
+"InvestmentIncomeNonoperating": 1970000
+},
+"2022-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 102204000,
+"InvestmentIncomeNonoperating": 14877000
+},
+"2023-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 134473000,
+"InvestmentIncomeNonoperating": 68167000
+},
+"2024-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 135008000,
+"InvestmentIncomeNonoperating": 87426000
+},
+"2025-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 223815000,
+"InvestmentIncomeNonoperating": 131219000
+}
+},
+"1477720": {
+"2021-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 41779000,
+"InterestIncomeExpenseNonoperatingNet": 956000,
+"InvestmentIncomeNonoperating": 1568000
+},
+"2022-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 68339000,
+"InterestIncomeExpenseNonoperatingNet": 506000
+},
+"2023-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 59375000,
+"InterestIncomeExpenseNonoperatingNet": 7910000
+},
+"2024-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 37623000,
+"InterestIncomeExpenseNonoperatingNet": 21128000
+},
+"2025-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 31581000,
+"InterestIncomeExpenseNonoperatingNet": 19849000
+},
+"2026-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 31053000,
+"InterestIncomeExpenseNonoperatingNet": 15810000
+}
+},
+"1488075": {
+"2011-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 2389000
+},
+"2012-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 747000
+},
+"2013-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 4008000
+},
+"2014-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 4344000
+},
+"2015-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 3678000
+}
+},
+"1489895": {
+"2012-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 7152000,
+"InvestmentIncomeInterest": 6456000
+},
+"2013-12-31": {
+"IncreaseDecreaseInDeferredRevenue": -597000,
+"InvestmentIncomeInterest": 14564000
+}
+},
+"1490346": {
+"2011-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 2999000
+},
+"2012-12-31": {
+"IncreaseDecreaseInDeferredRevenue": -5130000
+}
+},
+"1490660": {
+"2015-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 29686000
+}
+},
+"1496963": {
+"2021-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 29364000,
+"InvestmentIncomeInterest": 536000
+},
+"2022-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 39464000,
+"InvestmentIncomeInterest": 1632000
+},
+"2023-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 61364000,
+"InvestmentIncomeInterest": 7394000
+}
+},
+"1501919": {
+"2013-01-31": {
+"IncreaseDecreaseInDeferredRevenue": 18785000,
+"InvestmentIncomeInterest": 906000
+},
+"2014-01-31": {
+"IncreaseDecreaseInDeferredRevenue": 16805000,
+"InvestmentIncomeInterest": 893000
+}
+},
+"1505155": {
+"2019-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 3865000
+},
+"2020-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 6825000
+},
+"2021-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 5575000
+},
+"2022-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -4989000
+},
+"2023-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -5518000,
+"InterestIncomeExpenseNonoperatingNet": -18684000
+},
+"2024-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -6489000,
+"InterestIncomeExpenseNonoperatingNet": -8939000
+},
+"2025-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -1612000,
+"InterestIncomeExpenseNonoperatingNet": -15785000
+}
+},
+"1505952": {
+"2019-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 22946000
+},
+"2020-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 15842000
+},
+"2021-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 22508000
+},
+"2022-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 38503000
+},
+"2023-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 15127000
+},
+"2024-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 2104000
+},
+"2025-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -6882000
+},
+"2026-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -195000
+}
+},
+"1509223": {
+"2012-12-31": {
+"InvestmentIncomeInterest": 20029000
+},
+"2013-12-31": {
+"InvestmentIncomeInterest": 12778000
+},
+"2014-12-31": {
+"InvestmentIncomeInterest": 27000
+},
+"2018-12-31": {
+"InvestmentIncomeInterest": 2456000
+},
+"2019-12-31": {
+"InvestmentIncomeInterest": 32000
+}
+},
+"1509986": {
+"2014-12-31": {
+"IncreaseDecreaseInDeferredRevenue": -6156000
+},
+"2015-12-31": {
+"IncreaseDecreaseInDeferredRevenue": -4414000
+},
+"2016-12-31": {
+"IncreaseDecreaseInDeferredRevenue": -1176000
+}
+},
+"1510593": {
+"2014-12-31": {
+"IncreaseDecreaseInDeferredRevenue": -2643000,
+"InvestmentIncomeInterestAndDividend": 3471000
+},
+"2015-12-31": {
+"IncreaseDecreaseInDeferredRevenue": -294000,
+"InvestmentIncomeInterestAndDividend": 3666000
+},
+"2016-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 2631000,
+"IncreaseDecreaseInDeferredRevenue": 2631000
+},
+"2017-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -510000,
+"IncreaseDecreaseInDeferredRevenue": -510000
+},
+"2018-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 7680000
+},
+"2019-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -664000
+},
+"2020-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 289000
+},
+"2021-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 2112000,
+"InvestmentIncomeInterestAndDividend": 1888000
+},
+"2022-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 5739000,
+"InvestmentIncomeInterestAndDividend": 2543000
+},
+"2023-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -1954000,
+"InvestmentIncomeInterestAndDividend": 2965000
+},
+"2024-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 3575000,
+"InvestmentIncomeInterestAndDividend": 2166000
+},
+"2025-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 3564000,
+"InvestmentIncomeInterest": 3262000,
+"InvestmentIncomeInterestAndDividend": 2569000
+}
+},
+"1512673": {
+"2018-12-31": {
+"InvestmentIncomeInterest": 19800000
+},
+"2019-12-31": {
+"InvestmentIncomeInterest": 23400000
+},
+"2020-12-31": {
+"InvestmentIncomeInterest": 18300000
+},
+"2021-12-31": {
+"InvestmentIncomeInterest": 0
+},
+"2022-12-31": {
+"InterestIncomeExpenseNonoperatingNet": -36228000,
+"InvestmentIncomeInterest": 0
+},
+"2023-12-31": {
+"InterestIncomeExpenseNonoperatingNet": 47221000,
+"InvestmentIncomeInterest": 126600000
+},
+"2024-12-31": {
+"InterestIncomeExpenseNonoperatingNet": -9302000,
+"InvestmentIncomeInterest": 156200000
+},
+"2025-12-31": {
+"InterestIncomeExpenseNonoperatingNet": -129363000,
+"InvestmentIncomeInterest": 127100000
+}
+},
+"1514416": {
+"2017-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 2573000,
+"IncreaseDecreaseInDeferredRevenue": 2573000,
+"InterestIncomeExpenseNonoperatingNet": -1728000,
+"InvestmentIncomeInterest": 0
+},
+"2018-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 6019000,
+"IncreaseDecreaseInDeferredRevenue": 6019000,
+"InterestIncomeExpenseNonoperatingNet": 301000,
+"InvestmentIncomeInterest": 77000
+},
+"2019-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 554000,
+"InterestIncomeExpenseNonoperatingNet": 2446000,
+"InvestmentIncomeInterest": 100000
+},
+"2020-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 2845000,
+"InterestIncomeExpenseNonoperatingNet": -13672000,
+"InvestmentIncomeInterest": 0
+},
+"2021-12-31": {
+"InterestIncomeExpenseNonoperatingNet": -28784000,
+"InvestmentIncomeInterest": 0
+},
+"2022-12-31": {
+"InterestIncomeExpenseNonoperatingNet": -3048000,
+"InvestmentIncomeInterest": 1200000
+},
+"2023-12-31": {
+"InterestIncomeExpenseNonoperatingNet": -808000,
+"InvestmentIncomeInterest": 2000000
+},
+"2024-12-31": {
+"InterestIncomeExpenseNonoperatingNet": -1861000,
+"InvestmentIncomeInterest": 1000000
+},
+"2025-12-31": {
+"InterestIncomeExpenseNonoperatingNet": -2028000,
+"InvestmentIncomeInterest": 300000
+}
+},
+"1517375": {
+"2020-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 13987000,
+"InvestmentIncomeInterest": 617000
+},
+"2021-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 25589000,
+"InvestmentIncomeInterest": 259000
+},
+"2022-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 26878000,
+"InvestmentIncomeInterest": 2535000
+},
+"2023-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 41918000,
+"InvestmentIncomeInterest": 7021000
+},
+"2024-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 38230000,
+"InvestmentIncomeInterest": 3973000
+},
+"2025-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 22482000,
+"InvestmentIncomeInterest": 3418000
+}
+},
+"1517393": {
+"2013-09-30": {
+"IncreaseDecreaseInDeferredRevenue": 16549000
+},
+"2014-09-30": {
+"IncreaseDecreaseInDeferredRevenue": -1069000
+}
+},
+"1517413": {
+"2019-12-31": {
+"InvestmentIncomeInterest": 3287000
+},
+"2020-12-31": {
+"InvestmentIncomeInterest": 1628000
+},
+"2021-12-31": {
+"InvestmentIncomeInterest": 1282000
+},
+"2022-12-31": {
+"InvestmentIncomeInterest": 7044000
+},
+"2023-12-31": {
+"InvestmentIncomeInterest": 18186000
+},
+"2024-12-31": {
+"InvestmentIncomeInterest": 14871000
+},
+"2025-12-31": {
+"InvestmentIncomeInterest": 12290000
+}
+},
+"1517650": {
+"2011-12-31": {
+"InvestmentIncomeInterest": 434000
+},
+"2012-12-31": {
+"InvestmentIncomeInterest": 772000
+},
+"2013-12-31": {
+"InterestIncomeExpenseNonoperatingNet": 833000,
+"InvestmentIncomeInterest": 833000
+},
+"2014-12-31": {
+"InterestIncomeExpenseNonoperatingNet": 1011000,
+"InvestmentIncomeInterest": 1011000
+},
+"2015-12-31": {
+"InterestIncomeExpenseNonoperatingNet": -4109000
+}
+},
+"1528396": {
+"2012-07-31": {
+"IncreaseDecreaseInDeferredRevenue": -17788000,
+"InterestIncomeExpenseNonoperatingNet": 308000
+},
+"2013-07-31": {
+"IncreaseDecreaseInDeferredRevenue": -14048000,
+"InterestIncomeExpenseNonoperatingNet": 498000
+},
+"2014-07-31": {
+"IncreaseDecreaseInDeferredRevenue": 14181000,
+"InterestIncomeExpenseNonoperatingNet": 1350000
+},
+"2015-07-31": {
+"IncreaseDecreaseInDeferredRevenue": -2263000,
+"InterestIncomeExpenseNonoperatingNet": 2245000
+},
+"2016-07-31": {
+"IncreaseDecreaseInDeferredRevenue": 16138000,
+"InterestIncomeExpenseNonoperatingNet": 4850000
+},
+"2017-07-31": {
+"IncreaseDecreaseInDeferredRevenue": 41553000,
+"InterestIncomeExpenseNonoperatingNet": 5867000
+},
+"2018-07-31": {
+"IncreaseDecreaseInDeferredRevenue": 32358000,
+"InterestIncomeExpenseNonoperatingNet": 13281000
+},
+"2019-07-31": {
+"IncreaseDecreaseInDeferredRevenue": -9628000,
+"InterestIncomeExpenseNonoperatingNet": 30182000
+},
+"2020-07-31": {
+"IncreaseDecreaseInDeferredRevenue": 1165000,
+"InterestIncomeExpenseNonoperatingNet": 24705000
+},
+"2021-07-31": {
+"IncreaseDecreaseInDeferredRevenue": 12940000,
+"InterestIncomeExpenseNonoperatingNet": 7395000
+},
+"2022-07-31": {
+"IncreaseDecreaseInDeferredRevenue": 31564000,
+"InterestIncomeExpenseNonoperatingNet": 6277000
+},
+"2023-07-31": {
+"IncreaseDecreaseInDeferredRevenue": 34635000,
+"InterestIncomeExpenseNonoperatingNet": 24389000
+},
+"2024-07-31": {
+"IncreaseDecreaseInDeferredRevenue": 72572000,
+"InterestIncomeExpenseNonoperatingNet": 43478000
+},
+"2025-07-31": {
+"IncreaseDecreaseInDeferredRevenue": 56617000,
+"InterestIncomeExpenseNonoperatingNet": 56625000
+}
+},
+"1528903": {
+"2011-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 15006000,
+"InvestmentIncomeInterest": 69000
+},
+"2012-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 27675000,
+"InvestmentIncomeInterest": 132000
+},
+"2013-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 13946000,
+"InvestmentIncomeInterest": 90000
+},
+"2014-12-31": {
+"IncreaseDecreaseInDeferredRevenue": -1214000,
+"InvestmentIncomeInterest": 103000
+},
+"2015-12-31": {
+"IncreaseDecreaseInDeferredRevenue": -4311000,
+"InvestmentIncomeInterest": 121000
+}
+},
+"1529274": {
+"2021-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 1046000,
+"InvestmentIncomeInterest": 487000
+},
+"2022-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 522000,
+"InvestmentIncomeInterest": 2696000
+},
+"2023-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 3629000,
+"InvestmentIncomeInterest": 8095000
+},
+"2024-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 2736000,
+"InvestmentIncomeInterest": 4560000
+},
+"2025-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 9729000,
+"InvestmentIncomeInterest": 4160000
+}
+},
+"1535379": {
+"2018-01-31": {
+"IncreaseDecreaseInDeferredRevenue": 74187000
+},
+"2019-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 42508000
+},
+"2020-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 31214000
+},
+"2021-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 50141000
+}
+},
+"1535527": {
+"2020-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 280768000
+},
+"2021-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 338803000,
+"InterestIncomeOperating": 4968000
+},
+"2022-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 616408000,
+"InterestIncomeOperating": 3788000
+},
+"2023-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 825751000,
+"InterestIncomeOperating": 52495000,
+"InvestmentIncomeInterest": 52495000
+},
+"2024-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 696639000,
+"InterestIncomeOperating": 148930000,
+"InvestmentIncomeInterest": 148930000
+},
+"2025-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 669264000,
+"InvestmentIncomeInterest": 196174000
+},
+"2026-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 1023863000,
+"InvestmentIncomeInterest": 194969000
+}
+},
+"1540755": {
+"2019-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 52604000,
+"InterestIncomeExpenseNonoperatingNet": 1921000
+},
+"2020-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 67478000,
+"InterestIncomeExpenseNonoperatingNet": 4478000
+},
+"2021-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 71751000,
+"InterestIncomeExpenseNonoperatingNet": 167000
+},
+"2022-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 90671000,
+"InterestIncomeExpenseNonoperatingNet": -493000
+}
+},
+"1543916": {
+"2021-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 19992000
+},
+"2022-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 5564000
+}
+},
+"1544522": {
+"2021-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 55989000
+},
+"2022-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 45453000
+},
+"2023-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 60773000
+},
+"2024-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 54808000
+},
+"2025-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 61179000
+}
+},
+"1552670": {
+"2012-12-31": {
+"InvestmentIncomeInterest": 343289
+}
+},
+"1556148": {
+"2013-05-31": {
+"IncreaseDecreaseInDeferredRevenue": 58000000
+},
+"2014-05-31": {
+"IncreaseDecreaseInDeferredRevenue": 28900000
+},
+"2017-04-30": {
+"IncreaseDecreaseInDeferredRevenue": 74200000,
+"InterestIncomeOperating": 1200000
+},
+"2018-04-30": {
+"IncreaseDecreaseInDeferredRevenue": 65200000,
+"InterestIncomeOperating": 600000
+},
+"2019-04-30": {
+"IncreaseDecreaseInDeferredRevenue": 28400000,
+"InterestIncomeOperating": 2000000
+}
+},
+"1560327": {
+"2016-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 38748000,
+"IncreaseDecreaseInDeferredRevenue": 38748000,
+"InterestIncomeExpenseNonoperatingNet": 131000,
+"InvestmentIncomeInterest": 342000
+},
+"2017-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 55437000,
+"IncreaseDecreaseInDeferredRevenue": 55437000,
+"InterestIncomeExpenseNonoperatingNet": 775000,
+"InvestmentIncomeInterest": 862000
+},
+"2018-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 22870000,
+"InvestmentIncomeInterest": 3229000
+},
+"2019-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 18686000,
+"InvestmentIncomeInterest": 6014000
+},
+"2020-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 37428000,
+"InvestmentIncomeInterest": 1454000
+},
+"2021-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 85562000,
+"InvestmentIncomeInterest": 365000
+},
+"2022-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 52516000,
+"InvestmentIncomeInterest": 1813000
+},
+"2023-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 30472000,
+"InvestmentIncomeInterest": 10177000
+},
+"2024-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -795000,
+"InvestmentIncomeInterest": 21063000
+},
+"2025-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -8371000,
+"InvestmentIncomeInterest": 23019000
+}
+},
+"1561550": {
+"2019-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 67790000,
+"InterestAndOtherIncome": 4196000,
+"InterestIncomeExpenseNonoperatingNet": 4110000
+},
+"2020-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 69788000,
+"InterestAndOtherIncome": 21985000,
+"InterestIncomeExpenseNonoperatingNet": 21234000
+},
+"2021-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 176281000,
+"InterestAndOtherIncome": 21786000,
+"InterestIncomeExpenseNonoperatingNet": 21412000
+},
+"2022-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 168644000,
+"InterestAndOtherIncome": 37160000,
+"InterestIncomeExpenseNonoperatingNet": 20625000,
+"InvestmentIncomeInterest": 34931000
+},
+"2023-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 230974000,
+"InterestAndOtherIncome": 100001000,
+"InterestIncomeExpenseNonoperatingNet": 93699000,
+"InvestmentIncomeInterest": 103459000
+},
+"2024-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 197549000,
+"InterestIncomeExpenseNonoperatingNet": 149656000,
+"InvestmentIncomeInterest": 155321000
+},
+"2025-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 273284000,
+"InterestIncomeExpenseNonoperatingNet": 171394000,
+"InvestmentIncomeInterest": 194424000
+}
+},
+"1562088": {
+"2021-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 43475000,
+"InterestIncomeOperating": 19000
+},
+"2022-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 59283000,
+"InterestIncomeOperating": 7235000
+},
+"2023-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 91642000,
+"InterestIncomeOperating": 31091000
+},
+"2024-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 123692000,
+"InterestIncomeOperating": 42697000
+},
+"2025-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 123321000,
+"InterestIncomeOperating": 45231000
+}
+},
+"1565687": {
+"2022-06-30": {
+"IncreaseDecreaseInContractWithCustomerLiability": 35345000
+},
+"2023-06-30": {
+"IncreaseDecreaseInContractWithCustomerLiability": 46565000
+},
+"2024-06-30": {
+"IncreaseDecreaseInContractWithCustomerLiability": 28261000
+},
+"2025-06-30": {
+"IncreaseDecreaseInContractWithCustomerLiability": 35327000
+}
+},
+"1568100": {
+"2020-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 28465000,
+"InvestmentIncomeInterest": 5692000
+},
+"2021-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 34723000,
+"InvestmentIncomeInterest": 4232000
+},
+"2022-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 40252000,
+"InvestmentIncomeInterest": 762000
+},
+"2023-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 37971000,
+"InvestmentIncomeInterest": 5383000
+},
+"2024-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 18073000,
+"InvestmentIncomeInterest": 22101000
+},
+"2025-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 17695000,
+"InvestmentIncomeInterest": 27492000
+},
+"2026-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 3251000,
+"InvestmentIncomeInterest": 22693000
+}
+},
+"1569345": {
+"2022-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 43404000,
+"InvestmentIncomeInterest": 500000
+},
+"2023-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 41465000,
+"InvestmentIncomeInterest": 8500000
+},
+"2024-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 49813000,
+"InvestmentIncomeInterest": 30200000
+},
+"2025-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 37473000,
+"InvestmentIncomeInterest": 26000000
+},
+"2026-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 22712000,
+"InvestmentIncomeInterest": 20200000
+}
+},
+"1574135": {
+"2019-02-01": {
+"IncreaseDecreaseInContractWithCustomerLiability": 149344000
+}
+},
+"1576169": {
+"2014-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 14288000,
+"InvestmentIncomeInterest": 77000
+},
+"2015-12-31": {
+"IncreaseDecreaseInDeferredRevenue": -1189000,
+"InvestmentIncomeInterest": 188000
+},
+"2016-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -12537000,
+"IncreaseDecreaseInDeferredRevenue": -17690000,
+"InvestmentIncomeInterest": 138000
+},
+"2017-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -1922000,
+"IncreaseDecreaseInDeferredRevenue": -17119000,
+"InvestmentIncomeInterest": 182000
+},
+"2018-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -9165000,
+"InvestmentIncomeInterest": 250000
+},
+"2019-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -14047000,
+"InvestmentIncomeInterest": 2613000
+},
+"2020-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -6304000,
+"InvestmentIncomeInterest": 632000
+},
+"2021-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -7920000,
+"InvestmentIncomeInterest": 196000
+}
+},
+"1576914": {
+"2021-03-31": {
+"InvestmentIncomeInterestAndDividend": 662000
+},
+"2022-03-31": {
+"InvestmentIncomeInterestAndDividend": 420000
+},
+"2023-03-31": {
+"InvestmentIncomeInterestAndDividend": 1159000
+}
+},
+"1577526": {
+"2021-04-30": {
+"IncreaseDecreaseInContractWithCustomerLiability": 14933000,
+"InvestmentIncomeInterest": 1255000
+},
+"2022-04-30": {
+"IncreaseDecreaseInContractWithCustomerLiability": -26085000,
+"InvestmentIncomeInterest": 1827000
+},
+"2023-04-30": {
+"IncreaseDecreaseInContractWithCustomerLiability": -1292000,
+"InvestmentIncomeInterest": 21979000
+},
+"2024-04-30": {
+"IncreaseDecreaseInContractWithCustomerLiability": -8888000,
+"InvestmentIncomeInterest": 40079000
+},
+"2025-04-30": {
+"IncreaseDecreaseInContractWithCustomerLiability": -2401000,
+"InvestmentIncomeInterest": 36189000
+},
+"2026-04-30": {
+"IncreaseDecreaseInContractWithCustomerLiability": -140000,
+"InvestmentIncomeInterest": 28447000
+}
+},
+"1579878": {
+"2025-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 213971000,
+"InterestIncomeExpenseNonoperatingNet": 62200000
+}
+},
+"1582982": {
+"2021-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -72000
+},
+"2022-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 302000
+},
+"2023-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -92000
+},
+"2024-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -37000,
+"InterestIncomeExpenseNonoperatingNet": -812000
+},
+"2025-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -825000,
+"InterestIncomeExpenseNonoperatingNet": -81000
+}
+},
+"1583708": {
+"2023-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 92496000,
+"InvestmentIncomeInterest": 21408000
+},
+"2024-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 108197000,
+"InvestmentIncomeInterest": 44664000
+},
+"2025-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 56940000,
+"InvestmentIncomeInterest": 49929000
+},
+"2026-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 59610000,
+"InvestmentIncomeInterest": 42698000
+}
+},
+"1590955": {
+"2014-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 6765000
+},
+"2015-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 9699000
+},
+"2016-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 10675000,
+"IncreaseDecreaseInDeferredRevenue": 10675000
+},
+"2017-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 11913000,
+"IncreaseDecreaseInDeferredRevenue": 11913000
+},
+"2018-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 13027000
+},
+"2019-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 11593000
+},
+"2020-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 10582000
+},
+"2021-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 14600000
+},
+"2022-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 16000000
+},
+"2023-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 13100000
+},
+"2024-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 14100000
+},
+"2025-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 5600000
+}
+},
+"1591698": {
+"2020-06-30": {
+"IncreaseDecreaseInContractWithCustomerLiability": -15998000
+},
+"2021-06-30": {
+"IncreaseDecreaseInContractWithCustomerLiability": 16106000
+},
+"2022-06-30": {
+"IncreaseDecreaseInContractWithCustomerLiability": 25109000
+},
+"2023-06-30": {
+"IncreaseDecreaseInContractWithCustomerLiability": 40991000
+},
+"2024-06-30": {
+"IncreaseDecreaseInContractWithCustomerLiability": 43463000
+},
+"2025-06-30": {
+"IncreaseDecreaseInContractWithCustomerLiability": 48468000
+}
+},
+"1594805": {
+"2015-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 6218000,
+"InterestIncomeExpenseNonoperatingNet": 200000
+},
+"2016-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 7699000,
+"InterestIncomeExpenseNonoperatingNet": 1536000
+},
+"2017-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 10960000,
+"IncreaseDecreaseInDeferredRevenue": 10960000,
+"InterestIncomeExpenseNonoperatingNet": 7850000
+},
+"2018-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 9015000,
+"InterestIncomeExpenseNonoperatingNet": 29436000
+},
+"2019-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 12305000,
+"InterestIncomeExpenseNonoperatingNet": 48182000
+},
+"2020-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 69969000,
+"InterestIncomeExpenseNonoperatingNet": 23434000
+},
+"2021-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 309289000,
+"InterestIncomeExpenseNonoperatingNet": 15356000
+},
+"2022-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 32000000,
+"InterestIncomeExpenseNonoperatingNet": 75000000
+},
+"2023-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 60000000,
+"InterestIncomeExpenseNonoperatingNet": 241000000
+},
+"2024-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 26000000,
+"InterestIncomeExpenseNonoperatingNet": 308000000
+},
+"2025-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 19000000,
+"InterestIncomeExpenseNonoperatingNet": 331000000
+}
+},
+"1598110": {
+"2015-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 21254000,
+"InterestIncomeExpenseNonoperatingNet": 330000
+},
+"2016-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 19117000,
+"IncreaseDecreaseInDeferredRevenue": 19117000,
+"InterestIncomeExpenseNonoperatingNet": 1358000
+},
+"2017-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 31729000,
+"IncreaseDecreaseInDeferredRevenue": 31729000,
+"InterestIncomeExpenseNonoperatingNet": 2526000
+},
+"2018-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 47818000,
+"InterestIncomeExpenseNonoperatingNet": 5778000
+},
+"2019-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 40821000,
+"InterestIncomeExpenseNonoperatingNet": 10843000
+},
+"2020-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 45397000,
+"InterestIncomeExpenseNonoperatingNet": 10380000
+},
+"2021-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 74767000,
+"InterestIncomeExpenseNonoperatingNet": 5559000
+},
+"2022-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 91167000,
+"InterestIncomeExpenseNonoperatingNet": 17117000
+},
+"2023-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 72190000,
+"InterestIncomeExpenseNonoperatingNet": 55002000
+},
+"2024-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 150780000,
+"InterestIncomeExpenseNonoperatingNet": 58418000
+}
+},
+"1603015": {
+"2025-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 359000,
+"InvestmentIncomeInterest": 5272000
+}
+},
+"1607310": {
+"2015-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 6065000
+},
+"2016-12-31": {
+"IncreaseDecreaseInDeferredRevenue": -1426000
+}
+},
+"1609151": {
+"2022-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 4615000,
+"InvestmentIncomeInterest": 1155000
+},
+"2023-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 4822000,
+"InvestmentIncomeInterest": 2196000
+},
+"2024-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 480000,
+"InvestmentIncomeInterest": 1851000
+},
+"2025-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -1661000,
+"InvestmentIncomeInterest": 1811000
+}
+},
+"1610532": {
+"2016-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 79493000
+},
+"2017-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 84564000
+}
+},
+"1610601": {
+"2016-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 15546000,
+"InvestmentIncomeInterest": 8194000
+},
+"2017-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 20417000,
+"InvestmentIncomeInterest": 21635000
+}
+},
+"1611052": {
+"2021-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 78671000
+},
+"2022-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 97029000
+},
+"2023-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 106590000
+},
+"2024-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 79091000
+},
+"2025-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 100099000
+}
+},
+"1615063": {
+"2017-09-30": {
+"InvestmentIncomeInterest": 55000
+},
+"2018-09-30": {
+"InvestmentIncomeInterest": 200000
+},
+"2020-12-31": {
+"InvestmentIncomeInterest": 600000
+}
+},
+"1618732": {
+"2017-07-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 144564000,
+"IncreaseDecreaseInDeferredRevenue": 223598000
+},
+"2018-07-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 262027000
+},
+"2019-07-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 278517000
+},
+"2020-07-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 272410000
+},
+"2021-07-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 126732000
+},
+"2022-07-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 127845000
+},
+"2023-07-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 142687000
+},
+"2024-07-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 258940000
+},
+"2025-07-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 203764000
+}
+},
+"1625641": {
+"2022-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 1621000
+},
+"2023-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 185000
+},
+"2024-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 11000
+},
+"2025-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 1086000
+}
+},
+"1626450": {
+"2020-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 1822000,
+"InvestmentIncomeInterest": 31000
+},
+"2021-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 1397000,
+"InvestmentIncomeInterest": 130000
+},
+"2022-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 5305000,
+"InvestmentIncomeInterest": 4198000
+},
+"2023-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 12561000,
+"InvestmentIncomeInterest": 11493000
+},
+"2024-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 14348000,
+"InvestmentIncomeInterest": 10568000
+},
+"2025-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 12986000,
+"InvestmentIncomeInterest": 4818000
+}
+},
+"1626853": {
+"2017-03-31": {
+"IncreaseDecreaseInDeferredRevenue": -215000,
+"InvestmentIncomeInterest": 41000
+},
+"2018-03-31": {
+"IncreaseDecreaseInDeferredRevenue": 1179000,
+"InvestmentIncomeInterest": 51000
+}
+},
+"1627014": {
+"2015-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 32600000
+},
+"2016-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 26200000
+},
+"2017-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 35600000
+},
+"2018-12-31": {
+"IncreaseDecreaseInDeferredRevenue": -6400000
+},
+"2019-12-31": {
+"IncreaseDecreaseInDeferredRevenue": -40900000
+},
+"2020-12-31": {
+"IncreaseDecreaseInDeferredRevenue": -46900000
+},
+"2021-12-31": {
+"IncreaseDecreaseInDeferredRevenue": -57900000
+},
+"2022-12-31": {
+"IncreaseDecreaseInDeferredRevenue": -42300000
+}
+},
+"1627857": {
+"2018-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 39899000,
+"InterestIncomeExpenseNonoperatingNet": -4707000
+},
+"2019-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 37266000,
+"InterestIncomeExpenseNonoperatingNet": -2573000
+},
+"2020-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 32685000,
+"IncreaseDecreaseInDeferredRevenue": 32685000
+},
+"2021-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 59412000,
+"IncreaseDecreaseInDeferredRevenue": 57676000
+}
+},
+"1638826": {
+"2025-01-31": {
+"IncreaseDecreaseInDeferredRevenue": 3332000,
+"InvestmentIncomeInterest": 8765000
+},
+"2026-01-31": {
+"IncreaseDecreaseInDeferredRevenue": 1676000,
+"InvestmentIncomeInterest": 19279000
+}
+},
+"1639723": {
+"2026-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 9992000,
+"InvestmentIncomeInterest": 9237000
+}
+},
+"1640147": {
+"2021-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 312881000,
+"InterestIncomeExpenseNonoperatingNet": 7507000
+},
+"2022-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 526221000,
+"InterestIncomeExpenseNonoperatingNet": 9129000
+},
+"2023-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 514301000,
+"InterestIncomeExpenseNonoperatingNet": 73839000,
+"InvestmentIncomeNonoperating": 73839000
+},
+"2024-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 528029000,
+"InterestIncomeExpenseNonoperatingNet": 200663000,
+"InvestmentIncomeNonoperating": 200663000
+},
+"2025-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 382755000,
+"InvestmentIncomeNonoperating": 209009000
+},
+"2026-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 755219000,
+"InvestmentIncomeNonoperating": 190556000
+}
+},
+"1643269": {
+"2021-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 18016000
+},
+"2022-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 29458000
+},
+"2023-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 14869000
+}
+},
+"1644675": {
+"2016-03-31": {
+"IncreaseDecreaseInDeferredRevenue": 18588000,
+"InvestmentIncomeInterest": 74000
+},
+"2017-03-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 29072000,
+"IncreaseDecreaseInDeferredRevenue": 29072000,
+"InvestmentIncomeInterest": 510000
+},
+"2018-03-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 39042000,
+"IncreaseDecreaseInDeferredRevenue": 39042000,
+"InvestmentIncomeInterest": 1310000
+},
+"2019-03-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 45901000,
+"InvestmentIncomeInterest": 2515000
+},
+"2020-03-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 38457000,
+"InvestmentIncomeInterest": 3446000
+},
+"2021-03-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 30691000,
+"InvestmentIncomeInterest": 760000
+}
+},
+"1650372": {
+"2023-06-30": {
+"IncreaseDecreaseInContractWithCustomerLiability": 362799000,
+"InvestmentIncomeInterest": 49732000
+},
+"2024-06-30": {
+"IncreaseDecreaseInContractWithCustomerLiability": 552307000,
+"InvestmentIncomeInterest": 96663000
+},
+"2025-06-30": {
+"IncreaseDecreaseInContractWithCustomerLiability": 366368000,
+"InvestmentIncomeInterest": 112324000
+}
+},
+"1651562": {
+"2021-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 17845000,
+"InvestmentIncomeInterest": 320000
+},
+"2022-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 20289000,
+"InvestmentIncomeInterest": 9144000
+},
+"2023-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 21300000,
+"InvestmentIncomeInterest": 34400000
+},
+"2024-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 21200000,
+"InvestmentIncomeInterest": 36700000
+},
+"2025-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 21000000,
+"InvestmentIncomeInterest": 32000000
+}
+},
+"1653482": {
+"2022-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 79074000,
+"InvestmentIncomeInterest": 736000
+},
+"2023-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 73003000,
+"InvestmentIncomeInterest": 14496000
+},
+"2024-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 79347000,
+"InvestmentIncomeInterest": 39114000
+},
+"2025-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 108743000,
+"InvestmentIncomeInterest": 47735000
+},
+"2026-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 93281000,
+"InvestmentIncomeInterest": 45707000
+}
+},
+"1660134": {
+"2018-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 57660000,
+"IncreaseDecreaseInDeferredRevenue": 54945000
+},
+"2019-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 89303000
+},
+"2020-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 116432000
+},
+"2021-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 142000000
+},
+"2022-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 416000000
+},
+"2023-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 264000000
+},
+"2024-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 250000000
+},
+"2025-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 207000000
+},
+"2026-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 187000000
+}
+},
+"1660280": {
+"2018-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 64085000
+},
+"2019-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 72799000
+},
+"2020-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 71383000,
+"InvestmentIncomeNonoperating": 1740000
+},
+"2021-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 92486000,
+"InvestmentIncomeNonoperating": 606000
+},
+"2022-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 132622000,
+"InvestmentIncomeNonoperating": 6284000
+},
+"2023-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 81755000,
+"InvestmentIncomeNonoperating": 24700000
+},
+"2024-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 82581000,
+"InvestmentIncomeNonoperating": 23325000
+},
+"2025-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 58361000,
+"InvestmentIncomeNonoperating": 15992000
+}
+},
+"1665658": {
+"2017-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 883000,
+"InvestmentIncomeInterest": 6000
+}
+},
+"1666134": {
+"2017-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 26504000,
+"IncreaseDecreaseInDeferredRevenue": 25082000
+},
+"2018-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 24699000
+},
+"2019-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 33364000,
+"InvestmentIncomeInterest": 6128000
+},
+"2020-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 26397000,
+"InvestmentIncomeInterest": 4502000
+},
+"2021-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 51579000,
+"InvestmentIncomeInterest": 700000
+},
+"2022-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 36646000,
+"InvestmentIncomeInterest": 14637000
+},
+"2023-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 41271000,
+"InvestmentIncomeInterest": 52059000
+},
+"2024-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 18968000
+},
+"2025-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 29236000
+}
+},
+"1668105": {
+"2018-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 24778000
+},
+"2019-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 19729000
+},
+"2020-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 5233000
+}
+},
+"1676238": {
+"2022-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 51471000,
+"InvestmentIncomeInterestAndDividend": 506000,
+"InvestmentIncomeNonoperating": 137000
+},
+"2023-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 39894000,
+"InvestmentIncomeInterestAndDividend": 7393000
+},
+"2024-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 34108000,
+"InvestmentIncomeInterestAndDividend": 13546000
+},
+"2025-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 35887000,
+"InvestmentIncomeInterestAndDividend": 18111000
+},
+"2026-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 57137000,
+"InvestmentIncomeInterestAndDividend": 14783000
+}
+},
+"1679826": {
+"2019-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 12140000
+},
+"2020-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 4891000
+},
+"2021-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 25143000
+}
+},
+"1689923": {
+"2018-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 29059000
+},
+"2019-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 310000
+},
+"2020-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 26194000
+},
+"2021-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 100000000
+},
+"2022-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 64000000
+},
+"2023-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -20000000
+}
+},
+"1699838": {
+"2021-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 87285000,
+"InvestmentIncomeInterest": 2020000
+},
+"2022-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 76352000
+},
+"2023-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 30176000
+},
+"2024-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 56173000
+},
+"2025-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 89437000
+}
+},
+"1701040": {
+"2017-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 4887000,
+"InterestAndOtherIncome": 2132000
+},
+"2018-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 1808000
+}
+},
+"1701732": {
+"2017-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 15937000,
+"IncreaseDecreaseInDeferredRevenue": 15937000
+},
+"2018-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 9555000
+},
+"2019-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 17426000
+},
+"2020-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 8280000
+},
+"2021-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 10111000,
+"InterestAndOtherIncome": 500000
+},
+"2022-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 40946000,
+"InterestAndOtherIncome": 4100000
+},
+"2023-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 18333000,
+"InterestAndOtherIncome": 16900000
+},
+"2024-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 6235000,
+"InterestAndOtherIncome": 23000000
+}
+},
+"1707753": {
+"2019-04-30": {
+"IncreaseDecreaseInContractWithCustomerLiability": 71876000
+},
+"2020-04-30": {
+"IncreaseDecreaseInContractWithCustomerLiability": 85670000
+},
+"2021-04-30": {
+"IncreaseDecreaseInContractWithCustomerLiability": 115937000
+},
+"2022-04-30": {
+"IncreaseDecreaseInContractWithCustomerLiability": 83780000
+},
+"2023-04-30": {
+"IncreaseDecreaseInContractWithCustomerLiability": 95616000
+},
+"2024-04-30": {
+"IncreaseDecreaseInContractWithCustomerLiability": 134595000
+},
+"2025-04-30": {
+"IncreaseDecreaseInContractWithCustomerLiability": 147112000
+},
+"2026-04-30": {
+"IncreaseDecreaseInContractWithCustomerLiability": 168620000
+}
+},
+"1721947": {
+"2020-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 64945000,
+"InterestIncomeExpenseNonoperatingNet": -10741000,
+"InvestmentIncomeInterest": 100000
+},
+"2021-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 71216000,
+"InterestIncomeExpenseNonoperatingNet": -2478000
+},
+"2022-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 63426000,
+"InterestIncomeExpenseNonoperatingNet": -538000,
+"InvestmentIncomeInterest": 3000000
+},
+"2023-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 23939000,
+"InterestIncomeExpenseNonoperatingNet": 6526000,
+"InvestmentIncomeInterest": 10096000
+},
+"2024-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 11980000,
+"InterestIncomeExpenseNonoperatingNet": 6615000,
+"InvestmentIncomeInterest": 10372000
+}
+},
+"1724542": {
+"2022-06-30": {
+"IncreaseDecreaseInContractWithCustomerLiability": 260228
+},
+"2023-06-30": {
+"IncreaseDecreaseInContractWithCustomerLiability": 331330
+},
+"2024-06-30": {
+"IncreaseDecreaseInContractWithCustomerLiability": -226575
+},
+"2025-06-30": {
+"IncreaseDecreaseInContractWithCustomerLiability": 1331134
+}
+},
+"1724570": {
+"2020-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -1155000
+},
+"2021-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -3511000
+}
+},
+"1725057": {
+"2018-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 7000000
+},
+"2019-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 800000
+},
+"2020-12-31": {
+"IncreaseDecreaseInDeferredRevenue": -1200000
+},
+"2021-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 5500000
+},
+"2022-12-31": {
+"IncreaseDecreaseInDeferredRevenue": -5600000
+},
+"2023-12-31": {
+"IncreaseDecreaseInDeferredRevenue": -1300000
+},
+"2024-12-31": {
+"IncreaseDecreaseInDeferredRevenue": -4400000
+}
+},
+"1728688": {
+"2018-09-30": {
+"IncreaseDecreaseInDeferredRevenue": -123000
+},
+"2019-09-30": {
+"IncreaseDecreaseInDeferredRevenue": 2588000
+},
+"2020-09-30": {
+"IncreaseDecreaseInDeferredRevenue": 617000
+},
+"2021-09-30": {
+"IncreaseDecreaseInDeferredRevenue": 5150000
+},
+"2022-09-30": {
+"IncreaseDecreaseInDeferredRevenue": 2041000,
+"InterestIncomeExpenseNonoperatingNet": -14775000
+},
+"2023-09-30": {
+"IncreaseDecreaseInContractWithCustomerLiability": 32830000,
+"IncreaseDecreaseInDeferredRevenue": -1319000,
+"InterestIncomeExpenseNonoperatingNet": -25128000
+},
+"2024-09-30": {
+"IncreaseDecreaseInContractWithCustomerLiability": 39018000,
+"IncreaseDecreaseInDeferredRevenue": 2026000,
+"InterestIncomeExpenseNonoperatingNet": -29263000
+},
+"2025-09-30": {
+"IncreaseDecreaseInContractWithCustomerLiability": 37691000,
+"IncreaseDecreaseInDeferredRevenue": -1769000,
+"InterestIncomeExpenseNonoperatingNet": -2299000
+}
+},
+"1734722": {
+"2022-01-31": {
+"IncreaseDecreaseInDeferredRevenue": 105481000,
+"InvestmentIncomeInterest": 3551000
+},
+"2023-01-31": {
+"IncreaseDecreaseInDeferredRevenue": 160746000,
+"InvestmentIncomeInterest": 27955000
+},
+"2024-01-31": {
+"IncreaseDecreaseInDeferredRevenue": 137471000,
+"InvestmentIncomeInterest": 57130000
+},
+"2025-01-31": {
+"IncreaseDecreaseInDeferredRevenue": 68348000,
+"InvestmentIncomeInterest": 49422000
+},
+"2026-01-31": {
+"IncreaseDecreaseInDeferredRevenue": -22431000,
+"InvestmentIncomeInterest": 48023000
+}
+},
+"1739942": {
+"2018-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 35507000,
+"IncreaseDecreaseInDeferredRevenue": 35507000,
+"InterestIncomeExpenseNonoperatingNet": -142008000
+},
+"2019-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 41743000,
+"InterestIncomeExpenseNonoperatingNet": -108078000
+},
+"2020-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 17104000,
+"InterestIncomeExpenseNonoperatingNet": -75886000
+},
+"2021-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -852000,
+"InterestIncomeExpenseNonoperatingNet": -64522000
+},
+"2022-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 19689000,
+"InterestIncomeExpenseNonoperatingNet": -83374000
+},
+"2023-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 6389000,
+"InterestIncomeExpenseNonoperatingNet": -115848000
+},
+"2024-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 10559000,
+"InterestIncomeExpenseNonoperatingNet": -103801000
+}
+},
+"1747748": {
+"2021-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 215444000
+},
+"2022-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 121647000
+}
+},
+"1764925": {
+"2020-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 134841000,
+"InterestAndOtherIncome": 21368000,
+"InterestIncomeExpenseNonoperatingNet": 16190000,
+"InterestIncomeOperating": 17048000
+},
+"2021-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 132901000,
+"InterestAndOtherIncome": 28386000,
+"InterestIncomeOperating": 6698000
+}
+},
+"1768267": {
+"2020-09-30": {
+"IncreaseDecreaseInContractWithCustomerLiability": -35994000,
+"InvestmentIncomeInterest": 585000
+},
+"2021-09-30": {
+"IncreaseDecreaseInContractWithCustomerLiability": -45653000,
+"InvestmentIncomeInterest": 109000
+},
+"2022-09-30": {
+"IncreaseDecreaseInContractWithCustomerLiability": -28303000,
+"InvestmentIncomeInterest": 1007000
+},
+"2023-09-30": {
+"IncreaseDecreaseInContractWithCustomerLiability": -21529000,
+"InvestmentIncomeInterest": 4471000
+},
+"2024-09-30": {
+"IncreaseDecreaseInContractWithCustomerLiability": -61040000,
+"IncreaseDecreaseInDeferredRevenue": 67800000,
+"InvestmentIncomeInterest": 5353000
+},
+"2025-09-30": {
+"IncreaseDecreaseInContractWithCustomerLiability": 23298000,
+"InvestmentIncomeInterest": 3853000
+}
+},
+"1769628": {
+"2025-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 4174000000,
+"InterestIncomeExpenseNonoperatingNet": -1229000000
+}
+},
+"1773383": {
+"2020-03-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 91367000
+},
+"2021-03-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 96488000
+},
+"2022-03-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 162159000
+},
+"2023-03-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 145544000,
+"InterestIncomeExpenseNonoperatingNet": -3409000
+},
+"2024-03-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 202227000,
+"InterestIncomeExpenseNonoperatingNet": 37284000
+},
+"2025-03-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 90799000,
+"InterestIncomeExpenseNonoperatingNet": 48281000
+},
+"2026-03-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 134598000,
+"InterestIncomeExpenseNonoperatingNet": 47731000
+}
+},
+"1774675": {
+"2024-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 2202000,
+"InvestmentIncomeInterest": 3557000
+},
+"2025-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 2092000,
+"InvestmentIncomeInterest": 3526000
+},
+"2026-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -13139000,
+"InvestmentIncomeInterest": 1859000
+}
+},
+"1777921": {
+"2021-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 10805000,
+"InterestIncomeExpenseNonoperatingNet": 102000
+},
+"2022-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 20375000,
+"InterestIncomeExpenseNonoperatingNet": -40000
+},
+"2023-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 26867000
+},
+"2024-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 29436000
+},
+"2025-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 40126000
+}
+},
+"1779474": {
+"2021-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 2793000
+},
+"2022-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -1895000
+},
+"2023-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -338000
+},
+"2024-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -485000
+},
+"2025-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 66000
+}
+},
+"1783317": {
+"2020-12-26": {
+"IncreaseDecreaseInContractWithCustomerLiability": 106000000
+},
+"2021-12-25": {
+"IncreaseDecreaseInContractWithCustomerLiability": 24000000
+}
+},
+"1786352": {
+"2020-06-30": {
+"IncreaseDecreaseInContractWithCustomerLiability": 3258000,
+"InvestmentIncomeInterest": 4092000
+},
+"2021-06-30": {
+"IncreaseDecreaseInContractWithCustomerLiability": 6854000,
+"InvestmentIncomeInterest": 2992000
+},
+"2022-06-30": {
+"IncreaseDecreaseInContractWithCustomerLiability": 5599000,
+"InvestmentIncomeInterest": 6691000
+},
+"2023-06-30": {
+"IncreaseDecreaseInContractWithCustomerLiability": -7343000,
+"InvestmentIncomeInterest": 91279000
+},
+"2024-06-30": {
+"IncreaseDecreaseInContractWithCustomerLiability": -5564000,
+"InvestmentIncomeInterest": 122298000
+},
+"2025-06-30": {
+"IncreaseDecreaseInContractWithCustomerLiability": 1546000
+}
+},
+"1788999": {
+"2022-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -8302000,
+"InterestAndOtherIncome": 3327000
+},
+"2023-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 4170000,
+"InterestAndOtherIncome": 2991000
+},
+"2024-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -2666000,
+"InterestAndOtherIncome": 829000
+},
+"2025-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -13673000,
+"InterestAndOtherIncome": 6093000
+}
+},
+"1793663": {
+"2025-12-31": {
+"IncreaseDecreaseInDeferredRevenue": -4236000,
+"InvestmentIncomeInterest": 3659000
+}
+},
+"1794515": {
+"2020-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 60100000
+},
+"2021-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 131400000
+},
+"2022-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 48800000
+},
+"2023-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 22000000
+},
+"2024-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 36100000
+},
+"2025-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -200000
+}
+},
+"1800667": {
+"2020-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 20532000
+},
+"2021-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 42958000
+},
+"2022-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 28609000
+},
+"2023-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 38390000
+},
+"2024-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 60131000
+},
+"2025-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 67757000
+}
+},
+"1802883": {
+"2021-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 878000,
+"IncreaseDecreaseInDeferredRevenue": -102000,
+"InterestIncomeExpenseNonoperatingNet": 8353000,
+"InvestmentIncomeInterest": 295000
+},
+"2022-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 1371000,
+"IncreaseDecreaseInDeferredRevenue": 402000,
+"InterestIncomeExpenseNonoperatingNet": 9636000,
+"InvestmentIncomeInterest": 401000
+},
+"2023-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -483000,
+"IncreaseDecreaseInDeferredRevenue": -160000,
+"InterestIncomeExpenseNonoperatingNet": 18836000,
+"InvestmentIncomeInterest": 105000
+},
+"2024-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 1071000,
+"IncreaseDecreaseInDeferredRevenue": 62000,
+"InterestIncomeExpenseNonoperatingNet": 16941000,
+"InvestmentIncomeInterest": 0
+},
+"2025-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -970000,
+"IncreaseDecreaseInDeferredRevenue": 252000,
+"InterestIncomeExpenseNonoperatingNet": 15051000,
+"InvestmentIncomeInterest": 0
+}
+},
+"1805651": {
+"2021-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 175553000,
+"InterestIncomeExpenseNonoperatingNet": -110000
+},
+"2022-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -51980000,
+"InterestIncomeExpenseNonoperatingNet": -295000
+},
+"2023-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -67092000,
+"InterestIncomeExpenseNonoperatingNet": 4904000
+},
+"2024-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -162093000,
+"InterestIncomeExpenseNonoperatingNet": 5288000
+},
+"2025-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -56092000,
+"InterestIncomeExpenseNonoperatingNet": 2963000
+}
+},
+"1806837": {
+"2020-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 17557000,
+"InterestIncomeExpenseNonoperatingNet": -3111000
+},
+"2021-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 24691000,
+"InterestIncomeExpenseNonoperatingNet": -984000
+},
+"2022-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 30768000,
+"InterestIncomeExpenseNonoperatingNet": -2048000
+},
+"2023-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 18172000
+},
+"2024-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 51096000
+},
+"2025-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 35674000
+}
+},
+"1810806": {
+"2020-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 37408000
+},
+"2021-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 15753000
+},
+"2022-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 166816000
+},
+"2023-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -128219000
+},
+"2024-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 11194000
+},
+"2025-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 33822000
+}
+},
+"1818201": {
+"2021-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 4513000,
+"InterestIncomeOperating": 0
+},
+"2022-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 4196000,
+"InterestIncomeOperating": 908000
+},
+"2023-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 8321000,
+"InterestIncomeOperating": 16252000
+},
+"2024-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 1355000,
+"InterestIncomeOperating": 12203000
+},
+"2025-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 6418000,
+"InterestIncomeOperating": 4882000
+}
+},
+"1819394": {
+"2022-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 5985000,
+"InvestmentIncomeInterest": 6280000
+},
+"2023-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 8503000,
+"InvestmentIncomeInterest": 6406000
+},
+"2024-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 3100000,
+"InvestmentIncomeInterest": 11608000
+}
+},
+"1823878": {
+"2023-12-31": {
+"InterestIncomeExpenseNonoperatingNet": 4858000
+},
+"2024-12-31": {
+"InterestIncomeExpenseNonoperatingNet": 4902000
+},
+"2025-12-31": {
+"InterestIncomeExpenseNonoperatingNet": 2943000
+}
+},
+"1824814": {
+"2021-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -16770000,
+"InvestmentIncomeInterest": 1347000
+},
+"2022-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -51314000,
+"InvestmentIncomeInterest": 177000
+},
+"2023-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 18000000,
+"InvestmentIncomeInterest": 774000
+},
+"2024-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 13897000,
+"InvestmentIncomeInterest": 1896000
+},
+"2025-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 7962000,
+"InvestmentIncomeInterest": 2470000
+},
+"2026-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -8855000,
+"InvestmentIncomeInterest": 2033000
+}
+},
+"1827075": {
+"2021-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 33029000
+},
+"2022-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 28339000
+}
+},
+"1827090": {
+"2021-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 5435000
+},
+"2022-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 9530000
+},
+"2023-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 28000
+},
+"2024-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 13834000
+},
+"2025-12-31": {
+"IncreaseDecreaseInDeferredRevenue": -3018000
+}
+},
+"1829118": {
+"2021-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 5938000
+},
+"2022-12-31": {
+"IncreaseDecreaseInDeferredRevenue": -2898000
+},
+"2023-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 93000
+},
+"2024-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 594000
+},
+"2025-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 2182000
+}
+},
+"1831840": {
+"2021-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 13807000,
+"InterestIncomeExpenseNonoperatingNet": -532000
+},
+"2022-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 9133000,
+"InterestIncomeExpenseNonoperatingNet": 3048000
+},
+"2023-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 8755000,
+"InterestIncomeExpenseNonoperatingNet": 9448000
+},
+"2024-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 8479000,
+"InterestIncomeExpenseNonoperatingNet": 10033000
+},
+"2025-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 21893000,
+"InterestIncomeExpenseNonoperatingNet": 10448000
+}
+},
+"1834488": {
+"2021-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 1253000,
+"InterestIncomeExpenseNonoperatingNet": -20472000
+},
+"2022-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 1358000,
+"InterestIncomeExpenseNonoperatingNet": -18852000
+},
+"2023-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 684000,
+"InterestIncomeExpenseNonoperatingNet": -30252000
+},
+"2024-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 2573000,
+"InterestIncomeExpenseNonoperatingNet": -30031000
+},
+"2025-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 1669000,
+"InterestIncomeExpenseNonoperatingNet": -35997000
+}
+},
+"1834494": {
+"2021-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 3834000,
+"InterestAndOtherIncome": 49000
+},
+"2022-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 1922000,
+"InterestAndOtherIncome": 1063000
+},
+"2023-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -69000,
+"InterestAndOtherIncome": 4029000
+},
+"2024-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -771000,
+"InterestAndOtherIncome": 4924000
+}
+},
+"1835378": {
+"2023-12-31": {
+"InterestAndOtherIncome": 1523000
+}
+},
+"1835681": {
+"2021-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 39199000
+},
+"2022-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 12448000
+},
+"2023-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 33125000
+}
+},
+"1835830": {
+"2023-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 14991000,
+"InvestmentIncomeInterest": 24051000
+},
+"2024-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 24397000,
+"InvestmentIncomeInterest": 39582000
+},
+"2025-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 38741000,
+"InvestmentIncomeInterest": 39402000
+}
+},
+"1836981": {
+"2022-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -3740000
+},
+"2023-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -1143000,
+"InvestmentIncomeInterestAndDividend": 392000
+},
+"2024-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 514000,
+"InvestmentIncomeInterestAndDividend": 2293000
+},
+"2025-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 593000,
+"InvestmentIncomeInterestAndDividend": 13253000
+}
+},
+"1839439": {
+"2021-06-30": {
+"IncreaseDecreaseInDeferredRevenue": -2778000,
+"InterestIncomeOperating": 1821000
+},
+"2022-06-30": {
+"IncreaseDecreaseInDeferredRevenue": -4877000,
+"InterestIncomeOperating": 2355000
+},
+"2023-06-30": {
+"IncreaseDecreaseInDeferredRevenue": 655000,
+"InterestIncomeOperating": 33818000
+},
+"2024-06-30": {
+"IncreaseDecreaseInDeferredRevenue": 658000,
+"InterestIncomeOperating": 52562000
+}
+},
+"1841804": {
+"2022-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 24238000,
+"InvestmentIncomeInterest": 1679000
+},
+"2023-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 13280000,
+"InvestmentIncomeInterest": 5738000
+}
+},
+"1845022": {
+"2022-01-31": {
+"IncreaseDecreaseInDeferredRevenue": 10013000
+},
+"2023-01-31": {
+"IncreaseDecreaseInDeferredRevenue": 3268000
+},
+"2024-01-31": {
+"IncreaseDecreaseInDeferredRevenue": 9492000
+},
+"2025-01-31": {
+"IncreaseDecreaseInDeferredRevenue": 12462000
+}
+},
+"1845338": {
+"2021-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 64372000
+},
+"2022-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 64491000
+},
+"2023-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 68932000
+},
+"2024-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 73117000
+},
+"2025-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 69029000
+}
+},
+"1847584": {
+"2021-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 28577000
+},
+"2022-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 22924000
+},
+"2023-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 2429000
+}
+},
+"1851003": {
+"2021-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 2813000
+},
+"2022-12-31": {
+"IncreaseDecreaseInDeferredRevenue": -4566000
+},
+"2023-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 807000
+},
+"2024-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 6256000
+},
+"2025-12-31": {
+"IncreaseDecreaseInDeferredRevenue": -9320000
+}
+},
+"1853145": {
+"2021-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 8646000
+},
+"2022-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 160000,
+"InvestmentIncomeInterest": 263000
+},
+"2023-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 868000,
+"InvestmentIncomeInterest": 1024000
+},
+"2024-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 1760000,
+"InvestmentIncomeInterest": 3112000
+},
+"2025-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -943000,
+"InvestmentIncomeInterest": 3427000
+}
+},
+"1854587": {
+"2021-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 21804000,
+"InvestmentIncomeInterest": 847000
+},
+"2022-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 38966000,
+"InvestmentIncomeInterest": 2025000
+},
+"2023-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 46114000,
+"InvestmentIncomeInterest": 10569000
+},
+"2024-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 22317000,
+"InvestmentIncomeInterest": 18219000
+},
+"2025-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 49768000,
+"InvestmentIncomeInterest": 22918000
+}
+},
+"1856314": {
+"2021-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 87021000
+},
+"2022-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 94889000,
+"InterestIncomeExpenseNonoperatingNet": 6586000
+},
+"2023-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 92801000,
+"InterestIncomeExpenseNonoperatingNet": 29013000
+},
+"2024-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 63500000,
+"InterestIncomeExpenseNonoperatingNet": 32509000
+},
+"2025-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 76454000,
+"InterestIncomeExpenseNonoperatingNet": 24383000
+}
+},
+"1858257": {
+"2021-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 21910000,
+"InvestmentIncomeInterest": 661000
+},
+"2022-12-31": {
+"IncreaseDecreaseInDeferredRevenue": -330000,
+"InvestmentIncomeInterest": 7164000
+},
+"2023-12-31": {
+"IncreaseDecreaseInDeferredRevenue": -1956000,
+"InvestmentIncomeInterest": 20890000
+},
+"2024-12-31": {
+"IncreaseDecreaseInDeferredRevenue": -1771000,
+"InvestmentIncomeInterest": 22973000
+}
+},
+"1861795": {
+"2021-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 22961000
+},
+"2022-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 12690000
+},
+"2023-12-31": {
+"IncreaseDecreaseInDeferredRevenue": -6580000
+},
+"2024-12-31": {
+"IncreaseDecreaseInDeferredRevenue": -4979000
+},
+"2025-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 5888000
+}
+},
+"1862068": {
+"2022-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 1285000,
+"InvestmentIncomeNonoperating": 2000
+},
+"2023-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 1471000,
+"InvestmentIncomeNonoperating": 57000
+}
+},
+"1863105": {
+"2021-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 2047000
+},
+"2022-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 1548000
+}
+},
+"1866368": {
+"2021-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -624000
+},
+"2022-12-31": {
+"InterestIncomeExpenseNonoperatingNet": 1137000
+},
+"2023-12-31": {
+"InterestIncomeExpenseNonoperatingNet": -4729000
+},
+"2024-12-31": {
+"InterestIncomeExpenseNonoperatingNet": -4325000
+},
+"2025-12-31": {
+"InterestIncomeExpenseNonoperatingNet": -45664000
+}
+},
+"1866633": {
+"2021-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -1797000
+},
+"2022-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -2203000
+},
+"2023-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -2547000
+},
+"2024-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -1509000
+},
+"2025-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -1391000
+}
+},
+"1866692": {
+"2021-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 28470000
+},
+"2022-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 20698000
+},
+"2023-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 12580000
+},
+"2024-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 6354000
+},
+"2025-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 12217000
+}
+},
+"1868778": {
+"2021-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 83301000,
+"InvestmentIncomeInterest": 1213000
+},
+"2022-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 55873000,
+"InvestmentIncomeInterest": 9224000
+},
+"2023-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 82773000,
+"InvestmentIncomeInterest": 39686000
+},
+"2024-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 57844000,
+"InvestmentIncomeInterest": 56437000
+}
+},
+"1868912": {
+"2022-12-31": {
+"InterestIncomeExpenseNonoperatingNet": 413000
+},
+"2023-12-31": {
+"InterestIncomeExpenseNonoperatingNet": 1641000
+},
+"2024-12-31": {
+"InterestIncomeExpenseNonoperatingNet": 1693000
+}
+},
+"1886894": {
+"2022-12-31": {
+"IncreaseDecreaseInDeferredRevenue": -10729488
+}
+},
+"1889956": {
+"2024-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 61199000
+},
+"2025-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 82309000
+}
+},
+"1902733": {
+"2022-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 24317000,
+"InvestmentIncomeInterest": 194000
+},
+"2023-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 33527000,
+"InvestmentIncomeInterest": 403000
+},
+"2024-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 15902000,
+"InvestmentIncomeInterest": 2567000
+},
+"2025-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 13807000,
+"InvestmentIncomeInterest": 1761000
+},
+"2026-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 10853000,
+"InvestmentIncomeInterest": 1429000
+}
+},
+"1910139": {
+"2022-12-31": {
+"InterestIncomeOperating": 18000000
+},
+"2023-12-30": {
+"InterestIncomeOperating": 0
+}
+},
+"1943896": {
+"2025-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 313244000,
+"InvestmentIncomeInterest": 25353000
+},
+"2026-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 425796000,
+"InvestmentIncomeInterest": 52157000
+}
+},
+"2002045": {
+"2026-03-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 6672444,
+"InterestIncomeExpenseNonoperatingNet": -3039054,
+"InvestmentIncomeInterest": 20189
+}
+},
+"2030781": {
+"2026-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 105422000,
+"InvestmentIncomeInterest": 10790000
+}
+},
+"2063196": {
+"2026-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 85551000
+}
+},
+"2491": {
+"2011-06-30": {
+"InvestmentIncomeInterest": 4960000
+},
+"2012-06-30": {
+"InvestmentIncomeInterest": 5221000
+},
+"2013-06-30": {
+"InvestmentIncomeInterest": 5328000
+},
+"2014-06-30": {
+"InvestmentIncomeInterest": 8911000
+}
+},
+"356028": {
+"2011-03-31": {
+"IncreaseDecreaseInDeferredRevenue": -128000000
+},
+"2012-03-31": {
+"IncreaseDecreaseInDeferredRevenue": 97000000
+},
+"2013-03-31": {
+"IncreaseDecreaseInDeferredRevenue": -128000000
+},
+"2014-03-31": {
+"IncreaseDecreaseInDeferredRevenue": -103000000
+},
+"2015-03-31": {
+"IncreaseDecreaseInDeferredRevenue": -138000000
+},
+"2016-03-31": {
+"IncreaseDecreaseInDeferredRevenue": -105000000
+},
+"2017-03-31": {
+"IncreaseDecreaseInDeferredRevenue": 24000000
+},
+"2018-03-31": {
+"IncreaseDecreaseInDeferredRevenue": 11000000
+}
+},
+"712515": {
+"2019-03-31": {
+"IncreaseDecreaseInDeferredRevenue": 151000000
+},
+"2020-03-31": {
+"IncreaseDecreaseInDeferredRevenue": -155000000
+},
+"2021-03-31": {
+"IncreaseDecreaseInDeferredRevenue": 581000000
+},
+"2022-03-31": {
+"IncreaseDecreaseInDeferredRevenue": 497000000
+},
+"2023-03-31": {
+"IncreaseDecreaseInDeferredRevenue": -122000000
+},
+"2024-03-31": {
+"IncreaseDecreaseInDeferredRevenue": -87000000
+},
+"2025-03-31": {
+"IncreaseDecreaseInDeferredRevenue": -114000000
+},
+"2026-03-31": {
+"IncreaseDecreaseInDeferredRevenue": 533000000
+}
+},
+"713425": {
+"2013-04-30": {
+"IncreaseDecreaseInDeferredRevenue": 1850000,
+"InvestmentIncomeNonoperating": 1140000
+},
+"2014-04-30": {
+"IncreaseDecreaseInDeferredRevenue": 3004000,
+"InvestmentIncomeNonoperating": 935000
+},
+"2015-04-30": {
+"IncreaseDecreaseInDeferredRevenue": 4093000,
+"InvestmentIncomeNonoperating": 1229000
+},
+"2016-04-30": {
+"IncreaseDecreaseInDeferredRevenue": -190000,
+"InvestmentIncomeNonoperating": 1346000
+},
+"2017-04-30": {
+"IncreaseDecreaseInDeferredRevenue": 1010000,
+"InvestmentIncomeNonoperating": 1257000
+},
+"2018-04-30": {
+"IncreaseDecreaseInDeferredRevenue": 3374000,
+"InvestmentIncomeNonoperating": 1575000
+},
+"2019-04-30": {
+"IncreaseDecreaseInContractWithCustomerLiability": 431000,
+"IncreaseDecreaseInDeferredRevenue": 431000,
+"InvestmentIncomeNonoperating": 2092000
+},
+"2020-04-30": {
+"IncreaseDecreaseInDeferredRevenue": 944000,
+"InvestmentIncomeNonoperating": 1524000
+},
+"2021-04-30": {
+"IncreaseDecreaseInDeferredRevenue": 2914000,
+"InvestmentIncomeNonoperating": 409000
+},
+"2022-04-30": {
+"IncreaseDecreaseInDeferredRevenue": 4811000,
+"InvestmentIncomeNonoperating": 391000
+},
+"2023-04-30": {
+"IncreaseDecreaseInDeferredRevenue": 1171000,
+"InvestmentIncomeNonoperating": 2150000
+},
+"2024-04-30": {
+"IncreaseDecreaseInDeferredRevenue": 5169000,
+"InvestmentIncomeNonoperating": 3820000
+}
+},
+"718877": {
+"2010-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 293000000,
+"InvestmentIncomeInterest": 8000000
+},
+"2011-12-31": {
+"IncreaseDecreaseInDeferredRevenue": -248000000,
+"InvestmentIncomeInterest": 14000000
+},
+"2012-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 153000000,
+"InvestmentIncomeInterest": 6000000
+},
+"2013-12-31": {
+"IncreaseDecreaseInDeferredRevenue": -275000000
+},
+"2014-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 475000000
+},
+"2015-12-31": {
+"IncreaseDecreaseInDeferredRevenue": -27000000
+},
+"2016-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -35000000,
+"IncreaseDecreaseInDeferredRevenue": -35000000
+},
+"2017-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 220000000,
+"IncreaseDecreaseInDeferredRevenue": 220000000
+},
+"2018-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -122000000
+},
+"2019-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -154000000
+},
+"2020-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 216000000
+},
+"2021-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -537000000
+},
+"2022-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 987000000
+}
+},
+"758004": {
+"2010-10-31": {
+"IncreaseDecreaseInDeferredRevenue": -40686000
+}
+},
+"769397": {
+"2011-01-31": {
+"IncreaseDecreaseInDeferredRevenue": 71500000,
+"InvestmentIncomeInterest": 8900000
+},
+"2012-01-31": {
+"IncreaseDecreaseInDeferredRevenue": 129600000,
+"InvestmentIncomeInterest": 5400000
+},
+"2013-01-31": {
+"IncreaseDecreaseInDeferredRevenue": 113300000,
+"InvestmentIncomeInterest": 4900000
+},
+"2014-01-31": {
+"IncreaseDecreaseInDeferredRevenue": 66000000,
+"InvestmentIncomeInterest": -9800000
+},
+"2015-01-31": {
+"IncreaseDecreaseInDeferredRevenue": 245200000,
+"InvestmentIncomeInterest": -13200000
+},
+"2016-01-31": {
+"IncreaseDecreaseInDeferredRevenue": 360500000
+},
+"2017-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 267000000,
+"IncreaseDecreaseInDeferredRevenue": 267000000
+},
+"2018-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 168300000,
+"IncreaseDecreaseInDeferredRevenue": 168300000
+},
+"2019-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 197000000
+},
+"2020-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 916700000
+},
+"2021-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 344000000
+},
+"2022-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 419000000
+},
+"2023-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 798000000,
+"InterestIncomeExpenseNonoperatingNet": -43000000,
+"InvestmentIncomeInterestAndDividend": 21000000
+},
+"2024-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -316000000,
+"InterestIncomeExpenseNonoperatingNet": 8000000,
+"InvestmentIncomeInterestAndDividend": 91000000
+},
+"2025-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -134000000,
+"InterestIncomeExpenseNonoperatingNet": 30000000,
+"InvestmentIncomeInterestAndDividend": 85000000
+},
+"2026-01-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 555000000,
+"InterestIncomeExpenseNonoperatingNet": 25000000,
+"InvestmentIncomeInterestAndDividend": 83000000
+}
+},
+"789019": {
+"2010-06-30": {
+"IncreaseDecreaseInDeferredRevenue": 29374000000,
+"InvestmentIncomeInterestAndDividend": 843000000
+},
+"2011-06-30": {
+"IncreaseDecreaseInDeferredRevenue": 31227000000,
+"InvestmentIncomeInterestAndDividend": 900000000
+},
+"2012-06-30": {
+"IncreaseDecreaseInDeferredRevenue": 36104000000,
+"InvestmentIncomeInterestAndDividend": 800000000
+},
+"2013-06-30": {
+"IncreaseDecreaseInDeferredRevenue": 44253000000,
+"InvestmentIncomeInterestAndDividend": 677000000
+},
+"2014-06-30": {
+"IncreaseDecreaseInDeferredRevenue": 44325000000
+},
+"2015-06-30": {
+"IncreaseDecreaseInDeferredRevenue": 45072000000
+},
+"2016-06-30": {
+"IncreaseDecreaseInContractWithCustomerLiability": 2565000000,
+"IncreaseDecreaseInDeferredRevenue": 57072000000
+},
+"2017-06-30": {
+"IncreaseDecreaseInContractWithCustomerLiability": 3820000000,
+"IncreaseDecreaseInDeferredRevenue": 67711000000
+},
+"2018-06-30": {
+"IncreaseDecreaseInContractWithCustomerLiability": 5922000000
+},
+"2019-06-30": {
+"IncreaseDecreaseInContractWithCustomerLiability": 4462000000
+},
+"2020-06-30": {
+"IncreaseDecreaseInContractWithCustomerLiability": 2212000000
+},
+"2021-06-30": {
+"IncreaseDecreaseInContractWithCustomerLiability": 4633000000
+},
+"2022-06-30": {
+"IncreaseDecreaseInContractWithCustomerLiability": 5109000000
+},
+"2023-06-30": {
+"IncreaseDecreaseInContractWithCustomerLiability": 5535000000
+},
+"2024-06-30": {
+"IncreaseDecreaseInContractWithCustomerLiability": 5348000000
+},
+"2025-06-30": {
+"IncreaseDecreaseInContractWithCustomerLiability": 5438000000
+}
+},
+"796343": {
+"2010-12-03": {
+"IncreaseDecreaseInDeferredRevenue": 109348000,
+"InvestmentIncomeInterest": 21923000
+},
+"2011-12-02": {
+"IncreaseDecreaseInDeferredRevenue": 101109000,
+"InvestmentIncomeInterest": 24506000
+},
+"2012-11-30": {
+"IncreaseDecreaseInDeferredRevenue": 87340000,
+"InvestmentIncomeInterest": 24549000
+},
+"2013-11-29": {
+"IncreaseDecreaseInDeferredRevenue": 201366000,
+"InvestmentIncomeInterest": 21887000
+},
+"2014-11-28": {
+"IncreaseDecreaseInDeferredRevenue": 326438000,
+"InvestmentIncomeInterest": 21355000
+},
+"2015-11-27": {
+"IncreaseDecreaseInDeferredRevenue": 320801000,
+"InvestmentIncomeInterest": 28759000
+},
+"2016-12-02": {
+"IncreaseDecreaseInDeferredRevenue": 524840000,
+"InvestmentIncomeInterest": 47340000
+},
+"2017-12-01": {
+"IncreaseDecreaseInDeferredRevenue": 475402000,
+"InvestmentIncomeInterest": 66069000
+},
+"2018-11-30": {
+"IncreaseDecreaseInDeferredRevenue": 444000000,
+"InvestmentIncomeInterest": 93000000
+},
+"2019-11-29": {
+"IncreaseDecreaseInDeferredRevenue": 497000000,
+"InvestmentIncomeInterest": 68000000
+},
+"2020-11-27": {
+"IncreaseDecreaseInDeferredRevenue": 258000000,
+"InvestmentIncomeInterest": 43000000
+},
+"2021-12-03": {
+"IncreaseDecreaseInDeferredRevenue": 1053000000,
+"InvestmentIncomeInterest": 17000000
+},
+"2022-12-02": {
+"IncreaseDecreaseInDeferredRevenue": 536000000,
+"InvestmentIncomeInterest": 61000000
+},
+"2023-12-01": {
+"IncreaseDecreaseInDeferredRevenue": 536000000,
+"InvestmentIncomeInterest": 269000000
+},
+"2024-11-29": {
+"IncreaseDecreaseInDeferredRevenue": 309000000,
+"InvestmentIncomeInterest": 341000000
+},
+"2025-11-28": {
+"IncreaseDecreaseInDeferredRevenue": 771000000,
+"InvestmentIncomeInterest": 264000000
+}
+},
+"813672": {
+"2011-01-01": {
+"IncreaseDecreaseInDeferredRevenue": 62531000,
+"InvestmentIncomeInterest": 1201000
+},
+"2011-12-31": {
+"IncreaseDecreaseInDeferredRevenue": -13408000,
+"InvestmentIncomeInterest": 1303000
+},
+"2012-12-29": {
+"IncreaseDecreaseInDeferredRevenue": -69662000,
+"InvestmentIncomeInterest": 1473000
+},
+"2013-12-28": {
+"IncreaseDecreaseInDeferredRevenue": 2506000,
+"InvestmentIncomeInterest": 1706000
+},
+"2015-01-03": {
+"IncreaseDecreaseInDeferredRevenue": -11860000,
+"InvestmentIncomeInterest": 1827000
+},
+"2016-01-02": {
+"IncreaseDecreaseInDeferredRevenue": -27019000,
+"InvestmentIncomeInterest": 2667000
+},
+"2016-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 30742000,
+"InvestmentIncomeInterest": 2917000
+},
+"2017-12-30": {
+"IncreaseDecreaseInDeferredRevenue": 33614000,
+"InvestmentIncomeInterest": 3879000
+},
+"2018-12-29": {
+"IncreaseDecreaseInDeferredRevenue": 100696000,
+"InvestmentIncomeInterest": 8070000
+},
+"2019-12-28": {
+"IncreaseDecreaseInDeferredRevenue": 27498000,
+"InvestmentIncomeInterest": 9509000
+},
+"2021-01-02": {
+"IncreaseDecreaseInDeferredRevenue": 110173000,
+"InvestmentIncomeInterest": 3817000
+},
+"2022-01-01": {
+"IncreaseDecreaseInDeferredRevenue": 100731000,
+"InvestmentIncomeInterest": 2634000
+},
+"2022-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 131462000,
+"InvestmentIncomeInterest": 10099000
+},
+"2023-12-31": {
+"IncreaseDecreaseInDeferredRevenue": -21583000,
+"InvestmentIncomeInterest": 29637000
+},
+"2024-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 66478000,
+"InvestmentIncomeInterest": 62484000
+},
+"2025-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 69411000,
+"InvestmentIncomeInterest": 101584000
+}
+},
+"816761": {
+"2010-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 10000000
+},
+"2011-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 45000000
+},
+"2012-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 42000000
+},
+"2013-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 9000000
+},
+"2014-12-31": {
+"IncreaseDecreaseInDeferredRevenue": -28000000
+},
+"2015-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 24000000
+},
+"2016-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 1000000,
+"IncreaseDecreaseInDeferredRevenue": 1000000
+},
+"2017-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 115000000,
+"IncreaseDecreaseInDeferredRevenue": 115000000
+},
+"2018-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 115000000
+},
+"2019-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -62000000
+},
+"2020-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 4000000
+},
+"2021-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 42000000,
+"InvestmentIncomeNonoperating": 6000000
+},
+"2022-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 18000000,
+"InvestmentIncomeNonoperating": 15000000
+},
+"2023-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -5000000,
+"InvestmentIncomeNonoperating": 25000000
+},
+"2024-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -70000000,
+"InvestmentIncomeNonoperating": 11000000
+},
+"2025-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 22000000,
+"InvestmentIncomeNonoperating": 9000000
+}
+},
+"835729": {
+"2011-03-31": {
+"IncreaseDecreaseInDeferredRevenue": 132000000,
+"InterestIncomeOperating": 12900000
+},
+"2012-03-31": {
+"IncreaseDecreaseInDeferredRevenue": 20300000,
+"InterestIncomeOperating": 7200000
+},
+"2013-03-31": {
+"IncreaseDecreaseInDeferredRevenue": -11900000,
+"InterestIncomeOperating": 4300000
+}
+},
+"849399": {
+"2011-04-01": {
+"IncreaseDecreaseInDeferredRevenue": 442000000,
+"InvestmentIncomeInterest": 10000000
+},
+"2012-03-30": {
+"IncreaseDecreaseInDeferredRevenue": 177000000,
+"InvestmentIncomeInterest": 13000000
+},
+"2013-03-29": {
+"IncreaseDecreaseInDeferredRevenue": 119000000,
+"InvestmentIncomeInterest": 12000000
+},
+"2014-03-28": {
+"IncreaseDecreaseInDeferredRevenue": -161000000,
+"InvestmentIncomeInterest": 12000000
+},
+"2015-04-03": {
+"IncreaseDecreaseInDeferredRevenue": -83000000
+},
+"2016-04-01": {
+"IncreaseDecreaseInDeferredRevenue": 20000000,
+"InterestIncomeOperating": 10000000
+},
+"2017-03-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 125000000,
+"IncreaseDecreaseInDeferredRevenue": 125000000,
+"InterestIncomeOperating": 21000000
+},
+"2018-03-30": {
+"IncreaseDecreaseInContractWithCustomerLiability": 491000000,
+"IncreaseDecreaseInDeferredRevenue": 541000000,
+"InterestIncomeOperating": 24000000
+},
+"2019-03-29": {
+"IncreaseDecreaseInContractWithCustomerLiability": 196000000
+},
+"2020-04-03": {
+"IncreaseDecreaseInContractWithCustomerLiability": -121000000
+},
+"2021-04-02": {
+"IncreaseDecreaseInContractWithCustomerLiability": 118000000
+},
+"2022-04-01": {
+"IncreaseDecreaseInContractWithCustomerLiability": 67000000
+},
+"2023-03-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 16000000
+},
+"2024-03-29": {
+"IncreaseDecreaseInContractWithCustomerLiability": 47000000
+},
+"2025-03-28": {
+"IncreaseDecreaseInContractWithCustomerLiability": 36000000
+},
+"2026-04-03": {
+"IncreaseDecreaseInContractWithCustomerLiability": 74000000
+}
+},
+"857005": {
+"2010-09-30": {
+"IncreaseDecreaseInDeferredRevenue": 1440000,
+"InvestmentIncomeInterest": 3009000
+},
+"2011-09-30": {
+"IncreaseDecreaseInDeferredRevenue": 8195000,
+"InvestmentIncomeInterest": 3844000
+},
+"2012-09-30": {
+"IncreaseDecreaseInDeferredRevenue": 14362000,
+"InvestmentIncomeInterest": 2920000
+},
+"2013-09-30": {
+"IncreaseDecreaseInDeferredRevenue": 6727000,
+"InvestmentIncomeInterest": 2862000
+},
+"2014-09-30": {
+"IncreaseDecreaseInDeferredRevenue": 24998000,
+"InvestmentIncomeInterest": 3117000
+},
+"2015-09-30": {
+"IncreaseDecreaseInDeferredRevenue": 8852000,
+"InvestmentIncomeInterest": 3697000
+},
+"2016-09-30": {
+"IncreaseDecreaseInDeferredRevenue": 16232000,
+"InvestmentIncomeInterest": 3437000
+},
+"2017-09-30": {
+"IncreaseDecreaseInDeferredRevenue": 5808000,
+"InvestmentIncomeInterest": 3249000
+},
+"2018-09-30": {
+"IncreaseDecreaseInDeferredRevenue": 56141000,
+"InvestmentIncomeInterest": 3819000
+},
+"2019-09-30": {
+"IncreaseDecreaseInDeferredRevenue": 45875000
+},
+"2020-09-30": {
+"IncreaseDecreaseInDeferredRevenue": 17046000
+},
+"2021-09-30": {
+"IncreaseDecreaseInDeferredRevenue": 58702000
+},
+"2022-09-30": {
+"IncreaseDecreaseInDeferredRevenue": 57586000
+},
+"2023-09-30": {
+"IncreaseDecreaseInDeferredRevenue": 56572000
+},
+"2024-09-30": {
+"IncreaseDecreaseInDeferredRevenue": 81399000
+},
+"2025-09-30": {
+"IncreaseDecreaseInDeferredRevenue": 37753000
+}
+},
+"859014": {
+"2011-03-31": {
+"IncreaseDecreaseInDeferredRevenue": -36569000
+},
+"2012-03-31": {
+"IncreaseDecreaseInDeferredRevenue": -31619000
+},
+"2013-03-31": {
+"IncreaseDecreaseInDeferredRevenue": -78869000
+},
+"2014-03-31": {
+"IncreaseDecreaseInDeferredRevenue": 15837000
+}
+},
+"860731": {
+"2011-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 14862000,
+"InterestIncomeExpenseNonoperatingNet": -2404000
+},
+"2012-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 13393000,
+"InterestIncomeExpenseNonoperatingNet": -2709000
+},
+"2013-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 16188000,
+"InterestIncomeExpenseNonoperatingNet": -1309000
+},
+"2014-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 31961000,
+"InterestIncomeExpenseNonoperatingNet": -355000
+},
+"2015-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 41731000
+},
+"2016-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 25811000,
+"IncreaseDecreaseInDeferredRevenue": 25118000
+},
+"2017-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 8639000,
+"IncreaseDecreaseInDeferredRevenue": 9263000
+},
+"2018-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 43603000
+},
+"2019-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 44442000
+},
+"2020-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 48684000
+},
+"2021-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 44874000
+},
+"2022-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 59460000
+},
+"2023-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 58513000
+},
+"2024-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 90775000
+},
+"2025-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 70291000
+}
+},
+"865570": {
+"2012-03-31": {
+"IncreaseDecreaseInDeferredRevenue": -716000
+}
+},
+"876167": {
+"2010-11-30": {
+"IncreaseDecreaseInDeferredRevenue": -923000
+},
+"2011-11-30": {
+"IncreaseDecreaseInDeferredRevenue": 5393000
+},
+"2012-11-30": {
+"IncreaseDecreaseInDeferredRevenue": -7911000
+},
+"2013-11-30": {
+"IncreaseDecreaseInDeferredRevenue": -5183000
+},
+"2014-11-30": {
+"IncreaseDecreaseInDeferredRevenue": 1135000
+},
+"2015-11-30": {
+"IncreaseDecreaseInDeferredRevenue": 35617000
+},
+"2016-11-30": {
+"IncreaseDecreaseInContractWithCustomerLiability": 5159000,
+"IncreaseDecreaseInDeferredRevenue": 5159000
+},
+"2017-11-30": {
+"IncreaseDecreaseInContractWithCustomerLiability": 882000,
+"IncreaseDecreaseInDeferredRevenue": 368000
+},
+"2018-11-30": {
+"IncreaseDecreaseInContractWithCustomerLiability": 9496000
+},
+"2019-11-30": {
+"IncreaseDecreaseInContractWithCustomerLiability": 29840000
+},
+"2020-11-30": {
+"IncreaseDecreaseInContractWithCustomerLiability": 1420000
+},
+"2021-11-30": {
+"IncreaseDecreaseInContractWithCustomerLiability": 30473000
+},
+"2022-11-30": {
+"IncreaseDecreaseInContractWithCustomerLiability": 36268000
+},
+"2023-11-30": {
+"IncreaseDecreaseInContractWithCustomerLiability": -24102000
+},
+"2024-11-30": {
+"IncreaseDecreaseInContractWithCustomerLiability": 16183000
+},
+"2025-11-30": {
+"IncreaseDecreaseInContractWithCustomerLiability": 13544000
+}
+},
+"876779": {
+"2012-12-31": {
+"IncreaseDecreaseInDeferredRevenue": -1131000
+},
+"2013-12-31": {
+"IncreaseDecreaseInDeferredRevenue": -1765000
+},
+"2014-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 191000
+},
+"2015-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 684000
+},
+"2016-12-31": {
+"IncreaseDecreaseInDeferredRevenue": -180000
+},
+"2017-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 1175000
+}
+},
+"877890": {
+"2010-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 160121000
+},
+"2011-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 168994000
+},
+"2012-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 216798000
+},
+"2013-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 201455000
+},
+"2014-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 144644000
+},
+"2015-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 102330000
+},
+"2016-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 142381000,
+"IncreaseDecreaseInDeferredRevenue": 142381000
+},
+"2017-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 174426000,
+"IncreaseDecreaseInDeferredRevenue": 174426000
+},
+"2018-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 69499000
+},
+"2019-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -38780000
+},
+"2020-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 106785000
+},
+"2021-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 101773000
+}
+},
+"883241": {
+"2010-10-31": {
+"IncreaseDecreaseInDeferredRevenue": 9827000,
+"InvestmentIncomeInterest": 5396000
+},
+"2011-10-31": {
+"IncreaseDecreaseInDeferredRevenue": 113041000,
+"InvestmentIncomeInterest": 2117000
+},
+"2012-10-31": {
+"IncreaseDecreaseInDeferredRevenue": 107586000,
+"InvestmentIncomeInterest": 1567000
+},
+"2013-10-31": {
+"IncreaseDecreaseInDeferredRevenue": 814000
+},
+"2014-10-31": {
+"IncreaseDecreaseInDeferredRevenue": 99814000
+},
+"2015-10-31": {
+"IncreaseDecreaseInDeferredRevenue": 50139000
+},
+"2016-10-31": {
+"IncreaseDecreaseInDeferredRevenue": 86904000
+},
+"2017-10-31": {
+"IncreaseDecreaseInDeferredRevenue": -16644000
+},
+"2018-10-31": {
+"IncreaseDecreaseInDeferredRevenue": 105329000
+},
+"2019-10-31": {
+"IncreaseDecreaseInDeferredRevenue": 125717000
+},
+"2020-10-31": {
+"IncreaseDecreaseInDeferredRevenue": 148722000
+},
+"2021-10-31": {
+"IncreaseDecreaseInDeferredRevenue": 160325000
+},
+"2022-10-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 414251000,
+"IncreaseDecreaseInDeferredRevenue": 414251000
+},
+"2023-10-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -113435000,
+"IncreaseDecreaseInDeferredRevenue": -113435000
+},
+"2024-10-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 8641000
+},
+"2025-10-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 235261000
+}
+},
+"885740": {
+"2013-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 2508000,
+"InterestAndOtherIncome": 188000,
+"InterestIncomeExpenseNonoperatingNet": -87000
+},
+"2014-12-31": {
+"IncreaseDecreaseInDeferredRevenue": -223000,
+"InterestAndOtherIncome": 356000
+},
+"2015-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 1300000,
+"InterestAndOtherIncome": 657000,
+"InterestIncomeExpenseNonoperatingNet": -157000
+},
+"2016-12-31": {
+"IncreaseDecreaseInDeferredRevenue": -1035000,
+"InterestAndOtherIncome": 784000,
+"InterestIncomeExpenseNonoperatingNet": -270000
+},
+"2017-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 1249000,
+"InterestAndOtherIncome": 525000,
+"InterestIncomeExpenseNonoperatingNet": -1688000
+},
+"2018-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 2349000,
+"InterestAndOtherIncome": 181000,
+"InterestIncomeExpenseNonoperatingNet": -3225000
+},
+"2019-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 2747000,
+"InterestAndOtherIncome": 382000,
+"InterestIncomeExpenseNonoperatingNet": -3030000
+},
+"2020-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 2992000,
+"InterestAndOtherIncome": 380000,
+"InterestIncomeExpenseNonoperatingNet": -3922000
+},
+"2021-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 4930000,
+"IncreaseDecreaseInDeferredRevenue": 4930000,
+"InterestAndOtherIncome": 887000,
+"InterestIncomeExpenseNonoperatingNet": -2907000
+},
+"2022-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -7738000,
+"IncreaseDecreaseInDeferredRevenue": -7738000,
+"InterestIncomeExpenseNonoperatingNet": -1427000
+},
+"2023-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 7266000
+},
+"2024-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -407000
+}
+},
+"890801": {
+"2010-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 155911000
+}
+},
+"896841": {
+"2011-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 5611000,
+"InvestmentIncomeInterest": 144000
+},
+"2013-12-31": {
+"IncreaseDecreaseInDeferredRevenue": -91664000,
+"InvestmentIncomeInterest": 555000
+},
+"2014-12-31": {
+"IncreaseDecreaseInDeferredRevenue": -51963000,
+"InvestmentIncomeInterest": 126000
+},
+"2015-12-31": {
+"IncreaseDecreaseInDeferredRevenue": -69116000,
+"InvestmentIncomeInterest": 113000
+},
+"2016-12-31": {
+"IncreaseDecreaseInDeferredRevenue": -122617000,
+"InvestmentIncomeInterest": 0
+},
+"2017-12-31": {
+"IncreaseDecreaseInDeferredRevenue": -31152000,
+"InvestmentIncomeInterest": 535000
+},
+"2018-12-31": {
+"IncreaseDecreaseInDeferredRevenue": -9135000,
+"InvestmentIncomeInterest": 195000
+},
+"2019-12-31": {
+"IncreaseDecreaseInDeferredRevenue": -4787000,
+"InvestmentIncomeInterest": 36000
+},
+"2020-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 2272000,
+"InvestmentIncomeInterest": 70000
+},
+"2021-12-31": {
+"IncreaseDecreaseInDeferredRevenue": -7994000,
+"InvestmentIncomeInterest": 6000
+},
+"2022-12-31": {
+"IncreaseDecreaseInDeferredRevenue": -16301000,
+"InvestmentIncomeInterest": 45000
+}
+},
+"896878": {
+"2010-07-31": {
+"IncreaseDecreaseInDeferredRevenue": 32000000
+},
+"2011-07-31": {
+"IncreaseDecreaseInDeferredRevenue": 28000000
+},
+"2012-07-31": {
+"IncreaseDecreaseInDeferredRevenue": 38000000
+},
+"2013-07-31": {
+"IncreaseDecreaseInDeferredRevenue": 62000000
+},
+"2014-07-31": {
+"IncreaseDecreaseInDeferredRevenue": 15000000
+},
+"2015-07-31": {
+"IncreaseDecreaseInDeferredRevenue": 398000000
+},
+"2016-07-31": {
+"IncreaseDecreaseInDeferredRevenue": 192000000
+},
+"2017-07-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 68000000,
+"IncreaseDecreaseInDeferredRevenue": 64000000
+},
+"2018-07-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -5000000,
+"IncreaseDecreaseInDeferredRevenue": 6000000
+},
+"2019-07-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 69000000,
+"IncreaseDecreaseInDeferredRevenue": 39000000
+},
+"2020-07-31": {
+"IncreaseDecreaseInDeferredRevenue": 38000000
+},
+"2021-07-31": {
+"IncreaseDecreaseInDeferredRevenue": 22000000
+},
+"2022-07-31": {
+"IncreaseDecreaseInDeferredRevenue": 71000000
+},
+"2023-07-31": {
+"IncreaseDecreaseInDeferredRevenue": 111000000
+},
+"2024-07-31": {
+"IncreaseDecreaseInDeferredRevenue": -49000000
+},
+"2025-07-31": {
+"IncreaseDecreaseInDeferredRevenue": 142000000
+}
+},
+"910638": {
+"2011-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 525000,
+"InvestmentIncomeInterest": 51000
+},
+"2012-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 1164000,
+"InvestmentIncomeInterest": 168000
+},
+"2013-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 7526000,
+"InvestmentIncomeInterest": 1285000
+},
+"2014-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 8686000,
+"InvestmentIncomeInterest": 482000
+},
+"2015-12-31": {
+"IncreaseDecreaseInDeferredRevenue": -576000,
+"InvestmentIncomeInterest": 521000
+},
+"2016-12-31": {
+"InvestmentIncomeInterest": 807000
+},
+"2017-12-31": {
+"InvestmentIncomeInterest": 784000
+},
+"2018-12-31": {
+"InvestmentIncomeInterest": 789000
+},
+"2019-12-31": {
+"InvestmentIncomeInterest": 1209000
+},
+"2020-12-31": {
+"InterestIncomeExpenseNonoperatingNet": -3991000,
+"InvestmentIncomeInterest": 400000
+},
+"2021-12-31": {
+"InterestIncomeExpenseNonoperatingNet": -1902000,
+"InvestmentIncomeInterest": 438000
+},
+"2022-12-31": {
+"InterestIncomeExpenseNonoperatingNet": 6541000,
+"InvestmentIncomeInterest": 9352000
+},
+"2023-12-31": {
+"InterestIncomeExpenseNonoperatingNet": 16210000,
+"InvestmentIncomeInterest": 19511000
+},
+"2024-12-31": {
+"InvestmentIncomeInterest": 7302000
+},
+"2025-12-31": {
+"InvestmentIncomeInterest": 3956000
+}
+},
+"935036": {
+"2010-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 14715000,
+"InvestmentIncomeInterest": 665000
+},
+"2011-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 14809000,
+"InvestmentIncomeInterest": 1315000
+},
+"2012-12-31": {
+"IncreaseDecreaseInDeferredRevenue": -11816000,
+"InvestmentIncomeInterest": 914000
+},
+"2013-12-31": {
+"IncreaseDecreaseInDeferredRevenue": -23613000,
+"InvestmentIncomeInterest": 659000
+},
+"2014-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 15738000,
+"InvestmentIncomeInterest": 575000
+},
+"2015-12-31": {
+"IncreaseDecreaseInDeferredRevenue": -4513000,
+"InvestmentIncomeInterest": 386000
+},
+"2016-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 3015000,
+"IncreaseDecreaseInDeferredRevenue": 3015000,
+"InvestmentIncomeInterest": 530000
+},
+"2017-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 439000,
+"IncreaseDecreaseInDeferredRevenue": 439000,
+"InvestmentIncomeInterest": 564000
+},
+"2018-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 14219000,
+"InvestmentIncomeInterest": 11142000
+},
+"2019-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -37561000,
+"InvestmentIncomeInterest": 11967000
+},
+"2020-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 9421000,
+"InvestmentIncomeInterest": 11628000
+},
+"2021-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -17332000,
+"InvestmentIncomeInterest": 11522000
+},
+"2022-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -2977000,
+"InvestmentIncomeInterest": 12547000
+},
+"2023-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 2705000,
+"InvestmentIncomeInterest": 14215000
+},
+"2024-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 11886000,
+"InvestmentIncomeInterest": 15926000
+},
+"2025-12-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -10345000,
+"InvestmentIncomeInterest": 14874000
+}
+},
+"935494": {
+"2010-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 14408000,
+"InvestmentIncomeInterest": 1391000
+},
+"2011-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 16953000,
+"InvestmentIncomeInterest": 1319000
+},
+"2012-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 21050000,
+"InvestmentIncomeInterest": 716000
+},
+"2013-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 6346000,
+"InvestmentIncomeInterest": 679000
+},
+"2014-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 14910000,
+"InvestmentIncomeInterest": 1133000
+},
+"2015-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 6493000,
+"InvestmentIncomeInterest": 1403000
+},
+"2016-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 8864000,
+"InvestmentIncomeInterest": 1122000
+},
+"2017-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 1791000,
+"InvestmentIncomeInterest": 2276000
+},
+"2018-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 19061000,
+"InvestmentIncomeInterest": 5896000
+},
+"2019-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 5579000,
+"InvestmentIncomeInterest": 8129000
+},
+"2020-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 6417000,
+"InvestmentIncomeInterest": 3899000
+},
+"2021-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 6096000,
+"InvestmentIncomeInterest": 375000
+},
+"2022-12-31": {
+"IncreaseDecreaseInDeferredRevenue": 36775000,
+"InvestmentIncomeInterest": 454000
+}
+},
+"946581": {
+"2012-03-31": {
+"IncreaseDecreaseInDeferredRevenue": 430000,
+"InterestIncomeExpenseNonoperatingNet": -20616000
+},
+"2013-03-31": {
+"IncreaseDecreaseInDeferredRevenue": 13055000,
+"InterestIncomeExpenseNonoperatingNet": -30763000
+},
+"2014-03-31": {
+"IncreaseDecreaseInDeferredRevenue": 34276000,
+"InterestIncomeExpenseNonoperatingNet": -33961000
+},
+"2015-03-31": {
+"IncreaseDecreaseInDeferredRevenue": 568028000,
+"InterestIncomeExpenseNonoperatingNet": -29901000
+},
+"2016-03-31": {
+"IncreaseDecreaseInDeferredRevenue": 152325000,
+"InterestIncomeExpenseNonoperatingNet": -29239000
+},
+"2017-03-31": {
+"IncreaseDecreaseInDeferredRevenue": 126285000,
+"InterestIncomeExpenseNonoperatingNet": -21700000
+},
+"2018-03-31": {
+"IncreaseDecreaseInDeferredRevenue": 198397000,
+"InterestIncomeExpenseNonoperatingNet": -1005000
+},
+"2020-03-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -55460000
+},
+"2021-03-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 152500000
+},
+"2022-03-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -30900000
+},
+"2023-03-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -141900000
+},
+"2024-03-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": -11800000
+},
+"2025-03-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 6800000
+},
+"2026-03-31": {
+"IncreaseDecreaseInContractWithCustomerLiability": 78500000
+}
+}
+}

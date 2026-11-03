@@ -1,0 +1,56 @@
+{
+  "mode": "full",
+  "n_dwa": 2087,
+  "n_soc": 783,
+  "task_weight_without_dwa": 0.0,
+  "unmapped_onetsoc": [
+    "11-1031.00",
+    "45-3031.00"
+  ],
+  "rated_task_share": 0.9778108079413951,
+  "eloundou_mass_coverage": 0.9970623348109376,
+  "physical_mass_coverage": 0.9980961526162719,
+  "aei": "AEI DWA nodes 750, mapped to 31.0 DWA ids by title: 750; aei_claude_ai_2026-06-26.csv: global onet rows, windows ['2026-04-01', '2026-05-01']; DWA pct published for 750 DWAs, summing to 0.954 of conversations; task-level human_only_time_mean for 2814 tasks; task_pct_v2: pct sums to 100.00; 1.000 of task texts matched (0.982 of usage)",
+  "regulated_counts": {
+    "none": 1831,
+    "licensed": 222,
+    "high_risk_eu": 34
+  },
+  "freq_categories": [
+    {
+      "scaleid": "FT",
+      "category": 1,
+      "categorydescription": "Yearly or less"
+    },
+    {
+      "scaleid": "FT",
+      "category": 2,
+      "categorydescription": "More than yearly"
+    },
+    {
+      "scaleid": "FT",
+      "category": 3,
+      "categorydescription": "More than monthly"
+    },
+    {
+      "scaleid": "FT",
+      "category": 4,
+      "categorydescription": "More than weekly"
+    },
+    {
+      "scaleid": "FT",
+      "category": 5,
+      "categorydescription": "Daily"
+    },
+    {
+      "scaleid": "FT",
+      "category": 6,
+      "categorydescription": "Several times daily"
+    },
+    {
+      "scaleid": "FT",
+      "category": 7,
+      "categorydescription": "Hourly or more"
+    }
+  ]
+}

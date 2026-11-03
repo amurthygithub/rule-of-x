@@ -1,0 +1,91 @@
+{
+  "n_processes": 24,
+  "n_steps": 136,
+  "resolved": 136,
+  "resolution_counts": {
+    "iwa+pattern+function_mass": 95,
+    "iwa+pattern": 31,
+    "iwa+pattern+us_time_mass": 9,
+    "iwa+function_mass": 1
+  },
+  "icfr_files_sha256": {
+    "icfr_scope.csv (engine, 10:34)": "c447a55bad242a196c4066fab39131f55ba47e27e2b7cbf43f03111cd76f83ad",
+    "icfr_steps.csv (engine, 10:34)": "fc4a76ede3855bc64d31b1681a6160fcf25dae22146694087efcb650f5500e30"
+  },
+  "icfr_scope_counts": {
+    "partial": 12,
+    "full": 8,
+    "none": 4
+  },
+  "icfr_steps_in_scope": 66,
+  "icfr_flagged_by_typical_systems": [
+    [
+      "P05",
+      5,
+      "Onboard and train",
+      "HRIS (new-hire pay data feeding payroll)"
+    ],
+    [
+      "P07",
+      5,
+      "Escalate and coordinate fix",
+      "billing (refunds/credits)"
+    ],
+    [
+      "P08",
+      6,
+      "Close sale",
+      "billing (order booking via integration)"
+    ],
+    [
+      "P11",
+      4,
+      "Restore service",
+      "in-scope financial systems (data or configuration fixes)"
+    ],
+    [
+      "P13",
+      3,
+      "Resolve account issues",
+      "billing (service credits/adjustments)"
+    ],
+    [
+      "P13",
+      4,
+      "Renew and expand",
+      "billing (renewal or subscription change)"
+    ],
+    [
+      "P14",
+      3,
+      "Configure systems",
+      "PSA (time and progress feeding revenue and billing)"
+    ],
+    [
+      "P15",
+      5,
+      "Negotiate",
+      "ERP/GL (loss-contingency accrual) and disclosures"
+    ],
+    [
+      "P21",
+      4,
+      "Inspect output",
+      "ERP (inventory: scrap and yield)"
+    ]
+  ],
+  "icfr_scope_raised": [
+    "P07",
+    "P08",
+    "P11",
+    "P13",
+    "P15"
+  ],
+  "icfr_channel_counts": {
+    "process": 49,
+    "system": 9,
+    "system; integration": 4,
+    "policy": 3,
+    "integration": 1
+  }
+}

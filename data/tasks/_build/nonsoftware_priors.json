@@ -1,0 +1,1871 @@
+{
+  "mode": "full",
+  "data_date": "2026-01-05",
+  "sha256": {
+    "margin": "25b04fce9740d9a471d50e176bf55aa6b7608cd0621b00072508a20e7c35ed7a",
+    "wacc": "d38b149c731bba6847d077ef67c9a4bfa0a54f947ba480b2f9ea89f5451d39a6",
+    "roe": "7da8fd4c41dd75dcc898b784f42d407e92f2b242ddda09237c99cc02a6787817",
+    "fundgrEB": "d96d24f919d60500340b40d99cdc93dcc655be053013371a6960745589a04cb2",
+    "roc_html": "f7363946361916feb0c2876047ba8c50c1d51fd45171fac4426254d1d9c14b98"
+  },
+  "file_dates": {
+    "margin": "2026-01-05",
+    "wacc": "2026-01-05",
+    "roe": "2026-01-05",
+    "fundgrEB": "2026-01-05"
+  },
+  "roc_status": "roc_html.csv present: HTML table of roc.html (Return on Capital by Sector, US) saved from the author's browser, sha256 f7363946361916feb0c2876047ba8c50c1d51fd45171fac4426254d1d9c14b98; the page says \"Data used is as of January 2026\" but its footer says \"Last updated January 2025\"; values are rounded to 0.01 percentage points",
+  "mgnroc_status": "mgnroc.xls not on disk (optional cross-check)",
+  "fundgr_status": "fundgrEB.xls present (data date 2026-01-05, sha256 d96d24f919d60500340b40d99cdc93dcc655be053013371a6960745589a04cb2)",
+  "histgr_status": "histgr.xls not on disk (optional): marginal capital per dollar of growth not computed",
+  "fundgr_basis": "lease_rnd",
+  "roc_source": "roc_html.csv",
+  "reinvestment_crosscheck_software": {
+    "SIC 7372": {
+      "panel_revenue_growth_fy2025_aggregate": 0.150873246984653,
+      "n_fy2025": 160,
+      "panel_revenue_cagr_fy2020_25": 0.14881737510688575,
+      "n_cagr": 146,
+      "damodaran_reinvestment_sales": 0.2406636208104234,
+      "k_marginal_at_fy2025_growth": 1.5951378101838294,
+      "k_marginal_at_5y_cagr": 1.6171742085732295,
+      "k_average_fundgr": 1.1125985302273453
+    },
+    "SIC 7370+7372": {
+      "panel_revenue_growth_fy2025_aggregate": 0.15953106344272183,
+      "n_fy2025": 206,
+      "panel_revenue_cagr_fy2020_25": 0.15518299707889738,
+      "n_cagr": 189,
+      "damodaran_reinvestment_sales": 0.2406636208104234,
+      "k_marginal_at_fy2025_growth": 1.5085690248459445,
+      "k_marginal_at_5y_cagr": 1.5508375617211876,
+      "k_average_fundgr": 1.1125985302273453
+    }
+  },
+  "wacc_inputs": {
+    "riskfree": {
+      "value": 0.0395,
+      "excel_row": 9,
+      "excel_col": 3
+    },
+    "equity_risk_premium": {
+      "value": 0.0446,
+      "excel_row": 10,
+      "excel_col": 3
+    },
+    "global_default_spread": {
+      "value": 0.0023,
+      "excel_row": 11,
+      "excel_col": 3
+    },
+    "marginal_tax_rate": {
+      "value": 0.25,
+      "excel_row": 13,
+      "excel_col": 5
+    }
+  },
+  "checks": {
+    "sga_identity_max_abs": 1.1102230246251565e-16,
+    "rnd_identity_max_abs": 1.1102230246251565e-16,
+    "gross_cogs_identity_max_abs": 0.0,
+    "sbc_identity_max_abs": 4.85722573273506e-17,
+    "cost_of_equity_recompute_max_abs": 0.0,
+    "wacc_recompute_max_abs": 0.0,
+    "after_tax_cost_of_debt_recompute_max_abs": 0.0,
+    "e_plus_d_max_dev": 0.0,
+    "groups_ebitda_below_ebit": [
+      "Insurance (Prop/Cas.)",
+      "Investments & Asset Management",
+      "Precious Metals",
+      "Reinsurance",
+      "Tobacco"
+    ],
+    "groups_negative_bucket": [
+      "Utility (General)"
+    ],
+    "groups_zero_operating_margin": [
+      "Bank (Money Center)",
+      "Banks (Regional)",
+      "Brokerage & Investment Banking"
+    ],
+    "financial_groups_firms": 1173,
+    "total_minus_nonfinancial_firms": 1172,
+    "sum_of_industry_firms": 5994,
+    "fundgr_growth_identity_max_abs": 0.0,
+    "fundgr_roc_identical_rows": [
+      [
+        "Utility (Water)",
+        0.08955910414193033
+      ],
+      [
+        "Total Market",
+        0.08955910414193033
+      ]
+    ],
+    "fundgr_rows_na": [
+      "Bank (Money Center)",
+      "Banks (Regional)",
+      "Brokerage & Investment Banking",
+      "Financial Svcs. (Non-bank & Insurance)"
+    ],
+    "fundgr_roc_vs_roc_table_max_abs": {
+      "unadj": 0.39559647256160974,
+      "lease": 0.3182964725616098,
+      "lease_rnd": 4.923071492735076e-05
+    },
+    "fundgr_roc_vs_roc_table_n_rows": 91,
+    "fundgr_suspect_rows_vs_roc_table": {
+      "Utility (Water)": {
+        "fundgr": 0.08955910414193033,
+        "unadj": 0.073,
+        "lease": 0.0726,
+        "lease_rnd": 0.0725
+      }
+    },
+    "fundgr_basis": "lease_rnd"
+  },
+  "faq": {
+    "margin": [
+      [
+        "End Game",
+        "Measures of profitability and costs, by industry",
+        ""
+      ],
+      [
+        "",
+        "",
+        ""
+      ],
+      [
+        "Variable",
+        "Explanation",
+        "Why?"
+      ],
+      [
+        "Number of firms",
+        "Number of firms in the industry grouping.",
+        "Law of large numbers?"
+      ],
+      [
+        "Gross Margin",
+        "Aggregated gross profits as a percent of aggregated revenues, across companies in the group.",
+        "Profitability after subtracting out the direct cost of production, but before fixed costs, financial expenses and taxes."
+      ],
+      [
+        "Net Margin",
+        "Aggregated net profits as a percent of aggregated revenues, across companies in the group.",
+        "Profitability, after all expenses and taxes, accrusing to stocholders in the firm"
+      ],
+      [
+        "Pre-tax, Pre-stock compensation Operating Margin",
+        "Aggregated operating profits, prior to taxes and stock compensation, as a percent of aggregated revenues, across companies in the group.",
+        "Operating profitablity, prior to taxes and expenses associated with stock based compensation"
+      ],
+      [
+        "Pre-tax Unadjusted Operating Margin",
+        "Aggregated as-stated operating profits, prior to taxes, as a percent of aggregated revenues, across companies in the group.",
+        "Operating profitability, as measured in financial statements."
+      ],
+      [
+        "After-tax Unadjusted Operating Margin",
+        "Aggregated as-stated operating profits, after netting effective taxes, as a percent of aggregated revenues, across companies in the group.",
+        "Operating profitability, after assuming taxes paid at effective tax rate, as measured in financial statements."
+      ],
+      [
+        "Pre-tax Lease adjusted Margin",
+        "Aggregated operating profits, adjusted for leases treated as debt, as a percent of aggregated revenues, across companies in the group.",
+        "Operating profitability, with leases treated as debt, prior to taxes."
+      ],
+      [
+        "After-tax Lease Adjusted Margin",
+        "Aggregated operating profits, adjusted for leases treated as debt and taxes, as a percent of aggregated revenues, across companies in the group.",
+        "Operating profitability, with leases treated as debt, after paying taxes (at effective tax rate)"
+      ],
+      [
+        "Pre-tax Lease & R&D adj Margin",
+        "Aggregated operating profits, adjusted for leases treated as debt and R&D as a capital expense, as a percent of aggregated revenues, across companies in the group.",
+        "Operating profitability, with leases treated as debt and capitalized R&D, prior to taxes."
+      ],
+      [
+        "After-tax Lease & R&D adj Margin",
+        "Aggregated operating profits, adjusted for leases treated as debt and R&D as a capital expense, after effective taxes, as a percent of aggregated revenues, across companies in the group.",
+        "Operating profitability, with leases treated as debt and capitalized R&D, after paying taxes (at effective tax rate)"
+      ],
+      [
+        "EBITDA/Sales",
+        "Aggregated EBITDA as a percent of aggregated revenues, across companies in the group.",
+        "Measure of pre-tax cash profitability of operations"
+      ],
+      [
+        "EBITDASG&A/Sales",
+        "Aggregated EBITDA, with SG&A added back, as a percent of aggregated revenues, across companies in the group.",
+        "Measure of pre-tax cash profitability, prior to SG&A expenses, of operations"
+      ],
+      [
+        "COGS/Sales",
+        "Aggregated cost of goods sold (COGS) as a percent of aggregated revenues, across companies in the group.",
+        "Measure of direct costs of production, as percetn of sales, of products/services sold."
+      ],
+      [
+        "R&D/Sales",
+        "Aggregated R&D costs as a percent of aggregated revenues, across companies in the group.",
+        "Measure of investment in long term growth by companies that derive their value from the products of R&D (including patents and licenses)."
+      ],
+      [
+        "SG&A/ Sales",
+        "Aggregated SG&A costs as a percent of aggregated revenues, across companies in the group.",
+        "Measure of SG&A costs as percent of sales."
+      ],
+      [
+        "Stock-Based Compensation/Sales",
+        "Aggregated stock-based compensation expensed,  as a percent of aggregated revenues, across companies in the group.",
+        "Measure of expenses from stock-based compensation."
+      ],
+      [
+        "Lease Expense/Sales",
+        "Aggregated current year's lease expense, as a percent of aggregated revenues, across companies in the group.",
+        "Measure of current year's lease expense, as percent of sales."
+      ],
+      [
+        "",
+        "",
+        ""
+      ],
+      [
+        "Lease adjustment to operating income",
+        "Operating Income + Current year's lease exp - Lease Asset Depreciation",
+        "Lease expenses are financing, not operating expenses. Hence we add them back. Treating leases as debt creates a lease asset, that needs to be depreciated. Hence the subtracting out of lease depreciation."
+      ],
+      [
+        "R&D adjustment to operating income",
+        "Operating Income + Current year's R&D exp - Amortization of R&D asset",
+        "R&D is a capital, not an operating expense. Hence we add it back. Treating R&D as a capital asset creates amortization over multiple perods. Hence we net out this amortization."
+      ]
+    ],
+    "wacc": [
+      [
+        "End Game",
+        "To estimate the hurdle rate (required return) on both equity and overall capital invested for firms.",
+        ""
+      ],
+      [
+        "",
+        "",
+        ""
+      ],
+      [
+        "Variable",
+        "Explanation",
+        "Why?"
+      ],
+      [
+        "Number of firms",
+        "Number of firms in the indusry grouping.",
+        "Law of large numbers?"
+      ],
+      [
+        "Beta",
+        "Average regression beta across companies in the group.",
+        "Relative risk of sector"
+      ],
+      [
+        "Cost of Equity",
+        "Risk free Rate + Beta * Equity Risk Premium, in US $",
+        "Required return on equity, given equity risk (beta)."
+      ],
+      [
+        "D/(D+E)",
+        "Total Debt (including lease debt)/ (Total Debt (including lease debt)+ Market Cap), aggregated across all firms in group, with all numbers other than market cap coming from most recent balance sheet; market cap is as of last day of the most recent year.",
+        "Measure of debt used, as a proportion of overall funding (based upon market value)"
+      ],
+      [
+        "Cost of debt",
+        "Pre-tax cost of borrowing for sector, estimated based upon the standard deviation of equity.",
+        "This is an approximation, but the alternatives are not attractive. I could estimate the average cost of debt across firms in the group, but many of them are unrated and there are outliers."
+      ],
+      [
+        "After-tax Cost of Debt",
+        "Pre-tax cost of borrowing  (1- Marginal tax rate), in US $",
+        "Interest saves you taxes, at the margin."
+      ],
+      [
+        "Cost of Capital",
+        "Cost of Equity * (Equity/ (Debt + Equity)) + Cost of Debt (1- Marginal tax rate) *(Debt/ (Debt + Equity)), with aggregated debt and market equity values across all companies in the sector, using most recent balance sheet for debt and most recent year-end for equity.",
+        "Required return on invested capital."
+      ],
+      [
+        "Cost of Capital (local currency)",
+        "You can convert the $ cost of capital for a sector into any other currency, if you can estimate an expected inflation rate for the local currency.",
+        "Required return on invested capital, converted into local currency."
+      ]
+    ],
+    "roe": [
+      [
+        "End Game",
+        "To estimate ratios of market values (equity and firm) to book value (equity and firm), with companion variables (ROE and ROC)",
+        ""
+      ],
+      [
+        "",
+        "",
+        ""
+      ],
+      [
+        "Variable",
+        "Explanation",
+        "Why?"
+      ],
+      [
+        "Number of firms",
+        "Number of firms in the industry grouping.",
+        "Law of large numbers?"
+      ],
+      [
+        "ROE (unadjusted)",
+        "Aggregated net income divided by aggregated book value of equity, across all firms in the group.",
+        "Measure of returns to equity investors, based upon stated net income"
+      ],
+      [
+        "ROE (adjusted for R&D)",
+        "Aggregate net income, adjusted for R&D, divided by aggregated book value of equity, adjusted for capitalized R&D, across companies in group.",
+        "Measure of returns to equity investors, based upon stated net income, adjusted for R&D being capitalized."
+      ]
+    ],
+    "fundgrEB": [
+      [
+        "End Game",
+        "To estimate the sustainable growth rate in operating income for a firm, if margins and ROC are stable. If margins are changing, these fundamental growth rates don't apply.",
+        ""
+      ],
+      [
+        "",
+        "",
+        ""
+      ],
+      [
+        "Variable",
+        "Explanation",
+        "Why?"
+      ],
+      [
+        "Number of firms",
+        "Number of firms in the indusry grouping.",
+        "Law of large numbers?"
+      ],
+      [
+        "ROC",
+        "Aggregated after-tax Operating Income , across all firms in group, using trailing 12 month data/ Aggregated Invested Capital, across all firms in group, using most recent balance sheet.",
+        "Measure of returns earned on existing projects."
+      ],
+      [
+        "Reinvestment Rate",
+        "Aggregated Reinvestment/ Aggregated after-tax Operating income, where reinvestment = Net Cap Ex (including acquisitions and R&D) + Change in non-cash Working Capital",
+        "Measure of how much of after-tax operating income is reinvested by the firm."
+      ],
+      [
+        "Fundamental Growth Rate",
+        "ROC * Reinvestment Rate, based upon the aggregated values estimated in last two columns.",
+        "Growth rate in operating income, if firms maintain their existing ROC and reinvestment rate"
+      ]
+    ]
+  },
+  "n_industries": 94,
+  "crosswalk_counts": {
+    "confidence": {
+      "medium": 42,
+      "high": 32,
+      "low": 20,
+      "n/a": 2
+    },
+    "emitted": 86,
+    "unverified_prefixes": [
+      "111",
+      "112",
+      "21222",
+      "31211",
+      "31212",
+      "31213",
+      "31214",
+      "32221",
+      "322291",
+      "325413",
+      "325414",
+      "32616",
+      "327213",
+      "3273",
+      "332431",
+      "333132",
+      "333242",
+      "334413",
+      "334510",
+      "334511",
+      "336992",
+      "517112",
+      "5231",
+      "5239",
+      "524113",
+      "52413",
+      "5311",
+      "5312",
+      "5313",
+      "541714"
+    ]
+  },
+  "dispersion_cv_sec_software": {
+    "cogs": 0.5851575073283295,
+    "rnd": 0.6109704946943386,
+    "sga": 0.5036363998355535
+  },
+  "split_rel_sd_assumed": 0.25,
+  "min_bucket": 0.005,
+  "software_rows_sha256": "f2d40f88ac07591dd0124a98d4ddd71d108c8e5333e51fa29a5057d84dfda69b",
+  "n_software_rows": 360,
+  "n_nonsoftware_rows": 1634,
+  "coverage_oews_employment": {
+    "damodaran_full": 0.7644,
+    "damodaran_partial": 0.0241,
+    "generic": 0.1548,
+    "pooled_software_51_54": 0.0336,
+    "sec_software": 0.0231
+  },
+  "coverage_oews_employment_excl_government": {
+    "damodaran_full": 0.8183,
+    "damodaran_partial": 0.0258,
+    "generic": 0.0952,
+    "pooled_software_51_54": 0.036,
+    "sec_software": 0.0247
+  },
+  "oews_total_employment_4digit": 155495900.2501942,
+  "largest_generic_industries": [
+    [
+      "9993",
+      "Local Government, excluding Schools and Hospitals (OEWS Designation)",
+      5835401
+    ],
+    [
+      "6241",
+      "Individual and Family Services",
+      3456819
+    ],
+    [
+      "5511",
+      "Management of Companies and Enterprises",
+      2828129
+    ],
+    [
+      "9992",
+      "State Government, excluding Schools and Hospitals (OEWS Designation)",
+      2250899
+    ],
+    [
+      "9991",
+      "Federal Executive Branch (OEWS Designation)",
+      2156590
+    ],
+    [
+      "8111",
+      "Automotive Repair and Maintenance",
+      1039270
+    ],
+    [
+      "6244",
+      "Child Care Services",
+      1004990
+    ],
+    [
+      "4911",
+      "Postal Service (Federal Government)",
+      618899
+    ]
+  ],
+  "industry_diagnostics": {
+    "Advertising": {
+      "oews": "5418",
+      "wagebill_usd": 44573341600.0,
+      "employment_without_wage_share": 0.0,
+      "moved": {},
+      "merged_buckets": {},
+      "negative_buckets_clipped": [],
+      "residual_share_of_wagebill": 0.26513793796424723,
+      "wagebill_share_cogs_pool": 0.26177042378173415,
+      "robust_max_abs_split_diff": 0.021596767953251605,
+      "robust_max_abs_share_diff": 0.01376946322317535,
+      "wagebill_share_rnd_pool": 0.052875156885253585,
+      "wagebill_share_sga_pool": 0.6853544193330122
+    },
+    "Aerospace/Defense": {
+      "oews": "3364",
+      "wagebill_usd": 51538118700.0,
+      "employment_without_wage_share": 0.0,
+      "moved": {},
+      "merged_buckets": {},
+      "negative_buckets_clipped": [],
+      "residual_share_of_wagebill": 0.33345199812270215,
+      "wagebill_share_cogs_pool": 0.46349831217257836,
+      "robust_max_abs_split_diff": 0.02070898329532944,
+      "robust_max_abs_share_diff": 0.011007676441994746,
+      "wagebill_share_rnd_pool": 0.32185870028662883,
+      "wagebill_share_sga_pool": 0.21464298754079278
+    },
+    "Air Transport": {
+      "oews": "481",
+      "wagebill_usd": 58775402500.0,
+      "employment_without_wage_share": 0.0,
+      "moved": {
+        "F02": "rnd"
+      },
+      "merged_buckets": {
+        "rnd": "sga"
+      },
+      "negative_buckets_clipped": [],
+      "residual_share_of_wagebill": 0.8338609461670636,
+      "wagebill_share_cogs_pool": 0.93632485443209,
+      "robust_max_abs_split_diff": 0.010033963452246983,
+      "robust_max_abs_share_diff": 0.0006073138768290728,
+      "wagebill_share_sga_pool": 0.06367514556790997
+    },
+    "Apparel": {
+      "oews": "315",
+      "wagebill_usd": 4305970200.0,
+      "employment_without_wage_share": 0.0,
+      "moved": {
+        "F02": "rnd"
+      },
+      "merged_buckets": {
+        "rnd": "sga"
+      },
+      "negative_buckets_clipped": [],
+      "residual_share_of_wagebill": 0.45894451150637317,
+      "wagebill_share_cogs_pool": 0.7271163058676068,
+      "robust_max_abs_split_diff": 0.016991394189897424,
+      "robust_max_abs_share_diff": 0.008093140599050731,
+      "wagebill_share_sga_pool": 0.2728836941323932
+    },
+    "Auto & Truck": {
+      "oews": "3361/3362",
+      "wagebill_usd": 26182910500.0,
+      "employment_without_wage_share": 0.0,
+      "moved": {},
+      "merged_buckets": {},
+      "negative_buckets_clipped": [],
+      "residual_share_of_wagebill": 0.2330108094743707,
+      "wagebill_share_cogs_pool": 0.7930402712486834,
+      "robust_max_abs_split_diff": 0.026473754279770556,
+      "robust_max_abs_share_diff": 0.002807429607056478,
+      "wagebill_share_rnd_pool": 0.091850435038534,
+      "wagebill_share_sga_pool": 0.11510929371278261
+    },
+    "Auto Parts": {
+      "oews": "3363",
+      "wagebill_usd": 34354028000.0,
+      "employment_without_wage_share": 0.0,
+      "moved": {},
+      "merged_buckets": {},
+      "negative_buckets_clipped": [],
+      "residual_share_of_wagebill": 0.2971692018181973,
+      "wagebill_share_cogs_pool": 0.7551210591666282,
+      "robust_max_abs_split_diff": 0.02478412707041966,
+      "robust_max_abs_share_diff": 0.002469860132857817,
+      "wagebill_share_rnd_pool": 0.1110218184604146,
+      "wagebill_share_sga_pool": 0.13385712237295724
+    },
+    "Banks (Regional)": {
+      "oews": "5220A1",
+      "wagebill_usd": 184831530200.0,
+      "employment_without_wage_share": 0.0,
+      "moved": {
+        "F05": "cogs",
+        "F07": "cogs",
+        "F08": "cogs",
+        "F09": "cogs",
+        "F16": "cogs",
+        "F02": "rnd"
+      },
+      "merged_buckets": {
+        "cogs": "sga",
+        "rnd": "sga"
+      },
+      "negative_buckets_clipped": [],
+      "residual_share_of_wagebill": 0.39434128825926906,
+      "wagebill_share_sga_pool": 1.0,
+      "robust_max_abs_split_diff": 0.024515540906401456,
+      "robust_max_abs_share_diff": 0.012931693545057871
+    },
+    "Beverage (Alcoholic)": {
+      "oews": "3121",
+      "wagebill_usd": 18046785700.0,
+      "employment_without_wage_share": 0.0,
+      "moved": {
+        "F02": "rnd"
+      },
+      "merged_buckets": {
+        "rnd": "sga"
+      },
+      "negative_buckets_clipped": [],
+      "residual_share_of_wagebill": 0.5171861446772762,
+      "wagebill_share_cogs_pool": 0.6900143774633507,
+      "robust_max_abs_split_diff": 0.016827286328042868,
+      "robust_max_abs_share_diff": 0.008102217638005303,
+      "wagebill_share_sga_pool": 0.3099856225366493
+    },
+    "Beverage (Soft)": {
+      "oews": "3121",
+      "wagebill_usd": 18046785700.0,
+      "employment_without_wage_share": 0.0,
+      "moved": {
+        "F02": "rnd"
+      },
+      "merged_buckets": {
+        "rnd": "sga"
+      },
+      "negative_buckets_clipped": [],
+      "residual_share_of_wagebill": 0.5171861446772762,
+      "wagebill_share_cogs_pool": 0.6900143774633507,
+      "robust_max_abs_split_diff": 0.016827286328042868,
+      "robust_max_abs_share_diff": 0.006913633599826713,
+      "wagebill_share_sga_pool": 0.3099856225366493
+    },
+    "Broadcasting": {
+      "oews": "5161",
+      "wagebill_usd": 10546991100.0,
+      "employment_without_wage_share": 0.003588621444201313,
+      "moved": {
+        "F02": "rnd"
+      },
+      "merged_buckets": {
+        "rnd": "sga"
+      },
+      "negative_buckets_clipped": [],
+      "residual_share_of_wagebill": 0.6710622691243192,
+      "wagebill_share_cogs_pool": 0.6302227011455428,
+      "robust_max_abs_split_diff": 0.018303212527828433,
+      "robust_max_abs_share_diff": 0.003908117693535237,
+      "wagebill_share_sga_pool": 0.36977729885445715
+    },
+    "Brokerage & Investment Banking": {
+      "oews": "5230",
+      "wagebill_usd": 129774950300.0,
+      "employment_without_wage_share": 0.0,
+      "moved": {
+        "F02": "rnd"
+      },
+      "merged_buckets": {
+        "rnd": "sga"
+      },
+      "negative_buckets_clipped": [],
+      "residual_share_of_wagebill": 0.42554207597334753,
+      "wagebill_share_cogs_pool": 0.3411563453706058,
+      "robust_max_abs_split_diff": 0.014280480085704705,
+      "robust_max_abs_share_diff": 0.0042581160353441245,
+      "wagebill_share_sga_pool": 0.6588436546293942
+    },
+    "Building Materials": {
+      "oews": "3270/3219",
+      "wagebill_usd": 39768636000.0,
+      "employment_without_wage_share": 0.0,
+      "moved": {},
+      "merged_buckets": {},
+      "negative_buckets_clipped": [],
+      "residual_share_of_wagebill": 0.35174925159615733,
+      "wagebill_share_cogs_pool": 0.8029183295348626,
+      "robust_max_abs_split_diff": 0.01864637799555377,
+      "robust_max_abs_share_diff": 0.0031049635644647914,
+      "wagebill_share_rnd_pool": 0.03197398346777596,
+      "wagebill_share_sga_pool": 0.16510768699736145
+    },
+    "Business & Consumer Services": {
+      "oews": "561/812",
+      "wagebill_usd": 582672419100.0,
+      "employment_without_wage_share": 2.6883861717380916e-05,
+      "moved": {},
+      "merged_buckets": {},
+      "negative_buckets_clipped": [],
+      "residual_share_of_wagebill": 0.3889127363880059,
+      "wagebill_share_cogs_pool": 0.5567726926067573,
+      "robust_max_abs_split_diff": 0.020464980596589855,
+      "robust_max_abs_share_diff": 0.013633999673651741,
+      "wagebill_share_rnd_pool": 0.041692211942214445,
+      "wagebill_share_sga_pool": 0.40153509545102817
+    },
+    "Chemical (Basic)": {
+      "oews": "3250A1",
+      "wagebill_usd": 27719731200.0,
+      "employment_without_wage_share": 0.0,
+      "moved": {},
+      "merged_buckets": {},
+      "negative_buckets_clipped": [],
+      "residual_share_of_wagebill": 0.4504948742071496,
+      "wagebill_share_cogs_pool": 0.6179569638106736,
+      "robust_max_abs_split_diff": 0.016376004108553055,
+      "robust_max_abs_share_diff": 0.006449597871332496,
+      "wagebill_share_rnd_pool": 0.17439521743991515,
+      "wagebill_share_sga_pool": 0.20764781874941124
+    },
+    "Chemical (Diversified)": {
+      "oews": "325",
+      "wagebill_usd": 69560068800.0,
+      "employment_without_wage_share": 0.0,
+      "moved": {},
+      "merged_buckets": {},
+      "negative_buckets_clipped": [],
+      "residual_share_of_wagebill": 0.42371939962773586,
+      "wagebill_share_cogs_pool": 0.5592868748715211,
+      "robust_max_abs_split_diff": 0.01659096589532072,
+      "robust_max_abs_share_diff": 0.01404946406905698,
+      "wagebill_share_rnd_pool": 0.1920348148074287,
+      "wagebill_share_sga_pool": 0.24867831032105017
+    },
+    "Chemical (Specialty)": {
+      "oews": "3250A1/3250A2",
+      "wagebill_usd": 40074361600.0,
+      "employment_without_wage_share": 0.0,
+      "moved": {},
+      "merged_buckets": {},
+      "negative_buckets_clipped": [],
+      "residual_share_of_wagebill": 0.4242593998053858,
+      "wagebill_share_cogs_pool": 0.6177962918565869,
+      "robust_max_abs_split_diff": 0.015746280145344654,
+      "robust_max_abs_share_diff": 0.005086515485204085,
+      "wagebill_share_rnd_pool": 0.15034405863124217,
+      "wagebill_share_sga_pool": 0.2318596495121709
+    },
+    "Coal & Related Energy": {
+      "oews": "2121",
+      "wagebill_usd": 2733624500.0,
+      "employment_without_wage_share": 0.0,
+      "moved": {
+        "F02": "rnd"
+      },
+      "merged_buckets": {
+        "rnd": "sga"
+      },
+      "negative_buckets_clipped": [],
+      "residual_share_of_wagebill": 0.7734239834329844,
+      "wagebill_share_cogs_pool": 0.869469087652675,
+      "robust_max_abs_split_diff": 0.02535383732907326,
+      "robust_max_abs_share_diff": 0.0019038910642568466,
+      "wagebill_share_sga_pool": 0.13053091234732495
+    },
+    "Computers/Peripherals": {
+      "oews": "3341",
+      "wagebill_usd": 10923457500.0,
+      "employment_without_wage_share": 0.0,
+      "moved": {},
+      "merged_buckets": {},
+      "negative_buckets_clipped": [],
+      "residual_share_of_wagebill": 0.08641064699523937,
+      "wagebill_share_cogs_pool": 0.24457741791003443,
+      "robust_max_abs_split_diff": 0.07463678989382871,
+      "robust_max_abs_share_diff": 0.04600963004480884,
+      "wagebill_share_rnd_pool": 0.3528259472790552,
+      "wagebill_share_sga_pool": 0.40259663481091035
+    },
+    "Construction Supplies": {
+      "oews": "2123/3270",
+      "wagebill_usd": 32797232200.0,
+      "employment_without_wage_share": 0.0,
+      "moved": {},
+      "merged_buckets": {},
+      "negative_buckets_clipped": [],
+      "residual_share_of_wagebill": 0.4157613162857078,
+      "wagebill_share_cogs_pool": 0.8077302146551257,
+      "robust_max_abs_split_diff": 0.01951465521381654,
+      "robust_max_abs_share_diff": 0.0015382672436289764,
+      "wagebill_share_rnd_pool": 0.033737229509263285,
+      "wagebill_share_sga_pool": 0.15853255583561104
+    },
+    "Drugs (Biotechnology)": {
+      "oews": "3254/5417",
+      "wagebill_usd": 135179425900.0,
+      "employment_without_wage_share": 0.0,
+      "moved": {},
+      "merged_buckets": {},
+      "negative_buckets_clipped": [],
+      "residual_share_of_wagebill": 0.409507067228934,
+      "wagebill_share_cogs_pool": 0.3063162816332097,
+      "robust_max_abs_split_diff": 0.029414757024797122,
+      "robust_max_abs_share_diff": 0.011536204825445042,
+      "wagebill_share_rnd_pool": 0.40511934027972524,
+      "wagebill_share_sga_pool": 0.2885643780870651
+    },
+    "Drugs (Pharmaceutical)": {
+      "oews": "3254",
+      "wagebill_usd": 29116357900.0,
+      "employment_without_wage_share": 0.0,
+      "moved": {},
+      "merged_buckets": {},
+      "negative_buckets_clipped": [],
+      "residual_share_of_wagebill": 0.4205245543433851,
+      "wagebill_share_cogs_pool": 0.4811518545044399,
+      "robust_max_abs_split_diff": 0.031147572214131114,
+      "robust_max_abs_share_diff": 0.00880688606460914,
+      "wagebill_share_rnd_pool": 0.24815753243643154,
+      "wagebill_share_sga_pool": 0.2706906130591285
+    },
+    "Education": {
+      "oews": "6113/6114/6115/6116/6117",
+      "wagebill_usd": 359703286200.0,
+      "employment_without_wage_share": 0.0013955812878952182,
+      "moved": {},
+      "merged_buckets": {},
+      "negative_buckets_clipped": [],
+      "residual_share_of_wagebill": 0.7300004936957954,
+      "wagebill_share_cogs_pool": 0.7418456407474433,
+      "robust_max_abs_split_diff": 0.01365447071817126,
+      "robust_max_abs_share_diff": 0.0037221988659463454,
+      "wagebill_share_rnd_pool": 0.06271803504585274,
+      "wagebill_share_sga_pool": 0.1954363242067039
+    },
+    "Electrical Equipment": {
+      "oews": "335",
+      "wagebill_usd": 29899562500.0,
+      "employment_without_wage_share": 0.0,
+      "moved": {},
+      "merged_buckets": {},
+      "negative_buckets_clipped": [],
+      "residual_share_of_wagebill": 0.27909660918951573,
+      "wagebill_share_cogs_pool": 0.6001509053853212,
+      "robust_max_abs_split_diff": 0.024806595715418836,
+      "robust_max_abs_share_diff": 0.009410533792439805,
+      "wagebill_share_rnd_pool": 0.17072294519359607,
+      "wagebill_share_sga_pool": 0.22912614942108267
+    },
+    "Electronics (Consumer & Office)": {
+      "oews": "3343",
+      "wagebill_usd": 1516864200.0,
+      "employment_without_wage_share": 0.0,
+      "moved": {},
+      "merged_buckets": {},
+      "negative_buckets_clipped": [],
+      "residual_share_of_wagebill": 0.16928728359466852,
+      "wagebill_share_cogs_pool": 0.38062637050831577,
+      "robust_max_abs_split_diff": 0.021328539107132144,
+      "robust_max_abs_share_diff": 0.011541402199495234,
+      "wagebill_share_rnd_pool": 0.252577653292892,
+      "wagebill_share_sga_pool": 0.36679597619879223
+    },
+    "Electronics (General)": {
+      "oews": "3344/3345/3346",
+      "wagebill_usd": 74373232100.0,
+      "employment_without_wage_share": 0.0,
+      "moved": {},
+      "merged_buckets": {},
+      "negative_buckets_clipped": [],
+      "residual_share_of_wagebill": 0.2068927419923169,
+      "wagebill_share_cogs_pool": 0.3729879708965882,
+      "robust_max_abs_split_diff": 0.02425221147657186,
+      "robust_max_abs_share_diff": 0.017761190659411744,
+      "wagebill_share_rnd_pool": 0.37698744788045857,
+      "wagebill_share_sga_pool": 0.2500245812229532
+    },
+    "Engineering/Construction": {
+      "oews": "237/2362/238/5413",
+      "wagebill_usd": 701146839600.0,
+      "employment_without_wage_share": 0.0,
+      "moved": {
+        "F02": "rnd"
+      },
+      "merged_buckets": {
+        "rnd": "sga"
+      },
+      "negative_buckets_clipped": [],
+      "residual_share_of_wagebill": 0.6837228244421513,
+      "wagebill_share_cogs_pool": 0.672297228443501,
+      "robust_max_abs_split_diff": 0.010473945742759727,
+      "robust_max_abs_share_diff": 0.003066914936825071,
+      "wagebill_share_sga_pool": 0.3277027715564989
+    },
+    "Entertainment": {
+      "oews": "512/5162/7111/7112/7113/7114",
+      "wagebill_usd": 85610518600.0,
+      "employment_without_wage_share": 0.052198247161084815,
+      "moved": {},
+      "merged_buckets": {},
+      "negative_buckets_clipped": [],
+      "residual_share_of_wagebill": 0.49667757064609114,
+      "wagebill_share_cogs_pool": 0.5803135650553108,
+      "robust_max_abs_split_diff": 0.008297631011409859,
+      "robust_max_abs_share_diff": 0.0041411442227219835,
+      "wagebill_share_rnd_pool": 0.07047372832992044,
+      "wagebill_share_sga_pool": 0.3492127066147687
+    },
+    "Environmental & Waste Services": {
+      "oews": "562",
+      "wagebill_usd": 32933963200.0,
+      "employment_without_wage_share": 0.0,
+      "moved": {
+        "F02": "rnd"
+      },
+      "merged_buckets": {
+        "rnd": "sga"
+      },
+      "negative_buckets_clipped": [],
+      "residual_share_of_wagebill": 0.5229229751492526,
+      "wagebill_share_cogs_pool": 0.7716557699317524,
+      "robust_max_abs_split_diff": 0.011690057106833462,
+      "robust_max_abs_share_diff": 0.001686042889860186,
+      "wagebill_share_sga_pool": 0.2283442300682476
+    },
+    "Farming/Agriculture": {
+      "oews": "115",
+      "wagebill_usd": 16874886400.0,
+      "employment_without_wage_share": 0.0,
+      "moved": {},
+      "merged_buckets": {},
+      "negative_buckets_clipped": [],
+      "residual_share_of_wagebill": 0.7562134077536664,
+      "wagebill_share_cogs_pool": 0.8763749704412825,
+      "robust_max_abs_split_diff": 0.03096499554724627,
+      "robust_max_abs_share_diff": 0.0018857645121076072,
+      "wagebill_share_rnd_pool": 0.015695910699582545,
+      "wagebill_share_sga_pool": 0.10792911885913496
+    },
+    "Financial Svcs. (Non-bank & Insurance)": {
+      "oews": "5222",
+      "wagebill_usd": 46976687300.0,
+      "employment_without_wage_share": 0.0,
+      "moved": {},
+      "merged_buckets": {},
+      "negative_buckets_clipped": [],
+      "residual_share_of_wagebill": 0.31319089415655754,
+      "wagebill_share_cogs_pool": 0.3568933320677127,
+      "robust_max_abs_split_diff": 0.021231576638463534,
+      "robust_max_abs_share_diff": 0.0063846894214446455,
+      "wagebill_share_rnd_pool": 0.06625020236367327,
+      "wagebill_share_sga_pool": 0.576856465568614
+    },
+    "Food Processing": {
+      "oews": "311",
+      "wagebill_usd": 94397213300.0,
+      "employment_without_wage_share": 0.0,
+      "moved": {},
+      "merged_buckets": {},
+      "negative_buckets_clipped": [],
+      "residual_share_of_wagebill": 0.5126580300225876,
+      "wagebill_share_cogs_pool": 0.7904337514484657,
+      "robust_max_abs_split_diff": 0.024990817135764787,
+      "robust_max_abs_share_diff": 0.00302994095620839,
+      "wagebill_share_rnd_pool": 0.031361133835504866,
+      "wagebill_share_sga_pool": 0.17820511471602943
+    },
+    "Food Wholesalers": {
+      "oews": "4240A1",
+      "wagebill_usd": 66247097300.0,
+      "employment_without_wage_share": 0.0,
+      "moved": {
+        "F02": "rnd"
+      },
+      "merged_buckets": {
+        "rnd": "sga"
+      },
+      "negative_buckets_clipped": [],
+      "residual_share_of_wagebill": 0.21684746434920402,
+      "wagebill_share_cogs_pool": 0.542480179354213,
+      "robust_max_abs_split_diff": 0.01735761205280384,
+      "robust_max_abs_share_diff": 0.004963499102993459,
+      "wagebill_share_sga_pool": 0.457519820645787
+    },
+    "Furn/Home Furnishings": {
+      "oews": "337/3141",
+      "wagebill_usd": 22179492200.0,
+      "employment_without_wage_share": 0.0,
+      "moved": {},
+      "merged_buckets": {},
+      "negative_buckets_clipped": [],
+      "residual_share_of_wagebill": 0.43877471324614004,
+      "wagebill_share_cogs_pool": 0.7572430301177049,
+      "robust_max_abs_split_diff": 0.011646709272874395,
+      "robust_max_abs_share_diff": 0.002612156833698902,
+      "wagebill_share_rnd_pool": 0.05245649807978922,
+      "wagebill_share_sga_pool": 0.19030047180250592
+    },
+    "Green & Renewable Energy": {
+      "oews": "2211",
+      "wagebill_usd": 38338840000.0,
+      "employment_without_wage_share": 0.0,
+      "moved": {
+        "F02": "rnd"
+      },
+      "merged_buckets": {
+        "rnd": "sga"
+      },
+      "negative_buckets_clipped": [],
+      "residual_share_of_wagebill": 0.515102457977341,
+      "wagebill_share_cogs_pool": 0.5751981937899008,
+      "robust_max_abs_split_diff": 0.029437031017487292,
+      "robust_max_abs_share_diff": 0.004136851148945874,
+      "wagebill_share_sga_pool": 0.4248018062100992
+    },
+    "Healthcare Products": {
+      "oews": "3391",
+      "wagebill_usd": 24154117100.0,
+      "employment_without_wage_share": 0.0,
+      "moved": {},
+      "merged_buckets": {},
+      "negative_buckets_clipped": [],
+      "residual_share_of_wagebill": 0.28329663765685725,
+      "wagebill_share_cogs_pool": 0.5864311297886355,
+      "robust_max_abs_split_diff": 0.011673283214973518,
+      "robust_max_abs_share_diff": 0.005369644595236366,
+      "wagebill_share_rnd_pool": 0.15053024480037816,
+      "wagebill_share_sga_pool": 0.2630386254109863
+    },
+    "Healthcare Support Services": {
+      "oews": "5241/4240A2",
+      "wagebill_usd": 150555263900.0,
+      "employment_without_wage_share": 0.0,
+      "moved": {
+        "F02": "rnd"
+      },
+      "merged_buckets": {
+        "rnd": "sga"
+      },
+      "negative_buckets_clipped": [],
+      "residual_share_of_wagebill": 0.22685722222695395,
+      "wagebill_share_cogs_pool": 0.40516709240081245,
+      "robust_max_abs_split_diff": 0.015795924864447836,
+      "robust_max_abs_share_diff": 0.0038652546798080057,
+      "wagebill_share_sga_pool": 0.5948329075991876
+    },
+    "Homebuilding": {
+      "oews": "2361",
+      "wagebill_usd": 69534838800.0,
+      "employment_without_wage_share": 0.0,
+      "moved": {
+        "F02": "rnd"
+      },
+      "merged_buckets": {
+        "rnd": "sga"
+      },
+      "negative_buckets_clipped": [],
+      "residual_share_of_wagebill": 0.6563413866719139,
+      "wagebill_share_cogs_pool": 0.7221464497016997,
+      "robust_max_abs_split_diff": 0.01647891632155485,
+      "robust_max_abs_share_diff": 0.0058893541767166485,
+      "wagebill_share_sga_pool": 0.2778535502983003
+    },
+    "Hospitals/Healthcare Facilities": {
+      "oews": "622/623/621",
+      "wagebill_usd": 1510311710900.0,
+      "employment_without_wage_share": 1.73406486348443e-05,
+      "moved": {
+        "F02": "rnd"
+      },
+      "merged_buckets": {
+        "rnd": "sga"
+      },
+      "negative_buckets_clipped": [],
+      "residual_share_of_wagebill": 0.878787400581759,
+      "wagebill_share_cogs_pool": 0.9002220073164898,
+      "robust_max_abs_split_diff": 0.013278764455260494,
+      "robust_max_abs_share_diff": 0.00059176375774692,
+      "wagebill_share_sga_pool": 0.09977799268351022
+    },
+    "Hotel/Gaming": {
+      "oews": "7211/7132",
+      "wagebill_usd": 102966501500.0,
+      "employment_without_wage_share": 0.00019464178959222546,
+      "moved": {},
+      "merged_buckets": {},
+      "negative_buckets_clipped": [],
+      "residual_share_of_wagebill": 0.6724338124666691,
+      "wagebill_share_cogs_pool": 0.7209878816752845,
+      "robust_max_abs_split_diff": 0.03630913587068224,
+      "robust_max_abs_share_diff": 0.010250581468163055,
+      "wagebill_share_rnd_pool": 0.004945984689981916,
+      "wagebill_share_sga_pool": 0.27406613363473364
+    },
+    "Household Products": {
+      "oews": "3250A2/3222",
+      "wagebill_usd": 28842015000.0,
+      "employment_without_wage_share": 0.0,
+      "moved": {},
+      "merged_buckets": {},
+      "negative_buckets_clipped": [],
+      "residual_share_of_wagebill": 0.4108337142879927,
+      "wagebill_share_cogs_pool": 0.707584022648903,
+      "robust_max_abs_split_diff": 0.017462288280979205,
+      "robust_max_abs_share_diff": 0.005592802708420922,
+      "wagebill_share_rnd_pool": 0.06390737540355623,
+      "wagebill_share_sga_pool": 0.22850860194754077
+    },
+    "Information Services": {
+      "oews": "5192",
+      "wagebill_usd": 19381679000.0,
+      "employment_without_wage_share": 0.0,
+      "moved": {},
+      "merged_buckets": {},
+      "negative_buckets_clipped": [],
+      "residual_share_of_wagebill": 0.09407300523344753,
+      "wagebill_share_cogs_pool": 0.1717382330498818,
+      "robust_max_abs_split_diff": 0.05785837458105314,
+      "robust_max_abs_share_diff": 0.038138122435898036,
+      "wagebill_share_rnd_pool": 0.3690253475975946,
+      "wagebill_share_sga_pool": 0.4592364193525236
+    },
+    "Insurance (General)": {
+      "oews": "5241/5242",
+      "wagebill_usd": 232864971600.0,
+      "employment_without_wage_share": 0.0,
+      "moved": {
+        "F02": "rnd"
+      },
+      "merged_buckets": {
+        "rnd": "sga"
+      },
+      "negative_buckets_clipped": [],
+      "residual_share_of_wagebill": 0.3099857256934044,
+      "wagebill_share_cogs_pool": 0.3949364421282501,
+      "robust_max_abs_split_diff": 0.011701382245489111,
+      "robust_max_abs_share_diff": 0.0030808995468282994,
+      "wagebill_share_sga_pool": 0.6050635578717499
+    },
+    "Insurance (Life)": {
+      "oews": "5241",
+      "wagebill_usd": 114892586600.0,
+      "employment_without_wage_share": 0.0,
+      "moved": {
+        "F02": "rnd"
+      },
+      "merged_buckets": {
+        "rnd": "sga"
+      },
+      "negative_buckets_clipped": [],
+      "residual_share_of_wagebill": 0.24649308905018594,
+      "wagebill_share_cogs_pool": 0.43244970624588586,
+      "robust_max_abs_split_diff": 0.016016070535639637,
+      "robust_max_abs_share_diff": 0.0037971718427492903,
+      "wagebill_share_sga_pool": 0.5675502937541141
+    },
+    "Insurance (Prop/Cas.)": {
+      "oews": "5241",
+      "wagebill_usd": 114892586600.0,
+      "employment_without_wage_share": 0.0,
+      "moved": {
+        "F02": "rnd"
+      },
+      "merged_buckets": {
+        "rnd": "sga"
+      },
+      "negative_buckets_clipped": [],
+      "residual_share_of_wagebill": 0.24649308905018594,
+      "wagebill_share_cogs_pool": 0.43244970624588586,
+      "robust_max_abs_split_diff": 0.016016070535639637,
+      "robust_max_abs_share_diff": 0.003786416967720346,
+      "wagebill_share_sga_pool": 0.5675502937541141
+    },
+    "Investments & Asset Management": {
+      "oews": "5230/525",
+      "wagebill_usd": 133074497700.0,
+      "employment_without_wage_share": 0.0,
+      "moved": {
+        "F02": "rnd"
+      },
+      "merged_buckets": {
+        "rnd": "sga"
+      },
+      "negative_buckets_clipped": [],
+      "residual_share_of_wagebill": 0.4201517821697553,
+      "wagebill_share_cogs_pool": 0.33995527889939203,
+      "robust_max_abs_split_diff": 0.014363281736726019,
+      "robust_max_abs_share_diff": 0.004061677328851271,
+      "wagebill_share_sga_pool": 0.660044721100608
+    },
+    "Machinery": {
+      "oews": "333",
+      "wagebill_usd": 80497997100.0,
+      "employment_without_wage_share": 0.0,
+      "moved": {},
+      "merged_buckets": {},
+      "negative_buckets_clipped": [],
+      "residual_share_of_wagebill": 0.2560973012085042,
+      "wagebill_share_cogs_pool": 0.6045398478616308,
+      "robust_max_abs_split_diff": 0.0172924092323795,
+      "robust_max_abs_share_diff": 0.006051963746931831,
+      "wagebill_share_rnd_pool": 0.16642649447982352,
+      "wagebill_share_sga_pool": 0.22903365765854564
+    },
+    "Metals & Mining": {
+      "oews": "2122/3313/3314/3315",
+      "wagebill_usd": 17044071800.0,
+      "employment_without_wage_share": 0.0,
+      "moved": {
+        "F02": "rnd"
+      },
+      "merged_buckets": {
+        "rnd": "sga"
+      },
+      "negative_buckets_clipped": [],
+      "residual_share_of_wagebill": 0.5169420191013276,
+      "wagebill_share_cogs_pool": 0.7568881254654184,
+      "robust_max_abs_split_diff": 0.031270444868726044,
+      "robust_max_abs_share_diff": 0.0026612287758337595,
+      "wagebill_share_sga_pool": 0.24311187453458158
+    },
+    "Office Equipment & Services": {
+      "oews": "3333",
+      "wagebill_usd": 6846940000.0,
+      "employment_without_wage_share": 0.0,
+      "moved": {},
+      "merged_buckets": {},
+      "negative_buckets_clipped": [],
+      "residual_share_of_wagebill": 0.1901090852263931,
+      "wagebill_share_cogs_pool": 0.46248754407078196,
+      "robust_max_abs_split_diff": 0.02289725043865347,
+      "robust_max_abs_share_diff": 0.009032765108528087,
+      "wagebill_share_rnd_pool": 0.23367067186217494,
+      "wagebill_share_sga_pool": 0.3038417840670431
+    },
+    "Oil/Gas (Integrated)": {
+      "oews": "2111/324",
+      "wagebill_usd": 19420723600.0,
+      "employment_without_wage_share": 0.0,
+      "moved": {
+        "F02": "rnd"
+      },
+      "merged_buckets": {
+        "rnd": "sga"
+      },
+      "negative_buckets_clipped": [],
+      "residual_share_of_wagebill": 0.5039084532360061,
+      "wagebill_share_cogs_pool": 0.5631540909732117,
+      "robust_max_abs_split_diff": 0.025783623839206543,
+      "robust_max_abs_share_diff": 0.016480368286661943,
+      "wagebill_share_sga_pool": 0.43684590902678827
+    },
+    "Oil/Gas (Production and Exploration)": {
+      "oews": "2111",
+      "wagebill_usd": 10429187500.0,
+      "employment_without_wage_share": 0.0,
+      "moved": {
+        "F02": "rnd"
+      },
+      "merged_buckets": {
+        "rnd": "sga"
+      },
+      "negative_buckets_clipped": [],
+      "residual_share_of_wagebill": 0.5133135673320669,
+      "wagebill_share_cogs_pool": 0.47337671175247353,
+      "robust_max_abs_split_diff": 0.04733511704529095,
+      "robust_max_abs_share_diff": 0.02026239373581235,
+      "wagebill_share_sga_pool": 0.5266232882475265
+    },
+    "Oil/Gas Distribution": {
+      "oews": "486/2212",
+      "wagebill_usd": 14479041900.0,
+      "employment_without_wage_share": 0.0,
+      "moved": {
+        "F02": "rnd"
+      },
+      "merged_buckets": {
+        "rnd": "sga"
+      },
+      "negative_buckets_clipped": [],
+      "residual_share_of_wagebill": 0.47764335083525106,
+      "wagebill_share_cogs_pool": 0.5958906763022767,
+      "robust_max_abs_split_diff": 0.017180056072617966,
+      "robust_max_abs_share_diff": 0.003956617153153188,
+      "wagebill_share_sga_pool": 0.4041093236977234
+    },
+    "Oilfield Svcs/Equip.": {
+      "oews": "2131",
+      "wagebill_usd": 18742376300.0,
+      "employment_without_wage_share": 0.0,
+      "moved": {
+        "F02": "rnd"
+      },
+      "merged_buckets": {
+        "rnd": "sga"
+      },
+      "negative_buckets_clipped": [],
+      "residual_share_of_wagebill": 0.6306773736049681,
+      "wagebill_share_cogs_pool": 0.7649194216637301,
+      "robust_max_abs_split_diff": 0.042537645940750546,
+      "robust_max_abs_share_diff": 0.013004984482236474,
+      "wagebill_share_sga_pool": 0.23508057833627
+    },
+    "Packaging & Container": {
+      "oews": "3222/3261/3320A2/3270",
+      "wagebill_usd": 110886805400.0,
+      "employment_without_wage_share": 0.0,
+      "moved": {
+        "F02": "rnd"
+      },
+      "merged_buckets": {
+        "rnd": "sga"
+      },
+      "negative_buckets_clipped": [],
+      "residual_share_of_wagebill": 0.401322308812767,
+      "wagebill_share_cogs_pool": 0.7705139082760517,
+      "robust_max_abs_split_diff": 0.021957310594163615,
+      "robust_max_abs_share_diff": 0.0045459279010881554,
+      "wagebill_share_sga_pool": 0.22948609172394824
+    },
+    "Paper/Forest Products": {
+      "oews": "321/3221/113",
+      "wagebill_usd": 30923159700.0,
+      "employment_without_wage_share": 0.0,
+      "moved": {
+        "F02": "rnd"
+      },
+      "merged_buckets": {
+        "rnd": "sga"
+      },
+      "negative_buckets_clipped": [],
+      "residual_share_of_wagebill": 0.403906871780635,
+      "wagebill_share_cogs_pool": 0.8111765763380254,
+      "robust_max_abs_split_diff": 0.022176268445215114,
+      "robust_max_abs_share_diff": 0.0018970082795645368,
+      "wagebill_share_sga_pool": 0.18882342366197463
+    },
+    "Power": {
+      "oews": "2211",
+      "wagebill_usd": 38338840000.0,
+      "employment_without_wage_share": 0.0,
+      "moved": {
+        "F02": "rnd"
+      },
+      "merged_buckets": {
+        "rnd": "sga"
+      },
+      "negative_buckets_clipped": [],
+      "residual_share_of_wagebill": 0.515102457977341,
+      "wagebill_share_cogs_pool": 0.5751981937899008,
+      "robust_max_abs_split_diff": 0.029437031017487292,
+      "robust_max_abs_share_diff": 0.005215110084788909,
+      "wagebill_share_sga_pool": 0.4248018062100992
+    },
+    "Precious Metals": {
+      "oews": "2122",
+      "wagebill_usd": 3204584600.0,
+      "employment_without_wage_share": 0.0,
+      "moved": {
+        "F02": "rnd"
+      },
+      "merged_buckets": {
+        "rnd": "sga"
+      },
+      "negative_buckets_clipped": [],
+      "residual_share_of_wagebill": 0.7231597724085674,
+      "wagebill_share_cogs_pool": 0.71107027413163,
+      "robust_max_abs_split_diff": 0.0346034713134738,
+      "robust_max_abs_share_diff": 0.0018470102478202982,
+      "wagebill_share_sga_pool": 0.28892972586836996
+    },
+    "Publishing & Newspapers": {
+      "oews": "5131",
+      "wagebill_usd": 23165970900.0,
+      "employment_without_wage_share": 0.0,
+      "moved": {},
+      "merged_buckets": {},
+      "negative_buckets_clipped": [],
+      "residual_share_of_wagebill": 0.382699480987434,
+      "wagebill_share_cogs_pool": 0.43471837608153086,
+      "robust_max_abs_split_diff": 0.020814369514605024,
+      "robust_max_abs_share_diff": 0.007620380121021822,
+      "wagebill_share_rnd_pool": 0.0859199982850708,
+      "wagebill_share_sga_pool": 0.47936162563339835
+    },
+    "R.E.I.T.": {
+      "oews": "5310",
+      "wagebill_usd": 128126921200.0,
+      "employment_without_wage_share": 0.0,
+      "moved": {
+        "F02": "rnd"
+      },
+      "merged_buckets": {
+        "rnd": "sga"
+      },
+      "negative_buckets_clipped": [],
+      "residual_share_of_wagebill": 0.46420422408464146,
+      "wagebill_share_cogs_pool": 0.39673463869980197,
+      "robust_max_abs_split_diff": 0.009851151934367641,
+      "robust_max_abs_share_diff": 0.0041300784253887725,
+      "wagebill_share_sga_pool": 0.603265361300198
+    },
+    "Real Estate (Development)": {
+      "oews": "2372",
+      "wagebill_usd": 2820203300.0,
+      "employment_without_wage_share": 0.0,
+      "moved": {
+        "F02": "rnd"
+      },
+      "merged_buckets": {
+        "rnd": "sga"
+      },
+      "negative_buckets_clipped": [],
+      "residual_share_of_wagebill": 0.4395449895402931,
+      "wagebill_share_cogs_pool": 0.5085869642801992,
+      "robust_max_abs_split_diff": 0.05372022823291167,
+      "robust_max_abs_share_diff": 0.03477288441723474,
+      "wagebill_share_sga_pool": 0.4914130357198008
+    },
+    "Real Estate (General/Diversified)": {
+      "oews": "5310",
+      "wagebill_usd": 128126921200.0,
+      "employment_without_wage_share": 0.0,
+      "moved": {
+        "F02": "rnd"
+      },
+      "merged_buckets": {
+        "rnd": "sga"
+      },
+      "negative_buckets_clipped": [],
+      "residual_share_of_wagebill": 0.46420422408464146,
+      "wagebill_share_cogs_pool": 0.39673463869980197,
+      "robust_max_abs_split_diff": 0.009851151934367641,
+      "robust_max_abs_share_diff": 0.004804343372066501,
+      "wagebill_share_sga_pool": 0.603265361300198
+    },
+    "Real Estate (Operations & Services)": {
+      "oews": "5310",
+      "wagebill_usd": 128126921200.0,
+      "employment_without_wage_share": 0.0,
+      "moved": {},
+      "merged_buckets": {},
+      "negative_buckets_clipped": [],
+      "residual_share_of_wagebill": 0.46420422408464146,
+      "wagebill_share_cogs_pool": 0.39673463869980197,
+      "robust_max_abs_split_diff": 0.009851151934367641,
+      "robust_max_abs_share_diff": 0.0066776453271090745,
+      "wagebill_share_rnd_pool": 0.01717348110289253,
+      "wagebill_share_sga_pool": 0.5860918801973055
+    },
+    "Recreation": {
+      "oews": "713/7121",
+      "wagebill_usd": 108842404600.0,
+      "employment_without_wage_share": 0.006283237584341095,
+      "moved": {},
+      "merged_buckets": {},
+      "negative_buckets_clipped": [],
+      "residual_share_of_wagebill": 0.6500220997506334,
+      "wagebill_share_cogs_pool": 0.7351799266018788,
+      "robust_max_abs_split_diff": 0.025606441424069704,
+      "robust_max_abs_share_diff": 0.006101320096638076,
+      "wagebill_share_rnd_pool": 0.009610305963416763,
+      "wagebill_share_sga_pool": 0.2552097674347044
+    },
+    "Reinsurance": {
+      "oews": "5241",
+      "wagebill_usd": 114892586600.0,
+      "employment_without_wage_share": 0.0,
+      "moved": {
+        "F02": "rnd",
+        "F01": "sga",
+        "F03": "sga",
+        "F04": "sga",
+        "F06": "sga",
+        "F10": "sga",
+        "F11": "sga",
+        "F12": "sga",
+        "F13": "sga",
+        "F14": "sga",
+        "F15": "sga",
+        "F17": "sga",
+        "F18": "sga",
+        "F19": "sga"
+      },
+      "merged_buckets": {
+        "rnd": "cogs",
+        "sga": "cogs"
+      },
+      "negative_buckets_clipped": [],
+      "residual_share_of_wagebill": 0.24649308905018594,
+      "wagebill_share_cogs_pool": 1.0,
+      "robust_max_abs_split_diff": 0.009521112697502152,
+      "robust_max_abs_share_diff": 0.008288712573861158
+    },
+    "Restaurant/Dining": {
+      "oews": "722",
+      "wagebill_usd": 487592219900.0,
+      "employment_without_wage_share": 0.0004594286926683178,
+      "moved": {},
+      "merged_buckets": {},
+      "negative_buckets_clipped": [],
+      "residual_share_of_wagebill": 0.8832922829825489,
+      "wagebill_share_cogs_pool": 0.938664782969397,
+      "robust_max_abs_split_diff": 0.0775021600758285,
+      "robust_max_abs_share_diff": 0.008376947435711794,
+      "wagebill_share_rnd_pool": 0.0002531089606501738,
+      "wagebill_share_sga_pool": 0.06108210806995282
+    },
+    "Retail (Automotive)": {
+      "oews": "441",
+      "wagebill_usd": 115508421700.0,
+      "employment_without_wage_share": 0.0,
+      "moved": {
+        "F02": "rnd"
+      },
+      "merged_buckets": {
+        "rnd": "sga"
+      },
+      "negative_buckets_clipped": [],
+      "residual_share_of_wagebill": 0.5539912734345672,
+      "wagebill_share_cogs_pool": 0.5196542107197712,
+      "robust_max_abs_split_diff": 0.04159910661733335,
+      "robust_max_abs_share_diff": 0.007880725016136812,
+      "wagebill_share_sga_pool": 0.48034578928022875
+    },
+    "Retail (Building Supply)": {
+      "oews": "444",
+      "wagebill_usd": 67279804800.0,
+      "employment_without_wage_share": 0.0,
+      "moved": {
+        "F02": "rnd"
+      },
+      "merged_buckets": {
+        "rnd": "sga"
+      },
+      "negative_buckets_clipped": [],
+      "residual_share_of_wagebill": 0.20670771461572374,
+      "wagebill_share_cogs_pool": 0.48339814438641177,
+      "robust_max_abs_split_diff": 0.03545826284546261,
+      "robust_max_abs_share_diff": 0.007306119589138486,
+      "wagebill_share_sga_pool": 0.5166018556135882
+    },
+    "Retail (Distributors)": {
+      "oews": "423/424/425",
+      "wagebill_usd": 447774859300.0,
+      "employment_without_wage_share": 0.0,
+      "moved": {
+        "F02": "rnd"
+      },
+      "merged_buckets": {
+        "rnd": "sga"
+      },
+      "negative_buckets_clipped": [],
+      "residual_share_of_wagebill": 0.18999139371735602,
+      "wagebill_share_cogs_pool": 0.43118932410996125,
+      "robust_max_abs_split_diff": 0.01018987924090764,
+      "robust_max_abs_share_diff": 0.007074619729280692,
+      "wagebill_share_sga_pool": 0.5688106758900388
+    },
+    "Retail (General)": {
+      "oews": "4550",
+      "wagebill_usd": 139441603600.0,
+      "employment_without_wage_share": 0.0,
+      "moved": {},
+      "merged_buckets": {},
+      "negative_buckets_clipped": [],
+      "residual_share_of_wagebill": 0.19819412561603672,
+      "wagebill_share_cogs_pool": 0.5973245885347808,
+      "robust_max_abs_split_diff": 0.02421568914537986,
+      "robust_max_abs_share_diff": 0.005056080966744985,
+      "wagebill_share_rnd_pool": 0.0016741922351214268,
+      "wagebill_share_sga_pool": 0.40100121923009785
+    },
+    "Retail (Grocery and Food)": {
+      "oews": "445",
+      "wagebill_usd": 138660409700.0,
+      "employment_without_wage_share": 0.0,
+      "moved": {
+        "F02": "rnd"
+      },
+      "merged_buckets": {
+        "rnd": "sga"
+      },
+      "negative_buckets_clipped": [],
+      "residual_share_of_wagebill": 0.3469368860519096,
+      "wagebill_share_cogs_pool": 0.7886298647652128,
+      "robust_max_abs_split_diff": 0.06237549985420843,
+      "robust_max_abs_share_diff": 0.02090030984535556,
+      "wagebill_share_sga_pool": 0.2113701352347872
+    },
+    "Retail (Special Lines)": {
+      "oews": "449/456/457/458/459",
+      "wagebill_usd": 285089008100.0,
+      "employment_without_wage_share": 0.0,
+      "moved": {
+        "F02": "rnd"
+      },
+      "merged_buckets": {
+        "rnd": "sga"
+      },
+      "negative_buckets_clipped": [],
+      "residual_share_of_wagebill": 0.30382057052027045,
+      "wagebill_share_cogs_pool": 0.4767334219259925,
+      "robust_max_abs_split_diff": 0.03222766773945285,
+      "robust_max_abs_share_diff": 0.008688535226334322,
+      "wagebill_share_sga_pool": 0.5232665780740074
+    },
+    "Rubber& Tires": {
+      "oews": "3262",
+      "wagebill_usd": 8040345600.0,
+      "employment_without_wage_share": 0.0,
+      "moved": {},
+      "merged_buckets": {},
+      "negative_buckets_clipped": [],
+      "residual_share_of_wagebill": 0.4550521111928323,
+      "wagebill_share_cogs_pool": 0.7687322395694036,
+      "robust_max_abs_split_diff": 0.019880835837919913,
+      "robust_max_abs_share_diff": 0.0031521348052626604,
+      "wagebill_share_rnd_pool": 0.07101757790112903,
+      "wagebill_share_sga_pool": 0.16025018252946738
+    },
+    "Semiconductor": {
+      "oews": "3344",
+      "wagebill_usd": 34562723500.0,
+      "employment_without_wage_share": 0.0,
+      "moved": {},
+      "merged_buckets": {},
+      "negative_buckets_clipped": [],
+      "residual_share_of_wagebill": 0.21820397718368462,
+      "wagebill_share_cogs_pool": 0.3988060950983796,
+      "robust_max_abs_split_diff": 0.025535476715489613,
+      "robust_max_abs_share_diff": 0.010476663036885669,
+      "wagebill_share_rnd_pool": 0.3937061609163989,
+      "wagebill_share_sga_pool": 0.20748774398522155
+    },
+    "Semiconductor Equip": {
+      "oews": "3330A1",
+      "wagebill_usd": 55872867000.0,
+      "employment_without_wage_share": 0.0,
+      "moved": {},
+      "merged_buckets": {},
+      "negative_buckets_clipped": [],
+      "residual_share_of_wagebill": 0.2540632038803378,
+      "wagebill_share_cogs_pool": 0.6015805517909077,
+      "robust_max_abs_split_diff": 0.01865628194371556,
+      "robust_max_abs_share_diff": 0.005690788930882728,
+      "wagebill_share_rnd_pool": 0.16572497470015277,
+      "wagebill_share_sga_pool": 0.2326944735089395
+    },
+    "Shipbuilding & Marine": {
+      "oews": "3366/483",
+      "wagebill_usd": 14754392200.0,
+      "employment_without_wage_share": 0.0,
+      "moved": {
+        "F02": "rnd"
+      },
+      "merged_buckets": {
+        "rnd": "sga"
+      },
+      "negative_buckets_clipped": [],
+      "residual_share_of_wagebill": 0.5723629184806406,
+      "wagebill_share_cogs_pool": 0.7445032917045542,
+      "robust_max_abs_split_diff": 0.022380002393019793,
+      "robust_max_abs_share_diff": 0.005905385911282027,
+      "wagebill_share_sga_pool": 0.25549670829544574
+    },
+    "Shoe": {
+      "oews": "3162",
+      "wagebill_usd": 394727300.0,
+      "employment_without_wage_share": 0.0,
+      "moved": {
+        "F02": "rnd"
+      },
+      "merged_buckets": {
+        "rnd": "sga"
+      },
+      "negative_buckets_clipped": [],
+      "residual_share_of_wagebill": 0.622467359110961,
+      "wagebill_share_cogs_pool": 0.8695030467869843,
+      "robust_max_abs_split_diff": 0.09221057778403619,
+      "robust_max_abs_share_diff": 0.03201006618113365,
+      "wagebill_share_sga_pool": 0.13049695321301566
+    },
+    "Steel": {
+      "oews": "3311/3312",
+      "wagebill_usd": 9099440900.0,
+      "employment_without_wage_share": 0.0,
+      "moved": {
+        "F02": "rnd"
+      },
+      "merged_buckets": {
+        "rnd": "sga"
+      },
+      "negative_buckets_clipped": [],
+      "residual_share_of_wagebill": 0.43411645434171675,
+      "wagebill_share_cogs_pool": 0.7610661826486504,
+      "robust_max_abs_split_diff": 0.03564525812434344,
+      "robust_max_abs_share_diff": 0.005146967930820977,
+      "wagebill_share_sga_pool": 0.23893381735134958
+    },
+    "Telecom (Wireless)": {
+      "oews": "5170",
+      "wagebill_usd": 51937548300.0,
+      "employment_without_wage_share": 0.0,
+      "moved": {
+        "F02": "rnd"
+      },
+      "merged_buckets": {
+        "rnd": "sga"
+      },
+      "negative_buckets_clipped": [],
+      "residual_share_of_wagebill": 0.2693150964540234,
+      "wagebill_share_cogs_pool": 0.4094864076400772,
+      "robust_max_abs_split_diff": 0.03506585734813972,
+      "robust_max_abs_share_diff": 0.009369371173941076,
+      "wagebill_share_sga_pool": 0.5905135923599227
+    },
+    "Telecom. Equipment": {
+      "oews": "3342",
+      "wagebill_usd": 7684326500.0,
+      "employment_without_wage_share": 0.0,
+      "moved": {},
+      "merged_buckets": {},
+      "negative_buckets_clipped": [],
+      "residual_share_of_wagebill": 0.12181058808472024,
+      "wagebill_share_cogs_pool": 0.3028433689016207,
+      "robust_max_abs_split_diff": 0.022791467734212145,
+      "robust_max_abs_share_diff": 0.009541511707388373,
+      "wagebill_share_rnd_pool": 0.35625286353983004,
+      "wagebill_share_sga_pool": 0.34090376755854923
+    },
+    "Telecom. Services": {
+      "oews": "5170",
+      "wagebill_usd": 51937548300.0,
+      "employment_without_wage_share": 0.0,
+      "moved": {
+        "F02": "rnd"
+      },
+      "merged_buckets": {
+        "rnd": "sga"
+      },
+      "negative_buckets_clipped": [],
+      "residual_share_of_wagebill": 0.2693150964540234,
+      "wagebill_share_cogs_pool": 0.4094864076400772,
+      "robust_max_abs_split_diff": 0.03506585734813972,
+      "robust_max_abs_share_diff": 0.00802253073748361,
+      "wagebill_share_sga_pool": 0.5905135923599227
+    },
+    "Tobacco": {
+      "oews": "3122",
+      "wagebill_usd": 605038300.0,
+      "employment_without_wage_share": 0.0,
+      "moved": {},
+      "merged_buckets": {},
+      "negative_buckets_clipped": [],
+      "residual_share_of_wagebill": 0.3385048351484526,
+      "wagebill_share_cogs_pool": 0.7558895197213135,
+      "robust_max_abs_split_diff": 0.053253866283422296,
+      "robust_max_abs_share_diff": 0.011044217551483914,
+      "wagebill_share_rnd_pool": 0.03695891648512169,
+      "wagebill_share_sga_pool": 0.2071515637935648
+    },
+    "Transportation": {
+      "oews": "485/488/492/493",
+      "wagebill_usd": 244321237800.0,
+      "employment_without_wage_share": 0.0,
+      "moved": {},
+      "merged_buckets": {},
+      "negative_buckets_clipped": [],
+      "residual_share_of_wagebill": 0.3629255580416841,
+      "wagebill_share_cogs_pool": 0.8382115279009936,
+      "robust_max_abs_split_diff": 0.024642768454774783,
+      "robust_max_abs_share_diff": 0.0065455422710806845,
+      "wagebill_share_rnd_pool": 0.02174087368674914,
+      "wagebill_share_sga_pool": 0.14004759841225722
+    },
+    "Transportation (Railroads)": {
+      "oews": "482",
+      "wagebill_usd": 14994302200.0,
+      "employment_without_wage_share": 0.0,
+      "moved": {
+        "F02": "rnd",
+        "F01": "sga",
+        "F03": "sga",
+        "F04": "sga",
+        "F06": "sga",
+        "F10": "sga",
+        "F11": "sga",
+        "F12": "sga",
+        "F13": "sga",
+        "F14": "sga",
+        "F15": "sga",
+        "F17": "sga",
+        "F18": "sga",
+        "F19": "sga"
+      },
+      "merged_buckets": {
+        "rnd": "cogs",
+        "sga": "cogs"
+      },
+      "negative_buckets_clipped": [],
+      "residual_share_of_wagebill": 0.7935882804869706,
+      "wagebill_share_cogs_pool": 1.0,
+      "robust_max_abs_split_diff": 0.006292258081477306,
+      "robust_max_abs_share_diff": 0.003086326679061029
+    },
+    "Trucking": {
+      "oews": "4840",
+      "wagebill_usd": 92383376200.0,
+      "employment_without_wage_share": 0.0,
+      "moved": {
+        "F02": "rnd"
+      },
+      "merged_buckets": {
+        "rnd": "sga"
+      },
+      "negative_buckets_clipped": [],
+      "residual_share_of_wagebill": 0.14039376025748668,
+      "wagebill_share_cogs_pool": 0.8798166684668102,
+      "robust_max_abs_split_diff": 0.022486522249199614,
+      "robust_max_abs_share_diff": 0.006116483391591332,
+      "wagebill_share_sga_pool": 0.12018333153318984
+    },
+    "Utility (General)": {
+      "oews": "221",
+      "wagebill_usd": 53029095000.0,
+      "employment_without_wage_share": 0.0,
+      "moved": {
+        "F02": "rnd",
+        "F01": "sga",
+        "F03": "sga",
+        "F04": "sga",
+        "F06": "sga",
+        "F10": "sga",
+        "F11": "sga",
+        "F12": "sga",
+        "F13": "sga",
+        "F14": "sga",
+        "F15": "sga",
+        "F17": "sga",
+        "F18": "sga",
+        "F19": "sga"
+      },
+      "merged_buckets": {
+        "rnd": "cogs",
+        "sga": "cogs"
+      },
+      "negative_buckets_clipped": [
+        "sga"
+      ],
+      "residual_share_of_wagebill": 0.5034014625367451,
+      "wagebill_share_cogs_pool": 1.0,
+      "robust_max_abs_split_diff": 0.01627995354027606,
+      "robust_max_abs_share_diff": 0.009088248068430631
+    },
+    "Utility (Water)": {
+      "oews": "2213",
+      "wagebill_usd": 4523361500.0,
+      "employment_without_wage_share": 0.0,
+      "moved": {
+        "F02": "rnd"
+      },
+      "merged_buckets": {
+        "rnd": "sga"
+      },
+      "negative_buckets_clipped": [],
+      "residual_share_of_wagebill": 0.48888744134201967,
+      "wagebill_share_cogs_pool": 0.6752942407985743,
+      "robust_max_abs_split_diff": 0.01595813284312636,
+      "robust_max_abs_share_diff": 0.0008404624368420981,
+      "wagebill_share_sga_pool": 0.32470575920142575
+    },
+    "Total Market (without financials)": {
+      "oews": "ALL_EXCEPT_52_99",
+      "wagebill_usd": 9392387299100.0,
+      "employment_without_wage_share": 0.0008624325271148368,
+      "moved": {},
+      "merged_buckets": {},
+      "negative_buckets_clipped": [],
+      "residual_share_of_wagebill": 0.5379852820937427,
+      "wagebill_share_cogs_pool": 0.6549723381796101,
+      "robust_max_abs_split_diff": 0.0,
+      "robust_max_abs_share_diff": 0.0,
+      "wagebill_share_rnd_pool": 0.07317722625810581,
+      "wagebill_share_sga_pool": 0.2718504355622841
+    }
+  }
+}

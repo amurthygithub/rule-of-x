@@ -1,0 +1,65 @@
+pattern,soc,confidence
+\b(ceo|chief executive)\b,11-1011,0.95
+\b(coo|chief operating|general manager|chief of staff)\b,11-1021,0.8
+"\b(cfo|chief financial|controller|vp,? finance|head of finance|finance director|treasurer)\b",11-3031,0.85
+"\b(cto|cio|chief technology|chief information|vp,? engineering|head of engineering|engineering manager|director of engineering|it manager|it director)\b",11-3021,0.85
+\b(cmo|chief marketing|marketing manager|head of marketing|marketing director|demand gen(eration)? manager|growth manager)\b,11-2021,0.8
+"\b(cro|chief revenue|sales manager|sales director|vp,? sales|head of sales|regional director)\b",11-2022,0.8
+\b(chro|chief people|hr manager|head of people|people director|hr director|hrbp|hr business partner)\b,11-3121,0.75
+\b(procurement manager|purchasing manager|head of procurement)\b,11-3061,0.85
+\b(facilities manager|workplace manager|office manager)\b,11-3013,0.75
+\b(product manager|product owner|program manager|head of product)\b,11-9199,0.6
+\b(general counsel|counsel|attorney|lawyer|legal director)\b,23-1011,0.9
+\b(paralegal|legal assistant|contracts? (manager|specialist|administrator))\b,23-2011,0.75
+\b(compliance|privacy (analyst|officer|manager)|regulatory)\b,13-1041,0.75
+\b(internal audit(or)?|sox (analyst|manager)|it auditor|auditor)\b,13-2011,0.75
+\b(risk (analyst|manager)|enterprise risk|grc)\b,13-2054,0.7
+\b(accountant|accounting manager|revenue accountant|gl accountant|tax (analyst|manager|accountant))\b,13-2011,0.85
+\b(ap|accounts payable|ar|accounts receivable|bookkeep(er|ing)|accounting (clerk|specialist|associate))\b,43-3031,0.75
+\b(collections?|collector)\b,43-3011,0.8
+\b(billing)\b,43-3021,0.75
+\b(payroll)\b,43-3051,0.75
+\b(fp&a|financial analyst|finance analyst|treasury analyst|investor relations)\b,13-2051,0.8
+\b(credit analyst)\b,13-2041,0.85
+\b(recruit(er|ing)|talent acquisition|sourcer|hr generalist|hr specialist|people (partner|operations))\b,13-1071,0.75
+\b(compensation|benefits|total rewards)\b,13-1141,0.75
+\b(learning|l&d|trainer|enablement|instructional)\b,13-1151,0.7
+\b(hr (assistant|coordinator)|people coordinator)\b,43-4161,0.75
+\b(buyer|purchasing agent|procurement (specialist|analyst)|sourcing (specialist|manager))\b,13-1023,0.8
+\b(logistics|supply chain)\b,13-1081,0.7
+\b(software (engineer|developer)|swe|developer|engineer (i|ii|iii)|backend|frontend|front-end|back-end|full ?stack|mobile engineer|staff engineer|principal engineer|machine learning engineer|ml engineer)\b,15-1252,0.85
+\b(qa|quality assurance|test(er| engineer)|sdet)\b,15-1253,0.85
+\b(ux|ui|product designer|interaction designer|web designer)\b,15-1255,0.8
+\b(data scientist|data science|ml scientist|applied scientist)\b,15-2051,0.85
+\b(sre|site reliability|devops|platform engineer|cloud engineer|infrastructure engineer)\b,15-1299,0.75
+\b(systems administrator|sysadmin|system administrator|network engineer|network administrator)\b,15-1244,0.8
+\b(dba|database administrator|data engineer)\b,15-1242,0.7
+\b(security (engineer|analyst)|soc analyst|information security|cybersecurity)\b,15-1212,0.85
+\b(network architect|solutions architect|cloud architect|enterprise architect)\b,15-1241,0.7
+\b(it support|help ?desk|desktop support|service desk|it technician)\b,15-1232,0.8
+\b(support engineer|technical support|tier ?2|tier ?3)\b,15-1232,0.75
+\b(customer (support|service|care)|support (specialist|agent|representative|associate)|tier ?1|contact center agent)\b,43-4051,0.85
+"\b(support (lead|supervisor|team lead)|team lead,? support)\b",43-1011,0.75
+\b(customer success|csm|account manager|renewals?)\b,13-1199,0.6
+\b(implementation (consultant|specialist|manager)|consultant|business analyst|systems analyst|solution consultant)\b,15-1211,0.65
+\b(project manager|pmo|delivery manager)\b,13-1082,0.75
+\b(strategy|management analyst|business operations|biz ?ops|operations analyst)\b,13-1111,0.6
+\b(account executive|ae|sales (representative|rep|executive)|sdr|bdr|sales development|business development)\b,41-3091,0.8
+\b(enterprise account executive|technical sales|channel (manager|sales))\b,41-4011,0.7
+\b(sales engineer|presales|pre-sales|solutions engineer)\b,41-9031,0.85
+\b(sales ops|sales operations|revenue operations|revops)\b,13-1199,0.6
+\b(marketing (specialist|manager|associate|analyst)|content market(er|ing)|seo|sem|campaign|demand gen|product marketing|marketing ops)\b,13-1161,0.7
+\b(graphic designer|visual designer|creative designer)\b,27-1024,0.85
+\b(pr |public relations|communications (manager|specialist))\b,27-3031,0.75
+\b(technical writer|documentation)\b,27-3042,0.85
+\b(copywriter|content writer|writer|editor)\b,27-3043,0.75
+\b(event|events (manager|coordinator))\b,13-1121,0.75
+\b(executive assistant|ea to)\b,43-6011,0.85
+\b(administrative assistant|admin assistant|office assistant|coordinator)\b,43-6014,0.5
+\b(receptionist|front desk)\b,43-4171,0.85
+\b(security (officer|guard))\b,33-9032,0.85
+\b(janitor|cleaner|custodian)\b,37-2011,0.85
+\b(maintenance (technician|worker)|facilities technician|handyman)\b,49-9071,0.8
+\b(office clerk|clerk|data entry)\b,43-9061,0.7
+\b(analyst)\b,13-1199,0.35
+\b(manager|director|head|vp|vice president)\b,11-9199,0.35

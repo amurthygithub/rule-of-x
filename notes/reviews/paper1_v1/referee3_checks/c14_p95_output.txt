@@ -1,0 +1,4 @@
+E1 R_op: change in P95 -11.7; real $100M (2016-19 $) threshold in 2023-25 -11.6 (n 455->448); 2023-25 reweighted to 2016-19 growth distribution +4.5; reweighted to 2016-19 size distribution -13.0
+E1 R_cash: change in P95 -15.2; real $100M (2016-19 $) threshold in 2023-25 -14.9 (n 446->439); 2023-25 reweighted to 2016-19 growth distribution +1.9; reweighted to 2016-19 size distribution -15.7
+E2 R_op: change in P95 -11.6; real $100M (2016-19 $) threshold in 2023-25 -11.6 (n 397->391); 2023-25 reweighted to 2016-19 growth distribution -5.7; reweighted to 2016-19 size distribution -12.8
+E2 R_cash: change in P95 -12.4; real $100M (2016-19 $) threshold in 2023-25 -12.4 (n 388->382); 2023-25 reweighted to 2016-19 growth distribution +6.2; reweighted to 2016-19 size distribution -12.6

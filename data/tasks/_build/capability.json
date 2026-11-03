@@ -1,0 +1,161 @@
+{
+  "source": "METR eval-analysis-public, reports/time-horizon-1-1 (commit in source log)",
+  "n_runs": 23235,
+  "trend": {
+    "2019-01-01": {
+      "doubling_days": 128.74380253586392,
+      "sota_agents": [
+        "Claude 3.5 Sonnet (New) (Inspect)",
+        "Claude 3.5 Sonnet (Old) (Inspect)",
+        "Claude 3.7 Sonnet (Inspect)",
+        "Claude Opus 4.5 (Inspect)",
+        "Claude Opus 4.6 (Inspect)",
+        "GPT-4 0314",
+        "GPT-4 1106 (Inspect)",
+        "GPT-4o (Inspect)",
+        "GPT-5 (Inspect)",
+        "GPT-5.2",
+        "Gemini 3 Pro",
+        "o1 (Inspect)",
+        "o1-preview",
+        "o3 (Inspect)"
+      ],
+      "ln_p50_at_2019": -7.922201256044565,
+      "slope_per_day": 0.005383926580596814,
+      "ci95": [
+        106.26722636493609,
+        158.20031546895942
+      ],
+      "n_boot": 200,
+      "median_boot": 128.86210854335462
+    },
+    "2023-01-01": {
+      "doubling_days": 128.74380253586392,
+      "sota_agents": [
+        "Claude 3.5 Sonnet (New) (Inspect)",
+        "Claude 3.5 Sonnet (Old) (Inspect)",
+        "Claude 3.7 Sonnet (Inspect)",
+        "Claude Opus 4.5 (Inspect)",
+        "Claude Opus 4.6 (Inspect)",
+        "GPT-4 0314",
+        "GPT-4 1106 (Inspect)",
+        "GPT-4o (Inspect)",
+        "GPT-5 (Inspect)",
+        "GPT-5.2",
+        "Gemini 3 Pro",
+        "o1 (Inspect)",
+        "o1-preview",
+        "o3 (Inspect)"
+      ],
+      "ln_p50_at_2019": -7.922201256044565,
+      "slope_per_day": 0.005383926580596814,
+      "ci95": [
+        106.26722636493609,
+        158.20031546895942
+      ],
+      "n_boot": 200,
+      "median_boot": 128.86210854335462
+    },
+    "2024-01-01": {
+      "doubling_days": 102.17613861349177,
+      "sota_agents": [
+        "Claude 3 Opus (Inspect)",
+        "Claude 3.5 Sonnet (New) (Inspect)",
+        "Claude 3.5 Sonnet (Old) (Inspect)",
+        "Claude 3.7 Sonnet (Inspect)",
+        "Claude Opus 4.5 (Inspect)",
+        "Claude Opus 4.6 (Inspect)",
+        "GPT-4o (Inspect)",
+        "GPT-5 (Inspect)",
+        "GPT-5.2",
+        "Gemini 3 Pro",
+        "o1 (Inspect)",
+        "o1-preview",
+        "o3 (Inspect)"
+      ],
+      "ln_p50_at_2019": -11.212069968921098,
+      "slope_per_day": 0.006783845915159874,
+      "ci95": [
+        81.55078709193171,
+        126.08078521127563
+      ],
+      "n_boot": 200,
+      "median_boot": 100.53003375534995
+    }
+  },
+  "frontier": {
+    "agent": "Claude Opus 4.6 (Inspect)",
+    "release_date": "2026-02-05",
+    "p50_hours": 11.980113514581193,
+    "p80_hours": 1.1645764349052001
+  },
+  "logistic_slope_median_2025plus": 0.5974746353495658,
+  "chi_reliability_factor": {
+    "0.5": 1.0,
+    "0.8": 4.994209787018831,
+    "0.9": 12.795099176447891,
+    "0.95": 30.445150759617867,
+    "0.99": 206.62967402834323,
+    "0.999": 3019.12119700897
+  },
+  "cost": {
+    "n_runs": 1674,
+    "agents": [
+      "GPT-4 0314",
+      "o1-preview"
+    ],
+    "median_ratio": 0.023944948399522797,
+    "p90_ratio": 0.5186187390882117,
+    "human_cost_per_hour_median": 143.61
+  },
+  "bootstrap_draws": 200,
+  "th10_point_estimates": {
+    "2019-01-01": {
+      "doubling_days": 201.1503821970176,
+      "ln_p50_at_2019": -3.7120339344530513,
+      "slope_per_day": 0.0034459153047049114,
+      "sota_agents": [
+        "Claude 3.5 Sonnet (New)",
+        "Claude 3.5 Sonnet (Old)",
+        "Claude 3.7 Sonnet",
+        "Claude 4.1 Opus",
+        "Claude Opus 4.5",
+        "GPT-2",
+        "GPT-4 0314",
+        "GPT-4 1106",
+        "GPT-4o",
+        "GPT-5",
+        "GPT-5.1-Codex-Max",
+        "Grok 4",
+        "davinci-002 (GPT-3)",
+        "gpt-3.5-turbo-instruct",
+        "o1",
+        "o1-preview",
+        "o3"
+      ]
+    },
+    "2024-01-01": {
+      "doubling_days": 131.3176670313622,
+      "ln_p50_at_2019": -7.875059824470751,
+      "slope_per_day": 0.005278400052556547,
+      "sota_agents": [
+        "Claude 3 Opus",
+        "Claude 3.5 Sonnet (New)",
+        "Claude 3.5 Sonnet (Old)",
+        "Claude 3.7 Sonnet",
+        "Claude 4.1 Opus",
+        "Claude Opus 4.5",
+        "GPT-4 0125",
+        "GPT-4 Turbo",
+        "GPT-4o",
+        "GPT-5",
+        "GPT-5.1-Codex-Max",
+        "Grok 4",
+        "o1",
+        "o1-preview",
+        "o3"
+      ]
+    }
+  },
+  "th10_n_runs": 40836
+}

@@ -1,0 +1,20 @@
+E1 m_op: n(g>=40%) 2023-25 = 18, 2016-19 = 80; est +12.7; NaN draws 0.037; percentile CI [-19.0, +32.3]; distinct values in draws 745; top-3 margins 2023-25: [48.8, 31.6, 8.4]
+E1 m_fcf_sbc: n(g>=40%) 2023-25 = 18, 2016-19 = 78; est +9.4; NaN draws 0.019; percentile CI [-5.9, +23.9]; distinct values in draws 769; top-3 margins 2023-25: [43.7, 31.7, 26.4]
+E2 m_op: n(g>=40%) 2023-25 = 12, 2016-19 = 56; est +23.4; NaN draws 0.277; percentile CI [-12.1, +39.8]; distinct values in draws 540; top-3 margins 2023-25: [48.8, 31.6, 8.4]
+E2 m_fcf_sbc: n(g>=40%) 2023-25 = 12, 2016-19 = 55; est +24.2; NaN draws 0.298; percentile CI [+5.1, +39.2]; distinct values in draws 517; top-3 margins 2023-25: [43.7, 31.7, 26.4]
+E1 m_op: pooled 2010-22 cell (n=235) P95 17.6; mean P95 from n=12 draws 12.3 (bias -5.3), sd 8.2
+E1 m_op: pooled 2010-22 cell (n=235) P95 17.6; mean P95 from n=18 draws 14.2 (bias -3.4), sd 7.1
+E1 m_op: pooled 2010-22 cell (n=235) P95 17.6; mean P95 from n=30 draws 16.1 (bias -1.6), sd 5.1
+E1 m_op: pooled 2010-22 cell (n=235) P95 17.6; mean P95 from n=80 draws 17.4 (bias -0.2), sd 2.5
+E2 m_op: pooled 2010-22 cell (n=148) P95 15.4; mean P95 from n=12 draws 9.5 (bias -5.9), sd 8.9
+E2 m_op: pooled 2010-22 cell (n=148) P95 15.4; mean P95 from n=18 draws 11.2 (bias -4.2), sd 7.7
+E2 m_op: pooled 2010-22 cell (n=148) P95 15.4; mean P95 from n=30 draws 13.3 (bias -2.1), sd 5.9
+E2 m_op: pooled 2010-22 cell (n=148) P95 15.4; mean P95 from n=80 draws 15.0 (bias -0.4), sd 2.6
+E1 m_fcf_sbc: pooled 2010-22 cell (n=234) P95 22.0; mean P95 from n=12 draws 15.1 (bias -6.8), sd 7.7
+E1 m_fcf_sbc: pooled 2010-22 cell (n=234) P95 22.0; mean P95 from n=18 draws 16.6 (bias -5.3), sd 7.3
+E1 m_fcf_sbc: pooled 2010-22 cell (n=234) P95 22.0; mean P95 from n=30 draws 18.5 (bias -3.5), sd 6.0
+E1 m_fcf_sbc: pooled 2010-22 cell (n=234) P95 22.0; mean P95 from n=80 draws 21.0 (bias -1.0), sd 3.8
+E2 m_fcf_sbc: pooled 2010-22 cell (n=149) P95 19.2; mean P95 from n=12 draws 12.4 (bias -6.8), sd 8.5
+E2 m_fcf_sbc: pooled 2010-22 cell (n=149) P95 19.2; mean P95 from n=18 draws 14.0 (bias -5.2), sd 7.9
+E2 m_fcf_sbc: pooled 2010-22 cell (n=149) P95 19.2; mean P95 from n=30 draws 15.7 (bias -3.5), sd 6.3
+E2 m_fcf_sbc: pooled 2010-22 cell (n=149) P95 19.2; mean P95 from n=80 draws 17.9 (bias -1.3), sd 4.3

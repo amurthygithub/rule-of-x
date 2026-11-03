@@ -1,0 +1,42 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "autofrontier"
+version = "0.2.0"
+description = "Engine for Part III: AI automation vision, roadmap and people plan from firm data, scored with Part I's Rule-of-X frontier."
+requires-python = ">=3.11"
+license = {file = "LICENSE.md"}
+authors = [{name = "Akshaya Bangalore Sreenivasa Murthy"}]
+classifiers = [
+  "License :: Other/Proprietary License",
+  "Programming Language :: Python :: 3",
+  "Operating System :: OS Independent",
+]
+dependencies = [
+  "numpy>=1.24",
+  "pandas>=2.0",
+  "pydantic>=2.0",
+  "pyyaml>=6.0",
+  "openpyxl>=3.1",
+  "scipy>=1.10",
+  "pulp>=2.7,<4",
+]
+
+[project.optional-dependencies]
+test = ["pytest>=7"]
+
+[project.scripts]
+autofrontier = "autofrontier.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+autofrontier = ["defaults.yaml", "priors/*.csv", "NOTES_LOCK.json"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = ["slow: end-to-end runs (deselect with -m 'not slow')"]
+addopts = "-p no:cacheprovider"

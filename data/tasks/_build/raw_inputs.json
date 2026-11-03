@@ -1,0 +1,9 @@
+{
+  "n_files": 220,
+  "commits": {
+    "aieconindex_r": "https://github.com/charlescoverdale/aieconindex.git 5967b3487c76f685c63298615fef490582811988 2026-09-19 11:23:30 +0100",
+    "gpts_are_gpts": "https://github.com/openai/GPTs-are-GPTs.git 0471612fef3cc22b74fb884d27bff9dbd3770582 2025-10-03 17:18:48 -0700",
+    "metr_eval_analysis": "https://github.com/METR/eval-analysis-public.git 52cb829c7a2efb2d659285c4b1768d191d97f8d2 2026-03-05 16:59:28 -0800",
+    "ms_working_with_ai": "https://github.com/microsoft/working-with-ai.git 550c00c9d1b054ac78b87da3a26165bace334779 2026-10-22 18:19:50 -0700"
+  }
+}

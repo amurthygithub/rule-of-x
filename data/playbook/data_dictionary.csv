@@ -1,0 +1,206 @@
+column,description,unit,source,attribution,in_steps,in_activities,in_dwa
+(all),"O*NET 31.0 Database (USDOL/ETA), CC BY 4.0, modified by the author; USDOL/ETA has not approved, endorsed or tested the modifications",,engine playbook.dictionary,"O*NET 31.0 Database (USDOL/ETA), CC BY 4.0, modified by the author; USDOL/ETA has not approved, endorsed or tested the modifications",,,
+archetype,archetype code (Definition def:playbook-archetypes),,code/playbook/archetypes.py,,True,True,True
+archetype_name,archetype name,,code/playbook/archetypes.py,,True,True,True
+binding_now,binding constraint on automation now (prop:playbook-gates order),,prop:tasks-breakpoints,,True,True,True
+binding_now_detail,distance or reason,,engine,,True,True,False
+binding_target,binding constraint at readiness 0.9,,prop:tasks-breakpoints,,True,True,False
+binding_target_detail,distance or reason,,engine,,True,True,False
+critical_path,1 if every unit of the process passes through the step,,data/tasks/process_activities.csv,,True,True,False
+ctl_icfr,step in ICFR scope,bool,def:acct-scope,,True,True,False
+ctl_interface_line,interface control needed (writes a financial system),bool,prop:acct-itgc,,True,True,False
+ctl_itgc_line_usd,ITGC line of the AI application a year,$,eq:acct-itgc,,True,True,False
+depends_on,dependencies of the wave,,engine roadmap,,True,True,False
+dwa_id,O*NET 31.0 detailed work activity,,onet2026database,"O*NET 31.0 Database (USDOL/ETA), CC BY 4.0",True,True,True
+dwa_title,DWA title,,onet2026database,"O*NET 31.0 Database (USDOL/ETA), CC BY 4.0",True,True,True
+eng_activity_units,engine: activity units in the step,,engine playbook.build (api.playbook),,True,False,False
+eng_binding_now,"engine: first failing test for automation now: permissibility, feasibility (physical, capability horizon), readiness, reliability (detection; residual or appetite), volume threshold, cost; none if A is cheapest",,engine playbook.build (api.playbook),,False,True,False
+eng_binding_now_detail,engine: detail of binding_now,,engine playbook.build (api.playbook),,False,True,False
+eng_binding_target,engine: the same at the highest readiness level,,engine playbook.build (api.playbook),,True,True,False
+eng_binding_target_detail,engine: detail of binding_target,,engine playbook.build (api.playbook),,False,True,False
+eng_ctl_icfr,engine: ICFR control summary,,engine playbook.build (api.playbook),,False,True,False
+eng_ctl_interface_line,engine: interface control a year when the step writes a financial system,,engine playbook.build (api.playbook),,True,True,False
+eng_ctl_itgc_line_usd,engine: ITGC line per automated in-scope step a year (eq:acct-itgc),,engine playbook.build (api.playbook),,True,True,False
+eng_depends_on,engine: what must finish first,,engine playbook.build (api.playbook),,True,True,False
+eng_distance_capability_years,engine: years to the capability date,,engine playbook.build (api.playbook),,False,True,False
+eng_distance_detection,engine: catch rate now minus d*,,engine playbook.build (api.playbook),,False,True,False
+eng_distance_readiness,engine: readiness at target minus the floor,,engine playbook.build (api.playbook),,False,True,False
+eng_distance_reliability,engine: error allowance minus residual error,,engine playbook.build (api.playbook),,False,True,False
+eng_distance_volume,"engine: volume over v*, minus one",,engine playbook.build (api.playbook),,False,True,False
+eng_dwa_ids,engine: DWAs of the step,,engine playbook.build (api.playbook),,True,False,False
+eng_ev_aei_augmentation_pct,engine: AEI augmentation share (not yet in the data contract),,engine playbook.build (api.playbook),,False,True,False
+eng_ev_aei_automation_pct,engine: AEI automation-pattern share,,engine playbook.build (api.playbook),,False,True,False
+eng_ev_aei_class,engine: grounding class,,engine playbook.build (api.playbook),,False,True,False
+eng_ev_aei_usage_share,engine: Anthropic Economic Index usage share of the DWA,,engine playbook.build (api.playbook),,False,True,False
+eng_ev_build_src,engine: build cost source=class,,engine playbook.build (api.playbook),,False,True,False
+eng_ev_capability_class,engine: grounding class,,engine playbook.build (api.playbook),,False,True,False
+eng_ev_capability_margin_log,engine: log capability margin at target,,engine playbook.build (api.playbook),,False,True,False
+eng_ev_detection_src,engine: detection source=class,,engine playbook.build (api.playbook),,False,True,False
+eng_ev_exposure_llm,engine: LLM exposure (Eloundou et al. 2024),,engine playbook.build (api.playbook),,False,True,False
+eng_ev_exposure_llm_class,engine: grounding class,,engine playbook.build (api.playbook),,False,True,False
+eng_ev_licensed_share,engine: licensed time share,,engine playbook.build (api.playbook),,False,True,False
+eng_ev_metr_feasibility_date,engine: date the task horizon reaches the step (METR fitted path),,engine playbook.build (api.playbook),,False,True,False
+eng_ev_onet_task_links,engine: O*NET task statements linked to the DWA,,engine playbook.build (api.playbook),,False,True,False
+eng_ev_physical_share,engine: physical share,,engine playbook.build (api.playbook),,False,True,False
+eng_ev_review_time_src,engine: review time source=class,,engine playbook.build (api.playbook),,False,True,False
+eng_ev_target_src,engine: quality target source=class,,engine playbook.build (api.playbook),,False,True,False
+eng_ev_task_examples,engine: the top two O*NET task statements (text unchanged),,engine playbook.build (api.playbook),,False,True,False
+eng_ev_task_hours,engine: estimated hours per task instance,,engine playbook.build (api.playbook),,False,True,False
+eng_ev_task_hours_class,engine: grounding class,,engine playbook.build (api.playbook),,False,True,False
+eng_ev_task_ids,"engine: up to 12 O*NET task ids, by occupation weight then incumbents responding",,engine playbook.build (api.playbook),,False,True,False
+eng_ev_volume_src,engine: volume source=class,,engine playbook.build (api.playbook),,False,True,False
+eng_fallback,engine: close-window fallback (prop:acct-itgc(d)),,engine playbook.build (api.playbook),,True,True,False
+eng_first_year_A_at_target,engine: first plan year in which A is cheapest at the highest level (prop:ext-feasible),,engine playbook.build (api.playbook),,False,True,False
+eng_fte_after,engine: FTE left in the plan's mode,,engine playbook.build (api.playbook),,True,True,False
+eng_fte_effect_target,engine: change in FTE,,engine playbook.build (api.playbook),,False,True,False
+eng_gate_detection_now,engine: reviewer catch rate at the defaults,,engine playbook.build (api.playbook),,False,True,False
+eng_gate_max_residual_error,"engine: largest residual error accepted (1 - qbar, or tier3_policy)",,engine playbook.build (api.playbook),,False,True,False
+eng_gate_min_detection,engine: least reviewer catch rate d* = 1 - (1 - qbar)/e (prop:tasks-review(d)),,engine playbook.build (api.playbook),,False,True,False
+eng_gate_min_volume,"engine: least volume at which A beats the best non-AI mode, v* (prop:tasks-modes(e))",,engine playbook.build (api.playbook),,False,True,False
+eng_gate_threshold,engine: pilot gate (or tier3_policy),,engine playbook.build (api.playbook),,True,True,False
+eng_gates,engine: go/no-go gates with their source in brackets,,engine playbook.build (api.playbook),,True,True,False
+eng_in_plan,engine: the process is in the plan,,engine playbook.build (api.playbook),,True,True,False
+eng_integration_first,engine: data integration precedes automation,,engine playbook.build (api.playbook),,True,True,False
+eng_interface_line_per_year_process,engine: interface controls a year for the process,,engine playbook.build (api.playbook),,False,True,False
+eng_interface_lines_process,engine: integrations feeding in-scope systems in the process,,engine playbook.build (api.playbook),,False,True,False
+eng_iota0,engine: process readiness today,,engine playbook.build (api.playbook),,False,True,False
+eng_kpi_cycle_time,engine: cycle time: measured (Tier 4) or to measure in Wave 0,,engine playbook.build (api.playbook),,True,True,False
+eng_kpi_residual_error,engine: residual error (A),,engine playbook.build (api.playbook),,False,True,False
+eng_kpi_review_share,engine: review share (A),,engine playbook.build (api.playbook),,False,True,False
+eng_kpi_unit_cost_now,engine: cost per output unit now ($),,engine playbook.build (api.playbook),,False,True,False
+eng_kpi_unit_cost_plan,engine: cost per output unit in the plan ($),,engine playbook.build (api.playbook),,False,True,False
+eng_labor_lead_days,engine: longest legal lead before dismissal (prop:labor-lead),,engine playbook.build (api.playbook),,True,True,False
+eng_mode_activity_now,"engine: cheapest feasible mode of the activity at readiness level 0, plan year 0 (prop:tasks-modes)",,engine playbook.build (api.playbook),,False,True,False
+eng_mode_activity_target,engine: the same at the highest readiness level,,engine playbook.build (api.playbook),,False,True,False
+eng_mode_now,"engine: mode today (H in-house, O outsourced)",,engine playbook.build (api.playbook),,True,True,False
+eng_mode_plan,engine: mode in the recommended plan,,engine playbook.build (api.playbook),,True,True,False
+eng_mode_plan_best,engine: mode in the process's best column overall (baseline if none pays),,engine playbook.build (api.playbook),,True,True,False
+eng_mode_step_now,engine: mode in the process's best column at level 0 starting now (prop:tasks-aon),,engine playbook.build (api.playbook),,True,True,False
+eng_mode_step_target,engine: mode in the best column at the highest level starting now,,engine playbook.build (api.playbook),,True,True,False
+eng_mode_swap_params_now,engine: class d keys that swap the mode within a class,,engine playbook.build (api.playbook),,False,True,False
+eng_moves_with_steps,engine: steps of the process that cut over together (complementary set),,engine playbook.build (api.playbook),,True,True,False
+eng_pilot_band_high,"engine: pilot band, upper",,engine playbook.build (api.playbook),,True,True,False
+eng_pilot_band_low,"engine: pilot band, lower success probability (eq:tasks-pilotband)",,engine playbook.build (api.playbook),,True,True,False
+eng_pre_eval_set,engine: an evaluation set is needed (A or U),,engine playbook.build (api.playbook),,False,True,False
+eng_pre_itgc_lines,engine: ITGC lines added (in-scope automated step),,engine playbook.build (api.playbook),,False,True,False
+eng_pre_readiness_floor,engine: readiness floor of the step,,engine playbook.build (api.playbook),,False,True,False
+eng_pre_readiness_now,engine: effective readiness now,,engine playbook.build (api.playbook),,False,True,False
+eng_pre_readiness_target,engine: effective readiness at the highest level,,engine playbook.build (api.playbook),,False,True,False
+eng_pre_review_share_target,engine: review share xi at target (prop:tasks-review),,engine playbook.build (api.playbook),,False,True,False
+eng_preconditions,engine: conditions to meet before the switch,,engine playbook.build (api.playbook),,True,True,False
+eng_program_constraint,engine: for a positive process left out of the plan: the binding program capacity or the regime's hurdle (prop:ext-waves(d)),,engine playbook.build (api.playbook),,True,True,False
+eng_residual_error_A_target,engine: residual error under A at target,,engine playbook.build (api.playbook),,False,True,False
+eng_robustness_share_positive,engine: share of Monte Carlo draws with positive process value,,engine playbook.build (api.playbook),,False,True,False
+eng_role_ai_engineer_months,engine: AI engineer months to build (F_A / monthly AI engineer cost),,engine playbook.build (api.playbook),,True,True,False
+eng_role_control_owner,engine: ICFR control owner,,engine playbook.build (api.playbook),,False,True,False
+eng_role_occupations,"engine: typical occupations on the step, top three by hours",,engine playbook.build (api.playbook),,True,True,False
+eng_role_occupations_source,engine: roster or prior,,engine playbook.build (api.playbook),,False,True,False
+eng_role_process_owner,engine: process owner,,engine playbook.build (api.playbook),,True,True,False
+eng_role_reviewer_fte_target,engine: reviewer FTE at target (xi rho_rev t v / hours per FTE),,engine playbook.build (api.playbook),,True,True,False
+eng_saving_per_year,engine: saving a year at the start year's volume ($),,engine playbook.build (api.playbook),,True,True,False
+eng_share_automated_plan,engine: share of the step's FTE automated in the plan,,engine playbook.build (api.playbook),,True,False,False
+eng_switch_conditions,engine: each threshold with the firm's distance,,engine playbook.build (api.playbook),,False,True,False
+eng_threshold_cost_gap_share,"engine: A cost minus the best non-AI cost, share of the latter",,engine playbook.build (api.playbook),,False,True,False
+eng_tier_now,engine: confidence tier now (def:playbook-tier),,engine playbook.build (api.playbook),,True,True,False
+eng_tier_now_reason,engine: why,,engine playbook.build (api.playbook),,False,True,False
+eng_tier_target,engine: confidence tier at target,,engine playbook.build (api.playbook),,True,True,False
+eng_tier_target_reason,engine: why,,engine playbook.build (api.playbook),,False,True,False
+eng_wave,engine: roadmap wave,,engine playbook.build (api.playbook),,True,True,False
+eng_wave_start_year,engine: first year of the wave,,engine playbook.build (api.playbook),,True,True,False
+ev_aei_augmentation_pct,AEI augmentation share (not in activities.csv yet),percent,data agent request,,True,True,True
+ev_aei_automation_pct,AEI automation share of collaboration,percent,appel2026anthropic,,True,True,True
+ev_aei_src,AEI release,,,,True,True,False
+ev_aei_usage_share,Anthropic Economic Index share of conversations,share,appel2026anthropic,,True,True,True
+ev_build_src,build-effort source and class,,,,True,True,False
+ev_capability_margin_log,log capability margin ln(H kappa / (d chi)),,ass:ext-capability,,True,True,False
+ev_detection_src,catch-rate source and class,,,,True,True,False
+ev_exposure_llm,LLM exposure of the DWA,share,eloundou2024gpts,,True,True,True
+ev_exposure_src,source and class,,,,True,True,False
+ev_licensed_share,licensed time share of the DWA (permissibility),share,data/tasks/activities.csv,,True,True,True
+ev_metr_feasibility_date,date at which automation is capability-feasible at today's readiness,year,kwa2025measuring (refit),,True,True,False
+ev_metr_feasibility_date_min,earliest capability date among the DWA's units,year,kwa2025measuring (refit),,False,False,True
+ev_metr_src,capability source,,,,True,True,False
+ev_onet_task_links,O*NET task statements linked to the DWA,count,xw_task_dwa.csv,"O*NET 31.0 Database (USDOL/ETA), CC BY 4.0",True,True,True
+ev_physical_share,physical task share,share,tomlinson2025working,,True,True,True
+ev_review_time_src,review-time source and class,,,,True,True,False
+ev_target_src,reliability-target source and class,,,,True,True,False
+ev_task_examples,two task statements,,onet2026database,"O*NET 31.0 Database (USDOL/ETA), CC BY 4.0",True,True,True
+ev_task_hours,task length in human hours,hours,AEI human_only_time_mean,"O*NET 31.0 Database (USDOL/ETA), CC BY 4.0",True,True,False
+ev_task_ids,up to 12 O*NET task ids (evidence keys),,onet2026database,"O*NET 31.0 Database (USDOL/ETA), CC BY 4.0",True,True,True
+ev_wage_src,wage source,,,,True,True,False
+first_year_A_at_target,first plan year in which automation is the cheapest mode at readiness 0.9,year,ext prop:ext-feasible,,True,True,False
+fte_effect_target,change in in-house FTE at target mode,FTE,engine,,True,True,False
+fte_in_house,in-house FTE on the unit,FTE,engine,,True,True,True
+function_id,function,,data/tasks/functions.csv,,True,True,False
+function_name,function name,,data/tasks/functions.csv,,True,True,False
+functions,functions performing the DWA,,data/tasks/functions.csv,,False,False,True
+gate_detection_now,engine catch rate,share,params_reliability review.catch_rate_ordinary,,True,True,False
+gate_max_residual_error,"tolerated residual error, 1 - target reliability",share,engine review rule,,True,True,False
+gate_min_detection,minimum reviewer catch rate at which review can meet the target,share,"prop:tasks-review(d), prop:tasks-halluc(b)",,True,True,False
+gate_min_volume,volume above which building automation beats the best alternative,units a year,"prop:tasks-modes(e), prop:tasks-buildbuy",,True,True,False
+gwa_id,O*NET generalized work activity,,onet2026database,"O*NET 31.0 Database (USDOL/ETA), CC BY 4.0",True,True,True
+hours_per_unit,in-house hours per unit,hours,engine,,True,True,False
+icfr_channel,"ICFR channel: process, system, integration, policy",,def:acct-scope,,True,True,False
+icfr_condition,condition for scope,,def:acct-scope,,True,True,False
+icfr_status,ICFR scope status,,def:acct-scope,,True,True,False
+iota0,today's data readiness of every function,share,engine readiness index,,True,True,False
+kind,step (a process step of process_activities.csv) or residual (a function's other work),,engine,,True,True,False
+kpi_cycle_time,cycle time (not produced by the engine yet),,engine spec P7,,True,True,False
+kpi_nrr,net revenue retention of a product step (not produced yet),,engine spec P7,,True,True,False
+kpi_residual_error,residual error KPI under automation,share,engine,,True,True,False
+kpi_seat_exposure,seat exposure of a product step (not produced yet),,engine spec P7,,True,True,False
+kpi_unit_cost,unit cost KPI at target,$,engine,,True,True,False
+labor_lead_days_US,U.S. legal lead before dismissals take effect,days,prop:labor-lead,,True,True,False
+mode_activity_now,"activity decision: cheapest feasible mode by the engine's choice cost, today's readiness, 2026",H/O/U/A/N,prop:tasks-modes,,True,True,False
+mode_activity_target,"activity decision at readiness 0.9, 2026",H/O/U/A/N,prop:tasks-augment,,True,True,False
+mode_plan_best,mode in the process's best column over readiness levels and start years,H/O/U/A/N,engine plans.py,,True,True,False
+mode_step_now,step decision: mode in the engine's best process column at today's readiness starting now (baseline if no column has positive value),H/O/U/A/N,"prop:tasks-transition, prop:tasks-aon",,True,True,False
+mode_step_target,step decision at the highest readiness level starting now,H/O/U/A/N,prop:tasks-readiness,,True,True,False
+mode_swap_params_now,class-d range ends that change the mode within the AI or the non-AI modes only (not tier-deciding),,Definition def:playbook-tier,,True,True,False
+moves_with_steps,steps whose mode changes in the same column (complementary set),,prop:tasks-complement,,True,True,False
+pre_eval_set,an evaluation set must be built (target mode A or U),bool,prop:tasks-fullcost,,True,True,False
+pre_itgc_lines,ITGC lines needed (in scope and automated at target),bool,prop:acct-itgc,,True,True,False
+pre_readiness_floor,readiness floor of automation,share,prop:tasks-review(d),,True,True,False
+pre_readiness_now,effective readiness now,share,engine,,True,True,False
+pre_readiness_target,effective readiness at target,share,engine,,True,True,False
+pre_review_share_target,review share under automation at target,share,prop:tasks-review,,True,True,False
+process_id,process (P01 to P24) or residual work stream,,data/tasks/processes.csv,,True,True,False
+process_in_plan,process selected in the engine's program,bool,engine optimizer,,True,True,False
+process_name,process name,,data/tasks/processes.csv,,True,True,False
+process_value_best,value of the best column overall,$,engine optimizer,,True,True,False
+process_value_now,value of the best column at today's readiness starting now,$,engine optimizer (public regime),,True,True,False
+process_value_target,value of the best column at readiness 0.9 starting now,$,engine optimizer,,True,True,False
+processes,processes and residual work streams in which the DWA is performed,count,engine,,False,False,True
+readiness_case,"readiness case: low (0.4) or high (0.9), set through the engine's systems inventory",,data/examples/invoice_chain.yaml,,True,True,True
+regime,ownership regime of the run,,engine regimes.py,,True,True,False
+regulated_any,the DWA is performed in at least one in-scope ICFR step,bool,def:acct-scope,,False,False,True
+regulated_class,regulatory class,,engine impute,,True,True,False
+residual_error_A_target,residual error under automation at target,share,engine,,True,True,False
+role_ai_engineer_months,AI engineering months of the automation build,months,engine build rule,,True,True,False
+role_control_owner,ICFR control owner needed,,prop:acct-itgc,,True,True,False
+role_process_owner,process owner,,,,True,True,False
+role_reviewer_fte_target,reviewer FTE under automation at target,FTE,engine,,True,True,False
+share_augmented_now,share of the DWA's in-house FTE whose activity decision is U at today's readiness,share,prop:tasks-augment,,False,False,True
+share_augmented_target,share augmented at readiness 0.9,share,prop:tasks-augment,,False,False,True
+share_automated_now,share of the DWA's in-house FTE whose activity decision is A at today's readiness,share,prop:tasks-modes,,False,False,True
+share_automated_target,share automated at readiness 0.9,share,prop:tasks-modes,,False,False,True
+step,step number in the process,,data/tasks/process_activities.csv,,True,True,False
+step_name,step name,,data/tasks/process_activities.csv,,True,False,False
+steps,process steps among them,count,data/tasks/process_activities.csv,,False,False,True
+switch_conditions,"what would change the recommendation, with distances",,prop:tasks-breakpoints,,True,True,False
+tier_now,confidence tier of the activity decision now,A/B/C,Definition def:playbook-tier,,True,True,False
+tier_now_reason,reason,,,,True,True,False
+tier_now_worst,lowest confidence tier among the DWA's units now (C below B below A),A/B/C,Definition def:playbook-tier,,False,False,True
+tier_target,confidence tier at target,A/B/C,,,True,True,False
+tier_target_reason,reason,,,,True,True,False
+tier_target_worst,lowest confidence tier among the DWA's units at readiness 0.9,A/B/C,Definition def:playbook-tier,,False,False,True
+typical_systems,systems the step reads or writes,,data/tasks/process_activities.csv,,True,False,False
+unit_cost_baseline,cash cost per unit in the baseline mode,$,engine,,True,True,False
+unit_cost_now,cash cost per unit in the activity's mode now,$,engine,,True,True,False
+unit_cost_target,cash cost per unit at target,$,engine,,True,True,False
+unit_id,engine activity unit id (join key to the engine's playbook rows),,engine impute.build_firm,,True,True,False
+unit_key,engine activity unit: process|DWA or function residual|DWA,,engine impute.build_firm,,True,True,False
+units,activity units of the DWA in the configuration (steps and residual work),count,engine,,False,False,True
+volume_per_year,units of output a year in year 0,units,engine,,True,True,False
+wave,wave of the engine's roadmap (blank: not in the plan),,engine roadmap,,True,True,False
+wave_start_year,start year of the wave,year,engine roadmap,,True,True,False

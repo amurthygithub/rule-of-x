@@ -1,0 +1,15 @@
+process_id,annual_volume,unit
+P01,164006.3,customer invoice
+P04,11.9,close cycle
+P07,460629.7,support ticket
+P08,52609.1,qualified opportunity
+P09,6705.4,executed contract
+P11,6733.1,production incident
+P12,950.0,marketing campaign
+P14,4188.3,customer implementation
+P15,15618.9,legal matter
+P16,149.0,control test
+P18,4.1,budget or forecast cycle
+P20,565572.7,customer order shipped
+P23,1.0,strategic plan
+P24,18.6,tax filing

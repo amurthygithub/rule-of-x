@@ -1,0 +1,244 @@
+# Running example of part2/theory_core.tex (Section sec:tasks): a four-step supplier-invoice chain.
+#
+# Single source of truth. Every input names where its value comes from:
+#   default:<section>.<key>              engine/src/autofrontier/defaults.yaml, with the data agent's params.yaml
+#                                        (or params_reliability.yaml) value where the default links one, resolved by
+#                                        the engine's own loader (autofrontier.config.load_params)
+#   range_low:<key> / range_high:<key>   an end of that default's [low, high] range
+#   params:<dotted path>[|<pick>]        data/tasks/params.yaml directly
+#   prior:<file>:<row id>:<column>       engine/src/autofrontier/priors/<file>.csv (the engine's activity priors)
+#   csv:<file>:<key column>=<id>:<col>   data/tasks/<file>.csv
+#   setting                              an example setting with no default (the example's choice; stated in `basis`)
+# code/examples/invoice_chain.py resolves these, computes every number the text quotes and writes
+# data/examples/invoice_chain.json and part2/tables/invoice_macros.tex. code/verify_part2_core.py reads this file,
+# recomputes independently and checks both outputs. Do not type example numbers into the .tex files.
+#
+# Model: the core model of Section sec:tasks with review detection (prop:tasks-review), which is the engine with its
+# failure taxonomy switched off (reliability.enabled = false). Engine features outside the core model are listed
+# under `not_modeled` and are not part of the example.
+
+meta:
+  name: invoice_chain
+  version: '2026-10-29c'   # conditional case capped at min(r_bar_high, q*) (P2 theory pass v2)
+  model: 'core model of theory_core.tex; engine configuration reliability.enabled = false'
+  not_modeled:
+    - 'tax wedges and effective wages (the engine choice-cost view); the example uses pre-tax cash costs'
+    - 'calendar dynamics (inference price decline, capability growth); the example is static at the capability date t0, and the build-cost decline delta_F enters only the rebuilds of the engine-horizon program'
+    - 'the failure taxonomy in mode choice (hallucination, complacency, autonomy); Section sec:tasks-failure examples apply it to the approval step separately'
+    - 'control costs of the failure taxonomy (monitoring, least privilege, kill switch) and the ICFR control-cost change (accounting theorist)'
+    - 'the success-logit penalties that require the failure taxonomy (a_fm) and the pipeline driver (a_J)'
+
+firm:
+  volume: {value: 120000, source: setting, basis: 'supplier invoices a year; at the P02 procure-to-pay prior of 100 invoices per $1M of revenue (data/tasks/processes.csv, assumed) this is a firm with $1.2 billion of revenue'}
+  invoices_per_musd_revenue: {source: 'csv:processes:process_id=P02:typical_volume_per_musd_revenue'}
+  function: {value: finance_accounting, source: setting, basis: 'accounts payable sits in finance and accounting (engine function prior finance_accounting; params outsourcing key F11)'}
+  occupation_soc: {value: '43-3031', source: setting, basis: 'Bookkeeping, Accounting, and Auditing Clerks'}
+  wage_annual: {source: 'csv:occupations:soc=43-3031:wage_median', basis: 'OEWS May 2025 median'}
+  tau_L: {source: 'default:labor.tau_L'}
+  hours_per_fte: {source: 'default:labor.hours_per_fte'}
+  exposure: {value: 0.5, source: setting, basis: 'engine fallback LLM exposure when no activity data (impute.py) and the reference exposure of augment.exposure_ref'}
+  data_class: {value: internal, source: setting, basis: 'engine fallback for a function without personal data (impute.py); finance_accounting personal_data = 0'}
+  write_access: {value: 1.0, source: setting, basis: 'engine fallback (agents can write)'}
+  external_inputs: {value: 0.15, source: setting, basis: 'engine fallback for a function that is not customer facing'}
+  high_reliability: {source: 'prior:function_attributes:finance_accounting:high_reliability'}
+  rho_O: {source: 'params:outsourcing.price_ratio_pO_over_wt|F11 finance and accounting'}
+  n_systems: {source: 'default:readiness.default_n_systems'}
+  iota_prior: {source: 'prior:function_attributes:finance_accounting:iota_prior', basis: 'engine prior of today''s readiness in finance (reported, not used as case a)'}
+  iota_low: {value: 0.4, source: setting, basis: 'case (a), a low-readiness firm (coordinator decision, 29 Oct)'}
+  iota_high: {source: 'default:readiness.targets', pick: max, basis: 'highest readiness target of the engine'}
+  capability_date: {source: 'default:capability.t0', basis: 'the example is static at the date of the horizon fit'}
+
+steps:
+  - {id: capture, name: 'Invoice capture', t_hours: {value: 0.05, source: setting}, gwa: {value: '4.A.3.b.6', source: setting, basis: 'O*NET GWA Documenting/Recording Information'}, regulated: {value: true, source: setting, basis: 'accounts payable is a financial-reporting process in scope for SOX ICFR at a public company; regulated status is a property of the process and its data class, not of the firm''s error tolerance, so it holds in the conditional case with the relaxed target (coordinator decision of 29 Oct; replaces the engine rule regulated iff target >= 0.99)'}}
+  - {id: match, name: 'Matching to order and receipt', t_hours: {value: 0.08, source: setting}, gwa: {value: '4.A.2.a.2', source: setting, basis: 'O*NET GWA Processing Information (reconcile records); P02 step 5 uses DWA 4.A.2.a.2.d.1'}, regulated: {value: true, source: setting, basis: 'accounts payable is a financial-reporting process in scope for SOX ICFR at a public company; regulated status is a property of the process and its data class, not of the firm''s error tolerance, so it holds in the conditional case with the relaxed target (coordinator decision of 29 Oct; replaces the engine rule regulated iff target >= 0.99)'}}
+  - {id: exceptions, name: 'Exception handling', t_hours: {value: 0.12, source: setting}, gwa: {value: '4.A.2.b.1', source: setting, basis: 'O*NET GWA Making Decisions and Solving Problems'}, regulated: {value: true, source: setting, basis: 'resolving three-way-match exceptions changes recorded liabilities, so it is a key ICFR activity in accounts payable; regulated status is a property of the process, not of the target (coordinator decision of 29 Oct)'}}
+  - {id: approval, name: 'Approval', t_hours: {value: 0.05, source: setting}, gwa: {value: '4.A.2.a.3', source: setting, basis: 'O*NET GWA Evaluating Information to Determine Compliance with Standards'}, regulated: {value: true, source: setting, basis: 'accounts payable is a financial-reporting process in scope for SOX ICFR at a public company; regulated status is a property of the process and its data class, not of the firm''s error tolerance, so it holds in the conditional case with the relaxed target (coordinator decision of 29 Oct; replaces the engine rule regulated iff target >= 0.99)'}}
+# Per-step attributes derived by the engine's rules from the GWA (impute.py): r_bar, L_mult, iota_star, separable,
+# eliminable from priors/activity_attributes.csv; for a high-reliability function and a GWA in HIGH_REL_GWAS,
+# r_bar = max(r_bar, review.r_bar_high) and L_mult = max(L_mult, review.L_mult_regulated); task type from
+# augment.decision_gwas / creation_gwas; work through a user interface for capability.computer_use_gwas.
+high_rel_gwas: {value: ['4.A.2.a.2', '4.A.2.a.3', '4.A.3.b.6', '4.A.2.a.4'], source: setting, basis: 'copy of engine impute.py HIGH_REL_GWAS'}
+
+parameters:
+  # finance and horizon
+  r: {source: 'default:finance.r', basis: 'continuous rate ln(1 + annual WACC); the engine default applies transform to_continuous to the params value'}
+  T_A: {source: 'default:build.T_A'}
+  T_h: {source: 'params:depreciation.internal_use_software_book_life_years', basis: 'useful life of internal-use software (ASC 350-40 practice, 3 to 5 years); coordinator decision of 29 Oct'}
+  T_h_engine: {source: 'default:constraints.horizon_years', basis: 'engine planning horizon: a program in which the builds are redone every T_A years (plans.py rebuilds)'}
+  delta_F: {source: 'default:build.delta_F', basis: 'annual decline of build cost; a rebuild k T_A years out costs F_build (1 - delta_F)^(k T_A) (plans.py)'}
+  # capability and errors
+  H0: {source: 'default:capability.H0_hours'}
+  b_logistic: {source: 'default:capability.logistic_slope_b'}
+  eta_r: {source: 'default:capability.eta_r'}
+  r_A: {source: 'default:capability.r_A'}
+  transfer: {source: 'default:capability.transfer'}
+  xi_exposure: {source: 'default:capability.xi_exposure'}
+  exposure_floor: {source: 'default:capability.exposure_floor'}
+  xi_context: {source: 'default:capability.xi_context'}
+  context_coverage: {source: 'default:capability.context_coverage'}
+  chi_form: {source: 'default:capability.chi_form'}
+  computer_use_mult: {source: 'default:capability.computer_use_mult'}
+  computer_use_gwas: {source: 'default:capability.computer_use_gwas'}
+  api_readiness: {source: 'default:capability.api_readiness'}
+  e0: {source: 'default:capability.e0'}
+  e1: {source: 'default:capability.e1'}
+  # inference
+  pi_h0: {source: 'default:prices.pi_h0'}
+  class_multiplier: {source: 'default:prices.class_multiplier'}
+  retry_cap: {source: 'default:prices.retry_cap'}
+  u_tok: {source: 'default:prices.u_tok'}
+  finops_share: {source: 'default:security.finops_share'}
+  # review
+  d_R: {source: 'default:reliability.d_e', basis: 'reviewer catch rate of ordinary errors'}
+  rho_rev: {source: 'default:review.rho_rev'}
+  wage_premium: {source: 'default:review.wage_premium'}
+  r_bar_high: {source: 'default:review.r_bar_high'}
+  L_mult_regulated: {source: 'default:review.L_mult_regulated'}
+  xi_min: {source: 'default:review.xi_min_none'}
+  q_M: {source: 'default:review.q_M'}
+  lambda_out: {source: 'default:review.lambda_out'}
+  # augmentation
+  beta_U: {source: 'default:augment.beta_U'}
+  exposure_ref: {source: 'default:augment.exposure_ref'}
+  e_H: {source: 'default:augment.e_H'}
+  u_decision: {source: 'default:augment.u_decision'}
+  u_creation: {source: 'default:augment.u_creation'}
+  decision_gwas: {source: 'default:augment.decision_gwas'}
+  creation_gwas: {source: 'default:augment.creation_gwas'}
+  U_share: {source: 'default:build.U_share'}
+  # outsourcing and elimination
+  kappa_O: {source: 'default:outsourcing.kappa_O'}
+  zeta_O: {source: 'default:outsourcing.zeta_O'}
+  ups_O: {source: 'default:outsourcing.ups_O'}
+  separable_threshold: {source: 'default:outsourcing.separable_threshold'}
+  delta_N: {source: 'default:eliminate.delta_N'}
+  iota_N: {source: 'default:readiness.iota_N'}
+  # builds
+  em_base: {source: 'default:build.em_base'}
+  xi_d: {source: 'default:build.xi_d'}
+  regulated_mult: {source: 'default:build.regulated_mult'}
+  vendor_share: {source: 'default:build.vendor_share'}
+  scope_elasticity: {source: 'default:build.scope_elasticity'}
+  ai_engineer_premium: {source: 'default:build.ai_engineer_premium'}
+  ai_engineer_wage: {source: 'default:build.ai_engineer_base_wage', basis: 'w^SE of prop:labor-talent(a): OEWS May 2025 median for SOC 15-1252 Software Developers (data/tasks/occupations.csv); replaces the hard-coded engine fallback of 133,080'}
+  process_owner_wage: {value: 101190.0, source: setting, basis: 'engine role wage (economics.role_rates default for process_owner)'}
+  risk_governance_wage: {value: 78420.0, source: setting, basis: 'engine role wage (economics.role_rates default for risk_governance, times 1.2)'}
+  redesign_months: {source: 'default:build.redesign_months'}
+  int_cost_per_system: {source: 'default:build.int_cost_per_system'}
+  int_convexity: {source: 'default:build.int_convexity'}
+  # handoffs and process
+  h_MM: {source: 'default:handoff.h_MM'}
+  h_AM: {source: 'default:handoff.h_AM'}
+  h_AA0: {source: 'default:handoff.h_AA0'}
+  Xi_share: {source: 'default:handoff.Xi_share'}
+  # transition
+  omega_par: {source: 'default:transition.omega_par'}
+  nu_rec: {source: 'default:transition.nu_rec'}
+  license_cost_per_system: {source: 'default:transition.license_cost_per_system'}
+  retire_fraction: {source: 'default:transition.retire_fraction'}
+  legacy_book_value_per_system: {source: 'default:transition.legacy_book_value_per_system'}
+  severance_months: {source: 'default:transition.severance_months_US'}
+  u_d: {source: 'default:transition.u_d'}
+  redeploy_months: {source: 'default:transition.redeploy_months'}
+  break_months_O: {source: 'default:transition.break_months_O'}
+  break_months_license: {source: 'default:transition.break_months_license'}
+  dip_share: {source: 'default:transition.dip_share'}
+  dip_years: {source: 'default:transition.dip_years'}
+  T_det: {source: 'default:transition.T_det'}
+  L_roll_mult: {source: 'default:transition.L_roll_mult'}
+  T_par_min_regulated: {source: 'default:transition.T_par_min_regulated'}
+  T_par_max: {source: 'default:transition.T_par_max'}
+  icfr_min_parallel: {source: 'default:accounting.icfr_min_parallel'}
+  icfr_redesign_cost: {source: 'default:accounting.icfr_redesign_cost'}
+  # survivors (prop:labor-survivor in part2/theory_labor.tex; engine F.survivor_cost and F.survivor_wave_charge)
+  nu_q: {source: 'default:labor.nu_q'}
+  survivor_excess_quits: {source: 'default:labor.survivor_excess_quits', basis: 'eta_0 T_s: excess quits per announced wave, share of survivors'}
+  survivor_quits_per_share: {source: 'default:labor.survivor_quits_per_share', basis: 'eta_1 T_s: excess quits per unit of displacement share (enters C^surv)'}
+  T_s: {source: 'default:labor.T_s'}
+  delta_eff: {source: 'default:labor.delta_eff', basis: 'delta_0: announcement productivity loss of survivors (enters O_s)'}
+  c_rep: {source: 'default:labor.c_rep'}
+  legal_review_cost: {source: 'default:security.legal_review_cost'}
+  eval_data_cost: {source: 'default:security.eval_data_cost'}
+  change_mgmt_cost_per_fte: {source: 'default:labor.change_mgmt_cost_per_fte'}
+  training_hours_per_fte: {source: 'default:labor.training_hours_per_fte'}
+  training_cost_per_hour: {source: 'default:labor.training_cost_per_hour'}
+  # success
+  a0: {source: 'default:success.a0'}
+  a_iota: {source: 'default:success.a_iota'}
+  a_H: {source: 'default:success.a_H'}
+  a_R: {source: 'default:success.a_R'}
+  c0: {source: 'default:success.c0'}
+  c_exc: {source: 'default:success.c_exc'}
+  c_fte: {source: 'default:success.c_fte'}
+  c_team: {source: 'default:success.c_team'}
+  c_sponsor: {source: 'default:success.c_sponsor'}
+  team_prior: {source: 'default:success.team_prior'}
+  sponsor_prior: {source: 'default:success.sponsor_prior'}
+  b_bar: {source: 'default:success.b_bar'}
+  # pilot
+  pilot_cost_share: {source: 'default:pilot.cost_share'}
+  pilot_fixed_cost: {source: 'default:pilot.fixed_cost'}
+  T_pil: {source: 'default:pilot.T_pil'}
+  # run costs, security
+  delta_M: {source: 'default:security.delta_M'}
+  T_up: {source: 'default:security.T_up'}
+  reval_share: {source: 'default:security.reval_share'}
+  c_int: {source: 'default:security.c_int'}
+  c_cpl: {source: 'default:security.c_cpl'}
+  class_sensitivity: {source: 'default:security.class_sensitivity'}
+  autonomy_A: {source: 'default:security.autonomy_A'}
+  autonomy_U: {source: 'default:security.autonomy_U'}
+  n_systems_ref: {source: 'default:readiness.n_systems_ref'}
+  h_f: {source: 'default:security.h_f'}
+  h_u: {source: 'default:security.h_u'}
+  L_inc_class: {source: 'default:security.L_inc'}
+  breach_avg: {source: 'default:security.breach_avg'}
+  per_process_share: {source: 'default:security.per_process_share'}
+  L_inc_scale: {source: 'default:security.L_inc_scale'}
+  C_s: {source: 'default:security.C_s'}
+  redteam_cost: {source: 'default:security.redteam_cost'}
+  # build or buy
+  buy_markup: {source: 'default:security.buy_markup'}
+  buy_pooled_share: {source: 'default:security.buy_pooled_share'}
+  buy_integration_share: {source: 'default:security.buy_integration_share'}
+  switching_cost_share: {source: 'default:security.switching_cost_share'}
+  contract_years: {source: 'default:security.contract_years'}
+  # failure taxonomy (approval step, Section sec:tasks-failure)
+  h_retrieval: {source: 'default:reliability.h_retrieval'}
+  grounding: {source: 'default:reliability.grounding'}
+  h_floor_share: {source: 'default:reliability.h_floor_share'}
+  d_h: {source: 'default:reliability.d_h'}
+  m0: {source: 'default:reliability.m0'}
+  autonomy_mult: {source: 'default:reliability.autonomy_mult'}
+  kappa_h: {source: 'default:reliability.kappa_h'}
+  injection_mult: {source: 'default:reliability.injection_mult'}
+  guard_cut: {source: 'default:reliability.guard_cut'}
+  sev_mult: {source: 'default:reliability.sev_mult'}
+  lp_cut: {source: 'default:reliability.lp_cut'}
+  mon_cut: {source: 'default:reliability.mon_cut'}
+  kill_cap_mult: {source: 'default:reliability.kill_cap_mult'}
+  alpha_tail: {source: 'default:reliability.alpha_tail'}
+  alpha_tail_low: {source: 'range_low:reliability.alpha_tail'}
+  d_m_approval: {source: 'default:reliability.d_m_approval'}
+  d_mon: {source: 'default:reliability.d_mon'}
+  d_m_review: {source: 'default:reliability.d_m_review'}
+  rho_appr: {source: 'default:reliability.rho_appr'}
+  cvar_q: {source: 'default:reliability.cvar_q'}
+  L_max_event: {source: 'default:reliability.L_max_event'}
+
+capital:
+  owned_opex_share: {source: 'default:capital.owned_opex_share'}
+  compute_capital_per_annual_dollar: {source: 'default:capital.compute_capital_per_annual_dollar'}
+  delta_K_compute: {source: 'default:capital.delta_K_compute'}
+  revenue_growth_g: {source: 'default:finance.revenue_growth_g'}
+  delta_pi: {source: 'default:prices.delta_pi'}
+
+parameters_extra:
+  eps_d: {source: 'default:reliability.eps_d'}
+
+# Sensitivities the text reports (coordinator decision of 29 Oct): the integration cost decides the sign.
+sensitivity:
+  int_cost_per_system: {low: 'range_low:build.int_cost_per_system', high: 'range_high:build.int_cost_per_system'}
+  d_R: {low: 'range_low:reliability.d_e', high: 'range_high:reliability.d_e'}
+  r_bar_high: {low: 'range_low:review.r_bar_high', high: 'range_high:review.r_bar_high'}
+  L_mult_regulated: {low: 'range_low:review.L_mult_regulated', high: 'range_high:review.L_mult_regulated'}

@@ -1,0 +1,14 @@
+{
+  "mode": "full",
+  "n_rows": 18779,
+  "n_onet_soc": 921,
+  "task_type_counts": {
+    "core": 14059,
+    "supplemental": 4332,
+    "": 388
+  },
+  "incumbents_missing": 557,
+  "onet_tasks_total": 18838,
+  "xw_task_ids": 18779,
+  "attribution": "This dataset includes information from the O*NET 31.0 Database by the U.S. Department of Labor, Employment and Training Administration (USDOL/ETA). Used under the CC BY 4.0 license. O*NET\u00ae is a trademark of USDOL/ETA. The authors of this project have modified all or some of this information. USDOL/ETA has not approved, endorsed, or tested these modifications."
+}

@@ -1,0 +1,17 @@
+{
+  "functions.csv": 19,
+  "occupations.csv": 830,
+  "activities.csv": 2087,
+  "occ_activity.csv": 17444,
+  "industry_staffing.csv": 60017,
+  "function_occ.csv": 154,
+  "industry_function_shares.csv": 1994,
+  "processes.csv": 24,
+  "process_activities.csv": 136,
+  "occ_activity_soc_coverage_emp": 0.9870544367110654,
+  "industry_benchmarks.csv": 96,
+  "xw_damodaran_naics.csv": 96,
+  "task_statements.csv": 18779,
+  "icfr_steps_in_scope": 66,
+  "failures": []
+}

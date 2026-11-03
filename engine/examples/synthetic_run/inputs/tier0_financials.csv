@@ -1,0 +1,23 @@
+field,value
+company_name,Synthetic Software Co (fictional)
+fiscal_year,2026
+currency,USD
+revenue,864000000.0
+cogs,227283000.0
+rnd,138334000.0
+sm,262454000.0
+ga,177234000.0
+sbc,17915000.0
+da,30240000.0
+capex,25920000.0
+headcount,3164.0
+naics,513210
+revenue_growth,0.17
+market_growth,0.1
+tax_rate,0.18
+owned_compute_share,0.2
+context_engine,0
+shares_outstanding,128000000
+ownership_regime,public
+ebitda,106850000.0
+net_debt,-129600000.0

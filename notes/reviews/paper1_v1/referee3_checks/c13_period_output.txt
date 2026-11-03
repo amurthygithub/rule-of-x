@@ -1,0 +1,8 @@
+slope_op_2020_25 E2 est -0.787 se 0.149 ci90 [-0.98, -0.481]
+slope_cash_2020_25 E2 est -0.425 se 0.135 ci90 [-0.63, -0.177]
+slope_op_pooled E2 est -0.585 se 0.158 ci90 [-0.835, -0.301]
+slope_cash_pooled E2 est -0.432 se 0.115 ci90 [-0.629, -0.258]
+E1 m_op: slope 2020-25 minus 2010-19 = -0.454; cluster-boot se 0.164; 90% pct CI [-0.629, -0.099]
+E1 m_fcf_sbc: slope 2020-25 minus 2010-19 = -0.147; cluster-boot se 0.164; 90% pct CI [-0.354, +0.187]
+E2 m_op: slope 2020-25 minus 2010-19 = -0.334; cluster-boot se 0.193; 90% pct CI [-0.600, +0.007]
+E2 m_fcf_sbc: slope 2020-25 minus 2010-19 = +0.050; cluster-boot se 0.166; 90% pct CI [-0.292, +0.303]

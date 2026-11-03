@@ -1,0 +1,30 @@
+{
+ "fte_after": 1595.4451813329574,
+ "plan_value": 157442050.9502568,
+ "processes": [
+  "F01::residual2",
+  "F02::residual3",
+  "F02::residual5",
+  "F02::residual6",
+  "F02::residual7",
+  "F03::outsourced",
+  "F03::residual2",
+  "F04::residual4",
+  "F11::residual2"
+ ],
+ "r40_cash_final": 0.41089737474460725,
+ "regime": "pe",
+ "regime_values": {
+  "hybrid": 1119630252.6080804,
+  "pe": 157442050.9502568,
+  "permanent_capital": 206082675.15258452,
+  "private_family": 1465838571.0121503,
+  "public": 1118457173.1967683,
+  "vc": 587481247.665588
+ },
+ "seat_revenue_at_risk_central": 103078845.53999999,
+ "universe_economical_share": 0.8115328869722295,
+ "value_P10": -25029683.31236613,
+ "value_P50": -2602377.2391010122,
+ "value_P90": 12574333.7022916
+}

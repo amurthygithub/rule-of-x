@@ -1,0 +1,11 @@
+\begin{table}[t]\centering\small
+\caption{Frontier Rule-of-40 score by period: maximum of $g+\phi_{0.95}(g)$ on the order-$\alpha$ Pareto frontier}\label{tab:frontier}
+\resizebox{\textwidth}{!}{\begin{tabular}{lccccc}\toprule
+Margin definition & 2010--15 & 2016--19 & 2020--22 & 2023--25 & $\Delta$ 2023--25 vs 2016--19\\\midrule
+GAAP operating & 67 [63, 81] & 75 [62, 87] & 62 [51, 70] & 43 [39, 75] & -32 [-44, +6] \\
+Adjusted operating (SBC added back) & 70 [67, 95] & 80 [66, 97] & 77 [67, 93] & 56 [49, 85] & -24 [-41, +8] \\
+Free cash flow & 73 [67, 91] & 84 [66, 98] & 93 [79, 110] & 66 [58, 81] & -18 [-32, +5] \\
+FCF after SBC & 66 [62, 83] & 78 [64, 92] & 73 [63, 97] & 54 [46, 74] & -24 [-37, +2] \\
+\bottomrule\end{tabular}}
+\par\vspace{2pt}\footnotesize\raggedright Notes: $\phi_{0.95}(g)$ is the 95th percentile of margin among firm-years with growth of at least $g$ (order-$\alpha$ frontier, $\alpha=0.95$), evaluated on a grid $g\in\{0,0.05,\dots,1\}$ with at least 30 observations per point. Entries are $\max_g[g+\phi_{0.95}(g)]$ in percentage points with 90\% firm-cluster bootstrap intervals (300 replications; 400 for the difference).
+\end{table}

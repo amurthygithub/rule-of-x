@@ -1,0 +1,5 @@
+feature,line,kind,F,ups,c0,dG,dlam,p,q,source,engineer_years,npv_own_weight,npv_screening_weight,retention_point_value,retention_outweighs_margin,chosen,chosen_at_screening_weight
+Resolution agent,Service desk,agent,6000000.0,0.027500000000000004,0.00825,0.00055,0.0,0.08,0.6,tier3_ai_features,15.0,429096772.84852564,408770000.77096134,0.00243421365,True,True,True
+Agent copilot,Service desk,copilot,2500000.0,0.0027500000000000003,0.00825,0.0011,0.0,0.1,0.8,tier3_ai_features,6.25,105490644.09721892,63256614.398995936,0.0048684273,False,True,True
+Asset discovery agent,IT asset management,agent,3000000.0,0.0054,0.00405,0.000135,0.0,0.03,0.4,tier3_ai_features,7.5,72054628.67647253,67728605.82534729,0.0005974888050000001,True,True,True
+Natural-language analytics,Analytics add-on,copilot,2000000.0,0.0036,0.0026999999999999997,0.00017999999999999998,0.0,0.05,0.5,tier3_ai_features,5.0,57568380.453179635,51286002.18216552,0.00079665174,True,True,True

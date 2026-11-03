@@ -1,0 +1,40 @@
+\begin{table}[tbp]
+\centering
+\caption{Backtest at the occupation level: OEWS May 2021 to May 2025}\label{tab:backtest-occ}
+\small
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+ & (1) & (2) & (3) & (4)\\
+ & Exposure & Model & Both & Both, weighted\\
+\midrule
+\multicolumn{5}{@{}l}{\emph{A. Change in log employment, May 2021 to May 2025}}\\
+Exposure (1 sd) & $-$0.052 &  & $-$0.015 & $-$0.015\\
+ & (0.017) &  & (0.021) & (0.018)\\
+Model automatable share (1 sd) &  & $-$0.046 & $-$0.039 & $-$0.016\\
+ &  & (0.012) & (0.015) & (0.012)\\
+$R^2$ & 0.220 & 0.226 & 0.227 & 0.341\\
+Out-of-sample $R^2$ & 0.160 & 0.168 & 0.166 & \\
+\addlinespace
+\multicolumn{5}{@{}l}{\emph{B. Change in log wage-bill share}}\\
+Exposure (1 sd) & $-$0.064 &  & $-$0.039 & $-$0.021\\
+ & (0.018) &  & (0.023) & (0.022)\\
+Model automatable share (1 sd) &  & $-$0.045 & $-$0.026 & $-$0.013\\
+ &  & (0.013) & (0.017) & (0.014)\\
+$R^2$ & 0.225 & 0.225 & 0.228 & 0.356\\
+Out-of-sample $R^2$ & 0.164 & 0.164 & 0.164 & \\
+\addlinespace
+\multicolumn{5}{@{}l}{\emph{C. Change in log mean wage}}\\
+Exposure (1 sd) & $-$0.012 &  & $-$0.024 & $-$0.006\\
+ & (0.007) &  & (0.009) & (0.007)\\
+Model automatable share (1 sd) &  & 0.001 & 0.013 & 0.003\\
+ &  & (0.004) & (0.005) & (0.005)\\
+$R^2$ & 0.247 & 0.242 & 0.254 & 0.472\\
+Out-of-sample $R^2$ & 0.186 & 0.180 & 0.190 & \\
+\addlinespace
+\bottomrule
+\end{tabular}
+\smallskip
+\begin{minipage}{0.97\linewidth}\footnotesize
+Notes: OLS across 782 detailed occupations (SOC 2018 codes identical in both vintages). Exposure is the time-weighted share of an occupation's detailed work activities exposed to LLMs (GPT-4 $\beta$ labels of \citealp{eloundou2024gpts}). The model share multiplies exposure by the indicator that automation is feasible and cheapest, averaged over December 2021 to May 2025 along the capability and price paths of Section~\ref{sec:ext-dynamics}, with May 2021 wages. Both are standardized. All columns control for 22 SOC major-group effects, the physical task share, log mean wage in 2021 and the O*NET job zone. Column (4) weights by May 2021 employment. Heteroskedasticity-robust (HC1) standard errors in parentheses. Out-of-sample $R^2$: 10-fold cross-validation repeated 50 times on the same sample, unweighted. Source: \texttt{code/validation/backtest.py}.
+\end{minipage}
+\end{table}

@@ -1,0 +1,49 @@
+\begin{table}[tbp]
+\centering
+\caption{Occupation $\times$ industry cells, May 2021 to May 2025 (change in log employment)}\label{tab:backtest-cells}
+\footnotesize
+\setlength{\tabcolsep}{5pt}
+\begin{tabular}{@{}lcccccc@{}}
+\toprule
+\multicolumn{7}{@{}l}{\emph{A. Sourced review-time ratio}}\\
+ & (1) & (2) & (3) & (4) & (5) & (6)\\
+\midrule
+Exposure & $-$0.056 &  & $-$0.051 &  & $-$0.049 & \\
+ & (0.022) &  & (0.027) &  & (0.028) & \\
+Model share &  & $-$0.031 & $-$0.007 &  &  & \\
+ &  & (0.014) & (0.016) &  &  & \\
+Capability-feasible share &  &  &  & $-$0.034 & $-$0.008 & \\
+ &  &  &  & (0.014) & (0.018) & \\
+Model share, within occupation &  &  &  &  &  & 0.0062\\
+ &  &  &  &  &  & (0.0044)\\
+Fixed effects & \multicolumn{5}{c}{industry, SOC major group} & occ., industry\\
+Out-of-sample $R^2$ & 0.126 & 0.123 & 0.125 & 0.124 &  & \\
+\addlinespace
+\multicolumn{7}{@{}l}{\emph{B. Columns (1) and (3) reweighted}} \\
+ & Exposure & \multicolumn{2}{c}{Exposure and model share} & & & \\
+No industry effects & $-$0.062 & $-$0.046 & $-$0.018 & & & \\
+ & (0.023) & (0.027) & (0.017) & & & \\
+Occupations weighted equally & $-$0.057 & $-$0.017 & $-$0.045 & & & \\
+ & (0.030) & (0.037) & (0.023) & & & \\
+Both & $-$0.066 & $-$0.017 & $-$0.056 & & & \\
+ & (0.032) & (0.041) & (0.026) & & & \\
+\addlinespace
+\multicolumn{7}{@{}l}{\emph{C. Across the review-time ratio}}\\
+Review ratio & \multicolumn{2}{c}{Model share} & \multicolumn{2}{c}{With exposure} & \multicolumn{2}{c}{Within occupation}\\
+0.370 & $-$0.034 & (0.014) & $-$0.008 & (0.018) & n.a. & \\
+0.472 & $-$0.034 & (0.014) & $-$0.008 & (0.018) & n.a. & \\
+0.575 & $-$0.031 & (0.014) & $-$0.007 & (0.016) & 0.0062 & (0.0044)\\
+0.677 & $-$0.011 & (0.012) & 0.003 & (0.012) & 0.0039 & (0.0042)\\
+0.780 & 0.004 & (0.012) & 0.004 & (0.012) & $-$0.0014 & (0.0020)\\
+0.800 & 0.004 & (0.012) & 0.003 & (0.012) & $-$0.0008 & (0.0019)\\
+0.882 & 0.001 & (0.012) & $-$0.005 & (0.011) & 0.0022 & (0.0014)\\
+0.985 & 0.000 & (0.011) & $-$0.006 & (0.011) & 0.0007 & (0.0008)\\
+1.087 & 0.002 & (0.009) & $-$0.003 & (0.009) & 0.0004 & (0.0003)\\
+1.190 & 0.001 & (0.008) & $-$0.002 & (0.008) & 0.0002 & (0.0001)\\
+\bottomrule
+\end{tabular}
+\smallskip
+\begin{minipage}{0.97\linewidth}\footnotesize
+Notes: 9,556 occupation $\times$ industry cells (755 occupations, 221 industries) with at least 1,000 jobs in May 2021 and an estimate in May 2025, covering 93\% of May 2021 employment. Industries are four-digit NAICS harmonized from NAICS 2017 to 2022, with retail trade at the sector level. The model share uses each cell's May 2021 wage in the cost crossover. Columns (1) to (5) control for the physical task share, the job zone and the log cell wage; column (6) for the log cell wage, with occupation and industry effects, so its only score variation is the cell wage. The within-occupation coefficients are per standard deviation of the score within occupations (0.0004, 0.01\% of its variance); the others per overall standard deviation. Standard errors clustered two-way by occupation and industry. Out-of-sample $R^2$: 10-fold cross-validation with folds by occupation, 10 repetitions, unweighted.
+\end{minipage}
+\end{table}

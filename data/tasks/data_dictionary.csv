@@ -1,0 +1,11 @@
+file,column,type,definition,source,attribution
+task_statements.csv,(file),,O*NET 31.0 task statements for the task_ids in xw_task_dwa.csv; built by code/data_part2/12_task_statements.py,"O*NET 31.0 Database (August 2026), task_statements table","This dataset includes information from the O*NET 31.0 Database by the U.S. Department of Labor, Employment and Training Administration (USDOL/ETA). Used under the CC BY 4.0 license. O*NET® is a trademark of USDOL/ETA. The authors of this project have modified all or some of this information. USDOL/ETA has not approved, endorsed, or tested these modifications."
+task_statements.csv,task_id,integer,O*NET task identifier (stable across releases),O*NET task_statements.task_id,
+task_statements.csv,onet_soc,string,O*NET-SOC code of the occupation the task belongs to,O*NET task_statements.onetsoc_code,
+task_statements.csv,soc,string,"OEWS (SOC 2018) code linked to onet_soc; several codes separated by "";""",xw_task_dwa.csv (crosswalk in xw_oews_onetsoc.csv),
+task_statements.csv,task,string,"task statement text, unchanged",O*NET task_statements.task,
+task_statements.csv,task_type,string,core or supplemental (empty where O*NET gives none),"O*NET task_statements.task_type, lower-cased",
+task_statements.csv,incumbents_responding,integer,number of incumbents responding (empty for analyst-rated or unrated tasks),O*NET task_statements.incumbents_responding,
+task_statements.csv,date_updated,date,date O*NET last updated the statement,O*NET task_statements.date_updated,
+task_statements.csv,domain_source,string,"source of the rating data (for example Incumbent, Analyst)",O*NET task_statements.domain_source,
+task_statements.csv,onet_version,string,O*NET database release,constant 31.0,

@@ -1,0 +1,21 @@
+{
+  "oews_vintage": "May 2025",
+  "onet_soc_source": "O*NET 31.0 occupation_data",
+  "n_occ": 830,
+  "employment_total": 155481840.0,
+  "physical_share_coverage_emp": 0.9870544367110654,
+  "licensed_n": 83,
+  "licensed_emp_share": 0.11499786727504639,
+  "licensed_codes_not_in_oews": [
+    "13-2022",
+    "13-2023"
+  ],
+  "eloundou_coverage_emp": 0.9870544367110654,
+  "tomlinson_coverage_emp": 0.9870544367110654,
+  "wage_median_topcoded_n": 0,
+  "onet_match_counts": {
+    "exact": 818,
+    "bls_nem_crosswalk": 12
+  },
+  "onet_unmatched_emp_share": 0.0
+}

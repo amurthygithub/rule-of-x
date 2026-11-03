@@ -1,0 +1,114 @@
+file,column,grounding,definition
+industry_benchmarks.csv,damodaran_industry,a,"Damodaran industry group name, verbatim"
+industry_benchmarks.csv,n_firms,a,Damodaran Jan 2026 value as published (practitioner_dataset_disclosed); file and row in source_rows
+industry_benchmarks.csv,data_date,a,Damodaran Jan 2026 value as published (practitioner_dataset_disclosed); file and row in source_rows
+industry_benchmarks.csv,gross_margin,a,Damodaran Jan 2026 value as published (practitioner_dataset_disclosed); file and row in source_rows
+industry_benchmarks.csv,net_margin,a,Damodaran Jan 2026 value as published (practitioner_dataset_disclosed); file and row in source_rows
+industry_benchmarks.csv,op_margin_pretax_pre_sbc,a,Damodaran Jan 2026 value as published (practitioner_dataset_disclosed); file and row in source_rows
+industry_benchmarks.csv,op_margin_pretax,a,Damodaran Jan 2026 value as published (practitioner_dataset_disclosed); file and row in source_rows
+industry_benchmarks.csv,op_margin_aftertax,a,Damodaran Jan 2026 value as published (practitioner_dataset_disclosed); file and row in source_rows
+industry_benchmarks.csv,op_margin_pretax_lease,a,Damodaran Jan 2026 value as published (practitioner_dataset_disclosed); file and row in source_rows
+industry_benchmarks.csv,op_margin_aftertax_lease,a,Damodaran Jan 2026 value as published (practitioner_dataset_disclosed); file and row in source_rows
+industry_benchmarks.csv,op_margin_pretax_lease_rnd,a,Damodaran Jan 2026 value as published (practitioner_dataset_disclosed); file and row in source_rows
+industry_benchmarks.csv,op_margin_aftertax_lease_rnd,a,Damodaran Jan 2026 value as published (practitioner_dataset_disclosed); file and row in source_rows
+industry_benchmarks.csv,ebitda_sales,a,Damodaran Jan 2026 value as published (practitioner_dataset_disclosed); file and row in source_rows
+industry_benchmarks.csv,ebitda_plus_sga_sales,a,Damodaran Jan 2026 value as published (practitioner_dataset_disclosed); file and row in source_rows
+industry_benchmarks.csv,ebitda_plus_rnd_sales,a,Damodaran Jan 2026 value as published (practitioner_dataset_disclosed); file and row in source_rows
+industry_benchmarks.csv,cogs_sales,a,Damodaran Jan 2026 value as published (practitioner_dataset_disclosed); file and row in source_rows
+industry_benchmarks.csv,rnd_sales,a,Damodaran Jan 2026 value as published (practitioner_dataset_disclosed); file and row in source_rows
+industry_benchmarks.csv,sga_sales,a,Damodaran Jan 2026 value as published (practitioner_dataset_disclosed); file and row in source_rows
+industry_benchmarks.csv,sbc_sales,a,Damodaran Jan 2026 value as published (practitioner_dataset_disclosed); file and row in source_rows
+industry_benchmarks.csv,lease_sales,a,Damodaran Jan 2026 value as published (practitioner_dataset_disclosed); file and row in source_rows
+industry_benchmarks.csv,beta,a,Damodaran Jan 2026 value as published (practitioner_dataset_disclosed); file and row in source_rows
+industry_benchmarks.csv,cost_of_equity,a,Damodaran Jan 2026 value as published (practitioner_dataset_disclosed); file and row in source_rows
+industry_benchmarks.csv,e_over_de,a,Damodaran Jan 2026 value as published (practitioner_dataset_disclosed); file and row in source_rows
+industry_benchmarks.csv,sd_stock,a,Damodaran Jan 2026 value as published (practitioner_dataset_disclosed); file and row in source_rows
+industry_benchmarks.csv,cost_of_debt,a,Damodaran Jan 2026 value as published (practitioner_dataset_disclosed); file and row in source_rows
+industry_benchmarks.csv,tax_rate_wacc_sheet,a,Damodaran Jan 2026 value as published (practitioner_dataset_disclosed); file and row in source_rows
+industry_benchmarks.csv,after_tax_cost_of_debt,a,Damodaran Jan 2026 value as published (practitioner_dataset_disclosed); file and row in source_rows
+industry_benchmarks.csv,d_over_de,a,Damodaran Jan 2026 value as published (practitioner_dataset_disclosed); file and row in source_rows
+industry_benchmarks.csv,cost_of_capital,a,Damodaran Jan 2026 value as published (practitioner_dataset_disclosed); file and row in source_rows
+industry_benchmarks.csv,roe_unadj,a,Damodaran Jan 2026 value as published (practitioner_dataset_disclosed); file and row in source_rows
+industry_benchmarks.csv,roe_rnd_adj,a,Damodaran Jan 2026 value as published (practitioner_dataset_disclosed); file and row in source_rows
+industry_benchmarks.csv,roc_fundgr,a,Damodaran Jan 2026 value as published (practitioner_dataset_disclosed); file and row in source_rows
+industry_benchmarks.csv,reinvestment_rate,a,Damodaran Jan 2026 value as published (practitioner_dataset_disclosed); file and row in source_rows
+industry_benchmarks.csv,expected_growth_ebit,a,Damodaran Jan 2026 value as published (practitioner_dataset_disclosed); file and row in source_rows
+industry_benchmarks.csv,revenue_cagr_5y,a,Damodaran Jan 2026 value as published (practitioner_dataset_disclosed); file and row in source_rows
+industry_benchmarks.csv,sales_to_ic_ltm,a,Damodaran Jan 2026 value as published (practitioner_dataset_disclosed); file and row in source_rows
+industry_benchmarks.csv,roic_pretax,a,Damodaran Jan 2026 value as published (practitioner_dataset_disclosed); file and row in source_rows
+industry_benchmarks.csv,roic_pretax_lease,a,Damodaran Jan 2026 value as published (practitioner_dataset_disclosed); file and row in source_rows
+industry_benchmarks.csv,roic_pretax_lease_rnd,a,Damodaran Jan 2026 value as published (practitioner_dataset_disclosed); file and row in source_rows
+industry_benchmarks.csv,roic_aftertax,a,Damodaran Jan 2026 value as published (practitioner_dataset_disclosed); file and row in source_rows
+industry_benchmarks.csv,roic_aftertax_lease,a,Damodaran Jan 2026 value as published (practitioner_dataset_disclosed); file and row in source_rows
+industry_benchmarks.csv,roic_aftertax_lease_rnd,a,Damodaran Jan 2026 value as published (practitioner_dataset_disclosed); file and row in source_rows
+industry_benchmarks.csv,roic_normalized_10y,a,Damodaran Jan 2026 value as published (practitioner_dataset_disclosed); file and row in source_rows
+industry_benchmarks.csv,small_sample,c,n_firms < 20
+industry_benchmarks.csv,financial_group,c,"the nine financial groups (their firm counts sum to 1,173; Total Market minus non-financials is 1,172)"
+industry_benchmarks.csv,is_total,c,Total Market rows
+industry_benchmarks.csv,sga_sales_derived,c,(EBITDA+SG&A)/Sales - EBITDA/Sales
+industry_benchmarks.csv,sga_identity_gap,c,sga_sales_derived - sga_sales
+industry_benchmarks.csv,rnd_identity_gap,c,(EBITDA+R&D)/Sales - EBITDA/Sales - rnd_sales
+industry_benchmarks.csv,da_sales_implied,c,EBITDA/Sales - pre-tax operating margin
+industry_benchmarks.csv,other_opex_sales_residual,c,1 - COGS - SG&A - R&D - pre-tax operating margin (costs outside the three buckets)
+industry_benchmarks.csv,unbucketed_opex_sales,c,"other_opex_sales_residual - max(da_sales_implied, 0)"
+industry_benchmarks.csv,tax_rate_implied,c,1 - after-tax / pre-tax unadjusted operating margin
+industry_benchmarks.csv,fundgr_suspect,c,1 if the fundgrEB ROC equals another row to all digits (Utility (Water) = Total Market)
+industry_benchmarks.csv,roic_basis,c,"which ROC the k and spread use; fundgrEB = lease and R&D adjusted (matched to roc.html, see notes)"
+industry_benchmarks.csv,k_ic_per_sales,c,"default invested capital per dollar of sales: unadjusted when a ROC table is on disk, else lease_rnd (variant in k_variant)"
+industry_benchmarks.csv,k_variant,c,variant behind k_ic_per_sales
+industry_benchmarks.csv,k_ic_per_sales_unadj,c,after-tax unadjusted margin / unadjusted ROIC (roc.xls)
+industry_benchmarks.csv,k_ic_per_sales_lease,c,lease-adjusted margin / lease-adjusted after-tax ROIC (roc_html.csv or roc.xls)
+industry_benchmarks.csv,k_ic_per_sales_lease_rnd,c,"lease and R&D adjusted margin / matching after-tax ROIC (roc_html.csv or roc.xls, else fundgrEB)"
+industry_benchmarks.csv,k_ic_per_sales_fundgr,c,margin on fundgrEB basis / fundgrEB ROC
+industry_benchmarks.csv,k_flag,c,usability of k
+industry_benchmarks.csv,roic_minus_wacc,c,ROC on roic_basis - cost_of_capital
+industry_benchmarks.csv,reinvestment_sales,c,reinvestment rate x margin on the ROC basis
+industry_benchmarks.csv,reinvestment_flag,c,negative or above-100% reinvestment rates
+industry_benchmarks.csv,k_marginal_implied,c,reinvestment_sales / revenue_cagr_5y (histgr.xls)
+industry_benchmarks.csv,k_ic_per_sales_mgnroc,c,1 / Sales-to-invested-capital (mgnroc.xls)
+industry_benchmarks.csv,source_rows,prov,Excel rows (1-based) in each source file
+xw_damodaran_naics.csv,damodaran_industry,a,group name
+xw_damodaran_naics.csv,n_firms,a,Damodaran firm count
+xw_damodaran_naics.csv,naics_match,b,NAICS 2022 prefixes the engine matches a firm to (precedent-class mapping by name and scope)
+xw_damodaran_naics.csv,naics_match_titles,a,titles from OEWS May 2025 files on disk; unverified where marked
+xw_damodaran_naics.csv,naics_match_verified,c,1 if every prefix is listed in an OEWS file on disk
+xw_damodaran_naics.csv,naics_oews,b,OEWS May 2025 industries whose staffing splits the buckets
+xw_damodaran_naics.csv,naics_oews_titles,a,OEWS titles
+xw_damodaran_naics.csv,match_type,b,"one_to_one, subset, superset, many_to_one, by_size, by_legal_form, by_technology, shared_code, conglomerate, inferred, overlaps_software, total"
+xw_damodaran_naics.csv,confidence,b,"high, medium, low (rules in notes)"
+xw_damodaran_naics.csv,emit_function_shares,c,1 if rows are written to industry_function_shares.csv
+xw_damodaran_naics.csv,financial_group,c,as in benchmarks
+xw_damodaran_naics.csv,small_sample,c,n_firms < 20
+xw_damodaran_naics.csv,notes,b,reasoning
+xw_damodaran_naics.csv,grounding,b,class of the mapping
+xw_damodaran_naics.csv,oews_employment_matched,c,OEWS May 2025 jobs in industries the engine matches to the group (aggregates split equally across components)
+industry_function_shares.csv (non-software rows),naics,b,engine match prefixes from the crosswalk (empty for the generic Total Market row)
+industry_function_shares.csv (non-software rows),size_band,c,'all': Damodaran has no size bands
+industry_function_shares.csv (non-software rows),cost_bucket,c,pool the share is drawn from (sm/ga = parts of SG&A)
+industry_function_shares.csv (non-software rows),share_of_revenue_prior,c,"bucket_share_mean x within_bucket_split; a x c, valid for the NAICS firm by precedent (b)"
+industry_function_shares.csv (non-software rows),share_of_revenue_sd,b+d,"bucket sd (CV of the SEC software panel, b) combined with a 25% relative split sd (d)"
+industry_function_shares.csv (non-software rows),bucket_share_mean,a,"Damodaran COGS, R&D or SG&A over sales (negatives clipped at 0; small pools merged, d)"
+industry_function_shares.csv (non-software rows),bucket_share_sd,b,CV of firm-mean bucket shares in the SEC software panel x bucket_share_mean
+industry_function_shares.csv (non-software rows),bucket_share_median,n/a,empty: Damodaran publishes aggregates only
+industry_function_shares.csv (non-software rows),within_bucket_split,c,OEWS May 2025 wage bill share within the pool (FUNC_SOC allocation and residual rule are d)
+industry_function_shares.csv (non-software rows),within_bucket_range,d,2 x assumed split sd (same convention as the software rows)
+industry_function_shares.csv (non-software rows),within_bucket_assumed,c,"False: the split is computed from OEWS data, not assumed"
+industry_function_shares.csv (non-software rows),n_firms,a,Damodaran firm count
+industry_function_shares.csv (non-software rows),years,prov,data date
+industry_function_shares.csv (non-software rows),source,prov,sources
+industry_function_shares.csv (non-software rows),damodaran_industry,b,group the row comes from
+industry_function_shares.csv (non-software rows),prior_basis,prov,sec_panel or damodaran_oews
+industry_function_shares.csv (non-software rows),source_bucket,c,"Damodaran bucket the pool belongs to (cogs, rnd, sga)"
+industry_function_shares.csv (non-software rows),bucket_reassigned_from,d,pool merged because its bucket is below 0.5% of sales
+industry_function_shares.csv (non-software rows),within_bucket_method,prov,method text
+industry_function_shares.csv (non-software rows),residual_share_of_function_wagebill,c,share of the function wage bill assigned by the SOC residual rule (d)
+industry_function_shares.csv (non-software rows),negative_bucket_clipped,c,buckets negative in the source
+industry_function_shares.csv (non-software rows),unbucketed_cost_share,c,unbucketed_opex_sales of the group
+industry_function_shares.csv (non-software rows),unbucketed_cost_flag,c,1 if unbucketed_cost_share > 0.05
+industry_function_shares.csv (non-software rows),crosswalk_confidence,b,from the crosswalk
+industry_function_shares.csv (non-software rows),small_sample,c,n_firms < 20
+industry_function_shares.csv (non-software rows),financial_group,c,financial group flag
+industry_function_shares.csv (non-software rows),grounding_bucket,prov,class of bucket_share_mean
+industry_function_shares.csv (non-software rows),grounding_within,prov,class of within_bucket_split
+industry_function_shares.csv (non-software rows),grounding_sd,prov,class of share_of_revenue_sd
+industry_function_shares.csv (non-software rows),grounding_naics,prov,class of the NAICS link

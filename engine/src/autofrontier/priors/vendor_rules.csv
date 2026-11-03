@@ -1,0 +1,16 @@
+pattern,category,confidence
+bpo|contact cent(er|re)|call cent(er|re)|customer care services|support services|support partners,bpo_customer_support,0.85
+finance and accounting outsourc|f&a outsourc|accounts payable services|bookkeeping services|ap services,bpo_finance,0.85
+payroll services|benefits admin|peo\b,bpo_hr,0.8
+it outsourc|managed it|managed services|help ?desk services|service desk services,it_outsourcing,0.8
+staff(ing)? aug|contract(or)? staffing|temporary staffing|talent solutions|consulting engineers|software development services|nearshore|offshore development,staff_augmentation,0.75
+recruit|search firm|executive search|staffing agency,recruiting,0.75
+llp|law firm|attorneys|legal services|counsel,legal_services,0.8
+audit|cpa|accountants|tax advisory,audit_tax_services,0.7
+consult|advisory|partners,consulting,0.55
+agency|creative|media buying|advertising|marketing services|seo services,marketing_agency,0.7
+cloud|hosting|data cent(er|re)|compute|gpu|infrastructure,cloud_infrastructure,0.8
+software|saas|subscription|license|platform|\.io\b|\.ai\b|systems,software_saas,0.6
+janitorial|cleaning|facility services|facilities management|security services|guard services,facilities_services,0.8
+real estate|landlord|properties|rent,real_estate,0.75
+travel|airline|hotel,travel,0.7

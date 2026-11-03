@@ -1,0 +1,14 @@
+(a) 2023-25 m_op: phi95(0)=0.308; median S&M share of top-decile-margin firm-years (g>=0) = 0.163 (n=57)
+(a) 2023-25 m_fcf_sbc: phi95(0)=0.272; median S&M share of top-decile-margin firm-years (g>=0) = 0.193 (n=57)
+(a) all m_op: phi95(0)=0.331; median S&M share of top-decile-margin firm-years (g>=0) = 0.190 (n=250)
+(a) all m_fcf_sbc: phi95(0)=0.301; median S&M share of top-decile-margin firm-years (g>=0) = 0.201 (n=250)
+(b) alpha(no FE)=0.238; implied lambda*h quantiles p50,p75,p90,p95,p99 = [0.172 0.32  0.56  0.78  1.36 ]
+    at alpha=0.25: [0.175 0.324 0.564 0.788 1.385]  mean= 0.258
+(c) 2023-25 m_fcf_sbc: P95 R lo-k=0.541, hi-k=0.402; P90 lo=0.441 hi=0.341; edge lo=0.35, hi=0.3
+(c) 2023-25 m_op: P95 R lo-k=0.490, hi-k=0.454; P90 lo=0.420 hi=0.376; edge lo=0.35, hi=0.3
+    capex reported missing (set to zero) share by hi_k in 2023-25: {0.0: 0.086, 1.0: 0.014}
+(d) g>=50%: n=278, acq_pay and gw_jump both missing: 0.137; flagged=0.241
+(e) alpha=0.25, lh=0.25: marginal growth per point of spend at sigma=0.34: 0.140; implied X=1/mg=7.1; optimal sigma at X=1: 0.0248
+(e) alpha=0.25, lh=0.15: marginal growth per point of spend at sigma=0.34: 0.084; implied X=1/mg=11.9; optimal sigma at X=1: 0.0126
+(e) alpha=0.2, lh=0.24: marginal growth per point of spend at sigma=0.34: 0.114; implied X=1/mg=8.8; optimal sigma at X=1: 0.0225
+(e) alpha=0.43, lh=0.33: marginal growth per point of spend at sigma=0.34: 0.262; implied X=1/mg=3.8; optimal sigma at X=1: 0.0325

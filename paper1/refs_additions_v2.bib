@@ -1,0 +1,1052 @@
+% =============================================================================
+% refs_additions_v2.bib   (literature agent, revision v2, 29 October 2026)
+%
+% New and corrected entries for Paper 1. Every entry was read at a publisher,
+% working-paper-series, preprint-server, registry (Crossref) or issuer page on
+% 29 October 2026; the route is recorded per entry in notes/lit_pass_v2.md
+% (section b and section c). Fields that could not be confirmed are left out.
+% No existing .tex or .bib file was edited.
+%
+% Sections
+%   A. Corrected entries. Same keys as in paper1/refs_paper1.bib; replace the
+%      old entry. The `note` field says what changed.
+%   B. New entries supporting the corrections (BTOS wording, METR, Stevens).
+%   C. New literature: customer capital, advertising dynamics, managerial
+%      theories, common-cause failure, entry and market structure.
+%   D. New literature: AI economics (the 14 references of
+%      fable_referee_io_ai.md section 5, plus verified extras).
+%   E. New sources behind parameters (Task 3), one entry per source.
+%   F. Entries identical to existing part2 entries (same key, same core
+%      fields). Included so that this file is self-contained; drop on merge.
+%
+% Class tags used in notes: (secondary) = read through a secondary report;
+% (vendor) = data published by a vendor about its own product or customers.
+% =============================================================================
+
+
+% -----------------------------------------------------------------------------
+% A. CORRECTED ENTRIES (replace the entries of the same key)
+% -----------------------------------------------------------------------------
+
+@techreport{demirer2025emerging,
+  author      = {Demirer, Mert and Fradkin, Andrey and Tadelis, Nadav and Peng, Sida},
+  title       = {The Emerging Market for Intelligence: Pricing, Supply, and Demand for {LLMs}},
+  institution = {National Bureau of Economic Research},
+  type        = {NBER Working Paper},
+  number      = {34608},
+  year        = {2025},
+  month       = dec,
+  doi         = {10.3386/w34608},
+  note        = {Preliminary. Revision 2 note: the elasticity of about -1.11 (standard error 0.22; 32,539 provider-model-day observations; Table 2, specification 3; Section 7.3) is a within-model elasticity across inference providers of the same open-weight model on OpenRouter, not a firm or market demand elasticity. The authors state that aggregate demand elasticities are substantially smaller, read the result as going against a short-run Jevons paradox at the market level, and say it does not preclude Jevons effects at longer horizons. Author version dated 12 December 2025}
+}
+
+@article{demirer2026emerging,
+  author  = {Demirer, Mert and Fradkin, Andrey and Tadelis, Nadav},
+  title   = {The Emerging Market for Intelligence: How Firms Buy and Sell {AI}},
+  journal = {Journal of Economic Perspectives},
+  volume  = {40},
+  number  = {3},
+  pages   = {23--46},
+  year    = {2026},
+  doi     = {10.1257/jep.20261506},
+  note    = {Revision 2 note: the AEA abstract reports supply growth, a roughly thousandfold fall in the price of intelligence, 90 percent lower prices for open-source models, turnover and differentiation, and no elasticity. The elasticity estimates belong to the working paper (demirer2025emerging); the full text of this article was not read in the literature pass, so cite it for the market facts only}
+}
+
+@misc{iconiq2026state,
+  author       = {{ICONIQ}},
+  title        = {2026 State of {AI} Report: The Builder's Economy},
+  howpublished = {ICONIQ Venture \& Growth},
+  year         = {2026},
+  month        = jul,
+  note         = {July 2026 edition, third in the series. Revision 2 note: proprietary Q2 2026 survey of about 300 executives at software companies building AI products (87 percent North America), not a sample of software firms in general. AI product gross margin 45 percent in 2025, projected 53 percent in 2026 and 59 percent in 2027. Spending on AI for internal productivity, including direct and indirect spend (not itemized), 11 percent of revenue in 2025, projected 16 percent in 2026 and heading toward 19 percent in 2027; the report says many companies underestimate the true cost. Talent is described as the largest cost category of customer-facing AI products, not of internal spend. Accessed 29 October 2026},
+  url          = {https://iconiq.com/growth/reports/state-of-ai-2026}
+}
+
+@misc{gundlach2025price,
+  author        = {Gundlach, Hans and Lynch, Jayson and Mertens, Matthias and Thompson, Neil},
+  title         = {The Price of Progress: Price Performance and the Future of {AI}},
+  year          = {2025},
+  eprint        = {2511.23455},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.LG},
+  note          = {arXiv:2511.23455, first submitted 28 November 2025, version 2 of 23 March 2026; preprint, not peer reviewed. Revision 2 note: the price of a fixed benchmark performance fell by about 5 to 10 times a year for models on the cost-performance Pareto frontier, April 2024 to November 2025 (Section 2.3; GPQA-Diamond 5.3, AIME 11.7, SWE-bench Verified 4.7 with a 90 percent interval of 0.68 to 32; all-model estimates are smaller). Separately, the cost of running the record-performance model on each benchmark rose by 3 to 18 times a year (Section 5), because token volume rises, not because per-token prices rise}
+}
+
+@techreport{bonney2024tracking,
+  author      = {Bonney, Kathryn and Breaux, Cory and Buffington, Cathy and Dinlersoz, Emin and Foster, Lucia S. and Goldschlag, Nathan and Haltiwanger, John C. and Kroff, Zachary and Savage, Keith},
+  title       = {Tracking Firm Use of {AI} in Real Time: A Snapshot from the {Business Trends and Outlook Survey}},
+  institution = {National Bureau of Economic Research},
+  type        = {NBER Working Paper},
+  number      = {32319},
+  year        = {2024},
+  month       = apr,
+  doi         = {10.3386/w32319},
+  note        = {Revision 2 note: biweekly BTOS estimates for September 2023 to February 2024 rose from 3.7 to 5.4 percent of firms, with 6.6 percent expected by early fall 2024, under the question whether the business used AI in producing goods or services. The Census Bureau replaced that wording with a broader question from 17 November 2025; see census2025btoswording and allen2026monitoring before comparing with the 2026 series}
+}
+
+@techreport{bonney2026microstructure,
+  author      = {Bonney, Kathryn and Breaux, Cory L. and Dinlersoz, Emin and Foster, Lucia S. and Haltiwanger, John C. and Pande, Aditya A.},
+  title       = {The Microstructure of {AI} Diffusion: Evidence from Firms, Business Functions, and Worker Tasks},
+  institution = {National Bureau of Economic Research},
+  type        = {NBER Working Paper},
+  number      = {35141},
+  year        = {2026},
+  month       = apr,
+  doi         = {10.3386/w35141},
+  note        = {Revision 2 note: 2026 AI supplement to the BTOS; during November 2025 to January 2026, 18 percent of firms (32 percent employment-weighted) used AI in at least one business function. The question was broadened on 17 November 2025 (use in any business function), so this level is not comparable with the 3.7 to 5.4 percent of bonney2024tracking. Among adopters 57 percent use AI in three or fewer functions, 66 percent of firms use AI for task augmentation and employment reductions are rare (2 percent). Regressions show a positive relationship between firm performance and integration breadth (an association, not an effect); functional deployment and operational investment are associated with employment declines. The earlier note on a Census CES working paper number was not confirmed and is dropped}
+}
+
+@article{terry2023macro,
+  author  = {Terry, Stephen J.},
+  title   = {The Macro Impact of Short-Termism},
+  journal = {Econometrica},
+  volume  = {91},
+  number  = {5},
+  pages   = {1881--1912},
+  year    = {2023},
+  doi     = {10.3982/ECTA15420},
+  note    = {Revision 2 note: in the data, firms that just meet Wall Street forecasts have lower R\&D growth and subsequent innovation, and managers who just miss receive lower pay; an estimated endogenous growth model shows that short-termism slows growth. The article does not say that such firms cut R\&D spending}
+}
+
+@techreport{hampole2025artificial,
+  author      = {Hampole, Menaka and Papanikolaou, Dimitris and Schmidt, Lawrence D. W. and Seegmiller, Bryan},
+  title       = {Artificial Intelligence and the Labor Market},
+  institution = {National Bureau of Economic Research},
+  type        = {NBER Working Paper},
+  number      = {33509},
+  year        = {2025},
+  month       = feb,
+  doi         = {10.3386/w33509},
+  note        = {Revision 2 note: revised September 2025. Firm AI adoption is measured by internally developed AI applications extracted from resumes (Revelio Labs), Compustat firms, 2014 to 2023, instrumented by a shift-share university-hiring instrument. Section 3.2, Table 4: a one standard deviation increase in AI adoption raises five-year firm revenue growth by 9.7 percentage points, total factor productivity growth by 7.5 points and employment by 6.8 points (IV); the abstract states only that labor demand rises at adopting firms}
+}
+
+
+% -----------------------------------------------------------------------------
+% B. NEW ENTRIES SUPPORTING THE CORRECTIONS
+% -----------------------------------------------------------------------------
+
+@misc{census2025btoswording,
+  author       = {{U.S. Census Bureau}},
+  title        = {{AI} Question Wording Updates},
+  howpublished = {Business Trends and Outlook Survey (BTOS) documentation},
+  year         = {2025},
+  note         = {Old wording: in the last two weeks, did this business use AI in producing goods or services. New wording, fielded from 17 November 2025: in any of its business functions. A separate time series starts with data released 4 December 2025 because of a level shift. Accessed 29 October 2026},
+  url          = {https://www.census.gov/hfp/btos/downloads/AI%20Question%20Wording%20Updates.pdf}
+}
+
+@misc{allen2026monitoring,
+  author       = {Allen, Jeffrey S.},
+  title        = {Monitoring {AI} Adoption in the {US} Economy},
+  howpublished = {FEDS Notes, Board of Governors of the Federal Reserve System},
+  year         = {2026},
+  month        = apr,
+  note         = {Published 3 April 2026. Reports that the November 2025 revision raised measured adoption in the five industries examined by 47 percent (10.6 points, professional services) to 159 percent (7.5 points, manufacturing), and that adoption stood at about 18 percent of firms at the end of 2025 on a four-period moving average},
+  doi          = {10.17016/2380-7172.4032}
+}
+
+@misc{metr2026th11,
+  author       = {{METR}},
+  title        = {Time Horizon 1.1},
+  howpublished = {METR blog},
+  year         = {2026},
+  month        = jan,
+  note         = {Published 29 January 2026. Task suite enlarged from 170 to 228 tasks; 50 percent time horizon doubling time 131 days since 2023 (130.8, interval 107 to 161) and 89 days since 2024 (88.6) under TH1.1, against 165 and 109 days under TH1.0. The page says nothing about the cost of runs. Accessed 29 October 2026},
+  url          = {https://metr.org/blog/2026-01-29-time-horizon-1-1/}
+}
+
+@misc{metr2026evalanalysis,
+  author       = {{METR}},
+  title        = {{eval-analysis-public}: Analysis Code and Data for {METR}'s Time Horizon Methodology},
+  howpublished = {GitHub repository},
+  year         = {n.d.},
+  note         = {Repository README: ``Public repository containing METR's DVC pipeline for eval data analysis''; reports/time-horizon-1-0 holds data/raw/runs.jsonl. The README lists no cost field among the key fields of runs.jsonl and does not show the full schema, so the run-cost shares used for the compute-share bracket (0.4 to 1.1 percent of the human baseline cost) are the authors' computation and were not confirmed at the source in the literature pass. Accessed 29 October 2026},
+  url          = {https://github.com/METR/eval-analysis-public}
+}
+
+@misc{stevens2026payrolls,
+  author        = {Stevens, Ryan},
+  title         = {Payrolls to Prompts: Firm-Level Evidence on the Substitution of Labor for {AI}},
+  year          = {2026},
+  eprint        = {2602.00139},
+  archivePrefix = {arXiv},
+  primaryClass  = {econ.GN},
+  note          = {arXiv:2602.00139, submitted 28 January 2026; preprint. Payments data from a large U.S. expense-management platform, Q3 2021 to Q3 2025; difference in differences around ChatGPT's release; among the most exposed firms each 1 dollar decline in online-labor-marketplace spending goes with about 0.03 dollars of additional AI spending},
+  url           = {https://arxiv.org/abs/2602.00139}
+}
+
+
+% -----------------------------------------------------------------------------
+% C. NEW LITERATURE: CUSTOMER CAPITAL, ADVERTISING DYNAMICS, MANAGERIAL
+%    THEORY, COMMON-CAUSE FAILURE, ENTRY AND MARKET STRUCTURE
+% -----------------------------------------------------------------------------
+
+@article{arkolakis2010market,
+  author  = {Arkolakis, Costas},
+  title   = {Market Penetration Costs and the New Consumers Margin in International Trade},
+  journal = {Journal of Political Economy},
+  volume  = {118},
+  number  = {6},
+  pages   = {1151--1199},
+  year    = {2010},
+  month   = dec,
+  doi     = {10.1086/657949},
+  note    = {Working paper version: NBER Working Paper 14214 (August 2008), doi:10.3386/w14214}
+}
+
+@article{gourio2014customer,
+  author  = {Gourio, Francois and Rudanko, Leena},
+  title   = {Customer Capital},
+  journal = {The Review of Economic Studies},
+  volume  = {81},
+  number  = {3},
+  pages   = {1102--1136},
+  year    = {2014},
+  doi     = {10.1093/restud/rdu007}
+}
+
+@article{drozd2012understanding,
+  author  = {Drozd, Lukasz A. and Nosal, Jaromir B.},
+  title   = {Understanding International Prices: Customers as Capital},
+  journal = {American Economic Review},
+  volume  = {102},
+  number  = {1},
+  pages   = {364--395},
+  year    = {2012},
+  month   = feb,
+  doi     = {10.1257/aer.102.1.364}
+}
+
+@article{foster2016slow,
+  author  = {Foster, Lucia and Haltiwanger, John and Syverson, Chad},
+  title   = {The Slow Growth of New Plants: Learning about Demand?},
+  journal = {Economica},
+  volume  = {83},
+  number  = {329},
+  pages   = {91--129},
+  year    = {2016},
+  month   = jan,
+  doi     = {10.1111/ecca.12172},
+  note    = {Published in Economica, not in the American Economic Review. Working paper version: NBER Working Paper 17853 (February 2012), doi:10.3386/w17853}
+}
+
+@article{vitorino2014understanding,
+  author  = {Vitorino, Maria Ana},
+  title   = {Understanding the Effect of Advertising on Stock Returns and Firm Value: Theory and Evidence from a Structural Model},
+  journal = {Management Science},
+  volume  = {60},
+  number  = {1},
+  pages   = {227--245},
+  year    = {2014},
+  doi     = {10.1287/mnsc.2013.1748}
+}
+
+@article{belo2022decomposing,
+  author  = {Belo, Frederico and Gala, Vito D. and Salomao, Juliana and Vitorino, Maria Ana},
+  title   = {Decomposing Firm Value},
+  journal = {Journal of Financial Economics},
+  volume  = {143},
+  number  = {2},
+  pages   = {619--639},
+  year    = {2022},
+  month   = feb,
+  doi     = {10.1016/j.jfineco.2021.08.007},
+  note    = {Online 14 August 2021. Working paper version: NBER Working Paper 26112 (July 2019), doi:10.3386/w26112}
+}
+
+@article{sethi1973optimal,
+  author  = {Sethi, Suresh P.},
+  title   = {Optimal Control of the {Vidale-Wolfe} Advertising Model},
+  journal = {Operations Research},
+  volume  = {21},
+  number  = {4},
+  pages   = {998--1013},
+  year    = {1973},
+  doi     = {10.1287/opre.21.4.998},
+  note    = {The Crossref record gives the family name only; the given names are taken from the 1994 survey (feichtinger1994dynamic)}
+}
+
+@article{sethi1977dynamic,
+  author  = {Sethi, Suresh P.},
+  title   = {Dynamic Optimal Control Models in Advertising: A Survey},
+  journal = {SIAM Review},
+  volume  = {19},
+  number  = {4},
+  pages   = {685--725},
+  year    = {1977},
+  doi     = {10.1137/1019106},
+  note    = {The Crossref record gives the family name only; the given names are taken from the 1994 survey (feichtinger1994dynamic)}
+}
+
+@article{feichtinger1994dynamic,
+  author  = {Feichtinger, Gustav and Hartl, Richard F. and Sethi, Suresh P.},
+  title   = {Dynamic Optimal Control Models in Advertising: Recent Developments},
+  journal = {Management Science},
+  volume  = {40},
+  number  = {2},
+  pages   = {195--226},
+  year    = {1994},
+  month   = feb,
+  doi     = {10.1287/mnsc.40.2.195}
+}
+
+@article{mankiw1986free,
+  author  = {Mankiw, N. Gregory and Whinston, Michael D.},
+  title   = {Free Entry and Social Inefficiency},
+  journal = {The RAND Journal of Economics},
+  volume  = {17},
+  number  = {1},
+  pages   = {48--58},
+  year    = {1986},
+  doi     = {10.2307/2555627},
+  note    = {DOI and bibliographic data confirmed in the Crossref record; also read at EconPapers and the author's page}
+}
+
+@article{dixit1977monopolistic,
+  author  = {Dixit, Avinash K. and Stiglitz, Joseph E.},
+  title   = {Monopolistic Competition and Optimum Product Diversity},
+  journal = {American Economic Review},
+  volume  = {67},
+  number  = {3},
+  pages   = {297--308},
+  year    = {1977},
+  note    = {No DOI confirmed; bibliographic data read at EconPapers},
+  url     = {https://econpapers.repec.org/RePEc:aea:aecrev:v:67:y:1977:i:3:p:297-308}
+}
+
+@incollection{farrell2007coordination,
+  author    = {Farrell, Joseph and Klemperer, Paul},
+  title     = {Coordination and Lock-In: Competition with Switching Costs and Network Effects},
+  booktitle = {Handbook of Industrial Organization},
+  publisher = {Elsevier},
+  pages     = {1967--2072},
+  year      = {2007},
+  doi       = {10.1016/S1573-448X(06)03031-7},
+  note      = {Chapter 31. The Crossref record gives the series identifier, the page range and the year but not the volume number or the editors}
+}
+
+@article{sethuraman2011advertising,
+  author  = {Sethuraman, Raj and Tellis, Gerard J. and Briesch, Richard A.},
+  title   = {How Well Does Advertising Work? Generalizations from Meta-Analysis of Brand Advertising Elasticities},
+  journal = {Journal of Marketing Research},
+  volume  = {48},
+  number  = {3},
+  pages   = {457--471},
+  year    = {2011},
+  month   = jun,
+  doi     = {10.1509/jmkr.48.3.457},
+  note    = {Mean short-term advertising elasticity 0.12 and long-term 0.24 (abstract). The working paper version reports 872 estimates from 57 studies, 1960 to 2008 (SSRN 1866002). A level elasticity of sales; it does not map onto the spend elasticity of growth in excess of market growth}
+}
+
+@techreport{mosleh1989nureg4780,
+  author      = {Mosleh, A. and Fleming, K. N. and Parry, G. W. and Paula, H. M. and Worledge, D. H. and Rasmuson, D. M.},
+  title       = {Procedures for Treating Common Cause Failures in Safety and Reliability Studies: Analytical Background and Techniques},
+  institution = {U.S. Nuclear Regulatory Commission},
+  type        = {NUREG/CR-4780},
+  number      = {Volume 2},
+  year        = {1989},
+  month       = jan,
+  note        = {The OSTI record lists the further report numbers NP-5613 (the prefix is printed as ERRI there) and PLG-0547. Manuscript completed October 1988. Volume 1 (procedural framework) is dated January 1988 in the NRC reference listing. Read at OSTI; the NRC listing gives no authors},
+  url         = {https://www.osti.gov/servlets/purl/6564737}
+}
+
+@techreport{mosleh1998nureg5485,
+  author      = {Mosleh, A. and Rasmuson, D. M. and Marshall, F. M.},
+  title       = {Guidelines on Modeling Common-Cause Failures in Probabilistic Risk Assessment},
+  institution = {U.S. Nuclear Regulatory Commission},
+  type        = {NUREG/CR-5485},
+  number      = {INEEL/EXT-97-01327},
+  year        = {1998},
+  month       = nov,
+  note        = {Manuscript completed June 1998; prepared by the Idaho National Engineering and Environmental Laboratory with the University of Maryland. Author names read from a scanned title page whose text is partly garbled},
+  url         = {https://nrcoe.inl.gov/publicdocs/CCF/NUREGCR-5485_Guidelines%20on%20Modeling%20Common-Cause%20Failures%20in%20PRA.pdf}
+}
+
+@incollection{hokstad2008common,
+  author    = {Hokstad, Per and Rausand, Marvin},
+  title     = {Common Cause Failure Modeling: Status and Trends},
+  booktitle = {Handbook of Performability Engineering},
+  editor    = {Misra, Krishna B.},
+  publisher = {Springer},
+  address   = {London},
+  pages     = {621--640},
+  year      = {2008},
+  doi       = {10.1007/978-1-84800-131-2_39},
+  note      = {The abstract states that the beta-factor model is still the most commonly used common cause failure model}
+}
+
+@article{eckhardt1985theoretical,
+  author  = {Eckhardt, D. E. and Lee, L. D.},
+  title   = {A Theoretical Basis for the Analysis of Multiversion Software Subject to Coincident Errors},
+  journal = {IEEE Transactions on Software Engineering},
+  volume  = {SE-11},
+  number  = {12},
+  pages   = {1511--1517},
+  year    = {1985},
+  month   = dec,
+  doi     = {10.1109/TSE.1985.231895}
+}
+
+@article{littlewood1989conceptual,
+  author  = {Littlewood, B. and Miller, D. R.},
+  title   = {Conceptual Modeling of Coincident Failures in Multiversion Software},
+  journal = {IEEE Transactions on Software Engineering},
+  volume  = {15},
+  number  = {12},
+  pages   = {1596--1614},
+  year    = {1989},
+  doi     = {10.1109/32.58771}
+}
+
+@article{knight1986experimental,
+  author  = {Knight, John C. and Leveson, Nancy G.},
+  title   = {An Experimental Evaluation of the Assumption of Independence in Multiversion Programming},
+  journal = {IEEE Transactions on Software Engineering},
+  volume  = {SE-12},
+  number  = {1},
+  pages   = {96--109},
+  year    = {1986},
+  month   = jan,
+  doi     = {10.1109/TSE.1986.6312924}
+}
+
+
+% -----------------------------------------------------------------------------
+% D. NEW LITERATURE: AI ECONOMICS (Fable list items 3 and 14 are new keys; the
+%    other items of the list are in section F)
+% -----------------------------------------------------------------------------
+
+@article{goldfarb2019digital,
+  author  = {Goldfarb, Avi and Tucker, Catherine},
+  title   = {Digital Economics},
+  journal = {Journal of Economic Literature},
+  volume  = {57},
+  number  = {1},
+  pages   = {3--43},
+  year    = {2019},
+  month   = mar,
+  doi     = {10.1257/jel.20171452},
+  note    = {The review focuses on five costs that digitization reduces: search, copying, transport, tracking and verification (EconPapers abstract; Crossref record for the bibliographic data)}
+}
+
+@article{ge2017benefits,
+  author  = {Ge, Weili and Koester, Allison and McVay, Sarah},
+  title   = {Benefits and Costs of {Sarbanes-Oxley} Section 404(b) Exemption: Evidence from Small Firms' Internal Control Disclosures},
+  journal = {Journal of Accounting and Economics},
+  volume  = {63},
+  number  = {2--3},
+  pages   = {358--384},
+  year    = {2017},
+  doi     = {10.1016/j.jacceco.2017.01.001},
+  note    = {Abstract: exemption saved firms about 388 million dollars in audit fees in 2007 to 2014; costs of misreported internal control effectiveness were about 719 million dollars of lower operating performance and a 935 million dollar delay in the market value decline. Aggregate figures for exempt firms, not a per-firm attestation cost}
+}
+
+@article{agrawal2019exploring,
+  author  = {Agrawal, Ajay and Gans, Joshua S. and Goldfarb, Avi},
+  title   = {Exploring the Impact of Artificial Intelligence: Prediction versus Judgment},
+  journal = {Information Economics and Policy},
+  volume  = {47},
+  pages   = {1--6},
+  year    = {2019},
+  month   = jun,
+  doi     = {10.1016/j.infoecopol.2019.05.001},
+  note    = {Not the same paper as agrawal2019artificial of the part 2 bibliography (Journal of Economic Perspectives 33(2))}
+}
+
+@article{autor2020fall,
+  author  = {Autor, David and Dorn, David and Katz, Lawrence F. and Patterson, Christina and Van Reenen, John},
+  title   = {The Fall of the Labor Share and the Rise of Superstar Firms},
+  journal = {The Quarterly Journal of Economics},
+  volume  = {135},
+  number  = {2},
+  pages   = {645--709},
+  year    = {2020},
+  doi     = {10.1093/qje/qjaa004}
+}
+
+@article{gans2026market,
+  author  = {Gans, Joshua S.},
+  title   = {Market Power in Artificial Intelligence},
+  journal = {Annual Review of Economics},
+  volume  = {18},
+  number  = {1},
+  pages   = {417--445},
+  year    = {2026},
+  doi     = {10.1146/annurev-economics-051624-061832},
+  note    = {Earlier version: NBER Working Paper 32270 (March 2024), doi:10.3386/w32270. Supersedes gans2024market of the part 2 bibliography}
+}
+
+% -----------------------------------------------------------------------------
+% E. NEW SOURCES BEHIND PARAMETERS (Task 3)
+% -----------------------------------------------------------------------------
+
+@misc{ciodive2025spglobal,
+  author       = {Wilkinson, Lindsey},
+  title        = {{AI} Project Failure Rates Are on the Rise: Report},
+  howpublished = {CIO Dive, reporting an S\&P Global Market Intelligence survey},
+  year         = {2025},
+  month        = mar,
+  note         = {Published 14 March 2025. Secondary source: survey of more than 1,000 respondents in North America and Europe; the average organization scrapped 46 percent of AI proofs of concept before production, and 42 percent of companies abandoned most AI initiatives, up from 17 percent a year earlier. The fielding period is not stated and the S\&P Global report was not read. Accessed 29 October 2026},
+  url          = {https://www.ciodive.com/news/AI-project-fail-data-SPGlobal/742590/}
+}
+
+@misc{bcg2020flipping,
+  author       = {Forth, Patrick and Reichert, Tom and de Laubier, Romain and Chakraborty, Saibal},
+  title        = {Flipping the Odds of Digital Transformation Success},
+  howpublished = {Boston Consulting Group},
+  year         = {2020},
+  month        = oct,
+  note         = {Published 29 October 2020. Survey of 825 senior executives plus BCG data on 70 companies; the survey period is not stated. Self-rated outcomes: 30 percent win zone, 44 percent worry zone, 26 percent woe zone; 80 percent success when all six factors are present. Consultancy survey. Accessed 29 October 2026},
+  url          = {https://www.bcg.com/publications/2020/increasing-odds-of-success-in-digital-transformation}
+}
+
+@misc{mckinsey2021losing,
+  author       = {Bucy, Michael and Schaninger, Bill and VanAkin, Kate and Weddle, Brooke},
+  title        = {Losing from Day One: Why Even Successful Transformations Fall Short},
+  howpublished = {McKinsey \& Company},
+  year         = {2021},
+  month        = dec,
+  note         = {Published 7 December 2021. Online survey of 1,034 participants in a transformation in the past five years, in the field 18 May to 29 June 2021: successful transformations realized 67 percent of the maximum financial benefits, others 37 percent; about half of the value in the first 18 months; top-quartile firms in McKinsey's database capture 74 percent within 12 months. Consultancy survey, self-reported. Accessed 29 October 2026},
+  url          = {https://www.mckinsey.com/capabilities/people-and-organizational-performance/our-insights/successful-transformations}
+}
+
+@misc{kornferry2020tenure,
+  author       = {{Korn Ferry Institute}},
+  title        = {Age and Tenure in the {C-Suite}: {Korn Ferry} Study Reveals Trends by Title and Industry},
+  howpublished = {Press release},
+  year         = {2020},
+  month        = jan,
+  note         = {Released 21 January 2020. C-suite members of the 1,000 largest U.S. companies by revenue, analysis in late 2019: average tenure 4.9 years (CEO 6.9, CIO 4.6, CMO 3.5). Practitioner data. Accessed 29 October 2026},
+  url          = {https://ir.kornferry.com/news-events/press-releases/detail/34/age-and-tenure-in-the-c-suite-korn-ferry-study-reveals}
+}
+
+@misc{bls2026joltsnews,
+  author       = {{U.S. Bureau of Labor Statistics}},
+  title        = {Job Openings and Labor Turnover Survey ({JOLTS}) News Release, {August} 2026},
+  howpublished = {News release of 29 September 2026},
+  year         = {2026},
+  month        = sep,
+  note         = {Total nonfarm layoffs and discharges rate 1.0 percent and separations rate 3.2 percent for August 2026. The title is descriptive; the exact release title was not read. Accessed 29 October 2026},
+  url          = {https://www.bls.gov/news.release/jolts.nr0.htm}
+}
+
+@misc{ians2025budget,
+  author       = {{IANS Research} and {Artico Search}},
+  title        = {2025 Security Budget Benchmark Report},
+  howpublished = {IANS Research},
+  year         = {2025},
+  month        = aug,
+  note         = {Published 5 August 2025. Data on 587 CISOs gathered April to August 2025: security budget 10.9 percent of IT spend (11.9 percent in 2024); against revenue, spending held flat at 0.69 percent. Practitioner survey of CISOs. Accessed 29 October 2026},
+  url          = {https://www.ians.com/insights/ciso-leadership/2025-security-budget-benchmark-report}
+}
+
+@article{asgari2025framework,
+  author  = {Asgari, Elham and Monta{\~n}a-Brown, Nina and Dubois, Magda and Khalil, Saleh and Balloch, Jasmine and Au Yeung, Joshua and Pimenta, Dominic},
+  title   = {A Framework to Assess Clinical Safety and Hallucination Rates of {LLMs} for Medical Text Summarisation},
+  journal = {npj Digital Medicine},
+  volume  = {8},
+  number  = {1},
+  pages   = {274},
+  year    = {2025},
+  month   = may,
+  doi     = {10.1038/s41746-025-01670-7},
+  note    = {Figures read in the medRxiv preprint (doi:10.1101/2024.09.12.24313556): GPT-4-32k, 18 experiments of 25 PriMock consultations (450 transcript-note pairs); 191 of 12,999 note sentences hallucinated (1.47 percent, 44 percent major); 1,712 of 49,590 transcript sentences omitted (3.45 percent, 16.7 percent major). Not re-read in the journal version}
+}
+
+@article{magesh2025hallucination,
+  author  = {Magesh, Varun and Surani, Faiz and Dahl, Matthew and Suzgun, Mirac and Manning, Christopher D. and Ho, Daniel E.},
+  title   = {Hallucination-Free? Assessing the Reliability of Leading {AI} Legal Research Tools},
+  journal = {Journal of Empirical Legal Studies},
+  volume  = {22},
+  number  = {2},
+  pages   = {216--242},
+  year    = {2025},
+  doi     = {10.1111/jels.12413},
+  note    = {Preregistered evaluation, 202 queries; Lexis+ AI and Ask Practical Law AI run 22 March to 22 April 2024, Westlaw AI-Assisted Research 23 to 27 May 2024; the abstract reports that the tools hallucinate between 17 and 33 percent of the time. Per-tool shares read in the author PDF: Lexis+ AI about 17, Westlaw about 33, Ask Practical Law AI about 17}
+}
+
+@article{panko1999applying,
+  author  = {Panko, Raymond R.},
+  title   = {Applying Code Inspection to Spreadsheet Testing},
+  journal = {Journal of Management Information Systems},
+  volume  = {16},
+  number  = {2},
+  pages   = {159--176},
+  year    = {1999},
+  note    = {60 undergraduate MIS students inspected a spreadsheet seeded with eight errors, alone and then in 20 groups of three: individuals found 63 percent, groups 83 percent, and the group phase found no error that individuals had missed. No DOI confirmed; read at the journal site},
+  url     = {https://jmis-web.org/articles/753}
+}
+
+@misc{vectara2026leaderboard,
+  author       = {{Vectara}},
+  title        = {Hallucination Leaderboard: Comparing {LLM} Performance at Producing Hallucinations when Summarizing Short Documents},
+  howpublished = {GitHub repository},
+  year         = {2026},
+  note         = {Vendor leaderboard scored by Vectara's own classifier HHEM-2.3; updated 11 May 2026; 1.8 to 24.2 percent of summaries across listed models (GPT-5.4 7.0, Gemini 2.5 Pro 7.0, Claude Opus 4.6 12.2). Vendor data. Accessed 29 October 2026},
+  url          = {https://github.com/vectara/hallucination-leaderboard}
+}
+
+@misc{salesforce2023form8k,
+  author       = {{Salesforce, Inc.}},
+  title        = {Current Report ({Form 8-K}) of 4 {January} 2023},
+  howpublished = {U.S. Securities and Exchange Commission},
+  year         = {2023},
+  month        = jan,
+  note         = {Reduction of the workforce by approximately 10 percent; charges of approximately 1.4 to 2.1 billion dollars; employee-related actions expected to be substantially complete by the end of fiscal 2024. Accessed 29 October 2026},
+  url          = {https://www.sec.gov/Archives/edgar/data/1108524/000110852423000003/crm-20230104.htm}
+}
+
+@misc{salesforce2024form10k,
+  author       = {{Salesforce, Inc.}},
+  title        = {Annual Report ({Form 10-K}) for the Fiscal Year Ended 31 {January} 2024},
+  howpublished = {U.S. Securities and Exchange Commission},
+  year         = {2024},
+  note         = {Item 1A: the workforce reduction of the January 2023 restructuring plan was substantially completed by the end of fiscal 2024. Restructuring charges and margins were not reached in the part of the filing that could be read. Accessed 29 October 2026},
+  url          = {https://www.sec.gov/Archives/edgar/data/1108524/000110852424000005/crm-20240131.htm}
+}
+
+@misc{meta2024q4results,
+  author       = {{Meta Platforms, Inc.}},
+  title        = {Meta Reports Fourth Quarter and Full Year 2023 Results; Initiates Quarterly Dividend},
+  howpublished = {Press release},
+  year         = {2024},
+  note         = {Headcount 67,317 at 31 December 2023, down 22 percent year over year; full-year 2023 operating margin 35 percent against 25 percent in 2022; restructuring charges of 3.45 billion dollars. Accessed 29 October 2026},
+  url          = {https://investor.atmeta.com/investor-news/press-release-details/2024/Meta-Reports-Fourth-Quarter-and-Full-Year-2023-Results-Initiates-Quarterly-Dividend/default.aspx}
+}
+
+@misc{meta2025q4release,
+  author       = {{Meta Platforms, Inc.}},
+  title        = {Meta Reports Fourth Quarter and Full Year 2024 Results},
+  howpublished = {Press release of 29 January 2025 (Form 8-K exhibit)},
+  year         = {2025},
+  month        = jan,
+  note         = {Footnote 1: the estimated useful life of certain servers and network assets increased to 5.5 years, effective fiscal 2025, reducing 2025 depreciation by about 2.9 billion dollars. Read through a filing mirror (capedge.com), not at sec.gov. Accessed 29 October 2026},
+  url          = {https://capedge.com/filing/1326801/0001326801-25-000014/META-8K/file/2}
+}
+
+@misc{wef2025futurejobs,
+  author       = {{World Economic Forum}},
+  title        = {The Future of Jobs Report 2025: Digest},
+  howpublished = {World Economic Forum},
+  year         = {2025},
+  note         = {Employer survey: over 1,000 employers representing more than 14 million workers in 55 economies. If the world's workforce were 100 people, 59 would need training by 2030 (29 upskilled in role, 19 upskilled and redeployed, 11 unlikely to receive it); structural churn 22 percent of today's jobs; 40 percent of employers plan to reduce staff where skills become less relevant. Accessed 29 October 2026},
+  url          = {https://www.weforum.org/publications/the-future-of-jobs-report-2025/digest/}
+}
+
+@misc{apqc2025errorfree,
+  author       = {{APQC}},
+  title        = {Percentage of Disbursements That Are First Time Error Free},
+  howpublished = {Open Standards Benchmarking measure},
+  year         = {2025},
+  note         = {Defines the measure as the share of disbursements completed with no follow-up adjustments or corrections; the page shows a sample size of 2,305 (all companies) but the 25th percentile, median and 75th percentile are not displayed without membership. The companion Metric of the Month page (19 February 2025) gives no values. Accessed 29 October 2026},
+  url          = {https://www.apqc.org/what-we-do/benchmarking/open-standards-benchmarking/measures/percentage-disbursements-are-first}
+}
+
+@misc{fraxion2025apbenchmarks,
+  author       = {{Fraxion}},
+  title        = {{AP} Performance Benchmarks},
+  howpublished = {Fraxion blog},
+  year         = {2025},
+  month        = nov,
+  note         = {Secondary source, posted 28 November 2025: top-performing organizations (75th percentile) have 98 percent of disbursements error-free, and high performers report nearly 0.8 percent of payments as duplicate or erroneous, both attributed to APQC through links to CFO.com articles that the literature pass could not locate. Vendor blog. Accessed 29 October 2026},
+  url          = {https://www.fraxion.biz/blog/ap-performance-benchmarks}
+}
+
+@misc{medius2025apaccuracy,
+  author       = {{Medius}},
+  title        = {Benchmarking {AP} Accuracy and Understanding Acceptable Invoice Error Rates},
+  howpublished = {Medius blog},
+  year         = {2025},
+  month        = oct,
+  note         = {Vendor data, posted 24 October 2025: recent customer benchmark data show Medius clients average a 97.5 percent first-time-right rate, best performers 99.1 percent; the standard of 5 percent or less is cited without a source. No sample size, period or method is given. Accessed 29 October 2026},
+  url          = {https://www.medius.com/blog/benchmarking-ap-accuracy-and-understanding-acceptable-invoice-error-rates/}
+}
+
+@misc{auditanalytics2023fees,
+  author       = {{Ideagen Audit Analytics}},
+  title        = {Audit Fee Trends 2003--2022},
+  howpublished = {Ideagen Audit Analytics},
+  year         = {2023},
+  month        = jul,
+  note         = {Page 14: ``In FY2022, average audit fees paid by accelerated filers increased 31\% from FY2021 to \$1,492,375.'' Large accelerated filers averaged \$5,327,646 in FY2022. Read in the PDF by the lead agent, 2 November 2026},
+  url          = {https://www.auditanalytics.com/doc/2023_Audit_Fees_Report.pdf}
+}
+@misc{kpmg2025sox,
+  author       = {{KPMG}},
+  title        = {The 2025 {SOX} Survey},
+  howpublished = {KPMG LLP},
+  year         = {2025},
+  month        = sep,
+  note         = {Web survey of 146 U.S. SOX 404 program owners, April to June 2025, results for fiscal year 2024: average SOX budget 2.3 million dollars (N=114), 15,581 hours, 546 key controls of which 149 IT general controls, 40 in-scope systems on average (17 in FY2022), 16 hours per control test of operating effectiveness. Advisory-firm survey. Survey budget by revenue size (FY2024, p. 12): under 5 billion dollars 1.5 million, 5 to 25 billion 2.7 million, over 25 billion 4.7 million; values read from a text extraction, chart layout and labels verified (archived copy of 18 March 2026; the kpmg.com address returned 404 on 2 November 2026). Accessed 29 October and 2 November 2026},
+  url          = {https://web.archive.org/web/20260318224741/https://kpmg.com/kpmg-us/content/dam/kpmg/pdf/2025/the-2025-sox-survey.pdf}
+}
+
+@inproceedings{kim2025correlated,
+  author       = {Kim, Elliot Myunghoon and Garg, Avi and Peng, Kenny and Garg, Nikhil},
+  title        = {Correlated Errors in Large Language Models},
+  booktitle    = {Proceedings of the 42nd International Conference on Machine Learning},
+  series       = {Proceedings of Machine Learning Research},
+  volume       = {267},
+  pages        = {30038--30066},
+  year         = {2025},
+  editor       = {Singh, Aarti and Fazel, Maryam and Hsu, Daniel and Lacoste-Julien, Simon and Berkenkamp, Felix and Maharaj, Tegan and Wagstaff, Kiri and Zhu, Jerry},
+  note         = {arXiv:2506.07962, submitted 9 June 2025. Error agreement (both models wrong and the same wrong answer): 0.60 on Stanford HELM (71 models, 14,042 questions, baseline 1/3) and 0.423 on the Hugging Face Open LLM Leaderboard (349 models, 12,032 questions, baseline 0.127); also 20 models on 1,800 resume and job description pairs},
+  url          = {https://proceedings.mlr.press/v267/kim25e.html}
+}
+
+@techreport{choi2025dma,
+  author      = {Choi, Jane},
+  title       = {What Happens to App Prices when Developers Pay Lower Commission Fees? Evidence from the {European Union}},
+  institution = {Analysis Group},
+  type        = {Report funded by Apple},
+  year        = {2025},
+  month       = nov,
+  note        = {Sponsor-funded; the author states that the conclusions are her own. After a commission cut of about 10 points under Apple's alternative terms for the EU (from March 2024), 9 percent of about 21,000 products cut prices, median cut 2.5 percent; 41 million transactions, 403 million euros of sales; three months before against three months after enrollment, no control group (a placebo test only). Accessed 29 October 2026},
+  url         = {https://developer.apple.com/download/files/DMA-Study-Nov-2025.pdf}
+}
+
+@article{ganapati2020energy,
+  author  = {Ganapati, Sharat and Shapiro, Joseph S. and Walker, Reed},
+  title   = {Energy Cost Pass-Through in {US} Manufacturing: Estimates and Implications for Carbon Taxes},
+  journal = {American Economic Journal: Applied Economics},
+  volume  = {12},
+  number  = {2},
+  pages   = {303--342},
+  year    = {2020},
+  month   = apr,
+  doi     = {10.1257/app.20180474},
+  note    = {Abstract: 70 percent of energy price-driven changes in input costs get passed through to consumers in the short to medium run, for the industries studied}
+}
+
+@techreport{benedek2015vat,
+  author      = {Benedek, Dora and de Mooij, Ruud A. and Wingender, Philippe},
+  title       = {Estimating {VAT} Pass Through},
+  institution = {International Monetary Fund},
+  type        = {IMF Working Paper},
+  number      = {15/214},
+  year        = {2015},
+  month       = sep,
+  note        = {Dated 30 September 2015; 17 euro-area countries, 1999 to 2013: final pass-through about 100 percent for standard-rate changes, about 30 percent for reduced-rate changes, essentially zero for reclassifications. A later version with a fourth author (Keen) was not read},
+  url         = {https://www.imf.org/en/publications/wp/issues/2016/12/31/estimating-vat-pass-through-43322}
+}
+
+@misc{aleph2026benchmarks,
+  author       = {{Aleph} and {Benchmarkit}},
+  title        = {2026 {Aleph $\times$ Benchmarkit} {SaaS} \& {AI} Performance Benchmarks},
+  howpublished = {Published by Aleph (``CAC payback period'' page)},
+  year         = {2026},
+  month        = jun,
+  note         = {Published 1 June 2026; 342 B2B SaaS and AI-native companies, 198 reporting CAC payback, calendar 2025 actuals: median CAC payback 16 months, blended CAC ratio 1.30 dollars of sales and marketing per dollar of new ARR, new-name CAC ratio 1.63, median magic number 1.37. Page published by Aleph, one of the two authors; the composition of the sample (public or private firms) is not stated. Accessed 29 October 2026},
+  url          = {https://www.getaleph.com/answers/cac-payback-period-saas-2026}
+}
+
+@misc{fed2026sr262,
+  author       = {{Board of Governors of the Federal Reserve System} and {Office of the Comptroller of the Currency} and {Federal Deposit Insurance Corporation}},
+  title        = {{SR} 26-2: Revised Guidance on Model Risk Management},
+  howpublished = {Supervision and Regulation Letter of 17 April 2026},
+  year         = {2026},
+  month        = apr,
+  note         = {Supersedes and replaces SR 11-7 (4 April 2011) and SR 21-8 (9 April 2021); most relevant to banking organizations with over 30 billion dollars in total assets. Attachment, footnote 3: generative AI and agentic AI models are novel and rapidly evolving and are not within the scope of this guidance; the principles apply to traditional statistical and quantitative models and non-generative, non-agentic AI models. Accessed 29 October 2026},
+  url          = {https://www.federalreserve.gov/supervisionreg/srletters/sr2602.htm}
+}
+
+@misc{occ2026bulletin13,
+  author       = {{Office of the Comptroller of the Currency}},
+  title        = {Model Risk Management: Revised Guidance},
+  howpublished = {OCC Bulletin 2026-13 of 17 April 2026},
+  year         = {2026},
+  month        = apr,
+  note         = {Rescinds the Model Risk Management booklet of the Comptroller's Handbook and OCC Bulletins 1997-24, 2011-12 and 2021-19; generative and agentic AI models are outside the guidance; the agencies plan a request for information on banks' use of AI. Accessed 29 October 2026},
+  url          = {https://www.occ.gov/news-issuances/bulletins/2026/bulletin-2026-13.html}
+}
+
+@misc{eu2026reg1744,
+  author       = {{European Parliament} and {Council of the European Union}},
+  title        = {Regulation ({EU}) 2026/1744 of 8 {July} 2026 Amending Regulations ({EU}) 2024/1689, ({EU}) 2018/1139 and ({EU}) 2023/1230 as Regards the Simplification of the Implementation of Harmonised Rules on Artificial Intelligence ({Digital Omnibus on AI})},
+  howpublished = {Official Journal of the European Union, 24 July 2026},
+  year         = {2026},
+  month        = jul,
+  note         = {Recital 40: the date of application of Sections 1, 2 and 3 of Chapter III is set to 2 December 2027 for Article 6(2) and Annex III systems and to 2 August 2028 for Article 6(1) and Annex I systems; recital 46: entry into force on the third day after publication. The operative text of Article 113 was not reached in the literature pass. Accessed 29 October 2026},
+  url          = {https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32026R1744}
+}
+
+@misc{sec2020release3310751,
+  author       = {{U.S. Securities and Exchange Commission}},
+  title        = {Commission Guidance on Management's Discussion and Analysis of Financial Condition and Results of Operations},
+  howpublished = {Release Nos. 33-10751, 34-88094, FR-87; 85 Fed. Reg. 10568 (25 February 2020)},
+  year         = {2020},
+  month        = feb,
+  note         = {Released 30 January 2020, effective 25 February 2020. A key performance indicator or metric should come with a clear definition and calculation, a statement of why it is useful to investors, how management uses it, disclosure of changes in method, and effective controls and procedures. Accessed 29 October 2026},
+  url          = {https://www.govinfo.gov/content/pkg/FR-2020-02-25/html/2020-02296.htm}
+}
+
+@misc{sec2022nongaapcdi,
+  author       = {{U.S. Securities and Exchange Commission, Division of Corporation Finance}},
+  title        = {New Update to Non-{GAAP} Financial Measures Compliance \& Disclosure Interpretations Questions},
+  howpublished = {Announcement of 13 December 2022},
+  year         = {2022},
+  month        = dec,
+  note         = {Updated C\&DIs 100.01, 100.04 to 100.06 and 102.10(a) to (c). The announcement does not describe what changed and the interpretations themselves were not read in the literature pass. Accessed 29 October 2026},
+  url          = {https://www.sec.gov/corpfin/announcement/announcement-update-non-gaap}
+}
+
+@techreport{gao2022effective,
+  author      = {{U.S. Government Accountability Office}},
+  title       = {Corporate Income Tax: Effective Rates Before and After 2017 Law Change},
+  institution = {U.S. Government Accountability Office},
+  type        = {GAO Report},
+  number      = {GAO-23-105384},
+  year        = {2022},
+  month       = dec,
+  note        = {Published 14 December 2022, publicly released 13 January 2023. Average effective tax rate of profitable large corporations on actual tax liability as high as 16 percent in 2014 and as low as 9 percent in 2018},
+  url         = {https://www.gao.gov/products/gao-23-105384}
+}
+
+@misc{usc2026sec11,
+  author       = {{United States Code}},
+  title        = {26 {U.S.C.} Section 11: Tax Imposed},
+  howpublished = {Legal Information Institute, Cornell Law School},
+  year         = {2026},
+  note         = {Subsection (b): the amount of the tax imposed by subsection (a) shall be 21 percent of taxable income. Accessed 29 October 2026},
+  url          = {https://www.law.cornell.edu/uscode/text/26/11}
+}
+
+@misc{usc2026sec55,
+  author       = {{United States Code}},
+  title        = {26 {U.S.C.} Section 55: Alternative Minimum Tax Imposed},
+  howpublished = {Legal Information Institute, Cornell Law School},
+  year         = {2026},
+  note         = {Subsection (b)(2)(A): for an applicable corporation the tentative minimum tax is 15 percent of adjusted financial statement income less the corporate AMT foreign tax credit. The applicable-corporation threshold in section 59(k) was not read. Accessed 29 October 2026},
+  url          = {https://www.law.cornell.edu/uscode/text/26/55}
+}
+
+@misc{stripe2026pricing,
+  author       = {{Stripe}},
+  title        = {Pricing and Fees},
+  howpublished = {Stripe, Inc.},
+  year         = {2026},
+  note         = {Vendor list price for domestic online card payments in the United States: 2.9 percent plus 30 cents per successful transaction. A list price, not an average realized fee. Accessed 29 October 2026},
+  url          = {https://stripe.com/pricing}
+}
+
+
+% -----------------------------------------------------------------------------
+% F. ENTRIES IDENTICAL IN CONTENT TO EXISTING part2 ENTRIES (drop on merge).
+%    Each was re-verified in this pass; the fields that differ from the part2
+%    entry are listed in notes/lit_pass_v2.md section d.
+% -----------------------------------------------------------------------------
+
+@article{acemoglu2018race,
+  author  = {Acemoglu, Daron and Restrepo, Pascual},
+  title   = {The Race between Man and Machine: Implications of Technology for Growth, Factor Shares, and Employment},
+  journal = {American Economic Review},
+  volume  = {108},
+  number  = {6},
+  pages   = {1488--1542},
+  year    = {2018},
+  doi     = {10.1257/aer.20160696}
+}
+
+@article{jones2020nonrivalry,
+  author  = {Jones, Charles I. and Tonetti, Christopher},
+  title   = {Nonrivalry and the Economics of Data},
+  journal = {American Economic Review},
+  volume  = {110},
+  number  = {9},
+  pages   = {2819--2858},
+  year    = {2020},
+  doi     = {10.1257/aer.20191330}
+}
+
+@article{korinek2025concentrating,
+  author  = {Korinek, Anton and Vipra, Jai},
+  title   = {Concentrating Intelligence: Scaling and Market Structure in Artificial Intelligence},
+  journal = {Economic Policy},
+  volume  = {40},
+  number  = {121},
+  pages   = {225--256},
+  year    = {2025},
+  doi     = {10.1093/epolic/eiae057},
+  note    = {Earlier version: NBER Working Paper 33139}
+}
+
+@misc{kwa2025measuring,
+  author        = {Kwa, Thomas and West, Ben and Becker, Joel and Deng, Amy and Garcia, Katharyn and Hasin, Max and Jawhar, Sami and Kinniment, Megan and Rush, Nate and {Von Arx}, Sydney and Bloom, Ryan and Broadley, Thomas and Du, Haoxing and Goodrich, Brian and Jurkovic, Nikola and Miles, Luke Harold and Nix, Seraphina and Lin, Tao and Painter, Chris and Parikh, Neev and Rein, David and Sato, Lucas Jun Koba and Wijk, Hjalmar and Ziegler, Daniel M. and Barnes, Elizabeth and Chan, Lawrence},
+  title         = {Measuring {AI} Ability to Complete Long Software Tasks},
+  year          = {2025},
+  eprint        = {2503.14499},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.AI},
+  note          = {arXiv:2503.14499, version 4 of 10 July 2026 (v1 18 March 2025); NeurIPS 2025. Abstract: the 50 percent task-completion time horizon of frontier models has doubled approximately every seven months since 2019. Run cost is reported only as a bound: taking a human expert at 143.61 dollars an hour (average Google L4 engineer salary divided by 2000 hours), more than 80 percent of successful runs cost less than 10 percent of the human cost (discussion paragraph on inference compute; Figure 14, Appendix G). The 0.4 to 1.1 percent compute shares used in Paper 1 are the authors' computation from METR's public run data (metr2026evalanalysis)},
+  url           = {https://arxiv.org/abs/2503.14499}
+}
+
+@article{mcelheran2024ai,
+  author  = {McElheran, Kristina and Li, J. Frank and Brynjolfsson, Erik and Kroff, Zachary and Dinlersoz, Emin and Foster, Lucia and Zolas, Nikolas},
+  title   = {{AI} Adoption in {America}: Who, What, and Where},
+  journal = {Journal of Economics \& Management Strategy},
+  volume  = {33},
+  number  = {2},
+  pages   = {375--415},
+  year    = {2024},
+  doi     = {10.1111/jems.12576},
+  note    = {Earlier version: NBER Working Paper 31788 (October 2023); 2018 Annual Business Survey, about 850,000 firms}
+}
+
+@article{ide2025artificial,
+  author  = {Ide, Enrique and Talam{\`a}s, Eduard},
+  title   = {Artificial Intelligence in the Knowledge Economy},
+  journal = {Journal of Political Economy},
+  volume  = {133},
+  number  = {12},
+  pages   = {3762--3800},
+  year    = {2025},
+  doi     = {10.1086/737233},
+  note    = {Preprint: arXiv:2312.05481}
+}
+
+@techreport{humlum2025still,
+  author      = {Humlum, Anders and Vestergaard, Emilie},
+  title       = {Still Waters, Rapid Currents: Early Labor Market Transformation under Generative {AI}},
+  institution = {National Bureau of Economic Research},
+  type        = {NBER Working Paper},
+  number      = {33777},
+  year        = {2025},
+  month       = may,
+  doi         = {10.3386/w33777},
+  note        = {Revised March 2026; earlier circulated as ``Large Language Models, Small Labor Market Effects''. Danish administrative data: precise null effects on earnings and recorded hours, ruling out effects larger than 2 percent two years after the launch of ChatGPT; workers report productivity benefits. The abstract does not quantify time savings}
+}
+
+@techreport{brynjolfsson2025canaries,
+  author      = {Brynjolfsson, Erik and Chandar, Bharat and Chen, Ruyu},
+  title       = {Canaries in the Coal Mine? {Six} Facts about the Recent Employment Effects of Artificial Intelligence},
+  institution = {Stanford Institute for Economic Policy Research},
+  type        = {SIEPR Working Paper},
+  year        = {2025},
+  month       = aug,
+  note        = {SIEPR page, August 2025: payroll data from a major U.S. payroll provider; relative employment of workers aged 22 to 25 in the most AI-exposed occupations fell 13 percent. A November 2025 version is listed by the Stanford Digital Economy Lab (not read)},
+  url         = {https://siepr.stanford.edu/publications/working-paper/canaries-coal-mine-six-facts-about-recent-employment-effects-artificial}
+}
+
+@article{noy2023experimental,
+  author  = {Noy, Shakked and Zhang, Whitney},
+  title   = {Experimental Evidence on the Productivity Effects of Generative Artificial Intelligence},
+  journal = {Science},
+  volume  = {381},
+  number  = {6654},
+  pages   = {187--192},
+  year    = {2023},
+  doi     = {10.1126/science.adh2586}
+}
+
+@article{dellacqua2026navigating,
+  author  = {Dell'Acqua, Fabrizio and {McFowland III}, Edward and Mollick, Ethan and Lifshitz, Hila and Kellogg, Katherine C. and Rajendran, Saran and Krayer, Lisa and Candelon, Fran{\c{c}}ois and Lakhani, Karim R.},
+  title   = {Navigating the Jagged Technological Frontier: Field Experimental Evidence of the Effects of Artificial Intelligence on Knowledge Worker Productivity and Quality},
+  journal = {Organization Science},
+  volume  = {37},
+  number  = {2},
+  pages   = {403--423},
+  year    = {2026},
+  month   = mar,
+  doi     = {10.1287/orsc.2025.21838},
+  note    = {Earlier version: Harvard Business School Working Paper 24-013 (September 2023), where the fourth author appears as Lifshitz-Assaf. Author spelling, volume, issue and pages follow the Crossref record of the journal article}
+}
+
+@techreport{korinek2024scenarios,
+  author      = {Korinek, Anton and Suh, Donghyun},
+  title       = {Scenarios for the Transition to {AGI}},
+  institution = {National Bureau of Economic Research},
+  type        = {NBER Working Paper},
+  number      = {32255},
+  year        = {2024},
+  month       = mar,
+  doi         = {10.3386/w32255}
+}
+
+@article{weyl2013pass,
+  author  = {Weyl, E. Glen and Fabinger, Michal},
+  title   = {Pass-Through as an Economic Tool: Principles of Incidence under Imperfect Competition},
+  journal = {Journal of Political Economy},
+  volume  = {121},
+  number  = {3},
+  pages   = {528--583},
+  year    = {2013},
+  doi     = {10.1086/670401}
+}
+
+@article{agrawal2024artificial,
+  author  = {Agrawal, Ajay and Gans, Joshua and Goldfarb, Avi},
+  title   = {Artificial Intelligence Adoption and System-Wide Change},
+  journal = {Journal of Economics \& Management Strategy},
+  volume  = {33},
+  number  = {2},
+  pages   = {327--337},
+  year    = {2024},
+  doi     = {10.1111/jems.12521},
+  note    = {Earlier version: NBER Working Paper 28811}
+}
+
+@article{hagiu2023data,
+  author  = {Hagiu, Andrei and Wright, Julian},
+  title   = {Data-Enabled Learning, Network Effects, and Competitive Advantage},
+  journal = {The RAND Journal of Economics},
+  volume  = {54},
+  number  = {4},
+  pages   = {638--667},
+  year    = {2023},
+  doi     = {10.1111/1756-2171.12453}
+}
+
+@techreport{gans2026oring,
+  author      = {Gans, Joshua S. and Goldfarb, Avi},
+  title       = {{O-Ring} Automation},
+  institution = {National Bureau of Economic Research},
+  type        = {NBER Working Paper},
+  number      = {34639},
+  year        = {2026},
+  month       = jan,
+  doi         = {10.3386/w34639}
+}
+
+@article{vaccaro2024when,
+  author  = {Vaccaro, Michelle and Almaatouq, Abdullah and Malone, Thomas},
+  title   = {When Combinations of Humans and {AI} Are Useful: A Systematic Review and Meta-Analysis},
+  journal = {Nature Human Behaviour},
+  volume  = {8},
+  number  = {12},
+  pages   = {2293--2303},
+  year    = {2024},
+  doi     = {10.1038/s41562-024-02024-1}
+}
+
+@article{autor2024new,
+  author  = {Autor, David and Chin, Caroline and Salomons, Anna and Seegmiller, Bryan},
+  title   = {New Frontiers: The Origins and Content of New Work, 1940--2018},
+  journal = {The Quarterly Journal of Economics},
+  volume  = {139},
+  number  = {3},
+  pages   = {1399--1465},
+  year    = {2024},
+  doi     = {10.1093/qje/qjae008}
+}
+
+@article{flyvbjerg2022empirical,
+  author  = {Flyvbjerg, Bent and Budzier, Alexander and Lee, Jong Seok and Keil, Mark and Lunn, Daniel and Bester, Dirk W.},
+  title   = {The Empirical Reality of {IT} Project Cost Overruns: Discovering a Power-Law Distribution},
+  journal = {Journal of Management Information Systems},
+  volume  = {39},
+  number  = {3},
+  pages   = {607--639},
+  year    = {2022},
+  doi     = {10.1080/07421222.2022.2096544}
+}
+
+@misc{becker2025measuring,
+  author        = {Becker, Joel and Rush, Nate and Barnes, Elizabeth and Rein, David},
+  title         = {Measuring the Impact of Early-2025 {AI} on Experienced Open-Source Developer Productivity},
+  year          = {2025},
+  eprint        = {2507.09089},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.AI},
+  note          = {arXiv:2507.09089. Randomized trial, 16 developers, 246 tasks: allowing early-2025 AI tools increased completion time by 19 percent},
+  url           = {https://arxiv.org/abs/2507.09089}
+}

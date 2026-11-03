@@ -1,0 +1,7 @@
+m_op 2016-19: OLS-residual skew -1.27; common frontier mean shortfall 25.5; JLMS mean by cohort 2019+ 29.2, pre-2019 24.8
+m_op 2023-25: OLS-residual skew -1.36; common frontier mean shortfall 28.8; JLMS mean by cohort 2019+ 34.6, pre-2019 20.6; gap 2019+ minus pre-2019 14.0 [90% 8.9, 20.3]; separate frontiers (paper) {'2019+': np.float64(30.909448698114506), 'pre-2019': np.float64(21.549448533326572)}; period mean shortfall 90% CI [23.3, 32.8]
+m_fcf_sbc 2016-19: OLS-residual skew -0.97; common frontier mean shortfall 20.4; JLMS mean by cohort 2019+ 22.8, pre-2019 20.0
+m_fcf_sbc 2023-25: OLS-residual skew -1.67; common frontier mean shortfall 24.1; JLMS mean by cohort 2019+ 28.2, pre-2019 17.3; gap 2019+ minus pre-2019 10.9 [90% 6.5, 15.0]; separate frontiers (paper) {'2019+': np.float64(28.01157417657633), 'pre-2019': np.float64(14.74851289867836)}; period mean shortfall 90% CI [18.9, 28.4]
+pre-2019 firms in 2016-19: 138 ; still in sample in 2023-25: 78
+m_op 2016-19 median margin: survivors to 2023-25 0.020, non-survivors -0.002
+m_fcf_sbc 2016-19 median margin: survivors to 2023-25 0.031, non-survivors -0.000

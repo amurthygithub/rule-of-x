@@ -1,0 +1,30 @@
+[    1.1s wall,     1.1s cpu] parameters and priors loaded
+[    2.7s wall,     2.7s cpu] inputs read: tier 4, 0 errors, 0 warnings
+[    2.8s wall,     2.7s cpu] industry prior matched
+[    3.1s wall,     3.1s cpu] firm built: 667 activity units, 109 processes and workstreams
+[    4.7s wall,     4.6s cpu] economics and 4389 candidate plans built
+[    5.1s wall,     5.0s cpu] plan optimized for the public regime: 22 processes
+[   19.4s wall,     5.9s cpu] scenario capability_slow: value 1,974M, 22 processes
+[   19.4s wall,     5.9s cpu] scenario capability_fast: value 2,088M, 23 processes
+[   19.4s wall,     5.9s cpu] scenario capability_plateau: value 1,030M, 24 processes
+[   19.4s wall,     5.9s cpu] scenario agi_2030: value 2,088M, 24 processes
+[   19.4s wall,     5.9s cpu] scenario constant_hazard: value 2,086M, 23 processes
+[   19.4s wall,     5.9s cpu] scenario ai_native_entrant: value 2,071M, 24 processes
+[   19.4s wall,     5.9s cpu] scenario concentrated_supply: value 2,013M, 22 processes
+[   19.4s wall,     5.9s cpu] scenario energy_fusion: value 2,013M, 22 processes
+[   19.4s wall,     5.9s cpu] scenario energy_shock: value 2,013M, 22 processes
+[   19.4s wall,     5.9s cpu] scenario regulation_strict: value 1,633M, 21 processes
+[   19.4s wall,     5.9s cpu] scenario regulation_light: value 2,013M, 22 processes
+[   19.4s wall,     5.9s cpu] scenario quantum: value 2,013M, 22 processes
+[   19.4s wall,     5.9s cpu] scenario disruption_shocks: value 1,533M, 23 processes
+[   19.4s wall,     5.9s cpu] scenario pass_through_0: value 2,152M, 23 processes
+[   19.4s wall,     5.9s cpu] scenario pass_through_50: value 2,013M, 22 processes
+[   19.4s wall,     5.9s cpu] scenario pass_through_70: value 2,068M, 24 processes
+[   23.2s wall,     9.7s cpu] scenarios: 17 solved; plan improved by 1 multi-start runs
+[   25.9s wall,    12.3s cpu] ownership regimes compared
+[   32.8s wall,    19.2s cpu] Monte Carlo: 6000 draws over data, 403 class b and d parameters and outcomes
+[   32.9s wall,    19.3s cpu] roadmap, product strategy and score path built
+[   33.0s wall,    19.4s cpu] people plan, security and failure modes built
+[   45.4s wall,    31.7s cpu] sensitivity: Morris over 14 groups and 55 parameters, Sobol over 9
+[   49.6s wall,    35.8s cpu] playbook: 667 activity units, 667 steps, 149 class d keys tested one at a time
+[   49.6s wall,    35.9s cpu] sensitivity, breakpoints and frontier shift computed

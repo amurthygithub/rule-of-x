@@ -1,0 +1,2036 @@
+{
+ "transition": {
+  "case": "a",
+  "iota_from": 0.4,
+  "iota_to": 0.9,
+  "W": -164143.07039823107,
+  "W_before_run": 164895.11387537108,
+  "F": 2807915.7748002,
+  "F_build": 621503.8709704203,
+  "F_int": 2000000.0000000005,
+  "F_other": 186411.903829779,
+  "I": 0.0,
+  "C_J": 114183.23154995647,
+  "C_par": 1158759.3358617024,
+  "C_str": 234056.97919371945,
+  "C_brk": 177636.65947270306,
+  "C_sev": 46162.07977174068,
+  "C_wo": 300000.0,
+  "C_surv": 0.0,
+  "O_s": 6103.590201130747,
+  "NPV_own_wave": -3783715.505661466,
+  "T_par": 0.25,
+  "T_A": 4,
+  "S": 1200000000.0,
+  "r": 0.08929210747876185,
+  "T_h": 4,
+  "varpi_p": 0.8211256535238566,
+  "bbar_p": 0.67,
+  "T_det": 0.25,
+  "L_roll": 1141832.3154995646,
+  "d_R": 0.85,
+  "results": {
+   "T_par": 0.25,
+   "T_par_star": 0.0,
+   "NPV": -3777611.9154603356,
+   "NPV_certain": -3969219.4200816355,
+   "Y_s": -3793741.911485351,
+   "Y_f": -3703566.9012461556,
+   "residual_risk": 0.0658041946215506,
+   "payback": null,
+   "payback_extension_6m": null,
+   "F_breakeven": -969696.1406601354,
+   "NPV_unlimited": -4485195.297260238,
+   "T_h_breakeven": null,
+   "NPV_varpi_one": -3793732.8939843276,
+   "varpi_breakeven": null
+  },
+  "detail": {
+   "W_process": -5480.53114130444,
+   "run_costs": 329038.18427360215,
+   "C0": 1141832.3154995646,
+   "E_p": 1252934.834620506,
+   "C_dup": 120000.0,
+   "C_disp": 246197.758782617,
+   "C_sev": 46162.07977174068,
+   "C_brk": 177636.65947270306,
+   "C_redeploy": 10258.239949275707,
+   "C_surv": 0.0,
+   "O_s": 6103.590201130747,
+   "N_hc": 10.865512649800266,
+   "N_sv": 7.097796589937033,
+   "x_share": 0.34675916188202055,
+   "w_year": 65344.032,
+   "fte_removed": 3.7677160598632327,
+   "affected_fte": 12.942743009320905,
+   "F_build": 621503.8709704203,
+   "F_redesign": 32623.656000000003,
+   "F_onetime": 153788.24782977902,
+   "F_int": 2000000.0000000005,
+   "int_cost_per_system": 60000.0,
+   "proc_logit": 1.7179190133619995,
+   "process_factor": 0.8478605978975282,
+   "activity_success": [
+    {
+     "id": "capture",
+     "log_margin": 3.1763359324211557,
+     "logit": 5.008167966210578,
+     "varpi": 0.9933612319602485
+    },
+    {
+     "id": "match",
+     "log_margin": 2.70633230317542,
+     "logit": 4.77316615158771,
+     "varpi": 0.991617291382765
+    },
+    {
+     "id": "exceptions",
+     "log_margin": 2.300867195067256,
+     "logit": 4.570433597533627,
+     "varpi": 0.9897526263650699
+    },
+    {
+     "id": "approval",
+     "log_margin": 3.1763359324211557,
+     "logit": 5.008167966210578,
+     "varpi": 0.9933612319602485
+    }
+   ]
+  },
+  "horizons": {
+   "3": -3711523.6276002247,
+   "5": -3838054.8346665828,
+   "10": -4071097.2264303775,
+   "program": -4171227.95568256,
+   "rebuild_years": [
+    4,
+    8
+   ],
+   "rebuild_pv": 100130.72925218257
+  }
+ },
+ "meta": {
+  "name": "invoice_chain",
+  "version": "2026-10-29c",
+  "model": "core model of theory_core.tex; engine configuration reliability.enabled = false",
+  "not_modeled": [
+   "tax wedges and effective wages (the engine choice-cost view); the example uses pre-tax cash costs",
+   "calendar dynamics (inference price decline, capability growth); the example is static at the capability date t0, and the build-cost decline delta_F enters only the rebuilds of the engine-horizon program",
+   "the failure taxonomy in mode choice (hallucination, complacency, autonomy); Section sec:tasks-failure examples apply it to the approval step separately",
+   "control costs of the failure taxonomy (monitoring, least privilege, kill switch) and the ICFR control-cost change (accounting theorist)",
+   "the success-logit penalties that require the failure taxonomy (a_fm) and the pipeline driver (a_J)"
+  ]
+ },
+ "default": {
+  "exceptions": {
+   "iota_feasible": 0.9022688174628488,
+   "iota_star": 0.9700977212576742,
+   "c_U": 3.510672275246054
+  },
+  "wage": 34.80374540612517,
+  "revenue": 1200000000.0,
+  "activities": [
+   {
+    "id": "capture",
+    "name": "Invoice capture",
+    "gwa": "4.A.3.b.6",
+    "t": 0.05,
+    "task_type": "other",
+    "qbar": 0.98,
+    "L": 17.401872703062583,
+    "L_mult": 10.0,
+    "iota_min": 0.5,
+    "c_H": 1.7401872703062584,
+    "alt_low": "O",
+    "c_M_low": 1.3573460708388816,
+    "alt_high": "N",
+    "c_M_high": 0.6028807760060083,
+    "costs_alt_high": {
+     "H": 1.7401872703062584,
+     "O": 1.3573460708388816,
+     "U": 1.4592278705437027,
+     "N": 0.6028807760060083
+    },
+    "pi_n_high": 0.06646537402715652,
+    "e_low": 0.4683845255465685,
+    "e_high": 0.06978110926241843,
+    "e_cap_low": 0.3647042609304117,
+    "e_cap_high": 0.0159537810879281,
+    "d_star_high": 0.7133894801702259,
+    "max_reliability_high": 0.9755766117581536,
+    "feasible_low": false,
+    "feasible_high": false,
+    "c_A_low": null,
+    "c_A_high": null,
+    "xi_low": null,
+    "xi_high": null,
+    "eps_high": null,
+    "F_A": 137782.3859486222,
+    "F_U": 20667.357892293327,
+    "w_tR": 1.2007292165113181,
+    "iota_feasible": 0.9591850179851553,
+    "e_full": 0.04842730631202652,
+    "max_reliability_full": 0.9830504427907907
+   },
+   {
+    "id": "match",
+    "name": "Matching to order and receipt",
+    "gwa": "4.A.2.a.2",
+    "t": 0.08,
+    "task_type": "decision",
+    "qbar": 0.98,
+    "L": 27.84299632490013,
+    "L_mult": 10.0,
+    "iota_min": 0.5,
+    "c_H": 2.7842996324900136,
+    "alt_low": "O",
+    "c_M_low": 2.1717537133422105,
+    "alt_high": "O",
+    "c_M_high": 2.1717537133422105,
+    "costs_alt_high": {
+     "H": 2.7842996324900136,
+     "O": 2.1717537133422105,
+     "U": 2.4518475150868078
+    },
+    "pi_n_high": 0.10719122830006451,
+    "e_low": 0.18305398875677115,
+    "e_high": 0.0771282690867301,
+    "e_cap_low": 0.023726085990405307,
+    "e_cap_high": 0.023726085990405307,
+    "d_star_high": 0.7406917043929744,
+    "max_reliability_high": 0.9730051058196445,
+    "feasible_low": false,
+    "feasible_high": false,
+    "c_A_low": null,
+    "c_A_high": null,
+    "xi_low": null,
+    "xi_high": null,
+    "eps_high": null,
+    "F_A": 160896.62119397477,
+    "F_U": 24134.493179096215,
+    "w_tR": 1.921166746418109,
+    "iota_feasible": 0.994336918376719,
+    "e_full": 0.05594312515272193,
+    "max_reliability_full": 0.9804199061965473
+   },
+   {
+    "id": "exceptions",
+    "name": "Exception handling",
+    "gwa": "4.A.2.b.1",
+    "t": 0.12,
+    "task_type": "decision",
+    "qbar": 0.97,
+    "L": 12.52934834620506,
+    "L_mult": 3.0,
+    "iota_min": 0.6,
+    "c_H": 4.17644944873502,
+    "alt_low": "U",
+    "c_M_low": 3.510672275246054,
+    "alt_high": "U",
+    "c_M_high": 3.510672275246054,
+    "costs_alt_high": {
+     "H": 4.17644944873502,
+     "U": 3.510672275246054
+    },
+    "pi_n_high": 0.16238131235951503,
+    "e_low": 0.19107582214153052,
+    "e_high": 0.08619021829635376,
+    "e_cap_low": 0.03331240695689594,
+    "e_cap_high": 0.03331240695689594,
+    "d_star_high": 0.6519326601906383,
+    "max_reliability_high": 0.9698334235962762,
+    "feasible_low": false,
+    "feasible_high": false,
+    "c_A_low": null,
+    "c_A_high": null,
+    "xi_low": null,
+    "xi_high": null,
+    "eps_high": null,
+    "F_A": 185042.4778792011,
+    "F_U": 27756.371681880162,
+    "w_tR": 2.8817501196271635,
+    "iota_feasible": 0.9022688174628488,
+    "e_full": 0.06521309752731841,
+    "max_reliability_full": 0.9771754158654385
+   },
+   {
+    "id": "approval",
+    "name": "Approval",
+    "gwa": "4.A.2.a.3",
+    "t": 0.05,
+    "task_type": "decision",
+    "qbar": 0.99,
+    "L": 17.401872703062583,
+    "L_mult": 10.0,
+    "iota_min": 0.65,
+    "c_H": 1.7401872703062584,
+    "alt_low": "U",
+    "c_M_low": 1.5462372340590156,
+    "alt_high": "U",
+    "c_M_high": 1.5462372340590156,
+    "costs_alt_high": {
+     "H": 1.7401872703062584,
+     "U": 1.5462372340590156
+    },
+    "pi_n_high": 0.06646537402715652,
+    "e_low": 0.1765501240143783,
+    "e_high": 0.06978110926241843,
+    "e_cap_low": 0.0159537810879281,
+    "e_cap_high": 0.0159537810879281,
+    "d_star_high": 0.8566947400851129,
+    "max_reliability_high": 0.9755766117581536,
+    "feasible_low": false,
+    "feasible_high": false,
+    "c_A_low": null,
+    "c_A_high": null,
+    "xi_low": null,
+    "xi_high": null,
+    "eps_high": null,
+    "F_A": 137782.3859486222,
+    "F_U": 20667.357892293327,
+    "w_tR": 1.2007292165113181,
+    "iota_feasible": null,
+    "e_full": 0.04842730631202652,
+    "max_reliability_full": 0.9830504427907907
+   }
+  ],
+  "chain_feasible_high": false,
+  "d_required_high": 0.8566947400851129,
+  "C_manual_low": 1141832.3154995646,
+  "E_inhouse": 1252934.834620506
+ },
+ "detection": {
+  "d_feasible": 0.8566947400851129,
+  "d_W_zero": 0.8614026733764354,
+  "W_at_d1": 175363.3484197821,
+  "W_at_d1_run": -153674.83585382006
+ },
+ "illustration": {
+  "d_R": 0.85,
+  "q_cap": 0.98,
+  "q_star": 0.988,
+  "q_star_exact": 0.9884307596369905,
+  "r_bar_high": 0.98,
+  "residual_accepted": 0.020000000000000018,
+  "e_H": 0.02,
+  "relaxed_steps": [
+   {
+    "id": "approval",
+    "policy": 0.99,
+    "capped": 0.98
+   }
+  ],
+  "target_above_human_baseline": true,
+  "rule": "detection at the top of its measured range; every target capped at min(r_bar_high, q*), where r_bar_high is the human-parity target and q* the highest level, rounded down to 0.1 point, that every step can meet at the high readiness target; the cap never raises a target",
+  "chain_feasible_high": true,
+  "activities": [
+   {
+    "id": "capture",
+    "name": "Invoice capture",
+    "gwa": "4.A.3.b.6",
+    "t": 0.05,
+    "task_type": "other",
+    "qbar": 0.98,
+    "L": 17.401872703062583,
+    "L_mult": 10.0,
+    "iota_min": 0.5,
+    "c_H": 1.7401872703062584,
+    "alt_low": "O",
+    "c_M_low": 1.3573460708388816,
+    "alt_high": "N",
+    "c_M_high": 0.6028807760060083,
+    "costs_alt_high": {
+     "H": 1.7401872703062584,
+     "O": 1.3573460708388816,
+     "U": 1.4592278705437027,
+     "N": 0.6028807760060083
+    },
+    "pi_n_high": 0.06646537402715652,
+    "e_low": 0.4683845255465685,
+    "e_high": 0.06978110926241843,
+    "e_cap_low": 0.3647042609304117,
+    "e_cap_high": 0.0159537810879281,
+    "d_star_high": 0.7133894801702259,
+    "max_reliability_high": 0.9895328336106373,
+    "feasible_low": false,
+    "feasible_high": true,
+    "c_A_low": null,
+    "c_A_high": 1.6118259391614336,
+    "xi_low": null,
+    "xi_high": 0.8392817413767363,
+    "eps_high": 0.020000000000000014,
+    "F_A": 137782.3859486222,
+    "F_U": 20667.357892293327,
+    "w_tR": 1.2007292165113181,
+    "iota_feasible": 0.6023845156517419,
+    "e_full": 0.04842730631202652,
+    "max_reliability_full": 0.992735904053196
+   },
+   {
+    "id": "match",
+    "name": "Matching to order and receipt",
+    "gwa": "4.A.2.a.2",
+    "t": 0.08,
+    "task_type": "decision",
+    "qbar": 0.98,
+    "L": 27.84299632490013,
+    "L_mult": 10.0,
+    "iota_min": 0.5,
+    "c_H": 2.7842996324900136,
+    "alt_low": "O",
+    "c_M_low": 2.1717537133422105,
+    "alt_high": "O",
+    "c_M_high": 2.1717537133422105,
+    "costs_alt_high": {
+     "H": 2.7842996324900136,
+     "O": 2.1717537133422105,
+     "U": 2.4518475150868078
+    },
+    "pi_n_high": 0.10719122830006451,
+    "e_low": 0.18305398875677115,
+    "e_high": 0.0771282690867301,
+    "e_cap_low": 0.023726085990405307,
+    "e_cap_high": 0.023726085990405307,
+    "d_star_high": 0.7406917043929744,
+    "max_reliability_high": 0.9884307596369905,
+    "feasible_low": false,
+    "feasible_high": true,
+    "c_A_low": null,
+    "c_A_high": 2.5178264504977,
+    "xi_low": null,
+    "xi_high": 0.8714020051682052,
+    "eps_high": 0.020000000000000025,
+    "F_A": 160896.62119397477,
+    "F_U": 24134.493179096215,
+    "w_tR": 1.921166746418109,
+    "iota_feasible": 0.634695858435756,
+    "e_full": 0.05594312515272193,
+    "max_reliability_full": 0.9916085312270917
+   },
+   {
+    "id": "exceptions",
+    "name": "Exception handling",
+    "gwa": "4.A.2.b.1",
+    "t": 0.12,
+    "task_type": "decision",
+    "qbar": 0.97,
+    "L": 12.52934834620506,
+    "L_mult": 3.0,
+    "iota_min": 0.6,
+    "c_H": 4.17644944873502,
+    "alt_low": "U",
+    "c_M_low": 3.510672275246054,
+    "alt_high": "U",
+    "c_M_high": 3.510672275246054,
+    "costs_alt_high": {
+     "H": 4.17644944873502,
+     "U": 3.510672275246054
+    },
+    "pi_n_high": 0.16238131235951503,
+    "e_low": 0.19107582214153052,
+    "e_high": 0.08619021829635376,
+    "e_cap_low": 0.03331240695689594,
+    "e_cap_high": 0.03331240695689594,
+    "d_star_high": 0.6519326601906383,
+    "max_reliability_high": 0.987071467255547,
+    "feasible_low": false,
+    "feasible_high": true,
+    "c_A_low": null,
+    "c_A_high": 3.0201703000940734,
+    "xi_low": null,
+    "xi_high": 0.7669796002242805,
+    "eps_high": 0.030000000000000027,
+    "F_A": 185042.4778792011,
+    "F_U": 27756.371681880162,
+    "w_tR": 2.8817501196271635,
+    "iota_feasible": 0.599999999999,
+    "e_full": 0.06521309752731841,
+    "max_reliability_full": 0.9902180353709022
+   },
+   {
+    "id": "approval",
+    "name": "Approval",
+    "gwa": "4.A.2.a.3",
+    "t": 0.05,
+    "task_type": "decision",
+    "qbar": 0.98,
+    "L": 17.401872703062583,
+    "L_mult": 10.0,
+    "iota_min": 0.65,
+    "c_H": 1.7401872703062584,
+    "alt_low": "U",
+    "c_M_low": 1.5462372340590156,
+    "alt_high": "U",
+    "c_M_high": 1.5462372340590156,
+    "costs_alt_high": {
+     "H": 1.7401872703062584,
+     "U": 1.5462372340590156
+    },
+    "pi_n_high": 0.06646537402715652,
+    "e_low": 0.1765501240143783,
+    "e_high": 0.06978110926241843,
+    "e_cap_low": 0.0159537810879281,
+    "e_cap_high": 0.0159537810879281,
+    "d_star_high": 0.7133894801702259,
+    "max_reliability_high": 0.9895328336106373,
+    "feasible_low": false,
+    "feasible_high": true,
+    "c_A_low": null,
+    "c_A_high": 1.6118259391614336,
+    "xi_low": null,
+    "xi_high": 0.8392817413767363,
+    "eps_high": 0.020000000000000014,
+    "F_A": 137782.3859486222,
+    "F_U": 20667.357892293327,
+    "w_tR": 1.2007292165113181,
+    "iota_feasible": 0.649999999999,
+    "e_full": 0.04842730631202652,
+    "max_reliability_full": 0.992735904053196
+   }
+  ],
+  "process": {
+   "iota_chain_feasible": 0.649999999999,
+   "W_full_low": null,
+   "W_full_high": -5480.53114130444,
+   "iota_star_p": 0.9045864824001005,
+   "first_positive_proper": 0.889,
+   "aon_low": 0.8045864824001006,
+   "dividends_high": {
+    "unit": -111612.55563136227,
+    "coord": 97603.62361693742,
+    "rel": -84188.77688879705,
+    "overhead": 92717.17776191744,
+    "total": -5480.531141304455,
+    "Q_A": 0.9129562399999999,
+    "Q_M": 0.980149500625
+   },
+   "singles_high": {
+    "capture": -167569.15026912975,
+    "match": -116006.6704556621,
+    "exceptions": -27960.05123473513,
+    "approval": -54366.37530276888
+   },
+   "best_set_high": [
+    "approval",
+    "exceptions"
+   ],
+   "piecemeal_set": [],
+   "piecemeal_value": 0.0,
+   "C_manual_low": 1141832.3154995646,
+   "C_manual_high": 1051296.4801196195,
+   "E_inhouse": 1252934.834620506,
+   "W_by_iota": {
+    "0.80": -108583.45201038141,
+    "0.85": -60444.70132148606,
+    "0.90": -5480.53114130444,
+    "0.95": 59477.07628042086
+   },
+   "W_below_N": -18047.617539365136,
+   "W_above_N": -108583.45110145275,
+   "iota_star_above_N": 0.9045864824001022,
+   "best_value_high": 6637.701084808046,
+   "best_first_pays_iota": 0.8889962066552412,
+   "best_first_pays_set": [
+    "approval",
+    "exceptions"
+   ],
+   "any_set_pays_high": true,
+   "pair_exc_appr_high": 6637.701084808046,
+   "xi_high_min": 0.7669796002242805,
+   "xi_high_max": 0.8714020051682052,
+   "Xi": 92717.17776191744,
+   "L_p": 10.44112362183755
+  },
+  "augment_exceptions": {
+   "c_U": 3.510672275246054,
+   "c_A_high": 3.0201703000940734,
+   "sweep": {
+    "1.000": 2.5742160819790856,
+    "0.900": 2.8571379352429638,
+    "0.850": 3.0201703000940734,
+    "0.455": null
+   },
+   "d_infeasible": 0.6519326601906383,
+   "d_tie": 0.7255636779126972,
+   "iota_star": 0.6713153717557342
+  },
+  "alt_qstar": {
+   "q_cap": 0.988,
+   "W_full_high": -13925.363840627106,
+   "pair_exc_appr_high": -1519.0944253837515,
+   "any_set_pays_high": true,
+   "best_first_pays_iota": 0.9026463809123824,
+   "best_first_pays_set": [
+    "approval",
+    "exceptions"
+   ],
+   "iota_star_above_N": 0.9119597994697605,
+   "iota_chain_feasible": 0.8521448672726434
+  }
+ },
+ "transition_b": {
+  "case": "b",
+  "iota_from": 0.9,
+  "iota_to": 0.9,
+  "W": -164143.07039823107,
+  "F": 807915.7748001993,
+  "F_build": 621503.8709704203,
+  "F_int": 0.0,
+  "results": {
+   "T_par": 0.25,
+   "T_par_star": 0.0,
+   "NPV": -1705582.506069331,
+   "NPV_certain": -1898013.2210194257,
+   "Y_s": -1722535.7124231413,
+   "Y_f": -1627758.531190664,
+   "residual_risk": 0.0658041946215506,
+   "payback": null,
+   "payback_extension_6m": null,
+   "F_breakeven": -897666.7312691316,
+   "NPV_unlimited": -2413165.8878692337,
+   "T_h_breakeven": null,
+   "NPV_varpi_one": -1722526.234705018,
+   "varpi_breakeven": null
+  },
+  "horizons": {
+   "3": -1639494.21820922,
+   "5": -1766025.4252755782,
+   "10": -1999067.8170393729
+  },
+  "varpi_p": 0.8211256535238566
+ },
+ "transition_cases": {
+  "a": {
+   "low": {
+    "int_cost_per_system": 20000.0,
+    "F_int": 666666.6666666669,
+    "F": 1474582.441466866,
+    "NPV": -2444278.582127001,
+    "NPV_certain": -2635886.086748301,
+    "F_breakeven": -969696.1406601354
+   },
+   "default": {
+    "int_cost_per_system": 60000.0,
+    "F_int": 2000000.0000000005,
+    "F": 2807915.7748002,
+    "NPV": -3777611.9154603356,
+    "NPV_certain": -3969219.4200816355,
+    "F_breakeven": -969696.1406601354
+   },
+   "high": {
+    "int_cost_per_system": 200000.0,
+    "F_int": 6666666.666666669,
+    "F": 7474582.441466868,
+    "NPV": -8444278.582127003,
+    "NPV_certain": -8635886.086748304,
+    "F_breakeven": -969696.1406601354
+   }
+  },
+  "b": {
+   "low": {
+    "int_cost_per_system": 20000.0,
+    "F_int": 0.0,
+    "F": 807915.7748001993,
+    "NPV": -1705582.506069331,
+    "NPV_certain": -1898013.2210194257,
+    "F_breakeven": -897666.7312691316
+   },
+   "default": {
+    "int_cost_per_system": 60000.0,
+    "F_int": 0.0,
+    "F": 807915.7748001993,
+    "NPV": -1705582.506069331,
+    "NPV_certain": -1898013.2210194257,
+    "F_breakeven": -897666.7312691316
+   },
+   "high": {
+    "int_cost_per_system": 200000.0,
+    "F_int": 0.0,
+    "F": 807915.7748001993,
+    "NPV": -1705582.506069331,
+    "NPV_certain": -1898013.2210194257,
+    "F_breakeven": -897666.7312691316
+   }
+  }
+ },
+ "score_path": {
+  "revenue": 1200000000.0,
+  "T_par": 0.5,
+  "cash": [
+   -0.0032155357968945007,
+   -0.00013678589199852588,
+   -0.00013678589199852588,
+   -0.00013678589199852588
+  ],
+  "gaap": [
+   -0.0017105884376443755,
+   -0.0007217683450819009,
+   -0.0007217683450819009,
+   -0.0007217683450819009
+  ]
+ },
+ "pilot": {
+  "a": {
+   "F_pil": 143225.58064556302,
+   "T_pil": 0.25,
+   "Y_s": -3793741.911485351,
+   "Y_f": -3703566.9012461556,
+   "VP": -143225.58064556302,
+   "VP_delay": -143225.58064556302
+  },
+  "b": {
+   "F_pil": 143225.58064556302,
+   "T_pil": 0.25,
+   "Y_s": -1722535.7124231413,
+   "Y_f": -1627758.531190664,
+   "VP": -143225.58064556302,
+   "VP_delay": -143225.58064556302
+  }
+ },
+ "ancillary": {
+  "maintenance": 105655.65806497145,
+  "revalidation": 48218.539646894664,
+  "integrations": 48000.0,
+  "coupling": 96000.0,
+  "tech_debt": 144000.0,
+  "C_inc": 34950.458999999995,
+  "risk": 31163.986561736016,
+  "security_spend": 11163.986561736014,
+  "residual": 20000.0,
+  "redteam": 0.0,
+  "exposure_A": 0.5258333333333333,
+  "L_inc": 224550.0,
+  "N_int": 4.0,
+  "total": 329038.18427360215,
+  "W_high_before": -5480.53114130444,
+  "W_high_after": -334518.7154149066,
+  "iota_star_run": null,
+  "volume_factor": 2.0078688524590165,
+  "scope_500k": 84377.51649736402
+ },
+ "window": {
+  "step": "match",
+  "c_H": 2.7842996324900136,
+  "p_O": 1.8097947611185088,
+  "c_VH": 1.57373457488566,
+  "c_V0": 2.0120163723956583,
+  "c0A": 2.4106352221976355,
+  "n": 0.08440254196855473,
+  "pi_today": 1.27,
+  "pi_V": -6.594799988904045,
+  "pi_plus": -3.594435773740295,
+  "pi_minus": 23.962905158268637,
+  "window_nonempty": true,
+  "D_today": -0.3232840508239798,
+  "window_years": null,
+  "v_MB": 72065.44609814406,
+  "v_MB_kappa_half": 91191.66495745293,
+  "v_MB_F_half": 36032.72304907203,
+  "volume": 120000.0
+ },
+ "capital": {
+  "pi_n_total": 0.40250328871389257,
+  "dc": 0.2817523020997248,
+  "dK": 1.2075098661416777,
+  "delta_K": 0.25,
+  "g": 0.12,
+  "value": -0.1279462651848826,
+  "cash": -0.16502634837269592,
+  "gaap": -0.02012516443569462,
+  "r": 0.08929210747876185
+ },
+ "build_buy": {
+  "C_fix_build": 482646.1261876266,
+  "builds_annual": 184771.9284757605,
+  "run_annual": 297874.1977118661,
+  "pooled_per_unit": 1.044112362183755,
+  "c_v_minus_pin": 1.4057662749081667,
+  "F_int": 186451.16129112607,
+  "C_fix_buy": 55431.578542728144,
+  "v_BB": 303901.54840839864,
+  "v_BB_no_run": 92007.00873371119,
+  "buy_saving": 258522.59465591845,
+  "C_sw": 372902.32258225215,
+  "lock_cap": 124300.77419408405,
+  "markup": 0.25,
+  "contract_years": 3.0
+ },
+ "scaling": {
+  "P": 5,
+  "per_process_fixed": 153874.19771186612,
+  "understatement_fixed": 615496.7908474645,
+  "N_range": [
+   2,
+   10
+  ],
+  "c_curvature": 1000.0,
+  "jensen": 20000.0,
+  "C_inc_each": 34950.458999999995,
+  "pooling_gap": 92467.18799826206
+ },
+ "failure": {
+  "hallucination": {
+   "e_o": 0.06978110926241843,
+   "e_h": 0.0027500000000000007,
+   "d_o": 0.65,
+   "d_h": 0.4,
+   "tolerance": 0.010000000000000009,
+   "floor": 0.02607338824184645,
+   "floor_dh_06": 0.02552338824184645,
+   "feasible": false,
+   "floor_ordinary": 0.02442338824184645
+  },
+  "bias": {
+   "eps_d": 0.5,
+   "peak": 0.6065306597126334,
+   "irony_threshold": 0.6666666666666666,
+   "caught_top": 0.7195875517379767,
+   "caught_central": 0.5502728336819823,
+   "uplift": 1.0991475138000855,
+   "d_top": 0.85,
+   "d_central": 0.65
+  },
+  "autonomy": {
+   "L": 17.401872703062583,
+   "L_m": 30.453277230359518,
+   "L_cap": 609.0655446071903,
+   "e_m": {
+    "2": 9.09154827298409e-05,
+    "3": 0.0001818309654596818
+   },
+   "d_m": {
+    "2": 0.85,
+    "3": 0.72
+   },
+   "E_min": 2.552786404500042,
+   "c_m": {
+    "2": 0.0010601751550608468,
+    "3": 0.003957987245560494
+   },
+   "human": {
+    "1": 1.3921498162450068,
+    "2": 0.5220561810918775,
+    "3": 0.0
+   },
+   "cvar_uncapped": 673.1449953208348,
+   "cvar_uncapped_low": 3159.1558282641263,
+   "L_max": 5000000.0,
+   "cvar_q": 0.95,
+   "feasible_level3": false,
+   "d_star": 0.8566947400851129
+  },
+  "cerr": {
+   "floor_unit": 0.4537257831221406,
+   "misbehavior_unit": 0.003957987245560494,
+   "total_unit": 0.45768377036770114,
+   "annual": 54922.052444124136,
+   "L": 17.401872703062583,
+   "noreview_unit": 1.2661351176420894,
+   "noreview_annual": 151936.21411705072
+  }
+ },
+ "inputs": {
+  "volume": {
+   "value": 120000,
+   "source": "setting",
+   "basis": "supplier invoices a year; at the P02 procure-to-pay prior of 100 invoices per $1M of revenue (data/tasks/processes.csv, assumed) this is a firm with $1.2 billion of revenue"
+  },
+  "invoices_per_musd_revenue": {
+   "value": 100.0,
+   "source": "csv:processes:process_id=P02:typical_volume_per_musd_revenue"
+  },
+  "function": {
+   "value": "finance_accounting",
+   "source": "setting",
+   "basis": "accounts payable sits in finance and accounting (engine function prior finance_accounting; params outsourcing key F11)"
+  },
+  "occupation_soc": {
+   "value": "43-3031",
+   "source": "setting",
+   "basis": "Bookkeeping, Accounting, and Auditing Clerks"
+  },
+  "wage_annual": {
+   "value": 50670.0,
+   "source": "csv:occupations:soc=43-3031:wage_median",
+   "basis": "OEWS May 2025 median"
+  },
+  "tau_L": {
+   "value": 0.2896,
+   "source": "default:labor.tau_L"
+  },
+  "hours_per_fte": {
+   "value": 1877.5,
+   "source": "default:labor.hours_per_fte"
+  },
+  "exposure": {
+   "value": 0.5,
+   "source": "setting",
+   "basis": "engine fallback LLM exposure when no activity data (impute.py) and the reference exposure of augment.exposure_ref"
+  },
+  "data_class": {
+   "value": "internal",
+   "source": "setting",
+   "basis": "engine fallback for a function without personal data (impute.py); finance_accounting personal_data = 0"
+  },
+  "write_access": {
+   "value": 1.0,
+   "source": "setting",
+   "basis": "engine fallback (agents can write)"
+  },
+  "external_inputs": {
+   "value": 0.15,
+   "source": "setting",
+   "basis": "engine fallback for a function that is not customer facing"
+  },
+  "high_reliability": {
+   "value": 1.0,
+   "source": "prior:function_attributes:finance_accounting:high_reliability"
+  },
+  "rho_O": {
+   "value": 0.65,
+   "source": "params:outsourcing.price_ratio_pO_over_wt|F11 finance and accounting"
+  },
+  "n_systems": {
+   "value": 4.0,
+   "source": "default:readiness.default_n_systems"
+  },
+  "iota_prior": {
+   "value": 0.55,
+   "source": "prior:function_attributes:finance_accounting:iota_prior",
+   "basis": "engine prior of today's readiness in finance (reported, not used as case a)"
+  },
+  "iota_low": {
+   "value": 0.4,
+   "source": "setting",
+   "basis": "case (a), a low-readiness firm (coordinator decision, 29 Oct)"
+  },
+  "iota_high": {
+   "value": 0.9,
+   "source": "default:readiness.targets",
+   "basis": "highest readiness target of the engine"
+  },
+  "capability_date": {
+   "value": 2026.0958,
+   "source": "default:capability.t0",
+   "basis": "the example is static at the date of the horizon fit"
+  },
+  "r": {
+   "value": 0.08929210747876185,
+   "source": "default:finance.r",
+   "basis": "continuous rate ln(1 + annual WACC); the engine default applies transform to_continuous to the params value"
+  },
+  "T_A": {
+   "value": 4,
+   "source": "default:build.T_A"
+  },
+  "T_h": {
+   "value": 4,
+   "source": "params:depreciation.internal_use_software_book_life_years",
+   "basis": "useful life of internal-use software (ASC 350-40 practice, 3 to 5 years); coordinator decision of 29 Oct"
+  },
+  "T_h_engine": {
+   "value": 10,
+   "source": "default:constraints.horizon_years",
+   "basis": "engine planning horizon: a program in which the builds are redone every T_A years (plans.py rebuilds)"
+  },
+  "delta_F": {
+   "value": 0.3,
+   "source": "default:build.delta_F",
+   "basis": "annual decline of build cost; a rebuild k T_A years out costs F_build (1 - delta_F)^(k T_A) (plans.py)"
+  },
+  "H0": {
+   "value": 11.98,
+   "source": "default:capability.H0_hours"
+  },
+  "b_logistic": {
+   "value": 0.597,
+   "source": "default:capability.logistic_slope_b"
+  },
+  "eta_r": {
+   "value": 1.161,
+   "source": "default:capability.eta_r"
+  },
+  "r_A": {
+   "value": 0.8,
+   "source": "default:capability.r_A"
+  },
+  "transfer": {
+   "value": 1.0,
+   "source": "default:capability.transfer"
+  },
+  "xi_exposure": {
+   "value": 1.0,
+   "source": "default:capability.xi_exposure"
+  },
+  "exposure_floor": {
+   "value": 0.05,
+   "source": "default:capability.exposure_floor"
+  },
+  "xi_context": {
+   "value": 0.5,
+   "source": "default:capability.xi_context"
+  },
+  "context_coverage": {
+   "value": 0.0,
+   "source": "default:capability.context_coverage"
+  },
+  "chi_form": {
+   "value": "logistic",
+   "source": "default:capability.chi_form"
+  },
+  "computer_use_mult": {
+   "value": 0.0159,
+   "source": "default:capability.computer_use_mult"
+  },
+  "computer_use_gwas": {
+   "value": [
+    "4.A.3.b.6",
+    "4.A.3.b.1",
+    "4.A.2.a.1",
+    "4.A.1.a.2"
+   ],
+   "source": "default:capability.computer_use_gwas"
+  },
+  "api_readiness": {
+   "value": 0.6,
+   "source": "default:capability.api_readiness"
+  },
+  "e0": {
+   "value": 0.25,
+   "source": "default:capability.e0"
+  },
+  "e1": {
+   "value": 0.033,
+   "source": "default:capability.e1"
+  },
+  "pi_h0": {
+   "value": 1.27,
+   "source": "default:prices.pi_h0"
+  },
+  "class_multiplier": {
+   "value": {
+    "4.A.1": 0.5,
+    "4.A.2": 1.0,
+    "4.A.3.b": 1.0,
+    "4.A.4": 1.5,
+    "4.A.3.a": 1.0
+   },
+   "source": "default:prices.class_multiplier"
+  },
+  "retry_cap": {
+   "value": 0.8,
+   "source": "default:prices.retry_cap"
+  },
+  "u_tok": {
+   "value": 0.25,
+   "source": "default:prices.u_tok"
+  },
+  "finops_share": {
+   "value": 0.03,
+   "source": "default:security.finops_share"
+  },
+  "d_R": {
+   "value": 0.65,
+   "source": "default:reliability.d_e",
+   "basis": "reviewer catch rate of ordinary errors"
+  },
+  "rho_rev": {
+   "value": 0.575,
+   "source": "default:review.rho_rev"
+  },
+  "wage_premium": {
+   "value": 1.2,
+   "source": "default:review.wage_premium"
+  },
+  "r_bar_high": {
+   "value": 0.98,
+   "source": "default:review.r_bar_high"
+  },
+  "L_mult_regulated": {
+   "value": 10.0,
+   "source": "default:review.L_mult_regulated"
+  },
+  "xi_min": {
+   "value": 0.0,
+   "source": "default:review.xi_min_none"
+  },
+  "q_M": {
+   "value": 0.995,
+   "source": "default:review.q_M"
+  },
+  "lambda_out": {
+   "value": 1.0,
+   "source": "default:review.lambda_out"
+  },
+  "beta_U": {
+   "value": 0.25,
+   "source": "default:augment.beta_U"
+  },
+  "exposure_ref": {
+   "value": 0.5,
+   "source": "default:augment.exposure_ref"
+  },
+  "e_H": {
+   "value": 0.02,
+   "source": "default:augment.e_H"
+  },
+  "u_decision": {
+   "value": 0.25,
+   "source": "default:augment.u_decision"
+  },
+  "u_creation": {
+   "value": 0.15,
+   "source": "default:augment.u_creation"
+  },
+  "decision_gwas": {
+   "value": [
+    "4.A.2.b.1",
+    "4.A.2.a.2",
+    "4.A.2.a.3",
+    "4.A.2.a.4",
+    "4.A.1.b.3"
+   ],
+   "source": "default:augment.decision_gwas"
+  },
+  "creation_gwas": {
+   "value": [
+    "4.A.2.b.2",
+    "4.A.2.b.4",
+    "4.A.2.b.5",
+    "4.A.3.b.2",
+    "4.A.4.a"
+   ],
+   "source": "default:augment.creation_gwas"
+  },
+  "U_share": {
+   "value": 0.15,
+   "source": "default:build.U_share"
+  },
+  "kappa_O": {
+   "value": 0.1,
+   "source": "default:outsourcing.kappa_O"
+  },
+  "zeta_O": {
+   "value": 0.03,
+   "source": "default:outsourcing.zeta_O"
+  },
+  "ups_O": {
+   "value": 0.15,
+   "source": "default:outsourcing.ups_O"
+  },
+  "separable_threshold": {
+   "value": 0.5,
+   "source": "default:outsourcing.separable_threshold"
+  },
+  "delta_N": {
+   "value": 0.3,
+   "source": "default:eliminate.delta_N"
+  },
+  "iota_N": {
+   "value": 0.8,
+   "source": "default:readiness.iota_N"
+  },
+  "em_base": {
+   "value": 3.0,
+   "source": "default:build.em_base"
+  },
+  "xi_d": {
+   "value": 0.5,
+   "source": "default:build.xi_d"
+  },
+  "regulated_mult": {
+   "value": 1.5,
+   "source": "default:build.regulated_mult"
+  },
+  "vendor_share": {
+   "value": 0.3,
+   "source": "default:build.vendor_share"
+  },
+  "scope_elasticity": {
+   "value": 0.3,
+   "source": "default:build.scope_elasticity"
+  },
+  "ai_engineer_premium": {
+   "value": 1.11,
+   "source": "default:build.ai_engineer_premium"
+  },
+  "ai_engineer_wage": {
+   "value": 135980.0,
+   "source": "default:build.ai_engineer_base_wage",
+   "basis": "w^SE of prop:labor-talent(a): OEWS May 2025 median for SOC 15-1252 Software Developers (data/tasks/occupations.csv); replaces the hard-coded engine fallback of 133,080"
+  },
+  "process_owner_wage": {
+   "value": 101190.0,
+   "source": "setting",
+   "basis": "engine role wage (economics.role_rates default for process_owner)"
+  },
+  "risk_governance_wage": {
+   "value": 78420.0,
+   "source": "setting",
+   "basis": "engine role wage (economics.role_rates default for risk_governance, times 1.2)"
+  },
+  "redesign_months": {
+   "value": 3.0,
+   "source": "default:build.redesign_months"
+  },
+  "int_cost_per_system": {
+   "value": 60000.0,
+   "source": "default:build.int_cost_per_system"
+  },
+  "int_convexity": {
+   "value": 1.0,
+   "source": "default:build.int_convexity"
+  },
+  "h_MM": {
+   "value": 0.0089,
+   "source": "default:handoff.h_MM"
+  },
+  "h_AM": {
+   "value": 0.0156,
+   "source": "default:handoff.h_AM"
+  },
+  "h_AA0": {
+   "value": 0.0111,
+   "source": "default:handoff.h_AA0"
+  },
+  "Xi_share": {
+   "value": 0.074,
+   "source": "default:handoff.Xi_share"
+  },
+  "omega_par": {
+   "value": 0.8,
+   "source": "default:transition.omega_par"
+  },
+  "nu_rec": {
+   "value": 0.1,
+   "source": "default:transition.nu_rec"
+  },
+  "license_cost_per_system": {
+   "value": 60000.0,
+   "source": "default:transition.license_cost_per_system"
+  },
+  "retire_fraction": {
+   "value": 0.5,
+   "source": "default:transition.retire_fraction"
+  },
+  "legacy_book_value_per_system": {
+   "value": 150000.0,
+   "source": "default:transition.legacy_book_value_per_system"
+  },
+  "severance_months": {
+   "value": 3.0,
+   "source": "default:transition.severance_months_US"
+  },
+  "u_d": {
+   "value": 0.25,
+   "source": "default:transition.u_d"
+  },
+  "redeploy_months": {
+   "value": 2.0,
+   "source": "default:transition.redeploy_months"
+  },
+  "break_months_O": {
+   "value": 4,
+   "source": "default:transition.break_months_O"
+  },
+  "break_months_license": {
+   "value": 6,
+   "source": "default:transition.break_months_license"
+  },
+  "dip_share": {
+   "value": 0.1,
+   "source": "default:transition.dip_share"
+  },
+  "dip_years": {
+   "value": 1.0,
+   "source": "default:transition.dip_years"
+  },
+  "T_det": {
+   "value": 0.25,
+   "source": "default:transition.T_det"
+  },
+  "L_roll_mult": {
+   "value": 1.0,
+   "source": "default:transition.L_roll_mult"
+  },
+  "T_par_min_regulated": {
+   "value": 0.17,
+   "source": "default:transition.T_par_min_regulated"
+  },
+  "T_par_max": {
+   "value": 0.5,
+   "source": "default:transition.T_par_max"
+  },
+  "icfr_min_parallel": {
+   "value": 0.25,
+   "source": "default:accounting.icfr_min_parallel"
+  },
+  "icfr_redesign_cost": {
+   "value": 50000.0,
+   "source": "default:accounting.icfr_redesign_cost"
+  },
+  "nu_q": {
+   "value": 0.132,
+   "source": "default:labor.nu_q"
+  },
+  "survivor_excess_quits": {
+   "value": 0.0235,
+   "source": "default:labor.survivor_excess_quits",
+   "basis": "eta_0 T_s: excess quits per announced wave, share of survivors"
+  },
+  "survivor_quits_per_share": {
+   "value": 0.0,
+   "source": "default:labor.survivor_quits_per_share",
+   "basis": "eta_1 T_s: excess quits per unit of displacement share (enters C^surv)"
+  },
+  "T_s": {
+   "value": 1.0,
+   "source": "default:labor.T_s"
+  },
+  "delta_eff": {
+   "value": 0.0,
+   "source": "default:labor.delta_eff",
+   "basis": "delta_0: announcement productivity loss of survivors (enters O_s)"
+  },
+  "c_rep": {
+   "value": 0.56,
+   "source": "default:labor.c_rep"
+  },
+  "legal_review_cost": {
+   "value": 15000,
+   "source": "default:security.legal_review_cost"
+  },
+  "eval_data_cost": {
+   "value": 20000,
+   "source": "default:security.eval_data_cost"
+  },
+  "change_mgmt_cost_per_fte": {
+   "value": 2000,
+   "source": "default:labor.change_mgmt_cost_per_fte"
+  },
+  "training_hours_per_fte": {
+   "value": 20,
+   "source": "default:labor.training_hours_per_fte"
+  },
+  "training_cost_per_hour": {
+   "value": 50.7,
+   "source": "default:labor.training_cost_per_hour"
+  },
+  "a0": {
+   "value": 2.12,
+   "source": "default:success.a0"
+  },
+  "a_iota": {
+   "value": 2.0,
+   "source": "default:success.a_iota"
+  },
+  "a_H": {
+   "value": 0.5,
+   "source": "default:success.a_H"
+  },
+  "a_R": {
+   "value": 0.5,
+   "source": "default:success.a_R"
+  },
+  "c0": {
+   "value": 2.31,
+   "source": "default:success.c0"
+  },
+  "c_exc": {
+   "value": 1.0,
+   "source": "default:success.c_exc"
+  },
+  "c_fte": {
+   "value": 0.4,
+   "source": "default:success.c_fte"
+  },
+  "c_team": {
+   "value": 1.0,
+   "source": "default:success.c_team"
+  },
+  "c_sponsor": {
+   "value": 0.8,
+   "source": "default:success.c_sponsor"
+  },
+  "team_prior": {
+   "value": 0.5,
+   "source": "default:success.team_prior"
+  },
+  "sponsor_prior": {
+   "value": 0.5,
+   "source": "default:success.sponsor_prior"
+  },
+  "b_bar": {
+   "value": 0.67,
+   "source": "default:success.b_bar"
+  },
+  "pilot_cost_share": {
+   "value": 0.15,
+   "source": "default:pilot.cost_share"
+  },
+  "pilot_fixed_cost": {
+   "value": 50000.0,
+   "source": "default:pilot.fixed_cost"
+  },
+  "T_pil": {
+   "value": 0.25,
+   "source": "default:pilot.T_pil"
+  },
+  "delta_M": {
+   "value": 0.17,
+   "source": "default:security.delta_M"
+  },
+  "T_up": {
+   "value": 1.22,
+   "source": "default:security.T_up"
+  },
+  "reval_share": {
+   "value": 0.1,
+   "source": "default:security.reval_share"
+  },
+  "c_int": {
+   "value": 3000.0,
+   "source": "default:security.c_int"
+  },
+  "c_cpl": {
+   "value": 2000.0,
+   "source": "default:security.c_cpl"
+  },
+  "class_sensitivity": {
+   "value": {
+    "public": 0.0,
+    "internal": 0.3,
+    "confidential": 0.6,
+    "restricted": 1.0
+   },
+   "source": "default:security.class_sensitivity"
+  },
+  "autonomy_A": {
+   "value": 1.0,
+   "source": "default:security.autonomy_A"
+  },
+  "autonomy_U": {
+   "value": 0.3,
+   "source": "default:security.autonomy_U"
+  },
+  "n_systems_ref": {
+   "value": 3.0,
+   "source": "default:readiness.n_systems_ref"
+  },
+  "h_f": {
+   "value": 0.05,
+   "source": "default:security.h_f"
+  },
+  "h_u": {
+   "value": 2e-07,
+   "source": "default:security.h_u"
+  },
+  "L_inc_class": {
+   "value": {
+    "public": 0.02,
+    "internal": 0.15,
+    "confidential": 1.0,
+    "restricted": 2.3
+   },
+   "source": "default:security.L_inc"
+  },
+  "breach_avg": {
+   "value": 4990000,
+   "source": "default:security.breach_avg"
+  },
+  "per_process_share": {
+   "value": 0.3,
+   "source": "default:security.per_process_share"
+  },
+  "L_inc_scale": {
+   "value": 1.0,
+   "source": "default:security.L_inc_scale"
+  },
+  "C_s": {
+   "value": 20000.0,
+   "source": "default:security.C_s"
+  },
+  "redteam_cost": {
+   "value": 30000,
+   "source": "default:security.redteam_cost"
+  },
+  "buy_markup": {
+   "value": 0.25,
+   "source": "default:security.buy_markup"
+  },
+  "buy_pooled_share": {
+   "value": 0.1,
+   "source": "default:security.buy_pooled_share"
+  },
+  "buy_integration_share": {
+   "value": 0.3,
+   "source": "default:security.buy_integration_share"
+  },
+  "switching_cost_share": {
+   "value": 0.6,
+   "source": "default:security.switching_cost_share"
+  },
+  "contract_years": {
+   "value": 3.0,
+   "source": "default:security.contract_years"
+  },
+  "h_retrieval": {
+   "value": 0.05,
+   "source": "default:reliability.h_retrieval"
+  },
+  "grounding": {
+   "value": 0.5,
+   "source": "default:reliability.grounding"
+  },
+  "h_floor_share": {
+   "value": 0.1,
+   "source": "default:reliability.h_floor_share"
+  },
+  "d_h": {
+   "value": 0.4,
+   "source": "default:reliability.d_h"
+  },
+  "m0": {
+   "value": 0.001,
+   "source": "default:reliability.m0"
+  },
+  "autonomy_mult": {
+   "value": {
+    "read": 0.0,
+    "draft": 0.05,
+    "act_with_approval": 0.5,
+    "act_autonomously": 1.0
+   },
+   "source": "default:reliability.autonomy_mult"
+  },
+  "kappa_h": {
+   "value": 0.5,
+   "source": "default:reliability.kappa_h"
+  },
+  "injection_mult": {
+   "value": 1.0,
+   "source": "default:reliability.injection_mult"
+  },
+  "guard_cut": {
+   "value": 0.5,
+   "source": "default:reliability.guard_cut"
+  },
+  "sev_mult": {
+   "value": 5.0,
+   "source": "default:reliability.sev_mult"
+  },
+  "lp_cut": {
+   "value": 0.5,
+   "source": "default:reliability.lp_cut"
+  },
+  "mon_cut": {
+   "value": 0.3,
+   "source": "default:reliability.mon_cut"
+  },
+  "kill_cap_mult": {
+   "value": 20.0,
+   "source": "default:reliability.kill_cap_mult"
+  },
+  "alpha_tail": {
+   "value": 1.5,
+   "source": "default:reliability.alpha_tail"
+  },
+  "alpha_tail_low": {
+   "value": 1.15,
+   "source": "range_low:reliability.alpha_tail"
+  },
+  "d_m_approval": {
+   "value": 0.85,
+   "source": "default:reliability.d_m_approval"
+  },
+  "d_mon": {
+   "value": 0.6,
+   "source": "default:reliability.d_mon"
+  },
+  "d_m_review": {
+   "value": 0.3,
+   "source": "default:reliability.d_m_review"
+  },
+  "rho_appr": {
+   "value": 0.25,
+   "source": "default:reliability.rho_appr"
+  },
+  "cvar_q": {
+   "value": 0.95,
+   "source": "default:reliability.cvar_q"
+  },
+  "L_max_event": {
+   "value": 5000000.0,
+   "source": "default:reliability.L_max_event"
+  },
+  "high_rel_gwas": {
+   "value": [
+    "4.A.2.a.2",
+    "4.A.2.a.3",
+    "4.A.3.b.6",
+    "4.A.2.a.4"
+   ],
+   "source": "setting",
+   "basis": "copy of engine impute.py HIGH_REL_GWAS"
+  },
+  "int_cost_per_system_low": {
+   "value": 20000.0,
+   "source": "range_low:build.int_cost_per_system"
+  },
+  "int_cost_per_system_high": {
+   "value": 200000.0,
+   "source": "range_high:build.int_cost_per_system"
+  },
+  "d_R_low": {
+   "value": 0.45,
+   "source": "range_low:reliability.d_e"
+  },
+  "d_R_high": {
+   "value": 0.85,
+   "source": "range_high:reliability.d_e"
+  },
+  "r_bar_high_low": {
+   "value": 0.975,
+   "source": "range_low:review.r_bar_high"
+  },
+  "r_bar_high_high": {
+   "value": 0.995,
+   "source": "range_high:review.r_bar_high"
+  },
+  "L_mult_regulated_low": {
+   "value": 5.0,
+   "source": "range_low:review.L_mult_regulated"
+  },
+  "L_mult_regulated_high": {
+   "value": 30.0,
+   "source": "range_high:review.L_mult_regulated"
+  },
+  "t_capture": {
+   "value": 0.05,
+   "source": "setting"
+  },
+  "gwa_capture": {
+   "value": "4.A.3.b.6",
+   "source": "setting",
+   "basis": "O*NET GWA Documenting/Recording Information"
+  },
+  "r_bar_capture": {
+   "value": 0.95,
+   "source": "prior:activity_attributes:4.A.3.b.6:r_bar"
+  },
+  "L_mult_capture": {
+   "value": 1.0,
+   "source": "prior:activity_attributes:4.A.3.b.6:L_mult"
+  },
+  "iota_star_capture": {
+   "value": 0.5,
+   "source": "prior:activity_attributes:4.A.3.b.6:iota_star"
+  },
+  "separable_capture": {
+   "value": 0.8,
+   "source": "prior:activity_attributes:4.A.3.b.6:separable"
+  },
+  "eliminable_capture": {
+   "value": 1.0,
+   "source": "prior:activity_attributes:4.A.3.b.6:eliminable"
+  },
+  "regulated_capture": {
+   "value": true,
+   "source": "setting",
+   "basis": "accounts payable is a financial-reporting process in scope for SOX ICFR at a public company; regulated status is a property of the process and its data class, not of the firm's error tolerance, so it holds in the conditional case with the relaxed target (coordinator decision of 29 Oct; replaces the engine rule regulated iff target >= 0.99)"
+  },
+  "t_match": {
+   "value": 0.08,
+   "source": "setting"
+  },
+  "gwa_match": {
+   "value": "4.A.2.a.2",
+   "source": "setting",
+   "basis": "O*NET GWA Processing Information (reconcile records); P02 step 5 uses DWA 4.A.2.a.2.d.1"
+  },
+  "r_bar_match": {
+   "value": 0.97,
+   "source": "prior:activity_attributes:4.A.2.a.2:r_bar"
+  },
+  "L_mult_match": {
+   "value": 2.0,
+   "source": "prior:activity_attributes:4.A.2.a.2:L_mult"
+  },
+  "iota_star_match": {
+   "value": 0.5,
+   "source": "prior:activity_attributes:4.A.2.a.2:iota_star"
+  },
+  "separable_match": {
+   "value": 0.9,
+   "source": "prior:activity_attributes:4.A.2.a.2:separable"
+  },
+  "eliminable_match": {
+   "value": 0.0,
+   "source": "prior:activity_attributes:4.A.2.a.2:eliminable"
+  },
+  "regulated_match": {
+   "value": true,
+   "source": "setting",
+   "basis": "accounts payable is a financial-reporting process in scope for SOX ICFR at a public company; regulated status is a property of the process and its data class, not of the firm's error tolerance, so it holds in the conditional case with the relaxed target (coordinator decision of 29 Oct; replaces the engine rule regulated iff target >= 0.99)"
+  },
+  "t_exceptions": {
+   "value": 0.12,
+   "source": "setting"
+  },
+  "gwa_exceptions": {
+   "value": "4.A.2.b.1",
+   "source": "setting",
+   "basis": "O*NET GWA Making Decisions and Solving Problems"
+  },
+  "r_bar_exceptions": {
+   "value": 0.97,
+   "source": "prior:activity_attributes:4.A.2.b.1:r_bar"
+  },
+  "L_mult_exceptions": {
+   "value": 3.0,
+   "source": "prior:activity_attributes:4.A.2.b.1:L_mult"
+  },
+  "iota_star_exceptions": {
+   "value": 0.6,
+   "source": "prior:activity_attributes:4.A.2.b.1:iota_star"
+  },
+  "separable_exceptions": {
+   "value": 0.2,
+   "source": "prior:activity_attributes:4.A.2.b.1:separable"
+  },
+  "eliminable_exceptions": {
+   "value": 0.0,
+   "source": "prior:activity_attributes:4.A.2.b.1:eliminable"
+  },
+  "regulated_exceptions": {
+   "value": true,
+   "source": "setting",
+   "basis": "resolving three-way-match exceptions changes recorded liabilities, so it is a key ICFR activity in accounts payable; regulated status is a property of the process, not of the target (coordinator decision of 29 Oct)"
+  },
+  "t_approval": {
+   "value": 0.05,
+   "source": "setting"
+  },
+  "gwa_approval": {
+   "value": "4.A.2.a.3",
+   "source": "setting",
+   "basis": "O*NET GWA Evaluating Information to Determine Compliance with Standards"
+  },
+  "r_bar_approval": {
+   "value": 0.99,
+   "source": "prior:activity_attributes:4.A.2.a.3:r_bar"
+  },
+  "L_mult_approval": {
+   "value": 10.0,
+   "source": "prior:activity_attributes:4.A.2.a.3:L_mult"
+  },
+  "iota_star_approval": {
+   "value": 0.65,
+   "source": "prior:activity_attributes:4.A.2.a.3:iota_star"
+  },
+  "separable_approval": {
+   "value": 0.4,
+   "source": "prior:activity_attributes:4.A.2.a.3:separable"
+  },
+  "eliminable_approval": {
+   "value": 0.0,
+   "source": "prior:activity_attributes:4.A.2.a.3:eliminable"
+  },
+  "regulated_approval": {
+   "value": true,
+   "source": "setting",
+   "basis": "accounts payable is a financial-reporting process in scope for SOX ICFR at a public company; regulated status is a property of the process and its data class, not of the firm's error tolerance, so it holds in the conditional case with the relaxed target (coordinator decision of 29 Oct; replaces the engine rule regulated iff target >= 0.99)"
+  },
+  "owned_opex_share": {
+   "value": 0.3,
+   "source": "default:capital.owned_opex_share"
+  },
+  "compute_capital_per_annual_dollar": {
+   "value": 3.0,
+   "source": "default:capital.compute_capital_per_annual_dollar"
+  },
+  "delta_K_compute": {
+   "value": 0.25,
+   "source": "default:capital.delta_K_compute"
+  },
+  "revenue_growth_g": {
+   "value": 0.12,
+   "source": "default:finance.revenue_growth_g"
+  },
+  "delta_pi": {
+   "value": 2.303,
+   "source": "default:prices.delta_pi"
+  },
+  "eps_d": {
+   "value": 0.5,
+   "source": "default:reliability.eps_d"
+  }
+ },
+ "source_sha256": {
+  "engine/src/autofrontier/defaults.yaml": "577435ab139474d916fe567140ce245a2770d4f5cc96d4c5ae559be59042fa02",
+  "data/tasks/params.yaml": "144562867d5ca5e8f4a068e067e8a05028a753f002d22cd7696018df66287714",
+  "data/tasks/params_reliability.yaml": "c2a4cd78cf160b69637b50872e174cc0399746da436ff08342c1d071df9b490c",
+  "data/examples/invoice_chain.yaml": "9eb8bec3aa9197389a9b9e347157716e4b85c681904be15e50c9cdae51c3481a",
+  "engine/src/autofrontier/priors/activity_attributes.csv": "96a395d343243c286baa923a068d581b1c2deafcba79f2ff4b1d972f76eba3df"
+ },
+ "macros": {
+  "icVolume": "120{,}000",
+  "icRevenue": "\\$1.2 billion",
+  "icWage": "\\$34.80",
+  "icWageAnnual": "\\$50{,}670",
+  "icIotaLow": "0.4",
+  "icIotaHigh": "0.9",
+  "icIotaN": "0.8",
+  "icR": "8.93\\%",
+  "icTA": "4",
+  "icTh": "4",
+  "icThEngine": "10",
+  "icDR": "0.65",
+  "icDRlow": "0.45",
+  "icDRhigh": "0.85",
+  "icDh": "0.4",
+  "icRhoO": "65\\%",
+  "icRhoRev": "0.575",
+  "icWagePremium": "1.2",
+  "icBetaU": "0.25",
+  "icEzero": "0.25",
+  "icEone": "0.033",
+  "icHzero": "12",
+  "icEUdecision": "0.5",
+  "icRowCapture": "Capture & 0.05 & 1.74 & 0.60, $N$ & 0.07 & 0.468 / 0.070 & 0.98 & 0.713 & 1.61 & 138",
+  "icLCapture": "\\$17.40",
+  "icRowMatch": "Match & 0.08 & 2.78 & 2.17, $O$ & 0.11 & 0.183 / 0.077 & 0.98 & 0.741 & 2.52 & 161",
+  "icLMatch": "\\$27.84",
+  "icRowExceptions": "Exceptions & 0.12 & 4.18 & 3.51, $U$ & 0.16 & 0.191 / 0.086 & 0.97 & 0.652 & 3.02 & 185",
+  "icLExceptions": "\\$12.53",
+  "icRowApproval": "Approval & 0.05 & 1.74 & 1.55, $U$ & 0.07 & 0.177 / 0.070 & 0.99 & 0.857 & 1.61 & 138",
+  "icLApproval": "\\$17.40",
+  "icLmult": "10, 10, 3 and 10",
+  "icEhighMin": "7.0\\%",
+  "icEhighMax": "8.6\\%",
+  "icDstarMin": "0.652",
+  "icDstarMax": "0.86",
+  "icMaxRelFullMin": "98.0\\%",
+  "icMaxRelFullMax": "98.3\\%",
+  "icMaxRelExcFull": "97.7\\%",
+  "icEfullMin": "4.8\\%",
+  "icEcapLow": "36\\%",
+  "icApiReadiness": "0.6",
+  "icPinTotal": "\\$0.40",
+  "icKappaO": "0.10",
+  "icZetaO": "0.03",
+  "icQMstep": "0.995",
+  "icOwnedOpex": "30\\%",
+  "icDeltaKcompute": "25\\%",
+  "icCapPerDollar": "3",
+  "icDipShare": "10\\%",
+  "icCint": "\\$3{,}000",
+  "icScaleCurv": "\\$1{,}000",
+  "icQbarHigh": "98\\%",
+  "icQbarExc": "97\\%",
+  "icContractYears": "3",
+  "icExcIotaFeas": "0.902",
+  "icExcIotaStarDefault": "0.97",
+  "icDfeas": "0.86",
+  "icDill": "0.85",
+  "icQcap": "98\\%",
+  "icQstar": "98.8\\%",
+  "icResidCap": "2\\%",
+  "icResidPolicy": "2\\%",
+  "icQbarAppr": "99\\%",
+  "icResidAppr": "1\\%",
+  "icLmultReg": "10",
+  "icLmultRegLow": "5",
+  "icLmultRegHigh": "30",
+  "icRbarHighLow": "97.5\\%",
+  "icRbarHighHigh": "99.5\\%",
+  "icCaptureIotaFeas": "0.959",
+  "icMatchIotaFeas": "0.994",
+  "icMaxRelApprFull": "98.3\\%",
+  "icAltWfull": "$-$\\$14{,}000",
+  "icAltPair": "$-$\\$1{,}500",
+  "icAltPairLoss": "\\$1{,}500",
+  "icAltFirstIota": "0.903",
+  "icAltIotaStarN": "0.912",
+  "icRegMult": "1.5",
+  "icEHuman": "2\\%",
+  "icQHuman": "98\\%",
+  "icIotaStarP": "0.90",
+  "icExcAninety": "\\$2.86",
+  "icXiMin": "0.77",
+  "icXiMax": "0.87",
+  "icMatchH": "\\$2.78",
+  "icMatchO": "\\$2.17",
+  "icMatchA": "\\$2.52",
+  "icMatchVsH": "\\$32{,}000",
+  "icMatchVsO": "\\$42{,}000",
+  "icWinCzeroA": "\\$2.41",
+  "icExcU": "\\$3.51",
+  "icExcAone": "\\$2.57",
+  "icExcAill": "\\$3.02",
+  "icExcAeightyfive": "\\$3.02",
+  "icExcDtie": "0.73",
+  "icExcDinf": "0.652",
+  "icCmanHigh": "\\$1.05 million",
+  "icEinhouse": "\\$1.25 million",
+  "icDivUnit": "$-$\\$112{,}000",
+  "icDivCoord": "\\$98{,}000",
+  "icDivRel": "$-$\\$84{,}000",
+  "icDivOver": "\\$93{,}000",
+  "icQM": "0.980",
+  "icQA": "0.913",
+  "icWfullHigh": "$-$\\$5{,}500",
+  "icSingleCapture": "$-$\\$168{,}000",
+  "icSingleMatch": "$-$\\$116{,}000",
+  "icSingleExc": "$-$\\$28{,}000",
+  "icSingleAppr": "$-$\\$54{,}000",
+  "icBestPair": "\\$6{,}600",
+  "icPairEA": "\\$6{,}600",
+  "icPairEAloss": "$-$\\$6{,}600",
+  "icBestFirstIota": "0.889",
+  "icIotaChainFeas": "0.65",
+  "icWeightyfive": "$-$\\$60{,}000",
+  "icWninetyfive": "\\$59{,}000",
+  "icWbelowN": "$-$\\$18{,}000",
+  "icWaboveN": "$-$\\$109{,}000",
+  "icWdropN": "\\$91{,}000",
+  "icIotaStarN": "0.905",
+  "icXiPshare": "7.4\\%",
+  "icLp": "\\$10.44",
+  "icEtaMM": "\\$0.31",
+  "icEtaAM": "\\$0.54",
+  "icEtaAA": "\\$0.39",
+  "icDetWdone": "\\$175{,}000",
+  "icDetWdoneRun": "$-$\\$154{,}000",
+  "icDetDWzero": "0.861",
+  "icW": "$-$\\$164{,}000",
+  "icWbeforeRun": "\\$165{,}000",
+  "icRunTotal": "\\$329{,}000",
+  "icF": "\\$2.81 million",
+  "icFbuild": "\\$622{,}000",
+  "icFint": "\\$2.00 million",
+  "icFother": "\\$186{,}000",
+  "icIntCost": "\\$60{,}000",
+  "icIntLow": "\\$20{,}000",
+  "icIntHigh": "\\$200{,}000",
+  "icNsys": "4",
+  "icCzero": "\\$1.14 million",
+  "icCJ": "\\$114{,}000",
+  "icCpar": "\\$1.16 million",
+  "icCdup": "\\$120{,}000",
+  "icCstr": "\\$234{,}000",
+  "icCsurv": "\\$0.00",
+  "icOs": "\\$6{,}100",
+  "icNsv": "7.1",
+  "icExcessQuits": "2.35\\%",
+  "icCrep": "0.56",
+  "icCwo": "\\$300{,}000",
+  "icVarpi": "0.82",
+  "icBbar": "0.67",
+  "icTdet": "0.25",
+  "icLroll": "\\$1.14 million",
+  "icOmegaPar": "80\\%",
+  "icNuRec": "10\\%",
+  "icTpar": "0.25",
+  "icTparStar": "0.00",
+  "icResid": "7\\%",
+  "icNPV": "$-$\\$3.78 million",
+  "icNPVcertain": "$-$\\$3.97 million",
+  "icNPVunlimited": "$-$\\$4.49 million",
+  "icNPVvarpiOne": "$-$\\$3.79 million",
+  "icNPVthThree": "$-$\\$3.71 million",
+  "icNPVthFive": "$-$\\$3.84 million",
+  "icNPVthEngine": "$-$\\$4.07 million",
+  "icNPVprogram": "$-$\\$4.17 million",
+  "icRebuilds": "4 and 8",
+  "icFbreakeven": "$-$\\$970{,}000",
+  "icNPVaLow": "$-$\\$2.44 million",
+  "icNPVaDef": "$-$\\$3.78 million",
+  "icNPVaHigh": "$-$\\$8.44 million",
+  "icFintLow": "\\$667{,}000",
+  "icFintHigh": "\\$6.67 million",
+  "icNPVb": "$-$\\$1.71 million",
+  "icNPVbCertain": "$-$\\$1.90 million",
+  "icFb": "\\$808{,}000",
+  "icSPcashOne": "0.32",
+  "icSPcashLater": "0.01",
+  "icSPgaapOne": "0.17",
+  "icSPgaapLater": "0.07",
+  "icYs": "$-$\\$3.79 million",
+  "icYf": "$-$\\$3.70 million",
+  "icYsb": "$-$\\$1.72 million",
+  "icFpil": "\\$143{,}000",
+  "icPilotShare": "15\\%",
+  "icPilotFixed": "\\$50{,}000",
+  "icDeltaM": "17\\%",
+  "icTup": "1.22",
+  "icRevalShare": "10\\%",
+  "icVolFactor": "2.01",
+  "icMaint": "\\$106{,}000",
+  "icReval": "\\$48{,}000",
+  "icTechDebt": "\\$144{,}000",
+  "icNint": "16",
+  "icCcpl": "\\$32{,}000",
+  "icCinc": "\\$35{,}000",
+  "icSecSpend": "\\$11{,}000",
+  "icSecResid": "\\$20{,}000",
+  "icWrunHigh": "$-$\\$335{,}000",
+  "icScope": "\\$84{,}000",
+  "icCs": "\\$20{,}000",
+  "icBBfix": "\\$483{,}000",
+  "icBBbuilds": "\\$185{,}000",
+  "icBBrun": "\\$298{,}000",
+  "icBBpooled": "\\$1.04",
+  "icBBint": "\\$186{,}000",
+  "icBBfixv": "\\$55{,}000",
+  "icBBcv": "\\$1.41",
+  "icBBv": "304{,}000",
+  "icBBvnorun": "92{,}000",
+  "icBBsave": "\\$259{,}000",
+  "icBBlock": "\\$124{,}000",
+  "icBBsw": "\\$373{,}000",
+  "icBBmarkup": "25\\%",
+  "icScalePer": "\\$154{,}000",
+  "icScaleFixed": "\\$615{,}000",
+  "icScaleJensen": "\\$20{,}000",
+  "icScalePool": "\\$92{,}000",
+  "icCapDc": "\\$0.28",
+  "icCapDK": "\\$1.21",
+  "icCapG": "12\\%",
+  "icCapValue": "\\$0.13",
+  "icCapCash": "\\$0.17",
+  "icCapGaap": "\\$0.02",
+  "icCapPin": "\\$0.40",
+  "icHalEo": "7.0\\%",
+  "icHalEh": "0.28\\%",
+  "icHret": "5\\%",
+  "icHalFloor": "2.6\\%",
+  "icHalFloorO": "2.4\\%",
+  "icHalFloorDh": "2.6\\%",
+  "icHalTol": "1\\%",
+  "icEpsd": "0.5",
+  "icBiasPeak": "61\\%",
+  "icBiasThr": "67\\%",
+  "icBiasTop": "72\\%",
+  "icBiasCentral": "55\\%",
+  "icBiasUplift": "10\\%",
+  "icAutL": "\\$17.40",
+  "icAutLm": "\\$30.45",
+  "icAutCap": "\\$609",
+  "icAlpha": "1.5",
+  "icAlphaLow": "1.15",
+  "icAutCmTwo": "\\$0.001",
+  "icAutCmThree": "\\$0.004",
+  "icAutHumOne": "\\$1.39",
+  "icAutHumTwo": "\\$0.52",
+  "icAutCvar": "\\$673",
+  "icAutCvarLow": "\\$3{,}200",
+  "icAutCvarQ": "95\\%",
+  "icAutLmax": "\\$5.00 million",
+  "icCerrFloor": "\\$0.45",
+  "icCerrMis": "\\$0.004",
+  "icCerrAnnual": "\\$55{,}000",
+  "icCerrNoRev": "\\$1.27",
+  "icCerrNoRevAnnual": "\\$152{,}000"
+ }
+}

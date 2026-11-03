@@ -1,0 +1,15 @@
+pattern,cost_type,confidence
+salar|wage|payroll(?! tax)|base pay|overtime|bonus|incentive|commission,labor,0.9
+payroll tax|benefit|401k|pension|health|insurance - employee|fringe,labor,0.85
+stock[- ]based|stock comp|sbc|equity comp,labor,0.85
+contractor|temp labor|temporary labor|staff aug|freelanc,contractor,0.85
+outsourc|bpo|managed service,outsourcing,0.85
+hosting|cloud|aws|azure|gcp|data center|infrastructure as a service|compute,compute,0.85
+software|subscription|saas|license|licence,software,0.85
+rent|lease|facilit|utilities|office,facilities,0.8
+travel|t&e|meals|lodging|airfare,travel,0.85
+advertis|marketing program|campaign|sponsorship|events,programs,0.8
+legal fee|outside counsel|professional fee|consult|audit fee|accounting fee,professional_fees,0.8
+recruit|agency fee,recruiting,0.8
+depreciation|amortization,depreciation,0.9
+training|education|conference,training,0.75

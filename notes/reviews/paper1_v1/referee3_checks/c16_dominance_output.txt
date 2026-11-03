@@ -1,0 +1,8 @@
+E1 m_op chi 0.9 phi at g=0,.2,.4,.6: [np.float64(24.5), np.float64(16.3), np.float64(13.0), np.float64(12.3)] n: [1688, 779, 253, 80] LS slope -0.20
+E1 m_op chi 0.95 phi at g=0,.2,.4,.6: [np.float64(30.7), np.float64(23.8), np.float64(18.1), np.float64(19.1)] n: [1688, 779, 253, 80] LS slope -0.20
+E1 m_fcf_sbc chi 0.9 phi at g=0,.2,.4,.6: [np.float64(23.9), np.float64(17.9), np.float64(14.8), np.float64(15.1)] n: [1642, 761, 252, 81] LS slope -0.16
+E1 m_fcf_sbc chi 0.95 phi at g=0,.2,.4,.6: [np.float64(28.7), np.float64(25.5), np.float64(24.1), np.float64(25.2)] n: [1642, 761, 252, 81] LS slope -0.05
+E2 m_op chi 0.9 phi at g=0,.2,.4,.6: [np.float64(25.1), np.float64(14.2), np.float64(9.2), np.float64(9.6)] n: [1282, 522, 160, 49] LS slope -0.31
+E2 m_op chi 0.95 phi at g=0,.2,.4,.6: [np.float64(32.0), np.float64(22.3), np.float64(17.6), np.float64(18.3)] n: [1282, 522, 160, 49] LS slope -0.23
+E2 m_fcf_sbc chi 0.9 phi at g=0,.2,.4,.6: [np.float64(23.5), np.float64(15.9), np.float64(11.7), np.float64(15.3)] n: [1250, 517, 161, 50] LS slope -0.19
+E2 m_fcf_sbc chi 0.95 phi at g=0,.2,.4,.6: [np.float64(28.7), np.float64(23.8), np.float64(23.7), np.float64(23.4)] n: [1250, 517, 161, 50] LS slope -0.06

@@ -1,0 +1,3807 @@
+# Part II engine parameters. Built by code/data_part2/08_params.py; do not edit by hand.
+# Every block: value, range, quality flag, source, assumed. Sources and URLs: notes/data_sources_part2.md
+meta:
+  version: '1.0'
+  built: '2026-10-29'
+  built_by: code/data_part2/08_params.py
+  conventions: 'value = default; range = [low, high]; quality flag as listed in the script docstring; assumed: true when not
+    sourced. Monetary values in 2026 USD unless stated.'
+  source_log: notes/data_sources_part2.md
+payroll_loading:
+  tau_L_per_hour_worked:
+    value: 0.4287
+    range:
+    - 0.4287
+    - 0.5476
+    quality: government
+    source: BLS, Employer Costs for Employee Compensation, June 2026 (news release USDL, 9 Sep 2026), Tables 1 and 4
+    note: (total compensation / wages and salaries) - 1, per hour worked. Use when t is measured in hours worked and w is
+      the OEWS hourly rate (annual / 2080). Range spans private industry to the information industry.
+    assumed: false
+    grounding: a
+  tau_L_on_annual_wage:
+    value: 0.2896
+    range:
+    - 0.2791
+    - 0.3359
+    quality: government
+    source: BLS, Employer Costs for Employee Compensation, June 2026 (news release USDL, 9 Sep 2026), Tables 1 and 4
+    note: '(total compensation - wages - paid leave) / (wages + paid leave): loading on an OEWS annual wage, which already
+      pays for leave. Annual FTE cost = OEWS annual wage x (1 + this).'
+    assumed: false
+    grounding: a
+  worked_hours_per_fte_year:
+    value: 1877.5
+    range:
+    - 1795.5
+    - 1877.5
+    quality: government
+    source: BLS, Employer Costs for Employee Compensation, June 2026 (news release USDL, 9 Sep 2026), Tables 1 and 4
+    note: 2080 paid hours / (1 + paid leave per hour worked / wages per hour worked).
+    assumed: false
+    grounding: a
+  by_group:
+    private_industry:
+      tau_L_per_hour_worked: 0.4287
+      tau_L_on_annual_wage: 0.2896
+      worked_hours_per_fte_year: 1877.5
+      ecec_usd_per_hour_worked:
+        total: 46.89
+        wages: 32.82
+        paid_leave: 3.54
+    civilian:
+      tau_L_per_hour_worked: 0.4612
+      tau_L_on_annual_wage: 0.3168
+      worked_hours_per_fte_year: 1874.5
+      ecec_usd_per_hour_worked:
+        total: 49.46
+        wages: 33.85
+        paid_leave: 3.71
+    management_professional_private:
+      tau_L_per_hour_worked: 0.4591
+      tau_L_on_annual_wage: 0.2841
+      worked_hours_per_fte_year: 1830.5
+      ecec_usd_per_hour_worked:
+        total: 78.88
+        wages: 54.06
+        paid_leave: 7.37
+    professional_business_services_private:
+      tau_L_per_hour_worked: 0.4392
+      tau_L_on_annual_wage: 0.2791
+      worked_hours_per_fte_year: 1848.6
+      ecec_usd_per_hour_worked:
+        total: 59.8
+        wages: 41.55
+        paid_leave: 5.2
+    information_private:
+      tau_L_per_hour_worked: 0.5476
+      tau_L_on_annual_wage: 0.3359
+      worked_hours_per_fte_year: 1795.5
+      ecec_usd_per_hour_worked:
+        total: 84.28
+        wages: 54.46
+        paid_leave: 8.63
+capability_path:
+  H0_hours_p50:
+    value: 11.98
+    range:
+    - 8.99
+    - 14.98
+    quality: primary_data_fit
+    source: METR Time Horizon 1.1 run data (github.com/METR/eval-analysis-public), refit by 06_capability.py
+    unit: human hours at 50% success
+    note: frontier agent Claude Opus 4.6 (Inspect); METR reports measurements above 16 h as unreliable with the current task
+      suite. Software tasks only.
+    assumed: false
+    grounding: c
+  H0_hours_p80:
+    value: 1.16
+    range:
+    - 0.87
+    - 1.46
+    quality: primary_data_fit
+    source: as H0_hours_p50
+    unit: human hours at 80% success
+    assumed: false
+    grounding: c
+  t0:
+    value: '2026-02-05'
+    range: null
+    quality: primary_data_fit
+    source: release date of the frontier agent, METR release_dates.yaml
+    assumed: false
+    grounding: c
+  T_d_days:
+    value: 143
+    range:
+    - 102
+    - 240
+    quality: peer_reviewed
+    source: 'Kwa et al. (2025), Measuring AI Ability to Complete Long Software Tasks, arXiv:2503.14499, NeurIPS 2025: 207
+      days (95% CI 166-240) for 2019-2025, 143 days for 2024-onward models'
+    unit: days per doubling of the 50% horizon
+    note: 'Default 143 (published, 2024-onward). Our refits, reported alongside: TH1.0 data 2019+ 201.2 d, TH1.0 2024+ 131.3
+      d; TH1.1 data 2023+ 128.7 d (95% CI 106.3-158.2), TH1.1 2024+ 102.2 d (95% CI 81.6-126.1). Low end of range = fastest
+      refit; high end = upper CI of the published long-run estimate.'
+    assumed: false
+    grounding: a
+  T_d_scenarios_days:
+    slow: 207
+    base: 143
+    fast: 102.0
+    source: slow and base published (Kwa et al. 2025); fast = TH1.1 2024+ refit
+  logistic_slope_b:
+    value: 0.597
+    range:
+    - 0.41
+    - 0.69
+    quality: primary_data_fit
+    source: 'METR TH1.1 refit: |coefficient| of success on log2(human minutes), median over agents released 2025+'
+    note: P(success | task length d) = 1 / (1 + (d / H50)^b). Range = min and max over those agents.
+    assumed: false
+    grounding: c
+  chi_reliability_factor:
+    value:
+      '0.5': 1.0
+      '0.8': 4.99
+      '0.9': 12.8
+      '0.95': 30.45
+      '0.99': 206.63
+      '0.999': 3019.12
+    quality: primary_data_fit
+    assumed: false
+    source: 'derived from logistic_slope_b: H50 / H_r = 2^(logit(r) / b)'
+    note: Anchored empirically at r = 0.8 (Kwa et al. report 80% horizons 4-6x shorter; our refit 5.0). Values above 0.8 extrapolate
+      the logistic form and are not validated by METR data.
+    grounding: c
+  domain_transfer_factor:
+    value: 1.0
+    range:
+    - 0.5
+    - 9.5
+    quality: practitioner_dataset_disclosed
+    source: 'Anthropic Economic Index report, 15 Jan 2026 (anthropic.com/research/economic-index-primitives, re-read 29 Oct
+      2026): Claude "50% successful at tasks that take ... around 3.5 hours" on the API and "around 19 hours" on Claude.ai,
+      for Claude Sonnet 4.5, which METR measures at 50% success on 2-hour tasks; the report says its method differs from METR''s
+      (user-guided task breakdown, selection)'
+    note: multiplies H for non-software or in-product tasks. Upper bound 19/2 = 9.5 (Claude.ai), API 3.5/2 = 1.75; Kwa et
+      al. (2025) find lower success on messier tasks, so values below 1 are allowed. Central 1 lies between the API ratio
+      (biased up by user selection) and the messiness penalty.
+    assumed: false
+    grounding: b
+    analogy: user-guided Claude tasks (API and Claude.ai) relative to METR software tasks for the same model; transfer to
+      enterprise processes is the stated analogy
+    conditional: the range spans log2(19) = 4.2 horizon doublings (1.6 to 2.4 years at T_d = 143 to 207 days), so feasibility
+      dates must be reported over the range
+  physical_lag_years:
+    value: 5
+    range:
+    - 2
+    - 10
+    quality: assumed
+    source: 'assumed: lag before world models make physical activities feasible'
+    assumed: true
+    grounding: d
+    note: no credible estimate of a world-model lag exists; scenario dimension
+  context_engine_multiplier_kappa_ctx:
+    value: 1.0
+    range:
+    - 1.0
+    - 3.0
+    quality: assumed
+    source: 'assumed: multiplier on effective horizon from organisational context engines'
+    assumed: true
+    grounding: d
+inference_price:
+  decline_factor_per_year_fixed_capability:
+    value: 10
+    range:
+    - 5
+    - 40
+    quality: peer_reviewed
+    source: 'Gundlach et al. (2025) arXiv:2511.23455: 5-10x a year at fixed benchmark performance; Cottier et al. (2025),
+      Epoch AI: 9-900x a year by threshold, 40x for GPT-4-level GPQA'
+    note: 'delta_pi = ln(factor) per year (continuous). Extreme range for stress tests: [5, 900]. Gundlach is a working paper
+      (arXiv); Epoch is a data insight. Applies at fixed task difficulty only.'
+    assumed: false
+    grounding: a
+  delta_pi_continuous:
+    value: 2.303
+    range:
+    - 1.609
+    - 3.689
+    quality: peer_reviewed
+    source: ln of the factor above
+    assumed: false
+    grounding: a
+  frontier_price_change_factor_per_year:
+    value: 1.0
+    range:
+    - 1.0
+    - 18.0
+    quality: working_paper
+    source: 'Gundlach et al. (2025): the price of running frontier models rises 3-18x a year'
+    note: for activities that need the current frontier model; default 1 (flat) because list prices of a given tier have fallen
+      (see list_prices).
+    assumed: true
+    grounding: d
+  list_prices_usd_per_mtok:
+    value:
+      frontier_tier (Claude Mythos 5.1 / Fable 5.1):
+        input: 10.0
+        output: 50.0
+        cache_hit: 0.25
+      claude_opus_5_5:
+        input: 4.0
+        output: 20.0
+        cache_hit: 0.2
+      claude_sonnet_5_5:
+        input: 2.0
+        output: 10.0
+        cache_hit: 0.1
+      claude_haiku_5_5 (prompts up to 100k tokens):
+        input: 0.1
+        output: 0.5
+        cache_hit: 0.01
+    quality: vendor_price_list
+    assumed: false
+    source: Anthropic, Claude API pricing, platform.claude.com/docs/en/about-claude/pricing, retrieved 2026-10-29
+    note: 'Batch API: 50% discount on input and output. Same page lists Opus 4.1 at $15/$75 and Opus 4.5 at $5/$25.'
+    grounding: a
+energy_share_s_E:
+  value: 0.07
+  range:
+  - 0.02
+  - 0.1
+  quality: secondary
+  source: 'Michael and Cottier (2026), Epoch AI data insight: energy about 7% of annualised TCO of a 1 GW AI data center (servers
+    60%); Cottier et al. (2024) arXiv:2405.21015: energy 9% of amortised hardware plus energy, 2-6% of total model development
+    cost'
+  note: share of compute cost, not of API price (prices include margins, so the share of price is lower).
+  assumed: false
+  grounding: b
+ai_cost:
+  tokens_per_human_hour_mtok:
+    value: 0.2586
+    range:
+    - 0.166
+    - 0.632
+    quality: primary_data_fit
+    source: 'METR TH1.1 runs, frontier agents (Opus 4.5/4.6, GPT-5/5.2/5.3-Codex, Gemini 3 Pro): median tokens_count per human-hour,
+      successful runs; range = medians by task-length bin'
+    note: tokens scale with task length with elasticity 0.98. METR does not state whether tokens_count includes cached input;
+      software tasks only.
+    assumed: false
+    grounding: c
+  token_mix_assumed:
+    value:
+      input_share: 0.9
+      cache_hit_share_of_input: 0.8
+      output_share: 0.1
+    quality: assumed
+    assumed: true
+    grounding: d
+    source: assumed agentic workload mix; cross-check only since the audit of 29 Oct 2026
+    range: cache_hit_share 0.0-0.95; output_share 0.05-0.25
+    metr_observed:
+      output_share_no_cache:
+        Claude Opus 4.5: 0.075
+        Claude 4.1 Opus: 0.09
+      cache_hit_share: 0.0
+      basis: effective USD per Mtok in METR TH1.0 runs, (p_eff - p_in)/(p_out - p_in) at the list prices of Claude Opus 4.5
+        ($5/$25) and Opus 4.1 ($15/$75); an effective price above the input price means METR priced runs without cache discounts
+    note: output_share 0.10 is consistent with METR (0.075-0.09, class c); the 0.80 cache-hit share is a deployment scenario
+      with no measured source and halves the cost relative to METR's observed cost
+  blended_price_usd_per_mtok:
+    value:
+      frontier_tier (Claude Mythos 5.1 / Fable 5.1): 6.98
+      claude_opus_5_5: 2.864
+      claude_sonnet_5_5: 1.432
+      claude_haiku_5_5 (prompts up to 100k tokens): 0.0752
+    quality: assumed
+    assumed: true
+    grounding: d
+    source: list prices x assumed token mix (cross-check)
+  inference_cost_usd_per_human_hour:
+    value:
+      frontier_tier (Claude Mythos 5.1 / Fable 5.1): 1.27
+      claude_opus_5_5: 0.508
+      claude_sonnet_5_5: 0.254
+      claude_haiku_5_5 (prompts up to 100k tokens): 0.013
+    range_multiplier:
+    - 0.3
+    - 3.0
+    quality: primary_data_fit
+    assumed: false
+    grounding: c
+    source: 'METR Time Horizon 1.0 runs (github.com/METR/eval-analysis-public, reports/time-horizon-1-0/data/raw/runs.jsonl):
+      recorded generation_cost / task human-hours, successful runs, Claude Opus 4.5 median $0.635/h (IQR [0.244, 1.569]) at
+      its list price $5/$25 per Mtok, scaled to each current tier by input list price (every tier has the same 1:5 input:output
+      price ratio); built by 08_params.py'
+    note: 'pi*n per activity-hour for cognitive digital work within the capability horizon; multiply by 1/success probability
+      for retries. IQR multiplier [0.384, 2.471], widened to [0.3, 3.0]. Observed cost for other agents: Claude 4.1 Opus $1.629/h;
+      Claude Opus 4.5 $0.635/h; Claude Sonnet 4.5 $0.342/h; GPT-5 $0.12/h; Gemini 2.5 Pro Preview $0.226/h; o3 $1.451/h. Cross-check
+      (former default, assumed): tokens_per_human_hour x blended price under the assumed mix = {''frontier_tier (Claude Mythos
+      5.1 / Fable 5.1)'': 1.805, ''claude_opus_5_5'': 0.741, ''claude_sonnet_5_5'': 0.37, ''claude_haiku_5_5 (prompts up to
+      100k tokens)'': 0.019}. METR software tasks only; agent scaffolds, not production deployments.'
+    metr_observed_by_agent:
+      Claude 4.1 Opus:
+        n_successful_runs: 921
+        usd_per_human_hour_median: 1.629
+        usd_per_human_hour_iqr:
+        - 0.984
+        - 3.008
+        share_of_human_baseline_cost_median: 0.01135
+        effective_usd_per_mtok_median: 20.41
+      Claude Opus 4.5:
+        n_successful_runs: 292
+        usd_per_human_hour_median: 0.635
+        usd_per_human_hour_iqr:
+        - 0.244
+        - 1.569
+        share_of_human_baseline_cost_median: 0.00442
+        effective_usd_per_mtok_median: 6.49
+      Claude Sonnet 4.5:
+        n_successful_runs: 918
+        usd_per_human_hour_median: 0.342
+        usd_per_human_hour_iqr:
+        - 0.202
+        - 0.617
+        share_of_human_baseline_cost_median: 0.00238
+        effective_usd_per_mtok_median: 4.09
+      GPT-5:
+        n_successful_runs: 528
+        usd_per_human_hour_median: 0.12
+        usd_per_human_hour_iqr:
+        - 0.082
+        - 0.152
+        share_of_human_baseline_cost_median: 0.00083
+        effective_usd_per_mtok_median: null
+      Gemini 2.5 Pro Preview:
+        n_successful_runs: 938
+        usd_per_human_hour_median: 0.226
+        usd_per_human_hour_iqr:
+        - 0.112
+        - 1.981
+        share_of_human_baseline_cost_median: 0.00157
+        effective_usd_per_mtok_median: 3.5
+      o3:
+        n_successful_runs: 527
+        usd_per_human_hour_median: 1.451
+        usd_per_human_hour_iqr:
+        - 1.032
+        - 1.975
+        share_of_human_baseline_cost_median: 0.01011
+        effective_usd_per_mtok_median: null
+  activity_class_multiplier:
+    value:
+      information_input (GWA 4.A.1): 0.5
+      mental_processes (4.A.2): 1.0
+      digital_work_output (4.A.3.b): 1.0
+      interacting_with_others (4.A.4): 1.5
+      physical_work_output (4.A.3.a): null
+    range:
+    - 0.3
+    - 3.0
+    quality: assumed
+    assumed: true
+    grounding: d
+    source: assumed multipliers on inference_cost_usd_per_human_hour by GWA class; physical work uses capital (capital_per_unit)
+  review_fraction_psi_A:
+    value:
+      readiness_high_low_stakes: 0.05
+      readiness_high_high_stakes: 0.25
+      readiness_low_low_stakes: 0.575
+      readiness_low_high_stakes: 1.0
+    range:
+      readiness_high_low_stakes:
+      - 0.0
+      - 0.1
+      readiness_high_high_stakes:
+      - 0.1
+      - 0.6
+      readiness_low_low_stakes:
+      - 0.37
+      - 0.91
+      readiness_low_high_stakes:
+      - 0.6
+      - 1.2
+    quality: peer_reviewed
+    assumed: false
+    grounding: b
+    source: 'full-review cells: machine-translation post-editing, the longest-studied case of people correcting machine drafts.
+      Plitt and Masselot (2010), Prague Bulletin of Mathematical Linguistics 93 (ufal.mff.cuni.cz/pbml/93/art-plitt-masselot.pdf):
+      12 translators, 4 languages, throughput +74% on average (time ratio 1/1.74 = 0.575), individual gains 20-131%; Ahsan,
+      Mujadia and Sharma (2021, arXiv:2112.09841) review: time savings 15-20% (Laubli et al. 2013), 9-60% (Laubli et al. 2019),
+      63% (their English-Hindi study), slowdowns of 3-5x with poor MT (Shah et al. 2015). High-stakes cell: Agarwal, Moehring,
+      Rajpurkar and Salz (NBER w31422; MIT copy read): 180 radiologists, AI predictions add about 4% to time per case (human
+      still does the whole task, ratio 1.04); Becker et al. (2025) +19%'
+    analogy: reviewing and correcting an AI draft of a digital work product, as translators post-edit MT output
+    note: 'share of in-house human time w t spent reviewing and correcting AI output. Full-review cells (low readiness) are
+      class b; the partial-review cells (high readiness: sampled review) have no measured source and are class d. Values above
+      1 are possible (Becker et al. 2025; Shah et al. 2015 via Ahsan et al.).'
+    cell_grounding:
+      readiness_high_low_stakes: d
+      readiness_high_high_stakes: d
+      readiness_low_low_stakes: b
+      readiness_low_high_stakes: b
+  review_time_ratio_rho_rev:
+    value: 0.575
+    range:
+    - 0.37
+    - 1.19
+    quality: peer_reviewed
+    source: 'Plitt and Masselot (2010): post-editing raised throughput 74% (time ratio 0.575); range: lowest time ratio in
+      the post-editing studies reviewed by Ahsan et al. (2021), 0.37, to Becker et al. (2025, arXiv:2507.09089), 1.19 (AI
+      slowed experienced developers by 19%)'
+    unit: review-and-correct hours per hour of doing the unit unaided
+    note: for the engine key review.rho_rev (t_R / t), today 0.8 [0.3, 1.2] unlinked; added by the assumptions audit, 29 Oct
+      2026
+    assumed: false
+    grounding: b
+    analogy: as review_fraction_psi_A
+  raw_error_rate_e:
+    full_readiness_e1:
+      value: 0.033
+      range:
+      - 0.01
+      - 0.14
+      quality: practitioner_dataset_disclosed
+      source: 'Vectara, next-generation hallucination leaderboard (blog, 19 Nov 2025; vectara.com/blog/introducing-the-next-generation-of-vectaras-hallucination-leaderboard):
+        summaries of 7,700+ supplied articles (up to 32k tokens) scored by the HHEM model; best model 3.3%, Gemini-3-pro 13.6%,
+        Claude Sonnet 4.5 and GPT-5 above 10%'
+      note: grounded summarization is the closest measured analog of full readiness (all inputs supplied). HHEM is the vendor's
+        own classifier; the dataset is not public (flag). For the engine key capability.e1, today 0.01 [0.005, 0.03] unlinked
+      assumed: false
+      grounding: b
+      analogy: answering from fully supplied, machine-readable inputs
+    low_readiness_e0:
+      value: 0.25
+      range:
+      - 0.1
+      - 0.45
+      quality: peer_reviewed
+      source: 'Magesh, Surani, Dahl, Suzgun, Manning and Ho (2025), Hallucination-Free? Assessing the Reliability of Leading
+        AI Legal Research Tools, Journal of Empirical Legal Studies 22(2), 216-242, doi:10.1111/jels.12413: preregistered
+        test; retrieval-based legal research tools "each hallucinate between 17% and 33% of the time"'
+      note: central = midpoint of 17-33%; range widened for transfer from legal research to other activities. For the engine
+        key capability.e0, today 0.20 [0.10, 0.45] unlinked
+      assumed: false
+      grounding: b
+      analogy: retrieval over a large, partly structured corpus (case law) as a stand-in for low data readiness
+  error_rate_epsilon_A:
+    value: 'model: epsilon(d) = 1 - 1 / (1 + (d / H50(t))^b) before review'
+    residual_after_review_factor:
+      value: 0.2
+      range:
+      - 0.05
+      - 0.5
+      quality: assumed
+      source: assumed share of errors that survive human review
+      assumed: true
+      grounding: d
+      note: no verified measure of the share of AI errors human reviewers miss
+    quality: primary_data_fit
+    assumed: false
+    source: logistic form and slope from capability_path
+    grounding: c
+  augmentation_gain_beta_U:
+    value: 0.25
+    range:
+    - -0.16
+    - 1.27
+    quality: peer_reviewed
+    source: 'Noy and Zhang (2023) Science: writing time -40% (beta 0.67); Brynjolfsson, Li and Raymond (2025) QJE: +14% resolutions
+      per hour (0.14); Cui et al. (2024): +26% tasks (0.26); Dell''Acqua et al. (2026) Organization Science: +12.2% tasks,
+      25.1% faster; Peng et al. (2023): 55.8% faster (1.27, lab task); Becker et al. (2025): +19% time (-0.16)'
+    note: c_U = w t / (1 + beta_U). Central = between the field estimates (0.14-0.26) and lab estimates.
+    assumed: false
+    grounding: a
+  build_fixed_cost_F_A:
+    value:
+      llm_workflow_per_process_usd: 500000
+    range:
+      llm_workflow_per_process_usd:
+      - 100000
+      - 2000000
+    quality: working_paper
+    assumed: false
+    grounding: b
+    source: 'precedent: Svanberg et al. (2024) computer-vision system, bare-bones $165,000 to full $1,765,000 implementation
+      (reference_points); $500,000 lies inside that band; range widened to $0.1M-2M'
+    analogy: implementing one AI system for one workflow at one firm (computer vision there, LLM workflow here)
+    reference_points:
+      computer_vision_system:
+        implementation_usd: 1765000
+        maintenance_usd_per_year: 242840
+        bare_bones_implementation_usd: 165000
+        bare_bones_maintenance_usd_per_year: 122840
+        lifespan_years: 5
+        real_discount_rate: 0.05
+        quality: working_paper
+        source: Svanberg, Li, Fleming, Goehring and Thompson (2024), Beyond AI Exposure, MIT FutureTech
+        grounding: a
+      gartner_genai_transformation_deployments_usd:
+        range:
+        - 5000000
+        - 20000000
+        quality: prediction
+        source: Gartner press release, 29 Jul 2024
+        grounding: ref
+  amortization_years_T_A:
+    value: 4
+    range:
+    - 3
+    - 5
+    quality: assumed
+    source: 'precedent: book useful life of internal-use software, 3 to 5 years in practice (not read at a filing in this
+      pass). ASC 350-40 prescribes no life: amortisation is generally straight line over a life that reflects obsolescence,
+      technology, competition and other economic factors (350-40-35-4 to 35-6, read via PwC Viewpoint; notes/ref_verification_accounting.md);
+      hosted implementation costs are amortised over the hosting term including reasonably certain renewals (350-40-35-13,
+      35-14, ASU 2018-15)'
+    note: 'T_A is an economic and book amortisation horizon, not a tax life. Tax: software development is research or experimental
+      expenditure (26 U.S.C. 174A(d)(3), 174(c)(3)); domestic expenditure is deducted when paid or incurred for taxable years
+      beginning after 31 Dec 2024 (174A(a)); foreign expenditure is amortised over 15 years from the midpoint of the taxable
+      year (174(a)). See depreciation.rnd_tax_treatment. The 36-month rule of 26 CFR 1.167(a)-14(b)(1) applies only to off-the-shelf
+      software under 167(f)(1) and is not a precedent for this horizon.'
+    assumed: true
+    grounding: b
+    analogy: an LLM workflow build is amortised like internal-use software
+outsourcing:
+  price_ratio_pO_over_wt:
+    value:
+      F05 customer support: 0.55
+      F11 finance and accounting: 0.65
+      F12 human resources (admin): 0.7
+      F15 IT and security: 0.65
+      F02 product and engineering: 0.75
+      F07 professional services: 0.8
+      F13 legal (process outsourcing): 0.6
+      F17 facilities: 0.85
+      F09 logistics: 0.85
+      F03 marketing (content and operations): 0.75
+      F04 sales (SDR and inside sales): 0.8
+    range:
+      F05 customer support:
+      - 0.35
+      - 0.8
+      F11 finance and accounting:
+      - 0.45
+      - 0.85
+      F12 human resources (admin):
+      - 0.5
+      - 0.9
+      F15 IT and security:
+      - 0.45
+      - 0.9
+      F02 product and engineering:
+      - 0.5
+      - 1.0
+      F07 professional services:
+      - 0.6
+      - 1.0
+      F13 legal (process outsourcing):
+      - 0.4
+      - 0.85
+      F17 facilities:
+      - 0.7
+      - 1.0
+      F09 logistics:
+      - 0.7
+      - 1.0
+      F03 marketing (content and operations):
+      - 0.5
+      - 1.0
+      F04 sales (SDR and inside sales):
+      - 0.6
+      - 1.0
+    quality: government
+    assumed: false
+    grounding: b
+    source: 'level grounded by precedent: GAO-01-20 (DOD Competitive Sourcing: Results of A-76 Studies Over the Past 5 Years,
+      Dec 2000; govinfo.gov): for 286 studies (138 cost comparisons, 148 direct conversions, FY1995-1999) DOD reported costs
+      "reduced by about 39 percent"; GAO calls the estimate imprecise (baselines largely personnel costs; study and implementation
+      costs not deducted). All-in cost ratio 0.61 implies p_O/(w t) of about 0.48 at the default kappa_O and zeta_O, the low
+      end of these ranges. No public dataset of BPO prices relative to in-house cost was found'
+    analogy: government support services opened to competition (in-house or contractor) as a stand-in for outsourcing an enterprise
+      function; function-level differences inside the band are assumed
+    note: the A-76 savings include in-house winners that reorganised, so they bound the outsourcing saving from above
+  coordination_overhead_kappa_O:
+    value: 0.1
+    range:
+    - 0.05
+    - 0.15
+    quality: assumed
+    source: assumed retained-organisation and vendor-management share of w t
+    assumed: true
+    grounding: d
+  risk_premium_zeta_O:
+    value: 0.03
+    range:
+    - 0.0
+    - 0.1
+    quality: assumed
+    source: assumed share of w t for IP, data protection and rework risk
+    assumed: true
+    grounding: d
+  vendor_price_decline_per_year:
+    value: 0.05
+    range:
+    - 0.0
+    - 0.15
+    quality: assumed
+    source: 'assumed: vendors pass through part of their own AI savings'
+    assumed: true
+    grounding: d
+regulatory_oversight_floor_psi_min:
+  value:
+    none: 0.0
+    high_risk_eu: 0.25
+    licensed: 0.3
+  range:
+    none:
+    - 0.0
+    - 0.05
+    high_risk_eu:
+    - 0.1
+    - 1.0
+    licensed:
+    - 0.15
+    - 0.6
+  quality: assumed
+  assumed: true
+  grounding: d
+  source: 'EU AI Act (Regulation (EU) 2024/1689) Article 14 is qualitative: high-risk systems must allow natural persons to
+    oversee, override and stop them; it sets no numeric review share. Annex III point 1(a) remote biometric identification
+    requires verification by at least two natural persons (Art. 14(5)).'
+  note: floors are shares of in-house time w t spent on mandatory review. For biometric identification set the floor to at
+    least two reviews per decision.
+capital_per_unit:
+  api_inference:
+    value: 0.0
+    range:
+    - 0.0
+    - 0.0
+    quality: assumed
+    source: 'inference bought as a service is opex: K = 0'
+    assumed: true
+    grounding: a
+    note: definitional (a purchased service is an operating expense), so no empirical grounding is needed
+  owned_compute_capex_per_usd_annual_compute_cost:
+    value: 3.0
+    range:
+    - 2.0
+    - 4.0
+    quality: assumed
+    source: 'derived: servers are about 60% of annualised AI data-center TCO (Michael and Cottier 2026, Epoch AI) times a
+      5-6 year server life'
+    note: upfront capex per $1 a year of compute it replaces; K_A = this x inference cost per unit.
+    assumed: true
+    grounding: d
+  robotics_and_devices_usd_per_displaced_fte:
+    value: 250000
+    range:
+    - 100000
+    - 600000
+    quality: assumed
+    source: assumed installed system cost per FTE-equivalent of physical work, including integration
+    note: no verified public source in this build
+    assumed: true
+    grounding: d
+  capitalized_share_of_build_cost:
+    value: 0.5
+    range:
+    - 0.3
+    - 0.7
+    quality: assumed
+    source: assumed share of F_A capitalised as internal-use software (application development stage)
+    assumed: true
+    grounding: d
+depreciation:
+  servers_book_life_years:
+    value: 5.5
+    range:
+    - 5.0
+    - 6.0
+    quality: company_filing
+    source: 'Meta FY2025 10-K: most servers and network assets 5.5 years from Jan 2025; Amazon FY2025 10-K: a subset of servers
+      cut from 6 to 5 years from Jan 2025 ("increased pace of technology development"); earlier Amazon changes 4 to 5 (2022)
+      and 5 to 6 (2024)'
+    note: read through secondary summaries (hudson-labs.com, altss.com) that quote the filings; the full 10-K pages were too
+      long to fetch. delta_K = 1 / life.
+    assumed: false
+    grounding: a
+  accelerators_economic_delta_K:
+    value: 0.25
+    range:
+    - 0.2
+    - 0.33
+    quality: assumed
+    source: 'Part I Remark rem:assumptions(c): compute fleets depreciate about 20-33% a year'
+    note: economic obsolescence is faster than book life when price-performance improves fast
+    assumed: true
+    grounding: d
+  internal_use_software_book_life_years:
+    value: 4
+    range:
+    - 3
+    - 5
+    quality: assumed
+    source: assumed common GAAP practice (ASC 350-40)
+    assumed: true
+    grounding: d
+  software_tax_life_months:
+    value: 36
+    range:
+    - 36
+    - 36
+    quality: government
+    source: '26 CFR 1.167(a)-14(b)(1): software under section 167(f)(1) amortised straight line over 36 months'
+    note: 'scope: off-the-shelf (purchased) computer software only. It does not apply to software the firm develops, including
+      AI builds, which is research or experimental expenditure under 26 U.S.C. 174A (domestic, deducted when paid or incurred)
+      and 174 (foreign, 15 years); use rnd_tax_treatment for builds. Qualified property, including off-the-shelf software,
+      acquired after 19 Jan 2025 may instead take the 100% additional first-year allowance (IRS Notice 2026-11).'
+    assumed: false
+    grounding: a
+  rnd_tax_treatment:
+    domestic_psi:
+      value: 1.0
+      range:
+      - 1.0
+      - 1.0
+      quality: government
+      source: '26 U.S.C. 174A(a), (d)(3) (Pub. L. 119-21, sec. 70302(a)): domestic research or experimental expenditure, including
+        software development, deducted when paid or incurred for taxable years beginning after 31 Dec 2024; election to amortise
+        over at least 60 months under 174A(c)'
+      note: text via Legal Information Institute (Cornell); refs key usc2026sec174a
+      assumed: false
+      grounding: a
+    foreign_amortization_years:
+      value: 15
+      range:
+      - 15
+      - 15
+      quality: government
+      source: '26 U.S.C. 174(a) as amended by Pub. L. 119-21, sec. 70302(b)(1): expenditure attributable to foreign research
+        charged to capital and amortised ratably over 15 years beginning with the midpoint of the taxable year; no deduction
+        on disposition or abandonment (174(d))'
+      note: refs key usc2026sec174
+      assumed: false
+      grounding: a
+    foreign_psi_15:
+      value: 0.5324
+      range:
+      - 0.44
+      - 0.63
+      quality: government
+      source: 'computed: psi_T = [1 + (1+r)^-T]/(2T) + [1 - (1+r)^-(T-1)]/(rT) at T = 15, r = 0.10 (midpoint convention; verify_part2_accounting.py
+        check 3b); range for r from 0.07 to 0.14'
+      note: 0.518 with continuous straight-line deductions
+      assumed: false
+      grounding: a
+    psi_split_rule:
+      value: psi = 1 - s_for (1 - psi_15)
+      quality: government
+      assumed: false
+      source: prop:acct-tax (part2/theory_accounting.tex); s_for = share of the build attributable to foreign research (26
+        U.S.C. 41(d)(4)(F)); firm input, default 0
+      grounding: a
+    prior_law_2022_2024_psi_5yr:
+      value: 0.796
+      range:
+      - 0.796
+      - 0.796
+      quality: government
+      source: domestic R&E amortised over 5 years from the midpoint (pre-2025 26 U.S.C. 174); psi_5 = 0.796 at r = 0.10 (0.787
+        with continuous straight-line deductions); history only
+      assumed: false
+      grounding: a
+  integration_build_life_years:
+    value: 4
+    range:
+    - 3
+    - 5
+    quality: assumed
+    source: assumed
+    assumed: true
+    grounding: d
+  robotics_equipment_life_years:
+    value: 7
+    range:
+    - 5
+    - 10
+    quality: assumed
+    source: assumed
+    assumed: true
+    grounding: d
+transition:
+  parallel_run_T_par_years:
+    value:
+      erp_migration: 0.17
+      finance_close: 0.17
+      payroll: 0.08
+      support_platform: 0.08
+      outsourcing_transition: 0.25
+      ai_agent_shadow_mode: 0.17
+    range:
+      erp_migration:
+      - 0.08
+      - 0.5
+      finance_close:
+      - 0.08
+      - 0.25
+      payroll:
+      - 0.04
+      - 0.12
+      support_platform:
+      - 0.04
+      - 0.25
+      outsourcing_transition:
+      - 0.08
+      - 0.5
+      ai_agent_shadow_mode:
+      - 0.04
+      - 0.5
+    quality: practitioner_survey_undisclosed
+    assumed: false
+    grounding: b
+    source: 'precedents by cell. payroll: "parallel runs will be carried out for two or three different payroll periods" (SAPinsider,
+      How to plan and manage a successful payroll parallel run; practitioner guidance, no data), i.e. 4-6 weeks on biweekly
+      pay; finance_close and erp_migration: the same practice applied to 1-3 monthly closes; outsourcing_transition: FAR 52.237-3
+      (Continuity of Services), phase-in and phase-out for up to 90 days (government); ai_agent_shadow_mode: the clinical-AI
+      silent trial of Kwong et al. (2022), Frontiers in Digital Health 4:929508, doi:10.3389/fdgth.2022.929508, ran about
+      5 months (Aug-Dec 2020; 523 kidneys) with clinicians blinded, the high-stakes upper end; support_platform: weeks, by
+      analogy with payroll cycles'
+    analogy: cycle-based parallel runs of payroll and finance systems; prospective silent trials of clinical AI for agents
+    note: erp_migration and support_platform rest on analogy only (no ERP- or helpdesk-specific source found); GAO-24-106313
+      (Marine Corps move to DAI) documents a 26-month slip to normal operations but no parallel-run length
+  duplication_premium_omega_par:
+    value: 0.8
+    range:
+    - 0.5
+    - 1.0
+    quality: assumed
+    source: assumed share of full legacy cost kept during the parallel run
+    assumed: true
+    grounding: d
+    note: in every precedent above (payroll, silent trial) the legacy process runs at full volume during the parallel run;
+      how that maps to omega_par depends on whether the ramp share already counts legacy work (theory_core ass:tasks-transition;
+      engine parallel_cost_flow). Definitional question for the core theorist; scenario dimension until resolved
+  reconciliation_effort_nu_rec:
+    value: 0.1
+    range:
+    - 0.05
+    - 0.25
+    quality: assumed
+    source: assumed, as a share of c_H v during the parallel run
+    assumed: true
+    grounding: d
+  duplicate_license_months:
+    value: 3
+    range:
+    - 0
+    - 12
+    quality: assumed
+    source: assumed months of legacy licence and infrastructure cost beyond cut-over
+    assumed: true
+    grounding: d
+  severance_s_w_months:
+    value:
+      US: 3.0
+      DE: 2.0
+      FR: 1.0
+      UK: 0.9
+    range:
+      US:
+      - 1.0
+      - 6.0
+      DE:
+      - 1.0
+      - 6.0
+      FR:
+      - 1.0
+      - 4.0
+      UK:
+      - 0.5
+      - 3.0
+    quality: company_filing
+    assumed: false
+    grounding: b
+    analogy: 'U.S. bound: WARN notice (2 months) below and the published formulas of two large software employers above (16
+      weeks + 2 weeks per year of service = 5.5 months at 3.9 years of tenure); other countries: statute'
+    us_precedent:
+      meta_2022:
+        formula: 16 weeks of base pay plus two additional weeks for every year of service, no cap; six months of healthcare
+        severance_and_personnel_costs_usd: 975000000
+        employees: 11000
+        usd_per_employee: 88636.0
+        source: 'Meta Form 8-K, Exhibit 99.1, 9 Nov 2022 (sec.gov/Archives/edgar/data/1326801/000132680122000116/nov092022exhibit991.htm);
+          Meta Q4 2022 results release (investor.atmeta.com): $975M severance and other personnel costs, about 11,000 employees'
+      alphabet_2023:
+        severance_and_related_usd: 2088000000
+        roles: 12000
+        usd_per_role: 174000.0
+        source: 'Alphabet Q4 2023 results, Form 8-K Exhibit 99.1 (sec.gov/Archives/edgar/data/1652044/000165204424000014/googexhibit991q42023.htm):
+          "employee severance and related charges of $2.1 billion" ($2,088M) for 2023; about 12,000 roles and 16 weeks plus
+          2 weeks per additional year, at least 60 days notice, per HR Dive (20 Jan 2023, secondary report of the CEO memo)'
+    source: 'U.S. precedent above (company filings) and statutory anchors (government) at median U.S. tenure of 3.9 years
+      (BLS, CPS, Jan 2024): DE KSchG s.1a(2): 0.5 month per year of service (= 1.95 months); FR Code du travail R1234-2: 1/4
+      month per year up to 10 years, 1/3 thereafter (= 0.98 month minimum); UK statutory redundancy: 1 week per year aged
+      22-40 (0.5 under 22, 1.5 aged 41+), max 20 years, weekly cap GBP 719 from 6 Apr 2025 (GB, CIPP) and GBP 783 from 6 Apr
+      2026 (NI, LRA) (= about 0.9 month); US: no federal severance requirement found; WARN requires 60 days notice for plant
+      closings and mass layoffs by employers with 100+ employees (dol.gov), so pay in lieu of notice is about 2 months. Central
+      values above the statutory minimum are assumed (negotiated plans, notice, benefits continuation, outplacement).'
+  redeployment_share_rho_d:
+    value: 0.25
+    range:
+    - 0.1
+    - 0.5
+    quality: assumed
+    source: assumed share of affected FTE redeployed internally (symbol rho_d, not Part I rho)
+    assumed: true
+    grounding: d
+    note: no measured internal redeployment rate found; scenario dimension
+  contract_break_fee_months:
+    value:
+      outsourcing_termination_for_convenience: 4
+      saas_or_license_remaining_term: 6
+    range:
+      outsourcing_termination_for_convenience:
+      - 2
+      - 9
+      saas_or_license_remaining_term:
+      - 0
+      - 24
+    quality: assumed
+    assumed: true
+    grounding: d
+    source: assumed months of contract fees; subscription contracts are usually non-cancellable for the committed term, so
+      the break cost is the remaining committed fees
+  j_curve:
+    dip_share_of_process_productivity:
+      grounding: d
+      value: 0.1
+      range:
+      - 0.01
+      - 0.3
+      quality: assumed
+      source: 'assumed; direction from McElheran, Yang, Kroff and Brynjolfsson (2025), The Rise of Industrial AI in America,
+        U.S. Census CES WP 25-27: short-run productivity and profitability losses precede gains (manufacturing, 2017 and 2021
+        surveys)'
+      note: MIT Sloan summary reports a 1.33 percentage point short-run drop with controls and a much larger figure after
+        selection correction (secondary; units unclear, not used numerically).
+      assumed: true
+    dip_duration_years:
+      grounding: d
+      value: 1.0
+      range:
+      - 0.25
+      - 3.0
+      quality: assumed
+      source: assumed; McElheran et al. observe adopters over a four-year window (2017-2021), with pre-2017 adopters growing
+        faster by 2021; McAfee (2002, POM) finds operational performance worsened right after an enterprise-system go-live
+        and surpassed its prior level within several months (abstract, as recorded in ref_verification_part2.md); lower bound
+        widened to 0.25 years by the audit of 29 Oct 2026
+      assumed: true
+    macro_mismeasurement_reference:
+      value:
+        tfp_gap_2004: 0.113
+        tfp_gap_2017: 0.159
+      quality: peer_reviewed
+      assumed: false
+      source: 'Brynjolfsson, Rock and Syverson (2021), AEJ: Macroeconomics 13(1), 333-372: intangible-adjusted TFP 11.3% (2004)
+        and 15.9% (2017) above official measures'
+      note: aggregate measurement effect, not a firm-level dip; for context only
+      grounding: a
+  rollback_probability_p_fail:
+    value: 0.1
+    range:
+    - 0.03
+    - 0.3
+    quality: assumed
+    source: assumed; see project_outcomes for the overrun evidence it is calibrated against
+    assumed: true
+    grounding: d
+    note: surveys give abandonment before production (project_outcomes), not rollback after cut-over; scenario dimension
+project_outcomes:
+  it_cost_overrun_mean:
+    value: 0.27
+    range:
+    - 0.27
+    - 0.39
+    quality: peer_reviewed
+    source: 'Flyvbjerg and Budzier (2011), Why Your IT Project May Be Riskier Than You Think, Harvard Business Review 89(9)
+      (SSRN 2229735; arXiv:1304.0265): 1,471 IT projects, mean cost overrun 27%'
+    note: HBR is a practitioner journal; the underlying database analysis is also in Flyvbjerg et al. (2022), JMIS 39(3),
+      607-639 (5,392 projects; overruns follow a power law with a fat tail). Upper range value 0.39 is assumed headroom for
+      a fatter tail, not a sourced mean.
+    assumed: false
+    grounding: a
+  it_black_swan_share:
+    value: 0.167
+    range:
+    - 0.12
+    - 0.2
+    quality: peer_reviewed
+    source: 'Flyvbjerg and Budzier (2011): one in six projects had a cost overrun of 200% on average and a schedule overrun
+      of almost 70%'
+    assumed: false
+    grounding: a
+  it_black_swan_cost_overrun:
+    value: 2.0
+    range:
+    - 1.5
+    - 3.0
+    quality: peer_reviewed
+    source: Flyvbjerg and Budzier (2011)
+    assumed: false
+    grounding: a
+  it_black_swan_schedule_overrun:
+    value: 0.7
+    range:
+    - 0.5
+    - 1.0
+    quality: peer_reviewed
+    source: Flyvbjerg and Budzier (2011)
+    assumed: false
+    grounding: a
+  overrun_tail:
+    value: power law
+    quality: peer_reviewed
+    assumed: false
+    source: 'Flyvbjerg, Budzier, Lee, Keil, Lunn and Bester (2022), The Empirical Reality of IT Project Cost Overruns: Discovering
+      a Power-Law Distribution, JMIS 39(3), 607-639'
+    note: tail exponent not read from the paper; the engine should sample overruns from a fat-tailed distribution (e.g. lognormal-Pareto
+      mixture) matched to mean 0.27 and P(>2.0) = 1/6
+    grounding: a
+  digital_transformation_success_rate_survey:
+    value: 0.3
+    range:
+    - 0.2
+    - 0.8
+    quality: practitioner_survey_disclosed
+    source: 'BCG (29 Oct 2020), Flipping the Odds of Digital Transformation Success: 825 senior executives, self-rated; 30%
+      met or exceeded target value with sustainable change; 80% when six factors were present'
+    note: self-reported survey by a consultancy; success defined by respondents.
+    assumed: false
+    grounding: a
+  change_failure_70_percent:
+    value: null
+    quality: unsupported
+    assumed: false
+    source: 'Hughes (2011), Do 70 Per Cent of All Organizational Change Initiatives Really Fail?, Journal of Change Management
+      11(4), 451-464, doi:10.1080/14697017.2011.630506: no valid and reliable empirical evidence supports the 70% figure'
+    note: do not use the popular 70% failure figure. Standish CHAOS rates are also not used (method not disclosed; criticised
+      by Eveleens and Verhoef, IEEE Software, 2010).
+    grounding: ref
+  genai_poc_to_production_rate:
+    value: 0.54
+    range:
+    - 0.05
+    - 0.7
+    quality: practitioner_survey_disclosed
+    source: 'S&P Global Market Intelligence survey (more than 1,000 respondents, North America and Europe, reported by CIO
+      Dive 14 Mar 2025): the average organisation scrapped 46% of AI proofs of concept before production; 42% of companies
+      abandoned most AI initiatives (17% a year earlier)'
+    note: 'value = 1 - 0.46. Read through a trade-press summary (secondary). Low end of the range reflects the MIT NANDA figure
+      below. Cross-check (audit, 29 Oct 2026): Gartner survey of 644 respondents in the U.S., Germany and the U.K. (Q4 2023),
+      "only 48% of AI projects make it into production", about 8 months from prototype to production (reported by mi-3.com.au,
+      9 May 2024; secondary). This is pilot attrition before production, not the failure of a funded migration (assumptions
+      round 2, Section 1.1). Since the params commit of 29 Oct 2026 the engine success logit (success.a0) is calibrated so
+      a reference process reaches production with probability about 0.50 (Gartner 48%, S&P 54%), because the engine''s b_bar
+      (transformation_value_realized_share) now carries the realization haircut.'
+    assumed: false
+    grounding: a
+  transformation_attempt_creates_value_varpi:
+    value: 0.7
+    range:
+    - 0.54
+    - 0.8
+    quality: practitioner_survey_disclosed
+    source: 'BCG (29 Oct 2020), Flipping the Odds of Digital Transformation Success (bcg.com/publications/2020/increasing-odds-of-success-in-digital-transformation;
+      read 29 Oct 2026): 825 senior executives, self-rated; 30% win zone + 44% worry zone = 74% of transformations created
+      value; 80% with all six success factors. Low end: S&P Global pilot attrition (genai_poc_to_production_rate, 0.54)'
+    unit: share of funded attempts that create some value (not a success rate; Paper 1 round 2, B9, 2 Nov 2026)
+    note: central = 74% rounded down for self-report bias; the calibration target is the per-attempt yield varpi x b_bar
+      = 0.70 x 0.67 = 0.47 (Paper 1 macro YieldModel), close to McKinsey's unconditional 0.46; high end = BCG six-factor rate 0.80. Used as P1 varpi (code/calibrate_horizons.py
+      PACE). Because varpi and b_bar come from outcome surveys, which already include leadership changes and strategy shifts,
+      the disruption haircut exp(-nu_D T_emb) is not applied to q; nu_D stays for the shock-timing results (prop:ext-shocks).
+    assumed: false
+    grounding: b
+    analogy: whole-transformation outcomes (self-reported) as the share of funded AI migrations that create value
+    read: '2026-10-29'
+    adopted: params commit 2026-10-29 (assumptions round 2, 1.1)
+  transformation_value_realized_share_b_bar:
+    value: 0.67
+    range:
+    - 0.37
+    - 0.85
+    quality: practitioner_survey_disclosed
+    source: 'McKinsey Global Survey, Losing from day one: Why even successful transformations fall short (7 Dec 2021; mckinsey.com/capabilities/people-and-organizational-performance/our-insights/successful-transformations;
+      read 29 Oct 2026): 1,034 participants, fielded 18 May-29 Jun 2021; successful transformations realized 67% of the maximum
+      financial benefits, all others 37% on average; top-quartile listed firms capture 74% of value within 12 months'
+    unit: share of targeted value realized given success
+    note: 'flag: self-reported consultancy survey, but the only source that measures realization rather than attrition. Low
+      end = the "all others" mean; high end = top quartile. Product varpi x b_bar = 0.47 [0.20, 0.68], against McKinsey''s
+      unconditional mean 0.30 x 0.67 + 0.70 x 0.37 = 0.46. Replaces the unsourced 0.85 (P1 bbar, engine success.b_bar).'
+    assumed: false
+    grounding: a
+    flag: survey (self-reported)
+    read: '2026-10-29'
+    adopted: params commit 2026-10-29 (assumptions round 2, 1.4)
+  genai_weak_figures:
+    mit_nanda_2025:
+      claim: 95% of organisations get zero measurable return from generative AI; about 5% of pilots reach production with
+        P&L impact
+      method: about 52-53 interviews, 153 survey responses and a review of public deployments over about six months; authors
+        call it a directionally accurate snapshot
+      quality: practitioner_survey_undisclosed
+      assumed: false
+      source: 'MIT NANDA, The GenAI Divide: State of AI in Business 2025, via getdx.com/blog/the-ai-divide'
+      flag: weak methodology; read through a summary; not used as a default
+      grounding: b
+    gartner_2024:
+      claim: at least 30% of generative AI projects will be abandoned after proof of concept by end of 2025
+      quality: prediction
+      assumed: false
+      source: Gartner press release, 29 Jul 2024
+      flag: forecast, not a measured rate; not used as a default
+      grounding: ref
+learning:
+  progress_ratio_per_doubling_of_completed_waves:
+    value: 0.85
+    range:
+    - 0.7
+    - 1.0
+    quality: assumed
+    source: assumed; learning curves in software development are documented by Boh, Slaughter and Espinosa (2007), Management
+      Science 53(8), 1315-1331, which reports no single rate usable here
+    note: applied to wave cost and duration; 1.00 = no learning
+    assumed: true
+    grounding: d
+  success_logit_gain_per_prior_success:
+    value: 0.2
+    range:
+    - 0.0
+    - 0.5
+    quality: assumed
+    source: assumed experience effect on pi_p
+    assumed: true
+    grounding: d
+  correlated_failure_rho_common_shock:
+    value: 0.3
+    range:
+    - 0.0
+    - 0.6
+    quality: assumed
+    source: assumed correlation of outcomes for waves on a shared platform or data layer
+    assumed: true
+    grounding: d
+  pilot_cost_share_of_F_A:
+    value: 0.15
+    range:
+    - 0.05
+    - 0.3
+    quality: assumed
+    source: assumed
+    assumed: true
+    grounding: d
+decision_capacity:
+  approval_latency_weeks_major_initiative:
+    value: 12
+    range:
+    - 6
+    - 78
+    quality: peer_reviewed
+    source: 'Eisenhardt (1989), Making Fast Strategic Decisions in High-Velocity Environments, Academy of Management Journal
+      32(3), 543-576, Table 2: ten strategic decisions in eight microcomputer firms took 1.5-18 months from first deliberate
+      action to commitment; fast firms averaged 2.8 months, slow firms 14 months (as stated in the text)'
+    note: central = fast-firm mean (2.8 months = 12 weeks); range = shortest (1.5 months) to longest (18 months) decision.
+      Raised from the assumed 8 weeks [2, 26] by the audit of 29 Oct 2026
+    assumed: false
+    grounding: b
+    analogy: approval of a major transformation wave treated as a strategic decision (alliances, new products, strategy) in
+      a fast-moving industry
+  latency_weeks_per_governance_layer:
+    value: 3.3
+    range:
+    - 1.5
+    - 19.7
+    quality: peer_reviewed
+    source: 'derived: (approval latency - the engine''s 2-week base) / 3 governance layers (engine prior), at Eisenhardt''s
+      fast-firm mean (12 weeks); range from her shortest decision (6.5 weeks) to the slow-firm mean (61 weeks)'
+    assumed: false
+    grounding: b
+    analogy: as approval_latency_weeks_major_initiative; the split into a base and equal per-layer delays is the model's own
+      assumption
+  concurrent_major_initiatives_capacity_Phi:
+    value: 5
+    range:
+    - 3
+    - 10
+    quality: assumed
+    source: assumed per executive team
+    assumed: true
+    grounding: d
+  decision_units_per_initiative_launch_and_gate:
+    value: 1.0
+    range:
+    - 0.5
+    - 2.0
+    quality: assumed
+    source: assumed (normalisation)
+    assumed: true
+    grounding: d
+  congestion_elasticity_of_success:
+    value: 0.5
+    range:
+    - 0.2
+    - 1.0
+    quality: assumed
+    source: 'assumed: q(L/Phi) = min(1, (Phi/L)^elasticity) for L > Phi'
+    assumed: true
+    grounding: d
+  ai_decision_support_bandwidth_gain:
+    value: 0.2
+    range:
+    - 0.0
+    - 0.5
+    quality: assumed
+    source: assumed proportional increase in Phi from AI analysis support
+    assumed: true
+    grounding: d
+  fast_to_slow_latency_ratio_reference:
+    value: 0.2
+    quality: peer_reviewed
+    assumed: false
+    grounding: ref
+    source: 'Eisenhardt (1989): 2.8 / 14 months'
+    note: 'bounds the regime latency multipliers (PE 0.5, family 0.7, public 1.0), which stay assumed: the fastest decision
+      makers took about a fifth of the time of the slowest'
+leadership_and_context:
+  ceo_turnover_hazard_h_L:
+    value: 0.168
+    range:
+    - 0.126
+    - 0.168
+    quality: peer_reviewed
+    source: 'Kaplan and Minton (2012), How Has CEO Turnover Changed?, International Review of Finance 12(1), 57-87, doi:10.1111/j.1468-2443.2011.01135.x:
+      total annual CEO turnover in large U.S. firms 15.8% (1992-2007) and 16.8% since 2000 (implied tenure under 6 years);
+      about 12.6% in 1992-1999'
+    unit: per year
+    note: includes external turnover (takeover, bankruptcy). Expected tenure = 1 / h_L.
+    assumed: false
+    grounding: a
+  ceo_expected_tenure_years:
+    value: 6.0
+    range:
+    - 6.0
+    - 7.9
+    quality: peer_reviewed
+    source: derived from h_L above
+    assumed: false
+    grounding: a
+  ceo_departing_tenure_years_2025:
+    value: 8.5
+    range:
+    - 8.1
+    - 10.3
+    quality: practitioner_dataset_disclosed
+    source: 'Spencer Stuart, 2025 S&P 1500 CEO Transitions (Feb 2026): departing CEOs averaged 8.5 years in 2025 (9.2 in 2024;
+      low 8.1 in 2019; peak 10.3 in 2021); 168 new S&P 1500 CEOs in 2025 (about 11% of 1,500, our calculation); sector turnover
+      8-14%'
+    note: tenure of completed spells, longer than 1/h_L because it excludes short spells still running and takeovers; for
+      context only.
+    assumed: false
+    grounding: a
+  ceo_forced_share_of_departures:
+    value: 0.21
+    range:
+    - 0.21
+    - 0.3
+    quality: peer_reviewed
+    source: 'Gentry, Harrison, Quigley and Boivie (2021), A database of CEO turnover and dismissal in S&P 1500 firms, 2000-2018,
+      Strategic Management Journal 42(5), 968-991, doi:10.1002/smj.3278 (data: doi:10.5281/zenodo.4543893): 870 of 4,141 departures
+      dismissed for performance, 1,023 all dismissals, 2,193 retirements'
+    note: our shares from the paper's Table 3 counts; 0.30 excludes other and missing codes.
+    assumed: false
+    grounding: a
+  ceo_forced_turnover_multiplier_bad_industry:
+    value: 2.0
+    range:
+    - 1.5
+    - 2.5
+    quality: peer_reviewed
+    source: 'Jenter and Kanaan (2015), CEO Turnover and Relative Performance Evaluation, Journal of Finance 70(5), 2155-2184:
+      3,365 turnovers 1993-2009; a fall in industry performance from the 90th to the 10th percentile doubles the probability
+      of forced turnover'
+    note: range assumed around the point estimate
+    assumed: false
+    grounding: a
+  c_suite_tenure_years:
+    value:
+      CEO: 6.9
+      CFO: 4.7
+      CIO: 4.6
+      CHRO: 3.7
+      CMO: 3.5
+      all_c_suite: 4.9
+      CDO: 2.5
+      CAIO: 2.5
+    range:
+      CIO:
+      - 4.3
+      - 4.6
+      CDO:
+      - 1.9
+      - 2.5
+      CAIO:
+      - 1.5
+      - 4.0
+    quality: practitioner_dataset_disclosed
+    assumed: false
+    source: 'CEO to CMO and all_c_suite: Korn Ferry Institute, Age and Tenure in the C-Suite (press release 21 Jan 2020; top
+      1,000 U.S. companies by revenue, late 2019; 2017 release: CIO 4.3 years); CDO: 2.5 years attributed to Harvard Business
+      Review (Aug 2021) by Becker''s Hospital Review (secondary, method not stated) and 1.9 years in Europe per DataIQ (Oct
+      2025, method not stated); CAIO: assumed (role too new for tenure data)'
+    note: 'CDO values: practitioner_survey_undisclosed / secondary; CAIO: assumed: true. Sponsor hazard default uses all_c_suite.'
+    grounding: a
+  sponsor_change_hazard_h_L_exec:
+    value: 0.204
+    range:
+    - 0.15
+    - 0.3
+    quality: practitioner_dataset_disclosed
+    source: 1 / Korn Ferry all-C-suite average tenure (4.9 years); range assumed
+    note: for a CIO, CDO or CAIO sponsor use 1 / that role's tenure
+    assumed: false
+    grounding: a
+  vision_overhaul_hazard_h_V:
+    value: 0.15
+    range:
+    - 0.05
+    - 0.3
+    quality: assumed
+    source: assumed baseline rate of change in the strategic objective
+    assumed: true
+    grounding: d
+  vision_overhaul_multiplier_after_leadership_change:
+    value: 3.0
+    range:
+    - 1.5
+    - 6.0
+    quality: assumed
+    source: assumed size; direction from Zhu, Hu and Shen (2020), Strategic Management Journal 41(10), 1933-1951 (outsider
+      new CEOs make more strategic change than insiders), which gives no probability usable here
+    note: applies for 2 years after the change; use the high end for outsider successors
+    assumed: true
+    grounding: d
+  new_leader_program_outcome:
+    value:
+      keep_kappa_keep: 0.6
+      rescope: 0.25
+      cancel: 0.15
+    range:
+      keep_kappa_keep:
+      - 0.3
+      - 0.85
+    quality: assumed
+    assumed: true
+    source: assumed; no credible estimate found
+    grounding: d
+  reorganization_hazard_h_R:
+    value: 0.46
+    range:
+    - 0.3
+    - 0.6
+    quality: practitioner_survey_undisclosed
+    source: 'derived from Aronowitz, De Smet and McGinty (2015), Getting organizational redesign right, McKinsey Quarterly
+      (1 Jun 2015): almost 60% of surveyed executives had a redesign within the past two years, 25% three or more years ago;
+      h_R = -ln(1 - 0.6) / 2 assuming Poisson arrivals'
+    note: self-reported executive survey, sample size not given. The same article reports fewer than a quarter of redesigns
+      succeed (self-reported).
+    assumed: false
+    grounding: b
+  reorg_freeze_T_freeze_years:
+    value: 0.25
+    range:
+    - 0.08
+    - 1.0
+    quality: practitioner_survey_disclosed
+    source: 'precedent for the length of reorganization disruption: McKinsey Global Survey, Taking organizational redesigns
+      from plan to practice (fielded 9-19 Nov 2010; 2,525 executives, 1,890 with a redesign in the past five years): expected
+      durations split roughly into thirds, six months or less, six to twelve months, more than a year; 43% underestimated
+      the time. McKinsey Global Survey, The secrets of successful organizational redesigns (10-20 Sep 2013; 2,063 executives):
+      nearly 30% of fully implemented redesigns lasted more than 12 months'
+    note: self-reported surveys (flag). A freeze of in-flight work is shorter than the whole redesign, so central 0.25 years
+      stays; the upper bound is widened from 0.5 to 1.0 (median redesign of 6-12 months) by the audit of 29 Oct 2026
+    assumed: false
+    grounding: b
+    analogy: duration of an organizational redesign as the outer bound of the freeze it imposes on in-flight initiatives
+  reorg_decision_bandwidth_factor:
+    value: 0.5
+    range:
+    - 0.3
+    - 0.8
+    quality: assumed
+    source: assumed share of Phi available during a freeze
+    assumed: true
+    grounding: d
+  reorg_process_owner_turnover_share:
+    value: 0.3
+    range:
+    - 0.1
+    - 0.6
+    quality: assumed
+    source: assumed
+    assumed: true
+    grounding: d
+  key_person_departure_hazard_h_K:
+    value: 0.15
+    range:
+    - 0.08
+    - 0.3
+    quality: assumed
+    source: 'assumed; anchor: median tenure with current employer 3.9 years (BLS, CPS, Jan 2024), i.e. about 0.26 a year if
+      exits were memoryless; critical roles are assumed stickier. Upper anchor (audit, 29 Oct 2026): BLS JOLTS, August 2026
+      (preliminary; bls.gov/news.release/jolts.htm): total separations 2.5% a month in the information industry, 1 - 0.975^12
+      = 0.26 a year for all employees'
+    assumed: true
+    grounding: d
+    note: the stickiness of critical roles relative to all employees is unmeasured; the upper bound is grounded, the central
+      value is not
+  context_lost_per_departure:
+    value: 0.5
+    range:
+    - 0.2
+    - 0.8
+    quality: assumed
+    source: assumed share of a role's tacit process context lost when it leaves
+    assumed: true
+    grounding: d
+  context_stock_depreciation_per_year:
+    value: 0.2
+    range:
+    - 0.0
+    - 0.5
+    quality: assumed
+    source: 'assumed; Argote, Beckman and Epple (1990), Management Science 36(2), 140-154, find production knowledge "depreciates
+      rapidly" (rate not read; not used numerically). Contrary precedent (audit, 29 Oct 2026): Thompson (2007), How Much Did
+      the Liberty Shipbuilders Forget?, Management Science 53(6), 908-918, doi:10.1287/mnsc.1060.0678, rebuilds the same shipyard
+      data from archives and finds forgetting "much smaller than previously reported, and may well be zero" (abstract, ideas.repec.org)'
+    assumed: true
+    grounding: d
+    note: the two precedents disagree on the same data; lower bound widened to 0; scenario dimension
+  documentation_protection_kappa_doc:
+    value: 0.5
+    range:
+    - 0.2
+    - 0.8
+    quality: assumed
+    source: assumed reduction in context lost per departure from documented processes and context engines
+    assumed: true
+    grounding: d
+  reuse_fraction_vartheta_reuse:
+    value:
+      data_and_integration_platform: 0.8
+      process_automation_on_platform: 0.5
+      vision_specific_build: 0.2
+    range:
+      data_and_integration_platform:
+      - 0.6
+      - 0.95
+      process_automation_on_platform:
+      - 0.3
+      - 0.7
+      vision_specific_build:
+      - 0.0
+      - 0.4
+    quality: assumed
+    assumed: true
+    source: assumed share of value kept after a vision overhaul
+    grounding: d
+  replan_cost_C_replan_share_of_annual_program_budget:
+    value: 0.1
+    range:
+    - 0.05
+    - 0.25
+    quality: assumed
+    source: assumed
+    assumed: true
+    grounding: d
+ownership_regimes:
+  public:
+    r_own_wacc:
+      value: 0.0934
+      range: &id001
+      - 0.07
+      - 0.1066
+      quality: practitioner_dataset_disclosed
+      source: 'Damodaran, Cost of Equity and Capital (US), January 2026, pages.stern.nyu.edu/~adamodar/New_Home_Page/datafile/wacc.html:
+        Software (System & Application) 9.34% (309 firms); Software (Internet) 10.66%; Computer Services 7.83%; Information
+        Services 7.00%; Business & Consumer Services 7.23%; total market 6.96%'
+      unit: per year, nominal
+      note: range = Information Services to Software (Internet)
+      assumed: false
+      grounding: a
+    horizon:
+      value: going concern (infinite)
+      quality: assumed
+      assumed: true
+      source: spec 16.1
+      grounding: d
+    myopia_weight_theta_my:
+      value: 0.3
+      range:
+      - 0.0
+      - 0.6
+      quality: assumed
+      source: 'assumed weight on near-term GAAP margin dips; evidence of pressure (survey): Graham, Harvey and Rajgopal (2005),
+        Journal of Accounting and Economics 40(1-3), 3-73: of 401 financial executives, 78% would give up economic value to
+        smooth earnings and 55% would avoid initiating a very positive-NPV project if it meant missing the quarter''s consensus;
+        Asker, Farre-Mensa and Ljungqvist (2015), Review of Financial Studies 28(2), 342-390: public firms invest substantially
+        less than similar private firms and respond less to investment opportunities'
+      note: Graham et al. is a self-reported survey (flag); Asker et al. is peer-reviewed but gives the direction, not a weight
+      assumed: true
+      grounding: d
+    decision_latency_multiplier:
+      value: 1.0
+      range:
+      - 1.0
+      - 1.5
+      quality: assumed
+      source: 'assumed (baseline: board and disclosure cycles)'
+      assumed: true
+      grounding: d
+  pe_backed:
+    target_gross_irr:
+      value: 0.22
+      range:
+      - 0.2
+      - 0.25
+      quality: practitioner_survey_disclosed
+      source: 'Gompers, Kaplan and Mukharlyamov (2016), What do private equity firms say they do?, Journal of Financial Economics
+        121(3), 449-476: survey of 79 PE investors (more than $750 billion AUM, mostly 2012); typical target IRR 22%, most
+        between 20% and 25% (median reported as 25%)'
+      note: self-reported survey published in a peer-reviewed journal
+      assumed: false
+      grounding: a
+    target_moic:
+      value: 2.5
+      range:
+      - 2.5
+      - 2.85
+      quality: practitioner_survey_disclosed
+      source: 'Gompers, Kaplan and Mukharlyamov (2016): median target multiple 2.5x, mean 2.85x, over a five-year horizon'
+      assumed: false
+      grounding: a
+    net_excess_return_over_public_equity_per_year:
+      value: 0.03
+      range:
+      - 0.0
+      - 0.04
+      quality: peer_reviewed
+      source: 'Harris, Jenkinson and Kaplan (2014), Private Equity Performance: What Do We Know?, Journal of Finance 69(5),
+        1851-1882: U.S. buyout funds (Burgiss data, nearly 1,400 buyout and VC funds) beat the S&P 500 by 20-27% over fund
+        life, more than 3% a year; Kaplan and Schoar (2005), Journal of Finance 60(4), 1791-1823: average net returns approximately
+        equal the S&P 500'
+      note: low end = Kaplan and Schoar; net of fees
+      assumed: false
+      grounding: a
+    carried_interest:
+      value: 0.2
+      range:
+      - 0.2
+      - 0.2
+      quality: peer_reviewed
+      source: 'Kaplan and Stromberg (2009), Leveraged Buyouts and Private Equity, Journal of Economic Perspectives 23(1),
+        121-146: carry "almost always equals 20 percent"; example management fee 2% of committed capital'
+      assumed: false
+      grounding: a
+    management_fee:
+      value: 0.02
+      range:
+      - 0.015
+      - 0.025
+      quality: peer_reviewed
+      source: Kaplan and Stromberg (2009), example fee; range assumed
+      assumed: false
+      grounding: a
+    preferred_return_hurdle:
+      value: 0.08
+      range:
+      - 0.06
+      - 0.08
+      quality: secondary
+      source: 'industry convention, stated by Carta (carta.com/learn/private-funds/management/carried-interest/hurdle-rate/):
+        hurdle "often around 8%", "more than 50% of funds" (no data source named). Not found in Kaplan and Stromberg (2009)
+        or in the Metrick and Yasuda (2010) abstract'
+      note: 'flag: practitioner statement without a disclosed dataset'
+      assumed: false
+      grounding: b
+    hold_period_T_hold_years:
+      value: 6.0
+      range:
+      - 4.0
+      - 7.0
+      quality: peer_reviewed
+      source: 'Kaplan and Stromberg (2009): median holding period roughly six years; 42% of deals exited within 60 months.
+        Gompers, Kaplan and Mukharlyamov (2016): 96% of PE investors use a five-year forecast horizon. Practitioner (flag):
+        Private Equity Info (19 Feb 2025), median hold 5.8 years, about 6.0 for 2025 exits'
+      assumed: false
+      grounding: a
+    entry_leverage_debt_to_ebitda:
+      value: 5.2
+      range:
+      - 4.2
+      - 6.1
+      quality: peer_reviewed
+      source: 'Axelson, Jenkinson, Stromberg and Weisbach (2013), Borrow Cheap, Buy High?, Journal of Finance 68(6), 2223-2267:
+        1,157 buyouts 1980-2008, debt/EBITDA mean 5.6x, median 5.2x; median 6.1x in the lowest and 4.2x in the highest high-yield-spread
+        quartile; debt/EV median 0.70; EV/EBITDA at entry median 7.6x (mean 8.2x)'
+      assumed: false
+      grounding: a
+    entry_ev_to_ebitda_historical:
+      value: 7.6
+      range:
+      - 7.6
+      - 8.2
+      quality: peer_reviewed
+      source: Axelson et al. (2013), all industries, 1980-2008
+      note: 'audit, 29 Oct 2026: do not pair this all-industry 1980-2008 entry multiple with the 2025 software exit multiple
+        (14x) in a regime IRR; the gap would build in multiple expansion that no operating change earns (Guo, Hotchkiss and
+        Song 2011 find much of buyout returns came from multiple expansion). Baseline: entry multiple = exit multiple'
+      assumed: false
+      grounding: ref
+    covenant_max_net_debt_to_ebitda:
+      value: 7.0
+      range:
+      - 6.0
+      - 8.0
+      quality: government
+      source: 'lower bound: Interagency Guidance on Leveraged Lending (Federal Reserve, FDIC, OCC; SR 13-3, 21 Mar 2013; Federal
+        Reserve Regulatory Service page read 29 Oct 2026): leverage "in excess of 6X Total Debt/EBITDA raises concerns for
+        most industries"; central = median entry leverage 5.2x (Axelson et al. 2013) plus about 1.8x headroom (assumed). Chava
+        and Roberts (2008), Journal of Finance 63(5), 2085-2121, doi:10.1111/j.1540-6261.2008.01391.x, find capital investment
+        declines sharply after a covenant violation (direction only)'
+      note: trade-press headlines report that the OCC and FDIC later rescinded the guidance (not verified); the 6x level is
+        used as a supervisory precedent, not a binding limit
+      assumed: false
+      grounding: b
+      analogy: supervisory leverage concern level as the floor of a maintenance covenant
+    debt_rate_reference:
+      value:
+        treasury_2y_apr_2026: 0.038
+        treasury_10y_apr_2026: 0.0432
+      quality: government
+      assumed: false
+      grounding: ref
+      source: 'Federal Reserve, Financial Stability Report, May 2026, accessible tables, Figure 1.1 (federalreserve.gov/publications/2026-may-financial-stability-report-accessibility-tables.htm):
+        2-year 3.80%, 10-year 4.32% (April 2026); the same report says leveraged loan spreads "increased but remain below
+        median levels" without a number'
+      note: 'floor for the engine key regime.debt_rate (0.08 [0.06, 0.11], assumed): spread over the floor is unverified,
+        so the debt rate stays a scenario dimension'
+    exit_multiple_M_exit_software_ev_to_ebitda:
+      value: 14.0
+      range:
+      - 10.0
+      - 17.0
+      quality: practitioner_dataset_disclosed
+      source: 'Silverpeak, Software M&A Report Q4 2025 (Jan 2026; Capital IQ and PitchBook): software deal EV/EBITDA "within
+        the historical 12-17x band", chart average 14.9x, 43 deals in 2025 with both multiples disclosed, down 3.4x year on
+        year'
+      note: 'flag: small sample of disclosed deals, strategic and financial buyers mixed; lower bound 10x assumed for a stressed
+        exit'
+      assumed: false
+      grounding: a
+    decision_latency_multiplier:
+      value: 0.5
+      range:
+      - 0.3
+      - 0.8
+      quality: assumed
+      source: assumed (fast owner decisions)
+      assumed: true
+      grounding: d
+  vc_backed:
+    target_irr:
+      value: 0.31
+      range:
+      - 0.28
+      - 0.35
+      quality: practitioner_survey_disclosed
+      source: 'Gompers, Gornall, Kaplan and Strebulaev (2020), How do venture capitalists make decisions?, Journal of Financial
+        Economics 135(1), 169-190: survey of 889 VCs (Nov 2015 - Mar 2016); average required IRR 31%, late-stage 28-29%, early
+        stage higher (values read from the NBER conference version)'
+      note: self-reported survey published in a peer-reviewed journal; upper bound assumed
+      assumed: false
+      grounding: a
+    target_multiple:
+      value: 5.0
+      range:
+      - 5.0
+      - 5.5
+      quality: practitioner_survey_disclosed
+      source: 'Gompers et al. (2020): median 5x, mean about 5.5x'
+      assumed: false
+      grounding: a
+    horizon_years:
+      value: 7
+      range:
+      - 5
+      - 10
+      quality: assumed
+      source: assumed
+      assumed: true
+      grounding: d
+    realized_performance_note:
+      value: outperformed public equities in the 1990s, underperformed in the 2000s
+      quality: peer_reviewed
+      assumed: false
+      source: Harris, Jenkinson and Kaplan (2014)
+      grounding: a
+  private_family:
+    r_own_spread_over_public_wacc:
+      value: -0.01
+      range:
+      - -0.03
+      - 0.02
+      quality: assumed
+      source: 'assumed; no verified estimate of family-firm discount rates found. Direction: Asker et al. (2015) find private
+        firms invest more and respond more to investment opportunities'
+      assumed: true
+      grounding: d
+    horizon_years:
+      value: 30
+      range:
+      - 10
+      - 100
+      quality: assumed
+      source: assumed (long or dynastic horizon)
+      assumed: true
+      grounding: d
+    employment_preference_b_share_of_wage:
+      value: 0.1
+      range:
+      - 0.0
+      - 0.3
+      quality: assumed
+      source: assumed owner utility per retained job, as a share of the loaded wage
+      assumed: true
+      grounding: d
+    decision_latency_multiplier:
+      value: 0.7
+      range:
+      - 0.4
+      - 1.0
+      quality: assumed
+      source: assumed
+      assumed: true
+      grounding: d
+  hybrid_take_private_control_premium:
+    value: 0.3
+    range:
+    - 0.15
+    - 0.5
+    quality: peer_reviewed
+    source: 'Kaplan and Stromberg (2009): buyout premiums for public targets 15-50% over the current stock price; central
+      value assumed'
+    assumed: false
+    grounding: a
+  hybrid_dual_class_myopia_weight:
+    value: 0.15
+    range:
+    - 0.0
+    - 0.3
+    quality: assumed
+    source: 'assumed: public disclosure with a controlling holder'
+    assumed: true
+    grounding: d
+  permanent_capital:
+    horizon:
+      value: infinite (acquired businesses are never sold)
+      range: null
+      quality: company_filing
+      source: 'Bending Spoons S.p.A., Form F-1 registration statement, filed with the SEC 8 June 2026 (CIK 2004711), https://www.sec.gov/Archives/edgar/data/0002004711/000110465926071170/tm2613674-7_f1.htm,
+        read in the author''s browser 29 Oct 2026 (bib bendingspoons2026f1; original filing only: the F-1/A, accession 000110465926076487,
+        and the final prospectus were not read); values parsed from notes/case_bending_spoons_f1_extract.md, line 54: invests
+        on expected returns "assuming we''ll never sell the acquired business"'
+      assumed: false
+      grounding: a
+    hurdle_unlevered_irr_annual:
+      value: 0.25
+      range:
+      - 0.25
+      - 0.25
+      quality: company_filing
+      source: 'Bending Spoons S.p.A., Form F-1 registration statement, filed with the SEC 8 June 2026 (CIK 2004711), https://www.sec.gov/Archives/edgar/data/0002004711/000110465926071170/tm2613674-7_f1.htm,
+        read in the author''s browser 29 Oct 2026 (bib bendingspoons2026f1; original filing only: the F-1/A, accession 000110465926076487,
+        and the final prospectus were not read); values parsed from notes/case_bending_spoons_f1_extract.md, line 47: unlevered
+        IRR hurdle 25% (acquisitions completed 2023 to Q1 2026)'
+      unit: per year, annual
+      note: continuous ln(1 + r) = 0.2231; the engine converts
+      assumed: false
+      grounding: a
+    hurdle_levered_irr_annual:
+      value: 0.65
+      range:
+      - 0.65
+      - 0.65
+      quality: company_filing
+      source: 'Bending Spoons S.p.A., Form F-1 registration statement, filed with the SEC 8 June 2026 (CIK 2004711), https://www.sec.gov/Archives/edgar/data/0002004711/000110465926071170/tm2613674-7_f1.htm,
+        read in the author''s browser 29 Oct 2026 (bib bendingspoons2026f1; original filing only: the F-1/A, accession 000110465926076487,
+        and the final prospectus were not read); values parsed from notes/case_bending_spoons_f1_extract.md, line 47: levered
+        IRR hurdle 65%'
+      unit: per year, annual
+      note: continuous ln(1 + r) = 0.5008; the engine converts. Whether the hurdles are minimum or projected IRRs is not in
+        the extract (acquirer notes Section 8, item 11)
+      assumed: false
+      grounding: a
+    irr_window_years:
+      value: 5
+      range:
+      - 5
+      - 5
+      quality: company_filing
+      source: 'Bending Spoons S.p.A., Form F-1 registration statement, filed with the SEC 8 June 2026 (CIK 2004711), https://www.sec.gov/Archives/edgar/data/0002004711/000110465926071170/tm2613674-7_f1.htm,
+        read in the author''s browser 29 Oct 2026 (bib bendingspoons2026f1; original filing only: the F-1/A, accession 000110465926076487,
+        and the final prospectus were not read); values parsed from notes/case_bending_spoons_f1_extract.md, line 49: IRR
+        method: five years of free cash flow plus a terminal value'
+      unit: years
+      assumed: false
+      grounding: a
+    debt_ltv_cap_share_of_ev:
+      value: 0.85
+      range:
+      - 0.85
+      - 0.85
+      quality: company_filing
+      source: 'Bending Spoons S.p.A., Form F-1 registration statement, filed with the SEC 8 June 2026 (CIK 2004711), https://www.sec.gov/Archives/edgar/data/0002004711/000110465926071170/tm2613674-7_f1.htm,
+        read in the author''s browser 29 Oct 2026 (bib bendingspoons2026f1; original filing only: the F-1/A, accession 000110465926076487,
+        and the final prospectus were not read); values parsed from notes/case_bending_spoons_f1_extract.md, line 52: assumed
+        acquisition debt: the lower of 85% of enterprise value and the debt the projected FCF could repay within five years'
+      unit: share of enterprise value
+      note: 'debt rule: ND_0 = min{LTV P, ND^rep} (acquirer notes Section 3, item 4)'
+      assumed: false
+      grounding: a
+    debt_repayment_years:
+      value: 5
+      range:
+      - 5
+      - 5
+      quality: company_filing
+      source: 'Bending Spoons S.p.A., Form F-1 registration statement, filed with the SEC 8 June 2026 (CIK 2004711), https://www.sec.gov/Archives/edgar/data/0002004711/000110465926071170/tm2613674-7_f1.htm,
+        read in the author''s browser 29 Oct 2026 (bib bendingspoons2026f1; original filing only: the F-1/A, accession 000110465926076487,
+        and the final prospectus were not read); values parsed from notes/case_bending_spoons_f1_extract.md, line 52: debt
+        the projected FCF could repay within five years'
+      unit: years
+      note: ND^rep = present value of FCF over T_rep at r_debt
+      assumed: false
+      grounding: a
+    covenant_max_leverage:
+      value: 4.0
+      range:
+      - 4.0
+      - 4.0
+      quality: company_filing
+      source: 'Bending Spoons S.p.A., Form F-1 registration statement, filed with the SEC 8 June 2026 (CIK 2004711), https://www.sec.gov/Archives/edgar/data/0002004711/000110465926071170/tm2613674-7_f1.htm,
+        read in the author''s browser 29 Oct 2026 (bib bendingspoons2026f1; original filing only: the F-1/A, accession 000110465926076487,
+        and the final prospectus were not read); values parsed from notes/case_bending_spoons_f1_extract.md, line 57: leverage-ratio
+        covenant of at most 4.00'
+      unit: leverage ratio
+      note: the ratio definition (net or gross, EBITDA basis) is not in the extract (acquirer notes Section 8, item 8)
+      assumed: false
+      grounding: a
+    covenant_leverage_actual:
+      value: 2.4
+      range:
+      - 2.19
+      - 2.4
+      quality: company_filing
+      source: 'Bending Spoons S.p.A., Form F-1 registration statement, filed with the SEC 8 June 2026 (CIK 2004711), https://www.sec.gov/Archives/edgar/data/0002004711/000110465926071170/tm2613674-7_f1.htm,
+        read in the author''s browser 29 Oct 2026 (bib bendingspoons2026f1; original filing only: the F-1/A, accession 000110465926076487,
+        and the final prospectus were not read); values parsed from notes/case_bending_spoons_f1_extract.md, line 57: ratio
+        2.24 at end-2025 and 2.19 at end-Q1 2026; Bending Spoons S.p.A., Form 6-K, Ex. 99.1, filed on EDGAR (CIK 2004711)
+        on 13 Aug 2026, read 29 Oct 2026 in the author''s browser; values parsed from notes/case_bending_spoons_f1_extract.md
+        (section "Post-IPO filings"; the extract does not record the exhibit URL), line 161: leverage ratio 2.4 at end-Q2
+        2026 (unaudited)'
+      unit: leverage ratio
+      note: value = latest (end-Q2 2026). The company computes the ratio on pro forma adjusted EBITDA that "reflects achieved
+        cost savings from reorganizations as if ... achieved at the beginning" of the period, "as well as certain expected
+        cost savings", so it is lower than a ratio on reported EBITDA
+      assumed: false
+      grounding: a
+      by_period:
+        end-2025: 2.24
+        end-Q1 2026: 2.19
+        end-Q2 2026: 2.4
+    net_debt_usd_end_q2_2026:
+      value: 4090000000.0
+      range: null
+      quality: company_filing
+      source: 'Bending Spoons S.p.A., Form 6-K, Ex. 99.1, filed on EDGAR (CIK 2004711) on 13 Aug 2026, read 29 Oct 2026 in
+        the author''s browser; values parsed from notes/case_bending_spoons_f1_extract.md (section "Post-IPO filings"; the
+        extract does not record the exhibit URL), line 161: net debt $4.09B (long-term debt $4.88B, cash $793M), unaudited'
+      unit: USD
+      note: 'check: 4.88B - 0.793B = 4.087B'
+      assumed: false
+      grounding: a
+    terminal_value_rate_r_tv_annual:
+      value: 0.0934
+      range: *id001
+      quality: practitioner_dataset_disclosed
+      source: 'same as ownership_regimes.public.r_own_wacc (Damodaran, January 2026): the F-1''s own WACC for terminal values
+        is not in the extract (acquirer notes Sections 5 and 8, item 11)'
+      unit: per year, annual
+      assumed: false
+      grounding: b
+      links: ownership_regimes.public.r_own_wacc
+    debt_rate_r_debt_annual:
+      value: 0.09625
+      range:
+      - 0.08625
+      - 0.09625
+      quality: company_filing
+      source: 'Bending Spoons S.p.A., Form 6-K, Ex. 99.1, filed on EDGAR (CIK 2004711) on 28 Oct 2026, read 29 Oct 2026 in
+        the author''s browser; values parsed from notes/case_bending_spoons_f1_extract.md (section "Post-IPO filings"; the
+        extract does not record the exhibit URL), line 168: senior secured notes priced 28 Oct 2026, $1.25B at 9.625% and
+        EUR 500M at 8.625%, due 2032'
+      unit: per year, annual (coupon)
+      note: the company's marginal secured cost of new debt (coupons on its first notes), not its average cost of debt; value
+        = the USD coupon. The EUR coupon is in euro terms, so the range mixes currencies. Replaces the earlier class d 8%
+        (the engine's regime.debt_rate preset)
+      assumed: false
+      grounding: a
+change_capacity:
+  affected_fte_share_per_year:
+    value: 0.1
+    range:
+    - 0.05
+    - 0.22
+    quality: practitioner_survey_disclosed
+    source: 'central precedent (work changed): World Economic Forum, Future of Jobs Report 2025, digest (weforum.org/publications/the-future-of-jobs-report-2025/digest/;
+      read 29 Oct 2026): over 1,000 employers, 14 million workers, 55 economies; 59 of 100 workers need training by 2030,
+      about 12 a year. Exit-based bracket: single-year reductions in filings, Salesforce about 10% (Form 8-K, 4 Jan 2023),
+      Alphabet about 6% (about 12,000 roles, Jan 2023), Meta 22% of headcount in 2023 (67,317 at 31 Dec 2023; Q4 2023 results
+      release); BLS JOLTS, August 2026: layoffs and discharges 1.0% a month (about 12% a year), total separations 3.2% a month'
+    note: 're-grounded by assumptions round 2 (Section 1.2): layoffs measure exits, the parameter counts employees whose work
+      changes; WEF measures that concept and lands on the same value. Upper bound 0.20 -> 0.22 (Meta 2023).'
+    assumed: false
+    grounding: b
+    analogy: employers' expected share of workers whose work changes (training, redeployment), bracketed by one-year reductions
+      in filings
+    read: '2026-10-29'
+    adopted: params commit 2026-10-29 (assumptions round 2, 1.2)
+  embedding_time_T_emb_years:
+    value: 1.25
+    range:
+    - 1.0
+    - 2.0
+    quality: company_filing
+    source: 'Salesforce Form 8-K (4 Jan 2023; sec.gov/Archives/edgar/data/1108524/000110852423000003/crm-20230104.htm; read
+      29 Oct 2026) and FY2024 results (28 Feb 2024): the workforce reduction announced 4 Jan 2023 was "substantially completed"
+      about 13 months later; McKinsey (2021): about half of transformation value within 18 months, top-quartile listed firms
+      74% within 12 months; Gartner (2024, secondary): about 8 months prototype to production'
+    unit: years from a transition's start to embedded value (T_emb = T_pb in Part I)
+    note: replaces 2 [1, 3] (d). Used by code/calibrate_horizons.py PACE (Temb, Tpb).
+    assumed: false
+    grounding: b
+    analogy: time from announcement to substantial completion of a disclosed restructuring, and to half of transformation
+      value
+    read: '2026-10-29'
+    adopted: params commit 2026-10-29 (assumptions round 2, 1.3)
+  revealed_pace_reference_fy22_fy24:
+    value:
+      gaap_operating_margin_points:
+        n: 149
+        p10: -7.8
+        p25: 2.1
+        median: 7.5
+        p75: 21.5
+        p90: 36.0
+      fcf_after_sbc_margin_points:
+        n: 145
+        p10: -6.3
+        p25: 1.3
+        median: 9.5
+        p75: 23.5
+        p90: 35.4
+      gross_margin_less_ga_points:
+        n: 129
+        p10: -2.8
+        p25: 0.4
+        median: 3.8
+        p75: 8.0
+        p90: 13.0
+      sm_share_points:
+        n: 139
+        median: -3.7
+      rd_share_points:
+        n: 138
+        median: -1.2
+      ga_share_points:
+        n: 140
+        median: -1.5
+      sbc_share_points:
+        n: 151
+        median: -0.9
+    quality: primary_data_fit
+    assumed: false
+    grounding: c
+    reference_only: true
+    flag: 'to recompute on panel_v3: computed on data/panel_v2_all.csv, which the IM-1 sample audit is rebuilding'
+    source: 'assumptions round 2 (notes/assumptions_round2.md Section 1.5), own calculation on data/panel_v2_all.csv: SIC
+      7372, FY2022 revenue at least $100 million, firms reporting both FY2022 and FY2024; change FY2022 to FY2024'
+    unit: percentage points of revenue over two years
+    note: 'class c reference, not used as a value: the median firm closed 7.5 points of GAAP operating margin in two years
+      with no AI program (cost programs remove cost on announcement); the model''s central path is "AI migration only". The
+      lower quartile (about 5% of the gap a year) and the median (about 17%) bracket the cost-program pace.'
+    read: '2026-10-29'
+    adopted: params commit 2026-10-29 (assumptions round 2, 1.5)
+organization:
+  span_of_control_oews:
+    value: 4.29
+    range:
+    - 4.29
+    - 7.26
+    by_industry:
+      all_industries: 7.26
+      software_publishers_5132: 4.29
+      computer_systems_design_5415: 5.26
+      data_processing_hosting_5182: 4.42
+    quality: primary_data_fit
+    assumed: false
+    grounding: c
+    source: 'our calculation from BLS OEWS May 2025 (occupations.csv, industry_staffing.csv): workers outside management (SOC
+      11, less 11-9013) and first-line supervisor occupations per worker in them'
+    unit: non-managerial workers per manager or supervisor
+    note: 'OEWS management occupations include roles without direct reports (e.g. 11-9199 managers, all other, which holds
+      product and program managers), so these spans are lower bounds. For the engine key org.span_base, today 7.0 [5, 10]
+      unlinked: 7.0 matches the all-industry figure, not a software firm.'
+  ai_engineers_per_automated_process_run:
+    value: 0.48
+    range:
+    - 0.29
+    - 1.14
+    quality: primary_data_fit
+    assumed: false
+    grounding: b
+    source: 'derived: maintenance share mu_m x build cost F_A / loaded cost of a software developer (OEWS May 2025 median
+      for 15-1252, $175,360 with the ECEC loading on annual wages)'
+    analogy: run-mode upkeep of an automated process is staffed by software engineers at the maintenance budget
+    unit: FTE per automated process
+    note: for the engine key org.e_mnt, today 0.25 [0.1, 0.5] unlinked, which is below the engine's own maintenance budget
+      (security.delta_M 0.15 x F_A)
+product:
+  bass_diffusion:
+    p_innovation:
+      value: 0.027
+      range:
+      - 0.012
+      - 0.03
+      quality: peer_reviewed
+      source: 'Van den Bulte and Stremersch (2004), Social Contagion and Income Heterogeneity in New Product Diffusion: A
+        Meta-Analytic Test, Marketing Science 23(4), 530-544, doi:10.1287/mksc.1040.0054: 293 observations, 52 consumer durables,
+        28 countries, 46 publications; p mean 0.027, median 0.012 (p. 537)'
+      unit: per year
+      note: range = their median to the Sultan et al. mean. Consumer durables, annual data.
+      assumed: false
+      grounding: a
+    q_imitation:
+      value: 0.419
+      range:
+      - 0.38
+      - 0.42
+      quality: peer_reviewed
+      source: 'Van den Bulte and Stremersch (2004): q mean 0.419, median 0.420 (p. 537)'
+      unit: per year
+      note: low end of range = Sultan et al. (1990) mean
+      assumed: false
+      grounding: a
+    sultan_farley_lehmann_1990:
+      value:
+        p: 0.03
+        q: 0.38
+        n_applications: 213
+        n_articles: 15
+      quality: secondary
+      assumed: false
+      source: Sultan, Farley and Lehmann (1990), A Meta-Analysis of Applications of Diffusion Models, Journal of Marketing
+        Research 27 (February), 70-77 (citation and abstract verified at business.columbia.edu); mean p and q read in Nam
+        (2011, Rutgers working paper) and Orbach (2016), Innovative Marketing 12(1), p. 30, doi:10.21511/im.12(1).2016.03
+      note: the JMR original was not opened, so the averages are secondary; used only as a cross-check and range bound.
+      grounding: b
+    software_or_it_specific:
+      value: null
+      quality: unsupported
+      assumed: false
+      source: no verified software or IT category estimate found. Van den Bulte and Stremersch (2004) code PCs, VCRs and cellular
+        telephones as competing-standards products and find them more strongly S-shaped (higher q/p, p. 541) but report no
+        category p and q. Givon, Mahajan and Muller (1995), Journal of Marketing 59(1), 29-37, estimate software diffusion
+        in the UK; their PC parameters as quoted by Waters (2013, MPRA 46036) are on a different time scale and are not used.
+      grounding: ref
+    ai_feature_within_installed_base:
+      p:
+        value: 0.05
+        range:
+        - 0.01
+        - 0.15
+        quality: assumed
+        source: 'assumed: an AI feature sold into an existing customer base (no new-logo acquisition) diffuses faster than
+          a new consumer durable'
+        assumed: true
+        grounding: d
+      q:
+        value: 0.5
+        range:
+        - 0.25
+        - 0.9
+        quality: assumed
+        source: assumed; anchored above the meta-analytic mean
+        assumed: true
+        grounding: d
+  gross_margin:
+    ai_product_gross_margin_by_year:
+      value:
+        '2025': 0.45
+        2026_projected: 0.53
+        2027_projected: 0.59
+      range:
+        '2025':
+        - 0.4
+        - 0.5
+      quality: practitioner_survey_disclosed
+      assumed: false
+      source: 'ICONIQ (2026), State of AI: The Builder''s Economy, July 2026 (refs.bib: iconiq2026state), https://www.iconiq.com/growth/reports/state-of-ai-2026,
+        re-read 29 Oct 2026: "jumping from 45% in 2025 to a projected 53% in 2026, and 59% in 2027"'
+      note: survey of about 300 executives at software companies building AI products (Q2 2026, 87% North America); 2026 and
+        2027 are respondent projections, not measurements. 2025 range assumed. Confirms ref_verification.md.
+      grounding: a
+    subscription_software_gross_margin_reference:
+      value: 0.734
+      range:
+      - 0.695
+      - 0.734
+      quality: primary_data_fit
+      source: 1 - median cost-of-revenue share, SIC 7372, 150 firms, FY2023-2025 (industry_function_shares.csv, SEC XBRL panel)
+      note: use this, not the unsourced "75-80% for classic SaaS" (not in ICONIQ; audit_report.md item 26). Range low = 1
+        - mean.
+      assumed: false
+      grounding: c
+  outcome_and_usage_list_prices:
+    intercom_fin_per_outcome:
+      value: 0.99
+      unit: USD per outcome (one per conversation; a resolution is billed when no further help is requested after Fin's last
+        answer)
+      quality: vendor_price_list
+      source: Fin (formerly Intercom), Fin AI Agent pricing on fin.ai/pricing and intercom.com/pricing, both read 29 Oct 2026
+        in the author's browser
+      url: https://fin.ai/pricing; https://www.intercom.com/pricing
+      retrieved: '2026-10-29'
+      note: 'the AI unit is per outcome ($0.99), not per resolution. Minimum 50 outcomes a month; qualifications $9.99 each;
+        other billable outcomes: procedure handoffs, disqualifications, self-serve routings. Helpdesk seats (annual): Essential
+        $29, Advanced $85, Expert $132 per seat per month. owner: Fin (formerly Intercom), a Salesforce company since 10 Sep
+        2026 (Salesforce press release "Salesforce Completes Acquisition of Fin", 10 Sep 2026, https://www.salesforce.com/news/press-releases/2026/09/10/salesforce-completes-acquisition-of-fin/,
+        read 29 Oct 2026).'
+      assumed: false
+      grounding: a
+    salesforce_agentforce_per_conversation:
+      value: 2.0
+      unit: USD per conversation
+      quality: vendor_price_list
+      source: Salesforce, Agentforce pricing page (Conversations option)
+      url: https://www.salesforce.com/agentforce/pricing/
+      retrieved: '2026-10-29'
+      note: 'per-user alternatives on the same page: Agentforce add-ons $125 per user per month (Sales, Service, Field Service);
+        Agentforce 1 Editions from $550 per user per month with 2.5M Flex Credits per org per year.'
+      assumed: false
+      grounding: a
+    salesforce_agentforce_per_action:
+      value: 0.1
+      unit: USD per standard action (20 Flex Credits at $500 per 100,000 credits)
+      quality: vendor_price_list
+      source: Salesforce, Agentforce pricing page; Flex Credits rate card (updated 17 Jun 2026)
+      url: https://www.salesforce.com/agentforce/pricing/; https://www.salesforce.com/en-us/wp-content/uploads/sites/4/assets/pdf/agentforce/Flex-Credits-Rate-Card-06.17.2026.pdf
+      retrieved: '2026-10-29'
+      note: 'rate card: standard and custom actions 20 credits, voice actions 30, Help Agent resolution 400 credits (= $2.00
+        at list).'
+      assumed: false
+      grounding: a
+    hubspot_customer_agent_per_resolution:
+      value: 0.5
+      unit: USD per resolved conversation (50 HubSpot credits at $0.010 per credit)
+      quality: vendor_price_list
+      source: 'HubSpot company news (updated 13 Apr 2026): outcome-based pricing from 14 Apr 2026, previously $1.00 per conversation;
+        HubSpot Credits page ($10 per 1,000 credits)'
+      url: https://www.hubspot.com/company-news/hubspots-customer-agent-and-prospecting-agent-now-you-pay-when-the-task-is-complete;
+        https://www.hubspot.com/products/artificial-intelligence/credits
+      retrieved: '2026-10-29'
+      note: Prospecting Agent $1.00 per lead recommended for outreach (100 credits); voice 50 credits per minute. A dated
+        example of migration from per-conversation to per-outcome pricing (price halved).
+      assumed: false
+      grounding: a
+    freshworks_freddy_ai_agent_per_session:
+      value: 0.49
+      unit: USD per session ($49 per 100 additional sessions; first 500 included)
+      quality: vendor_price_list
+      source: Freshworks, Freshdesk pricing page
+      url: https://www.freshworks.com/freshdesk/pricing/
+      retrieved: '2026-10-29'
+      note: 'the page does not define a session, so this is per use, not per resolution. Seats, billed annually: Growth $19,
+        Pro $55, Enterprise $89 per agent per month (Pro is the middle paid tier and the low end of the product example seat
+        range; freshworks2026pricing, accessed 29 Oct 2026).'
+      assumed: false
+      grounding: a
+    microsoft_copilot_studio_per_credit:
+      value: 0.008
+      unit: USD per Copilot Credit ($200 per pack of 25,000 credits per month)
+      quality: vendor_price_list
+      source: Microsoft, Copilot Studio plans and pricing page
+      url: https://www.microsoft.com/en-us/copilot/pricing/copilot-studio
+      retrieved: '2026-10-29'
+      note: credits consumed per message or action not verified (the June 2026 licensing guide PDF failed to load), so no
+        per-task price is derived. Up to 20% off with pre-purchase.
+      assumed: false
+      grounding: a
+  seat_list_prices:
+    freshworks_freshdesk_pro:
+      value: 55
+      unit: USD per agent per month, billed annually
+      quality: vendor_price_list
+      source: 'Freshworks, Freshdesk pricing page: Pro, the middle of three paid plans'
+      url: https://www.freshworks.com/freshdesk/pricing/
+      retrieved: '2026-10-29'
+      note: '"billed annually"; the page offers monthly billing but lists no monthly prices. Also Growth $19 and Enterprise
+        $89.'
+      assumed: false
+      bib: freshworks2026pricing
+      grounding: a
+    intercom_advanced:
+      value: 85
+      unit: USD per seat per month, billed annually
+      quality: vendor_price_list
+      source: 'Fin (formerly Intercom), intercom.com/pricing: Advanced, read 29 Oct 2026 in the author''s browser'
+      url: https://www.intercom.com/pricing
+      retrieved: '2026-10-29'
+      note: 'also Essential $29 ($19 with a new-customer discount) and Expert $132. owner: Fin (formerly Intercom), a Salesforce
+        company since 10 Sep 2026 (Salesforce press release "Salesforce Completes Acquisition of Fin", 10 Sep 2026, https://www.salesforce.com/news/press-releases/2026/09/10/salesforce-completes-acquisition-of-fin/,
+        read 29 Oct 2026).'
+      assumed: false
+      bib: intercom2026pricing
+      grounding: a
+    hubspot_service_hub_professional:
+      value: 90
+      unit: USD per seat per month, billed annually
+      quality: vendor_price_list
+      source: HubSpot, Service Hub Professional pricing page
+      url: https://www.hubspot.com/pricing/service/professional
+      retrieved: '2026-10-29'
+      note: $100 per seat a month billed monthly. Also Starter $7 or $20 (the page does not clearly label which is annual)
+        and Enterprise $150.
+      assumed: false
+      bib: hubspot2026servicepro
+      grounding: a
+    salesforce_service_cloud_pro_suite:
+      value: 100
+      unit: USD per user per month, billed annually
+      quality: vendor_price_list
+      source: 'Salesforce, Service Cloud pricing page: Pro Suite'
+      url: https://www.salesforce.com/service/pricing/
+      retrieved: '2026-10-29'
+      note: '"starting price, billed annually, contract required"; fetched as https://www.salesforce.com/service/pricing/?bc=HL
+        (the bare URL was not on the fetch allowlist). Also Starter Suite $25, Core $195, Advanced $395, Max $550.'
+      assumed: false
+      bib: salesforce2026servicepricing
+      grounding: a
+    annual_seat_price_professional_tier:
+      value: 1050.0
+      range:
+      - 660
+      - 1200
+      quality: vendor_price_list
+      source: 'our calculation from the four list prices above: 12 x monthly = $660, $1,020, $1,080, $1,200 a year; range
+        = lowest to highest; central = median of the four annual prices, taken as the mean of the two middle values ($1,020
+        Fin (formerly Intercom) Advanced and $1,080 HubSpot Service Hub Professional) = $1,050'
+      unit: USD per agent (seat) per year, billed annually
+      note: 'the lower and upper medians would be $1,020 and $1,080. List prices, not transaction prices (discounts and multi-year
+        terms are not public). Wider published span, not used for the range: under $25 to $550 a month (Starter and Max tiers).'
+      assumed: false
+      grounding: a
+  outcome_pricing_not_public:
+    value:
+    - Sierra (outcome-based, prices by quote)
+    - Decagon (per conversation or resolution, by quote)
+    quality: unsupported
+    assumed: false
+    source: no public list price on the vendors' pages; not used
+    grounding: ref
+  capture_share:
+    human_cost_per_resolution_usd:
+      value: 18.09
+      range:
+      - 9.04
+      - 27.13
+      quality: primary_data_fit
+      source: 'our calculation: OEWS May 2025 median wage, customer service representatives (43-4051) $44,770 / 2080 x (1
+        + tau_L per hour worked, ECEC private) / 1.7 resolutions per hour (never-treated agents, Brynjolfsson, Li and Raymond,
+        arXiv:2304.11771; published QJE 140(2), 889-942, 2025)'
+      note: range +/-50% assumed (agents in the study handle concurrent chats at one Fortune 500 software firm; U.S. wage
+        applied to their throughput).
+      assumed: false
+      grounding: c
+    implied_capture_share_theta_cap_at_list_price:
+      value:
+        intercom_fin_per_outcome: 0.055
+        salesforce_agentforce_per_conversation: 0.111
+        hubspot_customer_agent_per_resolution: 0.028
+      range:
+      - 0.028
+      - 0.111
+      quality: vendor_price_list
+      assumed: false
+      source: 'our calculation: list price per outcome, resolution or conversation / human_cost_per_resolution_usd'
+      note: 'assumes one AI outcome or resolution displaces one human resolution. AI agents resolve the simpler contacts,
+        which take less human time, so the capture share of the cost actually displaced is higher than shown. Not independent
+        observations: Salesforce and Fin (formerly Intercom) share a parent since 10 Sep 2026, so two of the three list prices
+        (0.055 and 0.111) come from one corporate group.'
+      grounding: a
+    theta_cap_default:
+      value: 0.1
+      range:
+      - 0.03
+      - 0.3
+      quality: vendor_price_list
+      source: 'grounded by the list-price-implied shares above (HubSpot 0.028, Fin (formerly Intercom) 0.055, Salesforce 0.111):
+        central 0.10 near the upper list-price share; high end 0.30 allows for scarce-input rents (data, workflow, distribution,
+        trust) and is not sourced'
+      assumed: false
+      grounding: b
+      analogy: published per-resolution prices of AI support agents relative to the loaded cost of a human resolution, for
+        labor-substituting products in general
+      note: the engine default product.theta_cap is 0.25 [0.1, 0.5], unlinked and above every list-price share; it should
+        link here (audit, 29 Oct 2026)
+  seat_compression:
+    evidence_flag:
+      value: thin
+      quality: unsupported
+      assumed: false
+      source: no peer-reviewed or disclosed-method estimate of the elasticity of software seats to customer automation was
+        found; trade-press claims of "the end of per-seat pricing" are not used
+      grounding: ref
+    bls_projection_csr_2025_35:
+      value: -0.0532
+      range:
+      - -0.055
+      - -0.0532
+      quality: government
+      source: 'BLS Occupational Outlook Handbook, Customer Service Representatives (modified 27 Aug 2026): employment 2,666,000
+        (2025) to 2,524,100 (2035), -141,800, "projected to decline 5 percent", as tasks "continue to be automated" and self-service
+        spreads. BLS TED, 16 Jul 2026 (2024-34 projections): -5.5% (-153,700), with AI productivity gains expected to dampen
+        labour demand'
+      unit: share change over 10 years
+      note: 'about -0.0055 a year. An official projection, not a measurement; a lower bound on support-seat erosion at customers
+        that adopt AI agents. Office and administrative support group: -4.0% (-752,100), 2025-35 (Employment Projections release,
+        27 Aug 2026).'
+      assumed: false
+      grounding: a
+    klarna_2024_ai_assistant:
+      value:
+        fte_equivalent_work: 700
+        share_of_chats: 0.67
+        conversations_first_month: 2300000
+        resolution_minutes_before_after:
+        - 11
+        - 2
+        repeat_inquiry_change: -0.25
+      quality: company_statement
+      assumed: false
+      source: Klarna press release, 27 Feb 2024, https://www.klarna.com/international/press/klarna-ai-assistant-handles-two-thirds-of-customer-service-chats-in-its-first-month/
+      note: one firm's unaudited claim (customer service is partly outsourced, so the 700 are not all Klarna seats); illustration
+        only
+      grounding: b
+    aei_automation_pattern_share_support_dwas:
+      value: 0.529
+      range:
+      - 0.458
+      - 0.635
+      quality: primary_data_fit
+      source: Anthropic Economic Index 2026-06-26, collaboration_bucket_automation_pct for DWAs 4.A.4.a.8.c.2, 4.A.4.a.8.c.3,
+        4.A.4.a.3.c.8, 4.A.4.b.6.b.2
+      note: share of Claude.ai conversations on these activities with a directive or automation pattern; a usage pattern,
+        not displaced seats
+      assumed: false
+      grounding: c
+    seat_elasticity_epsilon_seat:
+      grounding: d
+      value: 1.0
+      range:
+      - 0.3
+      - 1.2
+      quality: assumed
+      source: 'assumed: % change in seats per % change in customer FTE in the occupations the seats serve. Below 1 when seats
+        are kept for supervisors, reviewers and escalations; above 1 when automation triggers licence consolidation. No public
+        filing reports seat counts against customer headcount, so no elasticity can be computed (searched 29 Oct 2026); scenario
+        dimension'
+      assumed: true
+    seat_lag_years:
+      value: 1.0
+      range:
+      - 0.5
+      - 2.0
+      quality: assumed
+      source: assumed lag from customer automation to seat reduction (renewal cycle)
+      assumed: true
+      grounding: d
+  inference_usage:
+    aei_source_note:
+      value: no token or cost facet in the local AEI files
+      quality: unsupported
+      assumed: false
+      source: release_2026_06_26 claude_ai file has time, autonomy, collaboration and artifact metrics only; the 1p_api file
+        is not in data/raw/anthropic_aei/
+      grounding: ref
+    tokens_per_support_conversation_mtok:
+      value: 0.05
+      range:
+      - 0.01
+      - 0.2
+      quality: assumed
+      source: assumed for an agentic support conversation with retrieval and tool calls
+      unit: million tokens (input plus output)
+      note: 'upper anchor 0.145-0.341 Mtok = ai_cost.tokens_per_human_hour x AEI human_only_time_mean for support DWAs ({''4.A.4.a.8.c.2'':
+        0.56, ''4.A.4.a.8.c.3'': 0.62, ''4.A.4.a.3.c.8'': 0.815, ''4.A.4.b.6.b.2'': 1.32} hours); METR tokens are from agentic
+        software tasks, so the anchor is likely high for chat support'
+      assumed: true
+      grounding: d
+    inference_cost_per_support_conversation_usd:
+      value:
+        frontier_tier (Claude Mythos 5.1 / Fable 5.1): 0.349
+        claude_opus_5_5: 0.1432
+        claude_sonnet_5_5: 0.0716
+        claude_haiku_5_5 (prompts up to 100k tokens): 0.0038
+      range_multiplier:
+      - 0.2
+      - 4.0
+      quality: assumed
+      assumed: true
+      source: tokens_per_support_conversation_mtok x ai_cost.blended_price_usd_per_mtok (list prices x assumed token mix)
+      grounding: d
+    inference_share_of_outcome_price:
+      value: 0.072
+      range:
+      - 0.005
+      - 0.4
+      quality: assumed
+      source: Sonnet 5.5-tier cost per conversation / Fin list price per outcome
+      note: excludes retrieval, hosting, evaluation and human escalation costs, which ICONIQ's 45% gross margin implies are
+        large
+      assumed: true
+      grounding: d
+    conversations_per_resolution:
+      value: 1.4
+      range:
+      - 1.0
+      - 2.5
+      quality: assumed
+      source: assumed conversations billed or run per billable resolution
+      assumed: true
+      grounding: d
+  pricing_migration:
+    migration_cost_share_of_migrated_arr:
+      value: 0.05
+      range:
+      - 0.02
+      - 0.15
+      quality: assumed
+      source: 'assumed one-off cost: billing and metering build, contract renegotiation, sales compensation redesign, customer
+        communication'
+      assumed: true
+      grounding: d
+    transition_revenue_dip_share:
+      value: 0.05
+      range:
+      - 0.0
+      - 0.15
+      quality: assumed
+      source: assumed share of migrated ARR lost during the transition
+      assumed: true
+      grounding: d
+    transition_dip_duration_years:
+      value: 1.0
+      range:
+      - 0.5
+      - 2.0
+      quality: assumed
+      source: assumed; links to transition.j_curve
+      assumed: true
+      grounding: d
+    churn_uplift_pp_during_migration:
+      value: 0.02
+      range:
+      - 0.0
+      - 0.08
+      quality: assumed
+      source: assumed addition to annual gross revenue churn
+      assumed: true
+      grounding: d
+    forecast_error_multiplier_usage_vs_seat:
+      value: 2.0
+      range:
+      - 1.2
+      - 4.0
+      quality: assumed
+      source: assumed ratio of revenue forecast error (sd) under usage or outcome pricing to seat pricing
+      assumed: true
+      grounding: d
+    price_cut_at_migration_share:
+      value: 0.0
+      range:
+      - -0.5
+      - 0.2
+      quality: assumed
+      source: assumed change in price per unit of value at migration; HubSpot halved its per-unit price when moving from per
+        conversation to per resolution (see list prices)
+      assumed: true
+      grounding: d
+    migration_duration_years:
+      value: 1.5
+      range:
+      - 1.0
+      - 3.0
+      quality: assumed
+      source: assumed time to move the installed base (renewal cycles)
+      assumed: true
+      grounding: d
+security_and_maintenance:
+  breach_cost:
+    global_average_usd:
+      value: 4990000
+      range:
+      - 4440000
+      - 11500000
+      quality: practitioner_survey_disclosed
+      source: 'IBM and Ponemon Institute, Cost of a Data Breach Report 2026 (29 Jul 2026), ibm.com/reports/data-breach and
+        IBM newsroom: global average $4.99M, up 12%, a record; 602 organizations breached between Mar 2025 and Feb 2026; 2025
+        edition: $4.44M (IBM X-Force, 30 Jul 2025)'
+      note: 'average over breached organizations, not a hazard or a per-process loss. Range: 2025 global average to the 2026
+        U.S. average. Detection and escalation plus lost business are 63% of cost.'
+      assumed: false
+      grounding: a
+    us_average_usd:
+      value: 11500000
+      range:
+      - 4990000
+      - 11500000
+      quality: secondary
+      source: 'Baker Donelson, Ten takeaways from IBM''s 2026 Cost of a Data Breach Report (30 Jul 2026): U.S. $11.5M, up
+        11%'
+      note: not on the IBM pages read; the same summary's financial-sector figure ($6.29M) matches IBM's own ($6.3M). Range
+        low = global average.
+      assumed: false
+      grounding: b
+    by_industry_usd:
+      value:
+        financial_services: 6300000
+        energy: 5200000
+        healthcare: 6640000
+      quality: practitioner_survey_disclosed
+      assumed: false
+      source: IBM newsroom, 29 Jul 2026 (financial services $6.3M, energy $5.2M); healthcare $6.64M (highest) from the Baker
+        Donelson summary (secondary)
+      grounding: a
+    mean_days_to_identify_and_contain:
+      value: 247
+      range:
+      - 241
+      - 247
+      quality: secondary
+      source: 'Baker Donelson summary of the 2026 report: 247 days; IBM X-Force (30 Jul 2025): 241 days in the 2025 edition'
+      assumed: false
+      grounding: b
+    savings_from_extensive_security_ai_usd:
+      value: 1930000
+      range:
+      - 1930000
+      - 1930000
+      quality: practitioner_survey_disclosed
+      source: 'IBM 2026: $1.93M lower breach cost with extensive AI and automation in security operations vs none'
+      note: cross-sectional comparison, not a causal estimate
+      assumed: false
+      grounding: a
+    per_process_loss_share_of_average_L_inc:
+      value: 0.3
+      range:
+      - 0.05
+      - 1.0
+      quality: assumed
+      source: assumed L_inc,j as a share of the average breach cost for an incident confined to one automated process
+      assumed: true
+      grounding: d
+  ai_specific_incidents:
+    share_of_orgs_with_ai_related_breach:
+      value: 0.2
+      range:
+      - 0.13
+      - 0.2
+      quality: practitioner_survey_disclosed
+      source: 'IBM 2026: "roughly one in five" (newsroom: "more than 20%") of breached organizations reported a breach of
+        AI models or applications; 2025 edition: 13%'
+      note: share of breached organizations, not of all organizations
+      assumed: false
+      grounding: a
+    share_lacking_ai_access_controls:
+      value: 0.92
+      range:
+      - 0.92
+      - 0.97
+      quality: practitioner_survey_disclosed
+      source: 'IBM 2026: 92% of organizations with an AI-related breach lacked proper AI access controls (2025: 97%); only
+        40% use access controls on AI models and data'
+      assumed: false
+      grounding: a
+    avg_loss_prompt_injection_usd:
+      value: 5890000
+      range:
+      - 4990000
+      - 6070000
+      quality: practitioner_survey_disclosed
+      source: 'IBM X-Force, 29 Jul 2026: prompt injection average loss $5.89M; model inversion $6.07M'
+      note: small subsamples, not stated; range assumed between the global average and model inversion
+      assumed: false
+      grounding: a
+    avg_cost_ai_enabled_malicious_breach_usd:
+      value: 6000000
+      range:
+      - 5000000
+      - 6100000
+      quality: practitioner_survey_disclosed
+      source: 'IBM newsroom 29 Jul 2026: one in four malicious breaches AI-enabled (up 56%), costing $6M on average, about
+        $1M above the global average'
+      note: range assumed
+      assumed: false
+      grounding: a
+    shadow_ai_cost_premium_usd:
+      value: 670000
+      range:
+      - 670000
+      - 760000
+      quality: practitioner_survey_disclosed
+      source: 'IBM X-Force (30 Jul 2025): shadow AI added $670,000 to the average breach; 2026 per Baker Donelson (secondary):
+        incidence 43% (20% in 2025), cost $5.39M vs $4.63M (+$760,000)'
+      assumed: false
+      grounding: a
+    share_without_ai_governance_policy_2025:
+      value: 0.63
+      range:
+      - 0.63
+      - 0.63
+      quality: practitioner_survey_disclosed
+      source: 'IBM X-Force (30 Jul 2025): 63% of breached organizations had no AI governance policy'
+      assumed: false
+      grounding: a
+  exposure_and_hazard:
+    incident_hazard_h_inc_per_process_year:
+      value: 0.02
+      range:
+      - 0.005
+      - 0.1
+      quality: assumed
+      source: assumed annual probability of a material incident for one automated process at baseline exposure and security
+        spend; IBM/Ponemon samples breached firms only and gives no hazard
+      assumed: true
+      grounding: d
+    exposure_multipliers_e_j:
+      value:
+        data_sensitivity:
+          public: 0.2
+          internal: 1.0
+          confidential: 2.0
+          regulated_pii_phi_pci: 4.0
+        autonomy:
+          read_only: 0.5
+          draft_for_human: 1.0
+          write: 2.0
+          transact: 3.0
+        integration_breadth_elasticity: 0.5
+        external_untrusted_input: 2.0
+      range: each multiplier x0.5 to x2
+      quality: assumed
+      assumed: true
+      source: assumed; direction from spec 18.2. External untrusted input (indirect prompt injection; Greshake et al. 2023,
+        literature agent) doubles exposure. e_j = product of multipliers x (systems reachable)^elasticity
+      grounding: d
+    hazard_elasticity_to_security_spend:
+      value: 0.5
+      range:
+      - 0.2
+      - 1.0
+      quality: assumed
+      source: assumed elasticity of h_inc to s_sec; a Gordon-Loeb Class I form S = v / (alpha z + 1)^beta can be fitted to
+        it
+      assumed: true
+      grounding: d
+  gordon_loeb_bound:
+    value: 0.3679
+    range:
+    - 0.0
+    - 0.3679
+    quality: peer_reviewed
+    source: 'Gordon and Loeb (2002), The Economics of Information Security Investment, ACM Transactions on Information and
+      System Security 5(4), 438-457, Proposition 3: optimal investment is at most (1/e) vL, "36.79% of the loss" expected
+      without investment (paper copy read; also UMD Smith School summary)'
+    unit: max security investment / expected loss without investment
+    note: holds for breach-probability classes S_I = v/(alpha z + 1)^beta (beta >= 1) and S_II = v^(alpha z + 1); assumes
+      no incremental fixed costs of security.
+    assumed: false
+    grounding: a
+  security_spend:
+    share_of_it_spend:
+      value: 0.099
+      range:
+      - 0.086
+      - 0.119
+      quality: practitioner_survey_disclosed
+      source: 'IANS Research and Artico Search, 2026 Security Budget Benchmark Report (more than 500 CISOs): 9.9% of IT spend;
+        2025 edition (5 Aug 2025; 587 CISOs, data Apr-Aug 2025): 10.9%, from 11.9% in 2024 and 8.6% in 2020'
+      note: self-reported CISO survey, mostly larger firms; 2026 survey period not stated. Range = 2020 low to 2024 high.
+      assumed: false
+      grounding: a
+    share_of_revenue:
+      value: 0.0069
+      range:
+      - 0.0069
+      - 0.0069
+      quality: practitioner_survey_disclosed
+      source: 'IANS 2025: 0.69% of revenue, flat'
+      assumed: false
+      grounding: a
+    macro_ratio_reference:
+      value: 0.038
+      quality: prediction
+      assumed: false
+      source: 'Gartner press releases: information security end-user spending $213B in 2025 (29 Jul 2025; $240B forecast for
+        2026) over worldwide IT spending $5,577B in 2025 (27 Jul 2026)'
+      note: worldwide forecasts of different vintages and scope; lower than the CISO-survey share because IT spending includes
+        devices and telecom; context only
+      grounding: ref
+  model_lifecycle:
+    anthropic_min_notice_days:
+      value: 60
+      range:
+      - 60
+      - 189
+      quality: vendor_documentation
+      source: 'Anthropic, Model deprecations, platform.claude.com/docs/en/about-claude/model-deprecations (read 2026-10-29):
+        "at least 60 days'' notice before model retirement for publicly released models"'
+      note: 'observed notice in the deprecation history: [60, 61, 61, 62, 62, 63, 76, 114, 181, 189] days. Active models list
+        "not sooner than" retirement dates one year after launch (e.g. Opus 4.6, launched 5 Feb 2026: not sooner than 5 Feb
+        2027).'
+      assumed: false
+      grounding: a
+    openai_min_notice_months:
+      value:
+        generally_available: 6
+        specialized_variant: 3
+        preview: 0.5
+      quality: vendor_documentation
+      assumed: false
+      source: 'OpenAI, Deprecations, developers.openai.com/api/docs/deprecations (read 2026-10-29): "Generally available models:
+        At least 6 months"; specialized variants "At least 3 months"; previews "may be retired with much shorter notice, such
+        as 2 weeks"'
+      grounding: a
+    azure_foundry_lifecycle_months:
+      value:
+        deprecated_for_new_customers: 12
+        retired: 18
+        retired_anthropic_deepseek_fireworks_mistral: 12
+        ga_notice_days: 60
+        preview_notice_days: 30
+      quality: vendor_documentation
+      assumed: false
+      source: Microsoft, Foundry Models lifecycle and support policy, learn.microsoft.com/en-us/azure/foundry/openai/concepts/model-retirements
+        (updated 24 Jul 2026)
+      note: retirement dates not extendable; Standard deployments auto-upgrade, Provisioned do not
+      grounding: a
+    aws_bedrock_legacy_period_months:
+      value:
+        most_models: 6
+        short: 1.5
+      quality: vendor_documentation
+      assumed: false
+      source: 'AWS, Amazon Bedrock model lifecycle, docs.aws.amazon.com/bedrock/latest/userguide/model-lifecycle.html (read
+        29 Oct 2026): Legacy (notice) period 6 months or 45 days; per-model "EOL no sooner than" dates; applies to models
+        launched on or after 7 Sep 2026'
+      grounding: a
+    google_gemini_api_policy:
+      value: no notice period stated
+      quality: vendor_documentation
+      assumed: false
+      source: 'Google, Gemini deprecations, ai.google.dev/gemini-api/docs/deprecations (updated 22 Oct 2026): listed shutdown
+        dates are "the earliest possible dates"; exact dates communicated "with advance notice". The Vertex AI model-versions
+        page could not be read'
+      grounding: a
+    observed_ga_lifetime_years:
+      value:
+        median_all: 1.37
+        median_released_2025_onward: 1.22
+        by_vendor_median:
+          Anthropic: 1.07
+          Google: 1.26
+          OpenAI: 1.82
+        n_models: 24
+        n_released_2025_onward: 14
+      range:
+      - 0.99
+      - 3.36
+      quality: primary_data_fit
+      assumed: false
+      source: 'our calculation, 08_params.py LIFE table: release dates from METR release_dates.yaml (two from snapshot dates
+        in the model ID, three from the Gemini page), retirement or announced shutdown dates from the vendor pages above'
+      note: GA text models only (previews excluded); models still active with no date are right-censored and excluded, which
+        biases the recent median down.
+      grounding: c
+    T_up_years:
+      value: 1.22
+      range:
+      - 0.5
+      - 1.75
+      quality: primary_data_fit
+      source: median release-to-retirement time of GA models released from 2025 (observed_ga_lifetime_years)
+      note: forced revalidation interval for API builds; low end 0.5 assumed for firms that upgrade voluntarily when a better
+        model ships.
+      assumed: false
+      grounding: c
+    revalidation_cost_C_reval_share_of_F_A:
+      value: 0.1
+      range:
+      - 0.03
+      - 0.3
+      quality: assumed
+      source: 'assumed: rerun evaluation suites, prompt and agent rework, regression fixes, sign-off'
+      assumed: true
+      grounding: d
+  maintenance:
+    mu_m_share_of_F_A_per_year:
+      value: 0.17
+      range:
+      - 0.1
+      - 0.4
+      quality: working_paper
+      source: 'precedents: Svanberg et al. (2024, MIT FutureTech working paper, see ai_cost.build_fixed_cost_F_A): computer-vision
+        system maintenance $242,840 a year on $1,765,000 implementation = 0.138; bare-bones 0.744 (a fixed floor). Enterprise-software
+        support fees: SAP Basic Support 17% and Enterprise Support 22% of the license price a year (CIO.com, 10 Apr 2008,
+        reporting SAP''s Jan 2008 change; secondary)'
+      note: central 0.17 = median of 0.138 (Svanberg), 0.17 and 0.22 (SAP). Covers prompt and agent upkeep, eval suites, monitoring,
+        data-pipeline upkeep and drift. Sculley et al. (2015), Hidden Technical Debt in Machine Learning Systems, NIPS 28,
+        find it "common to incur massive ongoing maintenance costs" but give no share. Raised from the assumed 0.15 by the
+        audit of 29 Oct 2026.
+      assumed: false
+      grounding: b
+      analogy: annual upkeep of a deployed AI system and vendor maintenance of licensed enterprise software, both as a share
+        of the initial build or license
+    maintenance_increment_per_integration:
+      value: 0.05
+      range:
+      - 0.02
+      - 0.1
+      quality: assumed
+      source: assumed proportional increase in M_A per additional integrated system (coupling; Sculley et al. 2015, qualitative)
+      assumed: true
+      grounding: d
+    vendor_maintenance_share_of_inhouse:
+      value: 0.3
+      range:
+      - 0.1
+      - 0.6
+      quality: assumed
+      source: assumed maintenance a SaaS or agent-platform customer bears, relative to an in-house build
+      assumed: true
+      grounding: d
+    switching_cost_months_of_contract:
+      value: 6
+      range:
+      - 2
+      - 18
+      quality: assumed
+      source: 'assumed lock-in cost: re-integration, data migration, revalidation'
+      assumed: true
+      grounding: d
+  compliance:
+    soc2_type1_audit_fee_usd:
+      value: 15000
+      range:
+      - 5000
+      - 60000
+      quality: practitioner_survey_undisclosed
+      source: 'Drata, How Much Does a SOC 2 Audit Cost? (25 Mar 2026): $7,500-15,000 small to midsize, $20,000-60,000 large;
+        Secureframe SOC 2 audit cost page (undated, (c) 2026): about $5-20k'
+      note: vendor estimates with no stated method; vendors sell compliance automation (flag)
+      assumed: false
+      grounding: b
+    soc2_type2_audit_fee_usd:
+      value: 30000
+      range:
+      - 12000
+      - 150000
+      quality: practitioner_survey_undisclosed
+      source: 'Drata (25 Mar 2026): $12,000-20,000 small to midsize, $30,000-100,000+ large; Secureframe: $7k-150k, example
+        firm quote $30,000 Type II'
+      note: flag as above
+      assumed: false
+      grounding: b
+    soc2_first_year_total_usd:
+      value: 80000
+      range:
+      - 25000
+      - 350000
+      quality: practitioner_survey_undisclosed
+      source: 'Drata: $25,000 (small startup) to over $200,000 (large enterprise) including readiness, tooling and staff time;
+        Secureframe: $80-350k total including annual maintenance'
+      note: internal staff time, "the largest hidden cost" (Drata), is not priced by either
+      assumed: false
+      grounding: b
+    soc2_annual_maintenance_usd:
+      value: 35000
+      range:
+      - 10000
+      - 60000
+      quality: practitioner_survey_undisclosed
+      source: 'Secureframe: $10-60k a year'
+      assumed: false
+      grounding: b
+    iso42001_certification_audit_usd:
+      value: 13500
+      range:
+      - 5000
+      - 20000
+      quality: practitioner_survey_undisclosed
+      source: 'Vanta, ISO 42001 certification costs (undated, (c) 2026): initial certification audit "typically $7,000-$20,000"
+        ($5,000-20,000 in its summary table)'
+      note: '"based on anecdotal data"; ISO publishes no cost benchmarks (Vanta)'
+      assumed: false
+      grounding: b
+    iso42001_surveillance_audit_usd_per_year:
+      value: 6000
+      range:
+      - 2500
+      - 9000
+      quality: practitioner_survey_undisclosed
+      source: 'Vanta: surveillance audits $3,500-9,000; illustrative table $2,500-3,500'
+      assumed: false
+      grounding: b
+    iso42001_readiness_and_implementation_usd:
+      value: 30000
+      range:
+      - 13000
+      - 50000
+      quality: practitioner_survey_undisclosed
+      source: 'Vanta: gap analysis $3,000-10,000+, implementation $10,000-40,000+; initial certification overall "several
+        thousand dollars to $75,000+"'
+      assumed: false
+      grounding: b
+    sox404_compliance_cost_usd_reference:
+      value:
+        mean_post_reform: 2330000
+        median_post_reform: 1040000
+        mean_non_accelerated: 690000
+      quality: government
+      assumed: false
+      grounding: ref
+      source: 'SEC Office of Economic Analysis (Sept 2009), Study of the Sarbanes-Oxley Act of 2002 Section 404 Internal Control
+        over Financial Reporting Requirements (copy at dair.nps.edu, SEC809-SMP-09-0052.pdf): 2,907 responding firms; Section
+        404(b) firms mean $2.87M before and $2.33M after the 2007 reforms, median $1.19M and $1.04M; non-accelerated filers
+        mean $690,000; costs scaled by assets fall with size'
+      note: 'firm-level accountability cost, a component of Part I''s a_min (see part1_ceiling.a_min); 2007-08 dollars. Superseded
+        in the direct cost of accountability by Paper 1 round 2 (C3, 2 Nov 2026), which uses the KPMG 2025 SOX program budget
+        by revenue size plus the accelerated-filer audit fee (audit_fee_accelerated_filer_reference); kept as a reference'
+    sox_program_cost_kpmg_2025_reference:
+      value:
+        budget_usd: 2300000
+        hours: 15581
+        key_controls: 546
+        itgc_controls: 149
+        itac_controls: 78
+        in_scope_systems: 40
+        test_hours_per_control: 16
+        usd_per_in_scope_system: 57500.0
+        itgc_usd_per_in_scope_system: 15691.0
+        usd_per_key_control: 4212.0
+      quality: practitioner_survey_disclosed
+      assumed: false
+      grounding: ref
+      source: 'KPMG, The 2025 SOX Survey (kpmg.com/kpmg-us/content/dam/kpmg/pdf/2025/the-2025-sox-survey.pdf; read 29 Oct
+        2026): web survey Apr-Jun 2025 of 146 U.S. SOX 404 program owners, FY2024 results; average budget $2.3M and 15,581
+        hours; 546 key controls (319 business process, 149 ITGC, 78 ITAC); 40 in-scope systems; 16 testing hours per control.
+        Derived: about $57,500 of SOX program cost per in-scope system a year, about $16,000 on the ITGC share'
+      note: precedent for icfr_line_per_in_scope_ai_application_usd and regulated_build_multiplier
+      read: '2026-10-29'
+      by_revenue_size:
+        value:
+          under_5b_usd: 1500000
+          5b_to_25b_usd: 2700000
+          25b_and_above_usd: 4700000
+        source: 'KPMG, The 2025 SOX Survey, archived copy (https://web.archive.org/web/20260318224741/https://kpmg.com/kpmg-us/content/dam/kpmg/pdf/2025/the-2025-sox-survey.pdf,
+          p. 12; bib key kpmg2025sox): chart "By revenue size (average budget in $ M)", large ($25B+), mid ($5-25B) and small
+          (under $5B); budget "including both internal and external resources" (co-source providers, not the auditor''s fee)'
+        flag: values read from a text extraction; chart layout and labels verified (lead agent, 2 Nov 2026; the kpmg.com URL
+          returned 404)
+        used_in: Paper 1 code/paper1_macros.py KPMG_SIZE (direct cost of the accountability floor, round 2 C3); engine
+          accounting.sox_program_by_size; Paper 2 code/verify_part2_accounting.py (a_min band)
+        read: '2026-11-02'
+    icfr_line_per_in_scope_ai_application_usd:
+      value: 80000
+      range:
+      - 16000
+      - 350000
+      quality: practitioner_survey_disclosed
+      source: 'KPMG 2025 SOX Survey (sox_program_cost_kpmg_2025_reference): $57,500 per in-scope system a year all-in, $16,000
+        on the ITGC share; the survey prices testing and administration, not change evidence, interface controls or operations
+        monitoring, so it is a floor for a new, frequently changing AI application; upper case: the accounting example''s
+        invoice application line before the params commit ($347,000)'
+      unit: USD a year per in-scope AI application (sum of the eq:acct-itgc lines)
+      note: target total of the round-2 proposal (Section 5.5). Engine unit costs moved as that section lists (accounting.itgc_c_chg
+        5k -> 2.5k, itgc_c_ops 30k -> 20k, itgc_c_ifc 15k -> 10k; itgc_setup 25k and itgc_c_acc kept); the upgrade retest
+        accounting.C_val/T_up (100k/1.22 = 82k a year) is not among the listed lines and is unchanged, so lines computed from
+        the engine units do not reach this total (see notes/params_commit_2026-10-29.md)
+      assumed: false
+      grounding: b
+      analogy: an AI application performing in-scope steps is one more in-scope system
+      read: '2026-10-29'
+      adopted: params commit 2026-10-29 (assumptions round 2, 5.5)
+    regulated_build_multiplier:
+      value: 1.5
+      range:
+      - 1.1
+      - 2.0
+      quality: practitioner_survey_disclosed
+      source: 'derived from the KPMG 2025 SOX Survey: $16,000-57,500 a year per in-scope system is 13-46% of an amortized
+        $500,000 build ($125,000 a year over four years), an equivalent multiplier of 1.1-1.5 if the ICFR running cost were
+        folded into the build; first-year testing alone about 160 hours (16 hours x about 10 controls)'
+      unit: multiplier on AI-engineering build effort for a regulated activity
+      note: 'covers only the one-time premium on the build (documentation, validation, test evidence). It excludes the ICFR
+        lines, which the engine charges separately (accounting.itgc_* lines a year, itgc_setup and interface_control_setup
+        once, icfr_redesign_cost per process, C_val per forced upgrade): build.regulated_mult multiplies build months only
+        (engine economics.py), so the lines are not counted twice'
+      assumed: false
+      grounding: b
+      analogy: SOX program cost of one more in-scope system, read as a build premium
+      read: '2026-10-29'
+      adopted: params commit 2026-10-29 (assumptions round 2, 5.3)
+    audit_fee_per_musd_revenue_reference:
+      value: 343
+      quality: practitioner_dataset_disclosed
+      assumed: false
+      grounding: ref
+      source: 'Ideagen Audit Analytics, audit fee trends of the S&P 500 (ideagen.com blog): FY2022 average audit fee $10,776,916,
+        $343 of audit fees per $1 million of revenue'
+      unit: USD per USD 1 million of revenue
+      note: 'the LOW bound of the audit fee in the direct cost of accountability since Paper 1 round 2 (C3, 2 Nov 2026); the
+        central fee is audit_fee_accelerated_filer_reference'
+    audit_fee_accelerated_filer_reference:
+      value: 1492375
+      large_accelerated_filer: 5327646
+      quality: practitioner_dataset_disclosed
+      assumed: false
+      grounding: a
+      source: 'Ideagen Audit Analytics, Audit Fee Trends 2003-2022 (July 2023), p. 14 (bib key auditanalytics2023fees): "In
+        FY2022, average audit fees paid by accelerated filers increased 31% from FY2021 to $1,492,375"; large accelerated
+        filers $5,327,646 (read in the PDF by the lead agent, 2 Nov 2026)'
+      unit: USD a year
+      note: 'central audit fee of the direct cost of accountability for a firm of about $1 billion of revenue (Paper 1 round 2,
+        lead-agent ruling 4); the large-accelerated average is the high case and the S&P 500 ratio (audit_fee_per_musd_revenue_reference)
+        the low bound. Consumers: code/paper1_macros.py (AUDIT_FEE), engine accounting.audit_fee and audit_fee_high, code/verify_part2_accounting.py'
+      read: '2026-11-02'
+    nist_ai_rmf_alignment_fte_months_initial:
+      value: 3
+      range:
+      - 1
+      - 12
+      quality: assumed
+      source: assumed effort to map, measure and manage under the NIST AI RMF 1.0 (voluntary; no certification exists)
+      assumed: true
+      grounding: d
+    nist_ai_rmf_ongoing_fte:
+      value: 0.25
+      range:
+      - 0.1
+      - 1.0
+      quality: assumed
+      source: assumed ongoing governance effort per firm
+      assumed: true
+      grounding: d
+    privacy_impact_assessment_usd_per_process:
+      value: 10000
+      range:
+      - 3000
+      - 40000
+      quality: assumed
+      source: assumed
+      assumed: true
+      grounding: d
+    ai_red_team_usd_per_system_per_year:
+      value: 30000
+      range:
+      - 10000
+      - 150000
+      quality: assumed
+      source: assumed external or internal AI red-teaming
+      assumed: true
+      grounding: d
+    cyber_insurance_premium_share_of_revenue:
+      value: 0.001
+      range:
+      - 0.0003
+      - 0.003
+      quality: assumed
+      source: assumed; no premium dataset read
+      assumed: true
+      grounding: d
+    security_review_bandwidth_Phi_sec_reviews_per_reviewer_quarter:
+      value: 10
+      range:
+      - 5
+      - 20
+      quality: assumed
+      source: assumed security and privacy design reviews per reviewer FTE per quarter
+      assumed: true
+      grounding: d
+    security_review_latency_weeks:
+      value: 3
+      range:
+      - 1
+      - 8
+      quality: assumed
+      source: assumed queue-free review time per deployment
+      assumed: true
+      grounding: d
+  people_and_ancillary:
+    training_cost_per_employee_usd_per_year:
+      value: 846
+      range:
+      - 846
+      - 1254
+      quality: practitioner_survey_disclosed
+      source: 'ATD, 2026 State of the Industry (TD blog, 11 and 19 May 2026): average direct learning expenditure $846 per
+        employee in 2025 (340 organizations), down from $1,254 in 2024; 16.7 formal learning hours per employee (13.7 in 2024
+        per the 2025 report, 539 organizations)'
+      note: the fall from 2024 may partly reflect a different sample; range spans both years. Full report is members-only
+        and was not read.
+      assumed: false
+      grounding: a
+    training_cost_per_learning_hour_usd:
+      value: 50.7
+      range:
+      - 50.7
+      - 91.5
+      quality: practitioner_survey_disclosed
+      source: 'our calculation: ATD expenditure / formal hours, 2025 and 2024'
+      note: direct expenditure only; excludes the learner's time, which is priced at w
+      assumed: false
+      grounding: a
+    ai_reskilling_hours_per_affected_fte:
+      value: 20
+      range:
+      - 8
+      - 60
+      quality: assumed
+      source: assumed formal training per FTE whose work changes
+      assumed: true
+      grounding: d
+    change_management_cost_per_affected_fte_usd:
+      value: 2000
+      range:
+      - 500
+      - 8000
+      quality: assumed
+      source: 'assumed: communications, change agents, process redesign workshops; the productivity dip is in transition.j_curve,
+        not here'
+      assumed: true
+      grounding: d
+    legal_and_contract_review_usd_per_vendor:
+      value: 15000
+      range:
+      - 5000
+      - 50000
+      quality: assumed
+      source: assumed (AI terms, data processing, IP)
+      assumed: true
+      grounding: d
+    eval_dataset_build_usd_per_process:
+      value: 20000
+      range:
+      - 5000
+      - 100000
+      quality: assumed
+      source: assumed labelling and evaluation set creation
+      assumed: true
+      grounding: d
+    vendor_management_share_of_vendor_spend:
+      value: 0.03
+      range:
+      - 0.01
+      - 0.06
+      quality: assumed
+      source: assumed
+      assumed: true
+      grounding: d
+    finops_share_of_inference_spend:
+      value: 0.03
+      range:
+      - 0.01
+      - 0.08
+      quality: assumed
+      source: assumed monitoring and optimisation of inference spend
+      assumed: true
+      grounding: d
+    incident_response_retainer_usd_per_year:
+      value: 50000
+      range:
+      - 20000
+      - 200000
+      quality: assumed
+      source: assumed
+      assumed: true
+      grounding: d
+    scaling_note:
+      value:
+        fixed_per_firm:
+        - SOC 2
+        - ISO 42001
+        - NIST AI RMF
+        - insurance
+        - IR retainer
+        per_process:
+        - PIA
+        - red team
+        - eval datasets
+        - revalidation
+        - security review
+        per_unit:
+        - FinOps
+        - expected incident loss
+        per_fte:
+        - training
+        - change management
+      quality: assumed
+      assumed: true
+      source: classification by spec 18.4
+      grounding: d
+part1_ceiling:
+  meta:
+    formula: 'G* = 1 - (1 - tau)(1 - c_c - f - a_min): market growth at which R_max = 1 with k = 0, X = 1, psi = 0'
+    central_threshold: 0.2743
+    one_at_a_time_threshold_range:
+      tau:
+      - 0.2478
+      - 0.3009
+      cc:
+      - 0.2333
+      - 0.3891
+      f:
+      - 0.2702
+      - 0.2784
+      amin:
+      - 0.262
+      - 0.2989
+    used_in: sections/model.tex Cor ceiling and tab:ceiling (31/39/48/55% thresholds); intro.tex; code/calibrate_horizons.py
+      (TAU, M0_CAP); engine finance.tau, fees_f, a_min_fixed
+  tau_cash_tax_rate:
+    value: 0.18
+    range:
+    - 0.15
+    - 0.21
+    quality: government
+    assumed: false
+    grounding: b
+    source: 'bounds: 21% federal rate, 26 U.S.C. 11(b) ("21 percent of taxable income", uscode.house.gov); 15% corporate alternative
+      minimum tax on adjusted financial statement income for corporations with average annual AFSI above $1 billion, tax years
+      beginning after 31 Dec 2022 (IRS, Inflation Reduction Act CAMT page). Wider evidence: GAO-23-105384 (2023): average
+      effective rate of profitable large corporations fell from 16% (2014) to 9% (2018)'
+    analogy: a mature, profitable firm at the ceiling is large enough for the CAMT floor; state taxes are excluded, as in
+      the paper
+    note: central 0.18 is the midpoint, not an estimate. The widest credible range is [0.09, 0.21] plus state tax; the 9%
+      GAO average predates the CAMT.
+  a_min_accountability_floor:
+    value: 0.03
+    range:
+    - 0.005
+    - 0.046
+    quality: primary_data_fit
+    assumed: false
+    grounding: b
+    source: 'lower bound: direct accountability costs, since Paper 1 round 2 (C3, 2 Nov 2026) the KPMG 2025 SOX program budget
+      of a firm under $5B of revenue ($1.5M; security_and_maintenance.compliance.sox_program_cost_kpmg_2025_reference.by_revenue_size)
+      plus the accelerated-filer average audit fee ($1,492,375; audit_fee_accelerated_filer_reference), 0.30% of revenue
+      for a $1B firm (0.18% with the S&P 500 fee ratio of $343 per $1M, 0.68% with the large-accelerated fee); before round
+      2, the S&P 500 ratio plus the SEC OEA 2009 median Section 404 cost ($1.04M), 0.14%. With the cheapest admissible control
+      design the bottom-up floor is about 0.37-0.38% (Paper 1 macros AminFloor, AminFloorOne), below the band''s 0.5%. Upper bound: our calculation from the SEC XBRL
+      panel (data/panel_v2_all.csv, SIC 7370-7374, FY2023-25 firm means): total G&A share p5 0.046 and p10 0.063 for revenue
+      $1B-10B (96 firms), p5 0.029 and p10 0.032 above $10B (12 firms)'
+    analogy: the accountability floor after full automation cannot exceed the whole G&A of today's leanest software firms,
+      and cannot fall below the audit and control costs the law requires
+    ga_share_by_size:
+      rev_1b_10b:
+        n_firms: 96
+        p5: 0.046
+        p10: 0.063
+        median: 0.118
+      rev_over_10b:
+        n_firms: 12
+        p5: 0.029
+        p10: 0.032
+        median: 0.069
+    note: the paper's central 3% equals the p10 G&A share of software firms above $10B (all of today's G&A kept); the favorable
+      1.5% lies inside the band; the conservative 6% lies above the p5 G&A share of $1B-10B firms and outside the band. G&A
+      includes SBC.
+  c_c_compute_share:
+    value: 0.06
+    range:
+    - 0.01
+    - 0.2
+    quality: working_paper
+    assumed: false
+    grounding: b
+    basis: 2025 prices, no price path (b-anchored)
+    source: 'c_c = s_L x kappa (assumptions round 2, Section 2; read 29 Oct 2026). kappa at 2025 prices 0.10 [0.01, 0.35]
+      (b): METR agent runs (ai_cost.inference_cost_usd_per_human_hour: median 0.08-1.14% of the human baseline cost across
+      6 recent agents, METR TH1.0; c); Stevens (2026), Payrolls to Prompts, arXiv:2602.00139: about $0.03 of AI spend per
+      $1 of displaced freelance labor (a, preprint); AI-native products, inference 13-23% of revenue at 2025 prices (ICONIQ
+      2026 via SaaStr, secondary; the revenue mapping is the auditor''s calculation); central 0.10 = geometric middle of the
+      field analogs. s_L 0.60 [0.50, 0.65] (c): labor cost the ceiling automates, share of revenue'
+    by_horizon:
+      '2028':
+        value: 0.12
+        range:
+        - 0.02
+        - 0.3
+        grounding: d
+        model: 0.119
+      '2031':
+        value: 0.08
+        range:
+        - 0.01
+        - 0.25
+        grounding: d
+        model: 0.0794
+      '2036':
+        value: 0.05
+        range:
+        - 0.01
+        - 0.2
+        grounding: d
+        model: 0.0497
+    path:
+      s_L: 0.6
+      s_L_range:
+      - 0.5
+      - 0.65
+      kappa_2025: 0.1
+      kappa_2025_range:
+      - 0.01
+      - 0.35
+      D: 5.0
+      D_range:
+      - 3.0
+      - 10.0
+      floor_share: 0.005
+      kappa_front: 0.33
+      kappa_front_range:
+      - 0.1
+      - 0.5
+      omega:
+        '2028': 0.6
+        '2031': 0.4
+        '2036': 0.25
+      omega_range:
+        '2028':
+        - 0.3
+        - 0.9
+        '2031':
+        - 0.2
+        - 0.7
+        '2036':
+        - 0.1
+        - 0.5
+      formula: c_c(H) = s_L [omega_H kappa_front + (1 - omega_H) max(kappa_2025 / D^(H - 2025), floor_share kappa_2025)]
+      sources: 'D = 5 [3, 10] a year: Gundlach, Lynch, Mertens and Thompson (2026), arXiv:2511.23455v2, fixed-performance
+        price down 5-10x a year (a); kappa_front = 0.33 [0.10, 0.50] (d), capped by the value test kappa < 1, so c_c <= s_L
+        (Paper 1 round 2, B2: the earlier cap kappa < 1 - review share, c_c <= 0.5 s_L, had no source and the full-automation
+        ceiling has no human review; frontier cost up 3-18x a year is capped by abandonment, not extrapolated); omega_H (d): share of automated labor
+        cost in tasks reached within two years of H; floor_share = engine prices.floor_share (d)'
+    high_compute_case:
+      value: 0.4
+      feasible_at_full_automation: true
+      value_test_cap: 0.6
+      note: 'within the value-test cap c_c <= s_L = 0.60 (Paper 1 round 2, B2, 2 Nov 2026; code/calibrate_horizons.py
+        CC_VALUE_TEST_FACTOR = 1.0), so feasible at full automation (G* 61.3%, Paper 1 macro GstarHigh). Before round 2 the
+        cap was s_L x 0.5 = 0.30, a factor with no source, and the case was labelled infeasible. Credible range of c_c at
+        2025 prices against the cap: 1-60% (G* 28-78%, Paper 1 macros GstarCcLo, GstarCcHi); the old cap 0.30 gives G* 52.8%
+        (GstarCcOldCap)'
+    previous:
+      value: 0.2
+      range:
+      - 0.15
+      - 0.25
+      scenario_bounds:
+      - 0.01
+      - 0.55
+      grounding: d
+      note: horizon-invariant scenario value before the params commit of 29 Oct 2026
+    note: 'the horizon values are class d (the mix omega_H and the frontier cap are scenarios), with the 2025 anchor class
+      b. Every threshold that uses c_c is conditional on it: dG*/dc_c = (1 - tau)(1 + s_fin) = 0.845 at the central tax and
+      FinOps rates. Consumers: code/calibrate_horizons.py (FC, by horizon), engine finance.c_c_full_automation.'
+    read: '2026-10-29'
+    adopted: params commit 2026-10-29 (assumptions round 2, 2)
+  f_payment_fees:
+    value: 0.025
+    range:
+    - 0.02
+    - 0.03
+    quality: assumed
+    assumed: true
+    grounding: d
+    source: 'paper: card processing for firms that bill directly; no processor price page could be read in this pass (stripe.com
+      not reachable), so the bracket is unverified'
+    note: smallest influence on G* (one-at-a-time range 0.8 points); invoiced B2B billing by bank transfer would cost less
+  calibration_horizons:
+    alpha_spend_elasticity:
+      value:
+      - 0.25
+      - 0.45
+      quality: assumed
+      assumed: true
+      grounding: d
+      source: 'scenario range (class d): the Part I data identify only alpha(X - k) through the spend ratio (Section 5.4,
+        decision D-1), not alpha itself; used as the bounds of the surplus scaling (central path alpha = 0.35; levers table
+        0.3)'
+    TAU:
+      value: 0.18
+      quality: government
+      assumed: false
+      grounding: b
+      source: as tau_cash_tax_rate
+    M0_CAP:
+      value: 0.69275
+      quality: assumed
+      assumed: true
+      grounding: d
+      source: third-revision favorable accountability-only margin term at c_c = 0.15 (class d); kept only for the "previous"
+        comparison block of code/calibrate_horizons.py (M0_CAP_OLD). The current favorable full-cost terms are horizon-specific
+        (c_c by horizon, params commit of 29 Oct 2026)
+    m0_paths:
+      value:
+        '2028':
+        - 0.4
+        - 0.62
+        '2031':
+        - 0.45
+        - 0.65
+        '2036':
+        - 0.5
+        - M0_CAP
+      quality: assumed
+      assumed: true
+      grounding: d
+      source: scenario; lower ends sit above the 2025 anchor IQR of m0 (0.35-0.50, upper-bound case; class c)
+    G_paths:
+      value:
+        '2028':
+        - 0.1
+        - 0.2
+        '2031':
+        - 0.08
+        - 0.2
+        '2036':
+        - 0.05
+        - 0.3
+      quality: assumed
+      assumed: true
+      grounding: d
+      source: scenario around the 2025 panel median of 12.9% (class c)
+    mu_pull_multiplier:
+      value:
+        '2028':
+        - 1.0
+        - 2.0
+        '2031':
+        - 0.75
+        - 1.5
+        '2036':
+        - 0.5
+        - 1.25
+      quality: assumed
+      assumed: true
+      grounding: d
+      source: scenario; Pi scales with mu^(1/(1-alpha)), up to 3.5x at mu = 2 and alpha = 0.45
+    k_cases:
+      value:
+      - 0.0
+      - 0.5
+      quality: assumed
+      assumed: true
+      grounding: d
+      source: scenario cases
+pass_through:
+  industry_pass_through_scenarios:
+    value:
+    - 0.0
+    - 0.5
+    - 0.7
+    quality: peer_reviewed
+    assumed: false
+    grounding: b
+    fixed_prices_case: 0.0
+    anchors:
+      software_short_run:
+        value:
+        - 0.0
+        - 0.1
+        source: 'Choi (Analysis Group, funded by Apple), What Happens to App Prices when Developers Pay Lower Commission Fees?
+          Evidence from the European Union, Nov 2025 (developer.apple.com/download/files/DMA-Study-Nov-2025.pdf; read 29 Oct
+          2026): after a 10-point commission cut, prices fell on 9% of products (6% of transactions), median cut 2.5%; three
+          months, no control group'
+      industry_wide_medium_run:
+        value: 0.7
+        source: 'Ganapati, Shapiro and Walker (2020), Energy Cost Pass-Through in US Manufacturing, AEJ: Applied 12(2), 303-342
+          (aeaweb.org/doi/10.1257/app.20180474; read 29 Oct 2026): about 70% of energy-driven input cost changes pass through
+          in the short to medium run'
+      long_run_broad_vs_narrow:
+        value:
+        - 0.3
+        - 1.0
+        source: 'Benedek, de Mooij, Keen and Wingender, Estimating VAT Pass Through, IMF WP 15/214 (read 29 Oct 2026): about
+          100% for standard-rate changes, about 30% for reduced-rate changes'
+    source: 'scenario set with precedent (assumptions round 2, Section 4): 0 = fixed prices (the case Paper 1 reported alone
+      before the params commit, kept and reported beside the others), 0.5 central medium-run case, 0.7 industry-wide cost
+      shock'
+    unit: 'industry pass-through RATE phi, the share of a common unit-cost change that reaches the output price. Paper 1 round
+      2 (B1, 2 Nov 2026) applies it to every unit-cost saving (cost of revenue, compute and the non-discretionary floors;
+      Prop. entry(d)), with margins at the post-cut price: the after-tax margin term is (1 - tau)(1 - f - K/(1 - phi S))'
+    note: 'consumers: code/calibrate_horizons.py (scenario dimension; rate on all unit-cost savings at the post-cut price;
+      dur = 1 - phi (1 - HHI) at the engine''s HHI is reported as the dollar-profit share and not used in the score); engine
+      competition.phi_ind_scenarios (named scenarios pass_through_0, _50, _70), formulas.passthrough_terms (score) and the
+      durable share (dollars). The central engine value is competition.phi_ind = 0.5; the derived Cournot phi_ind = n_c/(n_c
+      + 1 - e) is a benchmark. Removed anchor (Paper 1 round 2, A9 and IO2-2): Demirer, Fradkin, Tadelis and Peng report a
+      preliminary within-model price elasticity of about -1.1 across providers of the same open model, which measures
+      substitution between providers, not the pass-through of cost to price; it is not evidence of pass-through near one.'
+    read: '2026-10-29'
+    adopted: params commit 2026-10-29 (assumptions round 2, 4)
+acquirer:
+  limits:
+    treadmill:
+      nrr_portfolio:
+        value:
+          '2023': 0.93
+          '2024': 0.91
+          '2025': 0.95
+          Q1 2026: 0.94
+        range:
+        - 0.91
+        - 0.95
+        quality: company_filing
+        source: 'Bending Spoons S.p.A., Form F-1 registration statement, filed with the SEC 8 June 2026 (CIK 2004711), https://www.sec.gov/Archives/edgar/data/0002004711/000110465926071170/tm2613674-7_f1.htm,
+          read in the author''s browser 29 Oct 2026 (bib bendingspoons2026f1; original filing only: the F-1/A, accession 000110465926076487,
+          and the final prospectus were not read); values parsed from notes/case_bending_spoons_f1_extract.md, line 88: net
+          revenue retention, portfolio'
+        unit: share of prior-year subscription revenue from the same customers
+        note: 'range over the three full years; definition in the extract: subscription revenue in a quarter from customers
+          acquired at least a year earlier over the same quarter a year earlier'
+        assumed: false
+        grounding: a
+      nrr_by_business_avg_q1_2023_q1_2026:
+        value:
+          AOL: 0.95
+          Evernote: 0.99
+          Remini: 0.87
+          StreamYard: 0.91
+        range: null
+        quality: company_filing
+        source: 'Bending Spoons S.p.A., Form F-1 registration statement, filed with the SEC 8 June 2026 (CIK 2004711), https://www.sec.gov/Archives/edgar/data/0002004711/000110465926071170/tm2613674-7_f1.htm,
+          read in the author''s browser 29 Oct 2026 (bib bendingspoons2026f1; original filing only: the F-1/A, accession 000110465926076487,
+          and the final prospectus were not read); values parsed from notes/case_bending_spoons_f1_extract.md, line 89: NRR
+          averaged over Q1 2023 to Q1 2026'
+        note: the AOL average includes quarters before ownership (closed 2 Jan 2026; notes/ref_verification_acquirer.md)
+        assumed: false
+        grounding: a
+      decay_rate_minus_ln_nrr:
+        value: 0.0726
+        range:
+        - 0.0513
+        - 0.0943
+        quality: primary_data_fit
+        source: 'our calculation (class c): -ln NRR, with NRR from nrr_portfolio; central = -ln of the median full-year NRR
+          (0.93); range from the highest (0.95) and lowest (0.91) full-year NRR'
+        unit: per year, continuous
+        note: equals the acquired growth needed to stand still (-g^org without new customers), acquirer notes Section 3, item
+          6, and Section 4
+        assumed: false
+        grounding: c
+      customer_life_T_life_years:
+        value: 13.8
+        range:
+        - 10.6
+        - 19.5
+        quality: primary_data_fit
+        source: 'our calculation (class c): T^life = -1/ln NRR, from decay_rate_minus_ln_nrr'
+        unit: years
+        note: used in the annuity bound of prop:acquired-score; the acquirer notes call it a scenario when applied to another
+          firm
+        assumed: false
+        grounding: c
+    debt_and_deal_capacity:
+      net_debt_per_dollar_revenue_nd:
+        value: null
+        range: null
+        neutral_value: 0.0
+        verified_domain: symbolic only (check H1, g^max formula)
+        scenario: true
+        quality: assumed
+        assumed: true
+        grounding: d
+        symbol: nd
+        source: 'scenario (class d): notes/acquirer_notes.md Section 5 lists nd among "scenario values, not grounded"; no
+          value is given. Net debt per dollar of revenue; take it from the firm''s balance sheet when known. verified_domain:
+          none numeric; code/verify_part2_acquirer.py check H1 verifies the g^max formula symbolically (it requires k^acq
+          > nd)'
+        unit: share of revenue
+      max_deals_per_year_n_dl:
+        value: null
+        range: null
+        neutral_value: null
+        verified_domain:
+        - 1
+        - 20
+        scenario: true
+        quality: assumed
+        assumed: true
+        grounding: d
+        symbol: n^dl
+        source: 'scenario (class d): notes/acquirer_notes.md Section 5 lists n^dl among "scenario values, not grounded"; no
+          value is given. Maximum deals a year; neutral = no cap. verified_domain: code/verify_part2_acquirer.py check H3
+          draws 1 to 20'
+        unit: deals per year
+      hurdle_headroom_elasticity_eps_sz:
+        value: null
+        range: null
+        neutral_value: 0.0
+        verified_domain:
+        - 0.05
+        - 1.5
+        scenario: true
+        quality: assumed
+        assumed: true
+        grounding: d
+        symbol: eps_sz
+        source: 'scenario (class d): notes/acquirer_notes.md Section 5 lists eps_sz among "scenario values, not grounded";
+          no value is given. Elasticity of hurdle headroom to target size; the literature signs it (Fuller 2002; Renneboog
+          and Vansteenkiste 2019; Billett and Qian 2008; Aktas et al. 2009) but does not size it; neutral 0 = no size limit.
+          verified_domain: check H3 draws 0.05 to 1.5'
+      hurdle_headroom_at_reference_size_h_0:
+        value: null
+        range: null
+        neutral_value: null
+        verified_domain:
+        - 1.0
+        - 3.0
+        scenario: true
+        quality: assumed
+        assumed: true
+        grounding: d
+        symbol: h_0
+        source: 'scenario (class d): notes/acquirer_notes.md Section 5 lists h_0 among "scenario values, not grounded"; no
+          value is given. Hurdle headroom at the reference target size; irrelevant when eps_sz = 0. verified_domain: check
+          H3 draws 1 to 3'
+        unit: ratio
+    series_review:
+      challenge_probability_form:
+        value: p_ch(s) = min(1, a s^2), convex and nondecreasing in cumulative niche share s
+        quality: assumed
+        assumed: true
+        grounding: d
+        scenario: true
+        source: 'scenario (class d): functional form used by code/verify_part2_acquirer.py check H4; prop:acq-limits(c) needs
+          only convexity and monotonicity'
+      challenge_curvature_a:
+        value: null
+        range: null
+        neutral_value: 0.0
+        verified_domain:
+        - 0.5
+        - 5.0
+        scenario: true
+        quality: assumed
+        assumed: true
+        grounding: d
+        symbol: p^ch (curvature a)
+        source: 'scenario (class d): notes/acquirer_notes.md Section 5 lists p^ch (curvature a) among "scenario values, not
+          grounded"; no value is given. Neutral 0 = no challenge risk. verified_domain: check H4 draws 0.5 to 5'
+      niche_share_per_deal_delta_s:
+        value: null
+        range: null
+        neutral_value: null
+        verified_domain:
+        - 0.01
+        - 0.1
+        scenario: true
+        quality: assumed
+        assumed: true
+        grounding: d
+        symbol: Delta s
+        source: 'scenario (class d): notes/acquirer_notes.md Section 5 lists Delta s among "scenario values, not grounded";
+          no value is given. Cumulative niche share added per deal. verified_domain: check H4 draws 0.01 to 0.10'
+        unit: share of the niche
+      loss_if_challenged_L_ch:
+        value: null
+        range: null
+        neutral_value: null
+        verified_domain:
+        - 1.0
+        - 10.0
+        scenario: true
+        quality: assumed
+        assumed: true
+        grounding: d
+        symbol: L^ch
+        source: 'scenario (class d): notes/acquirer_notes.md Section 5 lists L^ch among "scenario values, not grounded"; no
+          value is given. Loss if a deal is challenged, in the units of the deal''s net value V_n - P_n. verified_domain:
+          check H4 draws 1 to 10 against net values of 0.05 to 1'
+      fdi_review_probability_p_fdi:
+        value: null
+        range: null
+        neutral_value: 0.0
+        verified_domain: definitional [0, 1]; symbolic check H4
+        scenario: true
+        quality: assumed
+        assumed: true
+        grounding: d
+        symbol: p^fdi
+        source: 'scenario (class d): notes/acquirer_notes.md Section 5 lists p^fdi among "scenario values, not grounded";
+          no value is given. Probability of a foreign-investment review; neutral 0. No public record of an agency challenge
+          to any of the case firm''s deals was found (acquirer notes Section 6). verified_domain: symbolic only (check H4)'
+        unit: probability
+      fdi_review_delay_T_fdi_years:
+        value: null
+        range: null
+        neutral_value: 0.0
+        verified_domain: any positive (symbolic, check H4)
+        scenario: true
+        quality: assumed
+        assumed: true
+        grounding: d
+        symbol: T^fdi
+        source: 'scenario (class d): notes/acquirer_notes.md Section 5 lists T^fdi among "scenario values, not grounded";
+          no value is given. Review delay. verified_domain: symbolic only (check H4)'
+        unit: years
+    consumer_law:
+      switching_cost_scale_h_cp:
+        value: null
+        range: null
+        neutral_value: 1.0
+        verified_domain:
+        - 0.2
+        - 1.0
+        scenario: true
+        quality: assumed
+        assumed: true
+        grounding: d
+        symbol: h^cp
+        source: 'scenario (class d): notes/acquirer_notes.md Section 5 lists h^cp among "scenario values, not grounded"; no
+          value is given. Scale on switching costs from consumer and subscription law; neutral 1 = no effect. verified_domain:
+          check H5 draws 0.2 to 1'
+        unit: ratio
+      repricing_cap_upsilon_cp:
+        value: null
+        range: null
+        neutral_value: null
+        verified_domain:
+        - 0.0
+        - 3.0
+        scenario: true
+        quality: assumed
+        assumed: true
+        grounding: d
+        symbol: upsilon^cp
+        source: 'scenario (class d): notes/acquirer_notes.md Section 5 lists upsilon^cp among "scenario values, not grounded";
+          no value is given. Cap on a repricing (price increase as a share of the old price); neutral = no cap. verified_domain:
+          check H5 draws 0 to 3'
+        unit: share of the old price

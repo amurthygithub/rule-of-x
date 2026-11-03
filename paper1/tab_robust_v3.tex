@@ -1,0 +1,30 @@
+\begin{table}[t]\centering\footnotesize\setlength{\tabcolsep}{3pt}
+\caption{Sensitivity of the headline statistics to the sample rules and the construction of E2, audited sample (v3)}\label{tab:robust}
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{5.4cm}rcccccccc@{}}\toprule
+ & & \multicolumn{2}{c}{$\Psi_{0.90}$ slope} & \multicolumn{2}{c}{Local $Q_{0.90}$ slope} & \multicolumn{2}{c}{Change in P95 of $R$} & Spend & Margin\\\cmidrule(lr){3-4}\cmidrule(lr){5-6}\cmidrule(lr){7-8}
+Sample & Firm-years & GAAP & cash & GAAP & cash & GAAP & cash & ratio & gap\\\midrule
+E1: all firm-years (baseline) & 1{,}788 & $-$0.22 & $-$0.16 & $-$0.41 & $-$0.35 & $-$11.9 & $-$12.7 & 3.02 & 34.5 \\
+E1 plus fiscal-2010 years first reported in a later filing (R1 sensitivity) & 1{,}828 & $-$0.20 & $-$0.16 & $-$0.41 & $-$0.33 & $-$11.9 & $-$12.7 & 3.00 & 34.9 \\
+E1 without all 16 firms the panels named as possibly not software & 1{,}668 & $-$0.26 & $-$0.23 & $-$0.48 & $-$0.41 & $-$11.1 & $-$11.6 & 3.11 & 34.6 \\
+E1 without the named firms the R2 classifier classes non-software & 1{,}750 & $-$0.21 & $-$0.16 & $-$0.46 & $-$0.37 & $-$11.5 & $-$12.2 & 3.03 & 34.5 \\
+E1 without the firm-years R5 flags as having no listed equity & 1{,}762 & $-$0.21 & $-$0.16 & $-$0.42 & $-$0.35 & $-$12.1 & $-$12.8 & 3.02 & 34.6 \\
+E1 without the four debt-only filers a referee named & 1{,}775 & $-$0.22 & $-$0.16 & $-$0.43 & $-$0.35 & $-$12.0 & $-$12.8 & 3.02 & 34.5 \\
+E2: organic growth, pro forma where disclosed (25\% flag) & 1{,}378 & $-$0.29 & $-$0.22 & $-$0.61 & $-$0.43 & $-$11.4 & $-$10.9 & 3.47 & 32.7 \\
+E2 with the flag at 10\% & 1{,}067 & $-$0.36 & $-$0.21 & $-$0.50 & $-$0.39 & $-$12.5 & $-$10.1 & 3.30 & 32.8 \\
+E2 with the flag at 50\% & 1{,}547 & $-$0.34 & $-$0.26 & $-$0.63 & $-$0.42 & $-$10.8 & $-$8.9 & 3.47 & 32.4 \\
+Acquisition-affected years excluded, 10\% flag & 1{,}013 & $-$0.35 & $-$0.20 & $-$0.49 & $-$0.38 & $-$12.2 & $-$9.3 & 3.33 & 32.9 \\
+Acquisition-affected years excluded, 25\% flag & 1{,}320 & $-$0.28 & $-$0.21 & $-$0.61 & $-$0.42 & $-$10.6 & $-$10.2 & 3.52 & 32.8 \\
+Acquisition-affected years excluded, 50\% flag & 1{,}513 & $-$0.32 & $-$0.25 & $-$0.64 & $-$0.42 & $-$9.6 & $-$8.2 & 3.50 & 32.0 \\
+E2, ambiguous pro forma cases read additively & 1{,}404 & $-$0.29 & $-$0.22 & $-$0.61 & $-$0.44 & $-$9.7 & $-$9.7 & 3.46 & 32.6 \\
+E2, ambiguous pro forma cases read cumulatively & 1{,}404 & $-$0.29 & $-$0.23 & $-$0.62 & $-$0.44 & $-$9.7 & $-$9.7 & 3.48 & 32.4 \\
+E2 under the first test run's rule & 1{,}404 & $-$0.28 & $-$0.22 & $-$0.59 & $-$0.42 & $-$9.7 & $-$9.7 & 3.43 & 32.7 \\
+E2 plus fiscal-2010 years first reported in a later filing & 1{,}410 & $-$0.29 & $-$0.22 & $-$0.54 & $-$0.42 & $-$11.4 & $-$10.9 & 3.41 & 33.0 \\
+E2 without all 16 named firms & 1{,}280 & $-$0.42 & $-$0.37 & $-$0.74 & $-$0.46 & $-$8.4 & $-$9.0 & 3.61 & 32.8 \\
+E2 without the named firms R2 classes non-software & 1{,}345 & $-$0.27 & $-$0.22 & $-$0.65 & $-$0.44 & $-$11.7 & $-$11.4 & 3.50 & 32.7 \\
+E2 without the firm-years R5 flags & 1{,}354 & $-$0.29 & $-$0.22 & $-$0.63 & $-$0.43 & $-$11.8 & $-$11.2 & 3.46 & 32.9 \\
+E2 without the four named debt-only filers & 1{,}366 & $-$0.29 & $-$0.22 & $-$0.67 & $-$0.43 & $-$11.7 & $-$11.2 & 3.46 & 32.8 \\
+E2 plus the dropped years, organic growth imputed at $M=4$ & 1{,}786 & $-$0.39 & $-$0.25 & $-$0.51 & $-$0.42 & $-$7.8 & $-$8.3 & 3.34 & 33.5 \\
+E2 plus the dropped years, organic growth imputed at $M=8$ & 1{,}786 & $-$0.36 & $-$0.26 & $-$0.46 & $-$0.39 & $-$8.3 & $-$9.3 & 3.15 & 34.7 \\
+\bottomrule\end{tabular}
+\par\vspace{2pt}\footnotesize\raggedright Notes: Point estimates from \texttt{code/estimate\_v3.py}; definitions as in Table~\ref{tab:estimands_v3}, which gives firm-cluster bootstrap intervals for the E1, E2, exclusion-only (25\%) and imputed rows. Change in P95: 2016--19 to 2023--25, points. Spend ratio: median selling-and-marketing share over growth in excess of the year median, firm-years growing faster than the median. Margin gap: GAAP operating margin of the top decile minus the 40th--60th percentiles within growth bands, average of bands, points. Sensitivity rows add back or remove firm-years by the rule named; R2 and R5 cannot be applied from the local data, so the firms the review panels named enter only these rows.
+\end{table}

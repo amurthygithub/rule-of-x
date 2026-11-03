@@ -1,0 +1,24 @@
+\begin{table}[tbp]
+\centering
+\caption{Backtest at the firm level: SEC software firms, FY2021--22 to FY2024--25}\label{tab:backtest-firm}
+\small
+\begin{tabular}{@{}lccccc@{}}
+\toprule
+Change in cost share of revenue (pp) & COGS & S\&M & G\&A & R\&D & Total\\
+\midrule
+Model mix (1 sd) & 0.81 & 0.15 & 1.09 & 0.18 & 2.23\\
+ & (0.65) & (0.78) & (1.12) & (0.46) & (1.99)\\
+Exposure mix (1 sd) & 0.68 & $-$0.14 & 0.64 & $-$0.27 & 4.10\\
+ & (0.58) & (0.68) & (0.72) & (0.50) & (1.46)\\
+Placebo: model mix, FY2016--17 to 2019--20 & 0.00 & 1.74 & 0.01 & 1.11 & 2.07\\
+ & (1.25) & (1.63) & (0.84) & (0.67) & (2.30)\\
+\addlinespace
+Mean change (pp) & $-$2.31 & $-$5.34 & $-$2.52 & $-$2.18 & $-$12.47\\
+$N$ (main; placebo) & 206; 160 & 206; 160 & 206; 160 & 206; 160 & 206; 160\\
+\bottomrule
+\end{tabular}
+\smallskip
+\begin{minipage}{0.97\linewidth}\footnotesize
+Notes: one regression per cell. COGS is revenue minus gross profit. The dependent variable is the change in a cost bucket's share of revenue between the mean of fiscal years 2021 and 2022 and the mean of 2024 and 2025, in percentage points, winsorized at 2.5 and 97.5 percent. The model mix is the cost-weighted mean of the model's automatable share of the firm's four cost buckets; it varies across firms only through the bucket mix and the four-digit SIC code. Controls: log revenue growth between the windows, log pre-window revenue, the pre-window total cost share and, for bucket columns, that bucket's pre-window share; SIC fixed effects. HC1 standard errors in parentheses. Panel: \texttt{data/panel\_v2\_all.csv}, SIC 7370 to 7374.
+\end{minipage}
+\end{table}

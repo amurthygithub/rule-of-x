@@ -1,0 +1,22 @@
+{
+  "missing_soc_in_occupations": [],
+  "n_firms": 243,
+  "firms_by_band": {
+    "100M-1B": 145,
+    "1B-10B": 67,
+    "<100M": 23,
+    ">10B": 8
+  },
+  "bucket_means_all": {
+    "cogs": 0.3543,
+    "rnd": 0.2261,
+    "sm": 0.3007,
+    "ga": 0.1988
+  },
+  "bucket_medians_all": {
+    "cogs": 0.2884,
+    "rnd": 0.2064,
+    "sm": 0.2945,
+    "ga": 0.1655
+  }
+}

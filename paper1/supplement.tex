@@ -1,0 +1,44 @@
+% Supplementary Appendix to Paper 1 (a separate PDF in the same submission). Built with the main paper by
+% code/build_paper1.sh; references to the main paper resolve through xr-hyper from paper1.aux.
+\documentclass[11pt]{article}
+\input{paper1/p1_preamble.tex}
+\externaldocument[][nocite]{paper1}[paper1.pdf]
+\hypersetup{pdftitle={Supplementary Appendix: \PoneTitle},pdfauthor={Akshaya Bangalore Sreenivasa Murthy}}
+% Sections, tables, figures and equations of the supplement carry the prefix S; results of the main paper keep their numbers.
+\renewcommand{\thesection}{S\arabic{section}}
+\renewcommand{\thetable}{S\arabic{table}}
+\renewcommand{\thefigure}{S\arabic{figure}}
+\renewcommand{\theequation}{S\arabic{equation}}
+\renewcommand{\theHsection}{S\arabic{section}}
+\renewcommand{\theHtable}{S\arabic{table}}
+\renewcommand{\theHfigure}{S\arabic{figure}}
+\renewcommand{\theHequation}{S\arabic{equation}}
+\renewcommand{\theproposition}{S\arabic{proposition}}\renewcommand{\thelemma}{S\arabic{lemma}}
+\renewcommand{\thecorollary}{S\arabic{corollary}}\renewcommand{\theremark}{S\arabic{remark}}
+\renewcommand{\thedefinition}{S\arabic{definition}}\renewcommand{\theassumption}{S\arabic{assumption}}
+
+\title{Supplementary Appendix to\\ ``The Rule of 40 as a Price Line:\\ Efficient Frontiers, Economic Profit and the Limits of AI Automation''}
+\author{Akshaya Bangalore Sreenivasa Murthy\thanks{Independent researcher. Correspondence: \href{mailto:bs.akshay@gmail.com}{bs.akshay@gmail.com}. Section, table and equation numbers without the prefix S refer to the main paper. \PoneRights}}
+\date{November 2026}
+
+\begin{document}
+\maketitle
+\small\setstretch{1.0}
+\noindent This supplement contains further theoretical results and the notation (Section~\ref{supp:theory}), further discussion of the model (Section~\ref{supp:model}), the proofs of the main paper's results (Sections~\ref{app:proofs} and~\ref{app:proofs-acquired}), the Rule-of-1000 calculation (Section~\ref{supp:rule1000}), the construction of the data with further robustness tables and the sources of every parameter (Section~\ref{app:data}), the detailed records of the human--AI research protocol (Section~\ref{supp:protocol}), the full-cost floors and the accountability floor in numbers (Section~\ref{app:theory}), which the main paper's appendix carried in its second version, and a glossary of the paper's terms in plain language (Section~\ref{supp:glossary}).
+
+\input{sections/supp_theory.tex}
+\input{sections/supp_model.tex}
+\input{sections/supp_proofs.tex}
+\IfFileExists{sections/appendix_proofs_acquired.tex}{\input{sections/appendix_proofs_acquired.tex}}{}
+\input{sections/supp_rule1000.tex}
+\input{sections/appendix_data.tex}
+\input{sections/supp_protocol.tex}
+\input{sections/appendix_proofs.tex}
+\IfFileExists{sections/supp_glossary.tex}{\input{sections/supp_glossary.tex}}{}
+
+{\footnotesize\setstretch{1.0}
+\setlength{\bibsep}{1pt plus 1pt}
+\bibliographystyle{plainnat_p1}
+\bibliography{paper1/refs_paper1}
+}
+\end{document}

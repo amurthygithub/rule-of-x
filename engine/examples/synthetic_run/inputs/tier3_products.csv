@@ -1,0 +1,4 @@
+product_line,revenue,pricing_model,seats,price_per_seat,usage_units,price_per_unit,nrr,grr,gross_margin,labor_substituting,proprietary_data,competitor_price,customer_hours_per_outcome,seat_share_of_bill,billing_in_advance,agent_unit_cost,entrant_unit_cost,entry_hazard
+Service desk,475200000.0,seat,452571.0,1050.0,,,1.08,0.9,0.8,1.0,0.6,1.5,0.588,1.0,1,0.4,0.4,0.25
+IT asset management,233280000.0,seat,259200.0,900.0,,,1.05,0.92,0.78,0.3,0.5,,1.0,1.0,1,,,
+Analytics add-on,155520000.0,usage,,,3110400000.0,0.05,1.12,0.88,0.7,0.0,0.4,,,0.0,1,,,

@@ -1,0 +1,13 @@
+excluded flagged firm-years: 410 ; with a price measure in t or t-1: 405
+M=1: re-admitted 395 firm-years; median imputed acquired growth 22.3 pts
+M=2: re-admitted 409 firm-years; median imputed acquired growth 11.5 pts
+M=4: re-admitted 410 firm-years; median imputed acquired growth 5.8 pts
+M=8: re-admitted 410 firm-years; median imputed acquired growth 2.9 pts
+                      slope_m_op  slope_m_fcf_sbc  scale_R_op  p95chg_R_op  scale_R_cash  p95chg_R_cash
+E1 (reported g, all)       -0.46            -0.37        1.61       -11.74         -5.72         -15.17
+E2 (paper)                 -0.56            -0.43        3.43       -11.64         -2.70         -12.43
+E2x25 (exclusion)          -0.56            -0.43        3.40       -11.41         -2.95         -12.37
+Imputed, M=1               -0.58            -0.42        3.40        -7.51         -1.94          -9.03
+Imputed, M=2               -0.52            -0.39        3.24        -7.49         -4.40          -8.25
+Imputed, M=4               -0.48            -0.42        2.75        -7.99         -4.84          -9.36
+Imputed, M=8               -0.45            -0.39        2.28       -10.02         -5.27         -11.65

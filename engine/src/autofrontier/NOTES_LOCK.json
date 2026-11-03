@@ -1,0 +1,21 @@
+{
+ "accepted": "2026-11-02",
+ "engine_version": "0.2.0",
+ "notes": {
+  "notes/accounting_notes.md": "8ff1d09b1405ebc3e64fdeb75e6ebbae124b1546a970a3c40026ce8aa89568a8",
+  "notes/acquirer_notes.md": "d2ce356bd127902c825ae7b724103060efc95ca8109fa33c2ade8134dab15c9b",
+  "notes/assumptions_memo.md": "023c7a4c71057eb9b2164cbde636868ebcc86d18a392f2aa712a6de084030abf",
+  "notes/assumptions_register.md": "11e7138541cea8cf522eb898973900ee3ee978bbd67182d8ebc5d6fd646113e9",
+  "notes/competition_notes.md": "d33c3110fb9ca5d58c14795ef1e6bad25568f2345434d7a39365bfaf4a9f96ec",
+  "notes/data_sources_nonsoftware.md": "90da1c2d1274998550eec909e06b639e5ebf968b267c87683cdc74b746fa0bd2",
+  "notes/data_sources_reliability.md": "29f35c112ecd1287faec990924348432e7eeee7b7759ce35f9801d17e02dd84f",
+  "notes/labor_notes.md": "c4badbd4ad54915493b96da5cf9ddcca43937cda1b82390343d6bdb1246af301",
+  "notes/modern_theory_map.md": "6dfacfd92c5ce0ed807f25d76112621f28a3c7f8254965fd63dae8bfb4a54cc7",
+  "notes/playbook_engine_spec.md": "6016b94ef8d629663458c4e3292f4691a0014992a2ea874434b93685504eeee4",
+  "notes/theory_core_notes.md": "295a4b1a85f83fa377734a68a3f100531d711fdc29c28ca0c49d702f86623cbb",
+  "notes/theory_ext_notes.md": "507bdc9dba9f1cae2c7408fa8e99f2d002749a420681e5a5c7416315b65f089a",
+  "notes/theory_product_notes.md": "21de18a3ae18f5b5d2e5475f3b1c58a2f6efdab6e97f5bc37e5557bf742d3557",
+  "notes/theory_regimes_notes.md": "75fdfb5b7d66bed5dd3331dcdcbe81dc1937d0347968bf130ad2cbb2728800df",
+  "notes/unified_model_spec.md": "63b0abbd53ab6f842f5d48df4e37e0bb0b408d3b7a09ade3de24ae2ffa858d06"
+ }
+}

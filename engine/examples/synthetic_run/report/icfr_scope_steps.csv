@@ -1,0 +1,60 @@
+process_id,step,title,icfr_status,icfr_channel,icfr_condition,icfr_decided_by,financial_system_written,process_name,channel,automated_in_plan
+P01,1.0,Examine documents to verify adherence to requirements.,in scope,process,,,,Order to cash,a: transaction or estimate,False
+P01,2.0,"Prepare financial documents, reports, or budgets.",in scope,process,,,billing (invoice),Order to cash,a: transaction or estimate,False
+P01,3.0,Maintain financial or account records.,in scope,process,,,ERP/GL (AR subledger),Order to cash,a: transaction or estimate,False
+P01,4.0,"Collect deposits, payments or fees.",in scope,process,,,billing (payment status),Order to cash,a: transaction or estimate,False
+P01,5.0,Reconcile records of sales or other financial transactions.,in scope,process,,,ERP/GL (cash application),Order to cash,a: transaction or estimate,False
+P01,6.0,Respond to customer problems or complaints.,in scope,process,,,"billing (credit memos, adjustments)",Order to cash,a: transaction or estimate,False
+P02,1.0,Obtain information about goods or services.,in scope,process,,,ERP (vendor master),Procure to pay,a: transaction or estimate,False
+P02,2.0,Negotiate contracts with clients or service providers.,in scope,process,,,,Procure to pay,a: transaction or estimate,False
+P02,3.0,Purchase products or services.,in scope,process,,,ERP (purchase order),Procure to pay,a: transaction or estimate,False
+P02,5.0,Reconcile records of sales or other financial transactions.,in scope,process,,,ERP/GL (AP subledger),Procure to pay,a: transaction or estimate,False
+P02,6.0,Execute sales or other financial transactions.,in scope,process,,,"ERP/GL (AP, cash)",Procure to pay,a: transaction or estimate,False
+P02,7.0,Maintain financial or account records.,in scope,process,,,ERP/GL (AP subledger),Procure to pay,a: transaction or estimate,False
+P03,1.0,Compile data or documentation.,in scope,process,,,,Record to report,a: transaction or estimate,False
+P03,2.0,Maintain financial or account records.,in scope,process,,,ERP/GL (journal entries),Record to report,a: transaction or estimate,False
+P03,3.0,Reconcile records of sales or other financial transactions.,in scope,process,,,reconciliation tool (sign-off),Record to report,a: transaction or estimate,False
+P03,4.0,Analyze business or financial data.,in scope,process,,,,Record to report,a: transaction or estimate,False
+P03,5.0,"Prepare financial documents, reports, or budgets.",in scope,process,,,consolidation and reporting,Record to report,a: transaction or estimate,False
+P03,6.0,Examine financial records.,in scope,process,,,,Record to report,a: transaction or estimate,False
+P03,7.0,Interpret financial information for others.,in scope,process,,,,Record to report,a: transaction or estimate,False
+P04,1.0,Calculate financial data.,in scope,process,,,ERP/GL (accrual entries),Month-end close,a: transaction or estimate,False
+P04,2.0,Reconcile records of sales or other financial transactions.,in scope,process,,,reconciliation tool (sign-off),Month-end close,a: transaction or estimate,False
+P04,3.0,Compile data or documentation.,in scope,process,,,consolidation (eliminations),Month-end close,a: transaction or estimate,False
+P04,4.0,"Proofread documents, records, or other files to ensure accuracy.",in scope,process,,,,Month-end close,a: transaction or estimate,False
+P04,5.0,"Prepare financial documents, reports, or budgets.",in scope,process,,,consolidation and reporting,Month-end close,a: transaction or estimate,False
+P05,5.0,Train personnel to enhance job skills.,in scope,system; integration,new-hire record and pay rate set up in the HRIS feed payroll,firm input (hris_feeds_payroll),HRIS (new-hire pay data feeding payroll),Hire to retire,b: in-scope system; c: integration feeding an in-scope system,False
+P05,6.0,Administer compensation or benefits programs.,in scope,system; integration,,,HRIS and payroll (compensation changes),Hire to retire,b: in-scope system; c: integration feeding an in-scope system,False
+P05,8.0,Perform human resources activities.,in scope,system; integration,,,HRIS and payroll (termination),Hire to retire,b: in-scope system; c: integration feeding an in-scope system,False
+P06,1.0,Compile data or documentation.,in scope,process,,,time and attendance (hours feeding pay),Payroll,a: transaction or estimate,False
+P06,2.0,Calculate financial data.,in scope,process,,,payroll,Payroll,a: transaction or estimate,False
+P06,3.0,"Issue money, credit, or vouchers.",in scope,process,,,payroll (disbursement),Payroll,a: transaction or estimate,False
+P06,4.0,Maintain financial or account records.,in scope,process,,,ERP/GL (payroll journal),Payroll,a: transaction or estimate,False
+P06,5.0,Complete documentation required by programs or regulations.,in scope,process,,,payroll (tax liabilities),Payroll,a: transaction or estimate,False
+P07,5.0,Collaborate with others to resolve information technology issues.,in scope,system,"ticket resolved with a refund, credit or billing adjustment",firm input (issues_refunds_credits),billing (refunds/credits),Ticket to resolution,b: in-scope system,False
+P08,6.0,Sell products or services.,in scope,integration,closed-won orders create billing records through a CRM-to-billing integration,firm input (crm_billing_integration),billing (order booking via integration),Lead to close,c: integration feeding an in-scope system,False
+P09,6.0,Approve expenditures.,in scope,process,,,billing (order booking),Quote to contract,a: transaction or estimate,False
+P10,4.0,Test software performance.,in scope,system,,,,Idea to release,b: in-scope system,False
+P10,6.0,Install computer software.,in scope,system,,,,Idea to release,b: in-scope system,False
+P11,4.0,Resolve computer network problems.,assumed in scope,system,when the fix changes data or configuration in an in-scope system,no input on: incident fixes change data or configuration of financial systems,in-scope financial systems (data or configuration fixes),Incident to resolution,b: in-scope system,False
+P13,3.0,Respond to customer problems or complaints.,in scope,system,account issue resolved with a service credit or billing adjustment,firm input (issues_refunds_credits),billing (service credits/adjustments),Onboard to renew,b: in-scope system,False
+P13,4.0,Sell products or services.,in scope,system,renewal or expansion amends the billing subscription,firm input (subscription_billing),billing (renewal or subscription change),Onboard to renew,b: in-scope system,False
+P14,2.0,Develop detailed project plans.,in scope,policy,,,PSA (estimate at completion feeding revenue),Implementation project,d: ICFR-relevant policy,False
+P14,3.0,Configure computer networks.,assumed in scope,system; integration,when time or progress entries feed percent-complete revenue or billing,no input on: revenue is recognized over time from progress entries,PSA (time and progress feeding revenue and billing),Implementation project,b: in-scope system; c: integration feeding an in-scope system,False
+P15,5.0,Negotiate contracts with clients or service providers.,assumed in scope,policy,when a settlement or claim feeds a loss-contingency accrual or disclosure (ASC 450),no input on: settlements or claims feed a loss-contingency accrual,ERP/GL (loss-contingency accrual) and disclosures,Contract review and legal advice,d: ICFR-relevant policy,False
+P17,2.0,Install computer hardware.,in scope,system,,,IAM (access to financial systems),IT service request,b: in-scope system,False
+P17,3.0,Implement security measures for computer or information systems.,in scope,system,,,IAM (access to financial systems),IT service request,b: in-scope system,False
+P19,1.0,"Proofread documents, records, or other files to ensure accuracy.",in scope,process,,,,Expense to reimburse,a: transaction or estimate,False
+P19,2.0,Reconcile records of sales or other financial transactions.,in scope,process,,,,Expense to reimburse,a: transaction or estimate,False
+P19,3.0,"Issue money, credit, or vouchers.",in scope,process,,,payroll or bank (reimbursement),Expense to reimburse,a: transaction or estimate,False
+P19,4.0,Maintain financial or account records.,in scope,process,,,ERP/GL (expense entries),Expense to reimburse,a: transaction or estimate,False
+P20,2.0,Monitor inventories of products or materials.,out (firm input),,,firm input (holds_inventory),ERP (inventory),Order fulfilment,,False
+P20,5.0,Prepare outgoing shipments.,out (firm input),,,firm input (holds_inventory),ERP (inventory relief) and billing (invoice trigger),Order fulfilment,,False
+P20,6.0,Manage inventories of products or organizational resources.,out (firm input),,,firm input (holds_inventory),ERP (inventory),Order fulfilment,,False
+P21,4.0,Inspect items for damage or defects.,out (firm input),,,firm input (holds_inventory),ERP (inventory: scrap and yield),Plan to produce,,False
+P21,6.0,Record operational or production data.,out (firm input),,,firm input (holds_inventory),ERP (inventory and costing),Plan to produce,,False
+P24,1.0,Compile data or documentation.,in scope,process,,,,Tax compliance,a: transaction or estimate,False
+P24,2.0,Calculate financial data.,in scope,process,,,tax provision software,Tax compliance,a: transaction or estimate,False
+P24,3.0,Complete documentation required by programs or regulations.,in scope,process,,,,Tax compliance,a: transaction or estimate,False
+P24,4.0,Examine financial records.,in scope,process,,,,Tax compliance,a: transaction or estimate,False
+P24,5.0,"Pay charges, fees, or taxes.",in scope,process,,,ERP/GL (tax entries),Tax compliance,a: transaction or estimate,False

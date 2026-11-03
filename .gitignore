@@ -1,0 +1,26 @@
+# Third-party raw data are not redistributed: their licences differ, and some (METR run-level data) carry none.
+# Sources, versions and checksums: data/raw/README.md, data/raw/CHECKSUMS.sha256, notes/data_sources_part2.md.
+data/raw/*
+!data/raw/README.md
+!data/raw/CHECKSUMS.sha256
+
+# Build outputs (rebuilt by code/make_arxiv.py and code/build_paper1.sh)
+dist/
+/paper.pdf
+/paper.aux
+/paper.bbl
+/paper.blg
+/paper.fdb_latexmk
+/paper.fls
+/paper.log
+/paper.out
+/build.log
+paper1/*.log
+build_logs/
+
+# Python caches and vendored wheels (versions are pinned in requirements.txt)
+__pycache__/
+*.pyc
+.pytest_cache/
+*.egg-info/
+notes/*.whl

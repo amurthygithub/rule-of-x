@@ -1,0 +1,309 @@
+% =============================================================================
+% tab_param_sources.tex   (literature agent, revision v2, 29 October 2026)
+%
+% Every external source behind a Paper 1 parameter, with the value used, what
+% the source measures, and the grounding class of the value as used.
+%
+% REQUIREMENTS FOR THE EDITORS
+%   1. paper1.tex does not load longtable. Add \usepackage{longtable} to the
+%      preamble (booktabs, array and natbib are already loaded).
+%   2. The \citet keys are defined in paper1/refs_additions_v2.bib or already
+%      exist in paper1/refs_paper1.bib (epoch2025inference, michael2026servers,
+%      svanberg2024beyond, moody2026transition, omb2024report,
+%      gordon2002economics, bessemer2024rulex). Merge that file first.
+%   3. Values are those of the params commit of 29 October 2026 (round 2 adopted);
+%      where a macro exists the cell uses it (editor, revision v2).
+%   4. Use: \input{sections/tables/tab_param_sources.tex} in an appendix.
+%   5. The rows that cite epoch2025inference, michael2026servers,
+%      svanberg2024beyond, moody2026transition, omb2024report,
+%      gordon2002economics and bessemer2024rulex restate notes/assumptions_round2.md;
+%      those seven sources were not re-read in the literature pass. Every
+%      other cited source was read on 29 October 2026 (routes in
+%      notes/lit_pass_v2.md section b).
+%
+% Classes (column 5) follow the assumptions register: a = sourced measurement;
+% b = grounded by precedent (an accepted standard or disclosed practice, with
+% the analogy stated); c = calibrated from our own data; d = scenario value.
+% The class describes the value as used, not the source's own status; the
+% source's status (secondary, vendor, preprint, self-reported) is in column 4.
+% =============================================================================
+\begingroup
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.08}
+\newcolumntype{Q}[1]{>{\raggedright\arraybackslash}p{#1}}
+\begin{longtable}{@{}Q{2.9cm}Q{2.5cm}Q{2.5cm}Q{6.4cm}c@{}}
+\caption{Sources behind the parameters}\label{tab:param-sources}\\
+\toprule
+Parameter & Value used & Source & What the source measures & Class\\
+\midrule
+\endfirsthead
+\multicolumn{5}{@{}l}{\emph{Table \thetable{} continued}}\\
+\toprule
+Parameter & Value used & Source & What the source measures & Class\\
+\midrule
+\endhead
+\midrule
+\multicolumn{5}{r@{}}{\emph{Continued on the next page}}\\
+\endfoot
+\bottomrule
+\endlastfoot
+
+\multicolumn{5}{@{}l}{\emph{Execution pace (Section~\ref{sec:horizons-ranges}, ``Pace'')}}\\
+Change capacity: employees whose work changes a year
+& \PaceCapCen\% [\PaceCapSlow, \PaceCapFast\%]: slow, central and fast cases
+& \citet{wef2025futurejobs}
+& Forum survey of over 1,000 employers (more than 14 million workers, 55 economies): 59 of 100 workers need training by 2030, about 12 a year. Measures workers whose work changes, the concept needed, from stated expectations, not outcomes.
+& b\\
+Change capacity: one-year workforce reductions
+& 6\% to 22\% of headcount in a year (bracket)
+& \citet{salesforce2023form8k,meta2024q4results}
+& Salesforce announced a reduction of about 10\% of its workforce on 4 January 2023. Meta's headcount fell 22\% in 2023 (67,317 at year end). Two disclosed restructurings at software and internet firms. The 6\% case in the parameter files (Alphabet, January 2023) was not verified.
+& b\\
+Change capacity: exits
+& about 12\% a year (1.0\% a month)
+& \citet{bls2026joltsnews}
+& U.S. nonfarm layoffs and discharges rate 1.0\% and separations rate 3.2\% a month, August 2026 (preliminary release). Measures exits from the whole economy, not work changed, so it is only a bracket.
+& b\\
+Attempt success probability, low end
+& 0.54 (slow case)
+& \citet{ciodive2025spglobal}
+& Secondary report of an S\&P Global Market Intelligence survey of more than 1,000 respondents in North America and Europe: the average organization scrapped 46\% of AI proofs of concept before production. Pilot attrition, not failure of a funded migration; fielding period not stated; the S\&P report was not read.
+& b\\
+Attempt success probability, central and high
+& \PaceSuccCen{} (central) and \PaceSuccFast{} (fast)
+& \citet{bcg2020flipping}
+& Consultancy survey of 825 senior executives plus data on 70 companies, self-rated, period not stated: 30\% of transformations in the win zone, 44\% in the worry zone (some value, missed targets), 26\% in the woe zone; 80\% success with all six factors. The 0.70 rounds down the 74\% that created value.
+& b\\
+Realized share of savings
+& \PaceRealCen\% (central), \PaceRealFast\% (fast), 37\% (slow)
+& \citet{mckinsey2021losing}
+& Consultancy online survey of 1,034 participants in a transformation, 18 May to 29 June 2021, self-reported: successful transformations realize 67\% of the maximum financial benefits, all others 37\%; top-quartile firms in a separate database capture 74\% of value within 12 months. Flagged as self-reported.
+& a\\
+Embedding time
+& \PaceEmbCen{} years (central), \PaceEmbFast{} (fast), 2 (slow)
+& \citet{salesforce2023form8k,salesforce2024form10k,mckinsey2021losing}
+& Salesforce: reduction announced 4 January 2023, employee actions ``substantially complete'' by the end of fiscal 2024 (31 January 2024), about 13 months. McKinsey: about half of transformation value within 18 months. An analogy from disclosed restructurings, not a measurement of automation programs. Gartner's 8 months from prototype to production is secondary and was not verified.
+& b\\
+Leadership turnover hazard
+& 0.204 a year (1 over 4.9 years)
+& \citet{kornferry2020tenure}
+& Korn Ferry Institute press release: C-suite members of the 1,000 largest U.S. companies by revenue, analysis in late 2019; average tenure 4.9 years (CEO 6.9, CIO 4.6, CMO 3.5). One over average tenure approximates a hazard. Practitioner data.
+& a\\
+Disruption rate of work in flight
+& 0.23 a year (central), 0.07 (fast)
+& none; uses the hazard above
+& Combines the turnover hazard with the share of programs that new leaders do not keep (0.40) and a strategy-change rate (0.15), both scenario values. Round 2 removes the factor from the pace formula where surveyed outcomes already include it.
+& d\\
+
+\midrule
+\multicolumn{5}{@{}l}{\emph{Compute and AI costs (``Taxes, fees and compute''; \autoref{rem:owncompute})}}\\
+Compute share: upper bound
+& 55\% of revenue for AI products sold to customers, an upper bound; the calibration uses \CcCen\% at 2025 prices, with credible bounds of \CcLo{} to \CcHi\%
+& \citet{iconiq2026state}
+& Proprietary survey, Q2 2026, of about 300 executives at software companies building AI products (87\% North America). Gross margin of AI products 45\% in 2025, so cost of revenue 55\%; projected 53\% and 59\% in 2026 and 2027. Cost of products sold to customers, including talent and hosting, so an upper bound for a firm's own automation.
+& d\\
+Compute share: bound from internal spending
+& 11\% of revenue in 2025, 16\% projected for 2026, 19\% by 2027
+& \citet{iconiq2026state}
+& Same survey: spending on AI for internal productivity, ``direct and indirect'', not itemized; the report does not say what it includes and says many companies underestimate it. All-in spend at partial adoption: if it contains more than compute, it bounds today's internal compute share from above; it is not a measure of compute at full automation.
+& d\\
+Compute per dollar of labor replaced, agent runs
+& 0.01 (single-attempt runs; our computation)
+& \citet{kwa2025measuring,metr2026evalanalysis}
+& Kwa et al. report that, at a human wage of 143.61 dollars an hour, more than 80\% of successful runs cost under 10\% of the human cost. The 0.4\% to 1.1\% of human cost used here comes from METR's public run data and is our computation (software tasks, 50\% success, no review); the run file carries per-run generation and human costs (fields generation\_cost and human\_cost, checked at the source on 2 November 2026).
+& c\\
+Compute per dollar of labor replaced, field evidence
+& 0.03
+& \citet{stevens2026payrolls}
+& Preprint. Payments data from a large U.S. expense-management platform, Q3 2021 to Q3 2025, difference in differences around ChatGPT: among the most exposed firms, a 1 dollar decline in online-labor-marketplace spending goes with about 0.03 dollars of additional AI spending. Contracted freelance work, early and partial.
+& a\\
+Fall in compute price at fixed performance
+& 5 [3, 10] times a year
+& \citet{gundlach2025price,epoch2025inference}
+& Gundlach et al. (preprint; Artificial Analysis snapshots, April 2024 to November 2025): price of a fixed benchmark score falls 5 to 10 times a year on the Pareto frontier, with SWE-bench Verified consistent with no progress. Epoch AI: 9 to 900 times a year depending on the threshold. Price at fixed performance, not spend on the tasks a program must reach.
+& a\\
+Rise in cost of frontier runs
+& 3 to 18 times a year, capped by the value test
+& \citet{gundlach2025price}
+& Cost of running the record-performance model on each benchmark, driven by token volume, not per-token price; no interval reported. The cap (compute cheaper than the labor replaced) is our assumption.
+& d\\
+Servers' share of compute cost
+& 60\%
+& \citet{michael2026servers}
+& Epoch AI model of a one-gigawatt AI data center: servers 5 of 8.5 billion dollars a year of annualized cost, energy 0.6 billion; IT equipment assumed to last 5 years. A cost model, not a measurement of cloud prices.
+& b\\
+Server book life
+& 5.5 years
+& \citet{meta2025q4release}
+& Meta extended the estimated useful life of certain servers and network assets to 5.5 years from fiscal 2025, lowering depreciation by about 2.9 billion dollars. A company accounting estimate, not an economic life.
+& b\\
+
+\midrule
+\multicolumn{5}{@{}l}{\emph{Decision weights}}\\
+Spend elasticity $\alpha$
+& [0.25, 0.45]
+& \citet{sethuraman2011advertising}
+& Not used for the value. Meta-analysis of brand advertising elasticities: mean 0.12 short term and 0.24 long term (working-paper version: 872 estimates from 57 studies, 1960 to 2008). Measures the elasticity of the sales level, not of growth in excess of market growth, so it does not map onto $\alpha$, which is a scenario range here: our spend ratio reveals only the product $\alpha(X-k)$.
+& d\\
+Growth weight $X$, CAC-ratio baseline
+& 2.9 to 5.2 (1.30 over $\alpha$, $\alpha$ from 0.45 to 0.25); not identified by our spend data, which give $X-k$ from about \XkLo{} to \XkHi{} across proxies (Section~\ref{sec:empirics})
+& \citet{aleph2026benchmarks}
+& Benchmark of 342 B2B SaaS and AI-native companies (198 reporting CAC payback), calendar 2025: blended CAC ratio 1.30 dollars of sales and marketing per dollar of new ARR (new names 1.63), median payback 16 months. Average, not marginal, cost; public or private status not stated; published by one of the two authors.
+& b\\
+Screening weight
+& 2 to 9
+& \citet{bessemer2024rulex}
+& Practitioner multiple regression over the past 5 to 6 years of the BVP Cloud Index, fair value to next-twelve-month revenue: implied growth-to-profitability ratio about 2 to 9, 2 to 3 in the long run; $R^2$ 50\% for the Rule of 40 against 62\% for the Rule of X; no standard errors. A market-implied screening weight, not a decision weight.
+& b\\
+
+\midrule
+\multicolumn{5}{@{}l}{\emph{Pass-through $\varphi$ (scenario set 0, 0.5, 0.7)}}\\
+Differentiated software, short run
+& 0 to 0.1
+& \citet{choi2025dma}
+& Analysis Group study funded by Apple. After a commission cut of about 10 points (30\% to 20\%) under the EU alternative terms, 9\% of about 21,000 products cut prices (median cut 2.5\%), 91\% kept or raised them. Three months before against three months after; no control group, a placebo test only.
+& b\\
+Industry-wide cost shock, short to medium run
+& 0.7
+& \citet{ganapati2020energy}
+& About 70\% of energy-price-driven changes in input costs pass through to output prices in U.S. manufacturing. A different industry; the right concept for an industry-wide AI cost change.
+& b\\
+Broad and narrow shocks, long run
+& about 1; about 0.3
+& \citet{benedek2015vat}
+& IMF working paper, 17 euro-area countries, 1999 to 2013: final pass-through about 100\% for standard-rate VAT changes, about 30\% for reduced-rate changes, about zero for reclassifications.
+& b\\
+
+\midrule
+\multicolumn{5}{@{}l}{\emph{Reliability and review (Table~\ref{tab:fullcost}; the examples of the companion paper)}}\\
+Reliability target $\bar r$
+& 0.98 [0.975, 0.995]
+& \citet{apqc2025errorfree,fraxion2025apbenchmarks}
+& APQC defines the share of disbursements that are first-time error free (sample of 2,305 organizations; values behind membership, not read). The 98\% for top performers (75th percentile) is read in a Fraxion vendor blog that attributes it to APQC through CFO.com pages that could not be located: tertiary.
+& b\\
+Human error rate $e_H$
+& 0.02 [0.009, 0.05]
+& \citet{medius2025apaccuracy,fraxion2025apbenchmarks}
+& Medius vendor blog: its clients average 97.5\% first-time right, best performers 99.1\%; no sample, period or method; the ``industry standard'' of 5\% is unattributed. Fraxion: duplicate or erroneous payments about 0.8\% for high performers. Vendor and secondary data, flagged.
+& b\\
+Manual step pass rate $q_M$
+& 0.995 [0.99, 0.998]
+& none; derived from the two rows above
+& 98\% process reliability over a four-step chain gives $0.98^{1/4}=0.995$.
+& b\\
+AI error rate with no review $\bar u$ (per unit)
+& 0.050 favorable; 0.085 central and conservative
+& \citet{asgari2025framework,magesh2025hallucination,vectara2026leaderboard}
+& Asgari et al.: GPT-4 clinical notes from 450 transcript-note pairs, 191 of 12,999 sentences hallucinated (1.47\%; 44\% of them major) and 3.45\% of transcript sentences omitted (figures read in the preprint). Magesh et al. (peer reviewed): 202 preregistered legal queries, tools tested in spring 2024, about 17\% (Lexis+ AI) to 33\% (Westlaw AI-AR) hallucinated. Vectara: vendor leaderboard scored by its own classifier, 1.8\% to 24.2\% of summaries by model (May 2026).
+& a\\
+Catch rate of ordinary errors
+& 0.65 [0.45, 0.85]
+& \citet{panko1999applying}
+& Laboratory experiment: 60 undergraduate MIS students inspected a spreadsheet seeded with 8 errors; individuals found 63\%, 20 groups of three found 83\% (the group phase found no error that individuals had missed). Students, one task.
+& b\\
+Identical-error share across providers
+& 0.60 [0.42, 0.60]
+& \citet{kim2025correlated}
+& When two models are both wrong on a question, they give the same wrong answer 60\% of the time on Stanford HELM (71 models, 14,042 questions; independence baseline 1/3) and 42.3\% on the Hugging Face Open LLM Leaderboard (349 models, 12,032 questions; baseline 12.7\%). Academic multiple-choice questions and resume screening; not the probability that a second provider fails given that the first does.
+& a\\
+Form of the common-mode term
+& beta-factor form; values 0.002 (human) and 0.005 (AI) are illustrative
+& \citet{hokstad2008common}
+& Review of common cause failure models; its abstract states that the beta-factor model is still the most commonly used. Precedent for the form of the common-mode term of \autoref{prop:amin}, not for its values.
+& d\\
+
+\midrule
+\multicolumn{5}{@{}l}{\emph{Security, maintenance and accountability (Table~\ref{tab:fullcost}, \autoref{rem:amin-values})}}\\
+Security spending today $c^{\rm sp}_0$
+& 0.69\% of revenue
+& \citet{ians2025budget}
+& IANS Research and Artico Search: 587 CISOs, data gathered April to August 2025; security budget 10.9\% of IT spend (11.9\% in 2024) and, against revenue, ``held flat at 0.69\%''. Practitioner survey of CISOs.
+& a\\
+Control effectiveness $L_{\rm sec}$, conservative case
+& 1 (spending at the bound of $1/e$ of expected loss)
+& \citet{gordon2002economics}
+& Optimal security investment is at most $1/e$ of the expected loss for two classes of breach-probability functions. The bound was read in a secondary description; the article itself was not read.
+& b\\
+Post-quantum migration
+& 0.75, 1.5, 3\% of IT spend a year
+& \citet{moody2026transition,omb2024report}
+& NIST IR 8547 (final, 27 October 2026): quantum-vulnerable public-key algorithms deprecated after 2030 and disallowed after 2035. OMB (July 2024): about 7.1 billion dollars in 2024 dollars to migrate prioritized federal systems in 2025 to 2035, excluding national security systems; a rough order of magnitude. Public-sector estimate only.
+& d\\
+Upkeep rate $\delta_M$
+& 0.10, 0.17, 0.40 of builds a year
+& \citet{svanberg2024beyond}
+& Case study of a whole system: maintenance of 242,840 dollars a year on a 1,765,000 dollar setup (13.8\%); bare-bones 122,840 on 165,000. This is the only upkeep precedent verified; the support-fee rates behind the central 0.17 were not verified.
+& b\\
+Integration cost per system
+& 60,000 dollars [20,000, 200,000]
+& \citet{svanberg2024beyond}
+& An upper bound only: the same case study puts the setup cost of a whole system at 165,000 to 1,765,000 dollars. No source found for the value itself.
+& d\\
+Regulated build multiplier
+& 1.5 [1.1, 2.0]
+& \citet{kpmg2025sox}
+& Advisory-firm web survey of 146 U.S. SOX 404 program owners, April to June 2025, results for fiscal 2024: average budget 2.3 million dollars (N=114), 546 key controls of which 149 IT general controls, 40 in-scope systems, 16 hours per control test. Read in an archived copy of the PDF (18 March 2026). Our division gives 16,000 to 57,500 dollars per in-scope system a year, 13\% to 46\% of an amortized build of 125,000 dollars a year.
+& b\\
+Internal-control cost per in-scope AI application
+& reference 80,000 dollars a year [16,000, 350,000]; the example line used is about \ItgcLine\% of revenue at \$1 billion
+& \citet{kpmg2025sox}
+& Same survey. An AI application is in scope when it performs or supports a control or a report that management or the auditor relies on, and is then treated as one more in-scope system; the survey is a floor for a new application that changes often.
+& b\\
+Control retest at each model upgrade
+& \$\ItgcRetest{} per upgrade
+& \citet{kpmg2025sox}
+& Same survey: 16 hours per control test of operating effectiveness. The value applies it to 10 controls per application at \$150 an hour, both our assumptions, and covers control testing only; the functional revalidation of the build is in $c_{\mathrm{mnt}}$.
+& b\\
+Direct cost: SOX program and audit fee
+& \$\KpmgSoxSmall{} million program plus \$\AuditFeeAccel{} million audit fee, \AminDirect\% of revenue at \$1 billion [\AminDirectLo, \AminDirectHi]
+& \citet{kpmg2025sox,auditanalytics2023fees,keohane2023sp500}
+& Program: the survey's budget for firms with revenue under 5 billion dollars, fiscal 2024; values read from a text extraction of the archived PDF, chart layout and labels verified. Audit: the average fee of accelerated filers in fiscal 2022, 1,492,375 dollars; the S\&P 500 ratio of 343 dollars of audit fee per million dollars of revenue gives the low end and the average fee of large accelerated filers, 5,327,646 dollars, the high end. Averages, not matched to a firm with 1 billion dollars of revenue.
+& b\\
+Remote threshold $\bar\pi$
+& \AminEpsCen\% and \AminEpsSens\% a year, reported side by side; neither is central
+& \citet{auditanalytics2021sox404,auditanalytics2022sox404}
+& Adverse auditor attestations were 4.6\% of all SOX 404(b) attestations for fiscal 2020 and 5.8\% for 2021 (4.8\% for 2019); the Eighteen-Year Review (July 2022) is the latest edition whose 404(b) figures could be read at the source. These rates are an incidence of material weaknesses that auditors found, not a tolerance for undetected misstatements, so they bear on the plausibility of a threshold rather than measure it. No auditing or SEC standard sets a number for ``remote''.
+& d\\
+
+\midrule
+\multicolumn{5}{@{}l}{\emph{Taxes and fees}}\\
+Cash tax rate $\tau$
+& 15\% to 21\%, central 18\%
+& \citet{usc2026sec55,usc2026sec59,usc2026sec11}
+& 26 U.S.C.\ 55(b)(2)(A): 15\% of adjusted financial statement income for applicable corporations, which under section 59(k)(1) are those with average annual adjusted financial statement income above \$1 billion, so the 15\% is not a floor for a firm with \$1 billion of revenue. 26 U.S.C.\ 11(b): 21\% of taxable income. Federal only; the range is a scenario.
+& a\\
+Effective rate, sensitivity case
+& 9\%
+& \citet{gao2022effective}
+& GAO-23-105384: average effective tax rate on actual tax liability of profitable large corporations as high as 16\% in 2014 and as low as 9\% in 2018.
+& a\\
+Card fees $f$
+& 2\% to 3\% of revenue
+& \citet{stripe2026pricing}
+& Vendor list price for domestic card payments, 2.9\% plus 30 cents per transaction. Not an average realized fee; no source found for the 2\% lower end.
+& b\\
+
+\midrule
+\multicolumn{5}{@{}l}{\emph{Regulatory facts used in the text}}\\
+Model-risk guidance
+& SR 26-2 and OCC Bulletin 2026-13, 17 April 2026
+& \citet{fed2026sr262,occ2026bulletin13}
+& Supersede SR 11-7 and OCC Bulletin 2011-12 and state that generative and agentic AI models are outside their scope; the OCC bulletin states that a request for information on banks' use of AI is planned. Relevant to the model-risk validation cost in the accountability floor.
+& a\\
+EU AI Act high-risk dates
+& 2 December 2027 (Annex III); 2 August 2028 (Annex I)
+& \citet{eu2026reg1744}
+& Regulation (EU) 2026/1744 (Digital Omnibus on AI), recital 40. The operative article text was not reached.
+& a\\
+Disclosure of a reported metric
+& conditions for key performance indicators
+& \citet{sec2020release3310751,sec2022cdi}
+& SEC guidance on management's discussion and analysis of 30 January 2020: a metric needs a clear definition and calculation, a statement of why it is useful, how management uses it, disclosure of method changes and effective controls. Non-GAAP interpretations as last updated on 13 December 2022: 100.01, 102.07 and 102.10(a), read on 2 November 2026 (Section~\ref{sec:discussion}, ``Use in filings'').
+& a\\
+\end{longtable}
+
+\par\smallskip\noindent
+Notes: parameters with no external source are not listed: the spend elasticity's value (a scenario range, class d, because the spend ratio reveals only $\alpha(X-k)$; the weight on growth that firms act on is not identified by the data and is not a parameter of the calibration, Section~\ref{sec:empirics}), the pace of cost programs in 2022 to 2024 (our calculation on the panel, class c), the accountability-floor band of \AminLo\% to \AminHi\% (shares of general and administrative expense, class c; Section~\ref{sec:horizons-ceiling}), the loss severities, tail indices, exposure multipliers, process counts and compliance costs of Table~\ref{tab:fullcost} (class d), the reorganization clock, and the monitor recall rates. ``Secondary'' means the figure was read in a report of the source, not in the source; ``vendor'' means data published by a vendor about its own product or customers. Sample sizes and fielding periods are those stated by the source.
+\par
+\endgroup

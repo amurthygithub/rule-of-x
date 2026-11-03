@@ -1,0 +1,49 @@
+plan_year,site,country,separations,triggered,triggered_prior,rule,lead_years,severance_months,unverified
+0,"Austin, TX",US,8.935108218689637,False,False,WARN Act (federal),0.0,3.0,
+0,"Bangalore, India",IN,1.666997801994335,False,False,"Industrial Relations Code 2020 s.70, s.83",0.08333333333333333,2.5,India 15/26 convention for monthly-rated pay | s.79 notice length and state Shops and Establishments Acts
+0,"Dublin, Ireland",IE,3.410201217794125,False,True,Directive 98/59/EC minimum (national law sets more),0.0821917808219178,1.5,IE: only the EU minimum is modeled; national rules not read
+0,"Krakow, Poland",PL,0.8287360501343266,False,True,Directive 98/59/EC minimum (national law sets more),0.0821917808219178,1.5,PL: only the EU minimum is modeled; national rules not read
+0,Remote US,US,7.487201556385985,False,False,WARN Act (federal),0.0,3.0,
+0,"San Francisco, CA",US,7.868229625413262,False,False,WARN Act (federal),0.0,3.0,
+1,"Austin, TX",US,14.551405610233944,False,False,WARN Act (federal),0.0,3.0,
+1,"Bangalore, India",IN,2.714814479521258,False,False,"Industrial Relations Code 2020 s.70, s.83",0.08333333333333333,2.5,India 15/26 convention for monthly-rated pay | s.79 notice length and state Shops and Establishments Acts
+1,"Dublin, Ireland",IE,5.55373476382063,False,True,Directive 98/59/EC minimum (national law sets more),0.0821917808219178,1.5,IE: only the EU minimum is modeled; national rules not read
+1,"Krakow, Poland",PL,1.3496506269619968,False,True,Directive 98/59/EC minimum (national law sets more),0.0821917808219178,1.5,PL: only the EU minimum is modeled; national rules not read
+1,"Manila, Philippines",PH,0.8066877310577453,False,False,none modeled,0.0,1.0,PH: no statutory rule modeled; notice and severance from the plan only
+1,Remote US,US,12.193395319449765,False,False,WARN Act (federal),0.0,3.0,
+1,"San Francisco, CA",US,12.81392434334034,False,False,WARN Act (federal),0.0,3.0,
+2,"Austin, TX",US,43.44012941114124,False,False,WARN Act (federal),0.0,3.0,
+2,"Bangalore, India",IN,8.104501755809933,False,False,"Industrial Relations Code 2020 s.70, s.83",0.08333333333333333,2.5,India 15/26 convention for monthly-rated pay | s.79 notice length and state Shops and Establishments Acts
+2,"Dublin, Ireland",IE,16.57949502045689,False,True,Directive 98/59/EC minimum (national law sets more),0.0821917808219178,1.5,IE: only the EU minimum is modeled; national rules not read
+2,"Krakow, Poland",PL,4.029095158602652,False,True,Directive 98/59/EC minimum (national law sets more),0.0821917808219178,1.5,PL: only the EU minimum is modeled; national rules not read
+2,"Manila, Philippines",PH,2.408194807440666,False,False,none modeled,0.0,1.0,PH: no statutory rule modeled; notice and severance from the plan only
+2,Remote US,US,36.400790743237756,False,False,WARN Act (federal),0.0,3.0,
+2,"San Francisco, CA",US,38.253248287422885,False,False,WARN Act (federal),0.0,3.0,
+3,"Austin, TX",US,56.64718353624276,False,False,WARN Act (federal),0.0,3.0,
+3,"Bangalore, India",IN,10.568504391090064,False,False,"Industrial Relations Code 2020 s.70, s.83",0.08333333333333333,2.5,India 15/26 convention for monthly-rated pay | s.79 notice length and state Shops and Establishments Acts
+3,"Dublin, Ireland",IE,21.620140411487103,False,True,Directive 98/59/EC minimum (national law sets more),0.0821917808219178,1.5,IE: only the EU minimum is modeled; national rules not read
+3,"Krakow, Poland",PL,5.254056468713347,False,True,Directive 98/59/EC minimum (national law sets more),0.0821917808219178,1.5,PL: only the EU minimum is modeled; national rules not read
+3,"Manila, Philippines",PH,3.1403555904953335,False,False,none modeled,0.0,1.0,PH: no statutory rule modeled; notice and severance from the plan only
+3,Remote US,US,47.46768257941023,False,False,WARN Act (federal),0.0,3.0,
+3,"San Francisco, CA",US,49.88334072594511,False,False,WARN Act (federal),0.0,3.0,
+4,"Austin, TX",US,53.046774809914645,False,False,WARN Act (federal),0.0,3.0,
+4,"Bangalore, India",IN,9.896786345133329,False,False,"Industrial Relations Code 2020 s.70, s.83",0.08333333333333333,2.5,India 15/26 convention for monthly-rated pay | s.79 notice length and state Shops and Establishments Acts
+4,"Dublin, Ireland",IE,20.245997208901322,False,True,Directive 98/59/EC minimum (national law sets more),0.0821917808219178,1.5,IE: only the EU minimum is modeled; national rules not read
+4,"Krakow, Poland",PL,4.920116640151997,False,True,Directive 98/59/EC minimum (national law sets more),0.0821917808219178,1.5,PL: only the EU minimum is modeled; national rules not read
+4,"Manila, Philippines",PH,2.940759371125332,False,False,none modeled,0.0,1.0,PH: no statutory rule modeled; notice and severance from the plan only
+4,Remote US,US,44.45070895585598,False,False,WARN Act (federal),0.0,3.0,
+4,"San Francisco, CA",US,46.71283154902932,False,False,WARN Act (federal),0.0,3.0,
+5,"Austin, TX",US,50.53498639149201,False,False,WARN Act (federal),0.0,3.0,
+5,"Bangalore, India",IN,9.4281691028903,False,False,"Industrial Relations Code 2020 s.70, s.83",0.08333333333333333,2.5,India 15/26 convention for monthly-rated pay | s.79 notice length and state Shops and Establishments Acts
+5,"Dublin, Ireland",IE,19.28734022191273,False,True,Directive 98/59/EC minimum (national law sets more),0.0821917808219178,1.5,IE: only the EU minimum is modeled; national rules not read
+5,"Krakow, Poland",PL,4.687146925436892,False,True,Directive 98/59/EC minimum (national law sets more),0.0821917808219178,1.5,PL: only the EU minimum is modeled; national rules not read
+5,"Manila, Philippines",PH,2.801513104858832,False,False,none modeled,0.0,1.0,PH: no statutory rule modeled; notice and severance from the plan only
+5,Remote US,US,42.34594808498158,False,False,WARN Act (federal),0.0,3.0,
+5,"San Francisco, CA",US,44.50095816564222,False,False,WARN Act (federal),0.0,3.0,
+6,"Austin, TX",US,25.246671316912796,False,False,WARN Act (federal),0.0,3.0,
+6,"Bangalore, India",IN,4.7101998725583565,False,False,"Industrial Relations Code 2020 s.70, s.83",0.08333333333333333,2.5,India 15/26 convention for monthly-rated pay | s.79 notice length and state Shops and Establishments Acts
+6,"Dublin, Ireland",IE,9.635723167862238,False,True,Directive 98/59/EC minimum (national law sets more),0.0821917808219178,1.5,IE: only the EU minimum is modeled; national rules not read
+6,"Krakow, Poland",PL,2.341642222357583,False,True,Directive 98/59/EC minimum (national law sets more),0.0821917808219178,1.5,PL: only the EU minimum is modeled; national rules not read
+6,"Manila, Philippines",PH,1.3996022478459118,False,False,none modeled,0.0,1.0,PH: no statutory rule modeled; notice and severance from the plan only
+6,Remote US,US,21.15552628474782,False,False,WARN Act (federal),0.0,3.0,
+6,"San Francisco, CA",US,22.232143398475444,False,False,WARN Act (federal),0.0,3.0,

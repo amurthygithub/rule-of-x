@@ -1,0 +1,155 @@
+{
+ "pivots": [
+  {
+   "m": "m_op",
+   "p": "2010-15",
+   "score": 128.5,
+   "g_edge": 0.8,
+   "n_upper": 32,
+   "pivot": "0.55*Meta Platforms, Inc. 2011 (0.473) + 0.45*Baidu, Inc. 2010 (0.500)"
+  },
+  {
+   "m": "m_op",
+   "p": "2016-19",
+   "score": 92.9,
+   "g_edge": 0.65,
+   "n_upper": 30,
+   "pivot": "0.45*Hello Group Inc. 2017 (0.274) + 0.55*Trade Desk, Inc. 2016 (0.283)"
+  },
+  {
+   "m": "m_op",
+   "p": "2020-22",
+   "score": 100.2,
+   "g_edge": 0.75,
+   "n_upper": 33,
+   "pivot": "0.60*Zoom Communications, I 2020 (0.249) + 0.40*Doximity, Inc. 2020 (0.258)"
+  },
+  {
+   "m": "m_op",
+   "p": "2023-25",
+   "score": 88.8,
+   "g_edge": 0.4,
+   "n_upper": 41,
+   "pivot": "1.00*Exzeo Group, Inc. 2025 (0.488) + 0.00*AppLovin Corp 2024 (0.593)"
+  },
+  {
+   "m": "m_fcf_sbc",
+   "p": "2010-15",
+   "score": 121.0,
+   "g_edge": 0.8,
+   "n_upper": 32,
+   "pivot": "0.55*JOYY Inc. 2013 (0.394) + 0.45*Baidu, Inc. 2011 (0.429)"
+  },
+  {
+   "m": "m_fcf_sbc",
+   "p": "2016-19",
+   "score": 96.3,
+   "g_edge": 0.65,
+   "n_upper": 30,
+   "pivot": "0.45*Trade Desk, Inc. 2016 (0.299) + 0.55*Hello Group Inc. 2016 (0.325)"
+  },
+  {
+   "m": "m_fcf_sbc",
+   "p": "2020-22",
+   "score": 111.5,
+   "g_edge": 0.75,
+   "n_upper": 33,
+   "pivot": "0.60*Yalla Group Ltd 2021 (0.362) + 0.40*Roblox Corp 2020 (0.369)"
+  },
+  {
+   "m": "m_fcf_sbc",
+   "p": "2023-25",
+   "score": 84.7,
+   "g_edge": 0.4,
+   "n_upper": 39,
+   "pivot": "0.90*Exzeo Group, Inc. 2025 (0.437) + 0.10*AppLovin Corp 2024 (0.535)"
+  }
+ ],
+ "alpha_ident_sim": [
+  {
+   "true_alpha": 0.25,
+   "selection": "none",
+   "meas_err_sd": 0.0,
+   "mean_slope": 1.0
+  },
+  {
+   "true_alpha": 0.25,
+   "selection": "none",
+   "meas_err_sd": 0.5,
+   "mean_slope": 0.72
+  },
+  {
+   "true_alpha": 0.25,
+   "selection": "g>median, log(g-median)",
+   "meas_err_sd": 0.0,
+   "mean_slope": 1.946
+  },
+  {
+   "true_alpha": 0.25,
+   "selection": "g>median, log(g-median)",
+   "meas_err_sd": 0.5,
+   "mean_slope": 1.036
+  },
+  {
+   "true_alpha": 0.45,
+   "selection": "none",
+   "meas_err_sd": 0.0,
+   "mean_slope": 1.0
+  },
+  {
+   "true_alpha": 0.45,
+   "selection": "none",
+   "meas_err_sd": 0.5,
+   "mean_slope": 0.826
+  },
+  {
+   "true_alpha": 0.45,
+   "selection": "g>median, log(g-median)",
+   "meas_err_sd": 0.0,
+   "mean_slope": 1.737
+  },
+  {
+   "true_alpha": 0.45,
+   "selection": "g>median, log(g-median)",
+   "meas_err_sd": 0.5,
+   "mean_slope": 1.145
+  }
+ ],
+ "sfa_boot": {
+  "m_op": {
+   "mean_ineff_2010_15": 15.8,
+   "ci": [
+    12.1,
+    18.6
+   ],
+   "mean_ineff_2023_25": 27.3,
+   "ci2": [
+    23.0,
+    30.9
+   ],
+   "diff": 11.5,
+   "diff_ci90": [
+    6.8,
+    17.0
+   ]
+  },
+  "m_fcf_sbc": {
+   "mean_ineff_2010_15": 13.4,
+   "ci": [
+    8.3,
+    16.1
+   ],
+   "mean_ineff_2023_25": 21.2,
+   "ci2": [
+    17.4,
+    24.5
+   ],
+   "diff": 7.8,
+   "diff_ci90": [
+    3.2,
+    13.9
+   ]
+  }
+ },
+ "g_ge_100pct_acqflag_share": 0.3617021276595745
+}

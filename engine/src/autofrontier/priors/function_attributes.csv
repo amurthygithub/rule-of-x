@@ -1,0 +1,16 @@
+function_id,labor_share,iota_prior,rho_O,personal_data,high_reliability,compute_share_of_nonlabor,keywords
+product_engineering,0.80,0.55,0.70,0,0,0.0,engineering|r&d|research|development|product|platform|software|qa|quality assurance|data science|design|ux|architecture|devops
+customer_support,0.75,0.50,0.55,1,0,0.0,support|help desk|helpdesk|service desk|customer care|contact center|call center|tier 1|tier 2
+customer_success,0.85,0.45,0.70,1,0,0.0,customer success|account management|onboarding|renewal|adoption|csm
+professional_services,0.85,0.40,0.65,0,0,0.0,professional services|implementation|consulting|delivery|solutions|services|training services
+sales,0.75,0.45,0.80,0,0,0.0,sales|business development|account executive|sdr|bdr|channel|partner|revenue
+marketing,0.45,0.50,0.75,0,0,0.0,marketing|demand gen|brand|content|communications|pr|events|growth
+finance_accounting,0.75,0.55,0.60,0,1,0.0,finance|accounting|controller|fp&a|treasury|tax|payable|receivable|billing|payroll accounting|revenue accounting
+hr,0.65,0.45,0.65,1,0,0.0,hr|human resources|people|talent|recruiting|recruitment|payroll|benefits|learning|l&d|total rewards
+legal_compliance,0.55,0.40,0.80,0,1,0.0,legal|counsel|compliance|privacy|regulatory|contracts|ethics
+it,0.45,0.60,0.65,0,0,0.0,it|information technology|infrastructure|security|end user|corporate systems|enterprise systems|identity
+procurement,0.80,0.50,0.70,0,0,0.0,procurement|purchasing|sourcing|supplier|vendor management|supply
+facilities,0.25,0.35,0.60,0,0,0.0,facilities|workplace|office|real estate|maintenance|security guard|reception
+operations_fulfilment,0.35,0.60,0.70,0,0,0.85,operations|hosting|cloud ops|site reliability|sre|production|fulfilment|fulfillment|noc|devops operations|technical operations
+risk_audit_governance,0.75,0.50,0.75,0,1,0.0,risk|audit|internal audit|sox|governance|controls|grc|ai governance
+executive,0.85,0.45,0.95,0,1,0.0,executive|ceo|office of the ceo|leadership|board|strategy|investor relations|chief of staff

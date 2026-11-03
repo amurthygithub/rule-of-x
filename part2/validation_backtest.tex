@@ -1,0 +1,108 @@
+\subsection{Backtest: did the model anticipate 2021 to 2025?}\label{sec:backtest}
+\input{part2/tables/backtest_macros.tex}
+
+A model that turns firm data into an automation strategy should at least have sorted occupations correctly in the years when large language models arrived. This subsection asks whether it did. We freeze the model at parameters available at the end of 2021, score every occupation, occupation-by-industry cell and software firm in our SEC panel, and compare the scores with what happened between May 2021 and May 2025. One parameter, the time needed to review automated work, decides the headline, so we report the result across its sourced range. Every number in this subsection is written by \texttt{code/\allowbreak validation/\allowbreak backtest.py} from the current parameter files; \texttt{notes/\allowbreak backtest\_notes.md} documents the crosswalks.
+
+\paragraph{The score at 2021 parameters.} An activity is a detailed work activity performed in an occupation (Definition~\ref{def:tasks-activity}), weighted by its O*NET time share \citep{onet2026database}. Its exposure is the GPT-4 $\beta$ label of \citet{eloundou2024gpts}, averaged over the occupation's own tasks linked to the activity. The capability path is the 50\% horizon of Assumption~\ref{ass:ext-capability}: \btHzero\ hours in February 2026 in our refit of METR's runs, doubling every \btTd\ days \citep{kwa2025measuring}. At the end of 2021 that horizon is about \btHendSec\ seconds, too short for any activity to pass the \btRA\ capability test, so a static score is zero everywhere. We therefore use the model's own forward object (Propositions~\ref{prop:tasks-curve} and \ref{prop:ext-feasible}). Starting from the end-2021 state, the score is the share of an occupation's exposed time for which automation is feasible and is the cheapest mode, averaged over December 2021 to May 2025. Unit costs follow Assumption~\ref{ass:tasks-modes}. The quality cost uses the stakes-targeted review share of Proposition~\ref{prop:tasks-review}, with the engine's reliability requirements, oversight floors and licensing exclusions. Reviewing a unit takes the fraction $t^R_j/t_j$ of the time needed to do it, the review-time ratio. Its sourced value is \btRhoRev, from post-editing studies, with a range of \btRhoLo\ to \btRhoHi. Augmentation and outsourcing compete as alternatives (Propositions~\ref{prop:tasks-modes} and \ref{prop:tasks-augment}). Wages are those of May 2021, and the inference price is the frontier price per human-hour in \texttt{data/\allowbreak tasks/\allowbreak params.yaml}. Task length comes from an identity based only on O*NET ratings. The Anthropic Economic Index task times \citep{appel2026anthropic} exist only for activities used with Claude in 2026, and would leak the outcome into the score.
+
+\paragraph{Data.} OEWS May 2021 and May 2025 both use SOC 2018. All \btNcodes\ detailed codes in 2025 appear in 2021 with identical titles; the one code dropped is Legislators. Of these, \btNocc\ occupations have O*NET activity data, covering \btEmpShare\ of May 2021 employment. The outcomes are the changes in log employment, log wage-bill share and log mean wage. Every regression controls for the \btNmajor\ SOC major groups, the physical task share \citep{tomlinson2025working}, the log 2021 wage and the O*NET job zone, and reports heteroskedasticity-robust standard errors. Out-of-sample fit is measured by \btFolds-fold cross-validation, repeated \btReps\ times with fixed seeds.
+
+Three earlier vintages serve as placebos and trend controls.
+\begin{itemize}
+\item \emph{May 2016.} The estimates come from a file in the GPTs-are-GPTs repository. They match BLS's May 2016 national tables (\btVerUrl, accessed \btVerDate) for all \btVerN\ occupations it contains. The sums agree too: employment \btVerSumEmp, mean wages \btVerSumWage. We map them to SOC 2018 with the official BLS crosswalk. An occupation gets an exact 2016 value when its crosswalk group contains no other 2021 occupation. This holds for \btXwExactN\ occupations, with \btXwExactShare\ of employment; the earlier rule of identical codes reached \btIdN\ and \btIdShare.
+\item \emph{May 2019 and May 2020.} These use BLS's hybrid SOC structure. \btHybSame\ of their \btHybN\ detailed codes are SOC 2018 codes, which we compare code by code (\btShareOneNineTwoOne\ of employment). Occupations folded into the \btHybAgg\ hybrid aggregates are left out.
+\end{itemize}
+
+\paragraph{Order of events.} The order of the estimates matters. An audit of the engine's assumed parameters, which grades each against published precedents, added a sourced review-time ratio of \btRhoRev\ to the parameter file on 29 October 2026, to replace the engine's assumed \btRhoOld. The backtest's first estimates were made after the file was rebuilt but before the engine adopted the new value, so they used \btRhoOld. At that value the main score did not predict employment (\btMOldB, standard error \btMOldSe, at current values of the other parameters). The engine then adopted \btRhoRev, together with sourced error rates, and the next run gave the results below. The audit's value was fixed before any backtest estimate existed; its records do not mention the backtest. Both values lie inside the sourced range, so we report the main result across the whole range (Table~\ref{tab:backtest-sweep}) and show the \btRhoOld\ case beside the sourced value throughout.
+
+\input{part2/tables/backtest_occ.tex}
+
+\paragraph{At the sourced value, the model predicts and adds to exposure.} In Table~\ref{tab:backtest-occ}, exposure predicts slower growth: an occupation one standard deviation more exposed grew \btEAloneLp\ log points less over the four years (\btEAloneB, standard error \btEAloneSe), and its wage-bill share grew \btEWbsLp\ log points less (\btEWbsB, \btEWbsSe). At the sourced review-time ratio, the model's automatable share also predicts employment (\btMAloneB, \btMAloneSe), and it fits better out of sample: \btCvM\ against \btCvE\ for exposure and \btCvC\ for the controls alone. It is ahead of exposure in \btRepsMBeatsE\ of the \btReps\ repetitions. With both in the regression, the model share gives \btMJointB\ (\btMJointSe) and exposure \btEJointB\ (\btEJointSe). Mean wages show only a small positive association once exposure is held fixed (\btMWageB, \btMWageSe). Weighting by employment weakens the result. The model share alone gives \btMWB\ (\btMWSe). With exposure in the regression it gives \btMWJB\ (\btMWJSe), and exposure \btEWJB\ (\btEWJSe).
+
+\input{part2/tables/backtest_sweep.tex}
+
+\paragraph{The result is conditional on the review-time ratio.} Table~\ref{tab:backtest-sweep} re-estimates the main specification across the sourced range, on a grid of \btGridStep. Up to a ratio of about \btRhoSat, automation is the cheapest mode on all exposed time where it is feasible, and the model share equals the capability-feasible score (\btSwLoB, \btSwLoSe). As review becomes more expensive, augmentation and outsourcing take over. With exposure in the regression, the model share stops being significant at 5\% at a ratio of \btRhoStarJoint. It stops beating exposure out of sample at \btRhoStarCv. On its own it stops being significant at \btRhoStarAlone, \btSweepMonotone. The model beats exposure only in the lowest \btRangeShareCv\ of the sourced range. The sourced value lies in that part, and the earlier assumed value outside it. Any statement that the model adds to exposure is conditional on a review-time ratio below about \btRhoStarCv.
+
+\input{part2/tables/backtest_decomp.tex}
+
+\paragraph{Where the predictive content lies.} Table~\ref{tab:backtest-decomp} builds the score one layer at a time.
+\begin{itemize}
+\item \emph{Non-physical, permissible activities} (column 2). Counting only exposure on non-physical activities not reserved for a licensed signatory raises out-of-sample fit from \btCvE\ to \btCvEnp.
+\item \emph{The capability horizon} (column 3). Also requiring the capability path to cover the activity's length raises it to \btCvFeas. Holding non-physical, permissible exposure fixed, a higher feasible fraction still predicts slower growth (\btTimingB, \btTimingSe).
+\item \emph{The cost step at the sourced ratio} (column 5). It adds nothing. Where automation is capability-feasible and permitted in May 2025, it is the cheapest mode on \btShareA\ of exposed time, although review still covers \btReviewShare\ of units. The model share's correlation with the capability-feasible score is \btCorrMFeas.
+\item \emph{The cost step at a ratio of \btRhoOld} (column 6). Automation wins on \btShareAOld\ of that time, augmentation on \btShareUOld\ and outsourcing on \btShareOOld. Augmentation wins mainly on highly exposed activities, because the engine scales the augmentation gain with exposure. The score then loses its predictive power (\btMOldB, \btMOldSe).
+\end{itemize}
+The share in which either automation or augmentation is cheapest predicts at both ratios: \btAUB\ (\btAUSe) at \btRhoRev, and \btAUOldB\ (\btAUOldSe) at \btRhoOld. Whatever the model adds therefore comes from its feasibility filters, not from its cost comparison. Columns (2) and (6) were added after the first estimates, so the comparison across columns is exploratory.
+
+\input{part2/tables/backtest_robust.tex}
+
+\paragraph{Confounders and trend controls.} Four shocks in the window are unrelated to AI but correlated with exposure (Table~\ref{tab:backtest-robust}).
+\begin{itemize}
+\item The rebound from COVID in food service, personal care and entertainment, which have low exposure.
+\item The tech-labor correction and the 2022 to 2023 layoffs in computer occupations, which are highly exposed.
+\item Higher interest rates, which cut mortgage and real-estate work, also highly exposed.
+\item Earlier declines in exposed occupations, most of them clerical.
+\end{itemize}
+Excluding the first three groups one at a time moves neither coefficient by more than \btExclMaxMove. Excluding them all leaves exposure at \btEExclB\ (\btEExclSe) and the model share at \btMExclB\ (\btMExclSe).
+
+For the fourth shock we control for each occupation's own earlier change:
+\begin{itemize}
+\item the 2016 to 2021 change moves the model share from \btMTrendBaseB\ to \btMTrendCtlB, and exposure from \btETrendBaseB\ to \btETrendCtlB;
+\item the 2019 to 2021 change, which captures the COVID dip and rebound, moves the model share from \btMNineBaseB\ to \btMNineCtlB;
+\item the 2016 to 2019 change moves it from \btMSixBaseB\ to \btMSixCtlB (\btMSixCtlSe);
+\item the 2019 to 2020 COVID shock gives \btMCovidB\ (\btMCovidSe);
+\item the BLS 2020 to 2030 projections, published in 2021, give \btMProjB\ (\btMProjSe), and \btEProjB\ (\btEProjSe) for exposure.
+\end{itemize}
+
+\paragraph{Placebos.} The placebos regress the same scores on changes before the window.
+\begin{itemize}
+\item \emph{2016 to 2021.} Exposure gives \btEPlB\ (\btEPlSe), \btEPlRatio\ of its post-2021 coefficient in that sample, and the model share \btMPlB\ (\btMPlSe), \btMPlRatio\ of its own. This window includes COVID.
+\item \emph{2016 to 2019, before COVID and before LLMs.} This is the cleaner test. Exposure gives \btEPlPreB\ (\btEPlPreSe), but the model share gives \btMPlPreB\ (\btMPlPreSe, $|t|=\btMPlPreT$), and the capability-feasible score \btFPlPreB\ (\btFPlPreSe). Per year, the model share's pre-COVID slope is \btMPlPreYearRatio\ of its post-2021 slope in the same sample.
+\end{itemize}
+Occupations whose exposed work is short, non-physical and permissible were already growing more slowly before LLMs. Controlling for that trend leaves a post-2021 coefficient of \btMSixCtlB, so the score predicts beyond its own pre-trend. Still, part of what it measures is a longer-running shift, not the arrival of LLMs. The 2016 to 2021 placebo is similar with split crosswalk groups included (\btMPlSplitB, \btMPlSplitSe) and under the earlier identity rule (\btMPlIdB, \btMPlIdSe).
+
+The other \btVarN\ variants of Table~\ref{tab:backtest-robust} (capability path, task length, inference price, readiness and outsourcing) give model-share coefficients between \btVarMinB\ and \btVarMaxB, all with $|t|\ge\btVarMinT$. Our main path puts the horizon at \btHMay\ hours in May 2025; our refit of METR's runs gives \btHMetr\ hours for the frontier models of spring 2025.
+
+\input{part2/tables/backtest_cells.tex}
+
+\paragraph{Occupation-by-industry cells.} The May 2021 industry file lets us compare occupation-by-industry cells (Table~\ref{tab:backtest-cells}). Industries are four-digit NAICS, harmonized from the 2017 to the 2022 edition, with retail taken at the sector level because NAICS 2022 reassigned nonstore retailers. We keep \btCellN\ cells with at least \btCellMin\ jobs in May 2021: \btCellOcc\ occupations in \btCellInd\ industries, covering \btCellShare\ of employment. Industry effects absorb demand shocks such as the software correction and rate-sensitive lending. With them, and with standard errors clustered by occupation and industry:
+\begin{itemize}
+\item exposure gives \btCEB\ (\btCESe), the model share \btCMB\ (\btCMSe), and the capability-feasible score \btCFB\ (\btCFSe);
+\item with exposure in the regression, the model share falls to \btCJMB\ (\btCJMSe), and out of sample it does worse than exposure (\btCCvM\ against \btCCvE).
+\end{itemize}
+That reversal comes from weighting, not from industry effects. Unweighted cells count an occupation once for every industry in which it is large, so widespread occupations dominate: the \btCTopN\ most widespread account for \btCTopShare\ of cells, and office and administrative support alone for \btCTopGroupShare. Weighting each occupation equally, as in the national test, the model share keeps \btCEqJMB\ (\btCEqJMSe) and exposure falls to \btCEqJEB\ (\btCEqJESe). Without industry effects and unweighted, the model share gives \btCNiJMB\ (\btCNiJMSe) with exposure in the regression. The cell evidence is therefore weak, and it depends on how occupations are weighted.
+
+The cell test of the cost crossover through wages is uninformative. The term varies within an occupation only through the cell's wage, and that variation is negligible: its within-occupation standard deviation is \btCWsd, \btCWvar\ of the variance. Per within-occupation standard deviation, the coefficient is \btCWB\ (\btCWSe), which is \btCWSign. With inference ten times dearer it is \btCWpB\ (\btCWpSe). Across the review-time ratio, the cell-level model share alone loses significance at \btCRhoStarAlone; with exposure in the regression, \btCJointPhrase. The within-occupation coefficient is significant at 5\% at only \btCWithinSig\ grid points where it can be estimated.
+
+\input{part2/tables/backtest_firm.tex}
+
+\paragraph{Firms.} For the \btNfirm\ SEC software firms with complete cost lines in both windows, we score each firm's function mix and ask whether a more automatable mix predicted larger falls in cost shares (Table~\ref{tab:backtest-firm}). It did not. \btFirmSignPhrase\ For total costs the coefficient is \btFirmMB\ percentage points per standard deviation (\btFirmMSe), and the placebo over FY2016--17 to 2019--20 gives \btFirmPlB\ (\btFirmPlSe). The test has little power. The score varies across firms only through the cost mix, which uses assumed splits within each cost bucket, and the SIC code. Its standard deviation is \btFirmSd\ around a mean of \btFirmMean. The post-2022 efficiency drive dominated the period: total cost shares changed by \btFirmTotChg\ percentage points on average, and sales and marketing by \btFirmSmChg. The exposure mix gives \btFirmEB\ (\btFirmESe) for total costs, probably because exposure is highest in R\&D and cost of revenue, and firms heavy in those buckets cut less. The firm-level evidence neither supports nor rejects the model.
+
+\input{part2/tables/backtest_tests.tex}
+
+\begingroup\emergencystretch=3em
+\paragraph{Multiple testing.} Table~\ref{tab:backtest-tests} fixes a family of \btNtests\ headline tests and applies a Bonferroni correction, which requires $|t|\ge\btTcrit$ (it was \btTcritPrev\ for the \btNtestsPrev\ tests reported before the cell, crosswalk and 2019 tests were added).
+\begin{itemize}
+\item \emph{Surviving tests.} \btNsurvive\ survive: \btSurvivorsList.
+\item \emph{Change from the earlier family.} \btSurvivalChangePhrase: \btEAlonePhrase\ ($|t|=\btEAloneT$).
+\item \emph{The model share with exposure in the regression} ($|t|=\btMJointT$) \btJointSurvives. The evidence that the model adds to exposure therefore rests on out-of-sample fit, not on a corrected test.
+\item \emph{Placebos.} \btPlaceboSurvive\ The pre-COVID placebo for the model share ($|t|=\btMPlPreT$) does not survive the correction, but \btPrePlaceboPhrase.
+\end{itemize}
+\endgroup
+
+\paragraph{Conclusions.} The evidence is consistent with the model's feasibility filters at the occupation level, with two qualifications. Exposure restricted by activity type (non-physical work), by licensing and by the capability horizon predicts employment change from 2021 to 2025 better than exposure alone, out of sample. The capability-feasible score survives the correction for multiple tests. But the same scores already predicted slower growth from 2016 to 2019, so part of what they capture predates LLMs. And in occupation-by-industry cells, their advantage over exposure depends on how occupations are weighted.
+
+The evidence does not validate three other parts of the model:
+\begin{itemize}
+\item \emph{The cost-crossover step.} At the sourced review-time ratio it adds nothing to the feasibility filters, and above a ratio of about \btRhoStarCv\ it removes the model's advantage over exposure. Within occupations it varies too little with wages to be tested.
+\item \emph{The choice between automation and augmentation.} This depends on the review-time ratio and on an assumed link between exposure and the augmentation gain.
+\item \emph{Firm-level predictions.} The firm test is null and has little power.
+\end{itemize}
+
+Four further limits apply.
+\begin{itemize}
+\item \emph{Inputs not available in 2021.} The capability path was fitted in 2026, the exposure labels were made in 2023 with GPT-4, and the O*NET weights and physical-task flags are recent vintages.
+\item \emph{What OEWS measures.} OEWS counts jobs, not hours, and a four-year change mixes adoption with demand.
+\item \emph{Weighting.} Employment weighting weakens every result.
+\item \emph{Associations only.} Nothing here identifies a causal effect. Studies with payroll or linked employer-employee data find relative employment declines for young workers in the most exposed occupations, concentrated where observed AI use automates rather than augments \citep{brynjolfsson2025canaries}. They also find no meaningful change in earnings or hours in Denmark two years after ChatGPT \citep{humlum2025still}. Our cost-based split between automation and augmentation is too sensitive to the review-time ratio to test the first pattern.
+\end{itemize}

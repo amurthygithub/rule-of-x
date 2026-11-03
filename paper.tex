@@ -1,0 +1,54 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{mathptmx}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage[authoryear,round]{natbib}
+\usepackage{xcolor}
+\usepackage[colorlinks=true,linkcolor=blue!50!black,citecolor=blue!50!black,urlcolor=blue!50!black]{hyperref}
+\hypersetup{pdftitle={The Efficient Frontier of Growth and Profitability: A Theory of the Rule of 40 and Its Limits under AI Automation},pdfauthor={Akshaya Bangalore Sreenivasa Murthy}}
+\usepackage{setspace}
+\setstretch{1.08}
+\setlist{itemsep=2pt,topsep=4pt}
+
+\newtheorem{proposition}{Proposition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\newtheorem{assumption}{Assumption}
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}
+
+\title{The Efficient Frontier of Growth and Profitability:\\ A Theory of the Rule of 40 and Its Limits under AI Automation}
+\author{Akshaya Bangalore Sreenivasa Murthy\thanks{Independent researcher. Correspondence: \href{mailto:bs.akshay@gmail.com}{bs.akshay@gmail.com}. This paper was produced in a documented collaboration between the author and AI research agents; Appendix~\ref{app:protocol} describes the protocol, the division of labor and the decisions the author made. The author takes full responsibility for all content. Data and code are available from the author. \copyright\ 2026 Akshaya Bangalore Sreenivasa Murthy. This paper is licensed under the Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License (CC BY-NC-ND 4.0); the accompanying software is licensed under the PolyForm Noncommercial License 1.0.0. Commercial use of either requires the author's prior written permission.}}
+\date{October 2026}
+
+\begin{document}
+\maketitle
+
+\input{sections/abstract.tex}
+
+\input{sections/intro.tex}
+\input{sections/literature.tex}
+\input{sections/model.tex}
+\input{sections/data.tex}
+\input{sections/empirics.tex}
+\input{sections/horizons.tex}
+\input{sections/discussion.tex}
+\input{sections/conclusion.tex}
+
+\bibliographystyle{plainnat}
+\bibliography{refs}
+
+\appendix
+\input{sections/appendix_proofs.tex}
+\input{sections/appendix_data.tex}
+\input{sections/appendix_protocol.tex}
+
+\end{document}

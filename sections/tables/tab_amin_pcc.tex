@@ -1,0 +1,22 @@
+\begin{table}[t]\centering\small
+\caption{Cheapest admissible control design in the example of Remark~\ref{rem:amin-values}, by remote threshold, as the cross-type common mode $p^{\rm cc}$ and the human miss rate on AI-missed items vary}\label{tab:amin-pcc}
+\begin{tabular}{@{}lll@{}}\toprule
+ & $\bar\pi=1\%$ a year & $\bar\pi=5\%$ a year\\\midrule
+\multicolumn{3}{@{}l}{\emph{Cross-type common mode $p^{\rm cc}$ per opportunity (human miss rate 0.05)}}\\
+0 & 1H + 2AI, \$0.80m (0.080\%) & 1H + 1AI, \$0.75m (0.075\%) \\
+0.0001 & 1H + 2AI, \$0.80m (0.080\%) & 1H + 1AI, \$0.75m (0.075\%) \\
+0.0002 & 2H + 1AI, \$1.25m (0.125\%) & 1H + 1AI, \$0.75m (0.075\%) \\
+0.0005 & none admissible & 1H + 1AI, \$0.75m (0.075\%) \\
+0.0008 & none admissible & 1H + 1AI, \$0.75m (0.075\%) \\
+0.001 & none admissible & 1H + 2AI, \$0.80m (0.080\%) \\
+0.0015 & none admissible & 1H + 2AI, \$0.80m (0.080\%) \\
+0.002 & none admissible & 2H + 1AI, \$1.25m (0.125\%) \\
+0.0025 & none admissible & none admissible \\
+\addlinespace\multicolumn{3}{@{}l}{\emph{Human miss rate on items the AI layers missed ($p^{\rm cc}=0$)}}\\
+0.05 & 1H + 2AI, \$0.80m (0.080\%) & 1H + 1AI, \$0.75m (0.075\%) \\
+0.1 & 2H + 1AI, \$1.25m (0.125\%) & 1H + 2AI, \$0.80m (0.080\%) \\
+0.2 & 2H + 2AI, \$1.30m (0.130\%) & 1H + 2AI, \$0.80m (0.080\%) \\
+0.5 & 4H + 2AI, \$2.30m (0.230\%) & 2H + 2AI, \$1.30m (0.130\%) \\
+\bottomrule\end{tabular}
+\par\vspace{2pt}\footnotesize\raggedright Notes: 24 opportunities a year at \$1 billion of revenue; human layer: miss rate 0.05, common mode 0.002, \$500{,}000; AI layer: miss rate 0.02, common mode 0.005, \$50{,}000, plus the ITGC and revalidation line of one in-scope AI application, \$204{,}672, for any design with AI layers; designs of up to six layers of each type. H: human layers; AI: AI layers; cost in millions of dollars and as a share of revenue. A design is admissible if the probability of at least one undetected material misstatement in the year is at most $\bar\pi$. The threshold is a scenario value; the table conditions on it and on the illustrative layer parameters, and it is not a control-design recommendation.
+\end{table}

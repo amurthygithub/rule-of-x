@@ -1,0 +1,42 @@
+dwa_id,dwa_title,iwa_id,gwa_id,gwa_title,physical,exposure_llm,exposure_measure,ai_usage,est_task_hours,regulated_class,method_note
+4.A.1.a.1,Getting Information,4.A.1.a.1,4.A.1.a.1,Getting Information,0,0.75,assumed_placeholder,,0.5,none,fallback GWA-level activity; exposure and task hours assumed
+4.A.1.a.2,"Monitoring Processes, Materials, or Surroundings",4.A.1.a.2,4.A.1.a.2,"Monitoring Processes, Materials, or Surroundings",0,0.50,assumed_placeholder,,0.5,none,fallback
+4.A.1.b.1,"Identifying Objects, Actions, and Events",4.A.1.b.1,4.A.1.b.1,"Identifying Objects, Actions, and Events",0,0.45,assumed_placeholder,,0.3,none,fallback
+4.A.1.b.2,"Inspecting Equipment, Structures, or Materials",4.A.1.b.2,4.A.1.b.2,"Inspecting Equipment, Structures, or Materials",1,0.20,assumed_placeholder,,1.0,none,fallback
+4.A.1.b.3,"Estimating the Quantifiable Characteristics of Products, Events, or Information",4.A.1.b.3,4.A.1.b.3,"Estimating the Quantifiable Characteristics of Products, Events, or Information",0,0.60,assumed_placeholder,,1.0,none,fallback
+4.A.2.a.1,"Judging the Qualities of Objects, Services, or People",4.A.2.a.1,4.A.2.a.1,"Judging the Qualities of Objects, Services, or People",0,0.40,assumed_placeholder,,1.0,none,fallback
+4.A.2.a.2,Processing Information,4.A.2.a.2,4.A.2.a.2,Processing Information,0,0.85,assumed_placeholder,,0.25,none,fallback
+4.A.2.a.3,Evaluating Information to Determine Compliance with Standards,4.A.2.a.3,4.A.2.a.3,Evaluating Information to Determine Compliance with Standards,0,0.65,assumed_placeholder,,1.0,none,fallback
+4.A.2.a.4,Analyzing Data or Information,4.A.2.a.4,4.A.2.a.4,Analyzing Data or Information,0,0.75,assumed_placeholder,,2.0,none,fallback
+4.A.2.b.1,Making Decisions and Solving Problems,4.A.2.b.1,4.A.2.b.1,Making Decisions and Solving Problems,0,0.45,assumed_placeholder,,1.0,none,fallback
+4.A.2.b.2,Thinking Creatively,4.A.2.b.2,4.A.2.b.2,Thinking Creatively,0,0.60,assumed_placeholder,,3.0,none,fallback
+4.A.2.b.3,Updating and Using Relevant Knowledge,4.A.2.b.3,4.A.2.b.3,Updating and Using Relevant Knowledge,0,0.70,assumed_placeholder,,1.0,none,fallback
+4.A.2.b.4,Developing Objectives and Strategies,4.A.2.b.4,4.A.2.b.4,Developing Objectives and Strategies,0,0.40,assumed_placeholder,,4.0,none,fallback
+4.A.2.b.5,Scheduling Work and Activities,4.A.2.b.5,4.A.2.b.5,Scheduling Work and Activities,0,0.75,assumed_placeholder,,0.3,none,fallback
+4.A.2.b.6,"Organizing, Planning, and Prioritizing Work",4.A.2.b.6,4.A.2.b.6,"Organizing, Planning, and Prioritizing Work",0,0.60,assumed_placeholder,,0.5,none,fallback
+4.A.3.a.1,Performing General Physical Activities,4.A.3.a.1,4.A.3.a.1,Performing General Physical Activities,1,0.05,assumed_placeholder,,1.0,none,fallback
+4.A.3.a.2,Handling and Moving Objects,4.A.3.a.2,4.A.3.a.2,Handling and Moving Objects,1,0.05,assumed_placeholder,,0.5,none,fallback
+4.A.3.a.3,Controlling Machines and Processes,4.A.3.a.3,4.A.3.a.3,Controlling Machines and Processes,1,0.15,assumed_placeholder,,1.0,none,fallback
+4.A.3.a.4,"Operating Vehicles, Mechanized Devices, or Equipment",4.A.3.a.4,4.A.3.a.4,"Operating Vehicles, Mechanized Devices, or Equipment",1,0.05,assumed_placeholder,,1.0,none,fallback
+4.A.3.b.1,Working with Computers,4.A.3.b.1,4.A.3.b.1,Working with Computers,0,0.80,assumed_placeholder,,1.0,none,fallback
+4.A.3.b.2,"Drafting, Laying Out, and Specifying Technical Devices, Parts, and Equipment",4.A.3.b.2,4.A.3.b.2,"Drafting, Laying Out, and Specifying Technical Devices, Parts, and Equipment",0,0.60,assumed_placeholder,,3.0,none,fallback
+4.A.3.b.4,Repairing and Maintaining Mechanical Equipment,4.A.3.b.4,4.A.3.b.4,Repairing and Maintaining Mechanical Equipment,1,0.05,assumed_placeholder,,2.0,none,fallback
+4.A.3.b.5,Repairing and Maintaining Electronic Equipment,4.A.3.b.5,4.A.3.b.5,Repairing and Maintaining Electronic Equipment,1,0.15,assumed_placeholder,,2.0,none,fallback
+4.A.3.b.6,Documenting/Recording Information,4.A.3.b.6,4.A.3.b.6,Documenting/Recording Information,0,0.85,assumed_placeholder,,0.3,none,fallback
+4.A.4.a.1,Interpreting the Meaning of Information for Others,4.A.4.a.1,4.A.4.a.1,Interpreting the Meaning of Information for Others,0,0.65,assumed_placeholder,,1.0,none,fallback
+4.A.4.a.2,"Communicating with Supervisors, Peers, or Subordinates",4.A.4.a.2,4.A.4.a.2,"Communicating with Supervisors, Peers, or Subordinates",0,0.60,assumed_placeholder,,0.3,none,fallback
+4.A.4.a.3,Communicating with People Outside the Organization,4.A.4.a.3,4.A.4.a.3,Communicating with People Outside the Organization,0,0.60,assumed_placeholder,,0.3,none,fallback
+4.A.4.a.4,Establishing and Maintaining Interpersonal Relationships,4.A.4.a.4,4.A.4.a.4,Establishing and Maintaining Interpersonal Relationships,0,0.25,assumed_placeholder,,1.0,none,fallback
+4.A.4.a.5,Assisting and Caring for Others,4.A.4.a.5,4.A.4.a.5,Assisting and Caring for Others,0,0.20,assumed_placeholder,,1.0,none,fallback
+4.A.4.a.6,Selling or Influencing Others,4.A.4.a.6,4.A.4.a.6,Selling or Influencing Others,0,0.35,assumed_placeholder,,2.0,none,fallback
+4.A.4.a.7,Resolving Conflicts and Negotiating with Others,4.A.4.a.7,4.A.4.a.7,Resolving Conflicts and Negotiating with Others,0,0.30,assumed_placeholder,,1.0,none,fallback
+4.A.4.a.8,Performing for or Working Directly with the Public,4.A.4.a.8,4.A.4.a.8,Performing for or Working Directly with the Public,0,0.35,assumed_placeholder,,0.3,none,fallback
+4.A.4.b.1,Coordinating the Work and Activities of Others,4.A.4.b.1,4.A.4.b.1,Coordinating the Work and Activities of Others,0,0.45,assumed_placeholder,,1.0,none,fallback
+4.A.4.b.2,Developing and Building Teams,4.A.4.b.2,4.A.4.b.2,Developing and Building Teams,0,0.25,assumed_placeholder,,2.0,none,fallback
+4.A.4.b.3,Training and Teaching Others,4.A.4.b.3,4.A.4.b.3,Training and Teaching Others,0,0.55,assumed_placeholder,,2.0,none,fallback
+4.A.4.b.4,"Guiding, Directing, and Motivating Subordinates",4.A.4.b.4,4.A.4.b.4,"Guiding, Directing, and Motivating Subordinates",0,0.25,assumed_placeholder,,1.0,none,fallback
+4.A.4.b.5,Coaching and Developing Others,4.A.4.b.5,4.A.4.b.5,Coaching and Developing Others,0,0.30,assumed_placeholder,,1.0,none,fallback
+4.A.4.b.6,Providing Consultation and Advice to Others,4.A.4.b.6,4.A.4.b.6,Providing Consultation and Advice to Others,0,0.55,assumed_placeholder,,2.0,none,fallback
+4.A.4.c.1,Performing Administrative Activities,4.A.4.c.1,4.A.4.c.1,Performing Administrative Activities,0,0.80,assumed_placeholder,,0.3,none,fallback
+4.A.4.c.2,Staffing Organizational Units,4.A.4.c.2,4.A.4.c.2,Staffing Organizational Units,0,0.45,assumed_placeholder,,2.0,none,fallback
+4.A.4.c.3,Monitoring and Controlling Resources,4.A.4.c.3,4.A.4.c.3,Monitoring and Controlling Resources,0,0.60,assumed_placeholder,,1.0,none,fallback
