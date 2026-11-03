@@ -119,3 +119,19 @@ These files were retrieved on 29 Oct 2026, between about 16:06 and 16:15 UTC−7
 | Interests paid | 49,737 (H1 2025); 161,153 (H1 2026) | Exhibit 99.2 |
 | Interest expense on debt | 202,154 (H1 2026) | Exhibit 99.2 |
 | Total future principal payments at 30 Jun 2026 | 4,983,469 | Exhibit 99.2 |
+
+## 5. Bending Spoons filings, full documents (retrieved 2 Nov 2026, about 23:25 UTC−8)
+
+The author approved this download at 23:23 (decision 3 of the outside-review plan). The documents were fetched from www.sec.gov in the built-in browser of the Claude desktop application on the author's computer. Each document was fetched once, from the EDGAR page's own origin, and nothing was entered on any site. The SHA-256 of each document's bytes was computed in the browser, and the transferred copy was checked against it after decompression. The files are stored gzip-compressed (`gzip -9 -n`). The hashes below are of the uncompressed documents.
+
+| File | Document | URL | Bytes | SHA-256 |
+|---|---|---|---|---|
+| `raw/bending_spoons_f1_2026-06-08.htm.gz` | Form F-1, filed 8 Jun 2026 | https://www.sec.gov/Archives/edgar/data/2004711/000110465926071170/tm2613674-7_f1.htm | 9,426,040 | fbe3a107690009d6a0e84ecb05b61b178e7bba7f3ef4c931080628891aaf1fad |
+| `raw/bending_spoons_424b4_2026-07-01.htm.gz` | Final prospectus, Rule 424(b)(4), filed 1 Jul 2026 | https://www.sec.gov/Archives/edgar/data/2004711/000110465926079884/tm2613674-14_424b4.htm | 9,714,600 | 86d91db82f3c5b793b1106b5397471a778667a5c547896302c151793735f3240 |
+| `raw/bsp_ex99-1_2026-08-13.htm.gz` | Form 6-K of 13 Aug 2026, Exhibit 99.1 | https://www.sec.gov/Archives/edgar/data/2004711/000200471126000011/bsp_ex99-1.htm | 261,276 | 69e4c0c145f8b188d2ae00d18373b36a1ce0a85da8cb9d1a7383837b16a402f0 |
+| `raw/bsp_ex99-2_2026-08-13.htm.gz` | Form 6-K of 13 Aug 2026, Exhibit 99.2 | https://www.sec.gov/Archives/edgar/data/2004711/000200471126000011/bsp_ex99-2.htm | 757,525 | 04f118132aca7fa9a33202619ce7d2ca8b65b4413ba72ff2ac6a8f74e5e1a82f |
+
+These are the primary sources for the case study in Section 6. They replace the GLM reviewers' text extractions, which were used only to cross-check. In these copies the 424B4 states:
+- annual organic revenue growth of 7% (2024) and 13% (2025);
+- a subscription share of 95%, 92% and 93% of revenue (2023 to 2025);
+- the pro forma revenue of $2,608,496 thousand.
