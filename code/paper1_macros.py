@@ -1061,6 +1061,10 @@ put('FamBN', str(V3['families']['headline14B']['n']))
 SB5 = V3['families']['headline14B']['survivors_5pct']
 SB10 = V3['families']['headline14B']['survivors_10pct']
 put('HolmDiffFive', WORD[sum('psi_op_E1_2020_25_minus_2010_19' in SB5[t] for t in SB5)])
+# the GAAP P95 decline: number of the four procedures (Holm under three p-value types, Romano-Wolf) under which it survives
+TOP_FAM = {a_: [t for t in S_ if 'p95chg_op_E1' in S_[t]] for a_, S_ in (('10', SB10), ('5', SB5))}
+put('TopFamTen', WORD[len(TOP_FAM['10'])] if len(TOP_FAM['10']) < 4 else 'four')
+put('TopFamFive', WORD[len(TOP_FAM['5'])] if len(TOP_FAM['5']) < 4 else 'four')
 F38 = V3['families']['table38']
 put('ContrN', str(F38['n'])); put('ContrNEst', str(F38['n_estimable']))
 ex = F38['intervals_excluding_h0']
@@ -1084,6 +1088,7 @@ for k_, nm_ in [('bnis', 'Bnis'), ('bni', 'Bni')]:
     num(f'BridgeLate{nm_}', vest(f'bridge_cash_{k_}_p95_2023_25'), 1)
 put('BridgeNBni', str(int(vest('bridge_cash_bni_n_2016_19')) + int(vest('bridge_cash_bni_n_2023_25'))))            # B13: 10% of the 36 estimable contrasts (was 38)
 num('ContrSpendHolm', [c for c in F38['contrasts'] if c['key'] == 'spend_ratio'][0]['holm_percentile'], 3, False)
+num('ContrLocalOpHolm', [c for c in F38['contrasts'] if c['key'] == 'slope_op_pooled'][0]['holm_basic'], 3, False)
 
 # ---- growth technology: the bounds on alpha (X - k) that each method gives (D-1)
 for e, tag in FOUR:
@@ -1431,8 +1436,8 @@ CLAIMS = [
     ('data: CoreWeave 2025 GAAP operating margin of about zero', abs(cw3.m_op) < 0.01),
     ('empirics: period slopes on the 0-60% window are not defined under E2 (cells too thin)',
      V3E['cone_op_slope_c90_w60_2020_25_minus_2010_19']['E2'].get('est') is None),
-    ('empirics: the P95 and capital-intensity headline statistics do not survive Holm at 5%',
-     in_none(SB5, 'p95chg_op_E1') and in_none(SB5, 'capint_cash_E1')),
+    ('empirics (re-estimated 3 Nov, R2 and C1): at 5% the GAAP P95 decline survives only Holm with normal p-values, and the '
+     'cash decline survives under no procedure', TOP_FAM['5'] == ['holm_normal'] and in_none(SB5, 'p95chg_cash_E1')),
     # empirics.tex
     ('empirics: the P95 decline holds in every variant', min(_falls) > 0),
     ('empirics (robustness): among the E1 rows of tab:robust, the two R2 reader samples give smaller P95 falls and steeper '
@@ -1442,17 +1447,13 @@ CLAIMS = [
          and max(vest(f'cone_{b}_slope_c90_w60', r_) for r_ in ('E1r2both', 'E1r2either'))
          < min(vest(f'cone_{b}_slope_c90_w60', v_) for v_, _ in ROWS_E1 if not v_.startswith('E1r2'))
          for b in ('op', 'cash'))),
-    ('empirics (A2): the GAAP P95 decline survives Holm at 10% under the normal and percentile intervals and Romano-Wolf '
-     'but not the basic interval (Holm p 0.054 to 0.208), and at 5% under none',
+    ('empirics (A2; text re-estimated 3 Nov): the GAAP decline "survives at a familywise level of 10% under the normal and '
+     'percentile types and under Romano and Wolf\'s procedure, but not under the basic type, and at 5% only under the normal '
+     'type" (TopFamTen three, TopFamFive one): Holm normal, percentile and Romano-Wolf below 0.10, Holm basic above; only Holm '
+     'normal below 0.05; its 90% interval excludes zero under all four interval types',
      all(FB['p95chg_op_E1'][t] < 0.10 for t in ('holm_normal', 'holm_percentile', 'romano_wolf'))
-     and FB['p95chg_op_E1']['holm_basic'] > 0.10 and in_none(SB5, 'p95chg_op_E1')),
-    ('empirics (editor text, round 3): the GAAP decline "survives at a familywise level of 10% under the normal and '
-     'percentile types, is at the 10% boundary under Romano and Wolf\'s procedure, does not survive under the basic type, and '
-     'at 5% survives under none": Holm normal and percentile below 0.10, Holm basic above, Romano-Wolf below 0.10 (its '
-     'distance from 0.10 is checked against the Monte Carlo error below), none below 0.05; its 90% interval excludes zero '
-     'under all four interval types',
-     all(FB['p95chg_op_E1'][t] < 0.10 for t in ('holm_normal', 'holm_percentile', 'romano_wolf'))
-     and FB['p95chg_op_E1']['holm_basic'] > 0.10 and in_none(SB5, 'p95chg_op_E1')
+     and FB['p95chg_op_E1']['holm_basic'] > 0.10 and TOP_FAM['5'] == ['holm_normal'] and FB['p95chg_op_E1']['holm_normal'] < 0.05
+     and len(TOP_FAM['10']) == 3 and M['TopFamTen'] == 'three' and M['TopFamFive'] == 'one'
      and types_pass('p95_change_op', lambda c: c[1] < 0) == 4),
     ('empirics (editor text): the cash decline is "not significant" after familywise correction: Holm (normal, percentile, '
      'basic) and Romano-Wolf all above 10%, although each of its four 90% intervals excludes zero before correction',
@@ -1463,20 +1464,24 @@ CLAIMS = [
     ('empirics: the P95 low year is 2024 and it recovered in 2025; the 2016-19 to 2025 interval includes zero',
      vest('p95_op_2024') == min(vest(f'p95_op_{y}') for y in range(2016, 2026)) and vest('p95_op_2025') > vest('p95_op_2024')
      and types_pass('p95_change_op_2016_19_to_2025', lambda c: c[0] < 0 < c[1]) == 4),
-    ('empirics (A4): composition (B) excludes zero under three of the four interval types (not the basic) on both bases; '
-     'within-bin (B) includes zero under all four; the size mix leaves the decline under all four',
-     all(types_pass(f'rw_{b}_composition_B', lambda c: c[1] < 0) == 3 and vci(f'rw_{b}_composition_B', 'E1') is not None
-         and vrec(f'rw_{b}_composition_B')['ci90_basic'][1] > 0
-         and types_pass(f'rw_{b}_within_B', lambda c: c[0] < 0 < c[1]) == 4
-         and types_pass(f'rw_{b}_within_size', lambda c: c[1] < 0) == 4 for b in ('op', 'cash'))),
+    ('empirics (A4; re-estimated 3 Nov): composition (B) excludes zero under the percentile and BC intervals on the GAAP '
+     'basis and under three of four (not the basic) after SBC; within-bin (B) includes zero under three of four (not the '
+     'basic) on both bases, so the bootstrap does not separate the two parts (their percentile intervals overlap); the size '
+     'mix leaves the decline under all four',
+     types_pass('rw_op_composition_B', lambda c: c[1] < 0) == 2 and vci('rw_op_composition_B')[1] < 0
+     and vrec('rw_op_composition_B')['ci90_bc'][1] < 0
+     and types_pass('rw_cash_composition_B', lambda c: c[1] < 0) == 3 and vrec('rw_cash_composition_B')['ci90_basic'][1] > 0
+     and all(types_pass(f'rw_{b}_within_B', lambda c: c[0] < 0 < c[1]) == 3 and vrec(f'rw_{b}_within_B')['ci90_basic'][1] < 0
+             and vci(f'rw_{b}_composition_B')[0] < vci(f'rw_{b}_within_B')[1]
+             and types_pass(f'rw_{b}_within_size', lambda c: c[1] < 0) == 4 for b in ('op', 'cash'))),
     ('empirics (A1): T(0) GAAP includes zero under all four interval types; T(20%) GAAP excludes zero under the basic, '
      'normal and BC intervals but not the percentile interval',
      types_pass('T_op_g00_change', lambda c: c[0] < 0 < c[1]) == 4
      and types_pass('T_op_g20_change', lambda c: c[1] < 0) == 3 and vci('T_op_g20_change')[0] < 0 < vci('T_op_g20_change')[1]),
-    ('empirics (A1): T(0) after SBC excludes zero under E1 with the percentile and basic intervals (not normal or BC) and in '
-     'two of the four views (percentile)',
+    ('empirics (A1; re-estimated 3 Nov): T(0) after SBC excludes zero under E1 with the percentile and normal intervals (not '
+     'basic or BC) and in two of the four views (percentile)',
      types_pass('T_cash_g00_change', lambda c: c[1] < 0) == 2 and vci('T_cash_g00_change')[1] < 0
-     and vrec('T_cash_g00_change')['ci90_basic'][1] < 0 and count_four('T_cash_g00_change', lambda c: c[1] < 0) == 2),
+     and vrec('T_cash_g00_change')['ci90_normal'][1] < 0 and count_four('T_cash_g00_change', lambda c: c[1] < 0) == 2),
     ('empirics: T(40%) has no interval under E1 and no estimate under E2',
      not V3E['T_op_g40_change']['E1']['estimable'] and V3E['T_op_g40_change']['E2'].get('est') is None),
     ('empirics [FLAG: test against a slope of -1, not of a zero null]: Psi slope above -1 in all four views, both bases, '
@@ -1488,16 +1493,15 @@ CLAIMS = [
     ('empirics: grid slopes all negative', max(grid_all) < 0),
     ('empirics: the local quantile is steeper than Psi in every view',
      all(vest(f'slope_{b}_pooled', e) < vest(f'cone_{b}_slope_c90_w60', e) for b in ('op', 'cash') for e, _ in FOUR)),
-    ('empirics (A3): GAAP steepening survives Holm at 10% under every procedure; its E1 interval excludes zero under all '
-     'four types; it holds in three of four views (E2 includes zero)',
+    ('empirics (A3; re-estimated 3 Nov): GAAP steepening survives Holm at 10% under every procedure; its E1 interval excludes '
+     'zero under all four types; its percentile interval excludes zero in all four views (PsiDiffOpCountNeg "all four")',
      in_all(FB10, 'psi_op_E1_2020_25_minus_2010_19')
      and types_pass('cone_op_slope_c90_w40_2020_25_minus_2010_19', lambda c: c[1] < 0) == 4
-     and vci('cone_op_slope_c90_w40_2020_25_minus_2010_19', 'E2')[1] > 0
-     and all(vci('cone_op_slope_c90_w40_2020_25_minus_2010_19', e)[1] < 0 for e in ('E1', 'E2imp4', 'E2imp8'))),
-    ('empirics: no cash steepening (E1 interval includes zero under the percentile, normal and BC intervals, not the basic; '
-     'positive in the other three views)',
-     types_pass('cone_cash_slope_c90_w40_2020_25_minus_2010_19', lambda c: c[0] < 0 < c[1]) == 3
-     and vrec('cone_cash_slope_c90_w40_2020_25_minus_2010_19')['ci90_basic'][1] < 0
+     and all(vci('cone_op_slope_c90_w40_2020_25_minus_2010_19', e)[1] < 0 for e in ('E1', 'E2', 'E2imp4', 'E2imp8'))
+     and M['PsiDiffOpCountNeg'] == 'all four'),
+    ('empirics (re-estimated 3 Nov): no cash steepening (E1 interval includes zero under all four interval types; positive '
+     'in the other three views)',
+     types_pass('cone_cash_slope_c90_w40_2020_25_minus_2010_19', lambda c: c[0] < 0 < c[1]) == 4
      and all(vest('cone_cash_slope_c90_w40_2020_25_minus_2010_19', e) > 0 for e in ('E2', 'E2imp4', 'E2imp8'))),
     ('empirics: the spend ratio is within 3.0 to 3.5 in the four views',
      3.0 <= half_up(min(vest('spend_ratio', e) for e, _ in FOUR), 1) and half_up(max(vest('spend_ratio', e) for e, _ in FOUR), 1) <= 3.5),
@@ -1523,10 +1527,10 @@ CLAIMS = [
     ('empirics (B13): the anchor test added to family B keeps Holm p below 10% under every type, below 5% only under '
      'normal and basic', all(HOLM_ANCHOR[t] < 0.10 for t in HOLM_ANCHOR) and HOLM_ANCHOR['holm_percentile'] > 0.05
      and HOLM_ANCHOR['holm_normal'] < 0.05 and HOLM_ANCHOR['holm_basic'] < 0.05),
-    ('empirics: no E1-E2 contrast survives Holm at 5%; at 10% only the spend ratio, percentile only',
+    ('empirics (re-estimated 3 Nov): no E1-E2 contrast survives Holm at 5%; at 10% only the local GAAP slope, basic only',
      all(not F38['survivors_5pct'][t] for t in F38['survivors_5pct'])
-     and F38['survivors_10pct']['holm_percentile'] == ['spend_ratio']
-     and not any(F38['survivors_10pct'][t] for t in ('holm_normal', 'holm_basic', 'romano_wolf'))),
+     and F38['survivors_10pct']['holm_basic'] == ['slope_op_pooled']
+     and not any(F38['survivors_10pct'][t] for t in ('holm_normal', 'holm_percentile', 'romano_wolf'))),
 ]
 # horizons.tex and levers_by_position.tex: qualitative statements about the calibration (notes/calibration_results.json)
 # and the generated lever table (sections/tables/levers_position_macros.tex, code/playbook/run_archetypes.py)
@@ -1668,16 +1672,16 @@ CLAIMS += [
      'half of its small-share value, while optimal growth spend falls below a tenth of its small-share value',
      _VS['near_saturation']['lo'] > 0.5 * _vpp[0.01]
      and _VS['profile']['0.95']['sigma'] < 0.1 * _VS['profile']['0.01']['sigma']),
-    ('empirics (GLM-F5): with 18 or 20 tests the 2020-25 steepening keeps Holm p below 10% under every type; at 5% it '
-     'survives only under the normal type with 18 tests; the anchor fails 10% under the percentile type in both families',
-     all(HOLM_CF[(f_, t)]['diff'] < 0.10 for f_ in FAM_CF for t in ('normal', 'percentile', 'basic'))
-     and HOLM_CF[('Eighteen', 'normal')]['diff'] < 0.05
-     and all(HOLM_CF[(f_, t)]['diff'] >= 0.05 for f_, t in [('Eighteen', 'percentile'), ('Eighteen', 'basic'),
-                                                            ('Twenty', 'normal'), ('Twenty', 'percentile'), ('Twenty', 'basic')])
+    ('empirics (GLM-F5; re-estimated 3 Nov): "the survival statements depend on the family": with 18 or 20 tests the 2020-25 '
+     'steepening keeps Holm p below 10% under the normal and basic types but not the percentile type (in family B it '
+     'survives at 10% under every procedure), and below 5% under the normal and basic types in both families; the anchor '
+     'fails 10% under the percentile type in both families',
+     all(HOLM_CF[(f_, t)]['diff'] < 0.05 for f_ in FAM_CF for t in ('normal', 'basic'))
+     and all(HOLM_CF[(f_, 'percentile')]['diff'] > 0.10 for f_ in FAM_CF) and in_all(FB10, 'psi_op_E1_2020_25_minus_2010_19')
      and all(HOLM_CF[(f_, 'percentile')]['anchor'] > 0.10 for f_ in FAM_CF)),
-    ('empirics (GPT-14): the Romano-Wolf p of the GAAP P95 decline is below 0.10 but within one Monte Carlo standard error '
-     'of it at the stored number of draws (its side of 0.10 is not settled)',
-     _rwp < 0.10 and abs(0.10 - _rwp) < math.sqrt(_rwp * (1 - _rwp) / _B3)),
+    ('empirics (GPT-14; re-estimated 3 Nov): the Romano-Wolf p of the GAAP P95 decline is below 0.10 by more than two Monte '
+     'Carlo standard errors at the stored number of draws, so the text states that it survives at 10% under that procedure',
+     _rwp < 0.10 and (0.10 - _rwp) > 2 * math.sqrt(_rwp * (1 - _rwp) / _B3)),
     ('horizons (GLM-M11): counting failed attempts raises the low end of the compute-share range and of the threshold range',
      CCR['lo'] > CCR['lo_successful_runs'] and CCR['G']['lo'][0] > CCR['G']['lo_successful_runs'][0]),
     ('horizons (GLM-M11, GPT-22; units fixed 3 Nov): the floor of the compute share is the labor share times compute per '

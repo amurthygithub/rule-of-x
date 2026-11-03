@@ -1,5 +1,9 @@
-ok   data, appendix and discussion: R2 is a sensitivity on the named firms only, not applied to the main sample
-ok   data: the R2 classifier classes exactly Activision, Bally, EA and PLAYSTUDIOS non-software and misses THQ, Take-Two, Roblox, CoreWeave and Unity
+ok   data, appendix and discussion: R2 applies to the main sample by the rule fixed in advance, on the business descriptions of every core registrant
+ok   data: the R2 classifier classes exactly Bally and Inspired (gambling) and Activision, Changyou, EA, GCL Global, PLAYSTUDIOS and Snail (games) as not software, and misses THQ, Take-Two, Roblox, Unity and CoreWeave (a partial check)
+ok   data and robustness table: the independent readings are a sensitivity (rows of tab:robust), not part of the rule
+ok   data: both readers class all firms the classifier excludes as not software, and also THQ, Take-Two, Roblox and CoreWeave; the firms only the readers exclude include IT services, hardware, telecommunications, payments, online education, advertising and e-commerce firms
+ok   appendix: Table tab:anchor-firms lists exactly the firm-years of the E1 anchor in notes/calibration_anchor_v3.json
+ok   appendix (data audit): no value of the seeded sample differs from the face statements; Box fiscal 2023 capitalized software is 16,561 thousand from its filing
 ok   data and discussion: R5 is a flag and sensitivity, not an exclusion; foreign filers not tested
 ok   data: the R5 flag names Meditech, SunGard, Infor and Epicor among its firms
 ok   data: R3 applied with XBRL and filing text; no XBRL firm-year reaches the threshold; the largest share is SINA 2015
@@ -9,23 +13,23 @@ ok   data: adding back interest and cash taxes lifts P95 by roughly 5 points in 
 ok   data: interest alone moves P95 by less than one point
 ok   data: CoreWeave 2025 GAAP operating margin of about zero
 ok   empirics: period slopes on the 0-60% window are not defined under E2 (cells too thin)
-ok   empirics: the P95 and capital-intensity headline statistics do not survive Holm at 5%
+ok   empirics (re-estimated 3 Nov, R2 and C1): at 5% the GAAP P95 decline survives only Holm with normal p-values, and the cash decline survives under no procedure
 ok   empirics: the P95 decline holds in every variant
-ok   empirics (A2): the GAAP P95 decline survives Holm at 10% under the normal and percentile intervals and Romano-Wolf but not the basic interval (Holm p 0.054 to 0.208), and at 5% under none
-ok   empirics (editor text, round 3): the GAAP decline "survives at a familywise level of 10% under the normal and percentile types, is at the 10% boundary under Romano and Wolf's procedure, does not survive under the basic type, and at 5% survives under none": Holm normal and percentile below 0.10, Holm basic above, Romano-Wolf below 0.10 (its distance from 0.10 is checked against the Monte Carlo error below), none below 0.05; its 90% interval excludes zero under all four interval types
+ok   empirics (robustness): among the E1 rows of tab:robust, the two R2 reader samples give smaller P95 falls and steeper Psi slopes than every other E1 row, on both bases
+ok   empirics (A2; text re-estimated 3 Nov): the GAAP decline "survives at a familywise level of 10% under the normal and percentile types and under Romano and Wolf's procedure, but not under the basic type, and at 5% only under the normal type" (TopFamTen three, TopFamFive one): Holm normal, percentile and Romano-Wolf below 0.10, Holm basic above; only Holm normal below 0.05; its 90% interval excludes zero under all four interval types
 ok   empirics (editor text): the cash decline is "not significant" after familywise correction: Holm (normal, percentile, basic) and Romano-Wolf all above 10%, although each of its four 90% intervals excludes zero before correction
 ok   empirics (A2): the cash P95 decline fails Holm at 10% under every interval type and Romano-Wolf
 ok   empirics: the P95 low year is 2024 and it recovered in 2025; the 2016-19 to 2025 interval includes zero
-ok   empirics (A4): composition (B) excludes zero under three of the four interval types (not the basic) on both bases; within-bin (B) includes zero under all four; the size mix leaves the decline under all four
+ok   empirics (A4; re-estimated 3 Nov): composition (B) excludes zero under the percentile and BC intervals on the GAAP basis and under three of four (not the basic) after SBC; within-bin (B) includes zero under three of four (not the basic) on both bases, so the bootstrap does not separate the two parts (their percentile intervals overlap); the size mix leaves the decline under all four
 ok   empirics (A1): T(0) GAAP includes zero under all four interval types; T(20%) GAAP excludes zero under the basic, normal and BC intervals but not the percentile interval
-ok   empirics (A1): T(0) after SBC excludes zero under E1 with the percentile and basic intervals (not normal or BC) and in two of the four views (percentile)
+ok   empirics (A1; re-estimated 3 Nov): T(0) after SBC excludes zero under E1 with the percentile and normal intervals (not basic or BC) and in two of the four views (percentile)
 ok   empirics: T(40%) has no interval under E1 and no estimate under E2
 ok   empirics [FLAG: test against a slope of -1, not of a zero null]: Psi slope above -1 in all four views, both bases, and survives Holm at 5%
 ok   empirics: Psi slope negative does not survive Holm at 5% or 10%
 ok   empirics: grid slopes all negative
 ok   empirics: the local quantile is steeper than Psi in every view
-ok   empirics (A3): GAAP steepening survives Holm at 10% under every procedure; its E1 interval excludes zero under all four types; it holds in three of four views (E2 includes zero)
-ok   empirics: no cash steepening (E1 interval includes zero under the percentile, normal and BC intervals, not the basic; positive in the other three views)
+ok   empirics (A3; re-estimated 3 Nov): GAAP steepening survives Holm at 10% under every procedure; its E1 interval excludes zero under all four types; its percentile interval excludes zero in all four views (PsiDiffOpCountNeg "all four")
+ok   empirics (re-estimated 3 Nov): no cash steepening (E1 interval includes zero under all four interval types; positive in the other three views)
 ok   empirics: the spend ratio is within 3.0 to 3.5 in the four views
 ok   empirics: the size gradient interval includes zero in every view, with and without period effects
 ok   empirics: the capital-intensity gap vanishes with capex added back and with the firm-median sort
@@ -35,7 +39,7 @@ ok   empirics: gross-margin part of the gap includes zero in every view under th
 ok   empirics [FLAG: tautological margin-gap tests; the top decile minus the middle is positive by construction]: the average gap and the fast-band S&M part survive Holm at 5%
 ok   empirics: anchor Pi_lb above zero and Pi_ub including zero in all four views, and under all four interval types in E1
 ok   empirics (B13): the anchor test added to family B keeps Holm p below 10% under every type, below 5% only under normal and basic
-ok   empirics: no E1-E2 contrast survives Holm at 5%; at 10% only the spend ratio, percentile only
+ok   empirics (re-estimated 3 Nov): no E1-E2 contrast survives Holm at 5%; at 10% only the local GAAP slope, basic only
 ok   anchor (empirics): netted median surplus above zero in all four views, E1 lower end near zero (under 1 point)
 ok   horizons: the 2028 compute share is above the 2025-prices value and the 2031 and 2036 values (rises, then falls)
 ok   horizons: pass-through raises every central threshold (2025 prices and each horizon)
@@ -70,8 +74,8 @@ ok   horizons (GPT-4): the exact recurrence embeds 99% of the program in the sam
 ok   abstract, summary (GPT-9): the 2036 score net of the transitions in flight is below the durable score
 ok   model (GLM-F1, GPT-2): in the worked example v'(s) falls from 1% to 10% to 50% of the cap, reaches an interior minimum between 70% and 90% of the cap, then rises toward the never-spend multiple (m0 - kG)/(r - G) (within 1% at 99.99% of the cap, and v'(0.99 sbar) > v'(0.5 sbar)), stays below its 1% value at every share from 50% on, and lies below the revenue multiple v/s at every share
 ok   horizons (GLM-F1, Section 7.4): near saturation the retention gain per point (v' - k with k = 0) is still more than half of its small-share value, while optimal growth spend falls below a tenth of its small-share value
-ok   empirics (GLM-F5): with 18 or 20 tests the 2020-25 steepening keeps Holm p below 10% under every type; at 5% it survives only under the normal type with 18 tests; the anchor fails 10% under the percentile type in both families
-ok   empirics (GPT-14): the Romano-Wolf p of the GAAP P95 decline is below 0.10 but within one Monte Carlo standard error of it at the stored number of draws (its side of 0.10 is not settled)
+ok   empirics (GLM-F5; re-estimated 3 Nov): "the survival statements depend on the family": with 18 or 20 tests the 2020-25 steepening keeps Holm p below 10% under the normal and basic types but not the percentile type (in family B it survives at 10% under every procedure), and below 5% under the normal and basic types in both families; the anchor fails 10% under the percentile type in both families
+ok   empirics (GPT-14; re-estimated 3 Nov): the Romano-Wolf p of the GAAP P95 decline is below 0.10 by more than two Monte Carlo standard errors at the stored number of draws, so the text states that it survives at 10% under that procedure
 ok   horizons (GLM-M11): counting failed attempts raises the low end of the compute-share range and of the threshold range
 ok   horizons (GLM-M11, GPT-22; units fixed 3 Nov): the floor of the compute share is the labor share times compute per dollar of labor at the cost per completed task, below that kappa itself, and the top is the value test (c_c = s_L)
 ok   horizons (GLM-M11): one range for the compute share at 2025 prices: the text's scenario range is the calibration's bounds, and the central share lies inside it
@@ -79,4 +83,4 @@ ok   horizons (GLM-M11): one range for the compute share at 2025 prices: the tex
 # Interval claims are checked under the percentile, basic, normal and BC 90% intervals (TYPES4); Holm under the
 # normal, percentile and basic p-values and Romano-Wolf (the outputs carry no BC p-value).
 # FLAGGED family-B tests (A2): psi_op_E1_vs_m1 (slope against -1); psi_cash_E1_vs_m1 (slope against -1); gap_E1 (tautological margin gap); gap_fast_sm_E1 (tautological margin gap)
-# Family B with the anchor test (13 estimable tests + the anchor; the referee counted 15), Holm p of the anchor: holm_normal 0.006, holm_percentile 0.084, holm_basic 0.028
+# Family B with the anchor test (13 estimable tests + the anchor; the referee counted 15), Holm p of the anchor: holm_normal 0.003, holm_percentile 0.080, holm_basic 0.028

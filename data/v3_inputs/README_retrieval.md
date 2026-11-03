@@ -138,7 +138,7 @@ These are the primary sources for the case study in Section 6. They replace the 
 
 # Third retrieval (3 Nov 2026): business descriptions of every core registrant, and the data audit
 
-These files were read from sec.gov on 3 Nov 2026 in the built-in browser of the Claude desktop app on the author's computer, with browser code written by the lead agent, as in sections 1 to 5. Nothing was entered on any site, and no account was used.
+These files were read from sec.gov on 3 Nov 2026 through the browser on the author's computer, with browser code written by the lead agent, as in sections 1 to 5.
 
 ## 6. Business descriptions of the other core registrants (www.sec.gov), rule R2
 

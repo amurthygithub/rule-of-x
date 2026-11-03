@@ -919,6 +919,8 @@
     "software": 5
    }
   },
+  "n_named_file": 16,
+  "n_other_file": 277,
   "sources": {
    "named": "data/v3_inputs/business_descriptions_named.json (29 Oct 2026)",
    "others": "data/v3_inputs/raw/business_descriptions_raw_2026-11-03.json (3 Nov 2026)",

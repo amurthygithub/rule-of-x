@@ -14,13 +14,14 @@ published). Numbers are written by the script; do not edit by hand. Review sourc
   and business descriptions through the author's browser (provenance and transfer hashes in
   `data/v3_inputs/README_retrieval.md`). SEC frames hold only non-dimensional facts and keep the latest filed value for
   each company and period, so these inputs are not first reported, unlike the rest of the panel.
-- Applied to every firm-year: R1 (first reported); R3 (captive related-party revenue: XBRL related-party revenue, and the
-  filing text where it was read); R4 (acquisition flag, criteria a, b and c).
+- Applied to every firm-year: R1 (first reported); R2 (business classification, by the keyword classifier fixed before
+  any description was read; since 3 Nov 2026 the descriptions of every core registrant exist, in
+  `data/v3_inputs/business_descriptions.json`); R3 (captive related-party revenue: XBRL related-party revenue, and the
+  filing text where it was read); R4 (acquisition flag, criteria a, b and c); C1 (capitalized software read from the
+  cash-flow statement where the XBRL elements give 0).
 - Flag and sensitivity, not an exclusion: R5 (no listed equity), as designed.
-- Sensitivity only: R2 (business classification), run on the 16 firms the review panels named, the only firms whose
-  descriptions were retrieved. A rule applied only to reviewer-named firms must not change the main sample, so
-  `data/v3_inputs/business_descriptions.json` (the file `build_panel_v3.py` reads to apply R2 to the main sample) is not
-  created; applying R2 as a rule needs the description of every registrant.
+- Sensitivity only: the classes two independent readers gave the business descriptions (R2), and the 16 firms the
+  review panels named.
 
 ## 2. Rules and the firm-years they affect (v2 core sample: 1,929 firm-years, 293 firms)
 
@@ -38,17 +39,19 @@ years, so all 40 are excluded from the primary sample and added back in the sens
 - Before the first annual report: APPIAN CORP (2016); AVALARA, INC. (2017); Alarm.com Holdings, Inc. (2014); Altair Engineering Inc. (2016); Anaplan, Inc. (2017); Apptio Inc (2015); Atlassian Corp (2022); AvePoint, Inc. (2020); AvidXchange Holdings, Inc. (2020); BENTLEY SYSTEMS INC (2019); BOX INC (2014); Bandwidth Inc. (2016); Block, Inc. (2015); CCC Intelligent Solutions Holdings Inc. (2020); CISION LTD. (2016); CVENT HOLDING CORP. (2020); Carbon Black, Inc. (2017); Cellebrite DI Ltd. (2020); Cerence Inc. (2019); Certara, Inc. (2020); Clear Secure, Inc. (2020); Clearwater Analytics Holdings, Inc. (2020); Cloudera, Inc. (2016); Cloudflare, Inc. (2018); Cognyte Software Ltd. (2019); Confluent, Inc. (2020); Consensus Cloud Solutions, Inc. (2020); Coursera, Inc. (2020); CrowdStrike Holdings, Inc. (2018); DATTO HOLDING CORP. (2019); DIRTT ENVIRONMENTAL SOLUTIONS LTD (2018); DOCUSIGN, INC. (2017); DROPBOX, INC. (2017); DUCK CREEK TECHNOLOGIES, INC. (2020); Datadog, Inc. (2018); Dayforce, Inc. (2017); Dynatrace, Inc. (2018); Endurance International Group Holdings, Inc. (2013); EverCommerce Inc. (2020); ExactTarget, Inc. (2011); Fastly, Inc. (2018); Figma, Inc. (2024); ForgeRock, Inc. (2020); Freshworks Inc. (2020); Guidewire Software, Inc. (2011); Infor, Inc. (2011); Informatica Inc. (2020); Inspired Entertainment, Inc. (2016); Intapp, Inc. (2021); Jamf Holding Corp. (2019); Klaviyo, Inc. (2022); MARKETWISE, INC. (2020); MULESOFT, INC (2016); Marqeta, Inc. (2020); McAfee Corp. (2019); MeridianLink, Inc. (2020); MiX Telematics Ltd (2018); Mobileye Global Inc. (2021); N-able, Inc. (2020); Navan, Inc. (2024); Netskope Inc (2024); Nutanix, Inc. (2016); OneStream, Inc. (2023); PLAYSTUDIOS, Inc. (2020); POWERSCHOOL HOLDINGS, INC. (2020); PROCORE TECHNOLOGIES, INC. (2020); Palantir Technologies Inc. (2019); Ping Identity Holding Corp. (2018); Pivotal Software, Inc. (2017); Qualtrics International Inc. (2020); Roblox Corp (2020); Rubrik, Inc. (2023); SailPoint, Inc. (2024); Sailpoint Technologies Holdings, Inc. (2017); SecureWorks Corp (2015); ServiceTitan, Inc. (2023); Slack Technologies, Inc. (2018); Sprinklr, Inc. (2020); Squarespace, Inc. (2020); Sumo Logic, Inc. (2019); Talend S.A. (2017); Taoping Inc. (2011); Tenable Holdings, Inc. (2017); Tuya Inc. (2020); UiPath, Inc. (2020); Unity Software Inc. (2019); VTEX (2024); Vertex, Inc. (2019); Via Transportation, Inc. (2024); WM TECHNOLOGY, INC. (2020); WalkMe Ltd. (2020); Xperi Inc. (2021); Xunlei Ltd (2013); ZUORA INC (2017); Zeta Global Holdings Corp. (2020); ZoomInfo Technologies Inc. (2019); i3 Verticals, Inc. (2017); nCino, Inc. (2020)
 - Later vintage only: AVID TECHNOLOGY, INC. (2012); DESCARTES SYSTEMS GROUP INC (2024)
 
-**R2, business classification (named firms only: sensitivity; main sample not classified).** The principal business is read from the opening of Item 1 of
+**R2, business classification (applied to the main sample).** The principal business is read from the opening of Item 1 of
 the latest 10-K (Item 4.B of a 20-F; the AIF of a 40-F) and classified by keyword counts as interactive entertainment,
 gambling, compute infrastructure or software. A firm is excluded when a non-software class has at least three keyword
 hits and more hits than the software class (code in `build_panel_v3.py`). SIC codes cannot do this alone: every core
-firm is SIC 7372 by construction, and EDGAR codes are current, not historical. The panels named these firms, which
-enter only sensitivities: BALLY TECHNOLOGIES, INC. (casino gaming (IB)); ELECTRONIC ARTS INC. (games (IB, FR)); Activision Blizzard, Inc. (games (IB, FR)); THQ INC (games (FR)); 3D SYSTEMS CORP (3D printers (FR)); TAKE TWO INTERACTIVE SOFTWARE INC (games (IB, FR)); Roblox Corp (games (IB, FR)); DIRTT ENVIRONMENTAL SOLUTIONS LTD (modular interiors (FR)); Xunlei Ltd (internet services (IB)); Block, Inc. (payments, bitcoin revenue gross (FR)); Mobileye B.V. (driver-assistance chips (FR)); CoreWeave, Inc. (compute infrastructure (IB)); Xperi Inc. (licensing and devices (FR)); Unity Software Inc. (game engine (FR)); PLAYSTUDIOS, Inc. (games (IB, FR)); Mobileye Global Inc. (driver-assistance chips (FR)). They carry 120 firm-years of the v3 sample.
-The classifier, run as defined before the descriptions were read (keyword lists unchanged), classes 4 of the 16 named firms non-software: Activision Blizzard, Inc. (interactive_entertainment); BALLY TECHNOLOGIES, INC. (gambling); ELECTRONIC ARTS INC. (interactive_entertainment); PLAYSTUDIOS, Inc. (interactive_entertainment) (38 v3 firm-years). It classes the others as software. Its keyword lists miss game publishers and an AI-cloud provider whose openings do not use the listed phrases (non-software hits below three: THQ INC {'interactive_entertainment': 4, 'gambling': 0, 'compute_infrastructure': 0, 'software': 5}; TAKE TWO INTERACTIVE SOFTWARE INC {'interactive_entertainment': 2, 'gambling': 2, 'compute_infrastructure': 0, 'software': 5}; Roblox Corp {'interactive_entertainment': 1, 'gambling': 0, 'compute_infrastructure': 0, 'software': 22}; CoreWeave, Inc. {'interactive_entertainment': 0, 'gambling': 0, 'compute_infrastructure': 2, 'software': 20}; Unity Software Inc. {'interactive_entertainment': 2, 'gambling': 0, 'compute_infrastructure': 0, 'software': 13}), and it has no class for hardware, payments or interiors, so 3D Systems, DIRTT, Block, Mobileye, Xperi and Xunlei are software by default. The sensitivity `r2named` drops the firms it classes non-software; `clean` drops all named firms. Applying R2 as a rule needs the description of every registrant.
+firm is SIC 7372 by construction, and EDGAR codes are current, not historical. The panels named these firms: BALLY TECHNOLOGIES, INC. (casino gaming (IB)); ELECTRONIC ARTS INC. (games (IB, FR)); Activision Blizzard, Inc. (games (IB, FR)); THQ INC (games (FR)); 3D SYSTEMS CORP (3D printers (FR)); TAKE TWO INTERACTIVE SOFTWARE INC (games (IB, FR)); Roblox Corp (games (IB, FR)); DIRTT ENVIRONMENTAL SOLUTIONS LTD (modular interiors (FR)); Xunlei Ltd (internet services (IB)); Block, Inc. (payments, bitcoin revenue gross (FR)); Mobileye B.V. (driver-assistance chips (FR)); CoreWeave, Inc. (compute infrastructure (IB)); Xperi Inc. (licensing and devices (FR)); Unity Software Inc. (game engine (FR)); PLAYSTUDIOS, Inc. (games (IB, FR)); Mobileye Global Inc. (driver-assistance chips (FR)).
+They carry 82 firm-years of the v3 sample; the sensitivity `clean` drops all of them.
+Applied to the main sample since 3 Nov 2026: the descriptions of all 293 core registrants exist (data/v3_inputs/business_descriptions_named.json (29 Oct 2026) for the named firms, data/v3_inputs/raw/business_descriptions_raw_2026-11-03.json (3 Nov 2026) for the others, merged into data/v3_inputs/business_descriptions.json (code/audit/r2_descriptions.py)). The classifier, run as defined before any description was read (keyword lists unchanged), classes 8 registrants non-software: BALLY TECHNOLOGIES, INC. (gambling); ELECTRONIC ARTS INC. (interactive_entertainment); Activision Blizzard, Inc. (interactive_entertainment); Changyou.com Ltd (interactive_entertainment); Inspired Entertainment, Inc. (gambling); PLAYSTUDIOS, Inc. (interactive_entertainment); Snail, Inc. (interactive_entertainment); GCL Global Holdings Ltd (interactive_entertainment). They carry 60 v2 core firm-years, of which 56 are excluded under R2 (the others are already excluded by R1); by period {'2010-15': 21, '2016-19': 13, '2020-22': 12, '2023-25': 10}. It is a partial check: its keyword lists miss game publishers and an AI-cloud provider whose openings do not use the listed phrases (named firms with non-software hits below three: THQ INC {'interactive_entertainment': 4, 'gambling': 0, 'compute_infrastructure': 0, 'software': 5}; TAKE TWO INTERACTIVE SOFTWARE INC {'interactive_entertainment': 2, 'gambling': 2, 'compute_infrastructure': 0, 'software': 5}; Roblox Corp {'interactive_entertainment': 1, 'gambling': 0, 'compute_infrastructure': 0, 'software': 22}; CoreWeave, Inc. {'interactive_entertainment': 0, 'gambling': 0, 'compute_infrastructure': 2, 'software': 20}; Unity Software Inc. {'interactive_entertainment': 2, 'gambling': 0, 'compute_infrastructure': 0, 'software': 13}), and it has no class for hardware, payments or interiors, so such firms are software by default. Sensitivity: two readers (LLM agents on different models, blind to all outcome data) classed every description as software, interactive entertainment, gambling, compute infrastructure or other non-software (data/v3_inputs/business_class_reader_a.csv, data/v3_inputs/business_class_reader_b.csv). Not software: reader A 51, reader B 51, both 49, either 53 of 293; they agree on 289 (Cohen's kappa 0.95). Of the 8 firms the classifier excludes, 8 are not software for both readers. The sensitivity `r2both` drops from the main sample the firms both readers class as not software (223 firm-years of 40 firms), `r2either` those either reader does (237 firm-years of 44 firms). Both readers: 2U, LLC; 3D SYSTEMS CORP; Activision Blizzard, Inc.; BALLY TECHNOLOGIES, INC.; Backblaze, Inc.; Bandwidth Inc.; BigBear.ai Holdings, Inc.; Block, Inc.; CLPS Inc; CareCloud, Inc.; Changyou.com Ltd; China Digital TV Holding Co., Ltd.; Clear Secure, Inc.; CoreWeave, Inc.; Coursera, Inc.; DIRTT ENVIRONMENTAL SOLUTIONS LTD; ELECTRONIC ARTS INC.; Endurance International Group Holdings, Inc.; Exzeo Group, Inc.; Fastly, Inc.; Fusion Connect, Inc.; GCL Global Holdings Ltd; GRID DYNAMICS HOLDINGS, INC.; Global-E Online Ltd.; Hello Group Inc.; Inspired Entertainment, Inc.; Link Motion Inc.; MAGIC SOFTWARE ENTERPRISES LTD; MARKETWISE, INC.; Marqeta, Inc.; Meridian Holdings Inc./NV; Mobileye B.V.; Mobileye Global Inc.; NATIONAL INSTRUMENTS CORP; NETWORK ENGINES INC; PLAYSTUDIOS, Inc.; Roblox Corp; Rubicon Technologies, Inc.; SINA CORP; SS&C Technologies Holdings Inc; SSI Investments II Ltd; Skillsoft Corp.; Snail, Inc.; TAKE TWO INTERACTIVE SOFTWARE INC; THQ INC; Taoping Inc.; WEB.COM GROUP, INC.; WM TECHNOLOGY, INC.; Xunlei Ltd.
+
+**C1, capitalized software from the filing (applied).** The panel's capitalized software is PaymentsForSoftware plus PaymentsToDevelopSoftware, so a filer that tags it with a company-specific element shows 0 and its free cash flow is overstated. The data audit of 3 Nov 2026 read the cash-flow statement of every firm-year with cap_sw = 0 and capex reported (code/audit/capsw_scan_parse.py). Where the XBRL value is 0 and the statement shows a capitalized-software outflow on its own line, cap_sw takes the filing value (data/v3_inputs/capitalized_software_filings.json (code/audit/capsw_scan_parse.py; cash-flow statements read 3 Nov 2026)) and the free-cash-flow margins, scores and capital intensity are recomputed: 109 v3 firm-years of 23 firms, by period {'2010-15': 45, '2016-19': 27, '2020-22': 18, '2023-25': 19}; median 1.58% of revenue, at most 9.21%. Column cap_sw_source says which value was used; cap_sw_xbrl keeps the XBRL value. Check: Box fiscal 2023 (fiscal year ending 2024-01-31), cap_sw 16,561 thousand.
 
 **R3, captive related-party revenue (applied).** A firm-year is excluded when related-party revenue is at least 50% of
 revenue: XBRL RevenueFromRelatedParties or RelatedPartyTransactionRevenuesFromTransactionsWithRelatedParty over revenue,
-or a filing statement that substantially all revenue comes from related parties. XBRL related-party revenue (SEC frames): 81 v2 core firm-years of 25 firms report it (74 in v3); 0 reach 50% of revenue. The largest shares: SINA CORP 2015: 26.9%; SINA CORP 2014: 25.4%; SINA CORP 2018: 15.1%; SINA CORP 2016: 14.5%; SINA CORP 2017: 13.4%. RevenueFromRelatedParties is absent from frames for 2024-26 (retired) and the alternative element for 2014-26 except 2023, so recent captive filers can still be missed by the XBRL test; Exzeo 2025 is caught by its filing text.
+or a filing statement that substantially all revenue comes from related parties. XBRL related-party revenue (SEC frames): 81 v2 core firm-years of 25 firms report it (72 in v3); 0 reach 50% of revenue. The largest shares: SINA CORP 2015: 26.9%; SINA CORP 2014: 25.4%; SINA CORP 2018: 15.1%; SINA CORP 2016: 14.5%; SINA CORP 2017: 13.4%. RevenueFromRelatedParties is absent from frames for 2024-26 (retired) and the alternative element for 2014-26 except 2023, so recent captive filers can still be missed by the XBRL test; Exzeo 2025 is caught by its filing text.
 Excluded: Exzeo Group, Inc. (2025). The FY2025 10-K states that substantially all revenue came from customers affiliated with HCI, and that
 there was no meaningful revenue from non-HCI affiliated customers in fiscal 2025. Verified against IM T5 and IB V24.
 
@@ -75,9 +78,9 @@ Disclosure: criterion (b) was chosen among five variants (spend floor 5% or 10%;
 median) after listing the firm-years each would flag and before any v3 estimate was computed. The 5% raw variant flagged
 43, mostly recession-rebound years of 2010 and organic surges such as Roblox 2021.
 
-v3 core sample: 1,788 firm-years, 292 firms, by period {'2010-15': 465, '2016-19': 418, '2020-22': 458, '2023-25': 447}.
+v3 core sample: 1,732 firm-years, 284 firms, by period {'2010-15': 444, '2016-19': 405, '2020-22': 446, '2023-25': 437}.
 
-**R5, no listed equity (item a; flag and sensitivity, not an exclusion).** Rule (applied as a flag): the sign of dei:EntityPublicFloat on the 10-K cover page by fiscal year. The float is measured at the end of the second fiscal quarter, so a zero float also occurs in the first annual report after an IPO or spin-off. For a 10-K firm-year with a float fact that is not positive: (i) IPO or spin-off timing when the firm reports a positive float in one of the next two fiscal years; (ii) IPO timing, unresolved, when the year is the firm's first annual report and its only float fact; (iii) otherwise no listed equity. An untagged year takes the status no listed equity when the firm's nearest float facts on each available side are no listed equity. 20-F and 40-F reports are not tested: their cover pages report shares outstanding, not public float. Status counts in v3: {'listed': 1534, 'foreign_not_tested': 186, 'no_listed_equity': 24, 'ipo_timing': 20, 'unknown': 19, 'ipo_timing_unresolved': 3, 'no_listed_equity_untagged': 2}. No listed equity (26 v3 firm-years): Epicor Software Corp (2013, 2014); GXS Worldwide, Inc. (2011, 2012); Infor, Inc. (2012, 2013, 2016, 2017, 2018); Medical Information Technology, Inc. (2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019); SERENA SOFTWARE INC (2011, 2012); SSI Investments II Ltd (2012, 2013); SunGard (2011, 2012, 2013, 2014). IPO or spin-off timing, not debt-only: BENTLEY SYSTEMS INC 2020; CCC Intelligent Solutions Holdings Inc. 2020; Clearwater Analytics Holdings, Inc. 2021; Consensus Cloud Solutions, Inc. 2021; DATTO HOLDING CORP. 2020; Duolingo, Inc. 2021; Endurance International Group Holdings, Inc. 2013; EngageSmart, Inc. 2021; EverCommerce Inc. 2021; ForgeRock, Inc. 2021; Jamf Holding Corp. 2020; KALTURA INC 2021; MARKETWISE, INC. 2020; MeridianLink, Inc. 2021; N-able, Inc. 2021; PAYCOR HCM, INC. 2021; POWERSCHOOL HOLDINGS, INC. 2021; Ping Identity Holding Corp. 2019; ServiceTitan, Inc. 2024; SolarWinds Corp 2018; Vertex, Inc. 2020; Xperi Inc. 2022; i3 Verticals, Inc. 2018. Unresolved (2025 IPOs; their second annual report does not exist yet): Figma, Inc. 2025; Netskope Inc 2025; Via Transportation, Inc. 2025. Foreign filers with a zero float fact, not tested: AutoNavi Holdings Ltd, Changyou.com Ltd, RETALIX LTD; their Section 12(b) listing is on the 20-F cover page, which is not in the inputs. The sensitivity `nolist` drops the flagged firm-years; `nodebt` keeps the earlier comparison for the four filers the finance referee named. Current EDGAR names
+**R5, no listed equity (item a; flag and sensitivity, not an exclusion).** Rule (applied as a flag): the sign of dei:EntityPublicFloat on the 10-K cover page by fiscal year. The float is measured at the end of the second fiscal quarter, so a zero float also occurs in the first annual report after an IPO or spin-off. For a 10-K firm-year with a float fact that is not positive: (i) IPO or spin-off timing when the firm reports a positive float in one of the next two fiscal years; (ii) IPO timing, unresolved, when the year is the firm's first annual report and its only float fact; (iii) otherwise no listed equity. An untagged year takes the status no listed equity when the firm's nearest float facts on each available side are no listed equity. 20-F and 40-F reports are not tested: their cover pages report shares outstanding, not public float. Status counts in v3: {'listed': 1488, 'foreign_not_tested': 177, 'no_listed_equity': 24, 'ipo_timing': 20, 'unknown': 18, 'ipo_timing_unresolved': 3, 'no_listed_equity_untagged': 2}. No listed equity (26 v3 firm-years): Epicor Software Corp (2013, 2014); GXS Worldwide, Inc. (2011, 2012); Infor, Inc. (2012, 2013, 2016, 2017, 2018); Medical Information Technology, Inc. (2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019); SERENA SOFTWARE INC (2011, 2012); SSI Investments II Ltd (2012, 2013); SunGard (2011, 2012, 2013, 2014). IPO or spin-off timing, not debt-only: BENTLEY SYSTEMS INC 2020; CCC Intelligent Solutions Holdings Inc. 2020; Clearwater Analytics Holdings, Inc. 2021; Consensus Cloud Solutions, Inc. 2021; DATTO HOLDING CORP. 2020; Duolingo, Inc. 2021; Endurance International Group Holdings, Inc. 2013; EngageSmart, Inc. 2021; EverCommerce Inc. 2021; ForgeRock, Inc. 2021; Jamf Holding Corp. 2020; KALTURA INC 2021; MARKETWISE, INC. 2020; MeridianLink, Inc. 2021; N-able, Inc. 2021; PAYCOR HCM, INC. 2021; POWERSCHOOL HOLDINGS, INC. 2021; Ping Identity Holding Corp. 2019; ServiceTitan, Inc. 2024; SolarWinds Corp 2018; Vertex, Inc. 2020; Xperi Inc. 2022; i3 Verticals, Inc. 2018. Unresolved (2025 IPOs; their second annual report does not exist yet): Figma, Inc. 2025; Netskope Inc 2025; Via Transportation, Inc. 2025. Foreign filers with a zero float fact, not tested: AutoNavi Holdings Ltd, Changyou.com Ltd, RETALIX LTD; their Section 12(b) listing is on the 20-F cover page, which is not in the inputs. The sensitivity `nolist` drops the flagged firm-years; `nodebt` keeps the earlier comparison for the four filers the finance referee named. Current EDGAR names
 cannot stand in: Informatica LLC, VMware LLC and 2U, LLC have post-delisting names, but their panel years are listed
 years. Informatica LLC's annual reports in the extract run 2011-2015,
 ending at its take-private. Of the finance referee's five debt-only filers, the four whose panel years fall after their
@@ -87,7 +90,7 @@ Technology (Meditech), Serena and GXS are further debt-only filers; the float ru
 
 **Item b, cash-score basis.** The cash margin starts from NetCashProvidedByUsedInOperatingActivitiesContinuingOperations, NetCashProvidedByUsedInOperatingActivities (build_panel_v2.py).
 US GAAP classifies interest paid and income taxes paid as operating cash outflows (ASC 230-10-45-17(c), (d)), so operating cash flow, and the cash score built on it, is after interest paid and cash taxes. Elements for a before-interest-and-tax variant (InterestPaid, InterestPaidNet, IncomeTaxesPaid, IncomeTaxesPaidNet): before the retrieval
-of 29 Oct 2026 they were in neither the companyfacts extract nor the local frames files. The bridge is now built (data/v3_inputs/cash_interest_taxes.json (SEC frames, 29 Oct 2026; latest filed values, not first reported); 1762 of 1788 v3 core firm-years report at least one of the four elements; elements {'any_element': 1762, 'interest_element': 1397, 'taxes_element': 1736, 'both': 1371, 'interest_net_element': 1040, 'taxes_net_element': 1242}; InterestPaidNet, else InterestPaid; IncomeTaxesPaidNet, else IncomeTaxesPaid; a missing element is zero when the firm-year reports any of the four). Results for E1 and E2 are in `notes/inference_v3.md` section 18 and `sections/tables/tab_bridge_v3.tex`. E1, 2016-19 and 2023-25 P95 and median, points: GAAP operating margin: P95 55.9 and 43.9, median 18.9 and 12.0; FCF after SBC (paper): P95 57.3 and 44.6, median 23.6 and 15.3; FCF after SBC, bridge firm-years: P95 56.0 and 44.6, median 22.9 and 15.3; before interest paid, after tax: P95 56.6 and 44.7, median 23.1 and 16.6; before interest paid and cash taxes: P95 60.8 and 49.8, median 25.4 and 19.4; FCF after SBC, net-interest firm-years: P95 55.2 and 44.3, median 18.4 and 13.4; before net interest, after tax: P95 55.3 and 42.4, median 18.9 and 12.5.
+of 29 Oct 2026 they were in neither the companyfacts extract nor the local frames files. The bridge is now built (data/v3_inputs/cash_interest_taxes.json (SEC frames, 29 Oct 2026; latest filed values, not first reported); 1706 of 1732 v3 core firm-years report at least one of the four elements; elements {'any_element': 1706, 'interest_element': 1341, 'taxes_element': 1681, 'both': 1316, 'interest_net_element': 1004, 'taxes_net_element': 1192}; InterestPaidNet, else InterestPaid; IncomeTaxesPaidNet, else IncomeTaxesPaid; a missing element is zero when the firm-year reports any of the four). Results for E1 and E2 are in `notes/inference_v3.md` section 18 and `sections/tables/tab_bridge_v3.tex`. E1, 2016-19 and 2023-25 P95 and median, points: GAAP operating margin: P95 55.7 and 43.8, median 18.8 and 11.9; FCF after SBC (paper): P95 57.0 and 44.4, median 23.4 and 15.3; FCF after SBC, bridge firm-years: P95 56.0 and 44.4, median 22.7 and 15.3; before interest paid, after tax: P95 56.6 and 44.6, median 23.0 and 17.0; before interest paid and cash taxes: P95 60.6 and 49.6, median 25.0 and 19.2; FCF after SBC, net-interest firm-years: P95 55.5 and 44.1, median 19.0 and 13.2; before net interest, after tax: P95 55.6 and 41.4, median 19.0 and 12.2.
 
 **Item c, acquiree revenue since the acquisition date.** Criterion R4(c), BusinessCombinationProFormaInformationRevenueOfAcquireeSinceAcquisitionDateActual
 at 10% of revenue: see R4 above (0 extra core flags). Xunlei 2025 is
@@ -100,7 +103,7 @@ size. It is not computed from the core panel. The same statistic on the core:
 - panel_v2_all, SIC 7372 only: $1-10B p5 5.81% (n = 64 firms), p10 7.93%; above $10B p5 2.86%, p10 3.01% (n = 9)
 - core analysis sample v2 (data/panel.csv): $1-10B p5 5.98% (n = 61 firms), p10 8.09%; above $10B p5 2.84%, p10 2.97% (n = 8)
 - core analysis sample v2, by prior-year revenue: $1-10B p5 5.44% (n = 47 firms), p10 7.64%; above $10B p5 2.82%, p10 2.93% (n = 7)
-- core analysis sample v3 (data/panel_v3.csv): $1-10B p5 5.98% (n = 61 firms), p10 8.09%; above $10B p5 2.84%, p10 2.97% (n = 8)
+- core analysis sample v3 (data/panel_v3.csv): $1-10B p5 5.97% (n = 60 firms), p10 8.07%; above $10B p5 2.84%, p10 2.97% (n = 8)
 
 **Item e, the count of non-first-reported firm-years.**
 - R1 (the source filing reports a later own period): 140.
@@ -120,20 +123,20 @@ v3 shifts by fiscal year.
 
 **With and without the named firms (point estimates; points except slopes and ratio):**
 
-| Statistic | E1 primary | E2 primary | E1 keeping fiscal-2010 backfills | E2 keeping fiscal-2010 backfills | E1 without named non-software firms | E2 without named non-software firms | E1 without named debt-only filers | E2 without named debt-only filers | E1 without named firms R2 classes non-software | E2 without named firms R2 classes non-software | E1 without R5 no-listed-equity firm-years | E2 without R5 no-listed-equity firm-years |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| Psi_0.90 slope, GAAP | -0.22 | -0.29 | -0.20 | -0.29 | -0.26 | -0.42 | -0.22 | -0.29 | -0.21 | -0.27 | -0.21 | -0.29 |
-| Psi_0.90 slope, cash | -0.16 | -0.22 | -0.16 | -0.22 | -0.23 | -0.37 | -0.16 | -0.22 | -0.16 | -0.22 | -0.16 | -0.22 |
-| Local slope, GAAP | -0.41 | -0.61 | -0.41 | -0.54 | -0.48 | -0.74 | -0.43 | -0.67 | -0.46 | -0.65 | -0.42 | -0.63 |
-| Local slope, cash | -0.35 | -0.43 | -0.33 | -0.42 | -0.41 | -0.46 | -0.35 | -0.43 | -0.37 | -0.44 | -0.35 | -0.43 |
-| Spend ratio | 3.02 | 3.47 | 3.00 | 3.41 | 3.11 | 3.61 | 3.02 | 3.46 | 3.03 | 3.50 | 3.02 | 3.46 |
-| Size gradient, cash | -4.1 | -1.1 | -4.4 | -1.6 | -4.0 | -1.1 | -4.1 | -1.1 | -4.1 | -0.2 | -4.1 | -1.1 |
-| Capital-intensity gap, cash, 2023-25 | -12.5 | -7.4 | -12.5 | -7.4 | -14.9 | -9.7 | -12.5 | -7.4 | -12.5 | -7.2 | -12.5 | -7.4 |
-| Change in P95, GAAP | -11.9 | -11.4 | -11.9 | -11.4 | -11.1 | -8.4 | -12.0 | -11.7 | -11.5 | -11.7 | -12.1 | -11.8 |
-| Change in P95, cash | -12.7 | -10.9 | -12.7 | -10.9 | -11.6 | -9.0 | -12.8 | -11.2 | -12.2 | -11.4 | -12.8 | -11.2 |
-| Change in T(40%), cash | +1.6 | n/a | +1.6 | n/a | +4.8 | n/a | +1.6 | n/a | +4.0 | n/a | +1.6 | n/a |
-| Margin gap | 34.5 | 32.7 | 34.9 | 33.0 | 34.6 | 32.8 | 34.5 | 32.8 | 34.5 | 32.7 | 34.6 | 32.9 |
-| Firm-years | 1,788 | 1,378 | 1,828 | 1,410 | 1,668 | 1,280 | 1,775 | 1,366 | 1,750 | 1,345 | 1,762 | 1,354 |
+| Statistic | E1 primary | E2 primary | E1 keeping fiscal-2010 backfills | E2 keeping fiscal-2010 backfills | E1 without named non-software firms | E2 without named non-software firms | E1 without named debt-only filers | E2 without named debt-only filers | E1 without firms both R2 readers class non-software | E2 without firms both R2 readers class non-software | E1 without firms either R2 reader classes non-software | E2 without firms either R2 reader classes non-software | E1 without R5 no-listed-equity firm-years | E2 without R5 no-listed-equity firm-years |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| Psi_0.90 slope, GAAP | -0.20 | -0.27 | -0.19 | -0.27 | -0.26 | -0.41 | -0.20 | -0.27 | -0.37 | -0.44 | -0.37 | -0.43 | -0.20 | -0.27 |
+| Psi_0.90 slope, cash | -0.17 | -0.22 | -0.17 | -0.22 | -0.23 | -0.37 | -0.17 | -0.22 | -0.29 | -0.39 | -0.29 | -0.39 | -0.17 | -0.22 |
+| Local slope, GAAP | -0.47 | -0.71 | -0.47 | -0.56 | -0.53 | -0.74 | -0.47 | -0.73 | -0.59 | -0.76 | -0.59 | -0.76 | -0.47 | -0.73 |
+| Local slope, cash | -0.37 | -0.44 | -0.37 | -0.42 | -0.41 | -0.46 | -0.38 | -0.44 | -0.45 | -0.50 | -0.45 | -0.50 | -0.38 | -0.44 |
+| Spend ratio | 3.07 | 3.51 | 3.05 | 3.47 | 3.18 | 3.66 | 3.07 | 3.50 | 3.37 | 3.76 | 3.37 | 3.76 | 3.07 | 3.50 |
+| Size gradient, cash | -4.0 | -0.2 | -4.3 | -0.9 | -4.0 | -1.3 | -4.0 | 1.0 | -3.1 | -1.4 | -3.2 | -1.3 | -4.0 | 1.0 |
+| Capital-intensity gap, cash, 2023-25 | -12.7 | -10.3 | -12.7 | -10.3 | -12.5 | -9.8 | -12.7 | -10.3 | -9.5 | -8.0 | -9.9 | -8.0 | -12.7 | -10.3 |
+| Change in P95, GAAP | -11.9 | -11.9 | -11.9 | -11.9 | -11.6 | -9.1 | -12.0 | -12.0 | -8.8 | -7.2 | -8.8 | -7.0 | -12.1 | -12.2 |
+| Change in P95, cash | -12.6 | -11.6 | -12.6 | -11.6 | -12.0 | -9.0 | -12.7 | -11.9 | -9.1 | -10.2 | -9.1 | -10.1 | -12.7 | -11.9 |
+| Change in T(40%), cash | +4.3 | n/a | +4.3 | n/a | +5.5 | n/a | +4.3 | n/a | +24.0 | n/a | +24.0 | n/a | +4.3 | n/a |
+| Margin gap | 33.6 | 32.6 | 34.0 | 32.9 | 33.8 | 32.7 | 33.7 | 32.7 | 33.8 | 32.6 | 33.7 | 32.6 | 33.8 | 32.8 |
+| Firm-years | 1,732 | 1,330 | 1,772 | 1,362 | 1,650 | 1,265 | 1,719 | 1,318 | 1,509 | 1,157 | 1,495 | 1,145 | 1,706 | 1,306 |
 
 ## 3. Files for the data agents (software priors, backtest firm test, playbook archetypes)
 
@@ -146,8 +149,11 @@ v3 shifts by fiscal year.
   - `backfill`, `backfill_type`: rule R1.
   - `acq_now_v3`, `acq_flag_v3`, `acq_reason_v3`, `gw_jump_v3`, `acq_spend_share`, `accel_rel`: rule R4. Use
     `acq_flag_v3` in place of `acq_flag`.
-  - `panel_named`, `debt_only_named`, `business_class_named`: sensitivities only.
-  - `business_class`: R2 on the main sample, blank until descriptions of every registrant exist.
+  - `panel_named`, `debt_only_named`, `business_class_named`, `business_class_reader_a`, `business_class_reader_b`:
+    sensitivities only.
+  - `business_class`: R2 on the main sample (keyword classifier on the descriptions of every core registrant).
+  - `cap_sw_source`, `cap_sw_xbrl`: C1 (`cap_sw` and the free-cash-flow columns use the filing value where
+    `cap_sw_source` is `filing_cash_flow_statement`).
   - `rp_revenue_share`, `captive_verified`, `captive`: R3.
   - `acquiree_rev_share`: R4(c).
   - `r5_status`, `no_listed_equity`: R5 (flag).
@@ -165,51 +171,51 @@ The weight rows are shown for the record only (withdrawn, D-1).
 
 | Statistic | E1 v2 published | E1 v2 exact | E1 v3 | E2 v2 published | E2 v2 exact | E2 v3 | E1 - E2 v3 (paired) | Imputed M = 4, v3 | Imputed M = 8, v3 |
 |---|---|---|---|---|---|---|---|---|---|
-| Psi_0.90 slope, GAAP, 2010-25 (primary) | n/a | -0.20 (0.11) | -0.22 (0.11) | n/a | -0.31 (0.15) | -0.29 (0.14) | 0.07 (0.11) | -0.39 (0.11) | -0.36 (0.10) |
-| Psi_0.90 slope, cash, 2010-25 (primary) | n/a | -0.16 (0.10) | -0.16 (0.10) | n/a | -0.19 (0.14) | -0.22 (0.11) | 0.06 (0.10) | -0.25 (0.08) | -0.26 (0.08) |
-| Psi_0.90 slope, GAAP, g 0-40%, 2010-25 | n/a | -0.32 (0.09) | -0.31 (0.10) | n/a | -0.45 (0.12) | -0.49 (0.14) | 0.18 (0.10) | -0.44 (0.12) | -0.40 (0.12) |
-| Psi_0.90 slope, cash, g 0-40%, 2010-25 | n/a | -0.27 (0.09) | -0.27 (0.10) | n/a | -0.35 (0.11) | -0.37 (0.11) | 0.10 (0.09) | -0.39 (0.09) | -0.37 (0.08) |
-| Psi_0.90 slope, GAAP, g 0-40%, 2010-19 | n/a | -0.22 (0.09) | -0.22 (0.10) | n/a | -0.33 (0.13) | -0.28 (0.17) | 0.07 (0.13) | -0.29 (0.13) | -0.28 (0.12) |
-| Psi_0.90 slope, GAAP, g 0-40%, 2020-25 | n/a | -0.61 (0.11) | -0.60 (0.11) | n/a | -0.62 (0.13) | -0.66 (0.12) | 0.06 (0.09) | -0.60 (0.10) | -0.58 (0.11) |
-| Psi_0.90 slope, cash, g 0-40%, 2010-19 | n/a | -0.22 (0.12) | -0.16 (0.13) | n/a | -0.41 (0.14) | -0.39 (0.18) | 0.23 (0.15) | -0.37 (0.15) | -0.38 (0.13) |
-| Psi_0.90 slope, cash, g 0-40%, 2020-25 | n/a | -0.33 (0.09) | -0.35 (0.08) | n/a | -0.27 (0.14) | -0.34 (0.11) | -0.01 (0.08) | -0.35 (0.08) | -0.33 (0.08) |
-| Psi_0.90 slope, GAAP, g 0-40%, 2020-25 minus 2010-19 | n/a | -0.39 (0.13) | -0.38 (0.13) | n/a | -0.29 (0.18) | -0.37 (0.21) | -0.01 (0.17) | -0.31 (0.16) | -0.30 (0.15) |
-| Local slope, GAAP, 2010-25 | -0.46 (0.14) | -0.46 (0.14) | -0.41 (0.14) | -0.59 (0.16) | -0.56 (0.15) | -0.61 (0.17) | 0.20 (0.11) | -0.51 (0.15) | -0.46 (0.14) |
-| Local slope, cash, 2010-25 | -0.37 (0.11) | -0.37 (0.12) | -0.35 (0.11) | -0.43 (0.11) | -0.43 (0.12) | -0.43 (0.12) | 0.08 (0.08) | -0.42 (0.09) | -0.39 (0.09) |
-| Local slope, GAAP, 2010-19 | -0.31 (0.14) | -0.31 (0.15) | -0.29 (0.14) | -0.45 (0.17) | -0.45 (0.18) | -0.43 (0.21) | 0.14 (0.13) | -0.41 (0.17) | -0.34 (0.16) |
-| Local slope, cash, 2010-19 | -0.25 (0.16) | -0.25 (0.16) | -0.20 (0.15) | -0.48 (0.15) | -0.48 (0.17) | -0.48 (0.19) | 0.29 (0.14) | -0.48 (0.16) | -0.42 (0.16) |
-| Local slope, GAAP, 2020-25 | -0.77 (0.15) | -0.77 (0.15) | -0.71 (0.15) | -0.79 (0.15) | -0.79 (0.15) | -0.79 (0.15) | 0.08 (0.10) | -0.68 (0.15) | -0.70 (0.14) |
-| Local slope, cash, 2020-25 | -0.40 (0.11) | -0.40 (0.11) | -0.40 (0.10) | -0.43 (0.14) | -0.43 (0.13) | -0.42 (0.13) | 0.02 (0.08) | -0.37 (0.09) | -0.41 (0.09) |
-| Spend-to-excess-growth ratio | 2.91 (0.17) | 2.91 (0.17) | 3.02 (0.19) | 3.26 (0.24) | 3.26 (0.23) | 3.47 (0.25) | -0.44 (0.16) | 3.34 (0.22) | 3.15 (0.23) |
-| Weight on growth, alpha = 0.45 (withdrawn, D-1) | 6.5 (0.4) | 6.5 (0.4) | 6.7 (0.4) | 7.2 (0.5) | 7.2 (0.5) | 7.7 (0.6) | -1.0 (0.4) | 7.4 (0.5) | 7.0 (0.5) |
-| Weight on growth, alpha = 0.25 (withdrawn, D-1) | 11.6 (0.7) | 11.6 (0.7) | 12.1 (0.8) | 13.0 (1.0) | 13.0 (0.9) | 13.9 (1.0) | -1.8 (0.6) | 13.3 (0.9) | 12.6 (0.9) |
-| Size gradient, GAAP (points per tenfold) | 1.6 (3.1) | 1.6 (2.9) | 2.4 (2.8) | 3.4 (2.6) | 3.4 (2.6) | 4.0 (3.0) | -1.6 (2.3) | 3.4 (2.9) | 3.2 (2.9) |
-| Size gradient, cash (points per tenfold) | -5.7 (3.1) | -5.7 (2.8) | -4.1 (3.4) | -2.7 (3.4) | -2.7 (3.4) | -1.1 (3.9) | -3.0 (3.0) | -2.5 (3.3) | -2.8 (3.1) |
-| Capital-intensity gap 2023-25, GAAP | -2.1 [-10.4, +3.6] | -1.9 [-10.5, +4.2] | -1.8 [-9.5, +4.5] | -1.3 [-8.2, +5.0] | -1.2 [-8.2, +5.4] | -0.7 [-7.9, +5.4] | -1.2 [-4.6, +1.8] | -0.8 [-8.3, +5.7] | -1.2 [-8.8, +5.3] |
-| Capital-intensity gap 2023-25, cash | -14.9 [-22.2, -3.5] | -14.9 [-22.1, -4.5] | -12.5 [-20.1, -3.9] | -10.6 [-19.6, -3.1] | -10.6 [-19.6, -3.1] | -7.4 [-18.3, -2.5] | -5.2 [-8.3, +3.1] | -8.3 [-17.1, -2.6] | -12.3 [-17.9, -3.1] |
-| P95 of R 2016-19, GAAP | 55.9 [51.3, 65.6] | 55.9 [51.2, 64.9] | 55.9 [51.1, 63.7] | 55.2 [47.1, 61.5] | 55.2 [47.3, 61.5] | 54.3 [46.6, 61.5] | 1.6 [-0.8, 9.4] | 51.1 [46.9, 56.8] | 51.8 [47.8, 57.1] |
-| P95 of R 2023-25, GAAP | 44.1 [41.4, 47.4] | 44.1 [41.8, 47.4] | 43.9 [41.5, 47.2] | 43.6 [41.0, 45.6] | 43.6 [41.2, 45.4] | 42.8 [40.4, 45.1] | 1.1 [0.0, 2.8] | 43.2 [40.7, 45.7] | 43.5 [41.1, 46.0] |
-| P95 of R 2016-19, cash | 59.9 [51.8, 71.0] | 59.9 [51.8, 71.1] | 57.3 [51.1, 67.3] | 56.0 [49.3, 63.8] | 56.0 [48.4, 63.8] | 53.9 [46.6, 60.6] | 3.4 [-0.2, 11.8] | 51.7 [46.7, 57.3] | 53.1 [48.1, 57.4] |
-| P95 of R 2023-25, cash | 44.8 [41.5, 50.7] | 44.8 [41.7, 50.7] | 44.6 [41.5, 50.6] | 43.6 [40.5, 49.6] | 43.6 [40.5, 49.1] | 43.1 [39.4, 49.1] | 1.5 [0.0, 5.7] | 43.4 [40.2, 48.8] | 43.9 [40.6, 50.6] |
-| Change in P95, GAAP | -11.7 [-20.7, -7.0] | -11.7 [-21.1, -6.7] | -11.9 [-20.3, -6.4] | -11.6 [-19.1, -3.6] | -11.6 [-17.9, -3.6] | -11.4 [-18.7, -3.0] | -0.5 [-8.5, +2.7] | -7.8 [-14.6, -2.7] | -8.3 [-15.1, -3.7] |
-| Change in P95, cash | -15.2 [-27.3, -5.0] | -15.2 [-27.0, -5.4] | -12.7 [-21.6, -4.2] | -12.4 [-22.5, -3.7] | -12.4 [-22.0, -3.5] | -10.9 [-17.7, -2.1] | -1.9 [-9.7, +3.9] | -8.3 [-15.2, -1.9] | -9.3 [-15.1, -1.3] |
-| Change in T(0%), GAAP | +2.5 [-3.5, +4.9] | +2.5 [-3.6, +5.1] | +0.8 [-4.7, +4.5] | +2.6 [-3.2, +5.9] | +2.6 [-3.2, +5.8] | +0.4 [-4.9, +5.4] | +0.3 [-3.2, +2.7] | +0.4 [-4.9, +4.9] | +0.8 [-4.8, +4.9] |
-| Change in T(0%), cash | -2.9 [-5.4, +0.7] | -2.9 [-5.6, +0.7] | -3.3 [-6.4, -0.2] | -1.8 [-5.2, +1.9] | -1.8 [-5.4, +2.1] | -2.5 [-6.5, +1.2] | -0.8 [-2.8, +1.0] | -3.3 [-6.4, -0.4] | -3.2 [-6.2, +0.1] |
-| Change in T(20%), GAAP | -8.9 [-13.5, +4.1] | -8.9 [-13.3, +4.2] | -10.2 [-15.1, +1.1] | -6.8 [-12.4, +5.9] | -6.8 [-12.4, +5.7] | -9.7 [-15.1, +3.0] | -0.5 [-7.6, +4.9] | -7.2 [-12.8, +4.2] | -6.3 [-12.0, +3.7] |
-| Change in T(20%), cash | -2.4 [-9.3, +5.9] | -2.4 [-9.5, +5.6] | -3.0 [-10.9, +3.4] | +1.4 [-6.3, +13.9] | +1.4 [-6.0, +14.1] | -1.1 [-7.7, +13.0] | -2.0 [-13.6, -0.0] | -1.3 [-8.7, +8.6] | -1.8 [-8.7, +5.8] |
-| Change in T(40%), GAAP | +12.7 [-19.9, +31.2] | +12.7 (n.e.) | -9.9 (n.e.) | +23.4 [-9.3, +39.6] | +23.4 (n.e.) | n/a | n/a | +1.0 (n.e.) | -2.0 (n.e.) |
-| Change in T(40%), cash | +9.4 [-6.6, +25.5] | +9.4 (n.e.) | +1.6 (n.e.) | +24.2 [+3.1, +38.3] | +24.2 (n.e.) | n/a | n/a | +7.6 (n.e.) | +7.2 (n.e.) |
-| Near-frontier margin gap | 34.6 [28.9, 37.9] | 34.6 [28.8, 37.7] | 34.5 [28.6, 37.7] | 32.7 [27.0, 35.7] | 32.7 [27.1, 35.6] | 32.7 [26.6, 35.8] | 1.8 [-0.7, 4.9] | 33.5 [28.0, 36.6] | 34.7 [28.9, 38.0] |
-| of which S&M | 16.0 [12.5, 19.9] | 16.0 [12.5, 19.6] | 16.0 [12.4, 20.0] | 15.7 [12.8, 19.9] | 15.7 [12.9, 19.5] | 16.8 [12.6, 20.3] | -0.8 [-2.8, 3.1] | 17.1 [12.3, 19.9] | 16.1 [12.5, 20.0] |
-| S&M part, 40-60% band | 28.2 [19.4, 35.1] | 28.2 [20.0, 35.0] | 29.4 [18.8, 36.2] | 27.7 [20.7, 37.4] | 27.7 [20.9, 37.2] | 31.2 [19.4, 37.0] | -1.8 [-10.0, 9.9] | 30.1 [20.1, 36.2] | 25.6 [17.0, 33.8] |
+| Psi_0.90 slope, GAAP, 2010-25 (primary) | n/a | -0.20 (0.11) | -0.20 (0.11) | n/a | -0.31 (0.15) | -0.27 (0.14) | 0.07 (0.12) | -0.37 (0.11) | -0.34 (0.10) |
+| Psi_0.90 slope, cash, 2010-25 (primary) | n/a | -0.16 (0.10) | -0.17 (0.09) | n/a | -0.19 (0.14) | -0.22 (0.12) | 0.05 (0.10) | -0.24 (0.08) | -0.24 (0.08) |
+| Psi_0.90 slope, GAAP, g 0-40%, 2010-25 | n/a | -0.32 (0.09) | -0.32 (0.11) | n/a | -0.45 (0.12) | -0.48 (0.14) | 0.16 (0.11) | -0.42 (0.13) | -0.39 (0.12) |
+| Psi_0.90 slope, cash, g 0-40%, 2010-25 | n/a | -0.27 (0.09) | -0.31 (0.09) | n/a | -0.35 (0.11) | -0.36 (0.12) | 0.05 (0.08) | -0.38 (0.09) | -0.37 (0.09) |
+| Psi_0.90 slope, GAAP, g 0-40%, 2010-19 | n/a | -0.22 (0.09) | -0.20 (0.11) | n/a | -0.33 (0.13) | -0.26 (0.18) | 0.07 (0.13) | -0.27 (0.14) | -0.26 (0.13) |
+| Psi_0.90 slope, GAAP, g 0-40%, 2020-25 | n/a | -0.61 (0.11) | -0.60 (0.11) | n/a | -0.62 (0.13) | -0.68 (0.12) | 0.07 (0.09) | -0.61 (0.10) | -0.58 (0.11) |
+| Psi_0.90 slope, cash, g 0-40%, 2010-19 | n/a | -0.22 (0.12) | -0.19 (0.13) | n/a | -0.41 (0.14) | -0.38 (0.19) | 0.20 (0.14) | -0.36 (0.15) | -0.39 (0.13) |
+| Psi_0.90 slope, cash, g 0-40%, 2020-25 | n/a | -0.33 (0.09) | -0.34 (0.08) | n/a | -0.27 (0.14) | -0.32 (0.12) | -0.02 (0.08) | -0.34 (0.08) | -0.32 (0.09) |
+| Psi_0.90 slope, GAAP, g 0-40%, 2020-25 minus 2010-19 | n/a | -0.39 (0.13) | -0.41 (0.14) | n/a | -0.29 (0.18) | -0.41 (0.22) | 0.01 (0.16) | -0.35 (0.17) | -0.32 (0.16) |
+| Local slope, GAAP, 2010-25 | -0.46 (0.14) | -0.46 (0.14) | -0.47 (0.16) | -0.59 (0.16) | -0.56 (0.15) | -0.71 (0.16) | 0.24 (0.11) | -0.55 (0.15) | -0.52 (0.16) |
+| Local slope, cash, 2010-25 | -0.37 (0.11) | -0.37 (0.12) | -0.37 (0.12) | -0.43 (0.11) | -0.43 (0.12) | -0.44 (0.13) | 0.07 (0.08) | -0.42 (0.10) | -0.41 (0.10) |
+| Local slope, GAAP, 2010-19 | -0.31 (0.14) | -0.31 (0.15) | -0.34 (0.17) | -0.45 (0.17) | -0.45 (0.18) | -0.49 (0.22) | 0.16 (0.14) | -0.43 (0.19) | -0.41 (0.19) |
+| Local slope, cash, 2010-19 | -0.25 (0.16) | -0.25 (0.16) | -0.37 (0.17) | -0.48 (0.15) | -0.48 (0.17) | -0.50 (0.21) | 0.13 (0.14) | -0.48 (0.16) | -0.46 (0.17) |
+| Local slope, GAAP, 2020-25 | -0.77 (0.15) | -0.77 (0.15) | -0.72 (0.15) | -0.79 (0.15) | -0.79 (0.15) | -0.79 (0.15) | 0.07 (0.10) | -0.68 (0.14) | -0.71 (0.14) |
+| Local slope, cash, 2020-25 | -0.40 (0.11) | -0.40 (0.11) | -0.40 (0.11) | -0.43 (0.14) | -0.43 (0.13) | -0.42 (0.14) | 0.02 (0.08) | -0.38 (0.10) | -0.41 (0.10) |
+| Spend-to-excess-growth ratio | 2.91 (0.17) | 2.91 (0.17) | 3.07 (0.19) | 3.26 (0.24) | 3.26 (0.23) | 3.51 (0.24) | -0.44 (0.15) | 3.42 (0.21) | 3.29 (0.23) |
+| Weight on growth, alpha = 0.45 (withdrawn, D-1) | 6.5 (0.4) | 6.5 (0.4) | 6.8 (0.4) | 7.2 (0.5) | 7.2 (0.5) | 7.8 (0.5) | -1.0 (0.3) | 7.6 (0.5) | 7.3 (0.5) |
+| Weight on growth, alpha = 0.25 (withdrawn, D-1) | 11.6 (0.7) | 11.6 (0.7) | 12.3 (0.8) | 13.0 (1.0) | 13.0 (0.9) | 14.0 (1.0) | -1.8 (0.6) | 13.7 (0.9) | 13.2 (0.9) |
+| Size gradient, GAAP (points per tenfold) | 1.6 (3.1) | 1.6 (2.9) | 2.7 (2.8) | 3.4 (2.6) | 3.4 (2.6) | 4.2 (3.3) | -1.5 (2.4) | 3.8 (3.0) | 3.2 (2.9) |
+| Size gradient, cash (points per tenfold) | -5.7 (3.1) | -5.7 (2.8) | -4.0 (3.3) | -2.7 (3.4) | -2.7 (3.4) | -0.2 (4.2) | -3.8 (3.0) | -2.0 (3.5) | -2.7 (3.2) |
+| Capital-intensity gap 2023-25, GAAP | -2.1 [-10.4, +3.6] | -1.9 [-10.5, +4.2] | -1.5 [-8.9, +5.0] | -1.3 [-8.2, +5.0] | -1.2 [-8.2, +5.4] | -0.7 [-7.9, +5.3] | -0.8 [-3.6, +2.7] | -0.4 [-7.7, +6.2] | -0.8 [-8.1, +5.7] |
+| Capital-intensity gap 2023-25, cash | -14.9 [-22.2, -3.5] | -14.9 [-22.1, -4.5] | -12.7 [-19.1, -3.6] | -10.6 [-19.6, -3.1] | -10.6 [-19.6, -3.1] | -10.3 [-19.0, -3.0] | -2.5 [-7.3, +4.1] | -8.5 [-16.9, -2.6] | -12.1 [-17.7, -3.1] |
+| P95 of R 2016-19, GAAP | 55.9 [51.3, 65.6] | 55.9 [51.2, 64.9] | 55.7 [51.1, 64.1] | 55.2 [47.1, 61.5] | 55.2 [47.3, 61.5] | 54.8 [47.7, 62.0] | 0.8 [-2.8, 7.9] | 51.2 [47.1, 60.9] | 51.2 [48.0, 60.9] |
+| P95 of R 2023-25, GAAP | 44.1 [41.4, 47.4] | 44.1 [41.8, 47.4] | 43.8 [41.4, 46.6] | 43.6 [41.0, 45.6] | 43.6 [41.2, 45.4] | 43.0 [40.6, 45.1] | 0.8 [-0.0, 2.4] | 43.0 [40.8, 45.2] | 43.4 [41.1, 45.8] |
+| P95 of R 2016-19, cash | 59.9 [51.8, 71.0] | 59.9 [51.8, 71.1] | 57.0 [51.2, 63.8] | 56.0 [49.3, 63.8] | 56.0 [48.4, 63.8] | 54.8 [47.2, 62.3] | 2.1 [-1.3, 9.5] | 51.3 [46.8, 57.4] | 53.0 [47.7, 57.4] |
+| P95 of R 2023-25, cash | 44.8 [41.5, 50.7] | 44.8 [41.7, 50.7] | 44.4 [41.0, 50.3] | 43.6 [40.5, 49.6] | 43.6 [40.5, 49.1] | 43.2 [39.9, 49.6] | 1.2 [0.0, 5.6] | 43.2 [40.0, 47.2] | 43.8 [40.5, 50.3] |
+| Change in P95, GAAP | -11.7 [-20.7, -7.0] | -11.7 [-21.1, -6.7] | -11.9 [-20.2, -6.6] | -11.6 [-19.1, -3.6] | -11.6 [-17.9, -3.6] | -11.9 [-19.3, -3.8] | -0.0 [-7.5, +3.7] | -8.2 [-16.1, -3.1] | -7.8 [-16.1, -4.1] |
+| Change in P95, cash | -15.2 [-27.3, -5.0] | -15.2 [-27.0, -5.4] | -12.6 [-20.7, -4.1] | -12.4 [-22.5, -3.7] | -12.4 [-22.0, -3.5] | -11.6 [-19.1, -2.8] | -1.0 [-8.0, +4.3] | -8.0 [-14.8, -2.2] | -9.2 [-14.7, -1.4] |
+| Change in T(0%), GAAP | +2.5 [-3.5, +4.9] | +2.5 [-3.6, +5.1] | +0.6 [-4.1, +4.6] | +2.6 [-3.2, +5.9] | +2.6 [-3.2, +5.8] | +0.1 [-4.4, +5.3] | +0.5 [-3.1, +3.1] | +0.1 [-4.4, +5.1] | +0.4 [-4.0, +5.3] |
+| Change in T(0%), cash | -2.9 [-5.4, +0.7] | -2.9 [-5.6, +0.7] | -3.2 [-6.5, -0.1] | -1.8 [-5.2, +1.9] | -1.8 [-5.4, +2.1] | -2.4 [-6.4, +1.2] | -0.8 [-3.2, +1.1] | -3.3 [-6.3, -0.1] | -3.2 [-6.3, +0.3] |
+| Change in T(20%), GAAP | -8.9 [-13.5, +4.1] | -8.9 [-13.3, +4.2] | -10.2 [-14.8, +0.7] | -6.8 [-12.4, +5.9] | -6.8 [-12.4, +5.7] | -9.7 [-15.0, +2.5] | -0.5 [-7.3, +4.7] | -7.1 [-12.7, +4.0] | -6.3 [-11.9, +3.4] |
+| Change in T(20%), cash | -2.4 [-9.3, +5.9] | -2.4 [-9.5, +5.6] | -2.9 [-10.9, +3.6] | +1.4 [-6.3, +13.9] | +1.4 [-6.0, +14.1] | -1.1 [-7.8, +11.8] | -1.8 [-12.2, +0.2] | -0.9 [-7.9, +9.3] | -0.9 [-7.9, +6.5] |
+| Change in T(40%), GAAP | +12.7 [-19.9, +31.2] | +12.7 (n.e.) | -8.7 (n.e.) | +23.4 [-9.3, +39.6] | +23.4 (n.e.) | n/a | n/a | +2.2 (n.e.) | -0.9 (n.e.) |
+| Change in T(40%), cash | +9.4 [-6.6, +25.5] | +9.4 (n.e.) | +4.3 (n.e.) | +24.2 [+3.1, +38.3] | +24.2 (n.e.) | n/a | n/a | +7.9 (n.e.) | +7.4 (n.e.) |
+| Near-frontier margin gap | 34.6 [28.9, 37.9] | 34.6 [28.8, 37.7] | 33.6 [28.1, 36.2] | 32.7 [27.0, 35.7] | 32.7 [27.1, 35.6] | 32.6 [26.9, 35.7] | 0.9 [-1.3, 3.6] | 32.9 [27.8, 35.8] | 33.7 [28.4, 36.4] |
+| of which S&M | 16.0 [12.5, 19.9] | 16.0 [12.5, 19.6] | 15.8 [12.1, 19.8] | 15.7 [12.8, 19.9] | 15.7 [12.9, 19.5] | 16.9 [12.3, 19.8] | -1.0 [-3.1, 3.2] | 16.9 [12.1, 19.4] | 16.1 [12.1, 19.6] |
+| S&M part, 40-60% band | 28.2 [19.4, 35.1] | 28.2 [20.0, 35.0] | 29.4 [19.9, 36.1] | 27.7 [20.7, 37.4] | 27.7 [20.9, 37.2] | 31.2 [19.5, 36.8] | -1.8 [-9.9, 9.2] | 30.1 [20.5, 35.9] | 25.6 [17.7, 33.7] |
 
 | Sample | v2 firm-years (firms) | v3 firm-years (firms) |
 |---|---|---|
-| E1 | 1,929 (293) | 1,788 (292) |
-| E2 | 1,516 (283) | 1,378 (277) |
-| Exclusion only, 25% | 1,457 (279) | 1,320 (274) |
-| Imputed, M = 4 | 1,926 (292) | 1,786 (291) |
-| Imputed, M = 8 | 1,926 (292) | 1,786 (291) |
+| E1 | 1,929 (293) | 1,732 (284) |
+| E2 | 1,516 (283) | 1,330 (270) |
+| Exclusion only, 25% | 1,457 (279) | 1,273 (267) |
+| Imputed, M = 4 | 1,926 (292) | 1,730 (283) |
+| Imputed, M = 8 | 1,926 (292) | 1,730 (283) |
 
 ## 5. Familywise correction across the 14 headline contrasts
 
@@ -218,32 +224,32 @@ is the check; p-values from each statistic's own 999 draws, of three types. Fami
 sample audit (local slopes; E2 for the model-facing statistics); family B states the same findings on the objects of
 D-2 and D-3. Full tables, and the paired-contrast family of the estimands table, in `notes/inference_v3.md` sections 4 and 5.
 
-- Family A survivors: holm_normal: slope_cash_E2, weight_E2, gap_E2, gap_fast_sm_E2; holm_percentile: slope_op_E2, slope_cash_E2, weight_E2, gap_E2, gap_fast_sm_E2; holm_basic: slope_cash_E2, weight_E2, gap_E2, gap_fast_sm_E2; romano_wolf: slope_cash_E2, weight_E2, gap_E2, gap_fast_sm_E2.
-- Family B survivors: holm_normal: psi_op_E1_vs_m1, psi_cash_E1_vs_m1, gap_E1, gap_fast_sm_E1, psi_op_E1_2020_25_minus_2010_19; holm_percentile: psi_op_E1_vs_m1, psi_cash_E1_vs_m1, gap_E1, gap_fast_sm_E1; holm_basic: psi_op_E1_vs_m1, psi_cash_E1_vs_m1, gap_E1, gap_fast_sm_E1, psi_op_E1_2020_25_minus_2010_19; romano_wolf: psi_op_E1_vs_m1, psi_cash_E1_vs_m1, gap_E1, gap_fast_sm_E1.
-- Paired E1 - E2 contrasts (38), Holm at 10%: holm_normal: none; holm_percentile: spend_ratio; holm_basic: none; romano_wolf: none.
+- Family A survivors: holm_normal: slope_cash_E2, weight_E2, gap_E2, gap_fast_sm_E2; holm_percentile: slope_op_E2, slope_cash_E2, weight_E2, gap_E2, gap_fast_sm_E2; holm_basic: slope_cash_E2, weight_E2, gap_E2, gap_fast_sm_E2, d_slope_op; romano_wolf: slope_cash_E2, weight_E2, gap_E2, gap_fast_sm_E2.
+- Family B survivors: holm_normal: psi_op_E1_vs_m1, psi_cash_E1_vs_m1, p95chg_op_E1, gap_E1, gap_fast_sm_E1, psi_op_E1_2020_25_minus_2010_19; holm_percentile: psi_op_E1_vs_m1, psi_cash_E1_vs_m1, capint_cash_E1, gap_E1, gap_fast_sm_E1; holm_basic: psi_op_E1_vs_m1, psi_cash_E1_vs_m1, gap_E1, gap_fast_sm_E1, psi_op_E1_2020_25_minus_2010_19; romano_wolf: psi_op_E1_vs_m1, psi_cash_E1_vs_m1, gap_E1, gap_fast_sm_E1, psi_op_E1_2020_25_minus_2010_19.
+- Paired E1 - E2 contrasts (38), Holm at 10%: holm_normal: none; holm_percentile: none; holm_basic: slope_op_pooled; romano_wolf: none.
 
 ## 6. Calibration anchor
 
 | | v2 E2 anchor (current calibration) | v3 E1 | v3 E2 | v3 imputed M = 4 | v3 imputed M = 8 | v3 E2 without panel-named firms | v3 E2 keeping fiscal-2010 backfills |
 |---|---|---|---|---|---|---|---|
-| firm-years (firms) | 20 (12) | 13 (7) | 19 (10) | 22 (14) | 22 (13) | 18 (10) | 19 (10) |
-| cut-off (P95) | 43.6 | 44.6 | 43.1 | 43.4 | 43.9 | 43.5 | 43.1 |
-| G | 12.0 | 12.7 | 11.5 | 11.6 | 11.9 | 12.6 | 11.5 |
-| median score | 50.5 | 54.1 | 50.3 | 49.9 | 51.5 | 50.5 | 50.3 |
-| m0 upper bound, quartiles | 35.8 / 43.3 / 52.3 | 36.4 / 42.0 / 51.8 | 37.7 / 44.6 / 52.4 | 33.5 / 41.8 / 52.2 | 33.5 / 41.8 / 52.2 | 37.1 / 43.3 / 52.4 | 37.7 / 44.6 / 52.4 |
-| m0 lower bound, quartiles | 17.0 / 24.7 / 32.8 | 17.5 / 24.1 / 30.6 | 17.4 / 25.3 / 32.0 | 15.9 / 23.8 / 29.5 | 15.9 / 23.8 / 29.5 | 17.4 / 24.7 / 32.0 | 17.4 / 25.3 / 32.0 |
-| Pi_ub, quartiles | -17.4 / -0.8 / 16.1 | -11.8 / -1.3 / 17.1 | -17.6 / -7.0 / 12.0 | -15.0 / -0.5 / 15.1 | -15.2 / -0.7 / 16.8 | -19.2 / -4.8 / 13.0 | -17.6 / -7.0 / 12.0 |
-| Pi_lb, quartiles | 12.1 / 19.6 / 27.6 | 14.9 / 19.5 / 26.9 | 9.3 / 18.5 / 25.9 | 12.2 / 20.0 / 28.0 | 13.0 / 20.2 / 28.6 | 10.4 / 18.1 / 24.9 | 9.3 / 18.5 / 25.9 |
-| share Pi_ub > 0 | 45% | 46% | 37% | 45% | 45% | 39% | 37% |
-| transient share of the median score | -2% to 39% | -2% to 36% | -14% to 37% | -1% to 40% | -1% to 39% | -9% to 36% | -14% to 37% |
+| firm-years (firms) | 20 (12) | 14 (7) | 19 (10) | 22 (13) | 22 (13) | 18 (10) | 19 (10) |
+| cut-off (P95) | 43.6 | 44.4 | 43.2 | 43.2 | 43.8 | 43.6 | 43.2 |
+| G | 12.0 | 12.9 | 11.9 | 11.9 | 12.2 | 12.7 | 11.9 |
+| median score | 50.5 | 53.5 | 50.3 | 49.3 | 50.9 | 50.5 | 50.3 |
+| m0 upper bound, quartiles | 35.8 / 43.3 / 52.3 | 37.1 / 41.8 / 50.9 | 37.7 / 44.6 / 52.4 | 34.7 / 43.3 / 52.2 | 34.7 / 43.3 / 52.4 | 37.1 / 43.3 / 52.4 | 37.7 / 44.6 / 52.4 |
+| m0 lower bound, quartiles | 17.0 / 24.7 / 32.8 | 17.4 / 23.8 / 29.3 | 17.4 / 25.3 / 32.0 | 16.4 / 24.7 / 31.4 | 16.4 / 24.7 / 32.0 | 17.4 / 24.7 / 32.0 | 17.4 / 25.3 / 32.0 |
+| Pi_ub, quartiles | -17.4 / -0.8 / 16.1 | -11.4 / -1.6 / 16.4 | -17.9 / -7.3 / 11.7 | -16.3 / -4.1 / 11.3 | -18.8 / -4.1 / 14.9 | -19.3 / -4.8 / 12.9 | -17.9 / -7.3 / 11.7 |
+| Pi_lb, quartiles | 12.1 / 19.6 / 27.6 | 15.0 / 19.2 / 26.2 | 9.0 / 18.1 / 25.5 | 10.7 / 18.8 / 27.1 | 10.8 / 19.5 / 27.5 | 10.4 / 18.1 / 24.9 | 9.0 / 18.1 / 25.5 |
+| share Pi_ub > 0 | 45% | 43% | 37% | 41% | 41% | 39% | 37% |
+| transient share of the median score | -2% to 39% | -3% to 36% | -15% to 36% | -8% to 38% | -8% to 38% | -9% to 36% | -15% to 36% |
 
 Bootstrap, cut-off at P97.5, leave-one-firm-out and the firm-years per firm: `notes/inference_v3.md` section 12. Anchor
 inputs for calibrate_horizons.py: `notes/calibration_anchor_v3.json` (same format as `notes/calibration_anchor_E2.json`).
 
 ## 7. Still open
 
-- R2 as a rule: the opening of Item 1 (Item 4.B for a 20-F) of the latest annual report of every core registrant, saved as
-  `data/v3_inputs/business_descriptions.json`; `build_panel_v3.py` then applies R2 to the main sample.
+- R2 beyond keywords: the classifier misses game publishers and the AI-cloud provider whose openings do not use its
+  phrases; the independent readings enter only as sensitivities.
 - R5 for foreign filers: the Section 12(b) table on the 20-F and 40-F cover pages (exchange-listed ADSs or shares).
 - R4(c) beyond non-dimensional facts: the acquiree-revenue element on its business-combination axis, which only the
   filings' XBRL instance documents carry (frames and companyfacts drop dimensions).
