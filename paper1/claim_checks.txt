@@ -12,7 +12,7 @@ ok   empirics: period slopes on the 0-60% window are not defined under E2 (cells
 ok   empirics: the P95 and capital-intensity headline statistics do not survive Holm at 5%
 ok   empirics: the P95 decline holds in every variant
 ok   empirics (A2): the GAAP P95 decline survives Holm at 10% under the normal and percentile intervals and Romano-Wolf but not the basic interval (Holm p 0.054 to 0.208), and at 5% under none
-ok   empirics (editor text): the GAAP decline is "significant at 10% after familywise correction under most procedures": three of the four (Holm normal, Holm percentile, Romano-Wolf; not Holm basic), and its 90% interval excludes zero under all four interval types
+ok   empirics (editor text, round 3): the GAAP decline "survives at a familywise level of 10% under the normal and percentile types, is at the 10% boundary under Romano and Wolf's procedure, does not survive under the basic type, and at 5% survives under none": Holm normal and percentile below 0.10, Holm basic above, Romano-Wolf below 0.10 (its distance from 0.10 is checked against the Monte Carlo error below), none below 0.05; its 90% interval excludes zero under all four interval types
 ok   empirics (editor text): the cash decline is "not significant" after familywise correction: Holm (normal, percentile, basic) and Romano-Wolf all above 10%, although each of its four 90% intervals excludes zero before correction
 ok   empirics (A2): the cash P95 decline fails Holm at 10% under every interval type and Romano-Wolf
 ok   empirics: the P95 low year is 2024 and it recovered in 2025; the 2016-19 to 2025 interval includes zero

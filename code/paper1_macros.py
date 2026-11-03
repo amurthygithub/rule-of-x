@@ -1351,10 +1351,13 @@ CLAIMS = [
      'but not the basic interval (Holm p 0.054 to 0.208), and at 5% under none',
      all(FB['p95chg_op_E1'][t] < 0.10 for t in ('holm_normal', 'holm_percentile', 'romano_wolf'))
      and FB['p95chg_op_E1']['holm_basic'] > 0.10 and in_none(SB5, 'p95chg_op_E1')),
-    ('empirics (editor text): the GAAP decline is "significant at 10% after familywise correction under most procedures": '
-     'three of the four (Holm normal, Holm percentile, Romano-Wolf; not Holm basic), and its 90% interval excludes zero under '
-     'all four interval types', sum(FB['p95chg_op_E1'][t] < 0.10 for t in ('holm_normal', 'holm_percentile', 'holm_basic',
-                                                                         'romano_wolf')) == 3
+    ('empirics (editor text, round 3): the GAAP decline "survives at a familywise level of 10% under the normal and '
+     'percentile types, is at the 10% boundary under Romano and Wolf\'s procedure, does not survive under the basic type, and '
+     'at 5% survives under none": Holm normal and percentile below 0.10, Holm basic above, Romano-Wolf below 0.10 (its '
+     'distance from 0.10 is checked against the Monte Carlo error below), none below 0.05; its 90% interval excludes zero '
+     'under all four interval types',
+     all(FB['p95chg_op_E1'][t] < 0.10 for t in ('holm_normal', 'holm_percentile', 'romano_wolf'))
+     and FB['p95chg_op_E1']['holm_basic'] > 0.10 and in_none(SB5, 'p95chg_op_E1')
      and types_pass('p95_change_op', lambda c: c[1] < 0) == 4),
     ('empirics (editor text): the cash decline is "not significant" after familywise correction: Holm (normal, percentile, '
      'basic) and Romano-Wolf all above 10%, although each of its four 90% intervals excludes zero before correction',

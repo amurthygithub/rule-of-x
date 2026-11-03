@@ -176,6 +176,30 @@ num('StFloorOneMin', AMIN['A4.One']['quantity']['min'], 2); num('StFloorOneMax',
 num('StPullMin', QUANT['pull_multiple']['min'], 1, False); num('StPullMax', QUANT['pull_multiple']['max'], 1, False)
 num('StCompletedMax', TESTS['P2b.full.net']['quantity']['max'])
 num('StPathMax', TESTS['P1.full.net']['quantity']['max'])
+# editor's requests for Section S9 (3 Nov): the reproduction checks run before sampling; the ST-4 maxima of the cumulative
+# and discounted effects at three and five years (points of revenue times years); the ST-5 change-capacity threshold
+_rc = J['reproduction']['checks']
+assert all(c_['ok'] for c_ in _rc) and J['reproduction']['all_passed']
+put('StReproChecks', str(len(_rc)))
+
+
+def sgn(name, x, nd=1):
+    s_ = fnum(100 * x, nd)
+    put(name, s_ if s_.startswith('$-$') or float(s_) == 0 else '$+$' + s_)
+
+
+sgn('StCumMaxCen', TESTS['B3.B.net']['quantity']['max']); sgn('StCumMax', TESTS['B3.full.net']['quantity']['max'])
+import re as _re
+_scan = [u for u in TESTS['P3.full']['failure']['univariate'] if u['dim'] == 'kappa_abs' and u['reference'] == 'central'][0]
+_m = _re.fullmatch(r'fails for kappa_abs in \[([\d.]+), ([\d.]+)\]', _scan['result'])
+assert _m and abs(float(_m.group(2)) - max(d_['hi'] for d_ in J['dims'] if d_['name'] == 'kappa_abs')) < 1e-12
+num('StCapHalf', float(_m.group(1)), 0); num('StCapHalfOne', float(_m.group(1)), 1)   # share of the program changed a year
+# the qualitative statements of S9 about these numbers: ST-4 fails narrowly under central execution (largest value above
+# zero but below one point of revenue times years) and clearly over the full box; ST-5's threshold lies between the
+# central (0.10) and the fast (0.22) change capacity
+_kc = [d_ for d_ in J['dims'] if d_['name'] == 'kappa_abs'][0]
+assert 0 < TESTS['B3.B.net']['quantity']['max'] < 0.01 < TESTS['B3.full.net']['quantity']['max']
+assert not TESTS['B3.B.net']['holds_everywhere'] and _kc['central'] < float(_m.group(1)) < _kc['hi']
 # the draws file and the JSON must agree (same run)
 assert abs(np.quantile(D.R2036_net, 0.05) / 100 - L36["lhs_p05"]) < 1e-6 and abs(np.quantile(D.R2036_net, 0.95) / 100 - L36["lhs_p95"]) < 1e-6   # the CSV is rounded
 assert D.Gstar_2025.min() / 100 >= G['min'] - 1e-12 and D.Gstar_2025.max() / 100 <= G['max'] + 1e-12

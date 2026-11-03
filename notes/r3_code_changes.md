@@ -79,8 +79,15 @@ Flagged, not changed (GPT-4): under the exact recurrence the fast case's NPV and
     now also asserts the successful-run values (`\CcLoRuns`, `\GstarCcLoRuns`, `\GstarAccCcLoRuns`). Its logic is
     unchanged: printed values against an independent recomputation at the stated bounds.
 - `code/mc_claims.py` (GPT-21): class of `u_rev` "b" -> "d" (label only; the committed results are not re-run).
-- `code/mc_report_tex.py` (new): Table tab:stress, `paper1/stress_macros.tex` (53 \St* macros) and
+- `code/mc_report_tex.py` (new): Table tab:stress, `paper1/stress_macros.tex` (58 \St* macros) and
   `figures/fig_stress.pdf` from the committed stress-test outputs; asserts the draws file agrees with the JSON.
+- `sections/supp_stress.tex` (at the coordinator's request, 3 Nov; the only prose file edited): "every check passed" ->
+  "all \StReproChecks{} checks passed"; ST-4 "is at most marginally positive" -> "is at most \StCumMaxCen{} points of
+  revenue times years" and "it can be clearly positive" -> "it reaches \StCumMax"; ST-5 "once change capacity is moderately
+  above its central value of \PaceCapCen\% of the program a year" -> "once change capacity exceeds about \StCapHalf\% of
+  the program a year, against its central value of \PaceCapCen\%". `code/paper1_macros.py`: the CLAIMS label that quoted
+  "significant at 10% ... under most procedures" now quotes the current empirics.tex sentence, and its test adds "at 5%
+  under none" (Romano-Wolf's side of 0.10 is the GPT-14 entry).
 - `code/regenerate_all.sh`: new stage `stress_report` after `calibrate` (runs `mc_report_tex.py`; does not re-run the MC).
 - `code/REPLICATION_README.md`: the stress test, its reproduction command (`python3 code/mc_claims.py --n 10000
   --workers 4 --out notes/mc`), `mc_report_tex.py`, the report-only rerun, the raw filings and the figures file;
@@ -113,7 +120,7 @@ Flagged, not changed (GPT-4): under the exact recurrence the fast case's NPV and
 - paper1_macros.py CLAIMS (+11): GPT-M1 steepest slope below one and below the approximation; GPT-M2 period cash above
   PV; GPT-M4 five-year owner; GLM-M5 truncated ratio above one; GPT-4 exact recurrence leaves the printed central numbers
   and dates; GPT-9 net below durable; GLM-F1 shape (two entries); GLM-F5 family dependence; GPT-14 MC error; GLM-M11.
-- mc_report_tex.py: consistency of the draws file with the JSON; the stress test's own reproduction flag.
+- mc_report_tex.py: consistency of the draws file with the JSON; the stress test's own reproduction flag and all 82 of its checks; the S9 statements about ST-4 (fails narrowly under central execution, clearly over the box) and ST-5 (threshold between the central and fast change capacity).
 
 ## Not done (and why)
 
