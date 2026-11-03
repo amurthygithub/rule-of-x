@@ -162,10 +162,10 @@ theorem Rst_continuous (hα1 : α < 1) : Continuous (Rst α sbar m0 G k X lam) :
   exact (continuous_const.mul hdr_continuous).mul continuous_const
 
 /-- `R*_X(s)` is the maximal score at share `s` (prop:score with `ℓ = λ h(s)`, `σ̄ = ∞`). -/
-theorem Rst_isGreatest (hα : 0 < α) (hα1 : α < 1) (hk : 0 ≤ k) (hlam : 0 < lam) (hsbar : 0 < sbar)
+theorem Rst_isGreatest (hα : 0 < α) (hα1 : α < 1) (hlam : 0 < lam) (hsbar : 0 < sbar)
     {s : ℝ} (hs : s < sbar) :
     IsGreatest (score X '' Feasible m0 G k α (lam * hdr sbar s) ⊤) (Rst α sbar m0 G k X lam s) :=
-  Rstar_isGreatest hα hα1 (ℓ_pos hlam hsbar hs) hk X
+  Rstar_isGreatest hα hα1 (ℓ_pos hlam hsbar hs) X
 
 /-- Derivative of `R*_X(s)` in `s` for `X > k`: `-(X-k)Δ*/(s̄ - s)`. -/
 theorem Rst_hasDerivAt (hα : 0 < α) (hα1 : α < 1) (hlam : 0 < lam) (hsbar : 0 < sbar)
@@ -196,7 +196,7 @@ theorem Rst_hasDerivAt (hα : 0 < α) (hα1 : α < 1) (hlam : 0 < lam) (hsbar : 
 /-- **Lemma prop:saturation (a).** "`R*_X(s) = R_∞ + C_α[λ h(s) y₊]^{1/(1-α)}`. If `X > k`,
 this is strictly decreasing in `s`, with `dR*_X/ds = -(X-k)Δ*/(s̄ - s)`. If `X ≤ k`, it is
 constant." (`R*_X(s)` is the maximal score at share `s`: first conjunct.) -/
-theorem prop_saturation_a (hα : 0 < α) (hα1 : α < 1) (hk : 0 ≤ k) (hlam : 0 < lam)
+theorem prop_saturation_a (hα : 0 < α) (hα1 : α < 1) (_hk : 0 ≤ k) (hlam : 0 < lam)
     (hsbar : 0 < sbar) (X : ℝ) :
     (∀ s, s < sbar →
       IsGreatest (score X '' Feasible m0 G k α (lam * hdr sbar s) ⊤) (Rst α sbar m0 G k X lam s)) ∧
@@ -206,7 +206,7 @@ theorem prop_saturation_a (hα : 0 < α) (hα1 : α < 1) (hk : 0 ≤ k) (hlam : 
       ∀ s, 0 < s → s < sbar → HasDerivAt (Rst α sbar m0 G k X lam)
         (-((X - k) * Δstar α (lam * hdr sbar s) (X - k) / (sbar - s))) s) ∧
     (X ≤ k → ∀ s s', Rst α sbar m0 G k X lam s = Rst α sbar m0 G k X lam s') := by
-  refine ⟨fun s hs => Rst_isGreatest hα hα1 hk hlam hsbar hs, fun s => Rst_eq s, fun hX => ⟨?_, ?_⟩,
+  refine ⟨fun s hs => Rst_isGreatest hα hα1 hlam hsbar hs, fun s => Rst_eq s, fun hX => ⟨?_, ?_⟩,
     fun hX s s' => by rw [Rst_of_le hα1 hX, Rst_of_le hα1 hX]⟩
   · intro s hs s' hs' hss'
     rw [Rst_of_lt hX, Rst_of_lt hX]
@@ -224,14 +224,17 @@ theorem prop_saturation_a (hα : 0 < α) (hα1 : α < 1) (hk : 0 ≤ k) (hlam : 
 /-- **Lemma prop:saturation (b).** "`lim_{s→s̄} R*_X(s) = R_∞`. For the Rule of 40 with
 `k = 0`, the limit is `m₀ + G`. Since `m₀ = 1 - c_h - c_c - f - a ≤ 1 - c_c - f - a_min ≤ 1`,
 `R_∞ ≤ 1 - c_c - f - a_min + (X-k) G`, and for `X = 1`: `R_∞ ≤ 1 + (1-k) G`." -/
-theorem prop_saturation_b (_hα : 0 < α) (hα1 : α < 1) (_hlam : 0 < lam) (hsbar : 0 < sbar) (X : ℝ) :
+theorem prop_saturation_b (hα : 0 < α) (hα1 : α < 1) (hlam : 0 < lam) (hsbar : 0 < sbar) (X : ℝ) :
+    (∀ s, s < sbar →
+      IsGreatest (score X '' Feasible m0 G k α (lam * hdr sbar s) ⊤) (Rst α sbar m0 G k X lam s)) ∧
     Tendsto (Rst α sbar m0 G k X lam) (𝓝[<] sbar) (𝓝 (Rinf m0 G k X)) ∧
     (X = 1 → k = 0 → Rinf m0 G k X = m0 + G) ∧
     (∀ ch cc f a amin : ℝ, 0 ≤ ch → 0 ≤ cc → 0 ≤ f → 0 ≤ amin → amin ≤ a →
       m0 = 1 - ch - cc - f - a →
       Rinf m0 G k X ≤ 1 - cc - f - amin + (X - k) * G ∧
       (X = 1 → Rinf m0 G k X ≤ 1 + (1 - k) * G)) := by
-  refine ⟨?_, fun hX hk => by subst hX hk; unfold Rinf; ring, ?_⟩
+  refine ⟨fun s hs => Rst_isGreatest hα hα1 hlam hsbar hs, ?_,
+    fun hX hk => by subst hX hk; unfold Rinf; ring, ?_⟩
   · have h := (Rst_continuous (α := α) (sbar := sbar) (m0 := m0) (G := G) (k := k) (X := X)
       (lam := lam) hα1).tendsto sbar
     have hval : Rst α sbar m0 G k X lam sbar = Rinf m0 G k X := by
@@ -249,6 +252,8 @@ theorem prop_saturation_b (_hα : 0 < α) (hα1 : α < 1) (_hlam : 0 < lam) (hsb
 `R_∞ + C_α(λ y₊)^{1/(1-α)}`. If `X > k`, the supremum is not attained; if `X ≤ k`, `R*_X` is
 constant in `s` and the supremum is attained at every share." -/
 theorem prop_saturation_c (hα : 0 < α) (hα1 : α < 1) (hlam : 0 < lam) (hsbar : 0 < sbar) (X : ℝ) :
+    (∀ s, s < sbar →
+      IsGreatest (score X '' Feasible m0 G k α (lam * hdr sbar s) ⊤) (Rst α sbar m0 G k X lam s)) ∧
     IsLUB (Rst α sbar m0 G k X lam '' Ioo 0 sbar)
       (Rinf m0 G k X + Cα α * (lam * max (X - k) 0) ^ (1 / (1 - α))) ∧
     Tendsto (Rst α sbar m0 G k X lam) (𝓝[>] 0)
@@ -277,7 +282,7 @@ theorem prop_saturation_c (hα : 0 < α) (hα1 : α < 1) (hlam : 0 < lam) (hsbar
       (q_pos hα1).le
     have h3 := mul_le_mul_of_nonneg_left h2 (Cα_pos hα hα1).le
     linarith
-  refine ⟨⟨?_, ?_⟩, hlim, ?_, ?_⟩
+  refine ⟨fun s hs => Rst_isGreatest hα hα1 hlam hsbar hs, ⟨?_, ?_⟩, hlim, ?_, ?_⟩
   · rintro _ ⟨s, hs, rfl⟩
     exact hub s hs
   · intro b hb
@@ -308,7 +313,7 @@ theorem prop_saturation_c (hα : 0 < α) (hα1 : α < 1) (hlam : 0 < lam) (hsbar
 `Λ(R̄) := (1/(X-k)) [(R̄ - R_∞)/C_α]^{1-α}`. Then `R*_X(s) ≥ R̄` iff `λ h(s) ≥ Λ(R̄)`, and a
 score of `R̄` is attainable at some share iff `λ > Λ(R̄)`. A firm exactly at the threshold has
 `Δ* = (R̄ - R_∞)/[(1-α)(X-k)]`, `σ* = α(R̄ - R_∞)/(1-α)` and `m = m₀ - k g* - σ*`." -/
-theorem prop_saturation_d (hα : 0 < α) (hα1 : α < 1) (hk : 0 ≤ k) (hlam : 0 < lam)
+theorem prop_saturation_d (hα : 0 < α) (hα1 : α < 1) (_hk : 0 ≤ k) (hlam : 0 < lam)
     (hsbar : 0 < sbar) (hX : k < X) {Rbar : ℝ} (hR : Rinf m0 G k X < Rbar) :
     (∀ s ∈ Ioo 0 sbar, Rbar ≤ Rst α sbar m0 G k X lam s ↔ Λ α m0 G k X Rbar ≤ lam * hdr sbar s) ∧
     ((∃ s ∈ Ioo 0 sbar, Rbar ≤ Rst α sbar m0 G k X lam s) ↔ Λ α m0 G k X Rbar < lam) ∧
@@ -384,7 +389,7 @@ theorem prop_saturation_d (hα : 0 < α) (hα1 : α < 1) (hk : 0 ≤ k) (hlam : 
     refine ⟨hΔ, ?_, ?_⟩
     · rw [σstar_eq hα hα1 hℓ hy, hΔ]
       field_simp
-    · have h := (prop_score_b (m0 := m0) (G := G) hα hα1 hℓ hk zero_lt_top hX le_top)
+    · have h := (prop_score_b (m0 := m0) (G := G) hα hα1 hℓ _hk zero_lt_top hX le_top)
       rw [h.2.2.2.2.2.2.2.2.2.2.2.2, σstar_eq hα hα1 hℓ hy]
 
 end RuleOfX

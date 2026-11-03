@@ -275,7 +275,7 @@ theorem mem_I_coe {b g : ℝ} (hg : G ≤ g) (hgb : g ≤ growth G ℓ α b) :
   rw [I_coe]; exact ⟨hg, hgb⟩
 
 /-- Existence of a maximizer (with any cap). -/
-theorem exists_isMax (hα : 0 < α) (hα1 : α < 1) (hℓ : 0 < ℓ) (_hk : 0 ≤ k) (hσbar : 0 < σbar)
+theorem exists_isMax (hα : 0 < α) (hα1 : α < 1) (hℓ : 0 < ℓ) (hσbar : 0 < σbar)
     (X : ℝ) : ∃ p, IsMax m0 G k α ℓ σbar X p := by
   rcases le_or_gt X k with hXk | hXk
   · refine ⟨(G, mstar m0 G k α ℓ G), frontier_point_feasible hα hℓ hσbar (G_mem_I hα hℓ hσbar),
@@ -322,7 +322,7 @@ theorem prop_score_a (hα : 0 < α) (hα1 : α < 1) (hℓ : 0 < ℓ) (hk : 0 ≤
     (∀ c : ℝ, {p : ℝ × ℝ | score X p = c} = {p | p.2 = c - X * p.1}) ∧
     (∃ p, IsMax m0 G k α ℓ σbar X p) ∧
     (∀ p, IsMax m0 G k α ℓ σbar X p → p ∈ Frontier m0 G k α ℓ σbar) := by
-  refine ⟨fun c => ?_, exists_isMax hα hα1 hℓ hk hσbar X,
+  refine ⟨fun c => ?_, exists_isMax hα hα1 hℓ hσbar X,
     fun p hp => isMax_mem_frontier hα hℓ hk hσbar hp⟩
   ext p
   simp only [score, Set.mem_ofPred_eq]
@@ -345,7 +345,7 @@ theorem gstar_mem_I (hα : 0 < α) (hα1 : α < 1) (hℓ : 0 < ℓ) (hσbar : 0 
     exact growth_monotoneOn hα hℓ (σstar_nonneg hα hℓ hy0.le) hb.le hσb
 
 /-- The interior optimum is the unique maximizer. -/
-theorem isUniqueMax_gstar (hα : 0 < α) (hα1 : α < 1) (hℓ : 0 < ℓ) (_hk : 0 ≤ k)
+theorem isUniqueMax_gstar (hα : 0 < α) (hα1 : α < 1) (hℓ : 0 < ℓ)
     (hσbar : 0 < σbar) {X : ℝ} (hX : k < X)
     (hcap : (σstar α ℓ (X - k) : WithTop ℝ) ≤ σbar) :
     IsUniqueMax m0 G k α ℓ σbar X (gstar G k α ℓ X, mstar m0 G k α ℓ (gstar G k α ℓ X)) := by
@@ -377,7 +377,7 @@ In closed form, `Δ* = g* - G = (λh)^{1/(1-α)} [α(X-k)]^{α/(1-α)}`,
 `R*_X = m₀ + (X-k)G + (1-α)(X-k)Δ* = m₀ + (X-k)G + C_α[λh(X-k)]^{1/(1-α)}`, and the margin at
 the optimum is `m*(g*) = m₀ - kg* - α(X-k)Δ*`."  (Here `ℓ = λh`; the cap condition
 `σ* ≤ σ̄` is the hypothesis `hcap`.) -/
-theorem prop_score_b (hα : 0 < α) (hα1 : α < 1) (hℓ : 0 < ℓ) (hk : 0 ≤ k) (hσbar : 0 < σbar)
+theorem prop_score_b (hα : 0 < α) (hα1 : α < 1) (hℓ : 0 < ℓ) (_hk : 0 ≤ k) (hσbar : 0 < σbar)
     {X : ℝ} (hX : k < X) (hcap : (σstar α ℓ (X - k) : WithTop ℝ) ≤ σbar) :
     IsUniqueMax m0 G k α ℓ σbar X (gstar G k α ℓ X, mstar m0 G k α ℓ (gstar G k α ℓ X)) ∧
     G < gstar G k α ℓ X ∧
@@ -401,7 +401,7 @@ theorem prop_score_b (hα : 0 < α) (hα1 : α < 1) (hℓ : 0 < ℓ) (hk : 0 ≤
   have htan : HasDerivAt (mstar m0 G k α ℓ) (-X) (gstar G k α ℓ X) := by
     refine (mstar_hasDerivAt hα hα1 _).congr_deriv ?_
     rw [hg, add_sub_cancel_left, foc hα hα1 hℓ hy0]; ring
-  refine ⟨isUniqueMax_gstar hα hα1 hℓ hk hσbar hX hcap, by rw [hg]; linarith, htan,
+  refine ⟨isUniqueMax_gstar hα hα1 hℓ hσbar hX hcap, by rw [hg]; linarith, htan,
     htan.hasDerivWithinAt, ?_, by rw [hg]; unfold Δstar; ring, by rw [hg]; ring, rfl,
     σstar_eq hα hα1 hℓ hy0, by rw [hg]; exact spendOf_Δstar hα hα1 hℓ hy0, ?_, ?_, ?_⟩
   · intro h
@@ -414,16 +414,11 @@ theorem prop_score_b (hα : 0 < α) (hα1 : α < 1) (hℓ : 0 < ℓ) (hk : 0 ≤
 
 /-! ### Part (c) -/
 
-/-- **Lemma prop:score (c).** "If `X ≤ k`, the unique maximizer is the corner `g* = G` with
-`σ* = 0`, and `R*_X = m₀ + (X-k)G`. This part does not need the cap condition." -/
-theorem prop_score_c (hα : 0 < α) (hα1 : α < 1) (hℓ : 0 < ℓ) (_hk : 0 ≤ k) (hσbar : 0 < σbar)
-    {X : ℝ} (hX : X ≤ k) :
-    IsUniqueMax m0 G k α ℓ σbar X (G, mstar m0 G k α ℓ G) ∧
-    gstar G k α ℓ X = G ∧ σplus α ℓ (X - k) = 0 ∧ spendOf G α ℓ G = 0 ∧
-    score X (G, mstar m0 G k α ℓ G) = m0 + (X - k) * G := by
+/-- The corner `(G, m*(G))` is the unique maximizer when `X ≤ k`. -/
+theorem isUniqueMax_corner (hα : 0 < α) (hℓ : 0 < ℓ) (hσbar : 0 < σbar) {X : ℝ} (hX : X ≤ k) :
+    IsUniqueMax m0 G k α ℓ σbar X (G, mstar m0 G k α ℓ G) := by
   have hy0 : X - k ≤ 0 := sub_nonpos.2 hX
-  refine ⟨⟨frontier_point_feasible hα hℓ hσbar (G_mem_I hα hℓ hσbar), fun q hq hne => ?_⟩,
-    gstar_of_le hα hα1 hX, σplus_of_nonpos hα1 hy0, spendOf_self hα, ?_⟩
+  refine ⟨frontier_point_feasible hα hℓ hσbar (G_mem_I hα hℓ hσbar), fun q hq hne => ?_⟩
   · have hq' := (feasible_iff hα hℓ hσbar q).1 hq
     have h1 := score_le_frontier (X := X) hα hℓ hσbar hq
     rw [score_frontier, sub_self, S_zero hα]
@@ -438,7 +433,20 @@ theorem prop_score_c (hα : 0 < α) (hα1 : α < 1) (hℓ : 0 < ℓ) (_hk : 0 �
         _ = score X (q.1, mstar m0 G k α ℓ q.1) := rfl
         _ = m0 + (X - k) * G + S α ℓ (X - k) (q.1 - G) := score_frontier X q.1
         _ = m0 + (X - k) * G + 0 := by rw [← hg, sub_self, S_zero hα]
-  · rw [score_frontier, sub_self, S_zero hα, add_zero]
+
+theorem score_corner (hα : 0 < α) (X : ℝ) :
+    score X (G, mstar m0 G k α ℓ G) = m0 + (X - k) * G := by
+  rw [score_frontier, sub_self, S_zero hα, add_zero]
+
+/-- **Lemma prop:score (c).** "If `X ≤ k`, the unique maximizer is the corner `g* = G` with
+`σ* = 0`, and `R*_X = m₀ + (X-k)G`. This part does not need the cap condition." -/
+theorem prop_score_c (hα : 0 < α) (hα1 : α < 1) (hℓ : 0 < ℓ) (_hk : 0 ≤ k) (hσbar : 0 < σbar)
+    {X : ℝ} (hX : X ≤ k) :
+    IsUniqueMax m0 G k α ℓ σbar X (G, mstar m0 G k α ℓ G) ∧
+    gstar G k α ℓ X = G ∧ σplus α ℓ (X - k) = 0 ∧ spendOf G α ℓ G = 0 ∧
+    score X (G, mstar m0 G k α ℓ G) = m0 + (X - k) * G :=
+  ⟨isUniqueMax_corner hα hℓ hσbar hX, gstar_of_le hα hα1 hX, σplus_of_nonpos hα1 (sub_nonpos.2 hX),
+    spendOf_self hα, score_corner hα X⟩
 
 /-! ### Part (d): duality -/
 
@@ -494,18 +502,24 @@ theorem Δstar_Xof (hα : 0 < α) (hα1 : α < 1) (hℓ : 0 < ℓ) {g : ℝ} (hg
 
 /-- **Lemma prop:score (d), first two claims.** "Each frontier point with `G < g < ḡ` is the
 unique maximizer of `R_X` for exactly one weight, `X(g) = -m*'(g) = k + βκ(g-G)^{β-1}`. The
-point `g = G` is a maximizer if and only if `X ≤ k`." -/
-theorem prop_score_d (hα : 0 < α) (hα1 : α < 1) (hℓ : 0 < ℓ) (hk : 0 ≤ k) (hσbar : 0 < σbar) :
+point `g = G` is a maximizer if and only if `X ≤ k`." Both the strong form (`g` is a maximizer
+of `R_X` iff `X = X(g)`, as in the paper's proof: for any other weight `g` is not a maximizer)
+and the unique-maximizer form are stated. -/
+theorem prop_score_d (hα : 0 < α) (hα1 : α < 1) (hℓ : 0 < ℓ) (_hk : 0 ≤ k) (hσbar : 0 < σbar) :
     (∀ g, G < g → (g : WithTop ℝ) < gbar G ℓ α σbar →
       Xof G k α ℓ g = -(deriv (mstar m0 G k α ℓ) g) ∧
       Xof G k α ℓ g = k + β α * κ α ℓ * (g - G) ^ (β α - 1) ∧
+      (∀ X, IsMax m0 G k α ℓ σbar X (g, mstar m0 G k α ℓ g) ↔ X = Xof G k α ℓ g) ∧
       ∀ X, IsUniqueMax m0 G k α ℓ σbar X (g, mstar m0 G k α ℓ g) ↔ X = Xof G k α ℓ g) ∧
     (∀ X, IsMax m0 G k α ℓ σbar X (G, mstar m0 G k α ℓ G) ↔ X ≤ k) := by
   constructor
   · intro g hg hlt
-    refine ⟨Xof_eq_neg_deriv hα hα1 g, rfl, fun X => ⟨fun h => eq_Xof_of_isMax hα hα1 hℓ hσbar
-      hg hlt h.isMax, fun hX => ?_⟩⟩
-    subst hX
+    suffices huniq : IsUniqueMax m0 G k α ℓ σbar (Xof G k α ℓ g) (g, mstar m0 G k α ℓ g) by
+      refine ⟨Xof_eq_neg_deriv hα hα1 g, rfl,
+        fun X => ⟨fun h => eq_Xof_of_isMax hα hα1 hℓ hσbar hg hlt h, fun hX => ?_⟩,
+        fun X => ⟨fun h => eq_Xof_of_isMax hα hα1 hℓ hσbar hg hlt h.isMax, fun hX => ?_⟩⟩
+      · subst hX; exact huniq.isMax
+      · subst hX; exact huniq
     have hXk : k < Xof G k α ℓ g := lt_Xof hα hℓ hg
     have hgeq : gstar G k α ℓ (Xof G k α ℓ g) = g := by
       rw [gstar_of_lt hXk, Δstar_Xof hα hα1 hℓ hg]; ring
@@ -524,7 +538,7 @@ theorem prop_score_d (hα : 0 < α) (hα1 : α < 1) (hℓ : 0 < ℓ) (hk : 0 ≤
         have := spendOf_monotoneOn (G := G) hα hℓ hg.le (growth_nonneg_sub hℓ hb.le) hgb.le
         rw [spendOf_growth hα hℓ hb.le] at this
         exact_mod_cast this
-    have := isUniqueMax_gstar (m0 := m0) (G := G) hα hα1 hℓ hk hσbar hXk hcap
+    have := isUniqueMax_gstar (m0 := m0) (G := G) hα hα1 hℓ hσbar hXk hcap
     rwa [hgeq] at this
   · intro X
     constructor
@@ -552,12 +566,12 @@ theorem prop_score_d (hα : 0 < α) (hα1 : α < 1) (hℓ : 0 < ℓ) (hk : 0 ≤
       rw [S_zero hα] at h2
       linarith
     · intro hX
-      exact (prop_score_c hα hα1 hℓ hk hσbar hX).1.isMax
+      exact (isUniqueMax_corner hα hℓ hσbar hX).isMax
 
 /-- **Lemma prop:score (d), uncapped claims.** "If `σ̄ = ∞`, the optimal growth rate `g*(X)` is
 continuous and nondecreasing in `X`, and strictly increasing for `X > k`." Here `g*` is
 `gstar`, shown to be the unique maximizer for every `X ≥ 0` (indeed every real `X`). -/
-theorem prop_score_d_uncapped (hα : 0 < α) (hα1 : α < 1) (hℓ : 0 < ℓ) (hk : 0 ≤ k) :
+theorem prop_score_d_uncapped (hα : 0 < α) (hα1 : α < 1) (hℓ : 0 < ℓ) (_hk : 0 ≤ k) :
     (∀ X, IsUniqueMax m0 G k α ℓ ⊤ X (gstar G k α ℓ X, mstar m0 G k α ℓ (gstar G k α ℓ X))) ∧
     Continuous (gstar G k α ℓ) ∧ Monotone (gstar G k α ℓ) ∧
     StrictMonoOn (gstar G k α ℓ) (Ioi k) := by
@@ -565,8 +579,8 @@ theorem prop_score_d_uncapped (hα : 0 < α) (hα1 : α < 1) (hℓ : 0 < ℓ) (h
   refine ⟨fun X => ?_, ?_, ?_, ?_⟩
   · rcases le_or_gt X k with hX | hX
     · rw [gstar_of_le hα hα1 hX]
-      exact (prop_score_c hα hα1 hℓ hk zero_lt_top hX).1
-    · exact isUniqueMax_gstar hα hα1 hℓ hk zero_lt_top hX le_top
+      exact isUniqueMax_corner hα hℓ zero_lt_top hX
+    · exact isUniqueMax_gstar hα hα1 hℓ zero_lt_top hX le_top
   · unfold gstar Δplus Δstar
     refine continuous_const.add (continuous_const.mul ?_)
     refine Continuous.rpow_const ?_ fun x => Or.inr hq
@@ -589,15 +603,29 @@ theorem prop_score_d_uncapped (hα : 0 < α) (hα1 : α < 1) (hℓ : 0 < ℓ) (h
 
 /-! ### Part (e): the growth surplus -/
 
+/-- The maximal score is `m₀ + (X-k)G + Π` (under the cap condition, `σ* = 0` when `X ≤ k`). -/
+theorem score_isGreatest (hα : 0 < α) (hα1 : α < 1) (hℓ : 0 < ℓ) (X : ℝ) (σbar : WithTop ℝ)
+    (hσbar : 0 < σbar) (hcap : (σplus α ℓ (X - k) : WithTop ℝ) ≤ σbar) :
+    IsGreatest (score X '' Feasible m0 G k α ℓ σbar) (m0 + (X - k) * G + surplus α ℓ (X - k)) := by
+  rcases le_or_gt X k with hX | hX
+  · rw [surplus_of_nonpos hα hα1 (sub_nonpos.2 hX), add_zero, ← score_corner (m0 := m0) (ℓ := ℓ) hα]
+    exact (isUniqueMax_corner hα hℓ hσbar hX).isGreatest
+  · have hy0 : 0 < X - k := sub_pos.2 hX
+    rw [σplus_of_pos hy0.le] at hcap
+    have h := (isUniqueMax_gstar (m0 := m0) (G := G) hα hα1 hℓ hσbar hX hcap).isGreatest
+    rw [score_frontier, gstar_of_lt hX, add_sub_cancel_left, S_Δstar hα hα1 hℓ hy0] at h
+    rw [surplus_of_pos hy0.le]
+    exact h
+
 /-- **Lemma prop:score (e).** "The growth surplus `Π := (1-α)(X-k)Δ*` (zero if `X ≤ k`)
 satisfies `Π = max_{σ ≥ 0} {(X-k) ℓ σ^α - σ}`, so that `R*_X = m₀ + (X-k)G + Π`."
 The maximum is stated as `IsGreatest`; the second claim holds under the cap condition
 `σ* ≤ σ̄` (with `σ* = 0` when `X ≤ k`). -/
-theorem prop_score_e (hα : 0 < α) (hα1 : α < 1) (hℓ : 0 < ℓ) (hk : 0 ≤ k) (X : ℝ) :
+theorem prop_score_e (hα : 0 < α) (hα1 : α < 1) (hℓ : 0 < ℓ) (_hk : 0 ≤ k) (X : ℝ) :
     IsGreatest ((fun σ => (X - k) * ℓ * σ ^ α - σ) '' Ici 0) (surplus α ℓ (X - k)) ∧
     (∀ σbar : WithTop ℝ, 0 < σbar → (σplus α ℓ (X - k) : WithTop ℝ) ≤ σbar →
       IsGreatest (score X '' Feasible m0 G k α ℓ σbar) (m0 + (X - k) * G + surplus α ℓ (X - k))) := by
-  constructor
+  refine ⟨?_, fun σbar hσbar hcap => score_isGreatest hα hα1 hℓ X σbar hσbar hcap⟩
   · rcases le_or_gt X k with hX | hX
     · have hy0 : X - k ≤ 0 := sub_nonpos.2 hX
       rw [surplus_of_nonpos hα hα1 hy0]
@@ -630,21 +658,12 @@ theorem prop_score_e (hα : 0 < α) (hα1 : α < 1) (hℓ : 0 < ℓ) (hk : 0 ≤
         unfold S at h2
         rw [h1] at h2
         linarith
-  · intro σbar hσbar hcap
-    rcases le_or_gt X k with hX | hX
-    · have h := (prop_score_c (m0 := m0) (G := G) hα hα1 hℓ hk hσbar hX)
-      rw [surplus_of_nonpos hα hα1 (sub_nonpos.2 hX), add_zero, ← h.2.2.2.2]
-      exact h.1.isGreatest
-    · rw [σplus_of_pos (sub_pos.2 hX).le] at hcap
-      have h := prop_score_b (m0 := m0) (G := G) hα hα1 hℓ hk hσbar hX hcap
-      rw [surplus_of_pos (sub_pos.2 hX).le, ← h.2.2.2.2.2.2.2.2.2.2.1]
-      exact h.1.isGreatest
 
 /-- The maximal score with `σ̄ = ∞`, for every `X`: `R*_X = m₀ + (X-k)G + C_α(ℓ (X-k)_+)^{1/(1-α)}`. -/
-theorem Rstar_isGreatest (hα : 0 < α) (hα1 : α < 1) (hℓ : 0 < ℓ) (hk : 0 ≤ k) (X : ℝ) :
+theorem Rstar_isGreatest (hα : 0 < α) (hα1 : α < 1) (hℓ : 0 < ℓ) (X : ℝ) :
     IsGreatest (score X '' Feasible m0 G k α ℓ ⊤)
       (m0 + (X - k) * G + Cα α * (ℓ * max (X - k) 0) ^ (1 / (1 - α))) := by
   rw [← surplus_eq_Cα hα hα1 hℓ]
-  exact (prop_score_e hα hα1 hℓ hk X).2 ⊤ zero_lt_top le_top
+  exact score_isGreatest hα hα1 hℓ X ⊤ zero_lt_top le_top
 
 end RuleOfX

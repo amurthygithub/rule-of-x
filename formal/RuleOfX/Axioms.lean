@@ -15,6 +15,9 @@ import RuleOfX.BudgetCont
 
 namespace RuleOfX
 
+#print axioms one_lt_β
+#print axioms Cα_pos
+#print axioms Cα_lt_one
 #print axioms prop_frontier_a
 #print axioms prop_frontier_b
 #print axioms prop_frontier_c
@@ -41,5 +44,6 @@ namespace RuleOfX
 #print axioms prop_budget_a
 #print axioms prop_budget_c_continuous
 #print axioms cor_transient_b
+#print axioms cor_transient_b_optimum
 
 end RuleOfX

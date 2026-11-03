@@ -65,10 +65,15 @@ theorem kl_bracket (hα : 0 < α) (hα1 : α < 1) (hlam : 0 < lam) (hsbar : 0 < 
 raises `k` by `dk > 0`, with other parameters fixed. Then the change in the maximal score
 satisfies `da - g*(k) dk ≤ ΔR*_X ≤ da - g*(k+dk) dk`. Hence the score rises if `da > g*(k) dk`
 and does not rise if `da ≤ g*(k+dk) dk`. To first order, it rises if and only if `da > g* dk`."
-(The first-order claim is read as: the derivative of `t ↦ R*_X(a - t da, k + t dk)` at `t = 0`
-equals `da - g*(k) dk`, which is positive iff `da > g*(k) dk`.) -/
+(The first two conjuncts say that the two values of `Rst` are the maximal scores before and after
+the change. The first-order claim is read as: the derivative of `t ↦ R*_X(a - t da, k + t dk)` at
+`t = 0` equals `da - g*(k) dk`, which is positive iff `da > g*(k) dk`.) -/
 theorem cor_capital (hα : 0 < α) (hα1 : α < 1) (hlam : 0 < lam) (hsbar : 0 < sbar)
     (hs : s < sbar) (γ a : ℝ) {da dk : ℝ} (_hda : 0 < da) (hdk : 0 < dk) :
+    IsGreatest (score X '' Feasible (γ - a) G k α (lam * hdr sbar s) ⊤)
+      (Rst α sbar (γ - a) G k X lam s) ∧
+    IsGreatest (score X '' Feasible (γ - (a - da)) G (k + dk) α (lam * hdr sbar s) ⊤)
+      (Rst α sbar (γ - (a - da)) G (k + dk) X lam s) ∧
     (da - gstar G k α (lam * hdr sbar s) X * dk ≤
       Rst α sbar (γ - (a - da)) G (k + dk) X lam s - Rst α sbar (γ - a) G k X lam s ∧
     Rst α sbar (γ - (a - da)) G (k + dk) X lam s - Rst α sbar (γ - a) G k X lam s ≤
@@ -81,7 +86,8 @@ theorem cor_capital (hα : 0 < α) (hα1 : α < 1) (hlam : 0 < lam) (hsbar : 0 <
       (da - gstar G k α (lam * hdr sbar s) X * dk) 0 ∧
     (0 < da - gstar G k α (lam * hdr sbar s) X * dk ↔ gstar G k α (lam * hdr sbar s) X * dk < da) := by
   have hb := kl_bracket (G := G) (k := k) (X := X) hα hα1 hlam hsbar hs γ a (da := da) hdk
-  refine ⟨hb, fun h => by linarith [hb.1], fun h => by linarith [hb.2], ?_, ?_⟩
+  refine ⟨Rst_isGreatest hα hα1 hlam hsbar hs, Rst_isGreatest hα hα1 hlam hsbar hs, hb,
+    fun h => by linarith [hb.1], fun h => by linarith [hb.2], ?_, ?_⟩
   swap
   · constructor <;> intro h <;> linarith
   have hf : (fun t => Rst α sbar (γ - (a - t * da)) G (k + t * dk) X lam s) =
@@ -121,10 +127,19 @@ theorem Rst_scale_lam (hα : 0 < α) (hα1 : α < 1) (hlam : 0 < lam) (hsbar : 0
 growth spend deliver the same growth for spend `σ/(1+x)`, which maps to `λ ↦ λ(1+x)^α`. It
 raises `R*_X` ... exactly, by `Π[(1+x)^{α/(1-α)} - 1]`. Measured instead as a rise `x_λ` in
 demand pull, the gain is ... `Π[(1+x_λ)^{1/(1-α)} - 1]` exactly. Neither raises `R_∞`, and both
-vanish as `s → s̄`." (The first-order claims are the derivatives at `x = 0`: `σ*` and
-`(X-k)Δ* = σ*/α`, proved for `X > k`.) -/
+vanish as `s → s̄`." (First conjunct: spend `(1+x)σ` under demand pull `λ` buys the growth that
+spend `σ` buys under `λ(1+x)^α`, i.e. the same growth for spend `σ/(1+x)`. The next three say the
+`Rst` values are the maximal scores at `λ`, `λ(1+x)^α`, `λ(1+x)`. The first-order claims are the
+derivatives at `x = 0`: `σ*` and `(X-k)Δ* = σ*/α`, proved for `X > k`. `R_∞ = Rinf m0 G k X` has
+no `λ` argument, so "neither raises `R_∞`" holds by construction.) -/
 theorem cor_priorities_ii (hα : 0 < α) (hα1 : α < 1) (hlam : 0 < lam) (hsbar : 0 < sbar)
     (hs : s < sbar) {x : ℝ} (hx : -1 < x) :
+    (∀ σ : ℝ, 0 ≤ σ → growth G lam α ((1 + x) * σ) = growth G (lam * (1 + x) ^ α) α σ) ∧
+    IsGreatest (score X '' Feasible m0 G k α (lam * hdr sbar s) ⊤) (Rst α sbar m0 G k X lam s) ∧
+    IsGreatest (score X '' Feasible m0 G k α (lam * (1 + x) ^ α * hdr sbar s) ⊤)
+      (Rst α sbar m0 G k X (lam * (1 + x) ^ α) s) ∧
+    IsGreatest (score X '' Feasible m0 G k α (lam * (1 + x) * hdr sbar s) ⊤)
+      (Rst α sbar m0 G k X (lam * (1 + x)) s) ∧
     Rst α sbar m0 G k X (lam * (1 + x) ^ α) s - Rst α sbar m0 G k X lam s =
       surplus α (lam * hdr sbar s) (X - k) * ((1 + x) ^ (α / (1 - α)) - 1) ∧
     Rst α sbar m0 G k X (lam * (1 + x)) s - Rst α sbar m0 G k X lam s =
@@ -144,7 +159,14 @@ theorem cor_priorities_ii (hα : 0 < α) (hα1 : α < 1) (hlam : 0 < lam) (hsbar
     (Real.rpow_nonneg h1x.le α)
   rw [← Real.rpow_mul h1x.le, show α * (1 / (1 - α)) = α / (1 - α) by ring] at hA
   have hB := Rst_scale_lam (m0 := m0) (G := G) (k := k) (X := X) hα hα1 hlam hsbar hs h1x.le
-  refine ⟨hA, hB, fun hX => ?_, fun hX => ⟨?_, ?_⟩, ?_, ?_⟩
+  have hmap : ∀ σ : ℝ, 0 ≤ σ → growth G lam α ((1 + x) * σ) = growth G (lam * (1 + x) ^ α) α σ := by
+    intro σ hσ
+    unfold growth
+    rw [Real.mul_rpow h1x.le hσ]; ring
+  refine ⟨hmap, Rst_isGreatest hα hα1 hlam hsbar hs,
+    Rst_isGreatest hα hα1 (mul_pos hlam (Real.rpow_pos_of_pos h1x α)) hsbar hs,
+    Rst_isGreatest hα hα1 (mul_pos hlam h1x) hsbar hs, hA, hB, fun hX => ?_, fun hX => ⟨?_, ?_⟩,
+    ?_, ?_⟩
   · -- derivative of the exact gain `Π[(1+x)^{α/(1-α)} - 1]` at `x = 0`
     have hy : 0 < X - k := sub_pos.2 hX
     have hev : (fun x => Rst α sbar m0 G k X (lam * (1 + x) ^ α) s) =ᶠ[𝓝 (0 : ℝ)]
@@ -188,13 +210,13 @@ theorem cor_priorities_ii (hα : 0 < α) (hα1 : α < 1) (hlam : 0 < lam) (hsbar
     rw [Δplus_of_pos hy.le, σplus_of_pos hy.le, σstar_eq hα hα1 hℓ hy]
     field_simp
   · have h1 := (prop_saturation_b (m0 := m0) (G := G) (k := k) hα hα1
-      (mul_pos hlam (Real.rpow_pos_of_pos h1x α)) hsbar X).1
-    have h2 := (prop_saturation_b (m0 := m0) (G := G) (k := k) hα hα1 hlam hsbar X).1
+      (mul_pos hlam (Real.rpow_pos_of_pos h1x α)) hsbar X).2.1
+    have h2 := (prop_saturation_b (m0 := m0) (G := G) (k := k) hα hα1 hlam hsbar X).2.1
     have := h1.sub h2
     rwa [sub_self] at this
   · have h1 := (prop_saturation_b (m0 := m0) (G := G) (k := k) hα hα1
-      (mul_pos hlam h1x) hsbar X).1
-    have h2 := (prop_saturation_b (m0 := m0) (G := G) (k := k) hα hα1 hlam hsbar X).1
+      (mul_pos hlam h1x) hsbar X).2.1
+    have h2 := (prop_saturation_b (m0 := m0) (G := G) (k := k) hα hα1 hlam hsbar X).2.1
     have := h1.sub h2
     rwa [sub_self] at this
 
@@ -224,7 +246,7 @@ theorem cor_priorities_v (hα : 0 < α) (hα1 : α < 1) (hlam : 0 < lam) (hsbar 
     G ≤ gstar G k α (lam * hdr sbar s) X ∧
     (∀ g g' : ℝ, g ≤ g' → g * dk ≤ g' * dk) := by
   have h := cor_capital (G := G) (k := k) (X := X) hα hα1 hlam hsbar hs γ a hda hdk
-  exact ⟨h.2.2.2.1, h.2.2.2.2, G_le_gstar hα (ℓ_pos hlam hsbar hs),
+  exact ⟨h.2.2.2.2.2.1, h.2.2.2.2.2.2, G_le_gstar hα (ℓ_pos hlam hsbar hs),
     fun g g' hgg' => mul_le_mul_of_nonneg_right hgg' hdk.le⟩
 
 end RuleOfX

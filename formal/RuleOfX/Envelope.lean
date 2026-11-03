@@ -306,10 +306,12 @@ differentiable in `(m₀, G, k, X, λ, s)`, with `∂R*/∂m₀ = 1`, `∂R*/∂
 iff `X > k`. Through `m₀ = γ - a` and `γ = 1 - c_h - c_c - f`, `∂R*/∂γ = 1` and
 `∂R*/∂a = ∂R*/∂c_c = -1`. Moreover `R*_X` is convex in `k` and in `λ`, and
 `∂²R*/∂k∂λ = -Δ*/[(1-α)λ] ≤ 0`."
-(Domain: `λ > 0`, `0 < s < s̄`; `X ≥ 0` is not needed. Joint `C¹` is `ContDiffOn ℝ 1` on the open
-set `Dom sbar`; the cross-partial is proved in both orders.) -/
+(Domain: `λ > 0`, `s < s̄`; `X ≥ 0` and `k ≥ 0` are not needed. The first conjunct says that
+`Rst` is the maximal score on the feasible set with `σ̄ = ∞` at these parameters. Joint `C¹` is
+`ContDiffOn ℝ 1` on the open set `Dom sbar`; the cross-partial is proved in both orders.) -/
 theorem prop_envelope (hα : 0 < α) (hα1 : α < 1) (hlam : 0 < lam) (hsbar : 0 < sbar)
     (hs : s < sbar) (γ a ch cc f : ℝ) :
+    IsGreatest (score X '' Feasible m0 G k α (lam * hdr sbar s) ⊤) (Rst α sbar m0 G k X lam s) ∧
     ContDiffOn ℝ 1 (RstP α sbar) (Dom sbar) ∧
     HasDerivAt (fun m0 => Rst α sbar m0 G k X lam s) 1 m0 ∧
     HasDerivAt (fun G => Rst α sbar m0 G k X lam s) (X - k) G ∧
@@ -331,7 +333,8 @@ theorem prop_envelope (hα : 0 < α) (hα1 : α < 1) (hlam : 0 < lam) (hsbar : 0
     HasDerivAt (fun k => (X - k) * Δplus α (lam * hdr sbar s) (X - k) / lam)
       (-(Δplus α (lam * hdr sbar s) (X - k) / ((1 - α) * lam))) k ∧
     -(Δplus α (lam * hdr sbar s) (X - k) / ((1 - α) * lam)) ≤ 0 :=
-  ⟨contDiffOn_RstP hα hα1 hsbar, hasDerivAt_Rst_m0, hasDerivAt_Rst_G,
+  ⟨Rst_isGreatest hα hα1 hlam hsbar hs, contDiffOn_RstP hα hα1 hsbar, hasDerivAt_Rst_m0,
+    hasDerivAt_Rst_G,
     hasDerivAt_Rst_k hα hα1 hlam hsbar hs, hasDerivAt_Rst_X hα hα1 hlam hsbar hs,
     hasDerivAt_Rst_lam hα hα1 hlam hsbar hs, Rst_lam_deriv_eq hα hα1 hlam hsbar hs,
     hasDerivAt_Rst_cost γ a ch cc f, Rst_convexOn_k hα hα1 hlam hsbar hs,
