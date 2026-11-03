@@ -1,0 +1,45 @@
+[mc_claims 15:55:35] executing code/calibrate_horizons.py into /sessions/rcw-016kbnsxzouh27dgnjmtas1f/mc_r3a/_shadow (outputs redirected)
+[mc_claims 15:55:39] reproduction checks: 87 passed, 0 failed; shadow outputs byte-identical: False (JSON: 94 leaves differ, max rel. 1.8736e-07, blocks ell_psi,r2,r3)
+[mc_claims 15:55:39] box: 51 dimensions; config 6aaa0e2e5666; checkpoint /sessions/rcw-016kbnsxzouh27dgnjmtas1f/mc_r3a/ckpt/6aaa0e2e5666
+[mc_claims 15:55:39] draws: 10000 LHS + 2050 corners = 12050 points, 61 chunks to run (0 done)
+[mc_claims 15:55:42]   draws chunk 3/61 (186.4 draws/s)
+[mc_claims 15:55:45]   draws chunk 6/61 (188.7 draws/s)
+[mc_claims 15:55:48]   draws chunk 9/61 (189.7 draws/s)
+[mc_claims 15:55:48]   draws chunk 12/61 (250.9 draws/s)
+[mc_claims 15:55:52]   draws chunk 15/61 (235.3 draws/s)
+[mc_claims 15:55:55]   draws chunk 18/61 (224.5 draws/s)
+[mc_claims 15:55:58]   draws chunk 21/61 (217.6 draws/s)
+[mc_claims 15:55:58]   draws chunk 24/61 (245.4 draws/s)
+[mc_claims 15:56:01]   draws chunk 27/61 (238.3 draws/s)
+[mc_claims 15:56:05]   draws chunk 30/61 (232.6 draws/s)
+[mc_claims 15:56:08]   draws chunk 33/61 (228.2 draws/s)
+[mc_claims 15:56:08]   draws chunk 36/61 (245.3 draws/s)
+[mc_claims 15:56:11]   draws chunk 39/61 (241.4 draws/s)
+[mc_claims 15:56:14]   draws chunk 42/61 (236.9 draws/s)
+[mc_claims 15:56:17]   draws chunk 45/61 (233.3 draws/s)
+[mc_claims 15:56:18]   draws chunk 48/61 (245.1 draws/s)
+[mc_claims 15:56:21]   draws chunk 51/61 (242.1 draws/s)
+[mc_claims 15:56:24]   draws chunk 54/61 (238.7 draws/s)
+[mc_claims 15:56:27]   draws chunk 57/61 (236.1 draws/s)
+[mc_claims 15:56:28]   draws chunk 60/61 (244.9 draws/s)
+[mc_claims 15:56:28]   draws chunk 61/61 (248.8 draws/s)
+[mc_claims 15:56:28] draws done: 12050 points in 49.0 s = 245.73 draws/s (4.1 s per 1,000) with 4 workers; maxrss main 162 MB, largest worker 54 MB
+[mc_claims 15:56:28] searches: 142 extremum searches to run (0 done)
+[mc_claims 15:56:28]   search 10/142
+[mc_claims 15:56:29]   search 20/142
+[mc_claims 15:56:30]   search 30/142
+[mc_claims 15:56:30]   search 40/142
+[mc_claims 15:56:32]   search 50/142
+[mc_claims 15:56:32]   search 60/142
+[mc_claims 15:56:33]   search 70/142
+[mc_claims 15:56:33]   search 80/142
+[mc_claims 15:56:35]   search 90/142
+[mc_claims 15:56:35]   search 100/142
+[mc_claims 15:56:36]   search 110/142
+[mc_claims 15:56:36]   search 120/142
+[mc_claims 15:56:37]   search 130/142
+[mc_claims 15:56:38]   search 140/142
+[mc_claims 15:56:39]   search 142/142
+[mc_claims 15:56:39] sobol: N = 1024, 20 blocks, 73728 evaluations to run (scrambled Sobol sequence (scipy.stats.qmc); factor indices by SALib)
+[mc_claims 15:56:43] failure scans: 254 univariate scans
+[mc_claims 15:56:44] wrote /sessions/rcw-016kbnsxzouh27dgnjmtas1f/mc_r3a/mc_claims.json, /sessions/rcw-016kbnsxzouh27dgnjmtas1f/mc_r3a/mc_claims_report.md and draws_lhs.csv

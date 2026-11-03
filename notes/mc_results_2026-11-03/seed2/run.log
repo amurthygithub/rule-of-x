@@ -1,0 +1,46 @@
+[mc_claims 15:56:58] executing code/calibrate_horizons.py into /sessions/rcw-016kbnsxzouh27dgnjmtas1f/mc_r3a/seed2/_shadow (outputs redirected)
+[mc_claims 15:57:01] reproduction checks: 87 passed, 0 failed; shadow outputs byte-identical: False (JSON: 94 leaves differ, max rel. 1.8736e-07, blocks ell_psi,r2,r3)
+[mc_claims 15:57:01] box: 51 dimensions; config 246cf45182bd; checkpoint /sessions/rcw-016kbnsxzouh27dgnjmtas1f/mc_r3a/seed2/ckpt/246cf45182bd
+[mc_claims 15:57:01] draws: 10000 LHS + 2050 corners = 12050 points, 61 chunks to run (0 done)
+[mc_claims 15:57:05]   draws chunk 3/61 (178.9 draws/s)
+[mc_claims 15:57:08]   draws chunk 6/61 (181.3 draws/s)
+[mc_claims 15:57:11]   draws chunk 9/61 (181.0 draws/s)
+[mc_claims 15:57:11]   draws chunk 12/61 (238.9 draws/s)
+[mc_claims 15:57:15]   draws chunk 15/61 (222.3 draws/s)
+[mc_claims 15:57:18]   draws chunk 18/61 (214.6 draws/s)
+[mc_claims 15:57:22]   draws chunk 21/61 (208.4 draws/s)
+[mc_claims 15:57:22]   draws chunk 24/61 (234.8 draws/s)
+[mc_claims 15:57:25]   draws chunk 27/61 (227.8 draws/s)
+[mc_claims 15:57:29]   draws chunk 30/61 (221.0 draws/s)
+[mc_claims 15:57:32]   draws chunk 33/61 (217.3 draws/s)
+[mc_claims 15:57:32]   draws chunk 36/61 (233.2 draws/s)
+[mc_claims 15:57:36]   draws chunk 39/61 (228.3 draws/s)
+[mc_claims 15:57:39]   draws chunk 42/61 (224.4 draws/s)
+[mc_claims 15:57:42]   draws chunk 45/61 (220.2 draws/s)
+[mc_claims 15:57:43]   draws chunk 48/61 (231.6 draws/s)
+[mc_claims 15:57:46]   draws chunk 51/61 (229.1 draws/s)
+[mc_claims 15:57:49]   draws chunk 54/61 (226.3 draws/s)
+[mc_claims 15:57:53]   draws chunk 57/61 (222.4 draws/s)
+[mc_claims 15:57:53]   draws chunk 60/61 (231.2 draws/s)
+[mc_claims 15:57:53]   draws chunk 61/61 (234.4 draws/s)
+[mc_claims 15:57:53] draws done: 12050 points in 52.1 s = 231.47 draws/s (4.3 s per 1,000) with 4 workers; maxrss main 163 MB, largest worker 54 MB
+[mc_claims 15:57:54] searches: 142 extremum searches to run (0 done)
+[mc_claims 15:57:54]   search 10/142
+[mc_claims 15:57:55]   search 20/142
+[mc_claims 15:57:55]   search 30/142
+[mc_claims 15:57:56]   search 40/142
+[mc_claims 15:57:57]   search 50/142
+[mc_claims 15:57:57]   search 60/142
+[mc_claims 15:57:59]   search 70/142
+[mc_claims 15:57:59]   search 80/142
+[mc_claims 15:58:01]   search 90/142
+[mc_claims 15:58:01]   search 100/142
+[mc_claims 15:58:02]   search 110/142
+[mc_claims 15:58:03]   search 120/142
+[mc_claims 15:58:04]   search 130/142
+[mc_claims 15:58:05]   search 140/142
+[mc_claims 15:58:05]   search 142/142
+[mc_claims 15:58:05] sobol: N = 1024, 20 blocks, 73728 evaluations to run (scrambled Sobol sequence (scipy.stats.qmc); factor indices by SALib)
+[mc_claims 15:58:09] failure scans: 254 univariate scans
+[mc_claims 15:58:10] seed comparison with /sessions/rcw-016kbnsxzouh27dgnjmtas1f/mc_r3a/mc_claims.json (seed 20261102): 69 of 69 tests agree on holds-everywhere; largest change of a box extreme 2.17 points
+[mc_claims 15:58:11] wrote /sessions/rcw-016kbnsxzouh27dgnjmtas1f/mc_r3a/seed2/mc_claims.json, /sessions/rcw-016kbnsxzouh27dgnjmtas1f/mc_r3a/seed2/mc_claims_report.md and draws_lhs.csv

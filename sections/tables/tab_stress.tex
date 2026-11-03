@@ -2,24 +2,24 @@
 \caption{Joint-parameter stress test of the headline claims: does each hold at every evaluated point of the box of stated ranges?}\label{tab:stress}
 \begin{tabular}{@{}>{\raggedright\arraybackslash}p{6.3cm}>{\raggedright\arraybackslash}p{3.3cm}ccc@{}}\toprule
 Claim (quantity tested) & Conditions held & Holds everywhere & Central & Lowest to highest\\\midrule
-Cash ceiling below 100 up to 30\% market growth: threshold $G^*$ above 30\% & full box & no & 32.5\% & 19.2\% to 59.2\% \\
+Cash ceiling below 100 up to 30\% market growth: threshold $G^*$ above 30\% & full box & no & 32.5\% & 19.6\% to 94.5\% \\
 The same & compute 6\% of revenue, fixed prices, $k=0$ & no & 32.5\% & 24.0\% to 45.1\% \\
-Threshold above 30\% in 2028, 2031 and 2036 (lowest of the three) & full box & no & 31.7\% & 19.2\% to 53.8\% \\
-Pass-through raises every threshold (smallest rise, points) & full box & yes & 0.0 & 0.0 to 9.5 \\
-No Rule of 100 on the central path (highest score, 2028--36) & full box & yes & 58.7 & 27.4 to 95.3 \\
-A completed program: 2036 target plus market growth below 100 & full box & no & 81.0 & 41.5 to 102.2 \\
+Threshold above 30\% in 2028, 2031 and 2036 (lowest of the three) & full box & no & 31.7\% & 19.2\% to 53.9\% \\
+Pass-through raises every threshold (smallest rise, points) & full box & no & 0.0 & $-$14.5 to 9.8 \\
+No Rule of 100 on the central path (highest score, 2028--36) & full box & yes & 57.8 & 27.6 to 95.4 \\
+A completed program: 2036 target plus market growth below 100 & full box & no & 81.2 & 41.6 to 102.4 \\
 Less than half of the program realized by 2036 (realized share) & full box & no & 40.7\% & 4.9\% to 85.0\% \\
 Program still running in 2036 (expected completion year) & full box & no & 2042.3 & 2031.5 to 2087.4 \\
-The central path rises from 2028 to 2036 (smallest step, points) & full box & no & 4.7 & $-$5.2 to 21.4 \\
-Netted path between the no-S\&M and all-S\&M bounds (smallest gap, points) & full box & yes & 3.8 & 0.3 to 6.9 \\
-Flow crossing before payback (years between them) & full box & yes & 3.48 & 0.52 to 16.07 \\
-No payback within five years (payback, years) & full box & no & 7.53 & 3.40 to 29.17 \\
-The same & central execution, fixed prices, $k=0$ & no & 7.53 & 4.81 to 9.36 \\
-Gains worth more than the dip in present value (ratio) & full box & no & 3.87 & 0.50 to 85.25 \\
-The same & central execution, fixed prices, $k=0$ & yes & 3.87 & 2.57 to 9.79 \\
-Rule of 1000 not a steady state (pull needed over today's best) & full box & yes & 13.44 & 9.01 to 20.04 \\
-Growth engine ahead of the G\&A cut at one of six positions (count) & full box, maintenance base drawn & no & 1 & 0 to 2 \\
+The central path rises from 2028 to 2036 (smallest step, points) & full box & no & 5.0 & $-$5.2 to 21.4 \\
+Netted path between the no-S\&M and all-S\&M bounds (smallest gap, points) & full box & yes & 3.0 & 0.3 to 6.9 \\
+Flow crossing before payback (years between them) & full box & yes & 3.48 & 0.65 to 15.97 \\
+No payback within five years (payback, years) & full box & no & 7.53 & 3.51 to 29.07 \\
+The same & central execution, fixed prices, $k=0$ & no & 7.53 & 4.99 to 9.29 \\
+Gains worth more than the dip in present value (ratio) & full box & no & 3.85 & 0.50 to 74.42 \\
+The same & central execution, fixed prices, $k=0$ & yes & 3.85 & 2.59 to 9.62 \\
+Rule of 1000 not a steady state (pull needed over today's best) & full box & yes & 13.82 & 9.23 to 20.70 \\
+Growth engine ahead of the G\&A cut at one of six positions (count) & full box, maintenance base drawn & no & 1 & 0 to 1 \\
 No all-AI design on one provider admissible (lowest annual miss probability) & accountability sub-box, $\bar\pi=5\%$ & yes & 11.3\% & 11.3\% to 45.3\% \\
 \bottomrule\end{tabular}
-\par\vspace{2pt}\footnotesize\raggedright Notes: 10{,}000 Latin-hypercube draws and 2{,}050 corner points of a box of 51 dimensions, each at the ends of the range the paper states for it (the anchor's dimensions within their 90\% firm-cluster bootstrap intervals), except the compute share, which enters through the drivers of its path and so runs from 0.5 to 23\% of revenue at 2025 prices, not over the scenario range of 1.2 to 60\% (Section S9); three bases for selling and marketing (netted rows: the central, maintenance-netted basis), and a vertex search for the extremum of each tested quantity. Holds everywhere: no evaluated point violates the claim's test; this is a search, not a proof. Central: the paper's central case. Lowest to highest: over all evaluated points. Conditions held: the claim's own stated conditions at their central values (full box: none). Percentages are points of revenue or percent a year. The accountability row uses its own sub-box (2{,}000 draws and all 32 corners of 5 dimensions: audit fees, the cross-type common mode, the human miss rate on AI-missed items, the AI common mode and the number of opportunities). Most dimensions are scenario values with stated ranges but no measured distribution, so the table reports where claims fail, not how likely they are to; it is not a forecast. Generated by \texttt{code/mc\_report\_tex.py} from the stored output of \texttt{code/mc\_claims.py}.
+\par\vspace{2pt}\footnotesize\raggedright Notes: 10{,}000 Latin-hypercube draws and 2{,}050 corner points of a box of 51 dimensions, each at the ends of the range the paper states for it (the anchor's dimensions within their 90\% firm-cluster bootstrap intervals), except the compute share, which enters through the drivers of its path, compute per dollar of labor replaced (drawn log-uniform from its cost per completed task to the value test) times the labor share automated, and so runs from 1.0 to 65\% of revenue at 2025 prices, which contains the scenario range of 1.2 to 60\% (Section S9); three bases for selling and marketing (netted rows: the central, maintenance-netted basis), and a vertex search for the extremum of each tested quantity. Holds everywhere: no evaluated point violates the claim's test; this is a search, not a proof. Central: the paper's central case. Lowest to highest: over all evaluated points. Conditions held: the claim's own stated conditions at their central values (full box: none). Percentages are points of revenue or percent a year. The accountability row uses its own sub-box (2{,}000 draws and all 32 corners of 5 dimensions: audit fees, the cross-type common mode, the human miss rate on AI-missed items, the AI common mode and the number of opportunities). Most dimensions are scenario values with stated ranges but no measured distribution, so the table reports where claims fail, not how likely they are to; it is not a forecast. Generated by \texttt{code/mc\_report\_tex.py} from the stored output of \texttt{code/mc\_claims.py}.
 \end{table}

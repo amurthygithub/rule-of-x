@@ -29,7 +29,7 @@
 #   * verify_part2_labor.py reads invoice_macros.tex and labor_macros.tex: after invoice_chain.py and make_labor_macros.py.
 #   * verify_theory.py reads notes/calibration_results.json: after calibrate_horizons.py.
 #   * stage stress_report (round 3) runs code/mc_report_tex.py, which formats the committed output of the joint-parameter
-#     stress test (notes/mc_results_2026-11-02/mc_claims.json, draws_lhs.csv) into sections/tables/tab_stress.tex,
+#     stress test (notes/mc_results_2026-11-03/mc_claims.json, draws_lhs.csv) into sections/tables/tab_stress.tex,
 #     paper1/stress_macros.tex and figures/fig_stress.pdf. It does not re-run the Monte Carlo (about a minute on four
 #     cores; command in code/REPLICATION_README.md). It runs after calibrate so the table sits beside the calibration's
 #     tables, and before paper1_macros.py, which inputs stress_macros.tex from paper1/macros.tex.

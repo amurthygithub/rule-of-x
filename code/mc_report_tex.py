@@ -2,8 +2,8 @@
 """Supplement table, macros and figure of the joint-parameter stress test (round 3, decision 7 of the outside-review plan).
 
 Reads the committed outputs of code/mc_claims.py (it does not re-run the Monte Carlo):
-  notes/mc_results_2026-11-02/mc_claims.json   claim tests, quantities over the box, levels, Sobol indices, accountability sub-box
-  notes/mc_results_2026-11-02/draws_lhs.csv    the 10,000 Latin-hypercube draws (selected outputs per draw)
+  notes/mc_results_2026-11-03/mc_claims.json   claim tests, quantities over the box, levels, Sobol indices, accountability sub-box
+  notes/mc_results_2026-11-03/draws_lhs.csv    the 10,000 Latin-hypercube draws (selected outputs per draw)
 and writes
   sections/tables/tab_stress.tex   Table tab:stress: the headline claim tests, whether each holds at every evaluated point of
                                    the box of the paper's stated ranges, the central value and the lowest-highest over the box
@@ -34,7 +34,7 @@ import numpy as np
 import pandas as pd
 
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-MC = os.environ.get('MC_DIR', os.path.join(BASE, 'notes', 'mc_results_2026-11-02'))
+MC = os.environ.get('MC_DIR', os.path.join(BASE, 'notes', 'mc_results_2026-11-03'))
 J = json.load(open(os.path.join(MC, 'mc_claims.json')))
 D = pd.read_csv(os.path.join(MC, 'draws_lhs.csv'))
 TESTS = {t['tid']: t for c in J['claims'] for t in c['tests']}
@@ -268,7 +268,7 @@ def sgn(name, x, nd=1):
     put(name, s_ if s_.startswith('$-$') or float(s_) == 0 else '$+$' + s_)
 
 
-sgn('StCumMaxCen', TESTS['B3.B.net']['quantity']['max']); sgn('StCumMax', TESTS['B3.full.net']['quantity']['max'])
+sgn('StCumMaxCen', TESTS['B3.B.net']['quantity']['max'], 3); sgn('StCumMax', TESTS['B3.full.net']['quantity']['max'])
 import re as _re
 _scan = [u for u in TESTS['P3.full']['failure']['univariate'] if u['dim'] == 'kappa_abs' and u['reference'] == 'central'][0]
 _m = _re.fullmatch(r'fails for kappa_abs in \[([\d.]+), ([\d.]+)\]', _scan['result'])
