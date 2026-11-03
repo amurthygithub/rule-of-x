@@ -1,0 +1,54 @@
+versions: numpy 2.5.2
+
+=== case central ===
+clock 1.115 cw 0.017 attempt rate/yr 0.08969
+  2028: waves=9 embedded=0.1071 realized=0.0718 m0=0.329 Rinf=0.456 dip=0.0357 fills_waves=True
+  2031: waves=25 embedded=0.2975 realized=0.1993 m0=0.376 Rinf=0.503 dip=0.0395 fills_waves=True
+  2036: waves=51 embedded=0.6069 realized=0.4066 m0=0.459 Rinf=0.586 dip=0.0423 fills_waves=True
+  complete_year 2042.32 cross_years 4.04745
+  payback: cross 4.049 undisc 7.526 disc 8.507 NPV(pt-yr) 0.98 ratio 3.867 cum3 -0.0876 cum5 -0.0864
+
+=== case fast ===
+clock 1.024 cw 0.0176 attempt rate/yr 0.21484
+  2028: waves=25 embedded=0.3520 realized=0.2992 m0=0.401 Rinf=0.528 dip=0.0683 fills_waves=True
+  2031: waves=61 embedded=0.8589 realized=0.7300 m0=0.563 Rinf=0.690 dip=0.0756 fills_waves=True
+  2036: waves=122 embedded=1.0000 realized=0.8500 m0=0.626 Rinf=0.753 dip=0.0000 fills_waves=False
+  complete_year 2031.84 cross_years 2.4166400000000006
+  payback: cross 2.419 undisc 4.666 disc 5.003 NPV(pt-yr) 2.122 ratio 6.886 cum3 -0.1106 cum5 0.0392
+
+=== MC central (nu_D=0), N=4800 units, 200 reps ===
+  2028: MC mean embedded=0.1063 p5=0.1027 p50=0.1062 p95=0.1096  (bound 0.1071)
+  2031: MC mean embedded=0.2950 p5=0.2877 p50=0.2953 p95=0.3013  (bound 0.2975)
+  2036: MC mean embedded=0.6023 p5=0.5925 p50=0.6025 p95=0.6129  (bound 0.6069)
+  completion year (max embedding time): mean 2042.88 p5 2042.51 p95 2043.26
+  sample-path payback (b=0.67): mean 7.66 p5 7.50 p50 7.75 p95 7.75 (expectation-based: 7.53)
+
+=== MC central, disruption hazard applied on top (nu_D = 0.2316) ===
+  2028: MC mean embedded=0.0772 p50=0.0772 (bound 0.1071; pemb*bound = 0.7241 x bound)
+  2031: MC mean embedded=0.2139 p50=0.2140 (bound 0.2975; pemb*bound = 0.7241 x bound)
+  2036: MC mean embedded=0.4369 p50=0.4367 (bound 0.6069; pemb*bound = 0.7241 x bound)
+
+=== MC central, capacity charged on in-flight stock too (variant) ===
+  2028: MC mean embedded=0.1057 (paper bound 0.1071)
+  2031: MC mean embedded=0.2924 (paper bound 0.2975)
+  2036: MC mean embedded=0.5956 (paper bound 0.6069)
+
+=== Prop 5 / Remark S10 arithmetic ===
+  pi_bar=0.05: Pbar/occasion=0.002135 best=(754672.0, 1, 1) pi=0.0306 allAIlimit=0.1133 allHumanlimit=0.0469
+    pcc break-even (1H+1AI) = 0.000844; human miss-rate break-even = 1.0000
+  pi_bar=0.01: Pbar/occasion=0.000419 best=(804672.0, 1, 2) pi=0.0067 allAIlimit=0.1133 allHumanlimit=0.0469
+  floor at pi_bar=0.05: 0.3747% of revenue (direct 0.30% + design 0.0755%)
+  floor at pi_bar=0.01: 0.3797% of revenue (direct 0.30% + design 0.0805%)
+  direct-cost floor with audit fee $343,000: 0.2598%
+  direct-cost floor with audit fee $1,492,375: 0.3747%
+  direct-cost floor with audit fee $5,327,646: 0.7582%
+  applications to reach 0.5%: 8; survey line ($80k): 17
+
+saved results to diagnostics/D/referee_sim_results.json
+
+# CORRECTION 2026-11-03: the line "human miss-rate break-even = 1.0000" above reflects a
+# bisection bug in the archived script version (converged to the infimum of the admissible set
+# instead of the supremum). The script has been patched (bisection direction) and the correct
+# value re-derived standalone in prop5_check.txt: 8.39% ~= the paper's "8.4%" miss-rate
+# break-even at pi_bar = 5% ((0.002+0.998*m)*(0.005+0.995*0.02) <= 1-0.95^(1/24) => m <= 0.0839).
+# All other printed values unaffected.

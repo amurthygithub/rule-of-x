@@ -1,0 +1,21 @@
+(0) normal: stored holm_* reproduced with 14 tests, max deviation 0.00e+00
+(0) percentile: stored holm_* reproduced with 14 tests, max deviation 0.00e+00
+(0) basic: stored holm_* reproduced with 14 tests, max deviation 0.00e+00
+
+(1) anchor Pi_lb added to family B
+    raw anchor p: normal 0.000566, percentile 0.012, basic 0.002; from estimates: normal 0.000566, percentile 0.012, basic 0.002
+    normal: 13 estimable + anchor (14 tests, the printed macros) 0.006; 14 + anchor (15 tests, the family's own count) 0.006
+    percentile: 13 estimable + anchor (14 tests, the printed macros) 0.084; 14 + anchor (15 tests, the family's own count) 0.096
+    basic: 13 estimable + anchor (14 tests, the printed macros) 0.028; 14 + anchor (15 tests, the family's own count) 0.030
+
+(2) Holm-adjusted p of the 2020-25 steepening and of the GAAP p95 decline (normal / percentile / basic)
+    published 14: steepening 0.037/0.060/0.040; p95 GAAP 0.054/0.060/0.208
+    +anchor (15): steepening 0.037/0.066/0.040; p95 GAAP 0.054/0.066/0.208; anchor 0.006/0.096/0.030
+    +anchor +T20 op/cash +T0 cash (18): steepening 0.048/0.084/0.052; p95 GAAP 0.072/0.084/0.260; anchor 0.008/0.132/0.036
+    reviewer 20: +T20 op/cash +T0 cash +spend ratio +anchor +gap_slow_gm: steepening 0.052/0.090/0.052; p95 GAAP 0.078/0.090/0.260; anchor 0.008/0.144/0.040
+    +T20 op/cash +T0 op/cash (18, without the anchor): steepening 0.052/0.084/0.056; p95 GAAP 0.078/0.084/0.286
+
+    raw p of the added statistics: T20_op 0.0371/0.1320/0.0040; T20_cash 0.4793/0.3140/0.5140; T0_cash 0.1140/0.0840/0.0960; spend_ratio 0.0000/0.0020/0.0020; gap_slow_gm 0.0545/0.1820/0.0020; T0_op 0.7996/0.9800/0.6820
+    20-member, normal: position 14 (T20_op) 0.371; anchor (position 18) 0.008
+    20-member, percentile: position 14 (T20_op) 0.992; anchor (position 18) 0.144
+    20-member, basic: position 14 (T20_op) 0.052; anchor (position 18) 0.040

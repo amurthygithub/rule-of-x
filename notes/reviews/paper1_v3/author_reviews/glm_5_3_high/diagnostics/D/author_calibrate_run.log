@@ -1,0 +1,152 @@
+{
+"cut_quantile": 0.95,
+"n_tail": 22,
+"n_tail_m_above_p95": 7,
+"m_p95_all": 0.25282336877399514,
+"n": 13,
+"n_firms": 7,
+"n_acq_excluded": 9,
+"n_sm_missing": 0,
+"p95": 0.44587834762857764,
+"G": 0.1272184830060014,
+"tau": 0.18,
+"R": [
+0.5034782078642509,
+0.5413288082107948,
+0.6109813346502166
+],
+"m": [
+0.1699071687806537,
+0.2238747712244443,
+0.2643261910854185
+],
+"sig_ub": [
+0.12097740179459483,
+0.19760651427205503,
+0.3329874967453279
+],
+"m0_ub": [
+0.3641430035904097,
+0.4198234861159062,
+0.517728150445788
+],
+"m0_lb": [
+0.1749888318161512,
+0.2413152028404309,
+0.3059752696881738
+],
+"Rinf_ub": [
+0.47820324589320573,
+0.5418241038539215,
+0.6394254455751964
+],
+"Rinf_lb": [
+0.2989973046005631,
+0.3628020722216967,
+0.4200355119909698
+],
+"Pi_ub": [
+-0.11803314309005841,
+-0.012787829346468271,
+0.17084700561615473
+],
+"Pi_lb": [
+0.14924951235661688,
+0.1951691617936956,
+0.2688255498100611
+],
+"shift": 0.1785082832754753,
+"firm_years_per_firm": {
+"Clear Secure, Inc.": 3,
+"Duolingo, Inc.": 3,
+"Global-E Online Ltd.": 2,
+"monday.com Ltd.": 2,
+"Cellebrite DI Ltd.": 1,
+"CrowdStrike Holdings, Inc.": 1,
+"Palantir Technologies Inc.": 1
+},
+"n_sample_2023_25": 447,
+"n_adjusted_pro_forma": 0,
+"share_Pi_ub_positive": 0.46153846153846156,
+"share_Pi_lb_positive": 1.0,
+"transient_share_ub": -0.02362303493275137,
+"transient_share_lb": 0.3605371796833991,
+"m0_net": [
+0.2413152028404309,
+0.3059752696881738,
+0.33788715723022283
+],
+"Rinf_net": [
+0.36658123924568564,
+0.4200355119909698,
+0.4573518542293977
+],
+"Pi_net": [
+0.033815998941451375,
+0.12408965101033587,
+0.24817926242851995
+],
+"shift_net": 0.11384821642773241,
+"sig_net": [
+0.0,
+0.0,
+0.08241943249405187
+],
+"n_sm_above_base": 5
+}
+['Cellebrite DI Ltd.', 'Clear Secure, Inc.', 'CrowdStrike Holdings, Inc.', 'Duolingo, Inc.', 'Global-E Online Ltd.', 'Palantir Technologies Inc.', 'monday.com Ltd.']
+2025 (anchor) & -- & -- & 31 [24, 35] & 43 & 55 & 37 & -- \\
+2028 & 7 & 62 & 33 & 46 [39, 50] & 56 [49, 66] & 40 [34, 47] & 3.6 \\
+2031 & 20 & 66 & 38 & 50 [44, 54] & 59 [53, 68] & 45 [40, 52] & 3.9 \\
+2036 & 41 & 68 & 46 & 59 [54, 62] & 65 [61, 72] & 55 [51, 60] & 4.2 \\
+E1, calibration rule (central) & 13 (7) & 31 & 42 & $-$1 [$-$18.2, $+$16.4] & 20 [$+$8.1, $+$26.5] & 59 & 65 / 55 \\
+E1, every firm-year of the tail & 22 (14) & 26 & 42 & $-$1 [$-$10.7, $+$15.7] & 22 [$+$12.9, $+$27.0] & 56 & 65 / 53 \\
+E2, organic & 19 (10) & 32 & 45 & $-$7 [$-$17.0, $+$15.4] & 18 [$+$6.8, $+$26.0] & 59 & 67 / 56 \\
+E2 plus imputed, $M=4$ & 22 (14) & 27 & 42 & 0 [$-$13.6, $+$14.5] & 20 [$+$11.3, $+$26.9] & 56 & 65 / 55 \\
+E2 plus imputed, $M=8$ & 22 (13) & 27 & 42 & $-$1 [$-$13.7, $+$15.9] & 20 [$+$12.2, $+$27.1] & 56 & 65 / 55 \\
+Execution: slow and fast & 45 & 75 & 30 \\
+Transient surplus of the upper-quartile firm-year (all selling and marketing buys growth), pull and $\alpha$ at their ends & 72 & 91 & 19 \\
+Market growth $G$ over the interquartile range of 2023--25 growth & 51 & 67 & 16 \\
+Selling and marketing: none and all of it buys growth & 55 & 65 & 11 \\
+Full-cost target: conservative and favorable case & 52 & 63 & 11 \\
+Execution yield: BCG win zone only ($\varpi=0.30$, $\bar b=0.67$) & 50 & 59 & 9 \\
+Capital $k=0.5$, not deductible & 52 & 59 & 6 \\
+Anchor intercept: lower and upper quartile & 55 & 61 & 6 \\
+Pass-through $\varphi=0.7$ of all savings (fixed prices at the central value) & 54 & 59 & 5 \\
+A firm still transforming (in-flight dip) & 54 & 59 & 4 \\
+Anchor sample: every firm-year of the tail, E2, $M=4$, $M=8$ & 56 & 59 & 3 \\
+ceiling favorable   : c_full=2.14 (mnt 0.15, sec 1.00, err 0.93, anc 0.05); margin term 77.66 (accountability only 79.47); G for 100: 22.34% (20.53%)
+ceiling central     : c_full=6.23 (mnt 0.60, sec 1.56, err 3.86, anc 0.19); margin term 67.46 (accountability only 72.57); G for 100: 32.54% (27.43%)
+ceiling conservative: c_full=16.47 (mnt 2.89, sec 2.78, err 10.05, anc 0.74); margin term 50.50 (accountability only 63.52); G for 100: 49.50% (36.48%)
+ceiling high compute: c_full=7.25 (mnt 0.60, sec 1.56, err 3.86, anc 1.21); margin term 38.75 (accountability only 44.69); G for 100: 61.25% (55.31%)
+central {'rho': 0.1, 'binding': 'change', 'rho_chg': 0.1, 'rho_dec': 0.4289, 'rho_sec': 1.6667, 'nuD': 0.2316, 'q': 0.7, 'q_with_dilated_haircut': 0.5069, 'disruption_haircut_applied': False, 'clock': 1.115, 'eff_rate': 0.0628, 'eff_rate_realized': 0.0421, 'attempt_rate': 0.0897, 'complete_year': 2042.3159, 'cross_years': 4.0475, 'params': {'kappa_abs': 0.1, 'varpi': 0.7, 'bbar': 0.67, 'nuL': 0.204, 'kkeep': 0.6, 'nuV': 0.15, 'nuR': 0.46, 'Tfrz': 0.25, 'Tpar': 0.17, 'Temb': 1.25, 'Tpb': 1.25, 'Phi': 5, 'e': 1.0, 'kap': 0.7, 'sec': 80, 'haircut': False, 'dM': {2028: 0.2598286397543394, 2031: 0.29361263975433943, 2036: 0.3189506397543393}, 'n_proc': 48}} {2028: {'n': 9, 's': 0.0718, 'dip': 0.0291}, 2031: {'n': 25, 's': 0.1993, 'dip': 0.0329}, 2036: {'n': 51, 's': 0.4066, 'dip': 0.0358}}
+fast {'rho': 0.22, 'binding': 'change', 'rho_chg': 0.22, 'rho_dec': 3.6458, 'rho_sec': 3.3333, 'nuD': 0.0725, 'q': 0.8, 'q_with_dilated_haircut': 0.7428, 'disruption_haircut_applied': False, 'clock': 1.024, 'eff_rate': 0.1719, 'eff_rate_realized': 0.1461, 'attempt_rate': 0.2148, 'complete_year': 2031.8403, 'cross_years': 2.4166, 'params': {'kappa_abs': 0.22, 'varpi': 0.8, 'bbar': 0.85, 'nuL': 0.15, 'kkeep': 0.85, 'nuV': 0.05, 'nuR': 0.3, 'Tfrz': 0.08, 'Tpar': 0.08, 'Temb': 1.0, 'Tpb': 1.0, 'Phi': 10, 'e': 0.5, 'kap': 0.7, 'sec': 160, 'haircut': False, 'dM': {2028: 0.23294168892012912, 2031: 0.25019668892012914, 2036: 0.26313793892012916}, 'n_proc': 48}} {2028: {'n': 25, 's': 0.2992, 'dip': 0.05}, 2031: {'n': 61, 's': 0.73, 'dip': 0.0538}, 2036: {'n': 122, 's': 0.85, 'dip': 0.0}}
+upper_bound NEW {'2028': ('48--139', '48--79', '0--60', '43--86', '45--134'), '2031': ('50--126', '50--90', '0--36', '46--92', '47--120'), '2036': ('54--130', '54--104', '0--26', '52--98', '51--130')}
+upper_bound OLD {'2028': ('50--142', '50--82', '0--60', '45--89'), '2031': ('53--121', '53--85', '0--36', '49--87'), '2036': ('55--125', '55--99', '0--26', '53--93')}
+lower_bound NEW {'2028': ('45--156', '30--61', '15--95', '30--78', '42--151'), '2031': ('41--128', '32--72', '9--56', '31--81', '38--123'), '2036': ('41--127', '37--86', '4--40', '35--86', '37--127')}
+lower_bound OLD {'2028': ('47--159', '32--64', '15--95', '31--81'), '2031': ('44--123', '35--67', '9--56', '34--75'), '2036': ('41--122', '37--81', '4--40', '36--81')}
+central_fluid {2028: (np.float64(0.0676), np.float64(32.75), np.float64(3.56)), 2031: (np.float64(0.1938), np.float64(37.41), np.float64(3.94)), 2036: (np.float64(0.4041), np.float64(45.84), np.float64(4.23))} binding change rho 0.1
+public_guided_dip_1pt {2028: (np.float64(0.0191), np.float64(31.2), np.float64(1.61)), 2031: (np.float64(0.0783), np.float64(33.35), np.float64(3.76)), 2036: (np.float64(0.2769), np.float64(41.04), np.float64(4.23))} binding change rho 0.1
+public_guided_dip_2pt {2028: (np.float64(0.0381), np.float64(31.81), np.float64(3.21)), 2031: (np.float64(0.1488), np.float64(35.83), np.float64(3.94)), 2036: (np.float64(0.3592), np.float64(44.14), np.float64(4.23))} binding change rho 0.1
+sponsor_latency_0.5 {2028: (0.0718, 32.88, 3.56), 2031: (0.1993, 37.61, 3.94), 2036: (0.4066, 45.93, 4.23)} binding change rho 0.1
+slow_public {2028: (0.0, 30.6, 1.99), 2031: (0.021, 31.34, 2.2), 2036: (0.0503, 32.5, 2.36)} binding change rho 0.05
+slow_sponsor_latency_0.5 {2028: (0.0, 30.6, 1.99), 2031: (0.021, 31.34, 2.2), 2036: (0.0503, 32.5, 2.36)} binding change rho 0.05
+c_c sensitivity (G* full cost, accountability only): {'0.01': (28.31, 23.33), '0.02': (29.16, 24.15), '0.05': (31.69, 26.61), '0.06': (32.54, 27.43), '0.08': (34.22, 29.07), '0.12': (37.6, 32.35), '0.20': (44.36, 38.91), '0.25': (48.58, 43.01), '0.30': (52.81, 47.11), '0.40': (61.25, 55.31), '0.60': (78.14, 71.71)}
+tau sensitivity: {'0.09': (25.13, 19.47), '0.15': (30.07, 24.78), '0.18': (32.54, 27.43), '0.21': (35.0, 30.09)}
+ceiling 2028: favorable c_c 6.0, margin term 75.07, G* 24.93% (23.08%); central c_c 12.0, margin term 62.40, G* 37.60% (32.35%); conservative c_c 24.0, margin term 40.46, G* 59.54% (45.96%); high compute c_c 40.0, margin term 38.75, G* 61.25% (55.31%)
+ceiling 2031: favorable c_c 4.0, margin term 76.79, G* 23.21% (21.38%); central c_c 8.0, margin term 65.78, G* 34.22% (29.07%); conservative c_c 16.0, margin term 47.16, G* 52.84% (39.64%); high compute c_c 40.0, margin term 38.75, G* 61.25% (55.31%)
+ceiling 2036: favorable c_c 2.5, margin term 78.09, G* 21.91% (20.10%); central c_c 5.0, margin term 68.31, G* 31.69% (26.61%); conservative c_c 10.0, margin term 52.18, G* 47.82% (34.90%); high compute c_c 40.0, margin term 38.75, G* 61.25% (55.31%)
+pass-through phi = 0 (dur 1.000): central G* 2025 prices 32.54%, 2028 37.60%, 2031 34.22%, 2036 31.69%; upper bound R* 2028 48--139, 2031 50--126, 2036 54--130; lower bound R* 2028 45--156, 2031 41--128, 2036 41--127
+pass-through phi = 0.5 (dur 0.625): central G* 2025 prices 36.16%, 2028 41.83%, 2031 38.10%, 2036 35.17%; upper bound R* 2028 48--138, 2031 49--124, 2036 53--128; lower bound R* 2028 45--155, 2031 40--127, 2036 39--125
+pass-through phi = 0.7 (dur 0.475): central G* 2025 prices 38.27%, 2028 44.14%, 2031 40.31%, 2036 37.22%; upper bound R* 2028 48--138, 2031 49--123, 2036 52--127; lower bound R* 2028 45--154, 2031 40--125, 2036 39--124
+pace before the params commit fast {'q': 0.7428, 'eff_rate': 0.1451, 'complete_year': 2032.9053, 'cross_years': 2.3347} {2028: 0.2971, 2031: 0.7249, 2036: 1.0}
+pace before the params commit central {'q': 0.3222, 'eff_rate': 0.0289, 'complete_year': 2061.7281, 'cross_years': 9.4329} {2028: 0.0233, 2031: 0.0931, 2036: 0.2188}
+pace before the params commit slow {'q': 0.0259, 'eff_rate': 0.0008, 'complete_year': 3262.92, 'cross_years': 235.968} {2028: 0.0, 2031: 0.0005, 2036: 0.0027}
+revealed pace reference (class c, panel_v3): {'n': 138, 'p10': -6.7, 'p25': 2.4, 'median': 8.2, 'p75': 21.7, 'p90': 36.1}
+c_err sensitivity (c_err, central G*): {'favorable': (0.93, 30.13), 'central': (3.86, 32.54), 'conservative': (10.05, 37.61), 'high rates, unit loss': (22.8, 48.06), 'high rates, unit loss, AI review bound': (13.68, 40.58), 'high rates, unit loss, human catch rates (v2, superseded)': (7.77, 35.74)}
+psi: {'none': 0.0, 'foreign_15y': 0.5324, 'prior_5y': 0.7961, 'domestic': 1.0}
+psi anchor m0_ub quartiles: {'none': [36.41, 41.98, 51.77], 'foreign_15y': [36.02, 41.67, 51.7], 'prior_5y': [35.82, 41.56, 51.66], 'domestic': [35.66, 41.55, 51.64]} tau kg quartiles [0.14, 0.28, 0.38]
+psi k=0.5 column (upper bound): {'none': {'2028': '43--86', '2031': '46--92', '2036': '52--98'}, 'foreign_15y': {'2028': '44--90', '2031': '47--94', '2036': '52--101'}, 'prior_5y': {'2028': '44--92', '2031': '47--95', '2036': '52--102'}, 'domestic': {'2028': '44--94', '2031': '47--96', '2036': '52--103'}}
+psi ceiling loss at k=1.5, G=0.30: {'none': {'0.15': 45.0, '0.18': 45.0, '0.21': 45.0}, 'foreign_15y': {'0.15': 41.41, '0.18': 40.69, '0.21': 39.97}, 'prior_5y': {'0.15': 39.63, '0.18': 38.55, '0.21': 37.48}, 'domestic': {'0.15': 38.25, '0.18': 36.9, '0.21': 35.55}}
+a_min sensitivity: {'0.005': (30.49, 25.38), '0.030': (32.54, 27.43), '0.046': (33.85, 28.74)}
+{0.2: 9.819929505410995, 0.25: 9.345042088392578, 0.3: 8.774715807048587, 0.45: 6.7845416243736585} {'ub': {0.25: 0.46630983882995497, 0.45: 0.7529895409516069}, 'lb': {0.25: 0.6551216581330076, 0.45: 0.9661925580325655}} {'ub': {0.25: 20.040413712566657, 0.45: 9.010140586812861}, 'lb': {0.25: 14.264590358719722, 0.45: 7.021935294336003}}

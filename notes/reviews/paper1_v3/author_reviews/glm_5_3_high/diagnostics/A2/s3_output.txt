@@ -1,0 +1,15 @@
+session: 2026-11-03T06:50:56.879486
+python 3.12.3 numpy 2.5.2 scipy 1.18.1
+  worked example (v0=10): v0=10.00 ubar=  5.833 min v'=  5.084 at  80.0% cap | v'(0.99sb)= 5.496 v'(smax)= 5.8333 | rising-tail=True v'<=v/s=False shot-v0=True (u(smin)=9.9926)
+  v0=15 calibration: v0=15.00 ubar=  5.833 min v'=  4.601 at 100.0% cap | v'(0.99sb)= 5.427 v'(smax)= 5.8333 | rising-tail=True v'<=v/s=False shot-v0=False (u(smin)=13.9291)
+  low multiple v0=6: v0= 6.00 ubar=  5.833 min v'=  5.295 at 100.0% cap | v'(0.99sb)= 5.802 v'(smax)= 5.8333 | rising-tail=False v'<=v/s=False shot-v0=True (u(smin)=6.0000)
+  high r=22% (v0~2.1): v0= 2.10 ubar=  1.944 min v'=  1.767 at 100.0% cap | v'(0.99sb)= 1.918 v'(smax)= 1.9444 | rising-tail=False v'<=v/s=False shot-v0=True (u(smin)=2.1000)
+  alpha=0.25: v0=10.00 ubar=  5.833 min v'=  4.978 at  83.6% cap | v'(0.99sb)= 5.338 v'(smax)= 5.8333 | rising-tail=True v'<=v/s=True shot-v0=True (u(smin)=9.9968)
+  alpha=0.45: v0=10.00 ubar=  5.833 min v'=  0.000 at 100.0% cap | v'(0.99sb)= 5.771 v'(smax)= 5.8333 | rising-tail=True v'<=v/s=False shot-v0=True (u(smin)=9.8874)
+  alpha=0.7: v0=10.00 ubar=  5.833 min v'=  0.000 at  99.4% cap | v'(0.99sb)= 5.771 v'(smax)= 0.0000 | rising-tail=False v'<=v/s=False shot-v0=False (u(smin)=7.2674)
+  k=0.05 capital: v0=10.00 ubar=  5.800 min v'=  5.055 at  80.0% cap | v'(0.99sb)= 5.465 v'(smax)= 5.8000 | rising-tail=True v'<=v/s=False shot-v0=True (u(smin)=9.9913)
+  m0=0.25: v0=10.00 ubar=  4.167 min v'=  3.541 at  79.7% cap | v'(0.99sb)= 3.881 v'(smax)= 4.1667 | rising-tail=True v'<=v/s=False shot-v0=True (u(smin)=9.5568)
+  G=0.08 fast market: v0=10.00 ubar=  5.000 min v'=  2.821 at 100.0% cap | v'(0.99sb)= 4.679 v'(smax)= 5.0000 | rising-tail=False v'<=v/s=False shot-v0=True (u(smin)=9.9247)
+  sbar=0.25 tight cap: v0=10.00 ubar=  5.833 min v'=  5.084 at  80.0% cap | v'(0.99sb)= 5.496 v'(smax)= 5.8333 | rising-tail=True v'<=v/s=False shot-v0=True (u(smin)=9.9926)
+  r=0.0934 (v0~14.6): v0=14.57 ubar=  6.554 min v'=  5.591 at  79.7% cap | v'(0.99sb)= 6.114 v'(smax)= 6.5543 | rising-tail=True v'<=v/s=False shot-v0=True (u(smin)=14.2302)
+SWEEP VERDICTS: min v' < ubar in all draws: True | rising terminal tail in all draws: False | v' <= v/s in all draws: False | shot matches v0 in all draws: False

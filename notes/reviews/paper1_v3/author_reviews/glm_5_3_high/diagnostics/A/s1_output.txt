@@ -1,0 +1,46 @@
+session: 2026-11-03T05:36:47.184908
+python 3.12.3 | sympy 1.14.0 | mpmath 1.3.0
+PASS L1a  sigma(Delta) = (Delta/ell)^(1/alpha) = kappa*Delta^beta (100 draws, 50 digits)
+PASS L1c  m*'(g) = -k - beta kappa (g-G)^(beta-1) (numeric derivative, 100 draws)
+PASS L2b  (5): Delta* = (y/(beta kappa))^(1/(beta-1)) = (ell)^(1/(1-alpha)) (alpha y)^(alpha/(1-alpha)) (200 draws)
+PASS L2b  (6): sigma* = kappa Delta*^beta = alpha y Delta* = (alpha ell y)^(1/(1-alpha)) (200 draws)
+PASS L2b  (7): growth surplus (1-alpha)y Delta* = C_alpha (ell y)^(1/(1-alpha)) (200 draws)
+PASS L2b  tangency m*'(G+Delta*) = -X (200 draws)
+PASS L2e  Pi = max_sigma{y ell sigma^a - sigma} = C_alpha (ell y)^(1/(1-alpha)) (grid+Newton, 40 draws)
+PASS L2c  X <= k: score excess over m0+yG is negative for all Delta>0 (50 draws)
+PASS L3a  dR*/ds = -(X-k)Delta*/(sbar-s) (numeric derivative; Delta* at ell(s)=lambda h(s)) (100 draws)
+PASS L3d  Lambda reproduces Rbar: R_inf + C_alpha(Lambda*y)^(1/(1-alpha)) = Rbar (100 draws)
+PASS L3d  at threshold: Delta* = (Rbar-Rinf)/((1-alpha)y) and sigma* = alpha(Rbar-Rinf)/(1-alpha) (50 draws)
+PASS L4   dR*/dX = g* (finite diff, 100 draws)
+PASS L4   dR*/dk = -g* (finite diff, 100 draws)
+PASS L4   dR*/dlambda = (X-k)Delta*/lambda (finite diff, 100 draws)
+PASS L4   dR*/dG = X-k (finite diff, 100 draws)
+PASS L4   R* convex in k (second difference >= 0, 100 draws)
+PASS L4   d2R*/dkdlambda = -Delta*/((1-alpha)lambda) (100 draws)
+PASS L1c  m*'' = -beta(beta-1)kappa Delta^(beta-2) exactly (alpha=3/10)
+PASS LS1b m~''(g) = 2k/(1+g)^3 - beta(beta-1) kappa Delta^(beta-2) exactly (alpha=3/10)
+PASS LS1b gap kg - kg/(1+g) = kg^2/(1+g) exactly
+PASS LS1d alpha=1/2: m~''=0 at g = (k/kappa)^(1/3) - 1 exactly (ell=3/2, kappa=4/9)
+PASS L5a  dV/deta = m sum t eta^(t-1) + mLR T eta^(T-1) Minf exactly (T=5)
+PASS L5a  (20) exact: Xscr = [m Sum t eta^t + mLR T eta^T Minf]/[(1+g)(NT + theta eta^T Minf)]
+PASS L5b  D strictly increasing in T (exact rationals, eta=12/11, T=1..11)
+PASS L5b  dD/d(ln eta) = Var_w(t) exactly (T=4)
+PASS L5d  Gordon: D -> (1+r)/(r-g) as T -> inf (3 param sets, T=2999)
+PASS L5e  T=1, theta=0: Xscr = (m + mbar Minf)/(1+g) = (V/S0)(1+r)/(1+g)^2 exactly
+PASS R3b  R_X = (X-k)g + e + rk with e = m + k(g-r), exactly
+PASS R3b  k[ROIC + (X/k - 1)g] = Xg + m with ROIC = (m+kg)/k, exactly
+PASS R2   taxed margin identity exactly
+PASS R2   psi_5: (27) equals direct mid-year schedule exactly (r=1/10)
+PASS R2   psi_15: (27) equals direct mid-year schedule exactly (r=1/10)
+PASS R2   psi_5 = 0.796, psi_15 = 0.532
+PASS R2   (1-tau)^(-alpha) at alpha=0.3: 1.050 (tau=0.15), 1.073 (tau=0.21)
+PASS P4a  P_n = (A+n chat)/(n+1) exactly
+PASS P4a  pi_n = (A-chat)^2/(B(n+1)^2) exactly
+PASS P4a  L_n = (A-chat)/(A+n chat) exactly
+PASS P4c  w_n solves Q_n(w) = Z and then P = A - BZ exactly
+PASS P4c  net Lerner BZ/(nP) and per-firm profit BZ^2/n^2 exactly
+PASS LS4b c* = ceff ln(cinc/ceff); C(c*) = ceff[1+ln(cinc/ceff)] exactly
+PASS PS3iv m*''(gc) = -(1-alpha)y/(alpha Delta*) exactly (alpha=3/10)
+PASS RS1a d/ds of -Xi/(sM) = Xi/(s^2 M) exactly
+
+TOTAL 42 checks, 0 failures

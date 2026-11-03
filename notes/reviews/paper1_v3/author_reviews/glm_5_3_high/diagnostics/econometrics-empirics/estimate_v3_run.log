@@ -1,0 +1,26 @@
+[    38s] point estimates done
+[   902s] bootstrap chunks 8/128
+[  1940s] bootstrap chunks 16/128
+[  2466s] bootstrap chunks 24/128
+[  2694s] bootstrap chunks 32/128
+[  4025s] bootstrap chunks 40/128
+[  4338s] bootstrap chunks 48/128
+[  4564s] bootstrap chunks 56/128
+[  4689s] bootstrap chunks 64/128
+[  4826s] bootstrap chunks 72/128
+[  4854s] bootstrap chunks 80/128
+[  4862s] bootstrap chunks 88/128
+[  4877s] bootstrap chunks 96/128
+[  4905s] bootstrap chunks 104/128
+[  4971s] bootstrap chunks 112/128
+[  4978s] bootstrap chunks 120/128
+[  4992s] bootstrap chunks 128/128
+[  4992s] bootstrap done {}
+[  5000s] summaries done
+[  5001s] families done {'table38': {'holm_normal': [], 'holm_percentile': ['spend_ratio'], 'holm_basic': [], 'romano_wolf': []}, 'referee32': {'holm_normal': [], 'holm_percentile': ['spend_ratio'], 'holm_basic': [], 'romano_wolf': []}, 'headline14A': {'holm_normal': ['slope_cash_E2', 'weight_E2', 'gap_E2', 'gap_fast_sm_E2'], 'holm_percentile': ['slope_op_E2', 'slope_cash_E2', 'weight_E2', 'gap_E2', 'gap_fast_sm_E2'], 'holm_basic': ['slope_cash_E2', 'weight_E2', 'gap_E2', 'gap_fast_sm_E2'], 'romano_wolf': ['slope_cash_E2', 'weight_E2', 'gap_E2', 'gap_fast_sm_E2']}, 'headline14B': {'holm_normal': ['psi_op_E1_vs_m1', 'psi_cash_E1_vs_m1', 'gap_E1', 'gap_fast_sm_E1', 'psi_op_E1_2020_25_minus_2010_19'], 'holm_percentile': ['psi_op_E1_vs_m1', 'psi_cash_E1_vs_m1', 'gap_E1', 'gap_fast_sm_E1'], 'holm_basic': ['psi_op_E1_vs_m1', 'psi_cash_E1_vs_m1', 'gap_E1', 'gap_fast_sm_E1', 'psi_op_E1_2020_25_minus_2010_19'], 'romano_wolf': ['psi_op_E1_vs_m1', 'psi_cash_E1_vs_m1', 'gap_E1', 'gap_fast_sm_E1']}}
+[  5040s] solver check done
+[  5210s] within-firm done
+[  5250s] wrote /root/tmp/ruleof40/diagnostics/econometrics-empirics/repo_run/notes/empirics_v3.json
+[  5256s] wrote notes/bootstrap_draws_v3.npz, notes/calibration_anchor_v3.json, notes/frontier_slope_v3.json
+[  5257s] wrote sections/tables/tab_estimands_v3.tex, tab_contrasts_v3.tex, tab_grid_v3.tex, tab_yearly_v3.tex, tab_bridge_v3.tex
+[  5258s] wrote notes/inference_v3.md, notes/sample_audit.md

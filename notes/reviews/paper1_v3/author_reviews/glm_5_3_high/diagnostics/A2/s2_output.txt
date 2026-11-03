@@ -1,0 +1,17 @@
+author's upwind DP grid (N=4000), worked example; v' via exact Phi:
+  s=  1.00% of cap: v'=9.0716  v/s=9.4066  gap v'-v/s=-0.3350
+  s= 10.00% of cap: v'=7.2308  v/s=8.0864  gap v'-v/s=-0.8556
+  s= 50.00% of cap: v'=5.3883  v/s=6.4732  gap v'-v/s=-1.0849
+  s= 75.00% of cap: v'=5.0930  v/s=6.0501  gap v'-v/s=-0.9571
+  s= 80.00% of cap: v'=5.0837  v/s=5.9911  gap v'-v/s=-0.9074
+  s= 85.00% of cap: v'=5.0972  v/s=5.9379  gap v'-v/s=-0.8407
+  s= 90.00% of cap: v'=5.1433  v/s=5.8931  gap v'-v/s=-0.7498
+  s= 95.00% of cap: v'=5.2531  v/s=5.8563  gap v'-v/s=-0.6031
+  s= 98.00% of cap: v'=5.4018  v/s=5.8397  gap v'-v/s=-0.4379
+  s= 99.00% of cap: v'=5.4969  v/s=5.8358  gap v'-v/s=-0.3389
+  s= 99.50% of cap: v'=5.5746  v/s=5.8343  gap v'-v/s=-0.2596
+  s= 99.90% of cap: v'=5.6976  v/s=5.8334  gap v'-v/s=-0.1358
+  s= 99.99% of cap: v'=5.7813  v/s=5.8333  gap v'-v/s=-0.0520
+argmin v' = 0.0000 at s = 100.00% of cap;  ubar = 5.8333
+v' at last grid point (s=100.00000% of cap): 0.0000
+max(v'-v/s) over grid (s in (1e-4, 0.98) of cap):  -0.03534891934777917

@@ -1,0 +1,17 @@
+/root/tmp/ruleof40/diagnostics/A/s3_budget_dynamics.py:176: RuntimeWarning: invalid value encountered in power
+  sg = (Delt/(lam*(1-s/sbar)))**(1/alpha)
+session: 2026-11-03T05:42:11.627384
+python 3.12.3 numpy 2.5.2 scipy 1.18.1
+PASS P1a  integral (R-Rinf)^+ dt <= (X-k) ln(s(T)/s0) < (X-k) ln(sbar/s0) (300 random spend paths)  max ratio integral/bound = 0.6795
+PASS P1b  discrete: sum log(1+(R-Rinf)^+/(y(1+G))) <= ln(sbar/s0) (400 random paths)
+PASS C1a  example: bound on years at score>=1000 from s0=1% is 1.8 (-> at most 1 year)  1.812
+PASS C1a  example: bound on years at score>=140 from s0=1% is 9.6 (-> at most 9)  9.648
+PASS C1a  example: bound on years at score>=1000 from s0=1e-5 is 5.0 (-> at most 5)  5.010
+PASS C1b  example: continuous time at >=1000 from s0=1%: at most 0.43 years; 0.30 at static optimum
+PASS PS1  myopic path: R*(s(t)) - Rinf <= bound (S1) along the ODE (t up to 60)
+PASS PS1  myopic excess decays at least as fast as t^{-1/alpha} (log-slope <= -1/alpha)  slope=-3.662 vs -3.333
+PASS PS2  sharpness: constant-Delta policies approach the budget (ratio -> 1 as Delta -> 0)  ratios=['0.008', '0.924', '0.995', '1.000', '1.000']
+PASS RS1b Gi<G: budget (X-k)[ln(s(T)/s0)+(G-Gi)T] holds (200 random paths)
+PASS C2   capital-for-labor bracket da - g*(k+dk)dk <= dR* <= da - g*(k)dk (300 draws)
+
+TOTAL 11 checks, 0 failures

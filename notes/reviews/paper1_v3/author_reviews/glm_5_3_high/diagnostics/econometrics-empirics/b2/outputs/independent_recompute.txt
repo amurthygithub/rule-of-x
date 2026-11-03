@@ -1,0 +1,82 @@
+=== Column discovery ===
+margin bases present: ['m_op', 'm_adj', 'm_fcf', 'm_fcf_sbc', 'm_fcf_sbc_lease']
+scores present: ['R_op', 'R_adj', 'R_fcf', 'R_fcf_sbc', 'R_fcf_sbc_lease']
+rows: 1788 firms: 292
+
+g == rev/rev_lag - 1 for all rows: True (violations: 0)
+rev_lag missing rows: 0
+sm_lag_share == prev-year sm/rev within firm: False (mismatches: 390, prev within-firm unavailable: 264)
+
+=== (a) Psi_0.90 slopes (E1, all firm-years) ===
+GAAP   2010-25 window 0-60%: slope = -0.2154  (kept cells: 13)
+GAAP   2010-25 window 0-40%: slope = -0.3076  (kept cells: 9)
+cash   2010-25 window 0-60%: slope = -0.1613  (kept cells: 13)
+cash   2010-25 window 0-40%: slope = -0.2733  (kept cells: 9)
+GAAP   2010-19 window 0-40%: slope = -0.2154
+GAAP   2020-25 window 0-40%: slope = -0.5964
+cash   2010-19 window 0-40%: slope = -0.1591
+cash   2020-25 window 0-40%: slope = -0.3474
+(paper: GAAP -0.22 (0-60), -0.31 (0-40), -0.22 (2010-19), -0.60 (2020-25); cash -0.16, -0.27, -0.16, -0.35)
+
+=== (b) P95 of R = g + m by period and change (E1) ===
+GAAP   P95 of R 2016-19: 55.9 pts
+GAAP   P95 of R 2023-25: 43.9 pts
+GAAP   change 2016-19 -> 2023-25: -11.9 pts
+cash   P95 of R 2016-19: 57.3 pts
+cash   P95 of R 2023-25: 44.6 pts
+cash   change 2016-19 -> 2023-25: -12.7 pts
+(paper: GAAP 55.9 -> 43.9, change -11.9; cash 57.3 -> 44.6, change -12.7)
+
+=== (c) T(g0) = g0 + phi_0.95(g0), per period; changes ===
+T(0%) GAAP  : 2016-19 = 29.6 (n=366), 2023-25 = 30.3 (n=384), change = 0.8
+T(0%) cash  : 2016-19 = 29.0 (n=357), 2023-25 = 25.8 (n=375), change = -3.3
+T(20%) GAAP  : 2016-19 = 45.7 (n=191), 2023-25 = 35.5 (n=124), change = -10.2
+T(20%) cash  : 2016-19 = 46.2 (n=188), 2023-25 = 43.1 (n=122), change = -3.0
+(paper: T(0%) GAAP +0.8, cash -3.3; T(20%) GAAP -10.2, cash -3.0)
+
+=== (d) Median spend ratio (E1) ===
+n = 837; median spend ratio = 3.024
+  (paper: 3.02 (0.19), E1)
+  [variant] current-year S&M share ratio = 2.953
+
+=== (e) Margin-gap decomposition (E1) ===
+n with 0<=g<=60% and all four lines: 1133
+band 0%-10%: n_top=27 n_mid=54 gap=36.4 pts
+    d_sm: -4.5
+    d_rd: -7.2
+    d_ga: -6.7
+    d_gm: 14.4
+    d_oth: -3.6
+band 10%-20%: n_top=34 n_mid=66 gap=28.4 pts
+    d_sm: -12.4
+    d_rd: -2.9
+    d_ga: -5.6
+    d_gm: 6.6
+    d_oth: -0.9
+band 20%-30%: n_top=27 n_mid=52 gap=27.1 pts
+    d_sm: -12.2
+    d_rd: -5.7
+    d_ga: -3.8
+    d_gm: 6.1
+    d_oth: 0.7
+band 30%-40%: n_top=15 n_mid=29 gap=39.2 pts
+    d_sm: -21.4
+    d_rd: -7.6
+    d_ga: -5.0
+    d_gm: 5.3
+    d_oth: 0.2
+band 40%-60%: n_top=13 n_mid=26 gap=41.3 pts
+    d_sm: -29.4
+    d_rd: -11.9
+    d_ga: -6.1
+    d_gm: -3.9
+    d_oth: 2.2
+average gap across bands: 34.5 pts  (paper: 34.5 [28.6, 37.7])
+  avg d_sm: -16.0  (paper: sm 16.0, rd 7.1, gm 5.7, ga 5.5)
+  avg d_rd: -7.1  (paper: sm 16.0, rd 7.1, gm 5.7, ga 5.5)
+  avg d_ga: -5.5  (paper: sm 16.0, rd 7.1, gm 5.7, ga 5.5)
+  avg d_gm: 5.7  (paper: sm 16.0, rd 7.1, gm 5.7, ga 5.5)
+  avg d_oth: -0.3  (paper: sm 16.0, rd 7.1, gm 5.7, ga 5.5)
+identity check sum of avg parts - avg gap: -57.5561 pts
+
+[wrote /root/tmp/ruleof40/diagnostics/econometrics-empirics/b2/outputs/independent_recompute.txt ]

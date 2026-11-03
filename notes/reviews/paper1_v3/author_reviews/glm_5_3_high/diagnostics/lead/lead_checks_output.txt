@@ -1,0 +1,48 @@
+[PASS] Lemma 1 frontier identity m0-sigma-kg == (4)
+    20000 random draws; max |diff| = 6.31e-14
+[PASS] Lemma 2 closed-form max score (7) vs numerical tangency
+    5000 draws; max |diff| = 2.84e-14
+[PASS] Lemma 2(c) corner optimum at g=G when X<=k
+    numerical optimizer never prefers interior when X<k (3000 draws)
+[PASS] Lemma 2(d) duality X(g) = -m*'(g)
+    at g=0.3: predicted 0.528001, finite-diff 0.528001
+[PASS] Corollary 1(a) bounds: 1.8 / 9.6 / 5.0
+    computed 1.81 (paper: 1.8), 9.65 (paper: 9.6), 5.01 (paper: 5.0)
+[PASS] Corollary 1(b) continuous bounds: 0.43 / 0.30
+    computed 0.425 (paper: 0.43), 0.298 (paper: 0.30)
+[PASS] Table 4 ceiling values (all cases/cells + G*)
+    all 32 cells + 4 G* reproduce within 0.15pt
+[PASS] Central threshold decomposition = 32.5
+    computed 32.51 (paper: 32.5; components 18.0+4.9+2.1+2.5+5.1)
+[PASS] Lemma 5(b) example Xscr ~ 2 at D~10 (T=15)
+    T=15: D=10.25 (paper 10.25) -> Xscr=2.050 (paper ~2); T=10: D=6.53 (paper 6.5, consistent with paper's own note)
+[PASS] Table S3 equal-score unequal-value multiples
+    g=30%: 12.09 vs paper 12.1; g=20%: 11.69 vs paper 11.7; g=10%: 8.28 vs paper 8.3; g=0%: 5.19 vs paper 5.2
+[PASS] Bending Spoons score arithmetic (Table 3)
+    2025 GAAP before interest: 116.0 vs 115.9; 2025 GAAP after interest: 105.1 vs 105.0; 2025 cash after interest: 116.9 vs 116.9; 2025 cash before interest (24% tax addback): 125.2 vs 125.2; 2025 fully charged (lower bound): -16.6 vs -16.5; Q2-26 reported growth GAAP: 160.4 vs 160.5; Q2-26 organic before interest: 37.1 vs 37.1; Q2-26 organic after interest: 21.6 vs 21.6; Q2-26 organic bef int+reorg: 44.3 vs 44.3
+[PASS] Rule-of-1000 illustration (main p.17)
+    Lambda=8.71 (paper 8.71); Delta*=1314pts (paper ~1314); spend=394% (paper ~394%); margin=-334% (paper ~ -334%)
+[PASS] Central execution: embed ~61% and realize ~41% by 2036
+    embed rate 0.063/yr, E(2036)=0.63 (paper ~61%), realized=0.42 (paper ~41%)
+[PASS] Accountability floor example 0.37-0.38%
+    0.30 direct + 0.075 design = 0.375% (paper: 0.37-0.38%)
+[PASS] Lemma S2(a) dgamma/du = -(1-eps_p)/p under eps_p = dlnp/dlnu
+    sympy residual: 0
+
+==== SUMMARY ====
+PASS  Lemma 1 frontier identity m0-sigma-kg == (4)
+PASS  Lemma 2 closed-form max score (7) vs numerical tangency
+PASS  Lemma 2(c) corner optimum at g=G when X<=k
+PASS  Lemma 2(d) duality X(g) = -m*'(g)
+PASS  Corollary 1(a) bounds: 1.8 / 9.6 / 5.0
+PASS  Corollary 1(b) continuous bounds: 0.43 / 0.30
+PASS  Table 4 ceiling values (all cases/cells + G*)
+PASS  Central threshold decomposition = 32.5
+PASS  Lemma 5(b) example Xscr ~ 2 at D~10 (T=15)
+PASS  Table S3 equal-score unequal-value multiples
+PASS  Bending Spoons score arithmetic (Table 3)
+PASS  Rule-of-1000 illustration (main p.17)
+PASS  Central execution: embed ~61% and realize ~41% by 2036
+PASS  Accountability floor example 0.37-0.38%
+PASS  Lemma S2(a) dgamma/du = -(1-eps_p)/p under eps_p = dlnp/dlnu
+15/15 checks pass
