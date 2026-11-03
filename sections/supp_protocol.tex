@@ -22,6 +22,8 @@ Lead agent & \texttt{claude-opus-5-5} & Planning; data retrieval (28 and 29 Octo
 Review council (three agents: an industrial-organization economist, a chief financial officer, an operations red team) & \texttt{claude-opus-5-5} & Independent critiques of the first answer to the research question\\
 Literature agent & \texttt{claude-opus-5-5} & Search and verification of the first bibliography (71 references): 62 confirmed as recorded, 9 corrected, 8 candidates dropped\\
 Theory agent & \texttt{claude-opus-5-5} & The model, its proofs and the symbolic and numerical verification script (\texttt{verify\_theory.py}; 91, then 119, then 120 checks)\\
+Formalization agent & \texttt{claude-fable-5-1} & The Lean~4 formalization of the static model (\texttt{formal/}; Section~\ref{supp:formal}), 3 November\\
+Formalization auditor & \texttt{claude-opus-5-5} & Two audits of the formalization against the paper's statements, with instances showing the hypotheses satisfiable; told not to edit the formalization\\
 Referee panel of the first draft (three agents: a theorist, a financial economist with accounting expertise, an econometrician) & \texttt{claude-opus-5-5} & Independent referee reports on the complete first draft\\
 Audit agent (two rounds) & \texttt{claude-opus-5-5} & Every number, cross-reference and citation claim in the narrative checked against tables, scripts and sources\\
 Modernization literature agent & \texttt{claude-opus-5-5} & Mapped each model component to theory and evidence of 2018 to 2026 and verified each item at a publisher, DOI, working-paper or issuing-body page\\
