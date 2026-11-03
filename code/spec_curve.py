@@ -18,7 +18,9 @@ specifications that coincide with the 22 published variants must reproduce notes
 statistic it stores, and the printed macros of paper1/macros.tex after rounding; the script stops otherwise.
 
 Grid (design.md, sections 2-3). Sample: treatment of acquired growth (15 levels) x R1 (2) x R2 (3) x R5 (2) x debt-only
-filers (2) x growth bound (2) = 720 samples. Claim-specific: C1/C2 P95 change: quantile (0.95, 0.90) x late period
+filers (2) x growth bound (2) = 720 samples on the panel of the reported run. R2's options follow the panel (see R2_LEVELS):
+on the panel rebuilt on 3 Nov 2026, with R2 applied to the main sample and two readers' classifications, they are 4 and
+the grid has 960 samples (notes/spec_curve/log.md). Claim-specific: C1/C2 P95 change: quantile (0.95, 0.90) x late period
 (2023-25, 2023-24, 2025) [x cash measure (3) for C2]; C3/C4 Psi slope: estimator (Psi_0.80-0.95, order-m) x window
 (0-60, 0-40%) [x cash measure]; C5/C6 steepening: estimator x window x period split [x cash measure]; C7 spend ratio
 (secondary: benchmark growth); C8 anchor surplus: cut-off (0.95, 0.90, 0.925, 0.975) x tail rule (observed samples).
@@ -128,6 +130,18 @@ R5_FLAG = cex.no_listed_equity.astype(object).eq(True).values
 DEBT = cex.debt_only_named.astype(bool).values
 UNVER = cex.unver.astype(bool).values
 BRIDGE_M = ['m_cash_pre', 'm_cash_bi', 'm_cash_bs']
+# R2 options follow the panel: the classifier's firms and the 16 named firms only while they are still in the main sample
+# (from 3 Nov 2026 rule R2 applies to the main sample, so the classifier's firms are excluded there), and the two
+# independent readings of the business descriptions once both are filled (the condition of estimate_v3.py). On the panel
+# of the reported run (initial import f5d12f7) this gives none / classifier / all 16 named, the levels of design.md.
+HAS_READERS = ('business_class_reader_b' in cex.columns and 'business_class_reader_a' in cex.columns
+               and bool(cex.business_class_reader_b.fillna('').ne('').all()))
+if HAS_READERS:
+    _ra = (cex.business_class_reader_a.fillna('software') != 'software').values
+    _rb = (cex.business_class_reader_b.fillna('software') != 'software').values
+    R2_BOTH, R2_EITHER = _ra & _rb, _ra | _rb
+R2_LEVELS = (['none'] + (['cls'] if (PRIM & R2_CLS).any() else []) + (['all'] if (PRIM & R2_ALL).any() else [])
+             + (['both', 'either'] if HAS_READERS else []))
 
 # =============================================================================================== 3. the grid
 ACQ = OrderedDict()                                                 # level -> (family, flag, reading, M)
@@ -139,12 +153,12 @@ for t_ in ('25', '10', '50'):
     ACQ[f'ex{t_}'] = ('exclusion', t_, None, None)
 for M_ in ('4', '8'):
     ACQ[f'imp{M_}'] = ('imputed', '25', None, M_)
-SDIMS = OrderedDict(acq=list(ACQ), r1=['no', 'yes'], r2=['none', 'cls', 'all'], r5=['keep', 'drop'], debt=['keep', 'drop'],
+SDIMS = OrderedDict(acq=list(ACQ), r1=['no', 'yes'], r2=R2_LEVELS, r5=['keep', 'drop'], debt=['keep', 'drop'],
                     trim=['g<5', 'g<=1.5'])
 SAMPLES = [dict(zip(SDIMS, v)) for v in __import__('itertools').product(*SDIMS.values())]
 for i, s in enumerate(SAMPLES):
     s['sid'] = i
-assert len(SAMPLES) == 720
+assert len(SAMPLES) == math.prod(len(v) for v in SDIMS.values())
 BASE_SAMPLE = dict(acq='obs', r1='no', r2='none', r5='keep', debt='keep', trim='g<5')
 
 
@@ -167,6 +181,10 @@ def build(s):
         rows = rows & ~R2_CLS
     elif s['r2'] == 'all':
         rows = rows & ~R2_ALL
+    elif s['r2'] == 'both':
+        rows = rows & ~R2_BOTH
+    elif s['r2'] == 'either':
+        rows = rows & ~R2_EITHER
     if s['r5'] == 'drop':
         rows = rows & ~R5_FLAG
     if s['debt'] == 'drop':
@@ -187,7 +205,10 @@ PUB = {'E1': {}, 'E2': dict(acq='pf25_rule'), 'E2pf10': dict(acq='pf10_rule'), '
        'E1k2010': dict(r1='yes'), 'E2k2010': dict(acq='pf25_rule', r1='yes'), 'E1clean': dict(r2='all'),
        'E2clean': dict(acq='pf25_rule', r2='all'), 'E1r2named': dict(r2='cls'), 'E2r2named': dict(acq='pf25_rule', r2='cls'),
        'E1nolist': dict(r5='drop'), 'E2nolist': dict(acq='pf25_rule', r5='drop'), 'E1nodebt': dict(debt='drop'),
-       'E2nodebt': dict(acq='pf25_rule', debt='drop')}
+       'E2nodebt': dict(acq='pf25_rule', debt='drop'),
+       'E1r2both': dict(r2='both'), 'E2r2both': dict(acq='pf25_rule', r2='both'),
+       'E1r2either': dict(r2='either'), 'E2r2either': dict(acq='pf25_rule', r2='either')}
+PUB = {vn: kw for vn, kw in PUB.items() if vn in V and kw.get('r2', 'none') in R2_LEVELS}   # variants of this panel
 
 
 def sid_of(**kw):
@@ -1231,9 +1252,12 @@ def make_figure(SP, SUMM):
                              ('imputed ($M=4$ or $8$)', lambda d: d.family == 'imputed')]),
         ('Acquisition flag', [('10% of revenue', lambda d: d.acq.str.contains('10')), ('50% of revenue', lambda d: d.acq.str.contains('50'))]),
         ('Ambiguous pro forma', [('read additively', lambda d: d.acq.str.endswith('_add')), ('read cumulatively', lambda d: d.acq.str.endswith('_max'))]),
-        ('Sample rules', [('fiscal-2010 years added (R1)', lambda d: d.r1 == 'yes'), ('R2 classifier firms dropped', lambda d: d.r2 == 'cls'),
-                          ('all 16 named firms dropped', lambda d: d.r2 == 'all'), ('R5 firm-years dropped', lambda d: d.r5 == 'drop'),
-                          ('debt-only filers dropped', lambda d: d.debt == 'drop'), ('growth at most 150%', lambda d: d.trim == 'g<=1.5')])]
+        ('Sample rules', [('fiscal-2010 years added (R1)', lambda d: d.r1 == 'yes')]
+         + [(lab, (lambda lv: lambda d: d.r2 == lv)(lv)) for lv, lab in (('cls', 'R2 classifier firms dropped'), ('all', 'all 16 named firms dropped'),
+                                                                        ('both', 'R2: both readers\' firms dropped'), ('either', 'R2: either reader\'s firms dropped'))
+            if lv in R2_LEVELS]
+         + [('R5 firm-years dropped', lambda d: d.r5 == 'drop'), ('debt-only filers dropped', lambda d: d.debt == 'drop'),
+            ('growth at most 150%', lambda d: d.trim == 'g<=1.5')])]
     claim_rows = {
         'C1': [('Quantile', [('P90 (not P95)', lambda d: d['quantile'] == 'p90')]),
                ('End period', [('2023-24', lambda d: d['late'] == '2023_24'), ('2025', lambda d: d['late'] == '2025')])],
