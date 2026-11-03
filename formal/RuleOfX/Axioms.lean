@@ -45,5 +45,10 @@ namespace RuleOfX
 #print axioms prop_budget_c_continuous
 #print axioms cor_transient_b
 #print axioms cor_transient_b_optimum
+#print axioms induced_isPath
+#print axioms prop_budget_a_induced
+#print axioms prop_budget_c_continuous_induced
+#print axioms cor_transient_b_induced
+#print axioms cor_transient_b_optimum_induced
 
 end RuleOfX

@@ -8,3 +8,9 @@ rev = "v4.35.0"
 
 [[lean_lib]]
 name = "RuleOfX"
+
+# Instances of the main theorems at concrete parameter values (the audit's checks).
+# Not a default target: build with `lake build RuleOfXChecks`.
+[[lean_lib]]
+name = "RuleOfXChecks"
+srcDir = "Checks"

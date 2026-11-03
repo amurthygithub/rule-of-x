@@ -326,4 +326,170 @@ theorem cor_transient_b_optimum {Rbar : ℝ} (hα : 0 < α) (hα1 : α < 1) (hla
   refine time_bound hT _ hint (fun t => le_max_right _ _) hε (hle.trans ?_)
   exact mul_le_mul_of_nonneg_left hlt.le hc
 
+
+/-! ### The induced share path
+
+For a measurable spend path `σ ≥ 0` with `∫_0^T σ^α < ∞`, the paper's induced share path is
+the logistic solution `s(t) = s̄ / (1 + e^{-z(t)} (s̄/s₀ - 1))` with `z(t) = λ ∫_0^t σ^α`
+(the proof of prop:budget (a)). It is absolutely continuous on `[0,T]`, stays in `(0, s̄)`, starts
+at `s₀`, and solves `ṡ = s λ h(s) σ^α` almost everywhere. -/
+
+/-- `z(t) = λ ∫_0^t σ(u)^α du`. -/
+def Spath (α lam : ℝ) (σ : ℝ → ℝ) (t : ℝ) : ℝ := lam * ∫ u in (0 : ℝ)..t, σ u ^ α
+
+/-- The logistic map `z ↦ s̄ / (1 + e^{-z} (s̄/s₀ - 1))`. -/
+def logistic (sbar s0 z : ℝ) : ℝ := sbar / (1 + Real.exp (-z) * (sbar / s0 - 1))
+
+/-- The induced share path `s(t) = logistic(z(t))`. -/
+def induced (α lam sbar s0 : ℝ) (σ : ℝ → ℝ) (t : ℝ) : ℝ := logistic sbar s0 (Spath α lam σ t)
+
+section induced
+variable {s0 : ℝ}
+
+theorem logistic_den_pos (hs0 : 0 < s0) (hs0' : s0 < sbar) (z : ℝ) :
+    0 < 1 + Real.exp (-z) * (sbar / s0 - 1) := by
+  have hA : 0 < sbar / s0 - 1 := by rw [sub_pos, one_lt_div hs0]; exact hs0'
+  have := Real.exp_pos (-z)
+  positivity
+
+theorem logistic_mem (hsbar : 0 < sbar) (hs0 : 0 < s0) (hs0' : s0 < sbar) (z : ℝ) :
+    0 < logistic sbar s0 z ∧ logistic sbar s0 z < sbar := by
+  have hD := logistic_den_pos hs0 hs0' z
+  have hA : 0 < sbar / s0 - 1 := by rw [sub_pos, one_lt_div hs0]; exact hs0'
+  have he := Real.exp_pos (-z)
+  unfold logistic
+  refine ⟨div_pos hsbar hD, ?_⟩
+  rw [div_lt_iff₀ hD]
+  nlinarith [mul_pos he hA]
+
+theorem logistic_zero (hsbar : 0 < sbar) (hs0 : 0 < s0) : logistic sbar s0 0 = s0 := by
+  unfold logistic
+  rw [neg_zero, Real.exp_zero, one_mul, add_sub_cancel]
+  have := hsbar.ne'
+  have := hs0.ne'
+  field_simp
+
+/-- `logistic' (z) = s h(s)` with `s = logistic z`. -/
+theorem hasDerivAt_logistic (hs0 : 0 < s0) (hs0' : s0 < sbar) (z : ℝ) :
+    HasDerivAt (logistic sbar s0) (logistic sbar s0 z * hdr sbar (logistic sbar s0 z)) z := by
+  have hD := logistic_den_pos hs0 hs0' z
+  have he : HasDerivAt (fun z : ℝ => Real.exp (-z)) (Real.exp (-z) * (-1)) z :=
+    (hasDerivAt_id' z).neg.exp
+  have hden : HasDerivAt (fun z : ℝ => 1 + Real.exp (-z) * (sbar / s0 - 1))
+      (Real.exp (-z) * (-1) * (sbar / s0 - 1)) z := (he.mul_const _).const_add 1
+  have h := (hasDerivAt_const z sbar).div hden hD.ne'
+  refine h.congr_deriv ?_
+  unfold logistic hdr
+  have hsb : sbar ≠ 0 := by linarith
+  have hD' := hD.ne'
+  field_simp
+  ring
+
+theorem logistic_lipschitz (hsbar : 0 < sbar) (hs0 : 0 < s0) (hs0' : s0 < sbar) :
+    LipschitzWith ⟨sbar, hsbar.le⟩ (logistic sbar s0) := by
+  refine lipschitzWith_of_nnnorm_deriv_le (fun z => (hasDerivAt_logistic hs0 hs0' z).differentiableAt)
+    fun z => ?_
+  rw [(hasDerivAt_logistic hs0 hs0' z).deriv]
+  obtain ⟨h0, h1⟩ := logistic_mem hsbar hs0 hs0' z
+  have hh0 := hdr_pos hsbar h1
+  have hh1 := hdr_lt_one hsbar h0
+  rw [Real.nnnorm_of_nonneg (mul_pos h0 hh0).le]
+  exact Subtype.mk_le_mk.2 (by nlinarith)
+
+/-- The induced share path: absolutely continuous on `[0,T]`, in `(0, s̄)`, starting at `s₀`,
+and solving the share equation almost everywhere on `[0,T]`. -/
+theorem induced_isPath (hsbar : 0 < sbar) (hs0 : 0 < s0) (hs0' : s0 < sbar) (T : ℝ)
+    (σ : ℝ → ℝ) (hσint : IntervalIntegrable (fun t => σ t ^ α) volume 0 T) :
+    AbsolutelyContinuousOnInterval (induced α lam sbar s0 σ) 0 T ∧
+    (∀ t, 0 < induced α lam sbar s0 σ t ∧ induced α lam sbar s0 σ t < sbar) ∧
+    induced α lam sbar s0 σ 0 = s0 ∧
+    ∀ᵐ t, t ∈ Icc 0 T → HasDerivAt (induced α lam sbar s0 σ)
+      (induced α lam sbar s0 σ t * Δpath α lam sbar σ (induced α lam sbar s0 σ) t) t := by
+  have hSac : AbsolutelyContinuousOnInterval (Spath α lam σ) 0 T :=
+    (hσint.absolutelyContinuousOnInterval_intervalIntegral (c := 0) (by simp)).const_mul lam
+  refine ⟨(logistic_lipschitz hsbar hs0 hs0').comp_absolutelyContinuousOnInterval hSac,
+    fun t => logistic_mem hsbar hs0 hs0' _, ?_, ?_⟩
+  · unfold induced Spath
+    rw [intervalIntegral.integral_same, mul_zero, logistic_zero hsbar hs0]
+  · filter_upwards [hσint.ae_hasDerivAt_integral] with t ht htI
+    have hS : HasDerivAt (Spath α lam σ) (lam * σ t ^ α) t := by
+      have := ht (Icc_subset_uIcc htI) 0 (by simp)
+      exact this.const_mul lam
+    have hcomp := (hasDerivAt_logistic hs0 hs0' (Spath α lam σ t)).comp t hS
+    refine hcomp.congr_deriv ?_
+    unfold induced Δpath; ring
+
+/-- **Proposition prop:budget (a), with the induced share path.** The only share-path hypothesis
+is that `s` is the induced path `induced α lam sbar s0 σ` from `s₀ ∈ (0, s̄)`. -/
+theorem prop_budget_a_induced (hα : 0 < α) (hlam : 0 < lam) (hsbar : 0 < sbar) (hXk : k < X)
+    (hT : 0 ≤ T) (hs0 : 0 < s0) (hs0' : s0 < sbar) (σ m : ℝ → ℝ) (hσm : Measurable σ)
+    (hσ0 : ∀ t, 0 ≤ σ t) (hσint : IntervalIntegrable (fun t => σ t ^ α) volume 0 T)
+    (hmm : Measurable m)
+    (hm : ∀ t, m t ≤ m0 - σ t - k * (G + Δpath α lam sbar σ (induced α lam sbar s0 σ) t)) :
+    induced α lam sbar s0 σ 0 = s0 ∧
+    IntervalIntegrable
+      (fun t => max (Rpath G α lam sbar X σ (induced α lam sbar s0 σ) m t - Rinf m0 G k X) 0)
+      volume 0 T ∧
+    ∫ t in (0 : ℝ)..T,
+      max (Rpath G α lam sbar X σ (induced α lam sbar s0 σ) m t - Rinf m0 G k X) 0 ≤
+      (X - k) * Real.log (induced α lam sbar s0 σ T / s0) ∧
+    (X - k) * Real.log (induced α lam sbar s0 σ T / s0) < (X - k) * Real.log (sbar / s0) := by
+  obtain ⟨hac, hrange, h0, hode⟩ := induced_isPath (α := α) (lam := lam) hsbar hs0 hs0' T σ hσint
+  have h := prop_budget_a hα hlam hsbar hXk hT σ m _ hσm hσ0 hσint hmm hac (fun t _ => hrange t)
+    hode hm
+  rw [h0] at h
+  exact ⟨h0, h⟩
+
+/-- **Proposition prop:budget (c), continuous time, with the induced share path.** -/
+theorem prop_budget_c_continuous_induced (hα : 0 < α) (hlam : 0 < lam) (hsbar : 0 < sbar)
+    (hXk : k < X) (hT : 0 ≤ T) (hs0 : 0 < s0) (hs0' : s0 < sbar) (σ m m0 : ℝ → ℝ)
+    (hσm : Measurable σ) (hσ0 : ∀ t, 0 ≤ σ t)
+    (hσint : IntervalIntegrable (fun t => σ t ^ α) volume 0 T)
+    (hmm : Measurable m) (hm0m : Measurable m0)
+    (hm : ∀ t, m t ≤ m0 t - σ t - k * (G + Δpath α lam sbar σ (induced α lam sbar s0 σ) t)) :
+    induced α lam sbar s0 σ 0 = s0 ∧
+    IntervalIntegrable (fun t =>
+      max (Rpath G α lam sbar X σ (induced α lam sbar s0 σ) m t - (m0 t + (X - k) * G)) 0)
+      volume 0 T ∧
+    ∫ t in (0 : ℝ)..T,
+      max (Rpath G α lam sbar X σ (induced α lam sbar s0 σ) m t - (m0 t + (X - k) * G)) 0 ≤
+      (X - k) * Real.log (induced α lam sbar s0 σ T / s0) ∧
+    (X - k) * Real.log (induced α lam sbar s0 σ T / s0) < (X - k) * Real.log (sbar / s0) := by
+  obtain ⟨hac, hrange, h0, hode⟩ := induced_isPath (α := α) (lam := lam) hsbar hs0 hs0' T σ hσint
+  have h := prop_budget_c_continuous hα hlam hsbar hXk hT σ m _ m0 hσm hσ0 hσint hmm hm0m hac
+    (fun t _ => hrange t) hode hm
+  rw [h0] at h
+  exact ⟨h0, h⟩
+
+/-- **Corollary cor:transient (b), first claim, with the induced share path.** -/
+theorem cor_transient_b_induced {Rbar : ℝ} (hα : 0 < α) (hlam : 0 < lam) (hsbar : 0 < sbar)
+    (hXk : k < X) (hR : Rinf m0 G k X < Rbar) (hT : 0 ≤ T) (hs0 : 0 < s0) (hs0' : s0 < sbar)
+    (σ m : ℝ → ℝ) (hσm : Measurable σ) (hσ0 : ∀ t, 0 ≤ σ t)
+    (hσint : IntervalIntegrable (fun t => σ t ^ α) volume 0 T) (hmm : Measurable m)
+    (hm : ∀ t, m t ≤ m0 - σ t - k * (G + Δpath α lam sbar σ (induced α lam sbar s0 σ) t)) :
+    volume.real ({t | Rbar ≤ Rpath G α lam sbar X σ (induced α lam sbar s0 σ) m t} ∩ Ioc 0 T) ≤
+      (X - k) * Real.log (sbar / s0) / (Rbar - Rinf m0 G k X) := by
+  obtain ⟨hac, hrange, h0, hode⟩ := induced_isPath (α := α) (lam := lam) hsbar hs0 hs0' T σ hσint
+  have h := cor_transient_b hα hlam hsbar hXk hR hT σ m _ hσm hσ0 hσint hmm hac
+    (fun t _ => hrange t) hode hm
+  rwa [h0] at h
+
+/-- **Corollary cor:transient (b), second claim, with the induced share path.** The policy
+`σ(t) = σ*(λ h(s(t)), X-k)` along the induced path of `σ` is a hypothesis (a fixed-point
+condition between the spend path and its induced share path). -/
+theorem cor_transient_b_optimum_induced {Rbar : ℝ} (hα : 0 < α) (hα1 : α < 1) (hlam : 0 < lam)
+    (hsbar : 0 < sbar) (hXk : k < X) (hR : Rinf m0 G k X < Rbar) (hT : 0 ≤ T) (hs0 : 0 < s0)
+    (hs0' : s0 < sbar) (σ m : ℝ → ℝ) (hσm : Measurable σ) (hσ0 : ∀ t, 0 ≤ σ t)
+    (hσint : IntervalIntegrable (fun t => σ t ^ α) volume 0 T) (hmm : Measurable m)
+    (hm : ∀ t, m t ≤ m0 - σ t - k * (G + Δpath α lam sbar σ (induced α lam sbar s0 σ) t))
+    (hpol : ∀ t ∈ Icc 0 T, σ t = σstar α (lam * hdr sbar (induced α lam sbar s0 σ t)) (X - k)) :
+    volume.real ({t | Rbar ≤ Rpath G α lam sbar X σ (induced α lam sbar s0 σ) m t} ∩ Ioc 0 T) ≤
+      (1 - α) * (X - k) * Real.log (sbar / s0) / (Rbar - Rinf m0 G k X) := by
+  obtain ⟨hac, hrange, h0, hode⟩ := induced_isPath (α := α) (lam := lam) hsbar hs0 hs0' T σ hσint
+  have h := (cor_transient_b_optimum hα hα1 hlam hsbar hXk hR hT σ m _ hσm hσ0 hσint hmm hac
+    (fun t _ => hrange t) hode hm hpol).2.2
+  rwa [h0] at h
+
+end induced
+
 end RuleOfX

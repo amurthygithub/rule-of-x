@@ -135,12 +135,12 @@ KAPPA_LOG = _PATH and _K['law'] == 'loguniform'
 KAPPA_TO_VALUE_TEST = _PATH and abs(_K['hi'] - CCR['kappa_hi']) < 1e-12
 if not _PATH:
     CC_NOTE = (r"and the compute share at 2025 prices, which runs over its scenario range of " + CC_SCEN_LO + r" to "
-               + CC_SCEN_HI + r"\% of revenue (Section S9)")
+               + CC_SCEN_HI + r"\% of revenue (Section~\ref{supp:stress})")
 elif not (KAPPA_LOG or KAPPA_TO_VALUE_TEST):          # the stored run of 2 Nov 2026: the wording of that run's note
     CC_NOTE = (r"except the compute share, which enters through the drivers of its path and so runs from " + CC_BOX_LO
                + r" to " + CC_BOX_HI + r"\% of revenue at 2025 prices, "
                + (r"not over the scenario range of " if not CC_COVERS else r"which contains the scenario range of ")
-               + CC_SCEN_LO + r" to " + CC_SCEN_HI + r"\% (Section S9)")
+               + CC_SCEN_LO + r" to " + CC_SCEN_HI + r"\% (Section~\ref{supp:stress})")
 else:
     CC_NOTE = (r"except the compute share, which enters through the drivers of its path, compute per dollar of labor replaced"
                + (r" (drawn log-uniform" if KAPPA_LOG else r" (drawn uniform")
@@ -149,7 +149,7 @@ else:
                + r"\% of revenue at 2025 prices, "
                + (r"which contains the scenario range of " if CC_COVERS else
                   (r"within the scenario range of " if CC_INSIDE else r"against the scenario range of "))
-               + CC_SCEN_LO + r" to " + CC_SCEN_HI + r"\% (Section S9)")
+               + CC_SCEN_LO + r" to " + CC_SCEN_HI + r"\% (Section~\ref{supp:stress})")
 lines = []
 for tid, claim, cond, kind in ROWS:
     ok, cen, lo, hi = row_values(tid)

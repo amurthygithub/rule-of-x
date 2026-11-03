@@ -926,6 +926,10 @@ put('VRtwoExclN', str(_r2m['excluded_firm_years'])); put('VRtwoExclFirms', str(_
 assert _r2m['excluded_firm_years'] == V3B['excluded']['R2_not_software']
 put('VRtwoReadN', str(_rr['n_firms'])); put('VRtwoReadAgree', str(_rr['agree']))
 num('VRtwoKappa', _rr['kappa'], 2, pct=False)
+# Lean formalization of the static model (formal/, Section supp:formal): the number of theorems whose axioms
+# formal/RuleOfX/Axioms.lean prints (each must depend only on propext, Classical.choice, Quot.sound; checked by lake build).
+_ax = [l for l in open(os.path.join(BASE, 'formal', 'RuleOfX', 'Axioms.lean')).read().split('\n') if l.startswith('#print axioms')]
+put('FormalNThm', str(len(_ax)))
 put('VRtwoReadA', str(_rr['non_software']['a'])); put('VRtwoReadB', str(_rr['non_software']['b']))
 put('VRtwoReadBoth', str(_rr['non_software']['both'])); put('VRtwoReadEither', str(_rr['non_software']['either']))
 put('VRtwoBothFirms', str(_rr['v3_firms_dropped']['both'])); put('VRtwoBothN', str(_rr['v3_firm_years_dropped']['both']))

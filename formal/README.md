@@ -3,11 +3,15 @@
 This directory contains a Lean 4 / Mathlib formalization of the static results of the model
 section: Assumptions ass:market, ass:growth, ass:costs, ass:capital, Definition def:frontier, the
 constants of eq:constants, Lemmas prop:frontier, prop:score, prop:saturation, prop:envelope,
-Proposition prop:budget (discrete time, and continuous time with the share path taken as a
-hypothesis), Corollaries cor:transient, cor:capital and the exact parts of cor:priorities.
+Proposition prop:budget (discrete and continuous time, the latter with the paper's induced
+share path constructed and verified), Corollaries cor:transient, cor:capital and the exact parts
+of cor:priorities.
 
 Every theorem is proved without `sorry`, `admit` or new axioms; `RuleOfX/Axioms.lean` prints the
-axioms of every main theorem (`propext`, `Classical.choice`, `Quot.sound` only).
+axioms of every main theorem (`propext`, `Classical.choice`, `Quot.sound` only). A second,
+non-default library `RuleOfXChecks` (directory `Checks/`) instantiates the main theorems at
+concrete parameter values, which documents that their hypotheses are satisfiable; these
+instances were written by the independent audit of the formalization.
 
 ## Build
 
@@ -17,7 +21,8 @@ axioms of every main theorem (`propext`, `Classical.choice`, `Quot.sound` only).
 
   ```
   cd formal
-  lake build            # builds Mathlib dependencies, then the library RuleOfX
+  lake build                 # builds Mathlib dependencies, then the library RuleOfX
+  lake build RuleOfXChecks   # the audit's instances (not a default target)
   ```
 
   `lake build` compiles the import closure of `RuleOfX/Imports.lean` and
@@ -40,8 +45,12 @@ axioms of every main theorem (`propext`, `Classical.choice`, `Quot.sound` only).
 | `RuleOfX/Envelope.lean` | Lemma prop:envelope. |
 | `RuleOfX/Capital.lean` | Corollary cor:capital; Corollary cor:priorities (i), (ii), (iii), (v). |
 | `RuleOfX/Budget.lean` | Proposition prop:budget (b), (c) in discrete time; Corollary cor:transient (a). |
-| `RuleOfX/BudgetCont.lean` | Proposition prop:budget (a), (c) in continuous time and Corollary cor:transient (b) (both claims), with the share path as a hypothesis (see "Continuous time" below). |
+| `RuleOfX/BudgetCont.lean` | Proposition prop:budget (a), (c) in continuous time and Corollary cor:transient (b) (both claims): general versions with the share path as a hypothesis, the construction of the paper's induced share path (`induced`, `induced_isPath`), and the corollaries with the induced path (see "Continuous time" below). |
 | `RuleOfX/Axioms.lean` | `#print axioms` for all main theorems. |
+| `Checks/RuleOfXChecks/Static.lean` | Instances of every static theorem at paper-like values (`α = 0.3`, `ℓ = 0.6`, `G = 0.10`, `k = 0.10`, `m₀ = 0.45`, `X = 1, 2`, `s̄ = 0.5`, `λ = 1.2`, `s = 0.1`), with uncapped, finite and exactly binding caps, negative `k`, and the discrete budget on a one-period path. |
+| `Checks/RuleOfXChecks/Logistic.lean`, `Budget.lean` | The continuous budget on constant unit spend with the explicit logistic path, and with the induced path. |
+| `Checks/RuleOfXChecks/Step.lean` | The continuous budget on a spend path with a jump (`σ = 0` then `1`), with the explicit induced path (shown not differentiable at the jump) and with `induced`. |
+| `Checks/RuleOfXChecks/Optimum.lean` | A positive-horizon instance of the static-optimum bound `cor_transient_b_optimum`, with the share path built from Mathlib's one-dimensional inverse function theorem. |
 
 ## Conventions
 
@@ -67,9 +76,11 @@ axioms of every main theorem (`propext`, `Classical.choice`, `Quot.sound` only).
 * Hypotheses that a theorem does not use are kept in its statement to match the paper's
   standing assumptions, but named with a leading underscore (`_hα`, `_hk`, …). In particular
   `k ≥ 0` (ass:capital) is used only where the frontier is characterized as the set of
-  undominated points (`m*` strictly decreasing): prop:frontier (a), (c), prop:score (a); every
-  other result holds for every real `k`, including the identification of `Rst` with the maximal
-  score (`Rst_isGreatest`).
+  undominated points (`m*` strictly decreasing): prop:frontier (a), (c) and prop:score (a);
+  prop:frontier (d) and every other result hold for every real `k`, including the
+  identification of `Rst` with the maximal score (`Rst_isGreatest`), which is stated as a
+  conjunct of every theorem about `Rst` (prop:saturation (a)–(d), prop:envelope, cor:capital,
+  cor:priorities (i), (ii), (iii), (v)).
 
 ## Results
 
@@ -82,7 +93,7 @@ described in the last column.
 | prop:frontier (a): frontier is the graph of eq:frontier on `I`; `𝓕 = {g ∈ I, m ≤ m*(g)}` convex; dominated iff `m < m*(g)`; unique spend `κ(g-G)^β` | `prop_frontier_a` (`frontier_eq`, `feasible_eq`, `feasible_convex`, `dominated_iff`, `unique_spend`) | proved | none |
 | prop:frontier (b): `m*(G) = m₀ - kG`, right derivative `-k` | `prop_frontier_b` | proved | right derivative stated as `HasDerivWithinAt … (Ici G) G` |
 | prop:frontier (c): strictly decreasing, strictly concave on `I`; `m*'`, `m*''` for `g > G`, `m*'' < 0`; limits of `m*''` as `g ↓ G` for `α < 1/2`, `= 1/2`, `> 1/2` | `prop_frontier_c` | proved | the derivatives are `HasDerivAt` statements (`m*'` as given also holds at `g = G` with Mathlib's `rpow`); the `α = 1/2` case is `m*''(g) = -2κ` for every `g > G` |
-| prop:frontier (d): `σ̄ = ∞ ⇒ m* → -∞`, `m*' → -∞`, `m*/g → -∞` | `prop_frontier_d` | proved | none (`I = [G, ∞)` by `I_top`) |
+| prop:frontier (d): `σ̄ = ∞ ⇒ m* → -∞`, `m*' → -∞`, `m*/g → -∞` | `prop_frontier_d` | proved | none (`I = [G, ∞)` by `I_top`); `k ≥ 0` not needed |
 | prop:score (a): iso-score lines; a maximizer exists; every maximizer is on the frontier | `prop_score_a` (`exists_isMax`, `isMax_mem_frontier`) | proved | holds for every real `X`, not only `X ≥ 0` |
 | prop:score (b): for `X > k` and `σ* ≤ σ̄`: unique interior maximizer, tangency `m*'(g*) = -X` (left derivative when `σ* = σ̄`, where `g* = ḡ`), eq:Dstar, eq:sigstar (both forms), eq:Rstar (both forms), `m*(g*) = m₀ - kg* - α(X-k)Δ*` | `prop_score_b` (`isUniqueMax_gstar`, `foc`, `σstar_eq`, `S_Δstar`, `surplus_eq`) | proved | the cap condition is the hypothesis `↑(σstar α ℓ (X-k)) ≤ σbar`; tangency is `HasDerivAt` (two-sided), from which the left derivative follows; "`σ* = σ̄ ⇒ g* = ḡ`" is included; the conjuncts `σ* = [αℓ(X-k)]^{1/(1-α)}` and `Δ* = ℓ^{1/(1-α)}[α(X-k)]^{α/(1-α)}` hold by definition (trivial) |
 | prop:score (c): `X ≤ k`: unique maximizer `g* = G`, `σ* = 0`, `R* = m₀ + (X-k)G` | `prop_score_c` | proved | `σ* = 0` is `σplus α ℓ (X-k) = 0` and `spendOf G α ℓ G = 0` |
@@ -92,55 +103,73 @@ described in the last column.
 | prop:saturation (a): `R*_X(s) = R_∞ + C_α[λh(s)y₊]^{1/(1-α)}`; strictly decreasing with `dR*/ds = -(X-k)Δ*/(s̄-s)` if `X > k`; constant if `X ≤ k` | `prop_saturation_a` (`Rst_isGreatest`, `Rst_hasDerivAt`) | proved | "`R*_X(s)` is the maximal score" is the conjunct `IsGreatest (score X '' 𝓕) (Rst …)`; strict decrease on `(0, s̄)` |
 | prop:saturation (b): `lim_{s→s̄} R* = R_∞`; Rule of 40 with `k = 0`; eq:rule100 | `prop_saturation_b` | proved | first conjunct: `Rst` is the maximal score at every `s < s̄`; limit along `𝓝[<] s̄`; the Rule-of-40 and eq:rule100 conjuncts are linear arithmetic (trivial) under `c_h, c_c, f, a_min ≥ 0`, `a ≥ a_min`, `m₀ = 1 - c_h - c_c - f - a` |
 | prop:saturation (c): `sup_{(0,s̄)} R* = lim_{s→0} R* = R⁰`; not attained if `X > k`; constant and attained if `X ≤ k` | `prop_saturation_c` | proved | first conjunct: `Rst` is the maximal score at every `s < s̄`; `sup` is `IsLUB` of the image of `(0, s̄)`; the limit is along `𝓝[>] 0` |
-| prop:saturation (d): threshold `Λ(R̄)`; `R*(s) ≥ R̄ ⇔ λh(s) ≥ Λ`; attainable at some share `⇔ λ > Λ`; values at the threshold | `prop_saturation_d` | proved | none |
+| prop:saturation (d): threshold `Λ(R̄)`; `R*(s) ≥ R̄ ⇔ λh(s) ≥ Λ`; attainable at some share `⇔ λ > Λ`; values at the threshold | `prop_saturation_d` | proved | first conjunct: `Rst` is the maximal score at every `s ∈ (0, s̄)` |
 | prop:envelope: `R*_X` continuously differentiable in `(m₀,G,k,X,λ,s)`; eq:envelope; `∂/∂γ, ∂/∂a, ∂/∂c_c`; convex in `k` and in `λ`; `∂²R*/∂k∂λ = -Δ*/[(1-α)λ] ≤ 0` | `prop_envelope` (`contDiffOn_RstP`, `hasDerivAt_Rst_*`, `Rst_convexOn_k`, `Rst_convexOn_lam`, `hasDerivAt_cross_lam`, `hasDerivAt_cross_k`) | proved | first conjunct: `Rst` is the maximal score on the feasible set (`σ̄ = ∞`) at the given parameters, for every real `X` and `k`; joint `C¹` is `ContDiffOn ℝ 1 (RstP α sbar) (Dom sbar)` on the open set `{λ > 0, s < s̄}` (it contains the paper's domain); the partial derivatives are one-variable `HasDerivAt` statements; convexity in `k` on `ℝ`, in `λ` on `(0,∞)`; the cross-partial is proved in both orders; `X ≥ 0` is not needed |
 | cor:capital: bracket eq:kl-bracket; rises if `da > g*(k)dk`; does not rise if `da ≤ g*(k+dk)dk`; to first order rises iff `da > g* dk` | `cor_capital` (`kl_bracket`) | proved (reading) | first two conjuncts: the two `Rst` values are the maximal scores before and after the change; "to first order" is read as: `t ↦ R*_X(a - t·da, k + t·dk)` has derivative `da - g*(k)dk` at `t = 0`, and this derivative is `> 0 ⇔ da > g*(k)dk`; `da > 0` is not needed for the bracket |
-| cor:priorities (i) | `cor_priorities_i` | proved | exact, through `m₀ = γ - a`; both conjuncts are identities (trivial): `Rst` and `Rinf` are affine in `m₀` with slope 1 |
-| cor:priorities (ii), exact formulas and first-order gains | `cor_priorities_ii` (`Rst_scale_lam`) | proved (reading) | the map "same growth for spend `σ/(1+x)`" is the identity `growth G λ α ((1+x)σ) = growth G (λ(1+x)^α) α σ` (first conjunct); the `Rst` values at `λ`, `λ(1+x)^α`, `λ(1+x)` are the maximal scores (next three conjuncts); exact gains `Π[(1+x)^{α/(1-α)} - 1]`, `Π[(1+x_λ)^{1/(1-α)} - 1]` for `x > -1`; "to first order" is the derivative at `x = 0`: `σ*`, resp. `(X-k)Δ* = σ*/α`, proved for `X > k`; "neither raises `R_∞`" holds by construction (`Rinf m0 G k X` has no `λ` argument) and is not stated as a theorem; "both vanish as `s → s̄`" is a `Tendsto` along `𝓝[<] s̄` |
-| cor:priorities (iii) | `cor_priorities_iii` | proved (reading) | the zero-spend growth `G_i` is the parameter `G` of eq:growth; the gain is the derivative `X - k` of `R*` and of `R_∞` in `G`; "does not depend on share or growth" is stated as equality of the derivative at any two shares (third conjunct, trivial given the first) |
+| cor:priorities (i) | `cor_priorities_i` | proved | exact, through `m₀ = γ - a`; first two conjuncts: the `Rst` values are the maximal scores (domain `λ > 0`, `s < s̄`); the last two are identities (trivial): `Rst` and `Rinf` are affine in `m₀` with slope 1 |
+| cor:priorities (ii), exact formulas and first-order gains | `cor_priorities_ii` (`Rst_scale_lam`) | proved (reading) | the map "same growth for spend `σ/(1+x)`" is the identity `growth G ℓ α ((1+x)σ) = growth G (ℓ(1+x)^α) α σ` at `ℓ = λh(s)` (first conjunct); the `Rst` values at `λ`, `λ(1+x)^α`, `λ(1+x)` are the maximal scores (next three conjuncts); exact gains `Π[(1+x)^{α/(1-α)} - 1]`, `Π[(1+x_λ)^{1/(1-α)} - 1]` for `x > -1`; "to first order" is the derivative at `x = 0`: `σ*`, resp. `(X-k)Δ* = σ*/α`, proved for `X > k`; "neither raises `R_∞`" holds by construction (`Rinf m0 G k X` has no `λ` argument) and is not stated as a theorem; "both vanish as `s → s̄`" is a `Tendsto` along `𝓝[<] s̄` |
+| cor:priorities (iii) | `cor_priorities_iii` | proved (reading) | domain `λ > 0`, `s < s̄`; first conjunct: `Rst` is the maximal score; the zero-spend growth `G_i` is the parameter `G` of eq:growth; the gain is the derivative `X - k` of `R*` and of `R_∞` in `G`; "does not depend on share or growth" is stated as equality of the derivative at any two shares `s, s' < s̄` (last conjunct, trivial given the second) |
 | cor:priorities (iv) | — | not formalized | out of scope (needs lem:prices and prop:entry) |
-| cor:priorities (v) | `cor_priorities_v` | proved (reading) | first-order claim as in cor:capital; `g* ≥ G`; the last conjunct (the hurdle `g·dk` is nondecreasing in `g`) is trivial |
+| cor:priorities (v) | `cor_priorities_v` | proved (reading) | first two conjuncts: the `Rst` values before and after the change are the maximal scores; first-order claim as in cor:capital; `g* ≥ G`; the last conjunct (the hurdle `g·dk` is nondecreasing in `g`) is trivial |
 | prop:budget (b) (discrete time) | `prop_budget_b` | proved | hypotheses `s₀ > 0` and `X > k` (from the proposition's setting) made explicit |
 | prop:budget (c), discrete case | `prop_budget_c_discrete` | proved | none |
-| prop:budget (a) (continuous time) | `prop_budget_a` | proved (change) | the share path is a hypothesis (absolutely continuous, in `(0,s̄)`, share equation a.e.); the integrability of the integrand `(R_X - R_∞)⁺` on `[0,T]` is a conjunct of the conclusion; see "Continuous time" below |
-| prop:budget (c), continuous case | `prop_budget_c_continuous` | proved (change) | as for (a); `m₀(·)` is assumed measurable (see Findings) |
+| prop:budget (a) (continuous time) | `prop_budget_a_induced` (general form `prop_budget_a`; path `induced`, `induced_isPath`) | proved | as stated: any measurable `σ ≥ 0` with `∫_0^T σ^α < ∞`, measurable margins, and the induced share path `s(t) = s̄/(1 + e^{-λ∫_0^t σ^α}(s̄/s₀ - 1))` from `s₀ ∈ (0, s̄)`, shown to be absolutely continuous, in `(0, s̄)`, with `s(0) = s₀` and the share equation a.e.; the integrability of `(R_X - R_∞)⁺` on `[0,T]` is a conjunct; the general form takes any such path as a hypothesis; see "Continuous time" below |
+| prop:budget (c), continuous case | `prop_budget_c_continuous_induced` (general form `prop_budget_c_continuous`) | proved (change) | as for (a); `m₀(·)` is assumed measurable (see Findings) |
 | cor:transient (a) | `cor_transient_a` | proved | "the number of periods" is the number of `t < T` with `R_{X,t} ≥ R̄`, for every horizon `T` (the bound is uniform in `T`) |
-| cor:transient (b), first claim | `cor_transient_b` | proved (change) | the time is the Lebesgue measure of `{t ∈ (0,T] : R_X(t) ≥ R̄}` for every `T`; hypotheses as in prop:budget (a) below |
-| cor:transient (b), second claim (static-optimum policy) | `cor_transient_b_optimum` | proved (change) | the policy is the hypothesis `σ(t) = σ*(λh(s(t)), X-k)` on `[0,T]` (eq:sigstar at the current share); conclusion: `∫_0^T (R_X - R_∞)⁺ ≤ (1-α)(X-k) ln(s(T)/s₀)` and the time at or above `R̄` is at most `(1-α)(X-k) ln(s̄/s₀)/(R̄ - R_∞)`; same reading of the share path as prop:budget (a). The paper's proof cites prop:myopic, but only the policy and the closed forms are needed |
+| cor:transient (b), first claim | `cor_transient_b_induced` (general form `cor_transient_b`) | proved | the time is the Lebesgue measure of `{t ∈ (0,T] : R_X(t) ≥ R̄}` for every `T`; hypotheses as in prop:budget (a) |
+| cor:transient (b), second claim (static-optimum policy) | `cor_transient_b_optimum_induced` (general form `cor_transient_b_optimum`) | proved (reading) | the policy is the hypothesis `σ(t) = σ*(λh(s(t)), X-k)` on `[0,T]` (eq:sigstar at the current share, a fixed-point condition between `σ` and its induced path; `Checks/RuleOfXChecks/Optimum.lean` exhibits a solution); conclusion: `∫_0^T (R_X - R_∞)⁺ ≤ (1-α)(X-k) ln(s(T)/s₀)` and the time at or above `R̄` is at most `(1-α)(X-k) ln(s̄/s₀)/(R̄ - R_∞)`; same reading of the share path as prop:budget (a). The paper's proof cites prop:myopic, but only the policy and the closed forms are needed |
 | cor:transient, numerical example | — | not formalized | the numbers 1.81, 9.65, 5.01, 0.43, 0.30 are arithmetic; an independent numerical check gives 1.81, 9.65, 5.01, 0.425, 0.298 |
 
 ### Continuous time (prop:budget (a), (c); cor:transient (b))
 
-The paper takes "the induced share path from `s(0) = s₀`", i.e. the solution of
-`ṡ = s λ h(s) σ^α` for a measurable spend path `σ`, which the paper's proof writes down
-explicitly (a logistic formula in `∫σ^α`); it is absolutely continuous and satisfies the
-equation almost everywhere (a Carathéodory solution). In `RuleOfX/BudgetCont.lean` the share
-path is a **hypothesis** with exactly those properties:
+The paper takes "the induced share path from `s(0) = s₀`", the solution of `ṡ = s λ h(s) σ^α`
+for a measurable spend path `σ`, which the paper's proof writes down explicitly:
+`s(t) = s̄ / (1 + e^{-Σ(t)} (s̄/s₀ - 1))` with `Σ(t) = λ ∫_0^t σ^α`. This path is constructed in
+`RuleOfX/BudgetCont.lean` (`Spath`, `logistic`, `induced`) and `induced_isPath` proves, for any
+`σ` with `∫_0^T σ^α < ∞` (`IntervalIntegrable (fun t => σ t ^ α) volume 0 T`) and
+`0 < s₀ < s̄`, that it is absolutely continuous on `[0,T]` (`AbsolutelyContinuousOnInterval`;
+`Σ` is an indefinite integral, hence absolutely continuous, and the logistic map is Lipschitz),
+stays in `(0, s̄)`, starts at `s₀`, and satisfies the share equation
+`ṡ(t) = s(t) λ h(s(t)) σ(t)^α` for almost every `t ∈ [0,T]` (Lebesgue differentiation,
+`IntervalIntegrable.ae_hasDerivAt_integral`, composed with the smooth logistic map), i.e. it is
+the Carathéodory solution. The theorems `prop_budget_a_induced`,
+`prop_budget_c_continuous_induced`, `cor_transient_b_induced` and
+`cor_transient_b_optimum_induced` then have no share-path hypothesis beyond "`s` is this induced
+path": they cover every measurable, nonnegative spend path with `∫_0^T σ^α < ∞` and measurable
+margins `m(t) ≤ m₀ - σ(t) - k g(t)` (any `T ≥ 0`), exactly as the paper states, and in
+particular spend paths with jumps (`Checks/RuleOfXChecks/Step.lean`). Not formalized:
+uniqueness of the solution (the paper's claim that this is *the* induced path; the general
+versions below apply to any solution, so uniqueness is not needed for the bounds). The cap
+`σ ≤ σ̄` is not needed and not assumed.
 
-* `hac : AbsolutelyContinuousOnInterval s 0 T` (Mathlib's notion of absolute continuity on
-  `[0,T]`);
-* `hode : ∀ᵐ t, t ∈ Icc 0 T → HasDerivAt s (s t * λ h(s t) σ(t)^α) t` (the share equation
-  ass:market `g = G + ṡ/s` combined with eq:growth, almost everywhere on `[0,T]`);
-* `hsrange : ∀ t ∈ Icc 0 T, 0 < s t ∧ s t < s̄` (ass:market).
-
-What is covered: every measurable, nonnegative spend path with `∫_0^T σ^α < ∞`
-(`IntervalIntegrable (fun t => σ t ^ α) volume 0 T`) and measurable margins
-`m(t) ≤ m₀ - σ(t) - k g(t)`, **for which such a share path exists**; this includes every spend
-path with jumps (e.g. a step path), since the hypotheses only ask for the derivative almost
-everywhere. What is not formalized: the existence and uniqueness of the induced path (the
-paper's logistic formula), and the paper's derivation of `s < s̄` from that formula (here `s < s̄`
-is assumed, as ass:market states). The cap `σ ≤ σ̄` is not needed and not assumed. The proof
-uses Mathlib's fundamental theorem of calculus for absolutely continuous functions
-(`AbsolutelyContinuousOnInterval.integral_deriv_eq_sub`) applied to `log ∘ s`, which is
-absolutely continuous because `log` is Lipschitz on `[min s, ∞)` and `s` is bounded away from
-`0` on the compact interval. Two convenience lemmas discharge the hypotheses for a `C¹` path
-that satisfies the equation everywhere (`ac_of_contDiffOn`, `hode_of_forall`).
+The general versions `prop_budget_a`, `prop_budget_c_continuous`, `cor_transient_b` and
+`cor_transient_b_optimum` take any share path `s` that is absolutely continuous on `[0,T]`,
+satisfies the share equation almost everywhere on `[0,T]` (`hode`) and stays in `(0, s̄)`
+(ass:market) as a hypothesis. The proof uses Mathlib's fundamental theorem of calculus for
+absolutely continuous functions (`AbsolutelyContinuousOnInterval.integral_deriv_eq_sub`)
+applied to `log ∘ s`, which is absolutely continuous because `log` is Lipschitz on
+`[min s, ∞)` and `s` is bounded away from `0` on the compact interval. Two convenience lemmas
+discharge the hypotheses for a `C¹` path that satisfies the equation everywhere
+(`ac_of_contDiffOn`, `hode_of_forall`).
 
 Each continuous-time theorem states, as a conjunct, that the integrand `(R_X(t) - R_∞(t))⁺` is
 interval integrable on `[0,T]`, so the integral in the bound is a genuine Lebesgue integral (in
 Lean a non-integrable function integrates to `0`). cor:transient (b) states the Lebesgue measure
 of `{t ∈ (0,T] : R_X(t) ≥ R̄}` (the time at or above `R̄` up to any horizon `T`); the left
 endpoint `0` is a null set.
+
+### The audit's instances (`Checks/`)
+
+The library `RuleOfXChecks` (`lake build RuleOfXChecks`; it compiles no Mathlib module beyond
+those the main library already needs) consists of `example`s that apply the main theorems to
+concrete data, so that every hypothesis is discharged by a proof. They were written by the
+independent audit of this formalization and adapted to the final statements. They show that the
+hypotheses are satisfiable at paper-like values (including a finite cap, an exactly binding cap
+`σ̄ = σ*`, `X ≤ k`, and negative `k` where allowed), that the discrete budget applies to a
+one-period path with a score above `R_∞`, that the continuous budget applies to constant spend
+with the logistic share path and to a spend path with a jump (whose share path is not
+differentiable at the jump), and that `cor_transient_b_optimum` applies on a positive horizon
+along a share path that actually follows the static-optimum policy.
 
 ## Findings about the paper
 
@@ -157,7 +186,7 @@ need a reading:
    of `X` is never used; all results are proved for every real `X`. The standing assumption
    `k ≥ 0` (ass:capital) is needed only for the dominance results, where `m*` must be strictly
    decreasing: prop:frontier (a) and (c) (strict decrease), and prop:score (a) ("every maximizer
-   lies on the frontier"); it is not used in prop:score (b)–(e), prop:saturation (a)–(d),
+   lies on the frontier"); it is not used in prop:frontier (b), (d), prop:score (b)–(e), prop:saturation (a)–(d),
    prop:envelope, cor:capital, cor:priorities or the budget results, and the identification of
    the closed form with the maximal score (`Rst_isGreatest`, `Rstar_isGreatest`) holds for every
    real `k`. `da > 0` is not used for the bracket of cor:capital, and `α > 0` is not used in the
@@ -182,12 +211,11 @@ need a reading:
    which is proved (`contDiff_fplus`).
 8. **prop:budget (b).** The statement needs `s₀ > 0` for the logarithms and `X > k` (both are in
    the proposition's preamble); it does not need the growth technology or `s₀ < s̄`.
-9. **prop:budget (a), cor:transient (b).** The paper's "induced share path" is taken as a
-   hypothesis (absolutely continuous, share equation almost everywhere, values in `(0,s̄)`), as
-   described above; its existence and uniqueness from the explicit logistic formula are not
-   formalized. Given such a path, the inequality, the integrability of the integrand, the
-   Markov-inequality step of cor:transient (b) and the sharper bound at the static-optimum
-   policy are verified. This is a gap in the formalization, not a flaw found in the paper.
+9. **prop:budget (a), cor:transient (b).** The paper's "induced share path" (the logistic
+   formula of the proof) is constructed and verified to be an absolutely continuous solution of
+   the share equation almost everywhere with values in `(0,s̄)`; with it the statements are
+   proved as the paper states them. Uniqueness of the solution is not formalized; the general
+   versions of the theorems apply to every such solution, so the bounds do not depend on it.
 10. **prop:saturation (c).** "the supremum is not attained" is proved for shares in the open
     interval `(0, s̄)`; the limit `s → 0` is a limit from the right.
 11. **prop:budget (c), continuous time: measurability of `m₀(·)`.** With a moving intercept the

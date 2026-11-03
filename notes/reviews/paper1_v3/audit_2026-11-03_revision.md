@@ -1,5 +1,7 @@
 # Second independent audit of the round-3 revision (3 November 2026)
 
+> **Section numbers (added 3 Nov, afternoon).** Supplement Section S4 (machine-checked proofs of the static model) was added after this file was written; the stress test (cited here as S9) is now S10, the specification curve (S10) is S11 and the glossary is S12.
+
 - **Auditor:** an agent on `claude-fable-5-1` that took no part in the revision, told not to edit anything.
 - **Scope:** `git diff be86d24..f15cb11` on branch `review-round-3`: the compute-share fix and stress-test rerun, the re-estimation (rule R2 in the main sample, capitalized software from the filings), the specification curve, the legal and tax pass, the fourth outside review (Mistral Large 4), and the records. The packaging commit 49ee884 was outside its scope.
 - **What it ran:** `code/paper1_macros.py` (CLAIMS 91/91, macros unchanged, abstract 1,918 characters) and `code/verify_theory.py` (202/202); it also read both PDFs (86 and 69 pages) for unresolved references and garbled macros (none).

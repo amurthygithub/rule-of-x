@@ -4,7 +4,7 @@ This section builds a model in which a firm spends part of its revenue on growth
 
 \subsection{Setup}\label{sec:model-setup}
 
-We describe a firm at a point in time. Revenue is $S$, the addressable market is $M$, and market share is $s=S/M$. Growth rates are instantaneous (continuously compounded) rates, so revenue growth equals market growth plus share growth. The two conventions for growth rates differ materially only at growth rates of the order of 100\% or more; Section~\ref{supp:model-rates} of the Supplementary Appendix states which results use which. Margins and spending are expressed as fractions of current revenue.
+We describe a firm at a point in time. Revenue is $S$, the addressable market is $M$, and market share is $s=S/M$. Growth rates are instantaneous (continuously compounded) rates, so revenue growth equals market growth plus share growth. The two conventions for growth rates differ materially only at growth rates of the order of 100\% or more; Section~\ref{supp:model-rates} of the Supplementary Appendix states which results use which. Margins and spending are expressed as fractions of current revenue. The statements of Sections~\ref{sec:model-setup} to~\ref{sec:model-statics} are machine-checked in Lean~4, except \autoref{cor:priorities}(iv) and the numerical examples (Section~\ref{supp:formal} of the Supplementary Appendix); the later results rest on written proofs and symbolic and numerical checks.
 
 \begin{assumption}[Market and share]\label{ass:market}
 The market grows at a constant nominal rate $G$. The firm's share satisfies $s\in(0,\bar s)$, where the cap $\bar s\in(0,1)$ reflects customer heterogeneity and, for share bought by acquisition, merger control. Revenue growth $g$ and share growth are linked by $g=G+\dot s/s$.

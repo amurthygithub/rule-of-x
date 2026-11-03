@@ -104,11 +104,17 @@ theorem cor_capital (hα : 0 < α) (hα1 : α < 1) (hlam : 0 < lam) (hsbar : 0 <
 /-! ### Corollary cor:priorities, exact parts -/
 
 /-- **cor:priorities (i).** "Removing non-discretionary cost `da` raises `R*_X` by `da` and the
-saturated score `R_∞` by `da`." (Exact, through `m₀ = γ - a`.) -/
-theorem cor_priorities_i (γ a da : ℝ) :
+saturated score `R_∞` by `da`." (Exact, through `m₀ = γ - a`; the first two conjuncts say the two `Rst` values
+are the maximal scores.) -/
+theorem cor_priorities_i (hα : 0 < α) (hα1 : α < 1) (hlam : 0 < lam) (hsbar : 0 < sbar)
+    (hs : s < sbar) (γ a da : ℝ) :
+    IsGreatest (score X '' Feasible (γ - a) G k α (lam * hdr sbar s) ⊤)
+      (Rst α sbar (γ - a) G k X lam s) ∧
+    IsGreatest (score X '' Feasible (γ - (a - da)) G k α (lam * hdr sbar s) ⊤)
+      (Rst α sbar (γ - (a - da)) G k X lam s) ∧
     Rst α sbar (γ - (a - da)) G k X lam s = Rst α sbar (γ - a) G k X lam s + da ∧
     Rinf (γ - (a - da)) G k X = Rinf (γ - a) G k X + da := by
-  constructor
+  refine ⟨Rst_isGreatest hα hα1 hlam hsbar hs, Rst_isGreatest hα hα1 hlam hsbar hs, ?_, ?_⟩
   · unfold Rst; ring
   · unfold Rinf; ring
 
@@ -127,14 +133,15 @@ theorem Rst_scale_lam (hα : 0 < α) (hα1 : α < 1) (hlam : 0 < lam) (hsbar : 0
 growth spend deliver the same growth for spend `σ/(1+x)`, which maps to `λ ↦ λ(1+x)^α`. It
 raises `R*_X` ... exactly, by `Π[(1+x)^{α/(1-α)} - 1]`. Measured instead as a rise `x_λ` in
 demand pull, the gain is ... `Π[(1+x_λ)^{1/(1-α)} - 1]` exactly. Neither raises `R_∞`, and both
-vanish as `s → s̄`." (First conjunct: spend `(1+x)σ` under demand pull `λ` buys the growth that
-spend `σ` buys under `λ(1+x)^α`, i.e. the same growth for spend `σ/(1+x)`. The next three say the
+vanish as `s → s̄`." (First conjunct, at `ℓ = λh(s)`: spend `(1+x)σ` under demand pull `λ` buys
+the growth that spend `σ` buys under `λ(1+x)^α`, i.e. the same growth for spend `σ/(1+x)`. The next three say the
 `Rst` values are the maximal scores at `λ`, `λ(1+x)^α`, `λ(1+x)`. The first-order claims are the
 derivatives at `x = 0`: `σ*` and `(X-k)Δ* = σ*/α`, proved for `X > k`. `R_∞ = Rinf m0 G k X` has
 no `λ` argument, so "neither raises `R_∞`" holds by construction.) -/
 theorem cor_priorities_ii (hα : 0 < α) (hα1 : α < 1) (hlam : 0 < lam) (hsbar : 0 < sbar)
     (hs : s < sbar) {x : ℝ} (hx : -1 < x) :
-    (∀ σ : ℝ, 0 ≤ σ → growth G lam α ((1 + x) * σ) = growth G (lam * (1 + x) ^ α) α σ) ∧
+    (∀ σ : ℝ, 0 ≤ σ → growth G (lam * hdr sbar s) α ((1 + x) * σ) =
+      growth G (lam * (1 + x) ^ α * hdr sbar s) α σ) ∧
     IsGreatest (score X '' Feasible m0 G k α (lam * hdr sbar s) ⊤) (Rst α sbar m0 G k X lam s) ∧
     IsGreatest (score X '' Feasible m0 G k α (lam * (1 + x) ^ α * hdr sbar s) ⊤)
       (Rst α sbar m0 G k X (lam * (1 + x) ^ α) s) ∧
@@ -159,7 +166,8 @@ theorem cor_priorities_ii (hα : 0 < α) (hα1 : α < 1) (hlam : 0 < lam) (hsbar
     (Real.rpow_nonneg h1x.le α)
   rw [← Real.rpow_mul h1x.le, show α * (1 / (1 - α)) = α / (1 - α) by ring] at hA
   have hB := Rst_scale_lam (m0 := m0) (G := G) (k := k) (X := X) hα hα1 hlam hsbar hs h1x.le
-  have hmap : ∀ σ : ℝ, 0 ≤ σ → growth G lam α ((1 + x) * σ) = growth G (lam * (1 + x) ^ α) α σ := by
+  have hmap : ∀ σ : ℝ, 0 ≤ σ → growth G (lam * hdr sbar s) α ((1 + x) * σ) =
+      growth G (lam * (1 + x) ^ α * hdr sbar s) α σ := by
     intro σ hσ
     unfold growth
     rw [Real.mul_rpow h1x.le hσ]; ring
@@ -223,30 +231,37 @@ theorem cor_priorities_ii (hα : 0 < α) (hα1 : α < 1) (hlam : 0 < lam) (hsbar
 /-- **cor:priorities (iii).** "Raising zero-spend growth `G_i` by `dG` raises `R*_X` by
 `(X-k) dG`, and `R_∞` by the same amount; at a fixed weight the gain does not depend on the
 firm's share or growth." (Here `G` is the zero-spend growth rate; the derivative `X - k` is the
-same at every share `s`, `s'`.) -/
-theorem cor_priorities_iii :
+same at every share `s`, `s' < s̄`; the first conjunct says `Rst` is the maximal score.) -/
+theorem cor_priorities_iii (hα : 0 < α) (hα1 : α < 1) (hlam : 0 < lam) (hsbar : 0 < sbar)
+    (hs : s < sbar) :
+    IsGreatest (score X '' Feasible m0 G k α (lam * hdr sbar s) ⊤) (Rst α sbar m0 G k X lam s) ∧
     HasDerivAt (fun G => Rst α sbar m0 G k X lam s) (X - k) G ∧
     HasDerivAt (fun G => Rinf m0 G k X) (X - k) G ∧
-    ∀ s' : ℝ, deriv (fun G => Rst α sbar m0 G k X lam s) G =
+    ∀ s' : ℝ, s' < sbar → deriv (fun G => Rst α sbar m0 G k X lam s) G =
       deriv (fun G => Rst α sbar m0 G k X lam s') G := by
-  refine ⟨hasDerivAt_Rst_G, ?_, fun s' => ?_⟩
+  refine ⟨Rst_isGreatest hα hα1 hlam hsbar hs, hasDerivAt_Rst_G, ?_, fun s' _ => ?_⟩
   · unfold Rinf
     exact (((hasDerivAt_id' G).const_mul (X - k)).const_add m0).congr_deriv (by ring)
   · rw [hasDerivAt_Rst_G.deriv, hasDerivAt_Rst_G.deriv]
 
 /-- **cor:priorities (v).** "Automation that adds capital `dk` while removing cost `da` raises
 `R*_X` if and only if `da > g* dk` (cor:capital); since `g* ≥ G`, the hurdle is lowest for the
-slowest growers." (First order: sign of the derivative in `cor_capital`; `g* ≥ G`; the hurdle
+slowest growers." (The first two conjuncts say the `Rst` values before and after the change are
+the maximal scores; first order: sign of the derivative in `cor_capital`; `g* ≥ G`; the hurdle
 `g* dk` is nondecreasing in `g*`.) -/
 theorem cor_priorities_v (hα : 0 < α) (hα1 : α < 1) (hlam : 0 < lam) (hsbar : 0 < sbar)
     (hs : s < sbar) (γ a : ℝ) {da dk : ℝ} (hda : 0 < da) (hdk : 0 < dk) :
+    IsGreatest (score X '' Feasible (γ - a) G k α (lam * hdr sbar s) ⊤)
+      (Rst α sbar (γ - a) G k X lam s) ∧
+    IsGreatest (score X '' Feasible (γ - (a - da)) G (k + dk) α (lam * hdr sbar s) ⊤)
+      (Rst α sbar (γ - (a - da)) G (k + dk) X lam s) ∧
     HasDerivAt (fun t => Rst α sbar (γ - (a - t * da)) G (k + t * dk) X lam s)
       (da - gstar G k α (lam * hdr sbar s) X * dk) 0 ∧
     (0 < da - gstar G k α (lam * hdr sbar s) X * dk ↔ gstar G k α (lam * hdr sbar s) X * dk < da) ∧
     G ≤ gstar G k α (lam * hdr sbar s) X ∧
     (∀ g g' : ℝ, g ≤ g' → g * dk ≤ g' * dk) := by
   have h := cor_capital (G := G) (k := k) (X := X) hα hα1 hlam hsbar hs γ a hda hdk
-  exact ⟨h.2.2.2.2.2.1, h.2.2.2.2.2.2, G_le_gstar hα (ℓ_pos hlam hsbar hs),
+  exact ⟨h.1, h.2.1, h.2.2.2.2.2.1, h.2.2.2.2.2.2, G_le_gstar hα (ℓ_pos hlam hsbar hs),
     fun g g' hgg' => mul_le_mul_of_nonneg_right hgg' hdk.le⟩
 
 end RuleOfX

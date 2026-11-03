@@ -93,6 +93,19 @@ Run the scripts in this order: `estimate_revised.py` overwrites two figures and 
 
 To retrieve the SEC data again, run `python3 code/fetch_companyfacts.py "Your Name your.email@example.com"`. The SEC requires a User-Agent with contact details. Registrants excluded in `code/exclusions.py` are skipped. Facts filed after 29 October 2026 will make a new extract differ slightly from the distributed one.
 
+## Machine-checked proofs of the static model (`formal/`)
+
+`formal/` is a Lean 4 project that formalizes the statements of Sections 3.1 to 3.5 of Paper 1 (the static model) and checks their proofs (Supplement Section `supp:formal`; `formal/README.md` maps every part of every statement to its Lean theorems and states each difference of form). It is not a stage of `code/regenerate_all.sh`, because it needs the Lean toolchain rather than Python.
+
+```bash
+# Lean 4.35.0 (https://github.com/leanprover/lean4/releases/tag/v4.35.0, or elan with formal/lean-toolchain) on PATH
+cd formal
+lake build                 # Mathlib v4.35.0 and the library RuleOfX; prints the axioms of every main theorem
+lake build RuleOfXChecks   # the audit's instances: the theorems at the paper's illustrative values and for a spend path with a jump
+```
+
+Without a Mathlib cache (`lake exe cache get`), Mathlib is compiled from source: about 2,800 modules, about 50 minutes on 2 cores. Every theorem printed by `formal/RuleOfX/Axioms.lean` must depend only on `propext`, `Classical.choice` and `Quot.sound`; `paper1_macros.py` counts them for the Supplement (`\FormalNThm`).
+
 ## License
 
 Copyright (c) 2026 Akshaya Bangalore Sreenivasa Murthy. The code in this package is licensed under the PolyForm Noncommercial License 1.0.0 (LICENSE.md) or, at your option, the PolyForm Internal Use License 1.0.0 (LICENSE-INTERNAL-USE.md), which lets a company run and modify it for its own internal business operations but not distribute it or offer it as a service. The author's own data compilations and documentation are licensed under CC BY-NC-ND 4.0. Any other commercial use requires the author's prior written permission. Third-party data keep their own terms, listed below and in NOTICE.md.

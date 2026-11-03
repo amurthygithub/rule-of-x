@@ -1,5 +1,7 @@
 # Paper 1: response to the outside reviews (round 3)
 
+> **Section numbers (added 3 Nov, afternoon).** Supplement Section S4 (machine-checked proofs of the static model) was added after this file was written; the stress test (cited here as S9) is now S10, the specification curve (S10) is S11 and the glossary is S12.
+
 Prepared by the editor-author agent on 2 November 2026 for the revision of the third version of *The Rule of 40 as a Price Line* (branch `review-round-3`). The three reviews were commissioned by the author and run outside this workflow: DeepSeek V4 Pro (high effort), GPT-6.2 Sol (extra-high effort) and GLM 5.3 (high effort). Each finding was verified item by item in this session; the verification, its evidence and the proposed fixes are in the three issue logs, which are authoritative for what is valid:
 
 - DS-*, DeepSeek V4 Pro (high effort): `notes/reviews/paper1_v3/author_reviews/deepseek_v4_pro_high/issue_log.md`

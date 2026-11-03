@@ -315,6 +315,8 @@ score of `R̄` is attainable at some share iff `λ > Λ(R̄)`. A firm exactly at
 `Δ* = (R̄ - R_∞)/[(1-α)(X-k)]`, `σ* = α(R̄ - R_∞)/(1-α)` and `m = m₀ - k g* - σ*`." -/
 theorem prop_saturation_d (hα : 0 < α) (hα1 : α < 1) (_hk : 0 ≤ k) (hlam : 0 < lam)
     (hsbar : 0 < sbar) (hX : k < X) {Rbar : ℝ} (hR : Rinf m0 G k X < Rbar) :
+    (∀ s ∈ Ioo 0 sbar,
+      IsGreatest (score X '' Feasible m0 G k α (lam * hdr sbar s) ⊤) (Rst α sbar m0 G k X lam s)) ∧
     (∀ s ∈ Ioo 0 sbar, Rbar ≤ Rst α sbar m0 G k X lam s ↔ Λ α m0 G k X Rbar ≤ lam * hdr sbar s) ∧
     ((∃ s ∈ Ioo 0 sbar, Rbar ≤ Rst α sbar m0 G k X lam s) ↔ Λ α m0 G k X Rbar < lam) ∧
     (∀ s ∈ Ioo 0 sbar, lam * hdr sbar s = Λ α m0 G k X Rbar →
@@ -351,7 +353,8 @@ theorem prop_saturation_d (hα : 0 < α) (hα1 : α < 1) (_hk : 0 ≤ k) (hlam :
       rw [Real.rpow_le_rpow_iff (div_pos hRpos hC).le (Real.rpow_nonneg hℓy _) hq1] at h1
       rw [div_le_iff₀ hC] at h1
       linarith
-  refine ⟨fun s hs => ?_, ⟨?_, ?_⟩, fun s hs hΛs => ?_⟩
+  refine ⟨fun s hs => Rst_isGreatest hα hα1 hlam hsbar hs.2, fun s hs => ?_, ⟨?_, ?_⟩,
+    fun s hs hΛs => ?_⟩
   · rw [Rst_of_lt hX]
     exact key _ (ℓ_pos hlam hsbar hs.2)
   · rintro ⟨s, hs, hRs⟩

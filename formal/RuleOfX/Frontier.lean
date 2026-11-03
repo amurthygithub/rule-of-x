@@ -310,32 +310,17 @@ theorem tendsto_rpow_sub_atTop {p : ℝ} (hp : 0 < p) (c : ℝ) :
   (tendsto_rpow_atTop hp).comp (tendsto_sub_const_atTop c)
 
 /-- **Lemma prop:frontier (d).** "If `σ̄ = ∞`, then as `g → ∞`, `m*(g) → -∞`,
-`m*'(g) → -∞` and `m*(g)/g → -∞`." (`I = [G, ∞)` when `σ̄ = ⊤`, see `I_top`.) -/
-theorem prop_frontier_d (hα : 0 < α) (hα1 : α < 1) (hℓ : 0 < ℓ) (hk : 0 ≤ k) :
+`m*'(g) → -∞` and `m*(g)/g → -∞`." (`I = [G, ∞)` when `σ̄ = ⊤`, see `I_top`; `k ≥ 0` is not
+needed.) -/
+theorem prop_frontier_d (hα : 0 < α) (hα1 : α < 1) (hℓ : 0 < ℓ) :
     Tendsto (mstar m0 G k α ℓ) atTop atBot ∧
     Tendsto (deriv (mstar m0 G k α ℓ)) atTop atBot ∧
     Tendsto (fun g => mstar m0 G k α ℓ g / g) atTop atBot := by
   have hβ := β_pos hα
   have hβ1 := sub_pos.2 (one_lt_β hα hα1)
   have hκ := κ_pos (α := α) hℓ
-  refine ⟨?_, ?_, ?_⟩
-  · -- `m*(g) ≤ (m₀ - kG) - κ (g-G)^β` for `g ≥ G`, and the right side tends to `-∞`.
-    have h1 : Tendsto (fun g : ℝ => κ α ℓ * (g - G) ^ β α) atTop atTop :=
-      (tendsto_rpow_sub_atTop hβ G).const_mul_atTop hκ
-    have h2 : Tendsto (fun g : ℝ => (m0 - k * G) + -(κ α ℓ * (g - G) ^ β α)) atTop atBot :=
-      tendsto_const_nhds.add_atBot (tendsto_neg_atTop_atBot.comp h1)
-    refine tendsto_atBot_mono' atTop ((eventually_ge_atTop G).mono fun g hg => ?_) h2
-    rw [mstar_def]
-    have := mul_le_mul_of_nonneg_left hg hk
-    linarith
-  · rw [deriv_mstar hα hα1]
-    have h1 : Tendsto (fun g : ℝ => β α * κ α ℓ * (g - G) ^ (β α - 1)) atTop atTop :=
-      (tendsto_rpow_sub_atTop hβ1 G).const_mul_atTop (mul_pos hβ hκ)
-    have h2 : Tendsto (fun g : ℝ => -k + -(β α * κ α ℓ * (g - G) ^ (β α - 1))) atTop atBot :=
-      tendsto_const_nhds.add_atBot (tendsto_neg_atTop_atBot.comp h1)
-    refine h2.congr' (Eventually.of_forall fun g => ?_)
-    ring
-  · -- `m*(g)/g = m₀/g - k - κ (g-G)^{β-1} · ((g-G)/g)`, and `(g-G)/g → 1`.
+  -- `m*(g)/g = m₀/g - k - κ (g-G)^{β-1} · ((g-G)/g)`, and `(g-G)/g → 1`.
+  have hratio : Tendsto (fun g => mstar m0 G k α ℓ g / g) atTop atBot := by
     have hA : Tendsto (fun g : ℝ => m0 / g) atTop (𝓝 0) :=
       tendsto_const_nhds.div_atTop tendsto_id
     have hB : Tendsto (fun g : ℝ => (g - G) / g) atTop (𝓝 1) := by
@@ -358,6 +343,20 @@ theorem prop_frontier_d (hα : 0 < α) (hα1 : α < 1) (hℓ : 0 < ℓ) (hk : 0 
     have hgG' := hgG.ne'
     rw [mstar_def, Real.rpow_sub_one hgG']
     field_simp
+    ring
+  refine ⟨?_, ?_, hratio⟩
+  · -- `m*(g) = g · (m*(g)/g)` with `g → +∞` and `m*(g)/g → -∞` (no sign condition on `k`).
+    have h1 : Tendsto (fun g : ℝ => g * (mstar m0 G k α ℓ g / g)) atTop atBot :=
+      tendsto_id.atTop_mul_atBot₀ hratio
+    refine h1.congr' ?_
+    filter_upwards [eventually_gt_atTop 0] with g hg
+    rw [mul_div_cancel₀ _ hg.ne']
+  · rw [deriv_mstar hα hα1]
+    have h1 : Tendsto (fun g : ℝ => β α * κ α ℓ * (g - G) ^ (β α - 1)) atTop atTop :=
+      (tendsto_rpow_sub_atTop hβ1 G).const_mul_atTop (mul_pos hβ hκ)
+    have h2 : Tendsto (fun g : ℝ => -k + -(β α * κ α ℓ * (g - G) ^ (β α - 1))) atTop atBot :=
+      tendsto_const_nhds.add_atBot (tendsto_neg_atTop_atBot.comp h1)
+    refine h2.congr' (Eventually.of_forall fun g => ?_)
     ring
 
 end RuleOfX
