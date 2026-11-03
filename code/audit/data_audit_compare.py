@@ -128,7 +128,10 @@ CAPSW = [  # (accn, statement value in the filing's units x scale, panel cap_sw,
     ('0001535527-20-000006', 7289e3, 'match'), ('0001178913-23-000966', 2998e3, 'match'), ('0001640147-23-000030', 24012e3, 'match'),
     ('0001562088-25-000042', 9024e3, 'missed (line combined with purchases of intangible assets)')]
 K = pd.DataFrame(CAPSW, columns=['accn', 'filing_value', 'status']).merge(S[['accn', 'cik', 'year', 'stratum', 'rev']], on='accn')
-K = K.merge(pd.read_csv('data/panel_v3.csv')[['cik', 'year', 'cap_sw']], on=['cik', 'year'])
+_p3 = pd.read_csv('data/panel_v3.csv')
+if 'cap_sw_xbrl' in _p3:        # after correction C1 of build_panel_v3.py: compare the filings with the XBRL value
+    _p3['cap_sw'] = _p3.cap_sw_xbrl
+K = K.merge(_p3[['cik', 'year', 'cap_sw']], on=['cik', 'year'])
 K['miss_pct_rev'] = ((K.filing_value - K.cap_sw) / K.rev * 100).round(2)
 assert ((K.status == 'match') == (abs(K.filing_value - K.cap_sw) < 1)).all()
 K.to_csv('notes/data_audit/capitalized_software.csv', index=False)

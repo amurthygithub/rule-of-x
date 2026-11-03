@@ -920,7 +920,7 @@ assert sum(len(v) for v in _nl.values()) == V3B['R5']['firm_years_no_listed_equi
 # R2 on the main sample (3 Nov 2026): the pre-set classifier on the descriptions of every core registrant, and the
 # independent readings of the same descriptions as a sensitivity
 _r2m, _rr = V3B['R2'], V3B['R2_readers']
-put('VRtwoDescribed', str(_r2m['n_described']))
+put('VRtwoDescribed', str(_r2m['n_described'])); put('VRtwoNewDesc', str(_r2m['n_other_file']))
 put('VRtwoClassFirms', str(len(_r2m['non_software'])))                 # firms the classifier classes not software
 put('VRtwoExclN', str(_r2m['excluded_firm_years'])); put('VRtwoExclFirms', str(_r2m['excluded_firms']))
 assert _r2m['excluded_firm_years'] == V3B['excluded']['R2_not_software']
@@ -931,6 +931,9 @@ put('VRtwoReadBoth', str(_rr['non_software']['both'])); put('VRtwoReadEither', s
 put('VRtwoBothFirms', str(_rr['v3_firms_dropped']['both'])); put('VRtwoBothN', str(_rr['v3_firm_years_dropped']['both']))
 put('VRtwoEitherFirms', str(_rr['v3_firms_dropped']['either'])); put('VRtwoEitherN', str(_rr['v3_firm_years_dropped']['either']))
 put('VRtwoClassAlsoBoth', str(_rr['classifier_non_software']['also_both']))
+ROWS_E1 = [(v_, None) for v_ in ('E1', 'E1k2010', 'E1clean', 'E1r2both', 'E1r2either', 'E1nolist', 'E1nodebt')]   # E1 rows of tab:robust
+_rcs = [pd.read_csv(os.path.join(BASE, 'data', 'v3_inputs', f'business_class_reader_{x_}.csv')) for x_ in ('a', 'b')]
+_RSUB = set(pd.concat([r_.loc[r_['class'] != 'software', 'subclass'] for r_ in _rcs]).dropna())   # readers' sub-classes
 for _rd in ('both', 'either'):                                          # headline statistics of the two reader sensitivities
     _vn = 'E1r2' + _rd
     _tg = _rd.capitalize()
@@ -1397,6 +1400,13 @@ CLAIMS = [
      all(v_ in S3 for v_ in ('E1r2both', 'E2r2both', 'E1r2either', 'E2r2either'))
      and set(V3B['excluded']) == {'R1_not_first_reported', 'R2_not_software', 'R3_captive_related_party'}
      and _rr['n_firms'] == V3B['R2']['n_described']),
+    ('data: both readers class all firms the classifier excludes as not software, and also THQ, Take-Two, Roblox and '
+     'CoreWeave; the firms only the readers exclude include IT services, hardware, telecommunications, payments, online '
+     'education, advertising and e-commerce firms',
+     _rr['classifier_non_software']['also_both'] == _rr['classifier_non_software']['n'] == len(V3B['R2']['non_software'])
+     and all(f in _rr['both_firms'] for f in ('THQ INC', 'TAKE TWO INTERACTIVE SOFTWARE INC', 'Roblox Corp', 'CoreWeave, Inc.'))
+     and {'IT services or consulting', 'hardware', 'telecommunications', 'payments or transaction processing',
+          'education or content', 'internet media or advertising', 'e-commerce or marketplace'} <= _RSUB),
     ('appendix: Table tab:anchor-firms lists exactly the firm-years of the E1 anchor in notes/calibration_anchor_v3.json',
      _ANCHOR_TABLE == _ANCHOR_FILE),
     ('appendix (data audit): no value of the seeded sample differs from the face statements; Box fiscal 2023 capitalized '
@@ -1425,6 +1435,13 @@ CLAIMS = [
      in_none(SB5, 'p95chg_op_E1') and in_none(SB5, 'capint_cash_E1')),
     # empirics.tex
     ('empirics: the P95 decline holds in every variant', min(_falls) > 0),
+    ('empirics (robustness): among the E1 rows of tab:robust, the two R2 reader samples give smaller P95 falls and steeper '
+     'Psi slopes than every other E1 row, on both bases',
+     all(max(-vest(f'p95_change_{b}', r_) for r_ in ('E1r2both', 'E1r2either'))
+         < min(-vest(f'p95_change_{b}', v_) for v_, _ in ROWS_E1 if not v_.startswith('E1r2'))
+         and max(vest(f'cone_{b}_slope_c90_w60', r_) for r_ in ('E1r2both', 'E1r2either'))
+         < min(vest(f'cone_{b}_slope_c90_w60', v_) for v_, _ in ROWS_E1 if not v_.startswith('E1r2'))
+         for b in ('op', 'cash'))),
     ('empirics (A2): the GAAP P95 decline survives Holm at 10% under the normal and percentile intervals and Romano-Wolf '
      'but not the basic interval (Holm p 0.054 to 0.208), and at 5% under none',
      all(FB['p95chg_op_E1'][t] < 0.10 for t in ('holm_normal', 'holm_percentile', 'romano_wolf'))
@@ -1715,6 +1732,7 @@ COLS = [('cone_op_slope_c90_w60', 2, False), ('cone_cash_slope_c90_w60', 2, Fals
         ('gap_avg', 1, True)]
 
 
+assert [v_ for v_, _ in ROWS_E1] == [v_ for v_, _ in ROWS if v_.startswith('E1')]
 for b, B_ in [('op', 'Op'), ('cash', 'Cash')]:
     _pv = [vest(f'cone_{b}_slope_c90_w60', v_) for v_, _ in ROWS]
     num(f'PsiVar{B_}Lo', min(_pv), 2, False); num(f'PsiVar{B_}Hi', max(_pv), 2, False)

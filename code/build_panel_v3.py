@@ -403,6 +403,7 @@ if r2_applied:
         excluded={n: sorted(int(y) for y in g_.year) for n, g_ in ex2.groupby('name')},
         named_classes={firm_names[c]: cls[c] for c in sorted(PANEL_NAMED) if c in firm_names},
         hits_named={firm_names[c]: hits_main[c] for c in sorted(PANEL_NAMED) if c in firm_names},
+        n_named_file=len(cls_named), n_other_file=len(cls) - len(cls_named),
         sources=dict(named='data/v3_inputs/business_descriptions_named.json (29 Oct 2026)',
                      others='data/v3_inputs/raw/business_descriptions_raw_2026-11-03.json (3 Nov 2026)',
                      merged='data/v3_inputs/business_descriptions.json (code/audit/r2_descriptions.py)'),

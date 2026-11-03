@@ -61,7 +61,7 @@ These files were retrieved on 29 Oct 2026, between about 16:06 and 16:15 UTC−7
 - `raw/business_descriptions_raw_2026-10-29.json`: text with accession number, document and URL.
 - `business_descriptions_named.json`: {cik: text}.
 
-**Scope.** These descriptions cover only the named firms. R2 therefore remains a sensitivity: applying it as a rule needs descriptions for every firm. `business_descriptions.json`, the name `build_panel_v3.py` reads to apply R2 to the main sample, is deliberately not created.
+**Scope.** These descriptions cover only the named firms. On 29 Oct R2 therefore remained a sensitivity, and `business_descriptions.json`, the name `build_panel_v3.py` reads to apply R2 to the main sample, was deliberately not created. The descriptions of every other core registrant were retrieved on 3 Nov 2026 by the same rule (section 6); `business_descriptions.json` now exists, and R2 applies to the main sample by its pre-set classifier.
 
 # Second retrieval (2 Nov 2026): interest income, deferred revenue and Bending Spoons filings
 
@@ -135,3 +135,31 @@ These are the primary sources for the case study in Section 6. They replace the 
 - annual organic revenue growth of 7% (2024) and 13% (2025);
 - a subscription share of 95%, 92% and 93% of revenue (2023 to 2025);
 - the pro forma revenue of $2,608,496 thousand.
+
+# Third retrieval (3 Nov 2026): business descriptions of every core registrant, and the data audit
+
+These files were read from sec.gov on 3 Nov 2026 in the built-in browser of the Claude desktop app on the author's computer, with browser code written by the lead agent, as in sections 1 to 5. Nothing was entered on any site, and no account was used.
+
+## 6. Business descriptions of the other core registrants (www.sec.gov), rule R2
+
+**Firms covered.** The 277 registrants of the v2 core sample (`data/panel.csv`, 293 registrants) that the review panels had not named. With the 16 named firms of section 2 they cover every core registrant.
+
+**Source document.** As in section 2: for each firm, the latest annual report listed in `data.sec.gov/submissions/CIK##########.json` (250 Form 10-K, 26 Form 20-F, 1 Form 40-F; filed 2010 to 2026, because registrants that stopped filing keep their last report).
+
+**Text kept.** The first 3,999 to 4,000 characters of Item 1 (Business) of a 10-K, Item 4.B (Business Overview) of a 20-F, or the business section of the Annual Information Form filed as an exhibit to a 40-F. The section was located as in section 2. Where the primary heading pattern failed, a fallback heading pattern was used; the record then carries a `rule` field (9 firms). Edge cases:
+- 1845338 (monday.com, 20-F): the 20-F uses a cross-reference index, so its Item 4.B only points to pages of the annual report; the text kept is from the report's "About Us" section, which describes the business.
+- 1050140 (Descartes Systems Group, 40-F): the opening of the Annual Information Form is its table of contents followed by preliminary notes (basis of presentation, forward-looking statements), so the 4,000 characters kept contain no description of the business. The classifier classes it as software by default (no non-software keyword hits); both readers class it as software.
+
+**Files.**
+- `raw/business_descriptions_raw_2026-11-03.json`: {cik: {cik, form, accn, doc, period, filed, url, text, and `rule` where a fallback was used}}; SHA-256 25985f36bef5f00adfcc24dd6be0a66a7aed6811a22f6b8d4fbc5120edfbbcd4.
+- `business_descriptions.json`: {cik: text} for all 293 core registrants, written by `code/audit/r2_descriptions.py` from `business_descriptions_named.json` (the 16 named firms, text of 29 Oct) and the raw file of 3 Nov (the other 277). The script checks that the two sets are disjoint and cover the v2 core sample exactly. `build_panel_v3.py` reads it and applies R2 to the main sample with the keyword classifier fixed before any description was read; the keyword lists are unchanged.
+
+**Independent readings (R2 sensitivity).** Two readers, LLM agents on different models, blind to all outcome data (panel values, scores, estimates), each classified all 293 descriptions as software, interactive_entertainment, gambling, compute_infrastructure or other_non_software, with a subclass, confidence, reason and supporting quote. Their files are copied unchanged as `business_class_reader_a.csv` (SHA-256 b60e2002be554d0dc621131a905eb63999b6b306fa5ced9108360349e4083c57) and `business_class_reader_b.csv` (96d1cf1337d0ea16261269a51a4d31552f9c1c47d62c2d4c5b3782159ac116de), columns cik, name, class, subclass, confidence, reason, quote, note. They enter only as sensitivities (`build_panel_v3.py` columns `business_class_reader_a` and `_b`; variants `E1r2both`, `E2r2both`, `E1r2either`, `E2r2either` of `code/estimate_v3.py`); Cohen's kappa between them (software against not) is in `notes/panel_v3_build.json`, block `R2_readers`.
+
+## 7. Data audit: financial statements of the filings the panel used (www.sec.gov)
+
+**Seeded sample.** 40 firm-years of the v3 core sample of 3 Nov (before R2 applied: 1,788 firm-years), drawn with seed 20261103, 16 from the top decile of the cash score in their period and 24 from the rest (`notes/data_audit/sample.csv`, `sample_design.json`). For each, the face income and cash-flow statements of the filing the panel used were read and saved as table rows (`notes/data_audit/filing_statements_raw.json`, SHA-256 bd362129d49072832470b539b698bb3dac199da899acba91c91ed1c5ea6493f6; for one 40-F without statement exhibits, the facts of its XBRL instance). `code/audit/data_audit_compare.py` compares six items per firm-year and writes `compare.csv` and `capitalized_software.csv`.
+
+**Capitalized-software scan.** For every firm-year of that frame with no capitalized software in companyfacts (PaymentsForSoftware + PaymentsToDevelopSoftware = 0) and capital expenditure reported (1,213), the cash-flow statement of the filing the panel used was read from its XBRL rendering: `FilingSummary.xml` of the filing, then the statement's R page. The rows of the investing section whose labels mention software or capitalization were kept with the page's unit (`notes/data_audit/capsw_cashflow_rows_2026-11-03.json`, keyed by accession number without dashes; SHA-256 10fdb9224b6e14ff9ad3f9fa9d2991f47db308d1c7bb169c052e1eca98492f15). One filing could not be read (FilingSummary.xml returned 404).
+
+**Derived file.** `code/audit/capsw_scan_parse.py` reads the fiscal-year value of each capitalized-software line (121 candidate firm-years, `notes/data_audit/capsw_missed.csv`) and keeps a line when it is an outflow, is not a combined capital-expenditure line ("capital expenditures, including capitalization of software costs", "capitalized software and expenditures") and cannot be contained in the panel's capex: the capex came from PaymentsToAcquirePropertyPlantAndEquipment or, where it came from PaymentsToAcquireProductiveAssets, it is smaller than the software line, so the two are separate lines of the statement (7 firm-years: MedAssets 2010-11, Coursera 2021-25). Kept: 109 firm-years of 23 firms, written to `capitalized_software_filings.json` ({cik: {fy_end: {value (dollars), accn, label}}}; SHA-256 2fe3b7da3671ed46f906b09a89cba1fa1170a5961064cdda78d7e344d3ae7004); dropped: 9 combined lines and 3 lines that are not outflows (non-cash add-backs). Counts in `notes/data_audit/capsw_summary.json`. `build_panel_v3.py` uses the value where the XBRL cap_sw is 0 and recomputes the free-cash-flow margins, scores and capital intensity (column `cap_sw_source`; `cap_sw_xbrl` keeps the XBRL value). Check: Box, Inc. (CIK 1372612), fiscal year ending 31 Jan 2024, "Capitalized internal-use software costs" 16,561 thousand.
