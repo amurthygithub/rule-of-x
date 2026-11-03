@@ -36,7 +36,8 @@ import pandas as pd
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 MC = os.environ.get('MC_DIR', os.path.join(BASE, 'notes', 'mc_results_2026-11-03'))
 J = json.load(open(os.path.join(MC, 'mc_claims.json')))
-D = pd.read_csv(os.path.join(MC, 'draws_lhs.csv'))
+_DP = os.path.join(MC, 'draws_lhs.csv')
+D = pd.read_csv(_DP if os.path.exists(_DP) else _DP + '.gz')   # the million-draw run ships the per-draw file gzipped
 TESTS = {t['tid']: t for c in J['claims'] for t in c['tests']}
 AMIN = {a['tid']: a for a in J['amin']['tests']}
 QUANT = {q['key']: q for q in J['quantities']}
@@ -216,6 +217,25 @@ LV = TESTS['L1.full.net']
 num('StLeverMin', LV['quantity']['min'], 0, False); num('StLeverMax', LV['quantity']['max'], 0, False)
 num('StLeverOneShare', LV['share_holds_uniform'], 1)
 assert abs((D.levers_growth_engine_first_count == 1).mean() - LV['share_holds_uniform']) < 1e-12
+# Monte Carlo precision (3 Nov 2026, with the million-draw rerun). Shares of draws: standard error as for independent
+# draws, sqrt(p(1-p)/N), which overstates it for a Latin hypercube; the largest over the shares quoted in S10.
+# Percentiles: distribution-free 95% intervals from the order statistics of the draws (ranks Nq -/+ 1.96 sqrt(Nq(1-q))).
+_N = len(D)
+_SH = {'StNetSixInPaper': L36['share_in_paper_interval_uniform'], 'StLeverOneShare': LV['share_holds_uniform']}
+put('StMcShareSeMax', fnum(max(100 * math.sqrt(p_ * (1 - p_) / _N) for p_ in _SH.values()), 2))
+def _q_ci(col, q, scale):
+    x_ = np.sort(D[col].to_numpy(dtype=float)); x_ = x_[np.isfinite(x_)]; n_ = len(x_)
+    h_ = 1.96 * math.sqrt(n_ * q * (1 - q))
+    return x_[max(int(math.floor(n_ * q - h_)), 0)] * scale, x_[min(int(math.ceil(n_ * q + h_)), n_ - 1)] * scale
+for nm_, col_, q_, ref_ in (('StNetSixPFive', 'R2036_net', 0.05, L36['lhs_p05']),
+                            ('StNetSixPNinetyFive', 'R2036_net', 0.95, L36['lhs_p95']),
+                            ('StGstarPFive', 'Gstar_2025', 0.05, G['lhs_p05']),
+                            ('StGstarPNinetyFive', 'Gstar_2025', 0.95, G['lhs_p95'])):
+    lo_, hi_ = _q_ci(col_, q_, 1.0)
+    assert lo_ <= 100 * ref_ + 1e-6 and 100 * ref_ - 1e-6 <= hi_, (nm_, lo_, hi_, ref_)   # the draws file is in points
+    put(nm_ + 'CiLo', fnum(lo_, 1)); put(nm_ + 'CiHi', fnum(hi_, 1))
+put('StSobolN', f"{J['meta']['args']['sobol_n']:,}".replace(',', '{,}'))
+put('StSearchBudget', f"{J['meta']['args']['search_budget']:,}".replace(',', '{,}'))
 S1 = {s['id']: s for s in J['sensitivity_claims']}
 num('StSobolExec', S1['S1']['sobol']['ST_execution'], 2, False)
 num('StSobolG', S1['S1']['sobol']['ST_market_growth'], 2, False)
