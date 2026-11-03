@@ -1,0 +1,8 @@
+[    1.7s] executed code/estimate_v3.py up to its point-estimate section; 23 paper frames
+[    3.0s] reproduction check: 929 statistics against notes/empirics_v3.json, max |diff| 0.00e+00; 48 printed macros
+[    3.0s] reproduction check passed
+[   50.3s] grid: 720 samples; 116496 specifications; 103680 forward-paired specifications
+[   50.4s] bootstrap: 25 ms per draw, 5.1 s per sample; K = 169 samples x B = 199
+[  161.8s] bootstrap samples 25/169
+[  272.8s] bootstrap samples 50/169
+[  383.2s] bootstrap samples 75/169

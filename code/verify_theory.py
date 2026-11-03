@@ -1256,6 +1256,27 @@ if _ok15p:
 check("15p [text] the v'(s) profile macros of paper1/macros.tex (9.1 / 7.2 / 5.4 at 1, 10, 50% of the cap; minimum 5.08 at "
       "80%; limit 5.83; 5.08 to 5.70 near saturation; 5.50 at 99%, 5.78 at 99.99%) agree with this grid", _ok15p,
       str(_vpm))
+# 15q (round 3, Mistral F-6): a solver-independent lower bound on the value. A constant spend of 5% of revenue until the
+# share reaches 40% of the market, then no spend, is an admissible policy; its discounted payoff (explicit Euler, dt =
+# 0.002, horizon 400 years plus the no-spend tail) bounds v(s0) from below whatever the HJB solver. It exceeds the
+# no-spend value m0/(r - G) = 5.83 per unit of share, so the no-spend solution is not optimal at these parameters, and the
+# grid value of the sweep lies above the bound (verification_claude/f6_hjb_policy_bound.py in the Mistral review log).
+def _policy_payoff(s0_, sig_c, s_stop, T_=400.0, dt_=0.002):
+    sv, tv, V_ = s0_, 0.0, 0.0
+    while tv < T_:
+        sg = sig_c if sv < s_stop else 0.0
+        D_ = lam10 * (1 - sv / sbar_) * sg ** a_
+        V_ += np.exp(-(r_ - G_) * tv) * sv * (m0_ - sg - k_ * (G_ + D_)) * dt_
+        sv += sv * D_ * dt_
+        tv += dt_
+    return V_ + np.exp(-(r_ - G_) * tv) * sv * (m0_ - k_ * G_) / (r_ - G_)
+_lb = {s0v: _policy_payoff(s0v, 0.05, 0.4) / s0v for s0v in (0.01, 0.1)}
+_ns = (m0_ - k_ * G_) / (r_ - G_)
+check("15q solver-independent lower bound (Mistral F-6): spending 5% of revenue until the share reaches 0.4 is worth "
+      "more than no spend (v/s 9.02 at s0 = 0.01 and 7.33 at s0 = 0.1, against 5.83), and the sweep's v(s0)/s0 is at least "
+      "that bound", all(_lb[s0v] > _ns * 1.2 for s0v in _lb) and all(at(v_h, s0v) / s0v >= _lb[s0v] * (1 - 1e-3) for s0v in _lb)
+      and abs(_lb[0.01] - 9.02) < 0.01 and abs(_lb[0.1] - 7.33) < 0.01,
+      f"bound {_lb[0.01]:.3f} / {_lb[0.1]:.3f}; grid {at(v_h, 0.01) / 0.01:.3f} / {at(v_h, 0.1) / 0.1:.3f}; no spend {_ns:.3f}")
 # simulate the closed-loop feedback policy and compare discounted payoff with v(s0)
 from scipy.integrate import solve_ivp
 for s0v in [0.005, 0.05]:

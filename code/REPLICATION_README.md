@@ -28,7 +28,7 @@ This package regenerates every table and figure in the paper from SEC XBRL data.
 | `data/panel_v2_all.csv`, `data/panel_broad.csv`, `data/panel.csv` | All firm-years, the broad sample (SIC 7370 to 7374) and the core sample (SIC 7372). |
 | `code/build_panel_v3.py` | The audited sample (panel v3): sample rules R1 to R5 of `notes/sample_audit.md` applied to the v2 panel. |
 | `code/estimate_v3.py`, `code/estimate_v3_report.py` | Estimates on the audited sample with exact quantile regression and a seeded firm-cluster bootstrap (999 replications); the report module writes the v3 tables and notes and is run by `estimate_v3.py`. |
-| `data/panel_v3_all.csv`, `data/panel_v3_core_full.csv`, `data/panel_v3.csv` | The v2 panel with the audit columns, the v2 core sample with the reason for each exclusion, and the v3 core sample. |
+| `data/panel_v3_all.csv`, `data/panel_v3_core_full.csv`, `data/panel_v3.csv` | The v2 panel with the audit columns, the v2 core sample with the reason for each exclusion, and the v3 core sample. The acquisition flag of rule R4 is the column `acq_flag_v3`; `acq_flag` is the v2 flag, kept for the audit, and the estimation code replaces it by `acq_flag_v3` when it reads the panel (a reuse that takes `acq_flag` gets 14 anchor firm-years instead of 13). |
 | `data/v3_inputs/` | Inputs of the sample rules and the cash-score bridge from SEC data retrieved on 29 October 2026 (provenance and transfer hashes in `data/v3_inputs/README_retrieval.md`): `related_party.json` (R3), `acquiree_revenue.json` (R4c), `listing_status.json` (R5), `cash_interest_taxes.json` (bridge), `business_descriptions_named.json` (R2 sensitivity for the 16 named firms only), `captive_verified.csv` (R3, filing text), and the originals in `raw/`. The XBRL inputs come from SEC frames, which keep the latest filed value. |
 
 ## Running
@@ -83,3 +83,12 @@ Copyright (c) 2026 Akshaya Bangalore Sreenivasa Murthy. The code in this package
 ## Data source and terms
 
 The data are public filings retrieved from the U.S. Securities and Exchange Commission's EDGAR XBRL application programming interface.
+
+## Checks of the numerical HJB solution
+
+`code/verify_theory.py` solves the HJB of Proposition 2 by an upwind backward sweep (checks 15g to 15p). Check 15q is
+independent of that solver: an admissible constant-spend policy (5% of revenue until the share reaches 40% of the market)
+is simulated directly, and its discounted payoff is a lower bound on the value; it exceeds the no-spend value, and the
+sweep's value lies above it. A solver that returns the no-spend value for the worked example is therefore wrong for this
+problem (see `notes/reviews/paper1_v3/author_reviews/mistral_large_4_high/issue_log.md`, F-6).
+
