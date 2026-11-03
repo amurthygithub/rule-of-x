@@ -82,7 +82,7 @@ theorem S_nonpos (hℓ : 0 < ℓ) (hy : y ≤ 0) {Δ : ℝ} (hΔ : 0 ≤ Δ) : S
   have h1 := mul_nonneg (κ_pos (α := α) hℓ).le (Real.rpow_nonneg hΔ (β α))
   nlinarith
 
-theorem S_neg (hα : 0 < α) (hℓ : 0 < ℓ) (hy : y ≤ 0) {Δ : ℝ} (hΔ : 0 < Δ) : S α ℓ y Δ < 0 := by
+theorem S_neg (_hα : 0 < α) (hℓ : 0 < ℓ) (hy : y ≤ 0) {Δ : ℝ} (hΔ : 0 < Δ) : S α ℓ y Δ < 0 := by
   unfold S
   have h1 := mul_pos (κ_pos (α := α) hℓ) (Real.rpow_pos_of_pos hΔ (β α))
   nlinarith
@@ -275,7 +275,7 @@ theorem mem_I_coe {b g : ℝ} (hg : G ≤ g) (hgb : g ≤ growth G ℓ α b) :
   rw [I_coe]; exact ⟨hg, hgb⟩
 
 /-- Existence of a maximizer (with any cap). -/
-theorem exists_isMax (hα : 0 < α) (hα1 : α < 1) (hℓ : 0 < ℓ) (hk : 0 ≤ k) (hσbar : 0 < σbar)
+theorem exists_isMax (hα : 0 < α) (hα1 : α < 1) (hℓ : 0 < ℓ) (_hk : 0 ≤ k) (hσbar : 0 < σbar)
     (X : ℝ) : ∃ p, IsMax m0 G k α ℓ σbar X p := by
   rcases le_or_gt X k with hXk | hXk
   · refine ⟨(G, mstar m0 G k α ℓ G), frontier_point_feasible hα hℓ hσbar (G_mem_I hα hℓ hσbar),
@@ -345,7 +345,7 @@ theorem gstar_mem_I (hα : 0 < α) (hα1 : α < 1) (hℓ : 0 < ℓ) (hσbar : 0 
     exact growth_monotoneOn hα hℓ (σstar_nonneg hα hℓ hy0.le) hb.le hσb
 
 /-- The interior optimum is the unique maximizer. -/
-theorem isUniqueMax_gstar (hα : 0 < α) (hα1 : α < 1) (hℓ : 0 < ℓ) (hk : 0 ≤ k)
+theorem isUniqueMax_gstar (hα : 0 < α) (hα1 : α < 1) (hℓ : 0 < ℓ) (_hk : 0 ≤ k)
     (hσbar : 0 < σbar) {X : ℝ} (hX : k < X)
     (hcap : (σstar α ℓ (X - k) : WithTop ℝ) ≤ σbar) :
     IsUniqueMax m0 G k α ℓ σbar X (gstar G k α ℓ X, mstar m0 G k α ℓ (gstar G k α ℓ X)) := by
@@ -416,7 +416,7 @@ theorem prop_score_b (hα : 0 < α) (hα1 : α < 1) (hℓ : 0 < ℓ) (hk : 0 ≤
 
 /-- **Lemma prop:score (c).** "If `X ≤ k`, the unique maximizer is the corner `g* = G` with
 `σ* = 0`, and `R*_X = m₀ + (X-k)G`. This part does not need the cap condition." -/
-theorem prop_score_c (hα : 0 < α) (hα1 : α < 1) (hℓ : 0 < ℓ) (hk : 0 ≤ k) (hσbar : 0 < σbar)
+theorem prop_score_c (hα : 0 < α) (hα1 : α < 1) (hℓ : 0 < ℓ) (_hk : 0 ≤ k) (hσbar : 0 < σbar)
     {X : ℝ} (hX : X ≤ k) :
     IsUniqueMax m0 G k α ℓ σbar X (G, mstar m0 G k α ℓ G) ∧
     gstar G k α ℓ X = G ∧ σplus α ℓ (X - k) = 0 ∧ spendOf G α ℓ G = 0 ∧
@@ -530,7 +530,7 @@ theorem prop_score_d (hα : 0 < α) (hα1 : α < 1) (hℓ : 0 < ℓ) (hk : 0 ≤
     constructor
     · intro hmax
       by_contra hXk
-      push_neg at hXk
+      push Not at hXk
       have hy0 : 0 < X - k := sub_pos.2 hXk
       -- a feasible point with a strictly higher score
       obtain ⟨Δ, hΔ0, hΔle, hΔI⟩ : ∃ Δ, 0 < Δ ∧ Δ ≤ Δstar α ℓ (X - k) ∧ G + Δ ∈ I G ℓ α σbar := by

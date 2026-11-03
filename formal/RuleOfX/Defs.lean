@@ -279,7 +279,7 @@ theorem convex_I (σbar : WithTop ℝ) : Convex ℝ (I G ℓ α σbar) := by
 
 theorem I_subset_Ici (σbar : WithTop ℝ) : I G ℓ α σbar ⊆ Ici G := fun _ hg => hg.1
 
-theorem G_mem_I (hα : 0 < α) (hℓ : 0 < ℓ) {σbar : WithTop ℝ} (hσbar : 0 < σbar) :
+theorem G_mem_I (_hα : 0 < α) (hℓ : 0 < ℓ) {σbar : WithTop ℝ} (hσbar : 0 < σbar) :
     G ∈ I G ℓ α σbar := by
   induction σbar using WithTop.recTopCoe with
   | top => rw [I_top]; exact self_mem_Ici

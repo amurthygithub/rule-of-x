@@ -99,7 +99,7 @@ theorem dominated_iff (hα : 0 < α) (hℓ : 0 < ℓ) (hk : 0 ≤ k) (hσbar : 0
   · rintro ⟨q, hq, hq1, hq2, hstrict⟩
     rw [feasible_iff hα hℓ hσbar] at hq
     by_contra hnot
-    push_neg at hnot
+    push Not at hnot
     have hmono := mstar_antitoneOn (m0 := m0) hα hℓ hk hp.1.1 hq.1.1 hq1
     have h2 : q.2 = p.2 := le_antisymm (by linarith) hq2
     rcases hstrict with h | h
@@ -121,7 +121,7 @@ theorem frontier_eq (hα : 0 < α) (hℓ : 0 < ℓ) (hk : 0 ≤ k) (hσbar : 0 <
     have hp' := (feasible_iff hα hℓ hσbar p).1 hp
     refine ⟨hp'.1, le_antisymm hp'.2 ?_⟩
     by_contra hlt
-    push_neg at hlt
+    push Not at hlt
     exact hnd ((dominated_iff hα hℓ hk hσbar hp).2 hlt)
   · rintro ⟨hI, heq⟩
     have hp : p ∈ Feasible m0 G k α ℓ σbar := (feasible_iff hα hℓ hσbar p).2 ⟨hI, heq.le⟩
@@ -242,7 +242,7 @@ theorem deriv2_limit_lt (hα : 0 < α) (hα12 : α < 1 / 2) :
     exact h4
   · exact (sub_pos.2 (two_lt_β hα hα12)).ne'
 
-theorem deriv2_eq_half (hα : α = 1 / 2) {g : ℝ} (hg : G < g) :
+theorem deriv2_eq_half (hα : α = 1 / 2) {g : ℝ} (_hg : G < g) :
     -(β α * (β α - 1) * κ α ℓ * (g - G) ^ (β α - 2)) = -2 * κ α ℓ := by
   rw [β_eq_two hα, sub_self, Real.rpow_zero]; ring
 

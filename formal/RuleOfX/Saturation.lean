@@ -42,11 +42,9 @@ theorem hdr_zero : hdr sbar 0 = 1 := by
 theorem hdr_continuous : Continuous (hdr sbar) :=
   continuous_const.sub (continuous_id.div_const sbar)
 
-theorem sbar_sub_eq (s : ℝ) : sbar - s = sbar * hdr sbar s := by
+theorem sbar_sub_eq (hsbar : sbar ≠ 0) (s : ℝ) : sbar - s = sbar * hdr sbar s := by
   unfold hdr
-  rcases eq_or_ne sbar 0 with h | h
-  · subst h; simp
-  · field_simp
+  field_simp
 
 theorem ℓ_pos (hlam : 0 < lam) (hsbar : 0 < sbar) {s : ℝ} (hs : s < sbar) :
     0 < lam * hdr sbar s := mul_pos hlam (hdr_pos hsbar hs)
@@ -72,8 +70,7 @@ theorem hasDerivAt_fplus {q : ℝ} (hq : 1 < q) (y : ℝ) :
       · rw [max_eq_left (show (0 : ℝ) ≤ z from hz)]
       · rw [max_self]
     have hL : HasDerivWithinAt (fun y : ℝ => max y 0 ^ q) 0 (Iic 0) 0 := by
-      refine (hasDerivWithinAt_const : HasDerivWithinAt (fun _ : ℝ => (0 : ℝ) ^ q) 0 (Iic 0) 0).congr
-        (fun z hz => ?_) ?_
+      refine (hasDerivWithinAt_const (0 : ℝ) (Iic 0) ((0 : ℝ) ^ q)).congr (fun z hz => ?_) ?_
       · rw [max_eq_right (show z ≤ (0 : ℝ) from hz)]
       · rw [max_self]
     have := hL.union hR
@@ -120,7 +117,7 @@ theorem hasDerivAt_surplus_y (hα : 0 < α) (hα1 : α < 1) {ℓ : ℝ} (hℓ : 
 theorem hasDerivAt_surplus_ℓ (hα : 0 < α) (hα1 : α < 1) {u y : ℝ} (hu : 0 < u) (hy : 0 < y) :
     HasDerivAt (fun u => Cα α * (u * y) ^ (1 / (1 - α))) (y * Δstar α u y / u) u := by
   have h1 : HasDerivAt (fun u : ℝ => u * y) (1 * y) u := (hasDerivAt_id' u).mul_const y
-  have h2 := (h1.rpow_const (Or.inl (mul_pos hu hy).ne')).const_mul (Cα α)
+  have h2 := (h1.rpow_const (p := 1 / (1 - α)) (Or.inl (mul_pos hu hy).ne')).const_mul (Cα α)
   refine h2.congr_deriv ?_
   unfold Δstar Cα
   rw [q_sub_one hα1, Real.mul_rpow hu.le hy.le, Real.mul_rpow hα.le hy.le]
@@ -131,7 +128,6 @@ theorem hasDerivAt_surplus_ℓ (hα : 0 < α) (hα1 : α < 1) {u y : ℝ} (hu : 
   have h1α : (1 - α) ≠ 0 := by linarith
   have hu0 : u ≠ 0 := hu.ne'
   field_simp
-  ring
 
 /-- `Δ*` as a function of `ℓ`: `∂Δ*/∂ℓ = Δ*/((1-α) ℓ)`, for `y > 0`. -/
 theorem hasDerivAt_Δstar_ℓ (hα : 0 < α) (hα1 : α < 1) {u y : ℝ} (hu : 0 < u) (hy : 0 < y) :
@@ -139,14 +135,12 @@ theorem hasDerivAt_Δstar_ℓ (hα : 0 < α) (hα1 : α < 1) {u y : ℝ} (hu : 0
   have h1 : HasDerivAt (fun u : ℝ => u ^ (1 / (1 - α))) (1 / (1 - α) * u ^ (1 / (1 - α) - 1)) u :=
     Real.hasDerivAt_rpow_const (Or.inl hu.ne')
   have h2 := h1.mul_const ((α * y) ^ (α / (1 - α)))
-  have hf : (fun u => Δstar α u y) = fun u => u ^ (1 / (1 - α)) * (α * y) ^ (α / (1 - α)) := rfl
-  rw [hf]
+  unfold Δstar
   refine h2.congr_deriv ?_
   rw [Real.rpow_sub_one hu.ne']
   have h1α : (1 - α) ≠ 0 := by linarith
   have hu0 : u ≠ 0 := hu.ne'
   field_simp
-  ring
 
 /-! ### The maximal score as a function of share -/
 
@@ -192,7 +186,7 @@ theorem Rst_hasDerivAt (hα : 0 < α) (hα1 : α < 1) (hlam : 0 < lam) (hsbar : 
   have hout := hasDerivAt_surplus_ℓ hα hα1 hu hy
   have hcomp := hout.comp s hin
   refine ((hasDerivAt_const s (Rinf m0 G k X)).add hcomp).congr_deriv ?_
-  rw [sbar_sub_eq s]
+  rw [sbar_sub_eq hsbar.ne' s]
   have hh : hdr sbar s ≠ 0 := (hdr_pos hsbar hs).ne'
   have hsb : sbar ≠ 0 := hsbar.ne'
   have hl : lam ≠ 0 := hlam.ne'
@@ -221,7 +215,7 @@ theorem prop_saturation_a (hα : 0 < α) (hα1 : α < 1) (hk : 0 ≤ k) (hlam : 
       have := hdr_strictAnti hsbar hss'
       have := mul_lt_mul_of_pos_left this hlam
       exact mul_lt_mul_of_pos_right this hy
-    have h2 := Real.rpow_lt_rpow (ℓ_pos hlam hsbar hs'.2 |>.mul hy).le h1 (q_pos hα1)
+    have h2 := Real.rpow_lt_rpow (mul_pos (ℓ_pos hlam hsbar hs'.2) hy).le h1 (q_pos hα1)
     have h3 := mul_lt_mul_of_pos_left h2 (Cα_pos hα hα1)
     linarith
   · intro s _ hs
@@ -230,11 +224,11 @@ theorem prop_saturation_a (hα : 0 < α) (hα1 : α < 1) (hk : 0 ≤ k) (hlam : 
 /-- **Lemma prop:saturation (b).** "`lim_{s→s̄} R*_X(s) = R_∞`. For the Rule of 40 with
 `k = 0`, the limit is `m₀ + G`. Since `m₀ = 1 - c_h - c_c - f - a ≤ 1 - c_c - f - a_min ≤ 1`,
 `R_∞ ≤ 1 - c_c - f - a_min + (X-k) G`, and for `X = 1`: `R_∞ ≤ 1 + (1-k) G`." -/
-theorem prop_saturation_b (hα : 0 < α) (hα1 : α < 1) (hlam : 0 < lam) (hsbar : 0 < sbar) (X : ℝ) :
+theorem prop_saturation_b (_hα : 0 < α) (hα1 : α < 1) (_hlam : 0 < lam) (hsbar : 0 < sbar) (X : ℝ) :
     Tendsto (Rst α sbar m0 G k X lam) (𝓝[<] sbar) (𝓝 (Rinf m0 G k X)) ∧
     (X = 1 → k = 0 → Rinf m0 G k X = m0 + G) ∧
     (∀ ch cc f a amin : ℝ, 0 ≤ ch → 0 ≤ cc → 0 ≤ f → 0 ≤ amin → amin ≤ a →
-      m0 = 1 - ch - cc - f - a → 0 ≤ G →
+      m0 = 1 - ch - cc - f - a →
       Rinf m0 G k X ≤ 1 - cc - f - amin + (X - k) * G ∧
       (X = 1 → Rinf m0 G k X ≤ 1 + (1 - k) * G)) := by
   refine ⟨?_, fun hX hk => by subst hX hk; unfold Rinf; ring, ?_⟩
@@ -245,7 +239,7 @@ theorem prop_saturation_b (hα : 0 < α) (hα1 : α < 1) (hlam : 0 < lam) (hsbar
         add_zero]
     rw [hval] at h
     exact h.mono_left nhdsWithin_le_nhds
-  · intro ch cc f a amin hch hcc hf hamin ha hm0 hG
+  · intro ch cc f a amin hch hcc hf hamin ha hm0
     unfold Rinf
     constructor
     · linarith
@@ -288,7 +282,7 @@ theorem prop_saturation_c (hα : 0 < α) (hα1 : α < 1) (hlam : 0 < lam) (hsbar
     exact hub s hs
   · intro b hb
     by_contra hlt
-    push_neg at hlt
+    push Not at hlt
     have h1 : ∀ᶠ s in 𝓝[>] (0 : ℝ), b < Rst α sbar m0 G k X lam s :=
       (tendsto_order.1 hlim).1 b hlt
     have h2 : ∀ᶠ s in 𝓝[>] (0 : ℝ), s ∈ Ioo 0 sbar :=
@@ -303,7 +297,7 @@ theorem prop_saturation_c (hα : 0 < α) (hα1 : α < 1) (hlam : 0 < lam) (hsbar
       have h0 := mul_lt_mul_of_pos_left this hlam
       rw [mul_one] at h0
       exact mul_lt_mul_of_pos_right h0 hy
-    have h2 := Real.rpow_lt_rpow (ℓ_pos hlam hsbar hs.2 |>.mul hy).le h1 (q_pos hα1)
+    have h2 := Real.rpow_lt_rpow (mul_pos (ℓ_pos hlam hsbar hs.2) hy).le h1 (q_pos hα1)
     have h3 := mul_lt_mul_of_pos_left h2 (Cα_pos hα hα1)
     linarith
   · intro hX s _
@@ -390,7 +384,7 @@ theorem prop_saturation_d (hα : 0 < α) (hα1 : α < 1) (hk : 0 ≤ k) (hlam : 
     refine ⟨hΔ, ?_, ?_⟩
     · rw [σstar_eq hα hα1 hℓ hy, hΔ]
       field_simp
-      ring
-    · exact (prop_score_b (m0 := m0) hα hα1 hℓ hk zero_lt_top hX le_top).2.2.2.2.2.2.2.2.2.2.2.2
+    · have h := (prop_score_b (m0 := m0) (G := G) hα hα1 hℓ hk zero_lt_top hX le_top)
+      rw [h.2.2.2.2.2.2.2.2.2.2.2.2, σstar_eq hα hα1 hℓ hy]
 
 end RuleOfX
