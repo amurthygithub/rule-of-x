@@ -1595,7 +1595,7 @@ CLAIMS += [
     ('horizons: a guided dip slows the program (realized share below the central one by 2036)',
      V['public_guided_dip_1pt']['2036']['s'] < CAL['pace']['central']['2036']['s']
      and V['public_guided_dip_2pt']['2036']['s'] < CAL['pace']['central']['2036']['s']),
-    ('abstract and intro: the Psi slope is about a fifth of a point (absolute value 0.15 to 0.25 on both bases, E1)',
+    ('abstract, intro, summary box, conclusion: the baseline Psi slope is about a fifth of a point (absolute value 0.15 to 0.25 on both bases, E1)',
      all(0.15 <= abs(FS3['central'][b]['E1']['est']) <= 0.25 for b in ('op', 'cash'))),
     ('abstract: the GAAP P95 fall is the smaller of the two bases (written "by GAAP to cash points")',
      -vest('p95_change_op', 'E1') <= -vest('p95_change_cash', 'E1')),
@@ -1693,6 +1693,54 @@ CLAIMS += [
      'bounds, and the central share lies inside it',
      list(CAL['compute_share']['values']['prices2025']['bounds']) == [CCR['lo'], CCR['hi']]
      and CCR['lo'] < CAL['compute_share']['values']['prices2025']['value'] < CCR['hi']),
+]
+# round 3: the specification curve (code/spec_curve.py; Supplement section supp:speccurve). The main text quotes it in
+# sections/empirics.tex, intro.tex, abstract.tex, exec_summary.tex and conclusion.tex; its own section's statements are
+# checked by code/spec_curve.py (check_text_claims). The first entry ties its stored results to this run's estimates.
+_SCJ = json.load(open(os.path.join(BASE, 'notes', 'spec_curve', 'results.json')))
+_SC, _SCD = _SCJ['claims'], _SCJ['derived']
+_SCB = _SCD.get('boot', {})
+_SC_BASE = dict(C1='p95_change_op', C2='p95_change_cash', C3='cone_op_slope_c90_w60', C4='cone_cash_slope_c90_w60',
+                C5='cone_op_slope_c90_w40_2020_25_minus_2010_19', C6='cone_cash_slope_c90_w40_2020_25_minus_2010_19',
+                C7='spend_ratio', C8a='anchor_p95_Pi_lb_med', C8b='anchor_p95_Pi_net_med', C8c='anchor_p95_Pi_ub_med')
+_r2 = {c: _SC[c]['influence']['r2']['levels'] for c in ('C3', 'C7')}
+CLAIMS += [
+    ('spec curve: its stored results are for this run\'s estimates (every claim\'s baseline equals the E1 estimate of '
+     'notes/empirics_v3.json) and its reproduction check passed without difference',
+     all(abs(_SC[c]['baseline'] - vest(st)) < 1e-12 for c, st in _SC_BASE.items())
+     and _SCJ['reproduction']['max_abs_diff'] == 0 and not _SCJ['reproduction']['json_failures']
+     and not _SCJ['reproduction']['macro_failures']),
+    ('empirics, intro: the P95 fall holds in every specification of the curve that measures the 95th percentile, both bases',
+     _SCD['decline']['p95_share_gaap'] == 1 and _SCD['decline']['p95_share_cash'] == 1),
+    ('empirics, intro, abstract, summary box, conclusion: at the paper\'s definition the baseline falls lie inside the ranges '
+     'the sample choices give, near their top (fewer than 15% of the samples fall further)',
+     all(_SCD['decline'][k][0] <= vest(st) <= _SCD['decline'][k][1] and _SCD['decline'][f'core_share_below_baseline_{b}'] < 0.15
+         for k, st, b in (('core_gaap', 'p95_change_op', 'gaap'), ('core_cash', 'p95_change_cash', 'cash')))),
+    ('empirics: across the sample choices an unadjusted interval below zero at the paper\'s definition holds in fewer '
+     'bootstrapped samples than the sign does (not all, on both bases)',
+     0 < _SCB['top_op_core'] < 1 and 0 < _SCB['top_cash_core'] < 1),
+    ('empirics, intro, conclusion: the Psi slope lies above -1 and below zero in every specification of the curve, both bases',
+     all(_SC[c][f'share_{t}'] == 1 for c in ('C3', 'C4') for t in ('a', 'b'))),
+    ('empirics, abstract, summary box, conclusion: about a fifth of a point is the baseline only: on both bases the baseline is '
+     'flatter than the central 90% of specifications and among the flattest (under 5% flatter)',
+     all(_SC[c]['baseline'] > _SC[c]['p95'] and _SCD[c]['share_above_baseline'] < 0.05 for c in ('C3', 'C4'))),
+    ('empirics, intro, summary box, conclusion: the GAAP steepening is fragile: negative in most specifications, but with '
+     'Psi_0.90 an interval below zero in a minority of the bootstrapped samples with the paper\'s split and a majority with '
+     'the 2010-15 against 2018-25 split',
+     _SC['C5']['share_a'] > 0.5 and _SCB['diff_op_c90_A'] < 0.5 < _SCB['diff_op_c90_B']),
+    ('empirics, intro, summary: no cash steepening in the samples that remove acquired growth (negative in under a fifth of '
+     'the pro forma and exclusion specifications); negative in most observed-growth specifications, with an interval below '
+     'zero in few of them (under 10%)',
+     _SCD['cash_steepening']['neg_share_organic'] < 0.2 and _SCD['cash_steepening']['neg_share_observed'] > 0.5
+     and _SCD['cash_steepening']['boot_below_zero_observed'] < 0.1),
+    ('empirics, intro, summary: across the sample choices the spend ratio is higher where acquired growth is removed or firms '
+     'are dropped under rule R2',
+     _SC['C7']['by_family']['pro forma']['median'] > _SC['C7']['by_family']['observed']['median']
+     and _SC['C7']['by_family']['exclusion']['median'] > _SC['C7']['by_family']['observed']['median']
+     and all(v_['median'] > _r2['C7']['none']['median'] for k_, v_ in _r2['C7'].items() if k_ != 'none')),
+    ('empirics (anchor): the netted median is positive in nearly all specifications of the curve (above 95%) but its interval '
+     'lies above zero in fewer than half of those bootstrapped; Pi_lb is positive in every specification',
+     _SC['C8b']['share_a'] > 0.95 and _SC['C8b']['boot']['share_interval_on_claimed_side'] < 0.5 and _SC['C8a']['share_a'] == 1),
 ]
 _failed = [c for c, ok in CLAIMS if not ok]
 os.makedirs(OUT_DIR, exist_ok=True)
@@ -1927,12 +1975,20 @@ for k, v in M.items():
 # round 3: the stress-test macros (\St*, code/mc_report_tex.py) are a separate generated file, input from here
 lines.append('% Joint-parameter stress test (code/mc_report_tex.py from the stored output of code/mc_claims.py):')
 lines.append('\\IfFileExists{paper1/stress_macros.tex}{\\input{paper1/stress_macros.tex}}{}')
+# round 3: the specification-curve macros (\Sc*, code/spec_curve.py; Supplement section supp:speccurve)
+lines.append('% Specification curve of the empirical claims (code/spec_curve.py):')
+lines.append('\\IfFileExists{paper1/spec_macros.tex}{\\input{paper1/spec_macros.tex}}{}')
 open(os.path.join(OUT_DIR, 'macros.tex'), 'w').write('\n'.join(lines) + '\n')
 _stf = os.path.join(OUT_DIR, 'stress_macros.tex')                 # so that the plain abstract can expand them too
 if os.path.exists(_stf):
     for _k, _v in re.findall(r'\\newcommand\{\\(St[A-Za-z]+)\}\{(.*)\}', open(_stf).read()):
         assert _k not in M, f"stress macro {_k} clashes with a paper1 macro"
         PLAIN[_k] = _v.replace('{,}', ',').replace('$-$', '-')
+_scf = os.path.join(OUT_DIR, 'spec_macros.tex')
+if os.path.exists(_scf):
+    for _k, _v in re.findall(r'\\newcommand\{\\(Sc[A-Za-z]+)\}\{(.*)\}', open(_scf).read()):
+        assert _k not in M and _k not in PLAIN, f"specification-curve macro {_k} clashes with a paper1 or stress macro"
+        PLAIN[_k] = _v.replace('{,}', ',').replace('$-$', '-').replace('$+$', '+').replace('$>$', '>').replace('$<$', '<')
 
 # ---------------------------------------------------------------------------------------------- plain abstract
 src = open(os.path.join(BASE, 'sections', 'abstract.tex')).read()

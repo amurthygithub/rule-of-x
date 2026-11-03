@@ -54,7 +54,7 @@ ok   horizons (B7): cumulative payback comes after the flow crossing, and the di
 ok   horizons (B7): under central execution the cumulative cash effect is negative at a five-year hold
 ok   horizons: no single tornado input lifts the 2036 central score to 100
 ok   horizons: a guided dip slows the program (realized share below the central one by 2036)
-ok   abstract and intro: the Psi slope is about a fifth of a point (absolute value 0.15 to 0.25 on both bases, E1)
+ok   abstract, intro, summary box, conclusion: the baseline Psi slope is about a fifth of a point (absolute value 0.15 to 0.25 on both bases, E1)
 ok   abstract: the GAAP P95 fall is the smaller of the two bases (written "by GAAP to cash points")
 ok   discussion: the E1 spend ratio exceeds one and the lower-quartile anchor surplus (upper bound) is negative
 ok   accountability floor (C1): the bottom-up floors at 1% and 5% differ by less than 0.01% of revenue
@@ -79,6 +79,16 @@ ok   empirics (GPT-14; re-estimated 3 Nov): the Romano-Wolf p of the GAAP P95 de
 ok   horizons (GLM-M11): counting failed attempts raises the low end of the compute-share range and of the threshold range
 ok   horizons (GLM-M11, GPT-22; units fixed 3 Nov): the floor of the compute share is the labor share times compute per dollar of labor at the cost per completed task, below that kappa itself, and the top is the value test (c_c = s_L)
 ok   horizons (GLM-M11): one range for the compute share at 2025 prices: the text's scenario range is the calibration's bounds, and the central share lies inside it
+ok   spec curve: its stored results are for this run's estimates (every claim's baseline equals the E1 estimate of notes/empirics_v3.json) and its reproduction check passed without difference
+ok   empirics, intro: the P95 fall holds in every specification of the curve that measures the 95th percentile, both bases
+ok   empirics, intro, abstract, summary box, conclusion: at the paper's definition the baseline falls lie inside the ranges the sample choices give, near their top (fewer than 15% of the samples fall further)
+ok   empirics: across the sample choices an unadjusted interval below zero at the paper's definition holds in fewer bootstrapped samples than the sign does (not all, on both bases)
+ok   empirics, intro, conclusion: the Psi slope lies above -1 and below zero in every specification of the curve, both bases
+ok   empirics, abstract, summary box, conclusion: about a fifth of a point is the baseline only: on both bases the baseline is flatter than the central 90% of specifications and among the flattest (under 5% flatter)
+ok   empirics, intro, summary box, conclusion: the GAAP steepening is fragile: negative in most specifications, but with Psi_0.90 an interval below zero in a minority of the bootstrapped samples with the paper's split and a majority with the 2010-15 against 2018-25 split
+ok   empirics, intro, summary: no cash steepening in the samples that remove acquired growth (negative in under a fifth of the pro forma and exclusion specifications); negative in most observed-growth specifications, with an interval below zero in few of them (under 10%)
+ok   empirics, intro, summary: across the sample choices the spend ratio is higher where acquired growth is removed or firms are dropped under rule R2
+ok   empirics (anchor): the netted median is positive in nearly all specifications of the curve (above 95%) but its interval lies above zero in fewer than half of those bootstrapped; Pi_lb is positive in every specification
 
 # Interval claims are checked under the percentile, basic, normal and BC 90% intervals (TYPES4); Holm under the
 # normal, percentile and basic p-values and Romano-Wolf (the outputs carry no BC p-value).

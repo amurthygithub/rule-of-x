@@ -995,6 +995,8 @@ def write_outputs(R):
         T = CLAIMS[c]['tag']
         put(f'Sc{T}ShareNeg', pct_share(SUMM[c]['share_b']))
         put(f'Sc{T}ShareHalf', pct_share(SUMM[c]['share_c']))
+        # the central 90% of the specifications as magnitudes ("a ... to ... of a point less margin")
+        put(f'Sc{T}TypLo', fmt_num(-SUMM[c]['p95'], 2)); put(f'Sc{T}TypHi', fmt_num(-SUMM[c]['p05'], 2))
     put('ScDiffCashShareNeg', pct_share(SUMM['C6']['share_negative']))
     # level medians and shares quoted in the text
     LV = lambda c, dim, lev: SUMM[c]['influence'][dim]['levels'][lev]
@@ -1011,6 +1013,10 @@ def write_outputs(R):
     put('ScTopCashCoreMin', fmt_sgn(EXTRA['decline']['core_cash'][0], 1, 100)); put('ScTopCashCoreMax', fmt_sgn(EXTRA['decline']['core_cash'][1], 1, 100))
     put('ScTopCashCoreMed', fmt_sgn(EXTRA['decline']['core_cash'][2], 1, 100))
     put('ScTopCoreFallLo', fmt_num(EXTRA['decline']['core_both_fall'][0], 1, 100)); put('ScTopCoreFallHi', fmt_num(EXTRA['decline']['core_both_fall'][1], 1, 100))
+    # the falls at the paper's definition (P95, 2016-19 to 2023-25, paper's cash measure) over the sample choices, as positive
+    # numbers for the main text ("fell by ... to ... points")
+    put('ScTopOpCoreFallLo', fmt_num(-EXTRA['decline']['core_gaap'][1], 1, 100)); put('ScTopOpCoreFallHi', fmt_num(-EXTRA['decline']['core_gaap'][0], 1, 100))
+    put('ScTopCashCoreFallLo', fmt_num(-EXTRA['decline']['core_cash'][1], 1, 100)); put('ScTopCashCoreFallHi', fmt_num(-EXTRA['decline']['core_cash'][0], 1, 100))
     put('ScTopOpCoreBelowBase', pct_share(EXTRA['decline']['core_share_below_baseline_gaap']))
     put('ScTopCashCoreBelowBase', pct_share(EXTRA['decline']['core_share_below_baseline_cash']))
     put('ScPsiOpWinSixtyMed', fmt_num(LV('C3', 'window', 'w60')['median'], 2)); put('ScPsiOpWinFortyMed', fmt_num(LV('C3', 'window', 'w40')['median'], 2))
@@ -1035,6 +1041,11 @@ def write_outputs(R):
     put('ScSpendShareAbove', pct_share(EXTRA['spend']['share_above'])); put('ScSpendShareNamed', pct_share(EXTRA['spend']['share_r2all']))
     put('ScSpendShareNotNamed', pct_share(EXTRA['spend']['share_not_r2all']))
     put('ScSpendObsMed', fmt_num(SUMM['C7']['by_family']['observed']['median'], 2)); put('ScSpendProMed', fmt_num(SUMM['C7']['by_family']['pro forma']['median'], 2))
+    # by option of rule R2 (the options follow the panel, R2_LEVELS)
+    for lv, nm in (('none', 'Main'), ('all', 'Named'), ('both', 'Both'), ('either', 'Either')):
+        if lv in SUMM['C7']['influence']['r2']['levels']:
+            put(f'ScSpendRtwo{nm}Share', pct_share(LV('C7', 'r2', lv)['share'])); put(f'ScSpendRtwo{nm}Med', fmt_num(LV('C7', 'r2', lv)['median'], 2))
+            put(f'ScPsiOpRtwo{nm}Med', fmt_num(LV('C3', 'r2', lv)['median'], 2)); put(f'ScPsiCashRtwo{nm}Med', fmt_num(LV('C4', 'r2', lv)['median'], 2))
     for cut, nm in ((0.9, 'Ninety'), (0.975, 'NinetySevenFive')):
         for c, T in (('C8a', 'AncLb'), ('C8b', 'AncNet'), ('C8c', 'AncUb')):
             put(f'Sc{T}Cut{nm}Med', fmt_sgn(LV(c, 'cutoff', str(cut))['median'], 1, 100))
@@ -1174,25 +1185,34 @@ def check_text_claims(SP, FP, SUMM, FSUMM, FWD, LOFO, EXTRA):
         ('psi: above -1 and below zero in every defined specification, both bases',
          all(SUMM[c][f'share_{t}'] == 1 for c in ('C3', 'C4') for t in ('a', 'b'))),
         ('psi: the baseline is at the flat end (fewer than 10% flatter)', EXTRA['C3']['share_above_baseline'] < 0.10 and EXTRA['C4']['share_above_baseline'] < 0.10),
-        ('psi: the window moves the GAAP slope most', SUMM['C3']['most_influential'] == 'window'),
+        ('psi: rule R2 and the growth window move the slope most on both bases, and every R2 option that drops firms steepens it',
+         all(set(SUMM[c]['ranked_choices'][:2]) == {'r2', 'window'} for c in ('C3', 'C4'))
+         and all(v['median'] < SUMM['C3']['influence']['r2']['levels']['none']['median']
+                 for k_, v in SUMM['C3']['influence']['r2']['levels'].items() if k_ != 'none')),
         ('psi: observed growth flatter than pro forma; dropping the 16 named firms steepens',
          SUMM['C3']['by_family']['observed']['median'] > SUMM['C3']['by_family']['pro forma']['median']
          and SUMM['C3']['influence']['r2']['levels']['all']['median'] < SUMM['C3']['influence']['r2']['levels']['none']['median']),
         ('steepening: the estimator moves the GAAP difference most; Psi_0.90 negative in every specification',
          SUMM['C5']['most_influential'] == 'estimator' and SUMM['C5']['influence']['estimator']['levels']['c90']['share'] == 1),
-        ('steepening: GAAP negative in more than 95% of specifications', SUMM['C5']['share_a'] > 0.95),
+        ('steepening: GAAP negative in most specifications (above 90%), but not in every one', 0.9 < SUMM['C5']['share_a'] < 1),
         ('cash steepening: negative in most observed-growth and in a minority of organic specifications',
          EXTRA['cash_steepening']['neg_share_observed'] > 0.5 and EXTRA['cash_steepening']['neg_share_organic'] < 0.5),
         ('spend: above the range only in samples that remove acquired growth',
          bool((SP[(SP.claim == 'C7') & (SP.value >= 3.55)].family != 'observed').all()) and EXTRA['spend']['share_below'] == 0),
-        ('anchor: Pi_lb and Pi_net positive in every specification; Pi_ub of either sign',
-         SUMM['C8a']['share_a'] == 1 and SUMM['C8b']['share_a'] == 1 and 0 < SUMM['C8c']['share_a'] < 1),
+        ('anchor: Pi_lb positive in every specification, Pi_net in all but a few (above 99%), Pi_ub of either sign',
+         SUMM['C8a']['share_a'] == 1 and 0.99 < SUMM['C8b']['share_a'] < 1 and 0 < SUMM['C8c']['share_a'] < 1),
         ('anchor: the cut-off moves each surplus most', all(SUMM[c]['most_influential'] == 'cutoff' for c in ('C8a', 'C8b', 'C8c'))),
         ('lofo: no single firm reverses a headline sign in any of the four views', all(lofo_rev(vn) == 0 for vn in FOUR)),
         ('lofo: dropping any firm leaves the E1 anchor Pi_ub within the paper\'s leave-one-firm range',
          fmt_sgn(LOFO['E1']['ANC|ub|0.95|drop']['min'], 1, 100) == PRINTED['AncLooLo'] and fmt_sgn(LOFO['E1']['ANC|ub|0.95|drop']['max'], 1, 100) == PRINTED['AncLooHi']),
-        ('lofo: the cash difference under E2 changes sign when one firm is removed', LOFO['E2']['DIFF|cash|c90|w40|A']['n_sign_reversals'] > 0),
-        ('forward: under E1 no pairing changes the sign of a baseline quantity', all(np.sign(a) == np.sign(b) for a, b in zip(fwd_e1, con_e1))),
+        ('lofo: the cash difference keeps its sign under E2 whichever firm is removed, and changes it under M = 4 for some',
+         LOFO['E2']['DIFF|cash|c90|w40|A']['n_sign_reversals'] == 0 and LOFO['E2imp4']['DIFF|cash|c90|w40|A']['n_sign_reversals'] > 0),
+        ('forward: under E1 no pairing changes the sign of the C1-C5 quantities; the literal pairing (F2) turns the cash difference positive',
+         all(np.sign(FWD['E1'][kind][c]) == np.sign(FWD['E1']['contemporaneous'][c]) for kind in ('F1', 'F1p', 'F2') for c in ('C1', 'C2', 'C3', 'C4', 'C5'))
+         and FWD['E1']['contemporaneous']['C6'] < 0 < FWD['E1']['F2']['C6'] and FWD['E1']['F1']['C6'] < 0 and FWD['E1']['F1p']['C6'] < 0),
+        ('spend: the stated range holds in most main-sample samples and in a minority of those that drop firms under rule R2',
+         SUMM['C7']['influence']['r2']['levels']['none']['share'] > 0.5
+         and all(v['share'] < 0.5 for k_, v in SUMM['C7']['influence']['r2']['levels'].items() if k_ != 'none')),
         ('forward: the 0-60% slope is undefined under E2 and both imputation bounds with F1, defined under E1',
          fin(FWD['E1']['F1']['C3']) and not any(fin(FWD[vn]['F1']['C3']) for vn in ('E2', 'E2imp4', 'E2imp8'))),
         ('forward: grid slopes above -1 and below zero in every defined specification', all(FSUMM[c][f'share_{t}'] == 1 for c in ('C3', 'C4') for t in ('a', 'b'))),
@@ -1205,8 +1225,9 @@ def check_text_claims(SP, FP, SUMM, FSUMM, FWD, LOFO, EXTRA):
                and SUMM['C4']['boot']['share_interval_on_claimed_side'] == 1),
               ('boot: the Psi sign is not established in every specification', SUMM['C3']['boot']['share_interval_below_zero'] < 1
                or SUMM['C4']['boot']['share_interval_below_zero'] < 1),
-              ('boot: Pi_lb interval above zero in every bootstrapped specification', SUMM['C8a']['boot']['share_interval_on_claimed_side'] == 1),
-              ('boot: GAAP decline interval below zero in every bootstrapped sample at the paper\'s quantile and periods', EXTRA['boot']['top_op_core'] == 1),
+              ('boot: Pi_lb interval above zero in more than 95% of the bootstrapped specifications', SUMM['C8a']['boot']['share_interval_on_claimed_side'] > 0.95),
+              ('boot: at the paper\'s definition the decline interval lies below zero in a majority, not all, of the bootstrapped samples, both bases',
+               0.5 < EXTRA['boot']['top_op_core'] < 1 and 0.5 < EXTRA['boot']['top_cash_core'] < 1),
               ('boot: decline intervals rarely below zero at P90 or to 2025 alone (under 20%)', EXTRA['boot']['top_op_p90'] < 0.2 and EXTRA['boot']['top_op_2025'] < 0.2),
               ('boot: an interval that excludes zero holds for the decline in fewer than half of the bootstrapped specifications, both bases',
                SUMM['C1']['boot']['share_interval_on_claimed_side'] < 0.5 and SUMM['C2']['boot']['share_interval_on_claimed_side'] < 0.5),

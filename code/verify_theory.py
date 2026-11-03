@@ -3182,7 +3182,7 @@ def _cone_slope29(gv, ell, beta):
 
 
 _fs29 = _json.load(open(_os.path.join(_root29, 'notes', 'frontier_slope_v3.json')))['central']
-_ok29, _det29 = bool(_R3), []
+_ok29, _det29, _st29 = bool(_R3), [], {'op': [], 'cash': []}
 for _b in ('op', 'cash'):
     _bb = abs(_fs29[_b]['E1']['est'])
     for _al in (0.25, 0.30, 0.35, 0.45):
@@ -3193,15 +3193,22 @@ for _b in ('op', 'cash'):
         _ok29 &= bool(_rec) and abs(_rec['steepest'] - _st) < 1e-7 and abs(_rec['ell'] - _ell) < 1e-7 and _st < 1.0 \
             and _st / _bb < (_be + 1) * (_be + 2) / 6
         _det29.append(f"{_b} {_al:.2f}: {_st / _bb:.3f}b = {_st:.3f}")
+        _st29[_b].append((_st, _st / _bb))
 check("29a GPT-M1 Section model-industry: at the E1 growth values a common frontier m0 - (Delta/ell)^beta whose Psi_0.90 slope "
       "on the estimator's grid equals the measured one has a steepest slope at W = 60% of 2.07b (alpha = 0.45) to 4.0b "
       "(alpha = 0.25), below the approximation (beta+1)(beta+2)/6 and below one on both bases; brentq on ell reproduces the "
       "closed form of calibrate_horizons.py r3.ell_psi_cone", _ok29, '; '.join(_det29))
 _w29 = {k__: TEXM.get(k__) for k__ in ('PsiMultLo', 'PsiMultHi', 'PsiSteepConeOpLo', 'PsiSteepConeOpHi', 'PsiSteepConeCashLo',
                                        'PsiSteepConeCashHi')}
-check("29b [text] GPT-M1 macros: multiplier 2.1 to 4.0; steepest slopes 0.45 to 0.86 (GAAP) and 0.33 to 0.64 (after SBC)",
-      _w29 == dict(PsiMultLo='2.1', PsiMultHi='4.0', PsiSteepConeOpLo='0.45', PsiSteepConeOpHi='0.86', PsiSteepConeCashLo='0.33',
-                   PsiSteepConeCashHi='0.64'), str(_w29))
+# round 3 (3 Nov): the expected text values are derived from the independent brentq solution of 29a, not hard-coded, so
+# that a re-estimation that moves the Psi slopes moves them too (they were 0.45-0.86 / 0.33-0.64 before R2 and the
+# capitalized-software correction)
+_m29 = [m_ for b_ in _st29 for _, m_ in _st29[b_]]
+_want29 = dict(PsiMultLo=f"{min(_m29):.1f}", PsiMultHi=f"{max(_m29):.1f}",
+               PsiSteepConeOpLo=f"{min(v_ for v_, _ in _st29['op']):.2f}", PsiSteepConeOpHi=f"{max(v_ for v_, _ in _st29['op']):.2f}",
+               PsiSteepConeCashLo=f"{min(v_ for v_, _ in _st29['cash']):.2f}", PsiSteepConeCashHi=f"{max(v_ for v_, _ in _st29['cash']):.2f}")
+check("29b [text] GPT-M1 macros: the multiplier and the steepest slopes (GAAP, after SBC) printed in the text equal the "
+      "independent brentq solution of 29a", _w29 == _want29, f"text {_w29}; recomputed {_want29}")
 # 29c GPT-M2: psi_T evaluated at the growth rate is the period cash deduction per dollar of current investment on a
 # steady path (explicit vintage schedule, half-year convention), and the period-cash loss at k = 1.5, G = 30%
 _wT = lambda T: np.r_[1 / (2 * T), np.full(T - 1, 1 / T), 1 / (2 * T)]
@@ -3225,10 +3232,13 @@ for _pc_ in ('central', 'central_r10', 'fast', 'slow'):
     _ok29d &= abs(_e['value_at_5'] / (1 + _pb['r']) ** 5 + _pb['hold']['5']['cum_disc'] - _pb['npv_points_years']) < 1e-12
     if _pb['npv_points_years'] > 0:
         _ok29d &= abs(_e['breakeven_recovery'] * _e['value_at_5'] / (1 + _pb['r']) ** 5 + _pb['hold']['5']['cum_disc']) < 1e-12
-_ok29d &= TEXM.get('PayExitFiveCen') == '165' and TEXM.get('PayExitBreakCen') == '7.4' and TEXM.get('PayExitBreakCenTen') == '8.3'
+_want29d = dict(PayExitFiveCen=f"{100 * _ev['central']['value_at_5']:.0f}", PayExitBreakCen=f"{100 * _ev['central']['breakeven_recovery']:.1f}",
+                PayExitBreakCenTen=f"{100 * _ev['central_r10']['breakeven_recovery']:.1f}")
+_got29d = {k_: TEXM.get(k_) for k_ in _want29d}
+_ok29d &= _got29d == _want29d
 check("29d GPT-M4: the value at year 5 of the later flows, discounted, plus the discounted cash to year 5 is the NPV; a sale "
-      "recovering the break-even share of it leaves a five-year owner at zero; [text] 165% of a year's revenue and 7.4% "
-      "(8.3% at r = 10%)", _ok29d)
+      "recovering the break-even share of it leaves a five-year owner at zero; [text] the printed value at year 5 and the "
+      "break-even shares (central, and at r = 10%) equal these outputs", _ok29d, f"text {_got29d}; outputs {_want29d}")
 # 29e GPT-4: the exact expected recurrence U_w = U_{w-1} - q min(c, U_{w-1}) equals the capped bound while U >= c and then
 # decays geometrically; the 99% wave count recomputed from the rates
 _ex = _R3.get('exact_recurrence', {})

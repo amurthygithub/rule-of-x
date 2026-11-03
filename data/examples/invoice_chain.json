@@ -1767,8 +1767,8 @@
   }
  },
  "source_sha256": {
-  "engine/src/autofrontier/defaults.yaml": "577435ab139474d916fe567140ce245a2770d4f5cc96d4c5ae559be59042fa02",
-  "data/tasks/params.yaml": "144562867d5ca5e8f4a068e067e8a05028a753f002d22cd7696018df66287714",
+  "engine/src/autofrontier/defaults.yaml": "7306457babcdee6016e4915c6b1971b53e2699ad120a929fe0d598933971513c",
+  "data/tasks/params.yaml": "0e0d1399eba2af900b40d0bd53f2ab2c8a371d51d322db9eefc262c377389df5",
   "data/tasks/params_reliability.yaml": "c2a4cd78cf160b69637b50872e174cc0399746da436ff08342c1d071df9b490c",
   "data/examples/invoice_chain.yaml": "9eb8bec3aa9197389a9b9e347157716e4b85c681904be15e50c9cdae51c3481a",
   "engine/src/autofrontier/priors/activity_attributes.csv": "96a395d343243c286baa923a068d581b1c2deafcba79f2ff4b1d972f76eba3df"

@@ -1,5 +1,43 @@
 # Changelog
 
+## Paper 1 re-estimation carried into the defaults (3 Nov 2026)
+
+Source: Paper 1's re-estimation of 3 Nov 2026 (commit cff6848: R2 in the main sample, capitalized software from the
+filings), notes/empirics_v3.json, E1, 2023-25; Paper 1 macros MaintBase 25.7 and AlphaNet 0.94. After it,
+code/verify_part2_playbook.py failed C3, D4, D5, L4 and M3, because the engine still calibrated positions with the old
+values while the playbook runner (code/playbook/archetypes.py) reads the new ones from the file.
+
+- **Defaults.** finance.sm_maint_base 0.25056806 [0.232622, 0.275722] -> 0.25744536 [0.238214, 0.279064]
+  (spend_maint_base) and finance.spend_ratio_netted 0.98754368 [0.670456, 1.140252] -> 0.94260700 [0.696142, 1.149685]
+  (spend_maint_ratio); full-precision estimates, 90% firm-cluster bootstrap intervals as ranges; the source text names
+  the re-estimation and the old values. finance.spend_ratio (3.3 [1.9, 7.4], the all-S&M bound) is unchanged: Paper 1's
+  SpendRatio is still 3.3 (notes/empirics_revised.json, median 3.31, IQR 1.88 to 7.40). The fallback argument of
+  formulas.growth_spend_split (used only when a caller passes no base; every engine caller passes
+  finance.sm_maint_base) 0.2506 -> 0.2574. README (lever map) and MODEL_RISK (Section 3, growth spend basis) quote
+  25.7 percent and 0.94; the counts quoted in MODEL_RISK (G&A ahead of the growth engine at five of six positions on
+  the netted basis, none on the all-S&M bound) are unchanged.
+- **Guard.** code/verify_part2_playbook.py now reads Paper 1's values from notes/empirics_v3.json and
+  notes/empirics_revised.json instead of typing them, and its new check C4 fails when these three defaults (values and
+  ranges) no longer equal Paper 1's estimates.
+- **Playbook** (code/playbook/run_archetypes.py rerun, 166 s): the engine's own states now match the runner's (D4, D5,
+  L4 pass). A2's S&M share (25.2% of revenue) lies below the new base, so it has no growth spend in the engine either and
+  its X_dagger_0 is infinite (the old engine base 25.06% left it 0.12 points of growth spend and X_dagger_0 6675.8;
+  \pbXdagMax 6675.8 -> 7.9); A1's sigma 25 -> 24 (Table tab:playbook-archetypes); \pbKeepMin 0.50 -> 0.49,
+  \pbPtElasMax 0.50 -> 0.51. Lever rankings and engine plan values are unchanged. 41 of 41 checks pass.
+- **Synthetic firm** (examples/synthetic_run/report regenerated, full settings; run log identical apart from timings):
+  growth spend 13.3% -> 12.6% of revenue (maintenance S&M 25.1% -> 25.7%); X_hat 6.9 -> 6.6; ell 0.128 -> 0.130; m0
+  0.236 -> 0.229; other operating cost saving -8.71% -> -8.81% of revenue (maintenance S&M -3.42% -> -3.51%);
+  X_dagger_0 against overhead 9.16 -> 9.02; sponsor, VC and permanent-capital weights 2.64 / 3.61 / 1.45 -> 2.55 /
+  3.49 / 1.40; at the middle evaluation point X = 5 the growth engine now ranks third, ahead of maintenance R&D
+  (lever_map x_levels). The regenerated files also carry the current hashes of params.yaml and notes/acquirer_notes.md
+  and the compute-share note of finance.c_c_full_automation as rewritten on 3 Nov (df29119), which the committed report
+  predated. Plan values, scenario values, Monte Carlo quantiles, regime program values and FTE are unchanged (last-digit
+  float differences only), so the golden snapshots are unchanged.
+- **Change control.** No note under the lock (config.NOTES_FILES) changed, so tools/check_sync.py passes without
+  --accept and NOTES_LOCK.json is left as accepted on 2 Nov. TRACEABILITY.md regenerated (tools/traceability.py);
+  data/examples/invoice_chain.json regenerated (it records the sha256 of defaults.yaml and params.yaml; its macros are
+  unchanged; code/verify_part2_core.py 23y passes again).
+
 ## Round 3 notes change: acquirer worked numbers relabelled (DS-65, 2 Nov 2026; notes/r3_code_changes.md)
 
 Source: outside review DS-65 (notes/reviews/paper1_v3/author_reviews/deepseek_v4_pro_high/issue_log.md), approved with

@@ -81,7 +81,7 @@ def ell_from_growth(g, G, sigma, alpha, floor: float = 1e-4) -> float:
     return max((float(g) - float(G)) / sigma ** alpha, floor)
 
 
-def growth_spend_split(sm_share, rd_share, rd_expansion_share, basis="netted", maint_base=0.2506) -> dict:
+def growth_spend_split(sm_share, rd_share, rd_expansion_share, basis="netted", maint_base=0.2574) -> dict:
     """Growth spend sigma and the maintenance S&M cost line on an S&M basis (Paper 1 round 2, decisions 4 and 7):
     netted (central) sigma = max(sm - b_M, 0) + theta rd, maintenance min(sm, b_M); all sigma = sm + theta rd, maintenance
     0; none sigma = theta rd, maintenance sm. theta = rd_expansion_share.

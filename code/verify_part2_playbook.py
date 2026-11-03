@@ -36,10 +36,20 @@ sys.path.insert(1, str(ROOT / "engine" / "src"))
 
 import archetypes as AR  # noqa: E402
 import levers as LV      # noqa: E402
+from autofrontier import config as CFG  # noqa: E402
 from autofrontier import formulas as F  # noqa: E402
 
 RNG = np.random.default_rng(20261029)
 RESULTS = []
+
+# Paper 1's values, read from its estimation outputs (never typed here): the maintenance base b_M and the netted spend
+# ratio (notes/empirics_v3.json spend_maint_base and spend_maint_ratio, E1; macros MaintBase and AlphaNet), and the
+# all-S&M spend ratio (notes/empirics_revised.json spend_ratio, macro SpendRatio), which Paper 1 prints to one decimal.
+_P1E = json.load(open(ROOT / "notes" / "empirics_v3.json"))["estimates"]
+P1_BM, P1_BM_CI = float(_P1E["spend_maint_base"]["E1"]["est"]), [float(x) for x in _P1E["spend_maint_base"]["E1"]["ci90"]]
+P1_RNET, P1_RNET_CI = float(_P1E["spend_maint_ratio"]["E1"]["est"]), [float(x) for x in _P1E["spend_maint_ratio"]["E1"]["ci90"]]
+P1_RALL = float(json.load(open(ROOT / "notes" / "empirics_revised.json"))["spend_ratio"]["median"])
+P1_RNET_TXT, P1_RALL_TXT = f"{P1_RNET:.2f}", f"{P1_RALL:.1f}"          # as Paper 1 prints them (AlphaNet, SpendRatio)
 
 
 def check(name, ok, detail=""):
@@ -102,16 +112,33 @@ for _ in range(200):
     ok &= abs(float(F.delta_star(ell, Xo - k, a)) - (s / r) * ratio ** (a / (1 - a))) < 1e-10
 check("C2 lem:playbook-calib(b): sigma*(ell, X_o) = sigma ((X_o-k)/(X_hat-k))^(1/(1-alpha)), Delta* likewise with "
       "alpha/(1-alpha) (engine formulas F.sigma_star, F.delta_star; 200 draws)", ok)
-# central basis since the author's decision of 2 Nov 2026 (decision 7): maintenance-netted, r = 0.99 (Paper 1's
-# spend_maint_ratio); before it, all S&M with r = 3.3, now the upper bound ([7.3, 13.2])
+# central basis since the author's decision of 2 Nov 2026 (decision 7): maintenance-netted, r = Paper 1's
+# spend_maint_ratio (notes/empirics_v3.json); before it, all S&M with r = Paper 1's SpendRatio, now the upper bound
 r_c = AR.spend_ratio()
 lo, hi = r_c / 0.45, r_c / 0.25
 lo_a, hi_a = AR.SPEND_RATIO / 0.45, AR.SPEND_RATIO / 0.25
-check("C3 lem:playbook-calib(c): X_hat - k in [r/0.45, r/0.25] = [2.2, 4.0] for the netted r = 0.99 (central), and "
-      "[7.3, 13.2] for the all-S&M r = 3.3 (bound); an implication of the calibration, not an estimate of the weight",
-      AR.BASIS == "netted" and abs(r_c - 0.98754) < 1e-4 and round(lo, 1) == 2.2 and round(hi, 1) == 4.0
-      and abs(AR.SPEND_RATIO - 3.3) < 1e-12 and round(lo_a, 1) == 7.3 and round(hi_a, 1) == 13.2,
-      f"netted {lo:.2f}, {hi:.2f}; all S&M {lo_a:.2f}, {hi_a:.2f}")
+lo_p, hi_p = P1_RNET / 0.45, P1_RNET / 0.25
+check(f"C3 lem:playbook-calib(c): X_hat - k in [r/0.45, r/0.25] = [{lo_p:.1f}, {hi_p:.1f}] for the netted r = "
+      f"{P1_RNET_TXT} (central; Paper 1's spend_maint_ratio, notes/empirics_v3.json), and [{lo_a:.1f}, {hi_a:.1f}] for "
+      f"the all-S&M r = {P1_RALL_TXT} (bound; Paper 1's SpendRatio); an implication of the calibration, not an estimate "
+      "of the weight",
+      AR.BASIS == "netted" and abs(r_c - P1_RNET) < 1e-12 and round(lo, 1) == round(lo_p, 1) and round(hi, 1) == round(hi_p, 1)
+      and f"{AR.SPEND_RATIO:.1f}" == P1_RALL_TXT and abs(AR.SPEND_RATIO - float(P1_RALL_TXT)) < 1e-12,
+      f"netted r {r_c:.4f} (Paper 1 {P1_RNET:.4f}): {lo:.2f}, {hi:.2f}; all S&M r {AR.SPEND_RATIO} (Paper 1 "
+      f"{P1_RALL:.4f}): {lo_a:.2f}, {hi_a:.2f}")
+# the engine's defaults carry Paper 1's values (engine/src/autofrontier/defaults.yaml finance.*), so that the engine's
+# own runs (sections 4 and 5 below) calibrate the same position as the runner; a re-estimation that moves them fails here
+_EP = CFG.load_params()
+_eb, _er, _ea = (float(_EP.get(f"finance.{k}")) for k in ("sm_maint_base", "spend_ratio_netted", "spend_ratio"))
+_ebr, _err = ([float(x) for x in _EP.range(f"finance.{k}")] for k in ("sm_maint_base", "spend_ratio_netted"))
+check("C4 the engine defaults equal Paper 1's estimates: finance.sm_maint_base = spend_maint_base and "
+      "finance.spend_ratio_netted = spend_maint_ratio (notes/empirics_v3.json, E1; ranges the 90% intervals to 6 "
+      "decimals), finance.spend_ratio = Paper 1's all-S&M SpendRatio as printed (notes/empirics_revised.json); update "
+      "defaults.yaml and engine/CHANGELOG.md when they move",
+      abs(_eb - P1_BM) < 1e-12 and abs(_er - P1_RNET) < 1e-12 and f"{_ea:.1f}" == P1_RALL_TXT
+      and all(abs(a - round(b, 6)) < 1e-12 for a, b in zip(_ebr + _err, P1_BM_CI + P1_RNET_CI)),
+      f"engine b_M {_eb:.6f} {_ebr} vs Paper 1 {P1_BM:.6f} {[round(x, 6) for x in P1_BM_CI]}; engine r_net {_er:.6f} "
+      f"{_err} vs {P1_RNET:.6f} {[round(x, 6) for x in P1_RNET_CI]}; engine r_all {_ea} vs {P1_RALL:.4f}")
 
 # ==============================================================================================
 header("2. Proposition prop:playbook-rank (and Paper 1 prop:levers-position)")
@@ -295,7 +322,7 @@ for key, s in R["configs"].items():
     ok &= abs(st["sigma_star_engine"] / st["sigma"] - 1) < 1e-8
     ok &= abs(st["sigma"] - max(st["sm"] - AR.MAINT_BASE, 0.0)) < 1e-9      # netted basis (decision 7)
 check("D4 lem:playbook-calib(a) in the engine runs: the engine's own sigma* at (ell, X_hat) equals the growth spend on "
-      "the maintenance-netted basis, S&M less the 25.1% base, for every archetype and readiness case (relative 1e-8); "
+      f"the maintenance-netted basis, S&M less the {100 * AR.MAINT_BASE:.1f}% base, for every archetype and readiness case (relative 1e-8); "
       "where S&M is at or below the base the growth spend and sigma* are zero", ok, f"{n_zero} configurations without growth spend")
 ok = True
 for a in archs:
@@ -498,13 +525,13 @@ used2 = set(re.findall(r"\\((?:pb|SpendRatio)[A-Za-z]*)", (ROOT / "part2" / "the
 used1 = set(re.findall(r"\\(lp[A-Za-z]*)", (ROOT / "sections" / "levers_by_position.tex").read_text()))
 check("M1 every macro used in part2/theory_playbook.tex and proofs is generated", used2 <= set(M2), ", ".join(sorted(used2 - set(M2))))
 check("M2 every macro used in sections/levers_by_position.tex is generated", used1 <= set(M1), ", ".join(sorted(used1 - set(M1))))
-ok = M2.get("SpendRatioPB") == "0.99" and M2.get("SpendRatioPBAll") == "3.3" and M2.get("pbCutNpop") == str(cuts["n_population"]) and M2.get("pbCutNEtwo") == str(cuts["n_E2"])
+ok = M2.get("SpendRatioPB") == P1_RNET_TXT and M2.get("SpendRatioPBAll") == P1_RALL_TXT and M2.get("pbCutNpop") == str(cuts["n_population"]) and M2.get("pbCutNEtwo") == str(cuts["n_E2"])
 ok &= M2.get("pbCutGmed") == f"{100 * cuts['g50']:.1f}" and M2.get("pbCutRninetyfive") == f"{100 * cuts['R95']:.1f}"
 cfgA5 = R["configs"]["A5_low"]
 ok &= M2.get("pbAFivePubCaph") == f"{cfgA5['levers']['public']['cap_hurdle_score']:.2f}"
 _fin = [p for p in P1 if math.isfinite(p["X_dagger0"])]      # decision 7: positions with growth spend above the base
 ok &= M1.get("lpXdagMin") == f"{min(p['X_dagger0'] for p in _fin):.1f}" and M1.get("lpXdagMax") == f"{max(p['X_dagger0'] for p in _fin):.1f}"
-ok &= M1.get("lpRatio") == "0.99" and M1.get("lpXhat") == "3"
+ok &= M1.get("lpRatio") == P1_RNET_TXT and M1.get("lpXhat") == f"{AR.spend_ratio() / 0.3:.0f}"
 ok &= M1.get("lpRatioMin") == f"{min(p['ratio'] for p in _fin):.2f}" and M1.get("lpRatioMax") == f"{max(p['ratio'] for p in _fin):.2f}"
 ok &= M1.get("lpRatioAllSMMin") == f"{min(p['ratio_all_sm'] for p in P1):.2f}" and M1.get("lpMaintBase") == f"{100 * _bM:.1f}"
 check("M3 spot checks: macros equal the values recomputed from the panel and the results file", ok)

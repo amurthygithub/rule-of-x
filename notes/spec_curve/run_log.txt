@@ -3,3 +3,35 @@
 [    2.2s] reproduction check passed
 [   45.8s] grid: 960 samples; 155328 specifications; 138240 forward-paired specifications
 [   45.9s] bootstrap: 33 ms per draw, 6.5 s per sample; K = 206 samples x B = 199
+[  132.9s] bootstrap samples 25/206
+[  217.5s] bootstrap samples 50/206
+[  262.1s] bootstrap samples 75/206
+[  301.2s] bootstrap samples 100/206
+[  348.3s] bootstrap samples 125/206
+[  392.3s] bootstrap samples 150/206
+[  436.6s] bootstrap samples 175/206
+[  483.4s] bootstrap samples 200/206
+[  494.5s] bootstrap done
+[  496.5s] summaries done
+[  496.9s] forward pairing done
+[  515.1s] leave one firm out done
+[  515.3s] runtime 515s
+[  517.3s] wrote notes/spec_curve/results.json, specs.csv.gz, specs_forward.csv.gz
+[  517.3s] wrote paper1/spec_macros.tex: 497 macros
+[  517.3s] wrote sections/tables/tab_spec_curve.tex
+[  518.4s] wrote figures/fig_spec_curve.pdf
+[  518.4s] TEXT CLAIM NOT SUPPORTED: psi: the window moves the GAAP slope most
+[  518.4s] TEXT CLAIM NOT SUPPORTED: steepening: GAAP negative in more than 95% of specifications
+[  518.4s] TEXT CLAIM NOT SUPPORTED: anchor: Pi_lb and Pi_net positive in every specification; Pi_ub of either sign
+[  518.4s] TEXT CLAIM NOT SUPPORTED: lofo: the cash difference under E2 changes sign when one firm is removed
+[  518.4s] TEXT CLAIM NOT SUPPORTED: forward: under E1 no pairing changes the sign of a baseline quantity
+[  518.4s] TEXT CLAIM NOT SUPPORTED: boot: Pi_lb interval above zero in every bootstrapped specification
+[  518.4s] TEXT CLAIM NOT SUPPORTED: boot: GAAP decline interval below zero in every bootstrapped sample at the paper's quantile and periods
+[  518.4s] text claims: 28/35 supported
+[    1.4s] executed code/estimate_v3.py up to its point-estimate section; 27 paper frames
+[    1.5s] outputs from the cached results of the last full run
+[    3.4s] wrote notes/spec_curve/results.json, specs.csv.gz, specs_forward.csv.gz
+[    3.4s] wrote paper1/spec_macros.tex: 521 macros
+[    3.4s] wrote sections/tables/tab_spec_curve.tex
+[    4.6s] wrote figures/fig_spec_curve.pdf
+[    4.6s] text claims: 36/36 supported

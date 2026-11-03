@@ -19,10 +19,10 @@
    "notes/data_sources_nonsoftware.md": "90da1c2d1274998550eec909e06b639e5ebf968b267c87683cdc74b746fa0bd2",
    "notes/assumptions_register.md": "11e7138541cea8cf522eb898973900ee3ee978bbd67182d8ebc5d6fd646113e9",
    "notes/assumptions_memo.md": "023c7a4c71057eb9b2164cbde636868ebcc86d18a392f2aa712a6de084030abf",
-   "notes/acquirer_notes.md": "d2ce356bd127902c825ae7b724103060efc95ca8109fa33c2ade8134dab15c9b",
+   "notes/acquirer_notes.md": "aa778b98aaf53f919f41b2f1cbd9a2d13503e59f85df7f695e9915dc2c17ebca",
    "notes/playbook_engine_spec.md": "6016b94ef8d629663458c4e3292f4691a0014992a2ea874434b93685504eeee4",
-   "engine/defaults.yaml": "3c51c05694aa2b6b4101b7881a4135c7c99e298457829a604e69a5091809a639",
-   "data/tasks/params.yaml": "144562867d5ca5e8f4a068e067e8a05028a753f002d22cd7696018df66287714",
+   "engine/defaults.yaml": "7306457babcdee6016e4915c6b1971b53e2699ad120a929fe0d598933971513c",
+   "data/tasks/params.yaml": "0e0d1399eba2af900b40d0bd53f2ab2c8a371d51d322db9eefc262c377389df5",
    "data/tasks/params_reliability.yaml": "c2a4cd78cf160b69637b50872e174cc0399746da436ff08342c1d071df9b490c"
   },
   "python": "3.13.18",
@@ -40,20 +40,20 @@
   "part1": {
    "S": 864000000.0,
    "gamma": 0.7369409722222222,
-   "sigma": 0.13325253760057582,
-   "sm_maint": 0.25056806425127603,
+   "sigma": 0.12637524392123223,
+   "sm_maint": 0.2574453579306196,
    "sm_basis": "netted",
-   "a": 0.5007544068438686,
-   "a_gaap": 0.5357544068438687,
+   "a": 0.5076317005232122,
+   "a_gaap": 0.5426317005232122,
    "a_other": 0.0,
    "m0_basis": "line items",
-   "m0": 0.23618656537835359,
+   "m0": 0.22930927169901005,
    "m_op": 0.0679340277777778,
-   "m_cash": 0.00532733777777776,
+   "m_cash": 0.005327337777777816,
    "g": 0.17,
    "G": 0.1,
    "k": 0.574157,
-   "ell": 0.12814314939977117,
+   "ell": 0.13019653851319132,
    "X": 5.0,
    "X_source": "evaluation point finance.X_default (the Gordon equation has no root at these inputs and no multiple was given; not an estimate: X-dependent outputs are reported at finance.X_eval_points)",
    "v0": null,
@@ -62,11 +62,11 @@
    "c_h": 0.1578562059941315,
    "f": 0.025,
    "alpha": 0.3,
-   "R40_cash": 0.17532733777777776,
+   "R40_cash": 0.17532733777777781,
    "R40_gaap": 0.2379340277777778,
-   "R_star": 0.8646102321507592,
-   "Delta_star": 0.05998513948074188,
-   "sigma_star": 0.07964544290245952
+   "R_star": 0.8620016787937265,
+   "Delta_star": 0.061363001384212926,
+   "sigma_star": 0.08147490304059274
   },
   "headcount": 3164.0,
   "units": 667,
@@ -221,42 +221,42 @@
   "state": {
    "S": 864000000.0,
    "g": 0.17,
-   "m_cash": 0.00532733777777776,
-   "sigma": 0.13325253760057582,
+   "m_cash": 0.005327337777777816,
+   "sigma": 0.12637524392123223,
    "sm_share": 0.3037662037037037,
    "a_GA": 0.20513194444444444,
    "a_RD": 0.08005439814814815,
-   "a_SM": 0.25056806425127603,
-   "a": 0.5357544068438687,
+   "a_SM": 0.2574453579306196,
+   "a": 0.5426317005232122,
    "sm_basis": "netted",
    "gamma": 0.7369409722222222,
    "c_h": 0.1578562059941315,
    "c_c": 0.06165219907407407,
    "k": 0.574157,
    "alpha": 0.3,
-   "m0": 0.23618656537835359,
+   "m0": 0.22930927169901005,
    "rd_expansion_share": 0.5,
-   "X_hat": 6.919515933360753,
+   "X_hat": 6.592025758153914,
    "G_i": 0.1,
    "Delta": 0.07,
-   "ell": 0.12814314939977117,
+   "ell": 0.13019653851319132,
    "source": "market growth (input); observed spend optimal",
-   "r_sigma": 1.9036076800082258
+   "r_sigma": 1.8053606274461744
   },
   "state_sm_only": {
-   "sigma": 0.053198139452427684,
+   "sigma": 0.046320845773084096,
    "a_RD": 0.1601087962962963,
-   "X_hat": 3.1074017358298893,
+   "X_hat": 2.779911560623052,
    "G_i": 0.1,
-   "ell": 0.16878315741437494,
+   "ell": 0.17594020588248888,
    "Delta": 0.07,
    "source": "market growth (input); observed spend optimal"
   },
   "proportion": 0.1,
   "durable_share": 0.625,
   "pass_through": 0.5,
-  "pass_through_elasticity": 0.3694067173108232,
-  "margin_keep_replicable": 0.6305932826891768,
+  "pass_through_elasticity": 0.37284536415049496,
+  "margin_keep_replicable": 0.627154635849505,
   "margin_keep_own": 1.0,
   "regimes": {
    "public": {
@@ -264,19 +264,19 @@
     "r_o": 0.08929210747876185,
     "applicable": true,
     "levers": {
-     "sigma_star": 0.05475007445433508,
-     "g_star": 0.1536056797847217,
-     "growth_automation": 0.005475007445433508,
-     "growth_automation_exact": 0.00590071546365778,
-     "demand_pull": 0.018250024818111697,
-     "demand_pull_exact": 0.01863392621878801,
+     "sigma_star": 0.05600768663054835,
+     "g_star": 0.1548370051533782,
+     "growth_automation": 0.005600768663054836,
+     "growth_automation_exact": 0.006036255217519826,
+     "demand_pull": 0.018669228876849454,
+     "demand_pull_exact": 0.01906194851349663,
      "overhead": 0.020513194444444445,
      "engineering": 0.008005439814814814,
-     "cost_of_revenue_replicable": 0.009954306313069828,
+     "cost_of_revenue_replicable": 0.0099000251386834,
      "cost_of_revenue_given_demand": 0.01578562059941315,
      "retention_point": 0.03404494615384616,
      "ai_product_breakeven": 3.4044946153846154,
-     "capital_hurdle_score": 0.4036056797847217,
+     "capital_hurdle_score": 0.40483700515337817,
      "capital_hurdle_value": 0.3392921074787618,
      "acquisition_max_price": 3.9786516153846154,
      "capital_hurdle_tax_wedge": 1.0
@@ -291,43 +291,43 @@
     },
     "thresholds": {
      "overhead": {
-      "X_dagger_0": 9.156515651090375,
-      "distance_X_dagger_0": -5.17786403570576,
-      "X_dagger_exact": 8.718249319938426,
-      "distance_X_dagger_exact": -4.739597704553811,
-      "X_dagger_demand_pull": 4.268962128446957,
-      "distance_X_dagger_demand_pull": -0.2903105130623418,
-      "identified_lhs": 0.5365330237641042,
-      "identified_rhs": 1.3525410841565768,
-      "headroom_switch": 2.5208906521124868,
-      "headroom_fall_to_flip": -1.5208906521124868,
+      "X_dagger_0": 9.021159350355616,
+      "distance_X_dagger_0": -5.042507734971,
+      "X_dagger_exact": 8.589805117815834,
+      "distance_X_dagger_exact": -4.611153502431218,
+      "X_dagger_demand_pull": 4.210689668106598,
+      "distance_X_dagger_demand_pull": -0.23203805272198252,
+      "identified_lhs": 0.5657309509735807,
+      "identified_rhs": 1.403653467668324,
+      "headroom_switch": 2.4811325334997867,
+      "headroom_fall_to_flip": -1.4811325334997867,
       "screening_flip": false
      },
      "engineering": {
-      "X_dagger_0": 5.015895530023677,
-      "distance_X_dagger_0": -1.0372439146390615,
-      "X_dagger_exact": 4.789073915053949,
-      "distance_X_dagger_exact": -0.8104222996693338,
-      "X_dagger_demand_pull": 2.486377051287054,
-      "distance_X_dagger_demand_pull": 1.4922745640975612,
-      "identified_lhs": 0.5365330237641042,
-      "identified_rhs": 0.6999979948606557,
-      "headroom_switch": 1.3046689837463232,
-      "headroom_fall_to_flip": -0.30466898374632323,
+      "X_dagger_0": 4.945842841631462,
+      "distance_X_dagger_0": -0.9671912262468467,
+      "X_dagger_exact": 4.7225985340171075,
+      "distance_X_dagger_exact": -0.7439469186324921,
+      "X_dagger_demand_pull": 2.4562185549044586,
+      "distance_X_dagger_demand_pull": 1.5224330604801568,
+      "identified_lhs": 0.5657309509735807,
+      "identified_rhs": 0.7264508445299748,
+      "headroom_switch": 1.2840924529227316,
+      "headroom_fall_to_flip": -0.28409245292273155,
       "screening_flip": false
      }
     },
-    "cost_of_revenue_vs_overhead": -0.6688928106993243,
+    "cost_of_revenue_vs_overhead": -0.672331457538996,
     "screening_weight": 38.5971424413962,
     "activities_above_capital_hurdle": 167,
     "excluded": [
      {
       "lever": "growth engine (automation and demand pull)",
-      "rule": "X_o 3.98 <= X^ddagger_0 9.16 (prop:playbook-rank(b))"
+      "rule": "X_o 3.98 <= X^ddagger_0 9.02 (prop:playbook-rank(b))"
      },
      {
       "lever": "cost-of-revenue automation as a margin lever ahead of overhead",
-      "rule": "(1 - phi_e) c_h 0.100 < a_GA 0.205: a replicated cost-of-revenue cut (pass-through elasticity 0.37) raises the score less than the same share of overhead (Part I prop:levers-position(d); Paper 2 prop:playbook-rank(d))"
+      "rule": "(1 - phi_e) c_h 0.099 < a_GA 0.205: a replicated cost-of-revenue cut (pass-through elasticity 0.37) raises the score less than the same share of overhead (Part I prop:levers-position(d); Paper 2 prop:playbook-rank(d))"
      },
      {
       "lever": "acquisitions priced above 3.98 times revenue (charged in full, at this owner's weight)",
@@ -352,7 +352,7 @@
      ],
      [
       "cost_of_revenue_replicable",
-      0.009954306313069828
+      0.0099000251386834
      ],
      [
       "engineering",
@@ -360,15 +360,15 @@
      ],
      [
       "growth_automation",
-      0.005475007445433508
+      0.005600768663054836
      ]
     ],
     "reported_separately": {
-     "demand_pull": 0.018250024818111697,
-     "demand_pull_exact": 0.01863392621878801,
+     "demand_pull": 0.018669228876849454,
+     "demand_pull_exact": 0.01906194851349663,
      "retention_point": 0.03404494615384616,
      "ai_product_breakeven": 3.4044946153846154,
-     "capital_hurdle_score": 0.4036056797847217,
+     "capital_hurdle_score": 0.40483700515337817,
      "capital_hurdle_value": 0.3392921074787618
     }
    },
@@ -377,19 +377,19 @@
     "r_o": 0.07929210747876185,
     "applicable": true,
     "levers": {
-     "sigma_star": 0.07964544290245952,
-     "g_star": 0.1599851394807419,
-     "growth_automation": 0.007964544290245953,
-     "growth_automation_exact": 0.008583825706692028,
-     "demand_pull": 0.02654848096748651,
-     "demand_pull_exact": 0.02710694590826468,
+     "sigma_star": 0.08147490304059274,
+     "g_star": 0.16136300138421295,
+     "growth_automation": 0.008147490304059275,
+     "growth_automation_exact": 0.008780996648189765,
+     "demand_pull": 0.027158301013530915,
+     "demand_pull_exact": 0.027729593924252782,
      "overhead": 0.020513194444444445,
      "engineering": 0.008005439814814814,
-     "cost_of_revenue_replicable": 0.009954306313069828,
+     "cost_of_revenue_replicable": 0.0099000251386834,
      "cost_of_revenue_given_demand": 0.01578562059941315,
      "retention_point": 0.04425843000000001,
      "ai_product_breakeven": 4.425843,
-     "capital_hurdle_score": 0.4099851394807419,
+     "capital_hurdle_score": 0.41136300138421295,
      "capital_hurdle_value": 0.32929210747876186,
      "acquisition_max_price": 5.0,
      "capital_hurdle_tax_wedge": 1.0
@@ -404,43 +404,43 @@
     },
     "thresholds": {
      "overhead": {
-      "X_dagger_0": 9.156515651090375,
-      "distance_X_dagger_0": -4.156515651090375,
-      "X_dagger_exact": 8.718249319938426,
-      "distance_X_dagger_exact": -3.718249319938426,
-      "X_dagger_demand_pull": 4.268962128446957,
-      "distance_X_dagger_demand_pull": 0.7310378715530428,
-      "identified_lhs": 0.6974929308933354,
-      "identified_rhs": 1.3525410841565768,
-      "headroom_switch": 1.9391466554711438,
-      "headroom_fall_to_flip": -0.9391466554711438,
+      "X_dagger_0": 9.021159350355616,
+      "distance_X_dagger_0": -4.021159350355616,
+      "X_dagger_exact": 8.589805117815834,
+      "distance_X_dagger_exact": -3.5898051178158337,
+      "X_dagger_demand_pull": 4.210689668106598,
+      "distance_X_dagger_demand_pull": 0.789310331893402,
+      "identified_lhs": 0.735450236265655,
+      "identified_rhs": 1.403653467668324,
+      "headroom_switch": 1.9085634873075286,
+      "headroom_fall_to_flip": -0.9085634873075286,
       "screening_flip": false
      },
      "engineering": {
-      "X_dagger_0": 5.015895530023677,
-      "distance_X_dagger_0": -0.01589553002367694,
-      "X_dagger_exact": 4.789073915053949,
-      "distance_X_dagger_exact": 0.2109260849460508,
-      "X_dagger_demand_pull": 2.486377051287054,
-      "distance_X_dagger_demand_pull": 2.513622948712946,
-      "identified_lhs": 0.6974929308933354,
-      "identified_rhs": 0.6999979948606557,
-      "headroom_switch": 1.0035915259587103,
-      "headroom_fall_to_flip": -0.003591525958710262,
+      "X_dagger_0": 4.945842841631462,
+      "distance_X_dagger_0": 0.05415715836853785,
+      "X_dagger_exact": 4.7225985340171075,
+      "distance_X_dagger_exact": 0.2774014659828925,
+      "X_dagger_demand_pull": 2.4562185549044586,
+      "distance_X_dagger_demand_pull": 2.5437814450955414,
+      "identified_lhs": 0.735450236265655,
+      "identified_rhs": 0.7264508445299748,
+      "headroom_switch": 0.987763425325178,
+      "headroom_fall_to_flip": 0.012236574674821976,
       "screening_flip": false
      }
     },
-    "cost_of_revenue_vs_overhead": -0.6688928106993243,
+    "cost_of_revenue_vs_overhead": -0.672331457538996,
     "screening_weight": 38.5971424413962,
     "activities_above_capital_hurdle": 167,
     "excluded": [
      {
       "lever": "growth engine (automation and demand pull)",
-      "rule": "X_o 5.00 <= X^ddagger_0 9.16 (prop:playbook-rank(b))"
+      "rule": "X_o 5.00 <= X^ddagger_0 9.02 (prop:playbook-rank(b))"
      },
      {
       "lever": "cost-of-revenue automation as a margin lever ahead of overhead",
-      "rule": "(1 - phi_e) c_h 0.100 < a_GA 0.205: a replicated cost-of-revenue cut (pass-through elasticity 0.37) raises the score less than the same share of overhead (Part I prop:levers-position(d); Paper 2 prop:playbook-rank(d))"
+      "rule": "(1 - phi_e) c_h 0.099 < a_GA 0.205: a replicated cost-of-revenue cut (pass-through elasticity 0.37) raises the score less than the same share of overhead (Part I prop:levers-position(d); Paper 2 prop:playbook-rank(d))"
      },
      {
       "lever": "acquisitions priced above 5.00 times revenue (charged in full, at this owner's weight)",
@@ -465,46 +465,46 @@
      ],
      [
       "cost_of_revenue_replicable",
-      0.009954306313069828
+      0.0099000251386834
+     ],
+     [
+      "growth_automation",
+      0.008147490304059275
      ],
      [
       "engineering",
       0.008005439814814814
-     ],
-     [
-      "growth_automation",
-      0.007964544290245953
      ]
     ],
     "reported_separately": {
-     "demand_pull": 0.02654848096748651,
-     "demand_pull_exact": 0.02710694590826468,
+     "demand_pull": 0.027158301013530915,
+     "demand_pull_exact": 0.027729593924252782,
      "retention_point": 0.04425843000000001,
      "ai_product_breakeven": 4.425843,
-     "capital_hurdle_score": 0.4099851394807419,
+     "capital_hurdle_score": 0.41136300138421295,
      "capital_hurdle_value": 0.32929210747876186
     }
    },
    "pe": {
-    "X_o": 2.636365522814038,
+    "X_o": 2.5520330943641336,
     "r_o": 0.1988508587451652,
     "applicable": true,
     "levers": {
-     "sigma_star": 0.026751986502785843,
-     "g_star": 0.14324164474935633,
-     "growth_automation": 0.0026751986502785846,
-     "growth_automation_exact": 0.002883208141976401,
-     "demand_pull": 0.00891732883426195,
-     "demand_pull_exact": 0.009104910772581687,
+     "sigma_star": 0.025781843210024132,
+     "g_star": 0.1434503847898398,
+     "growth_automation": 0.0025781843210024133,
+     "growth_automation_exact": 0.0027786504845373483,
+     "demand_pull": 0.008593947736674712,
+     "demand_pull_exact": 0.00877472713869365,
      "overhead": 0.020513194444444445,
      "engineering": 0.008005439814814814,
-     "cost_of_revenue_replicable": 0.009954306313069828,
+     "cost_of_revenue_replicable": 0.0099000251386834,
      "cost_of_revenue_given_demand": 0.01578562059941315,
-     "retention_point": 0.02062208522814038,
-     "ai_product_breakeven": 2.062208522814038,
-     "capital_hurdle_score": 0.3932416447493563,
+     "retention_point": 0.019778760943641335,
+     "ai_product_breakeven": 1.9778760943641336,
+     "capital_hurdle_score": 0.3934503847898398,
      "capital_hurdle_value": 0.44885085874516517,
-     "acquisition_max_price": 2.636365522814038,
+     "acquisition_max_price": 2.5520330943641336,
      "capital_hurdle_tax_wedge": 1.0,
      "capital_hurdle_sponsor": 0.24206759131222208
     },
@@ -518,51 +518,51 @@
     },
     "thresholds": {
      "overhead": {
-      "X_dagger_0": 9.156515651090375,
-      "distance_X_dagger_0": -6.520150128276337,
-      "X_dagger_exact": 8.718249319938426,
-      "distance_X_dagger_exact": -6.081883797124388,
-      "X_dagger_demand_pull": 4.268962128446957,
-      "distance_X_dagger_demand_pull": -1.6325966056329193,
-      "identified_lhs": 0.32499477877791394,
-      "identified_rhs": 1.3525410841565768,
-      "headroom_switch": 4.161731733791452,
-      "headroom_fall_to_flip": -3.161731733791452,
+      "X_dagger_0": 9.021159350355616,
+      "distance_X_dagger_0": -6.4691262559914815,
+      "X_dagger_exact": 8.589805117815834,
+      "distance_X_dagger_exact": -6.0377720234517,
+      "X_dagger_demand_pull": 4.210689668106598,
+      "distance_X_dagger_demand_pull": -1.6586565737424643,
+      "identified_lhs": 0.32866720326597504,
+      "identified_rhs": 1.403653467668324,
+      "headroom_switch": 4.270743943174679,
+      "headroom_fall_to_flip": -3.270743943174679,
       "screening_flip": false
      },
      "engineering": {
-      "X_dagger_0": 5.015895530023677,
-      "distance_X_dagger_0": -2.379530007209639,
-      "X_dagger_exact": 4.789073915053949,
-      "distance_X_dagger_exact": -2.1527083922399113,
-      "X_dagger_demand_pull": 2.486377051287054,
-      "distance_X_dagger_demand_pull": 0.1499884715269837,
-      "identified_lhs": 0.32499477877791394,
-      "identified_rhs": 0.6999979948606557,
-      "headroom_switch": 2.1538745868252893,
-      "headroom_fall_to_flip": -1.1538745868252893,
+      "X_dagger_0": 4.945842841631462,
+      "distance_X_dagger_0": -2.3938097472673285,
+      "X_dagger_exact": 4.7225985340171075,
+      "distance_X_dagger_exact": -2.170565439652974,
+      "X_dagger_demand_pull": 2.4562185549044586,
+      "distance_X_dagger_demand_pull": 0.095814539459675,
+      "identified_lhs": 0.32866720326597504,
+      "identified_rhs": 0.7264508445299748,
+      "headroom_switch": 2.210293078564617,
+      "headroom_fall_to_flip": -1.210293078564617,
       "screening_flip": false
      }
     },
-    "cost_of_revenue_vs_overhead": -0.6688928106993243,
+    "cost_of_revenue_vs_overhead": -0.672331457538996,
     "screening_weight": 38.5971424413962,
     "activities_above_capital_hurdle": 167,
     "excluded": [
      {
       "lever": "growth engine (automation and demand pull)",
-      "rule": "X_o 2.64 <= X^ddagger_0 9.16 (prop:playbook-rank(b))"
+      "rule": "X_o 2.55 <= X^ddagger_0 9.02 (prop:playbook-rank(b))"
      },
      {
       "lever": "cost-of-revenue automation as a margin lever ahead of overhead",
-      "rule": "(1 - phi_e) c_h 0.100 < a_GA 0.205: a replicated cost-of-revenue cut (pass-through elasticity 0.37) raises the score less than the same share of overhead (Part I prop:levers-position(d); Paper 2 prop:playbook-rank(d))"
+      "rule": "(1 - phi_e) c_h 0.099 < a_GA 0.205: a replicated cost-of-revenue cut (pass-through elasticity 0.37) raises the score less than the same share of overhead (Part I prop:levers-position(d); Paper 2 prop:playbook-rank(d))"
      },
      {
-      "lever": "acquisitions priced above 2.64 times revenue (charged in full, at this owner's weight)",
+      "lever": "acquisitions priced above 2.55 times revenue (charged in full, at this owner's weight)",
       "rule": "charged in full, acquired growth raises R^A_X iff X_o > k^acq (prop:acquired-score(a)); the sign flips at X_o = k^acq and the level of X_o is not identified (see x_levels)",
       "conditional_on_X": true,
       "price_bounds": {
-       "X": 2.636365522814038,
-       "full_charge": 2.636365522814038,
+       "X": 2.5520330943641336,
+       "full_charge": 2.5520330943641336,
        "annuity": null,
        "user_cost": null
       }
@@ -579,7 +579,7 @@
      ],
      [
       "cost_of_revenue_replicable",
-      0.009954306313069828
+      0.0099000251386834
      ],
      [
       "engineering",
@@ -587,38 +587,38 @@
      ],
      [
       "growth_automation",
-      0.0026751986502785846
+      0.0025781843210024133
      ]
     ],
     "reported_separately": {
-     "demand_pull": 0.00891732883426195,
-     "demand_pull_exact": 0.009104910772581687,
-     "retention_point": 0.02062208522814038,
-     "ai_product_breakeven": 2.062208522814038,
-     "capital_hurdle_score": 0.3932416447493563,
+     "demand_pull": 0.008593947736674712,
+     "demand_pull_exact": 0.00877472713869365,
+     "retention_point": 0.019778760943641335,
+     "ai_product_breakeven": 1.9778760943641336,
+     "capital_hurdle_score": 0.3934503847898398,
      "capital_hurdle_value": 0.44885085874516517
     }
    },
    "vc": {
-    "X_o": 3.605193353501603,
+    "X_o": 3.4933751474436567,
     "r_o": 0.27002713721306015,
     "applicable": true,
     "levers": {
-     "sigma_star": 0.046376380203035965,
-     "g_star": 0.151001675988324,
-     "growth_automation": 0.004637638020303597,
-     "growth_automation_exact": 0.004998236560221914,
-     "demand_pull": 0.01545879340101199,
-     "demand_pull_exact": 0.01578397939382914,
+     "sigma_star": 0.044961306060237106,
+     "g_star": 0.1513394383807978,
+     "growth_automation": 0.0044961306060237105,
+     "growth_automation_exact": 0.004845726267590278,
+     "demand_pull": 0.014987102020079036,
+     "demand_pull_exact": 0.015302365671220897,
      "overhead": 0.020513194444444445,
      "engineering": 0.008005439814814814,
-     "cost_of_revenue_replicable": 0.009954306313069828,
+     "cost_of_revenue_replicable": 0.0099000251386834,
      "cost_of_revenue_given_demand": 0.01578562059941315,
-     "retention_point": 0.03031036353501603,
-     "ai_product_breakeven": 3.031036353501603,
-     "capital_hurdle_score": 0.40100167598832404,
+     "retention_point": 0.029192181474436567,
+     "ai_product_breakeven": 2.9192181474436567,
+     "capital_hurdle_score": 0.4013394383807978,
      "capital_hurdle_value": 0.5200271372130602,
-     "acquisition_max_price": 3.605193353501603,
+     "acquisition_max_price": 3.4933751474436567,
      "capital_hurdle_tax_wedge": 1.0
     },
     "durability_raises_R_inf": {
@@ -631,51 +631,51 @@
     },
     "thresholds": {
      "overhead": {
-      "X_dagger_0": 9.156515651090375,
-      "distance_X_dagger_0": -5.551322297588772,
-      "X_dagger_exact": 8.718249319938426,
-      "distance_X_dagger_exact": -5.113055966436823,
-      "X_dagger_demand_pull": 4.268962128446957,
-      "distance_X_dagger_demand_pull": -0.6637687749453542,
-      "identified_lhs": 0.4776776830646909,
-      "identified_rhs": 1.3525410841565768,
-      "headroom_switch": 2.8314931429890664,
-      "headroom_fall_to_flip": -1.8314931429890664,
+      "X_dagger_0": 9.021159350355616,
+      "distance_X_dagger_0": -5.527784202911959,
+      "X_dagger_exact": 8.589805117815834,
+      "distance_X_dagger_exact": -5.096429970372177,
+      "X_dagger_demand_pull": 4.210689668106598,
+      "distance_X_dagger_demand_pull": -0.7173145206629412,
+      "identified_lhs": 0.4850916935481952,
+      "identified_rhs": 1.403653467668324,
+      "headroom_switch": 2.8935838035100625,
+      "headroom_fall_to_flip": -1.8935838035100625,
       "screening_flip": false
      },
      "engineering": {
-      "X_dagger_0": 5.015895530023677,
-      "distance_X_dagger_0": -1.410702176522074,
-      "X_dagger_exact": 4.789073915053949,
-      "distance_X_dagger_exact": -1.1838805615523462,
-      "X_dagger_demand_pull": 2.486377051287054,
-      "distance_X_dagger_demand_pull": 1.1188163022145488,
-      "identified_lhs": 0.4776776830646909,
-      "identified_rhs": 0.6999979948606557,
-      "headroom_switch": 1.4654190883894744,
-      "headroom_fall_to_flip": -0.46541908838947443,
+      "X_dagger_0": 4.945842841631462,
+      "distance_X_dagger_0": -1.4524676941878054,
+      "X_dagger_exact": 4.7225985340171075,
+      "distance_X_dagger_exact": -1.2292233865734508,
+      "X_dagger_demand_pull": 2.4562185549044586,
+      "distance_X_dagger_demand_pull": 1.0371565925391981,
+      "identified_lhs": 0.4850916935481952,
+      "identified_rhs": 0.7264508445299748,
+      "headroom_switch": 1.4975536670528455,
+      "headroom_fall_to_flip": -0.49755366705284554,
       "screening_flip": false
      }
     },
-    "cost_of_revenue_vs_overhead": -0.6688928106993243,
+    "cost_of_revenue_vs_overhead": -0.672331457538996,
     "screening_weight": 38.5971424413962,
     "activities_above_capital_hurdle": 167,
     "excluded": [
      {
       "lever": "growth engine (automation and demand pull)",
-      "rule": "X_o 3.61 <= X^ddagger_0 9.16 (prop:playbook-rank(b))"
+      "rule": "X_o 3.49 <= X^ddagger_0 9.02 (prop:playbook-rank(b))"
      },
      {
       "lever": "cost-of-revenue automation as a margin lever ahead of overhead",
-      "rule": "(1 - phi_e) c_h 0.100 < a_GA 0.205: a replicated cost-of-revenue cut (pass-through elasticity 0.37) raises the score less than the same share of overhead (Part I prop:levers-position(d); Paper 2 prop:playbook-rank(d))"
+      "rule": "(1 - phi_e) c_h 0.099 < a_GA 0.205: a replicated cost-of-revenue cut (pass-through elasticity 0.37) raises the score less than the same share of overhead (Part I prop:levers-position(d); Paper 2 prop:playbook-rank(d))"
      },
      {
-      "lever": "acquisitions priced above 3.61 times revenue (charged in full, at this owner's weight)",
+      "lever": "acquisitions priced above 3.49 times revenue (charged in full, at this owner's weight)",
       "rule": "charged in full, acquired growth raises R^A_X iff X_o > k^acq (prop:acquired-score(a)); the sign flips at X_o = k^acq and the level of X_o is not identified (see x_levels)",
       "conditional_on_X": true,
       "price_bounds": {
-       "X": 3.605193353501603,
-       "full_charge": 3.605193353501603,
+       "X": 3.4933751474436567,
+       "full_charge": 3.4933751474436567,
        "annuity": null,
        "user_cost": null
       }
@@ -692,7 +692,7 @@
      ],
      [
       "cost_of_revenue_replicable",
-      0.009954306313069828
+      0.0099000251386834
      ],
      [
       "engineering",
@@ -700,15 +700,15 @@
      ],
      [
       "growth_automation",
-      0.004637638020303597
+      0.0044961306060237105
      ]
     ],
     "reported_separately": {
-     "demand_pull": 0.01545879340101199,
-     "demand_pull_exact": 0.01578397939382914,
-     "retention_point": 0.03031036353501603,
-     "ai_product_breakeven": 3.031036353501603,
-     "capital_hurdle_score": 0.40100167598832404,
+     "demand_pull": 0.014987102020079036,
+     "demand_pull_exact": 0.015302365671220897,
+     "retention_point": 0.029192181474436567,
+     "ai_product_breakeven": 2.9192181474436567,
+     "capital_hurdle_score": 0.4013394383807978,
      "capital_hurdle_value": 0.5200271372130602
     }
    },
@@ -717,19 +717,19 @@
     "r_o": 0.08929210747876185,
     "applicable": true,
     "levers": {
-     "sigma_star": 0.06523035336503247,
-     "g_star": 0.15649764076567813,
-     "growth_automation": 0.006523035336503247,
-     "growth_automation_exact": 0.0070302325364315355,
-     "demand_pull": 0.02174345112167749,
-     "demand_pull_exact": 0.022200839066315536,
+     "sigma_star": 0.06672869811557672,
+     "g_star": 0.15779539463473452,
+     "growth_automation": 0.006672869811557672,
+     "growth_automation_exact": 0.007191717358644878,
+     "demand_pull": 0.022242899371858908,
+     "demand_pull_exact": 0.022710793542363605,
      "overhead": 0.020513194444444445,
      "engineering": 0.008005439814814814,
-     "cost_of_revenue_replicable": 0.009954306313069828,
+     "cost_of_revenue_replicable": 0.0099000251386834,
      "cost_of_revenue_given_demand": 0.01578562059941315,
      "retention_point": 0.03848559130434783,
      "ai_product_breakeven": 3.8485591304347833,
-     "capital_hurdle_score": 0.4064976407656781,
+     "capital_hurdle_score": 0.4077953946347345,
      "capital_hurdle_value": 0.3392921074787618,
      "acquisition_max_price": 4.422716130434783,
      "capital_hurdle_tax_wedge": 1.0
@@ -744,43 +744,43 @@
     },
     "thresholds": {
      "overhead": {
-      "X_dagger_0": 9.156515651090375,
-      "distance_X_dagger_0": -4.733799520655592,
-      "X_dagger_exact": 8.718249319938426,
-      "distance_X_dagger_exact": -4.295533189503643,
-      "X_dagger_demand_pull": 4.268962128446957,
-      "distance_X_dagger_demand_pull": 0.15375400198782607,
-      "identified_lhs": 0.6065155920811612,
-      "identified_rhs": 1.3525410841565768,
-      "headroom_switch": 2.230018653791815,
-      "headroom_fall_to_flip": -1.2300186537918152,
+      "X_dagger_0": 9.021159350355616,
+      "distance_X_dagger_0": -4.598443219920832,
+      "X_dagger_exact": 8.589805117815834,
+      "distance_X_dagger_exact": -4.16708898738105,
+      "X_dagger_demand_pull": 4.210689668106598,
+      "distance_X_dagger_demand_pull": 0.21202646232818534,
+      "identified_lhs": 0.6395219445788305,
+      "identified_rhs": 1.403653467668324,
+      "headroom_switch": 2.1948480104036574,
+      "headroom_fall_to_flip": -1.1948480104036574,
       "screening_flip": false
      },
      "engineering": {
-      "X_dagger_0": 5.015895530023677,
-      "distance_X_dagger_0": -0.5931793995888937,
-      "X_dagger_exact": 4.789073915053949,
-      "distance_X_dagger_exact": -0.3663577846191659,
-      "X_dagger_demand_pull": 2.486377051287054,
-      "distance_X_dagger_demand_pull": 1.936339079147729,
-      "identified_lhs": 0.6065155920811612,
-      "identified_rhs": 0.6999979948606557,
-      "headroom_switch": 1.1541302548525167,
-      "headroom_fall_to_flip": -0.15413025485251675,
+      "X_dagger_0": 4.945842841631462,
+      "distance_X_dagger_0": -0.5231267111966789,
+      "X_dagger_exact": 4.7225985340171075,
+      "distance_X_dagger_exact": -0.2998824035823242,
+      "X_dagger_demand_pull": 2.4562185549044586,
+      "distance_X_dagger_demand_pull": 1.9664975755303247,
+      "identified_lhs": 0.6395219445788305,
+      "identified_rhs": 0.7264508445299748,
+      "headroom_switch": 1.1359279391239547,
+      "headroom_fall_to_flip": -0.13592793912395473,
       "screening_flip": false
      }
     },
-    "cost_of_revenue_vs_overhead": -0.6688928106993243,
+    "cost_of_revenue_vs_overhead": -0.672331457538996,
     "screening_weight": 38.5971424413962,
     "activities_above_capital_hurdle": 167,
     "excluded": [
      {
       "lever": "growth engine (automation and demand pull)",
-      "rule": "X_o 4.42 <= X^ddagger_0 9.16 (prop:playbook-rank(b))"
+      "rule": "X_o 4.42 <= X^ddagger_0 9.02 (prop:playbook-rank(b))"
      },
      {
       "lever": "cost-of-revenue automation as a margin lever ahead of overhead",
-      "rule": "(1 - phi_e) c_h 0.100 < a_GA 0.205: a replicated cost-of-revenue cut (pass-through elasticity 0.37) raises the score less than the same share of overhead (Part I prop:levers-position(d); Paper 2 prop:playbook-rank(d))"
+      "rule": "(1 - phi_e) c_h 0.099 < a_GA 0.205: a replicated cost-of-revenue cut (pass-through elasticity 0.37) raises the score less than the same share of overhead (Part I prop:levers-position(d); Paper 2 prop:playbook-rank(d))"
      },
      {
       "lever": "acquisitions priced above 4.42 times revenue (charged in full, at this owner's weight)",
@@ -805,7 +805,7 @@
      ],
      [
       "cost_of_revenue_replicable",
-      0.009954306313069828
+      0.0099000251386834
      ],
      [
       "engineering",
@@ -813,38 +813,38 @@
      ],
      [
       "growth_automation",
-      0.006523035336503247
+      0.006672869811557672
      ]
     ],
     "reported_separately": {
-     "demand_pull": 0.02174345112167749,
-     "demand_pull_exact": 0.022200839066315536,
+     "demand_pull": 0.022242899371858908,
+     "demand_pull_exact": 0.022710793542363605,
      "retention_point": 0.03848559130434783,
      "ai_product_breakeven": 3.8485591304347833,
-     "capital_hurdle_score": 0.4064976407656781,
+     "capital_hurdle_score": 0.4077953946347345,
      "capital_hurdle_value": 0.3392921074787618
     }
    },
    "permanent_capital": {
-    "X_o": 1.451727382152612,
+    "X_o": 1.3958796044496966,
     "r_o": 0.22314355131420976,
     "applicable": true,
     "levers": {
-     "sigma_star": 0.007893756443931199,
-     "g_star": 0.1299833745701719,
-     "growth_automation": 0.00078937564439312,
-     "growth_automation_exact": 0.0008507533766717312,
-     "demand_pull": 0.0026312521479770665,
-     "demand_pull_exact": 0.0026866022855910887,
+     "sigma_star": 0.007351082957059679,
+     "g_star": 0.12981980746808777,
+     "growth_automation": 0.0007351082957059679,
+     "growth_automation_exact": 0.0007922664820398384,
+     "demand_pull": 0.0024503609856865597,
+     "demand_pull_exact": 0.0025019059574848956,
      "overhead": 0.020513194444444445,
      "engineering": 0.008005439814814814,
-     "cost_of_revenue_replicable": 0.009954306313069828,
+     "cost_of_revenue_replicable": 0.0099000251386834,
      "cost_of_revenue_given_demand": 0.01578562059941315,
-     "retention_point": 0.008775703821526119,
-     "ai_product_breakeven": 0.877570382152612,
-     "capital_hurdle_score": 0.3799833745701719,
+     "retention_point": 0.008217226044496966,
+     "ai_product_breakeven": 0.8217226044496966,
+     "capital_hurdle_score": 0.37981980746808774,
      "capital_hurdle_value": 0.47314355131420976,
-     "acquisition_max_price": 1.451727382152612,
+     "acquisition_max_price": 1.3958796044496966,
      "capital_hurdle_tax_wedge": 1.0
     },
     "durability_raises_R_inf": {
@@ -857,51 +857,51 @@
     },
     "thresholds": {
      "overhead": {
-      "X_dagger_0": 9.156515651090375,
-      "distance_X_dagger_0": -7.704788268937763,
-      "X_dagger_exact": 8.718249319938426,
-      "distance_X_dagger_exact": -7.266521937785814,
-      "X_dagger_demand_pull": 4.268962128446957,
-      "distance_X_dagger_demand_pull": -2.8172347462943454,
-      "identified_lhs": 0.13830114125440277,
-      "identified_rhs": 1.3525410841565768,
-      "headroom_switch": 9.779681294665522,
-      "headroom_fall_to_flip": -8.779681294665522,
+      "X_dagger_0": 9.021159350355616,
+      "distance_X_dagger_0": -7.625279745905919,
+      "X_dagger_exact": 8.589805117815834,
+      "distance_X_dagger_exact": -7.193925513366137,
+      "X_dagger_demand_pull": 4.210689668106598,
+      "distance_X_dagger_demand_pull": -2.8148100636569016,
+      "identified_lhs": 0.13654711285225407,
+      "identified_rhs": 1.403653467668324,
+      "headroom_switch": 10.279627583097254,
+      "headroom_fall_to_flip": -9.279627583097254,
       "screening_flip": false
      },
      "engineering": {
-      "X_dagger_0": 5.015895530023677,
-      "distance_X_dagger_0": -3.564168147871065,
-      "X_dagger_exact": 4.789073915053949,
-      "distance_X_dagger_exact": -3.3373465329013374,
-      "X_dagger_demand_pull": 2.486377051287054,
-      "distance_X_dagger_demand_pull": -1.0346496691344422,
-      "identified_lhs": 0.13830114125440277,
-      "identified_rhs": 0.6999979948606557,
-      "headroom_switch": 5.0614043276260485,
-      "headroom_fall_to_flip": -4.0614043276260485,
+      "X_dagger_0": 4.945842841631462,
+      "distance_X_dagger_0": -3.5499632371817658,
+      "X_dagger_exact": 4.7225985340171075,
+      "distance_X_dagger_exact": -3.326718929567411,
+      "X_dagger_demand_pull": 2.4562185549044586,
+      "distance_X_dagger_demand_pull": -1.060338950454762,
+      "identified_lhs": 0.13654711285225407,
+      "identified_rhs": 0.7264508445299748,
+      "headroom_switch": 5.320147964724858,
+      "headroom_fall_to_flip": -4.320147964724858,
       "screening_flip": false
      }
     },
-    "cost_of_revenue_vs_overhead": -0.6688928106993243,
+    "cost_of_revenue_vs_overhead": -0.672331457538996,
     "screening_weight": 38.5971424413962,
     "activities_above_capital_hurdle": 167,
     "excluded": [
      {
       "lever": "growth engine (automation and demand pull)",
-      "rule": "X_o 1.45 <= X^ddagger_0 9.16 (prop:playbook-rank(b))"
+      "rule": "X_o 1.40 <= X^ddagger_0 9.02 (prop:playbook-rank(b))"
      },
      {
       "lever": "cost-of-revenue automation as a margin lever ahead of overhead",
-      "rule": "(1 - phi_e) c_h 0.100 < a_GA 0.205: a replicated cost-of-revenue cut (pass-through elasticity 0.37) raises the score less than the same share of overhead (Part I prop:levers-position(d); Paper 2 prop:playbook-rank(d))"
+      "rule": "(1 - phi_e) c_h 0.099 < a_GA 0.205: a replicated cost-of-revenue cut (pass-through elasticity 0.37) raises the score less than the same share of overhead (Part I prop:levers-position(d); Paper 2 prop:playbook-rank(d))"
      },
      {
-      "lever": "acquisitions priced above 1.45 times revenue (charged in full, at this owner's weight)",
+      "lever": "acquisitions priced above 1.40 times revenue (charged in full, at this owner's weight)",
       "rule": "charged in full, acquired growth raises R^A_X iff X_o > k^acq (prop:acquired-score(a)); the sign flips at X_o = k^acq and the level of X_o is not identified (see x_levels)",
       "conditional_on_X": true,
       "price_bounds": {
-       "X": 1.451727382152612,
-       "full_charge": 1.451727382152612,
+       "X": 1.3958796044496966,
+       "full_charge": 1.3958796044496966,
        "annuity": null,
        "user_cost": null
       }
@@ -918,7 +918,7 @@
      ],
      [
       "cost_of_revenue_replicable",
-      0.009954306313069828
+      0.0099000251386834
      ],
      [
       "engineering",
@@ -926,15 +926,15 @@
      ],
      [
       "growth_automation",
-      0.00078937564439312
+      0.0007351082957059679
      ]
     ],
     "reported_separately": {
-     "demand_pull": 0.0026312521479770665,
-     "demand_pull_exact": 0.0026866022855910887,
-     "retention_point": 0.008775703821526119,
-     "ai_product_breakeven": 0.877570382152612,
-     "capital_hurdle_score": 0.3799833745701719,
+     "demand_pull": 0.0024503609856865597,
+     "demand_pull_exact": 0.0025019059574848956,
+     "retention_point": 0.008217226044496966,
+     "ai_product_breakeven": 0.8217226044496966,
+     "capital_hurdle_score": 0.37981980746808774,
      "capital_hurdle_value": 0.47314355131420976
     }
    }
@@ -970,8 +970,8 @@
      "ranking": [
       "overhead",
       "cost_of_revenue_replicable",
-      "engineering",
-      "growth_automation"
+      "growth_automation",
+      "engineering"
      ],
      "top_lever": "overhead",
      "growth_engine_beats_overhead": false,
@@ -1003,17 +1003,17 @@
     }
    ],
    "flips": [],
-   "X_dagger_0_overhead": 9.156515651090375,
+   "X_dagger_0_overhead": 9.021159350355616,
    "k_acq": null,
    "thresholds": {
-    "growth engine above overhead (X^ddagger_0)": 9.156515651090375,
+    "growth engine above overhead (X^ddagger_0)": 9.021159350355616,
     "acquired growth raises the fully charged score (k^acq)": null,
     "AI product dilution pays (break-even weight)": 0.574157
    },
    "thresholds_outside_points": [
     {
      "rule": "growth engine above overhead (X^ddagger_0)",
-     "threshold_X": 9.156515651090375,
+     "threshold_X": 9.021159350355616,
      "side": "above the highest point"
     },
     {
@@ -1069,17 +1069,17 @@
   "product": "AI products: compare D_m/dG of each line with X_o - k (cor:prod-dilution(i))",
   "sm_basis_bounds": {
    "sm_share": 0.3037662037037037,
-   "maint_base": 0.25056806425127603,
-   "maintenance_sm": 0.25056806425127603,
+   "maint_base": 0.2574453579306196,
+   "maintenance_sm": 0.2574453579306196,
    "all": {
     "sigma": 0.38382060185185185,
     "growth_engine_ahead_of_overhead_at_revealed_weight": true,
     "ratio": 0.6449610832523597
    },
    "netted": {
-    "sigma": 0.13325253760057582,
+    "sigma": 0.12637524392123223,
     "growth_engine_ahead_of_overhead_at_revealed_weight": false,
-    "ratio": 1.3525410841565768
+    "ratio": 1.403653467668324
    },
    "none": {
     "sigma": 0.08005439814814815,
@@ -1089,7 +1089,7 @@
    "central": "netted",
    "note": "central basis: finance.sm_basis (maintenance-netted by default, Paper 1's central basis); all S&M and no S&M are the bounds"
   },
-  "check_calibration": 0.0
+  "check_calibration": -2.7755575615628914e-17
  },
  "playbook": {
   "version": "1.0",
@@ -1154,9 +1154,9 @@
   "prob_loss": 0.01,
   "processes": 24,
   "r40_cash_final_P10_P50_P90": [
-   0.1873017316575508,
-   0.24211065031553092,
-   0.28516680388375715
+   0.18730173165755085,
+   0.24211065031553097,
+   0.2851668038837572
   ],
   "r40_gaap_final_P10_P50_P90": [
    0.24990852867215907,
@@ -2655,16 +2655,16 @@
    4521854235.474363
   ],
   "r40_cash": [
-   0.015502327381939185,
-   0.2250734572022095,
-   0.3686354775626369,
-   0.4405312652932882,
-   0.4830524596654313,
+   0.01550232738193924,
+   0.22507345720220956,
+   0.368635477562637,
+   0.44053126529328823,
+   0.4830524596654314,
    0.5006079369500469,
-   0.5061795215820405,
-   0.48659616724521854,
-   0.4656199908564249,
-   0.44589784453456094
+   0.5061795215820406,
+   0.4865961672452186,
+   0.46561999085642497,
+   0.445897844534561
   ],
   "r40_gaap": [
    0.08024196460151814,
@@ -2679,16 +2679,16 @@
    0.49500278825849076
   ],
   "r40_cash_base": [
-   0.17532733777777776,
-   0.17532733777777776,
-   0.17532733777777776,
-   0.17532733777777776,
-   0.17532733777777776,
-   0.17532733777777776,
-   0.17532733777777776,
-   0.17532733777777776,
-   0.17532733777777776,
-   0.17532733777777776
+   0.17532733777777781,
+   0.17532733777777781,
+   0.17532733777777781,
+   0.17532733777777781,
+   0.17532733777777781,
+   0.17532733777777781,
+   0.17532733777777781,
+   0.17532733777777781,
+   0.17532733777777781,
+   0.17532733777777781
   ],
   "r40_gaap_base": [
    0.2379340277777778,
@@ -2707,7 +2707,7 @@
    4.9746119424431745,
    19.330813978485917,
    26.520392751551043,
-   30.772512188765354,
+   30.77251218876536,
    32.52805991722691,
    33.08521838042628,
    31.12688294674408,
@@ -2793,16 +2793,16 @@
    365380583.5875941
   ],
   "fcf_base": [
-   4602819.839999985,
-   5385299.212799981,
-   6300800.078975978,
-   7371936.092401895,
-   8625165.228110217,
-   10091443.31688895,
-   11806988.680760074,
-   13814176.756489284,
-   16162586.805092463,
-   18910226.56195818
+   4602819.840000032,
+   5385299.212800038,
+   6300800.0789760435,
+   7371936.092401971,
+   8625165.228110306,
+   10091443.316889057,
+   11806988.680760197,
+   13814176.756489428,
+   16162586.80509263,
+   18910226.561958376
   ],
   "program_costs": [
    1645136.689258583,
@@ -2867,16 +2867,16 @@
    3549657887.442303
   ],
   "r40_cash": [
-   0.16979241001673337,
-   0.16209178574697203,
-   0.1989602577272505,
-   0.22552267108388968,
-   0.2456740793037056,
-   0.2640900882718587,
-   0.2883097264263715,
-   0.2889029050658446,
-   0.28938075234499744,
-   0.2898086107630222
+   0.16979241001673342,
+   0.16209178574697208,
+   0.19896025772725057,
+   0.22552267108388974,
+   0.24567407930370566,
+   0.26409008827185876,
+   0.28830972642637154,
+   0.2889029050658447,
+   0.2893807523449975,
+   0.2898086107630223
   ],
   "r40_gaap": [
    0.23307272077890162,
@@ -2891,16 +2891,16 @@
    0.3523626384473004
   ],
   "r40_cash_base": [
-   0.17532733777777776,
-   0.17532733777777776,
-   0.17532733777777776,
-   0.17532733777777776,
-   0.17532733777777776,
-   0.17532733777777776,
-   0.17532733777777776,
-   0.17532733777777776,
-   0.17532733777777776,
-   0.17532733777777776
+   0.17532733777777781,
+   0.17532733777777781,
+   0.17532733777777781,
+   0.17532733777777781,
+   0.17532733777777781,
+   0.17532733777777781,
+   0.17532733777777781,
+   0.17532733777777781,
+   0.17532733777777781,
+   0.17532733777777781
   ],
   "r40_gaap_base": [
    0.2379340277777778,
@@ -2922,7 +2922,7 @@
    7.0346741525927845,
    8.876275049408095,
    11.298238864859373,
-   11.357556728806683,
+   11.357556728806689,
    11.405341456721969,
    11.448127298524447
   ],
@@ -3005,16 +3005,16 @@
    365380583.5875941
   ],
   "fcf_base": [
-   4602819.839999985,
-   5385299.212799981,
-   6300800.078975978,
-   7371936.092401895,
-   8625165.228110217,
-   10091443.31688895,
-   11806988.680760074,
-   13814176.756489284,
-   16162586.805092463,
-   18910226.56195818
+   4602819.840000032,
+   5385299.212800038,
+   6300800.0789760435,
+   7371936.092401971,
+   8625165.228110306,
+   10091443.316889057,
+   11806988.680760197,
+   13814176.756489428,
+   16162586.80509263,
+   18910226.561958376
   ],
   "program_costs": [
    1645136.689258583,
@@ -3120,30 +3120,30 @@
  "frontier": {
   "delta_c_h": -0.00596922697536985,
   "delta_c_c": 8.453413075317283e-07,
-  "delta_a": -0.08711796588127378,
+  "delta_a": -0.08805689445652763,
   "delta_a_GA": -0.03611035401811596,
   "delta_a_RD": -0.016798586257896587,
-  "delta_a_SM_maint": -0.03420902560526124,
+  "delta_a_SM_maint": -0.03514795418051509,
   "sm_basis": "netted",
   "delta_k": 6.68047016294742e-06,
-  "delta_sigma": 0.1805707382583667,
+  "delta_sigma": 0.18296764300209653,
   "phi": 0.5,
-  "phi_elasticity": 0.3694067173108232,
-  "C0": 0.7388134346216464,
-  "unit_cost_saving": 0.0930863475153361,
-  "price_cut": 0.04654317375766805,
+  "phi_elasticity": 0.37284536415049496,
+  "C0": 0.7456907283009899,
+  "unit_cost_saving": 0.09402527609058994,
+  "price_cut": 0.04701263804529497,
   "durable_dollar_share": 0.625,
   "pass_through_rule": "Part I round 2: rate phi on all unit-cost savings, margin at the post-cut price; dur is the dollar share",
-  "growth_saving_score_first_order": 0.014381636423811708,
-  "growth_saving_score_exact": 0.01655770757454933,
-  "growth_saving_cash": 0.024061509089336745,
-  "delta_R_rule_of_40": 0.07307845607958455,
-  "delta_R_own_weight": 0.07307845607958455,
-  "R_star_before": 0.28532692251042424,
-  "R_star_after": 0.34747360723408344,
+  "growth_saving_score_first_order": 0.014907270973161602,
+  "growth_saving_score_exact": 0.017198137766582522,
+  "growth_saving_cash": 0.023122580514082888,
+  "delta_R_rule_of_40": 0.07387285296293628,
+  "delta_R_own_weight": 0.07387285296293628,
+  "R_star_before": 0.2786002218185682,
+  "R_star_after": 0.34108184510702005,
   "v0_before": null,
   "v0_after": null,
-  "R40_cash_before": 0.17532733777777776
+  "R40_cash_before": 0.17532733777777781
  },
  "people": {
   "residual": {
@@ -10836,40 +10836,40 @@
   "prob_loss": 0.01,
   "r40_cash": {
    "P10": [
-    0.15377037414188774,
-    0.11879635366154008,
-    0.15937747122509888,
-    0.16848106760508025,
-    0.18071217118196675,
-    0.1848319705675971,
-    0.18717000402193462,
-    0.18715879947287606,
-    0.1872480861034769,
-    0.1873017316575508
+    0.1537703741418878,
+    0.11879635366154014,
+    0.15937747122509893,
+    0.1684810676050803,
+    0.1807121711819668,
+    0.18483197056759715,
+    0.18717000402193468,
+    0.18715879947287611,
+    0.18724808610347696,
+    0.18730173165755085
    ],
    "P50": [
-    0.16960318547648784,
-    0.16269078458138125,
-    0.1806273728265867,
-    0.20021151526667844,
-    0.2130335414199027,
-    0.22203784803575569,
-    0.24089328123040515,
-    0.24156312268004215,
-    0.2418901890851099,
-    0.24211065031553092
+    0.1696031854764879,
+    0.1626907845813813,
+    0.18062737282658675,
+    0.2002115152666785,
+    0.21303354141990274,
+    0.22203784803575574,
+    0.2408932812304052,
+    0.2415631226800422,
+    0.24189018908510995,
+    0.24211065031553097
    ],
    "P90": [
-    0.17255386102476866,
-    0.1772413160332771,
-    0.2065915491647555,
-    0.23387152132245898,
-    0.24782062652866182,
-    0.2583319572456759,
-    0.28230619061970175,
-    0.2837969657992379,
-    0.2845436242707249,
-    0.28516680388375715
+    0.17255386102476872,
+    0.17724131603327717,
+    0.20659154916475556,
+    0.23387152132245903,
+    0.24782062652866188,
+    0.258331957245676,
+    0.2823061906197018,
+    0.28379696579923797,
+    0.28454362427072494,
+    0.2851668038837572
    ]
   },
   "r40_gaap": {
@@ -10941,7 +10941,7 @@
    "std_error": 9212042.298748918,
    "relative_change": 0.07880555032145144
   },
-  "seconds": 6.709944248199463,
+  "seconds": 4.199182510375977,
   "param_uncertainty": true,
   "parameters_drawn": 403,
   "robustness": [
@@ -13132,7 +13132,7 @@
     92
    ]
   },
-  "seconds": 1.0717930009999996,
+  "seconds": 0.7265724889999996,
   "multi_start_improvements": 1
  },
  "regimes": {
@@ -13149,7 +13149,7 @@
    "growth_weight": {
     "X_going_concern": null,
     "unbounded_at_small_share": true,
-    "m_hat": 0.17877086537835357,
+    "m_hat": 0.17189357169901004,
     "m_hat_basis": "m0 - k G (prop:dynamic(a))",
     "X_myopic": 3.9786516153846154,
     "X_o": 3.9786516153846154
@@ -13252,7 +13252,7 @@
    "growth_weight": {
     "X_going_concern": null,
     "unbounded_at_small_share": true,
-    "m_hat": 0.17877086537835357,
+    "m_hat": 0.17189357169901004,
     "m_hat_basis": "m0 - k G (prop:dynamic(a))",
     "X_o": 5.0
    },
@@ -13293,13 +13293,13 @@
    "first_year_launches": 2,
    "annual_rate": 0.22,
    "growth_weight": {
-    "X_going_concern": 2.296861858917047,
+    "X_going_concern": 2.1980993439878485,
     "unbounded_at_small_share": false,
-    "m_hat": 0.17877086537835357,
+    "m_hat": 0.17189357169901004,
     "m_hat_basis": "m0 - k G (prop:dynamic(a))",
-    "X_exit_at_entry": 2.636365522814038,
-    "X_exit_at_entry_at_m_cash": 1.851373575217903,
-    "X_o": 2.636365522814038
+    "X_exit_at_entry": 2.5520330943641336,
+    "X_exit_at_entry_at_m_cash": 1.7981672443181536,
+    "X_o": 2.5520330943641336
    },
    "dip_budget": {
     "applicable": true,
@@ -13508,10 +13508,10 @@
     "note": "entry multiple equals the exit multiple (no multiple expansion) unless the firm supplies both",
     "without_plan_hx0.5": {
      "entry_equity": 807529800.0000001,
-     "exit_equity": 2047755012.6056218,
-     "net_debt_exit": 682040112.1640905,
-     "moic": 2.5358259380714143,
-     "gross_irr": 0.1677590453120419,
+     "exit_equity": 2047755012.6056223,
+     "net_debt_exit": 682040112.16409,
+     "moic": 2.5358259380714148,
+     "gross_irr": 0.1677590453120421,
      "lp_multiple": 2.2286607504571316,
      "net_multiple": 1.9898756700510103,
      "net_irr": 0.1215130299532643,
@@ -13519,21 +13519,21 @@
     },
     "with_plan_hx0.5": {
      "entry_equity": 807529800.0000001,
-     "exit_equity": 3492382204.017407,
-     "net_debt_exit": 237228341.90925515,
-     "moic": 4.3247719205129105,
+     "exit_equity": 3492382204.0174074,
+     "net_debt_exit": 237228341.90925467,
+     "moic": 4.324771920512911,
      "gross_irr": 0.27642078662407865,
-     "lp_multiple": 3.6598175364103285,
-     "net_multiple": 3.267694228937793,
-     "net_irr": 0.21816720058975103,
+     "lp_multiple": 3.6598175364103294,
+     "net_multiple": 3.2676942289377937,
+     "net_irr": 0.21816720058975125,
      "h_x": 0.5
     },
     "without_plan_hx1": {
      "entry_equity": 807529800.0000001,
-     "exit_equity": 2047755012.6056218,
-     "net_debt_exit": 682040112.1640905,
-     "moic": 2.5358259380714143,
-     "gross_irr": 0.1677590453120419,
+     "exit_equity": 2047755012.6056223,
+     "net_debt_exit": 682040112.16409,
+     "moic": 2.5358259380714148,
+     "gross_irr": 0.1677590453120421,
      "lp_multiple": 2.2286607504571316,
      "net_multiple": 1.9898756700510103,
      "net_irr": 0.1215130299532643,
@@ -13542,7 +13542,7 @@
     "with_plan_hx1": {
      "entry_equity": 807529800.0000001,
      "exit_equity": 4492197625.174356,
-     "net_debt_exit": 237228341.90925515,
+     "net_debt_exit": 237228341.90925467,
      "moic": 5.562887741324662,
      "gross_irr": 0.3311184897604367,
      "lp_multiple": 4.650310193059729,
@@ -13550,7 +13550,7 @@
      "net_irr": 0.26778025438950936,
      "h_x": 1.0
     },
-    "max_leverage_with_plan": 5.547156404346372,
+    "max_leverage_with_plan": 5.547156404346371,
     "covenant": 7.0,
     "covenant_breach": false
    },
@@ -13565,17 +13565,17 @@
    "horizon": 7,
    "terminal": "ebitda_multiple",
    "dip_gaap_points": -1.2394677832120142,
-   "final_uplift_cash_points": 10.413545020932723,
+   "final_uplift_cash_points": 10.413545020932718,
    "first_year_launches": 2,
    "annual_rate": 0.30999999999999994,
    "growth_weight": {
-    "X_going_concern": 1.1041295763964913,
+    "X_going_concern": 1.0583663637451846,
     "unbounded_at_small_share": false,
-    "m_hat": 0.17877086537835357,
+    "m_hat": 0.17189357169901004,
     "m_hat_basis": "m0 - k G (prop:dynamic(a))",
-    "X_exit_at_entry": 3.605193353501603,
-    "X_exit_at_entry_at_m_cash": 2.89537524610371,
-    "X_o": 3.605193353501603
+    "X_exit_at_entry": 3.4933751474436567,
+    "X_exit_at_entry_at_m_cash": 2.8117023830921357,
+    "X_o": 3.4933751474436567
    },
    "dip_budget": {
     "applicable": true,
@@ -13616,7 +13616,7 @@
    "growth_weight": {
     "X_going_concern": null,
     "unbounded_at_small_share": true,
-    "m_hat": 0.17877086537835357,
+    "m_hat": 0.17189357169901004,
     "m_hat_basis": "m0 - k G (prop:dynamic(a))",
     "X_myopic": 4.422716130434783,
     "X_o": 4.422716130434783
@@ -13718,13 +13718,13 @@
    "first_year_launches": 2,
    "annual_rate": 0.25,
    "growth_weight": {
-    "X_going_concern": 1.6524784190607595,
+    "X_going_concern": 1.5824609371811036,
     "unbounded_at_small_share": false,
-    "m_hat": 0.17877086537835357,
+    "m_hat": 0.17189357169901004,
     "m_hat_basis": "m0 - k G (prop:dynamic(a))",
-    "X_permanent_capital": 1.451727382152612,
-    "X_permanent_capital_at_m_cash": 0.043261199802372675,
-    "X_o": 1.451727382152612
+    "X_permanent_capital": 1.3958796044496966,
+    "X_permanent_capital_at_m_cash": 0.043261199802373126,
+    "X_o": 1.3958796044496966
    },
    "dip_budget": {
     "applicable": true,
@@ -13766,50 +13766,50 @@
     "repayment_years": 5.0,
     "covenant": 4.0,
     "without_plan": {
-     "method_irr": -0.37964646706728084,
-     "method_irr_annual": -0.31589678051664327,
-     "permanent_irr": 0.029079016365555627,
-     "levered_irr": -0.390085168974595,
-     "levered_irr_annual": -0.3230007872860464,
+     "method_irr": -0.37964646706727867,
+     "method_irr_annual": -0.3158967805166418,
+     "permanent_irr": 0.02907901636555572,
+     "levered_irr": -0.39008516897459283,
+     "levered_irr_annual": -0.323000787286045,
      "clears_unlevered": false,
      "clears_levered": false,
-     "P_max": 93567233.6831039,
-     "P_max_over_price": 0.056931039476459826,
-     "P_max_ebitda_multiple": 1.0520856095249778,
-     "V_tv": 172597821.8181457,
-     "P_max_share_of_V_tv": 0.5421113238711042,
+     "P_max": 93567233.68310489,
+     "P_max_over_price": 0.05693103947646042,
+     "P_max_ebitda_multiple": 1.0520856095249886,
+     "V_tv": 172597821.81814748,
+     "P_max_share_of_V_tv": 0.5421113238711043,
      "bound_share": 0.5120888063007069,
-     "ND_0": 25152654.55277954,
-     "ND_rep": 25152654.55277954,
+     "ND_0": 25152654.552779805,
+     "ND_rep": 25152654.552779805,
      "debt_binding": "repayment",
-     "entry_leverage": 0.2828206505063196,
+     "entry_leverage": 0.2828206505063226,
      "covenant_breach_at_entry": false
     },
     "with_plan": {
-     "method_irr": 0.23925728638924065,
-     "method_irr_annual": 0.27030532681346375,
-     "permanent_irr": 0.13500261687302045,
-     "levered_irr": 0.24924542104263478,
-     "levered_irr_annual": 0.28305688359089004,
+     "method_irr": 0.2392572863892407,
+     "method_irr_annual": 0.2703053268134638,
+     "permanent_irr": 0.13500261687302048,
+     "levered_irr": 0.2492454210426349,
+     "levered_irr_annual": 0.2830568835908902,
      "clears_unlevered": true,
      "clears_levered": false,
-     "P_max": 1779702257.7805736,
-     "P_max_over_price": 1.0828609065990442,
-     "P_max_ebitda_multiple": 20.01126955395034,
-     "V_tv": 3449910617.077359,
+     "P_max": 1779702257.7805743,
+     "P_max_over_price": 1.0828609065990447,
+     "P_max_ebitda_multiple": 20.011269553950346,
+     "V_tv": 3449910617.0773606,
      "P_max_share_of_V_tv": 0.515869092077601,
      "bound_share": 0.5120888063007069,
-     "ND_0": 170388501.90660715,
-     "ND_rep": 170388501.90660715,
+     "ND_0": 170388501.90660742,
+     "ND_rep": 170388501.90660742,
      "debt_binding": "repayment",
-     "entry_leverage": 1.915876785366921,
+     "entry_leverage": 1.915876785366924,
      "covenant_breach_at_entry": false
     },
     "program_uplift_needed": {
      "sufficient": 1.5386221764758101,
      "necessary": 0.3
     },
-    "program_uplift": 18.98814689974645
+    "program_uplift": 18.98814689974625
    }
   }
  },
@@ -13834,8 +13834,8 @@
   "hybrids": {
    "dual_class_myopia": 0.15,
    "minority_weight_examples": {
-    "omega_0.25": 3.643080092241971,
-    "omega_0.5": 3.3075085690993267
+    "omega_0.25": 3.621996985129495,
+    "omega_0.5": 3.2653423548743747
    }
   },
   "process_ranks": [
@@ -14292,7 +14292,7 @@
     "g_org": 0.1,
     "basis": "Part I's zero-spend growth G, since no NRR or reported organic growth was supplied"
    },
-   "m": 0.00532733777777776,
+   "m": 0.005327337777777816,
    "k_acq": null,
    "nd": -0.15,
    "nd_basis": "balance sheet (tier0 net_debt)",
@@ -14336,14 +14336,14 @@
     "a": 0.0,
     "delta_s": null,
     "L_ch": null,
-    "net_value_per_price": 0.08286090659904422,
+    "net_value_per_price": 0.08286090659904466,
     "unit": "net value V - P and L^ch per dollar of price",
     "fdi": {
      "on": false,
      "p_fdi": 0.0,
      "T_fdi": 0.0,
      "multiplier": 1.0,
-     "net_value_after": 0.08286090659904422
+     "net_value_after": 0.08286090659904466
     }
    },
    "consumer_law": {
@@ -16304,7 +16304,7 @@
     "five-year net value of the recommended plan after one-time costs"
    ],
    "parameters_screened": 179,
-   "seconds": 11.859534729
+   "seconds": 8.199205853000002
   }
  },
  "breakpoints": [
@@ -18415,7 +18415,7 @@
     "origin": "defaults.yaml",
     "flag": "",
     "section": "Part I Cor ceiling; spec 22 (params commit 29 Oct 2026)",
-    "note": "Part I's compute share at full automation, by calendar year (linear between knots, flat outside); used only for the full-automation ceiling report (security.ceiling_terms), not for the plan's own compute costs, which are built bottom-up from prices.*",
+    "note": "Part I's compute share at full automation, by calendar year (linear between knots, flat outside). The range [0.01, 0.30] is the envelope of the scenario-path ranges by horizon in params.yaml, used for the tornado; it is not Paper 1's credible range for the 2025-price share, which since round 2 runs from 1% to the value-test cap of 60% (s_L); used only for the full-automation ceiling report (security.ceiling_terms), not for the plan's own compute costs, which are built bottom-up from prices.*",
     "limit": false,
     "affects": "valuation and the Part I mapping",
     "rank_correlation_with_value": null,
@@ -26784,14 +26784,14 @@
    },
    {
     "key": "finance.sm_maint_base",
-    "value": 0.25056806425127603,
+    "value": 0.2574453579306196,
     "range": [
-     0.232622,
-     0.275722
+     0.238214,
+     0.279064
     ],
     "status": "sourced",
     "grounding": "c",
-    "source": "Paper 1 maintenance base (round 2, author decision 4; macro MaintBase 25.1): median lagged S&M share of revenue of core firm-years growing at or below market, E1, 2023-25 audited v3 sample (notes/empirics_v3.json spend_maint_base, 90% firm-cluster bootstrap interval as range)",
+    "source": "Paper 1 maintenance base (round 2, author decision 4; macro MaintBase 25.7): median lagged S&M share of revenue of core firm-years growing at or below market, E1, 2023-25 audited v3 sample (notes/empirics_v3.json spend_maint_base, 90% firm-cluster bootstrap interval as range; re-estimation of 3 Nov 2026, commit cff6848, which moved it from 0.2506 [0.2326, 0.2757]; code/verify_part2_playbook.py C4 keeps this value equal to the file)",
     "origin": "defaults.yaml",
     "flag": "",
     "section": "Part I decisions 4 and 7 (S&M basis); spec 2.2",
@@ -26819,14 +26819,14 @@
    },
    {
     "key": "finance.spend_ratio_netted",
-    "value": 0.9875436841017979,
+    "value": 0.9426070001882574,
     "range": [
-     0.670456,
-     1.140252
+     0.696142,
+     1.149685
     ],
     "status": "sourced",
     "grounding": "c",
-    "source": "Paper 1 empirics (notes/empirics_v3.json spend_maint_ratio, E1, 2023-25): median of (S&M share - maintenance base)/(g - G) over firm-years growing above market, 90% firm-cluster bootstrap interval as range; the netted counterpart of finance.spend_ratio",
+    "source": "Paper 1 empirics (notes/empirics_v3.json spend_maint_ratio, E1, 2023-25; macro AlphaNet 0.94): median of (S&M share - maintenance base)/(g - G) over firm-years growing above market, 90% firm-cluster bootstrap interval as range; the netted counterpart of finance.spend_ratio (re-estimation of 3 Nov 2026, commit cff6848, which moved it from 0.9875 [0.6705, 1.1403]; code/verify_part2_playbook.py C4 keeps this value equal to the file)",
     "origin": "defaults.yaml",
     "flag": "",
     "section": "ass:playbook-calib, lem:playbook-calib (calibration of the position on the netted basis when no EV multiple or market growth is given)",
@@ -26886,7 +26886,7 @@
     "origin": "defaults.yaml",
     "flag": "",
     "section": "Part I Cor ceiling; spec 22 (params commit 29 Oct 2026)",
-    "note": "Part I's compute share at full automation, by calendar year (linear between knots, flat outside); used only for the full-automation ceiling report (security.ceiling_terms), not for the plan's own compute costs, which are built bottom-up from prices.*",
+    "note": "Part I's compute share at full automation, by calendar year (linear between knots, flat outside). The range [0.01, 0.30] is the envelope of the scenario-path ranges by horizon in params.yaml, used for the tornado; it is not Paper 1's credible range for the 2025-price share, which since round 2 runs from 1% to the value-test cap of 60% (s_L); used only for the full-automation ceiling report (security.ceiling_terms), not for the plan's own compute costs, which are built bottom-up from prices.*",
     "limit": false,
     "affects": "valuation and the Part I mapping"
    },

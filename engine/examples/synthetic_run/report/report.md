@@ -26,7 +26,7 @@ Top recommendations:
 
 Share of spend that is technically feasible, permissible, preferred and economical to move to AI modes: today 86%, 86%, 80%, 76%; in plan year 3 at the best readiness 95%, 95%, 86%, 84%. The economical universe is worth $306.2M a year in plan year 3 (ext prop:ext-universe; planning case).
 
-Part I frontier shift at the end of the plan (planning case, first order, core prop:tasks-aggregate): change in cost-of-revenue labor -0.60% of revenue, compute 0.00%, other operating cost -8.71% (G&A -3.61%, maintenance R&D -1.68%, maintenance S&M -3.42%), capital intensity 0.00%, growth-spend saving 18.1% (worth 1.66 points of score at the firm's weight, exact, against 2.41% of revenue in cash); industry pass-through rate 50% on every unit-cost saving the rivals make, margins at the post-cut price (Part I round 2: elasticity 0.37 at today's unit cost of 74% of price; the firm's dollar share of a replicated saving, 62%, cor:ext-game-engine(a), values the plan in dollars and does not enter the score). Change in the Rule-of-40 score R*: 7.3 points; at the firm's own growth weight: 7.3 points. R* moves from 28.5% to 34.7%.
+Part I frontier shift at the end of the plan (planning case, first order, core prop:tasks-aggregate): change in cost-of-revenue labor -0.60% of revenue, compute 0.00%, other operating cost -8.81% (G&A -3.61%, maintenance R&D -1.68%, maintenance S&M -3.51%), capital intensity 0.00%, growth-spend saving 18.3% (worth 1.72 points of score at the firm's weight, exact, against 2.31% of revenue in cash); industry pass-through rate 50% on every unit-cost saving the rivals make, margins at the post-cut price (Part I round 2: elasticity 0.37 at today's unit cost of 75% of price; the firm's dollar share of a replicated saving, 62%, cor:ext-game-engine(a), values the plan in dollars and does not enter the score). Change in the Rule-of-40 score R*: 7.4 points; at the firm's own growth weight: 7.4 points. R* moves from 27.9% to 34.1%.
 
 Full-automation ceiling with run costs (spec 22): maintenance 0.02%, security 0.01%, ancillary 0.03% and the error floor 0.64% of revenue; accountability floor a_min 3.00% (prop:acct-amin for financial-reporting processes). Ceiling R_max 76.7% without and 76.1% with these terms, at the firm's current compute share. At Part I's compute share at full automation for 2036 (5.0% of revenue, a scenario path) the ceiling is 77.6% without and 77.1% with these terms.
 Without people the error floor is evaluated at the review that remains (prop:tasks-cerr(c); Part I lem:fullcost(c)): 0.64% of revenue with no review, the ceiling's convention because the measured catch rates are human reviewers', and 0.43% with one AI review layer on another provider that shares the producing model's errors with probability 0.30 (a scenario value: P(the second model also errs) is not measured; only the agreement given a joint error, 0.60, is). The expected common-mode cost of provider events adds 0.12% (2.00 events a year after change controls; ext notes 4.8). With both, the ceiling without people is 76.0% at the current compute share and 77.0% at Part I's.
@@ -34,18 +34,18 @@ Accountability floor as an ICFR constraint (prop:acct-amin, def:acct-admissible;
 
 ### Levers by position and setup
 
-Position (lem:playbook-calib, market growth (input); observed spend optimal): growth 17.0%, growth spend 13.3% (netted S&M basis; maintenance S&M 25.1%), G&A 20.5%, maintenance R&D 8.0%, cost-of-revenue labor 15.8%; calibrated weight X_hat 6.9, zero-spend growth G_i 10.0%, demand pull ell 0.128. Each lever is valued at a common 10% change in its line (prop:playbook-rank(a)), in points of the owner's score:
+Position (lem:playbook-calib, market growth (input); observed spend optimal): growth 17.0%, growth spend 12.6% (netted S&M basis; maintenance S&M 25.7%), G&A 20.5%, maintenance R&D 8.0%, cost-of-revenue labor 15.8%; calibrated weight X_hat 6.6, zero-spend growth G_i 10.0%, demand pull ell 0.130. Each lever is valued at a common 10% change in its line (prop:playbook-rank(a)), in points of the owner's score:
 
 | regime | X_o | growth engine | demand pull | G&A | maintenance R&D | cost of revenue | 1 point of retention (other scale) | X_dagger_0 vs G&A (distance) | levers excluded |
 |---|---|---|---|---|---|---|---|---|---|
-| public | 3.98 | 0.59 | 1.86 | 2.05 | 0.80 | 1.00 | 3.40 | 9.16 (-5.18) | 4 |
-| private family | 5.00 | 0.86 | 2.71 | 2.05 | 0.80 | 1.00 | 4.43 | 9.16 (-4.16) | 4 |
-| pe | 2.64 | 0.29 | 0.91 | 2.05 | 0.80 | 1.00 | 2.06 | 9.16 (-6.52) | 4 |
-| vc | 3.61 | 0.50 | 1.58 | 2.05 | 0.80 | 1.00 | 3.03 | 9.16 (-5.55) | 4 |
-| hybrid | 4.42 | 0.70 | 2.22 | 2.05 | 0.80 | 1.00 | 3.85 | 9.16 (-4.73) | 4 |
-| permanent capital | 1.45 | 0.09 | 0.27 | 2.05 | 0.80 | 1.00 | 0.88 | 9.16 (-7.70) | 4 |
+| public | 3.98 | 0.60 | 1.91 | 2.05 | 0.80 | 0.99 | 3.40 | 9.02 (-5.04) | 4 |
+| private family | 5.00 | 0.88 | 2.77 | 2.05 | 0.80 | 0.99 | 4.43 | 9.02 (-4.02) | 4 |
+| pe | 2.55 | 0.28 | 0.88 | 2.05 | 0.80 | 0.99 | 1.98 | 9.02 (-6.47) | 4 |
+| vc | 3.49 | 0.48 | 1.53 | 2.05 | 0.80 | 0.99 | 2.92 | 9.02 (-5.53) | 4 |
+| hybrid | 4.42 | 0.72 | 2.27 | 2.05 | 0.80 | 0.99 | 3.85 | 9.02 (-4.60) | 4 |
+| permanent capital | 1.40 | 0.08 | 0.25 | 2.05 | 0.80 | 0.99 | 0.82 | 9.02 (-7.63) | 4 |
 
-Growth-spend basis (Paper 1, author decisions 4 and 7): netted is central. On the maintenance-netted basis only S&M above a maintenance base of 25.1% buys growth: growth spend is 13.3% of revenue and the maintenance share of S&M, 25.1%, is a cost line like overhead. At the weight the firm's own spending reveals the growth engine is not ahead of G&A on that basis; on the bounds it is ahead of G&A if all S&M buys growth (38.4%) and not ahead of it if none does.
+Growth-spend basis (Paper 1, author decisions 4 and 7): netted is central. On the maintenance-netted basis only S&M above a maintenance base of 25.7% buys growth: growth spend is 12.6% of revenue and the maintenance share of S&M, 25.7%, is a cost line like overhead. At the weight the firm's own spending reveals the growth engine is not ahead of G&A on that basis; on the bounds it is ahead of G&A if all S&M buys growth (38.4%) and not ahead of it if none does.
 
 Binding constraint. Position: S&M, the line with the largest gap to the top decile of operating margin among firms growing 10% to 20% (Paper 1 Table tab:gap). Setup: decision bandwidth is the scarcest capacity in the first plan year (118% used), and reliability: detection is the gate that binds automation across the most in-house hours.
 
@@ -61,7 +61,7 @@ The weight on growth is not identified by the data (Paper 1 decision D-1), so re
 | 5.0 | overhead | no | 5.00 / n/a / n/a |
 | 9.0 | overhead | no | 9.00 / n/a / n/a |
 
-No recommendation in this table changes sign between the points. Outside the points: growth engine above overhead (X^ddagger_0) flips at X = 9.16, above the highest point; AI product dilution pays (break-even weight) flips at X = 0.57, below the lowest point. Ratio tests against the revealed spend weight ((X_o - k)/(X_hat - k)) do not depend on the level.
+No recommendation in this table changes sign between the points. Outside the points: growth engine above overhead (X^ddagger_0) flips at X = 9.02, above the highest point; AI product dilution pays (break-even weight) flips at X = 0.57, below the lowest point. Ratio tests against the revealed spend weight ((X_o - k)/(X_hat - k)) do not depend on the level.
 
 ## 3. Product strategy
 
@@ -294,9 +294,9 @@ Each regime values the same candidate plans with its own rate (continuous), hori
 | public | 9.3% | going concern | $2.1B | 24 | 3 | -1.1 | 4.0 |
 | private family | 8.3% | going concern | $2.7B | 24 | 3 | -1.0 | 5.0 |
 | pe | 22.0% | 6 years | $621.4M | 19 | 2 | -1.3 | 2.6 |
-| vc | 31.0% | 7 years | $1.0B | 22 | 2 | -1.2 | 3.6 |
+| vc | 31.0% | 7 years | $1.0B | 22 | 2 | -1.2 | 3.5 |
 | hybrid | 9.3% | going concern | $2.0B | 22 | 2 | -1.3 | 4.4 |
-| permanent capital | 25.0% | going concern | $382.2M | 24 | 2 | -1.0 | 1.5 |
+| permanent capital | 25.0% | going concern | $382.2M | 24 | 2 | -1.0 | 1.4 |
 
 PE at h_x = 0.5 (share of seasoned run-rate the buyer capitalizes): MOIC 2.54 without the plan and 4.32 with it; gross IRR 16.8% and 27.6%; net IRR to LPs 12.2% and 21.8%.
 PE at h_x = 1 (share of seasoned run-rate the buyer capitalizes): MOIC 2.54 without the plan and 5.56 with it; gross IRR 16.8% and 33.1%; net IRR to LPs 12.2% and 26.8%.

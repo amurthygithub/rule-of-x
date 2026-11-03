@@ -59,6 +59,49 @@ main sample; it should be noted with the rerun. A dry run on the rebuilt panel (
 cash results will change; `check_text_claims` stops the script and names any sentence of the draft that the new results
 no longer support.
 
+## Rerun on the re-estimated sample (3 Nov, after commit 805e1e0)
+
+The lead re-estimated the paper with rule R2 applied to the main sample by the pre-set rule (E1: 1,732 firm-years of 284
+firms, against 1,788 of 292), capitalized software corrected from the filings, and the two independent R2 readings as
+sensitivities (variants E1r2both, E1r2either and their E2 versions). The design of design.md was kept: the same claims,
+tests, choices and options, except where the sample rule itself changed.
+
+- Choice C (rule R2) follows the panel by the rule written in the script (`R2_LEVELS`): the classifier's firms are now
+  outside the main sample, so that option drops out, and the paper's two reader sensitivities enter. Options: main
+  sample (R2 applied) / without all 16 named firms / without the firms both readers class as not software / without the
+  firms either reader so classes. The grid has 960 samples (was 720) and 155,328 specifications (was 116,496); the
+  forward-paired grid 138,240.
+- Reproduction check: 1,009 stored statistics of the re-estimated `notes/empirics_v3.json` at 23 published variants
+  (E1r2named and E2r2named, now equal to E1 and E2, leave the grid; the four reader variants enter), largest absolute
+  difference 0; 48 printed macros of the regenerated `paper1/macros.tex`.
+- Bootstrap: B = 199 as before; the timing rule gave K = 206 samples (33 ms per draw). Runtime 515 s (grid 46 s).
+- The C7 test stays the pre-registered 2.95 <= ratio < 3.55 ("3.0 to 3.5"), although the paper's four-view range is now
+  printed as 3.1 to 3.5.
+- Seven statements of the draft section no longer held on the new results (window -> R2 as the most influential choice
+  of the slope; GAAP steepening negative in 91.9%, not above 95%; netted anchor positive in 99.7%, not all; the E2 cash
+  difference no longer changes sign when one firm is removed, the M = 4 one does; under E1 the literal pairing turns
+  the cash difference positive; Pi_lb interval above zero in 99.2%, not all; the GAAP decline's interval at the paper's
+  definition below zero in 62.6% of the bootstrapped samples, not all). The sentences and their checks were revised
+  (16:00-16:10 UTC); all 36 checks pass. Outputs were then rewritten from this run's results (`SC_FROM_CACHE=1`).
+
+Results, old sample -> new sample (share of specifications holding; interval share on the bootstrapped subset):
+
+| Claim | Point, old | Point, new | Interval, old | Interval, new | Median, old -> new | Most influential, new |
+|---|---|---|---|---|---|---|
+| C1 P95 decline, GAAP | 97.1% | 94.3% | 40.7% | 29.0% | -6.0 -> -4.9 | upper quantile |
+| C2 P95 decline, cash | 100% | 100% | 48.9% | 42.2% | -7.3 -> -7.2 | end period |
+| C3 Psi GAAP > -1 / < 0 / > -0.5 | 100 / 100 / 84.6% | 100 / 100 / 65.5% | 100 / 96.6% | 100 / 96.1% | -0.39 -> -0.43 | rule R2 (was window) |
+| C4 Psi cash > -1 / < 0 / > -0.5 | 100 / 100 / 96.3% | 100 / 100 / 87.9% | 100 / 99.4% | 100 / 99.2% | -0.32 -> -0.37 | rule R2 (was window) |
+| C5 GAAP steepening | 96.8% | 91.9% | 31.9% | 18.4% | -0.26 -> -0.24 | frontier estimator |
+| C6 cash no steepening | 58.2% | 74.4% | 97.5% | 99.0% | +0.05 -> +0.12 | acquired growth |
+| C7 spend ratio in 3.0-3.5 | 73.1% | 32.5% | - | - | 3.41 -> 3.65 | acquired growth |
+| C8a anchor Pi_lb > 0 | 100% | 100% | 100% | 99.2% | +17.2 -> +16.4 | cut-off |
+| C8b anchor Pi_net > 0 | 100% | 99.7% | 60.9% | 38.4% | +12.3 -> +9.8 | cut-off |
+
+At the paper's definition of the decline, the fall across the sample choices runs from 6.3 to 12.9 points (GAAP) and 6.8
+to 12.7 (cash), against 6.9 to 12.8 and 6.6 to 12.8 before; its interval excludes zero in 62.6% (GAAP, was 100%) and
+56.3% (cash, was 55.0%) of the bootstrapped samples.
+
 ## Reading of the forward-pairing request
 
 The request describes the forward pairing as "growth of year t paired with the margin of year t+1"; reviewer GLM-M9 and
