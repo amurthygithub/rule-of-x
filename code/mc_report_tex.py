@@ -19,7 +19,7 @@ Shares of draws assume uniform laws over the stated ranges, an assumption, and a
 
 Run from anywhere:  python3 code/mc_report_tex.py
 """
-import json
+import json, re
 import math
 import os
 
@@ -97,6 +97,16 @@ def row_values(tid):
     return t['holds_everywhere'], q['central'], q['min'], q['max']
 
 
+# round 3 audit (F1): the box moves the compute share through the drivers of its path (compute per dollar of labor
+# replaced at 2025 prices, kappa_2025, and the labor share automated, s_L), not over the 2-60% scenario range of
+# Section 7.2; the note, S9 and the figure say so, with the range this gives
+_DIM = {d_['name']: d_ for d_ in J['dims']}
+_CC = QUANT['c_c_2025']
+assert abs(_CC['min'] - _DIM['kappa_2025']['lo'] * _DIM['s_L']['lo']) < 1e-9
+assert abs(_CC['max'] - _DIM['kappa_2025']['hi'] * _DIM['s_L']['hi']) < 1e-9
+CC_BOX_LO, CC_BOX_HI = fnum(100 * _CC['min'], 1), fnum(100 * _CC['max'], 0)
+_PM = dict(re.findall(r'\\newcommand\{\\(\w+)\}\{([^}]*)\}', open(os.path.join(BASE, 'paper1', 'macros.tex')).read()))
+CC_SCEN_LO, CC_SCEN_HI = _PM['CcLo'], _PM['CcHi']     # the scenario range of Section 7.2, as the paper prints it
 lines = []
 for tid, claim, cond, kind in ROWS:
     ok, cen, lo, hi = row_values(tid)
@@ -104,7 +114,7 @@ for tid, claim, cond, kind in ROWS:
 n_hold = sum(row_values(tid)[0] for tid, *_ in ROWS)
 dsg = J['design']
 tab = (r"""\begin{table}[t]\centering\footnotesize\setlength{\tabcolsep}{3pt}
-\caption{Joint-parameter stress test of the headline claims: does each hold at every evaluated point of the box of the paper's stated ranges?}\label{tab:stress}
+\caption{Joint-parameter stress test of the headline claims: does each hold at every evaluated point of the box of stated ranges?}\label{tab:stress}
 \begin{tabular}{@{}>{\raggedright\arraybackslash}p{6.3cm}>{\raggedright\arraybackslash}p{3.3cm}ccc@{}}\toprule
 Claim (quantity tested) & Conditions held & Holds everywhere & Central & Lowest to highest\\\midrule
 """ + '\n'.join(lines) + r"""
@@ -112,7 +122,9 @@ Claim (quantity tested) & Conditions held & Holds everywhere & Central & Lowest 
 \par\vspace{2pt}\footnotesize\raggedright Notes: """ + (
     f"{dsg['n_lhs']:,}".replace(',', '{,}') + r" Latin-hypercube draws and " + f"{dsg['n_corners']:,}".replace(',', '{,}')
     + r" corner points of a box of " + str(len(J['dims'])) + r" dimensions, each at the ends of the range the paper states for it "
-    r"(the anchor's dimensions within their 90\% firm-cluster bootstrap intervals), three bases for selling and marketing "
+    r"(the anchor's dimensions within their 90\% firm-cluster bootstrap intervals), except the compute share, which enters "
+    r"through the drivers of its path and so runs from " + CC_BOX_LO + r" to " + CC_BOX_HI + r"\% of revenue at 2025 prices, "
+    r"not over the scenario range of " + CC_SCEN_LO + r" to " + CC_SCEN_HI + r"\% (Section S9); three bases for selling and marketing "
     r"(netted rows: the central, maintenance-netted basis), and a vertex search for the extremum of each tested quantity. "
     r"Holds everywhere: no evaluated point violates the claim's test; this is a search, not a proof. Central: the paper's "
     r"central case. Lowest to highest: over all evaluated points. Conditions held: the claim's own stated conditions at "
@@ -181,6 +193,19 @@ num('StPathMax', TESTS['P1.full.net']['quantity']['max'])
 _rc = J['reproduction']['checks']
 assert all(c_['ok'] for c_ in _rc) and J['reproduction']['all_passed']
 put('StReproChecks', str(len(_rc)))
+# round 3 audit (F1): the box's range of the 2025 compute share and of its two drivers, and how much the tested
+# quantities stored per draw move with it (Spearman rank correlation over the Latin-hypercube draws)
+put('StCcBoxMin', CC_BOX_LO); put('StCcBoxMax', CC_BOX_HI)
+num('StKappaLo', _DIM['kappa_2025']['lo'], 0); num('StKappaHi', _DIM['kappa_2025']['hi'], 0)
+num('StSLLo', _DIM['s_L']['lo'], 0); num('StSLHi', _DIM['s_L']['hi'], 0)
+_rho = {c_: D[c_].corr(D.compute_share_2025, method='spearman') for c_ in
+        ('Gstar_2025', 'R2028_net', 'R2031_net', 'R2036_net', 'R2036_none', 'R2036_all', 'payback_years',
+         'payback_years_central_exec', 'npv_pct_revenue', 'realized_share_2036', 'levers_growth_engine_first_count',
+         'completed_program_plus_G_2036')}
+num('StGstarCcRho', _rho['Gstar_2025'], 2, False)
+_rho_other = max(abs(v_) for k_, v_ in _rho.items() if k_ != 'Gstar_2025')
+assert _rho['Gstar_2025'] > 0.9 and _rho_other < 0.05
+num('StOtherCcRho', _rho_other, 2, False)
 
 
 def sgn(name, x, nd=1):
@@ -241,10 +266,10 @@ ax[0].set_ylabel('Draws')
 ax[0].set_xlim(25, 85)
 ax[0].set_ylim(0, 1.5 * np.histogram(r36, bins=np.arange(25, 85.1, 1.5))[0].max())
 ax[0].legend(frameon=False, loc='upper left', ncol=2, columnspacing=1.0, handlelength=1.6)
-# right: the growth threshold G* at 2025 prices over the draws (compute share on its range; and with compute at 6%)
+# right: the growth threshold G* at 2025 prices over the draws (compute share over the box; and with compute at 6%)
 gs, g6 = D.Gstar_2025.to_numpy(), D.Gstar_2025_cc6.to_numpy()
 bins = np.arange(20, 54.1, 1.0)
-ax[1].hist(gs, bins=bins, color=MID, edgecolor='white', lw=0.3, zorder=2, label='compute share on its range')
+ax[1].hist(gs, bins=bins, color=MID, edgecolor='white', lw=0.3, zorder=2, label='compute share over the box')
 ax[1].hist(g6, bins=bins, histtype='step', color=BLACK, lw=0.8, zorder=3, label='compute at 6% of revenue')
 ax[1].axvline(30, ymax=0.72, color=BLACK, lw=0.9, ls=(0, (3, 2)), zorder=4, label='30% market growth')
 ax[1].set_xlabel('Growth threshold $G^*$ for a cash score of 100 (% a year)')

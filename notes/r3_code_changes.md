@@ -134,3 +134,12 @@ Flagged, not changed (GPT-4): under the exact recurrence the fast case's NPV and
   measurements in `params_reliability.yaml`), so there was no class to change there; `params.yaml`'s c_c range
   [0.01, 0.20] (2025 prices, successful-run basis) is unchanged because engine test_regression ties it to
   calibrate_horizons.py CC, which is unchanged; the per-completed-process low end lives in `r3.compute_credible`.
+
+## Independent audit of round 3 (3 Nov): code changes
+
+- code/mc_report_tex.py (F1): asserts that the stored 2025 compute-share range equals kappa_2025 x s_L at the box's ends;
+  prints that range (0.5 to 23%) and the scenario range read from paper1/macros.tex in the Table S18 note; new macros
+  \StCcBoxMin, \StCcBoxMax, \StKappaLo, \StKappaHi, \StSLLo, \StSLHi, \StGstarCcRho (Spearman of G* with the 2025 share
+  over the LHS draws, 0.93) and \StOtherCcRho (largest |Spearman| of the other per-draw quantities, 0.02; asserted < 0.05);
+  figure legend wording. Stored MC outputs unchanged; no rerun.
+- code/paper1_macros.py (F2): \FamBNAnchor = family size + 1 (15).

@@ -154,7 +154,7 @@ Numbers in new text are macros from `notes/r3_macro_contract.md` or existing mac
 | sections/conclusion.tex | GPT-9, ST-2 | "maximal score ... 59 in 2036 [54, 62]" -> "maximal durable score ... (54 net of the dip of transitions in flight; 54 to 62 from anchor sampling alone)" |
 | sections/conclusion.tex | ST-3 | "it does not pay back within a holding period of five years" -> "under central execution it does not pay back within five years except at a few points of the joint range of the other inputs" |
 | sections/conclusion.tex | ST-6 | lever count "at 5 of 6 observed positions" -> adds "at the central maintenance level" |
-| sections/supp_stress.tex | decision 7, GPT-24, GLM-21, GLM-10, GLM-M16, ST-1 to ST-6 | new Section S9: method paragraph, Table S17 (tab_stress, generated), Figure S1 (fig_stress, generated; caption written here), the claims that hold everywhere, the six conditional claims (ST-1 to ST-6), the other failures |
+| sections/supp_stress.tex | decision 7, GPT-24, GLM-21, GLM-10, GLM-M16, ST-1 to ST-6 | new Section S9: method paragraph, Table S18 (tab_stress, generated), Figure S1 (fig_stress, generated; caption written here), the claims that hold everywhere, the six conditional claims (ST-1 to ST-6), the other failures |
 | sections/supp_protocol.tex | (S7 opening) | the opening paragraph now also points to the outside reviews (S7.4) and the response to them |
 | sections/appendix_protocol.tex | (A.6) | list of what the outside reviews found adds "a misdescribed shape of the worked decision weight"; Table 8 row uses \BootB for the 999 draws and says "review archives" |
 | sections/measurement_acquired.tex | (layout) | Table 3: \arraystretch 0.93 and a shorter note (the 2024 intangible-asset sentence moved into the text), so the table fits its page |
@@ -163,3 +163,19 @@ Numbers in new text are macros from `notes/r3_macro_contract.md` or existing mac
 | notes/reviews/paper1_v3/response_to_outside_reviews.md | (new) | response to the outside reviews: one row per finding of the three logs (DS-1 to DS-70, X-1, X-2; GPT-M1 to GPT-37; GLM-F1 to GLM-23), status and where/how, counts table, rows ST-1 to ST-6 |
 | notes/reviews/paper1_v2/response_to_reviewers_r2.md | (link) | new closing section "Round 3: outside reviews" linking the new response document |
 | paper1/p1_preamble.tex | (none, net) | an \input of stress_macros.tex added and then removed (macros.tex already inputs it); the file is unchanged |
+
+## Independent audit of round 3 (3 Nov, claude-fable-5-1, not involved in the revision): text fixes
+
+| File | Finding | Change |
+|---|---|---|
+| sections/supp_stress.tex | F1 (Major) | Method paragraph: the compute share enters through its path drivers (\StKappaLo--\StKappaHi cents per dollar of labor, \StSLLo--\StSLHi% labor share), so at 2025 prices it runs \StCcBoxMin--\StCcBoxMax% of revenue, not the 2--60% scenario range of M 7.2; the low end is the successful-run cost; only G* moves materially with it (rank correlation \StGstarCcRho; others at most \StOtherCcRho). ST-1: "over the box", plus the one-at-a-time top of \GstarCcHi%. Figure S1 caption: the box's range. |
+| sections/tables/tab_stress.tex (generated) | F1 | Caption "box of stated ranges"; note names the compute-share exception (code: mc_report_tex.py). Figure legend "compute share over the box". |
+| sections/empirics.tex (5.x anchor) | F2 | Anchor Holm p over \FamBNAnchor (15) tests, the non-estimable member at p = 1 as in the 18-test family: 0.006 / 0.096 / 0.030; same conclusion. |
+| sections/intro.tex (text and misreading 3), sections/exec_summary.tex (item 6) | F3 | The joint 90% band carries "draws uniform over the stated ranges" (intro text also points to S9). |
+| sections/tables/tab_param_sources.tex | F4 | "credible bounds" -> "scenario range". |
+| sections/measurement_acquired.tex | F6 | "which the extract does not report" -> "which the filings' cash-flow statements do not report". |
+| sections/literature.tex | F7 | Nei, Ruus and Indov relate the growth of enterprise value (Crossref abstract, checked 3 Nov). |
+| sections/appendix_protocol.tex (A.1) | record | One sentence on the audit and its major finding. |
+| notes/reviews/paper1_v3/response_to_outside_reviews.md | F5 | DS-17 list matches the 16 places; ST-1/ST-2 cells say where the joint range is and is not quoted. |
+| notes/r3_macro_contract.md, this file | F8 | Stale macro requests resolved; Table S17 -> S18. |
+| (none) | F9 | Duplicate hyperref destination of the Table 2 longtable: harmless, left. |

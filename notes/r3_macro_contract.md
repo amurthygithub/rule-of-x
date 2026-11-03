@@ -232,3 +232,10 @@ Reproduction: `python3 code/mc_claims.py --n 10000 --workers 4 --out notes/mc` (
 - Editor (withdrawn): the four requested macros (`\StChecks`, `\StCumCenMax`, `\StCumMax`, `\StRealCapCut`) are no longer
   needed; S9 now states those four points without numbers, and its temporary `\providecommand` fallbacks are removed. If you
   add them anyway, tell the lead and I (or the lead) can put the numbers back.
+- Resolution (lead, 3 Nov; recorded after the independent audit, finding F8): none of the `\Stress*` names above and none of
+  the editor's `\StChecks`, `\StCumCenMax`, `\StRealCapCut` were created. S9 uses the coder's `\St*` names from
+  `paper1/stress_macros.tex`: `\StReproChecks` (82), `\StCumMaxCen` (+0.1), `\StCumMax` (+11.7), `\StCapHalf` (13), and
+  for the compute-share disclosure of audit finding F1 `\StCcBoxMin`/`\StCcBoxMax` (0.5 / 23), `\StKappaLo`/`\StKappaHi`
+  (1 / 35), `\StSLLo`/`\StSLHi` (50 / 65), `\StGstarCcRho` (0.93), `\StOtherCcRho` (0.02). The Holm anchor sentence of
+  M 5 now uses `\FamBNAnchor` (15) and `\HolmAnchorFifteen*` (finding F2).
+

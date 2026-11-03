@@ -1263,6 +1263,7 @@ for t in ('normal', 'percentile', 'basic'):
     ps15 = [(c['p_' + t] if c.get('p_' + t) is not None else 1.0) for c in V3['families']['headline14B']['contrasts']] + [_ab['p_' + t]]
     num('HolmAnchorFifteen' + t.capitalize(), holm(ps15)[-1], 3, False)     # counting the non-estimable test (p = 1)
 put('FamBNPlus', str(V3['families']['headline14B']['n_estimable'] + 1))
+put('FamBNAnchor', str(V3['families']['headline14B']['n'] + 1))   # round 3 audit F2: the family, its non-estimable member at p = 1, and the anchor
 # round 3 (GLM-F5): Holm over counterfactual families that add headline statistics the post hoc family omits, from the
 # stored p-values (the GLM log's verification_claude/f5_holm.py). 18 tests: family B (14, the non-estimable test at p = 1)
 # plus the anchor test and the frontier-point changes T(20%) on both bases and T(0) after SBC; 20 tests (the reviewer's):
