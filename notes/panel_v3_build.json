@@ -926,6 +926,114 @@
   },
   "note": "rule and keyword lists as defined before any description was read; firm-years excluded by R1 or R3 are counted under that rule"
  },
+ "R2_readers": {
+  "n_firms": 293,
+  "agree": 289,
+  "p_observed": 0.9863481228668942,
+  "p_expected": 0.7124718983331197,
+  "kappa": 0.9525198509155729,
+  "non_software": {
+   "a": 51,
+   "b": 51,
+   "both": 49,
+   "either": 53
+  },
+  "class_counts": {
+   "a": {
+    "software": 242,
+    "other_non_software": 36,
+    "interactive_entertainment": 8,
+    "gambling": 4,
+    "compute_infrastructure": 3
+   },
+   "b": {
+    "software": 242,
+    "other_non_software": 33,
+    "interactive_entertainment": 9,
+    "compute_infrastructure": 5,
+    "gambling": 4
+   }
+  },
+  "v3_firm_years_dropped": {
+   "both": 223,
+   "either": 237
+  },
+  "v3_firms_dropped": {
+   "both": 40,
+   "either": 44
+  },
+  "both_firms": [
+   "2U, LLC",
+   "3D SYSTEMS CORP",
+   "Activision Blizzard, Inc.",
+   "BALLY TECHNOLOGIES, INC.",
+   "Backblaze, Inc.",
+   "Bandwidth Inc.",
+   "BigBear.ai Holdings, Inc.",
+   "Block, Inc.",
+   "CLPS Inc",
+   "CareCloud, Inc.",
+   "Changyou.com Ltd",
+   "China Digital TV Holding Co., Ltd.",
+   "Clear Secure, Inc.",
+   "CoreWeave, Inc.",
+   "Coursera, Inc.",
+   "DIRTT ENVIRONMENTAL SOLUTIONS LTD",
+   "ELECTRONIC ARTS INC.",
+   "Endurance International Group Holdings, Inc.",
+   "Exzeo Group, Inc.",
+   "Fastly, Inc.",
+   "Fusion Connect, Inc.",
+   "GCL Global Holdings Ltd",
+   "GRID DYNAMICS HOLDINGS, INC.",
+   "Global-E Online Ltd.",
+   "Hello Group Inc.",
+   "Inspired Entertainment, Inc.",
+   "Link Motion Inc.",
+   "MAGIC SOFTWARE ENTERPRISES LTD",
+   "MARKETWISE, INC.",
+   "Marqeta, Inc.",
+   "Meridian Holdings Inc./NV",
+   "Mobileye B.V.",
+   "Mobileye Global Inc.",
+   "NATIONAL INSTRUMENTS CORP",
+   "NETWORK ENGINES INC",
+   "PLAYSTUDIOS, Inc.",
+   "Roblox Corp",
+   "Rubicon Technologies, Inc.",
+   "SINA CORP",
+   "SS&C Technologies Holdings Inc",
+   "SSI Investments II Ltd",
+   "Skillsoft Corp.",
+   "Snail, Inc.",
+   "TAKE TWO INTERACTIVE SOFTWARE INC",
+   "THQ INC",
+   "Taoping Inc.",
+   "WEB.COM GROUP, INC.",
+   "WM TECHNOLOGY, INC.",
+   "Xunlei Ltd"
+  ],
+  "either_only_one": [
+   "AvidXchange Holdings, Inc.",
+   "Navan, Inc.",
+   "TELECOMMUNICATION SYSTEMS INC /FA/",
+   "Tuya Inc."
+  ],
+  "classifier_non_software": {
+   "n": 8,
+   "also_a": 8,
+   "also_b": 8,
+   "also_both": 8,
+   "also_either": 8,
+   "software_for_a": [],
+   "software_for_b": []
+  },
+  "files": [
+   "data/v3_inputs/business_class_reader_a.csv",
+   "data/v3_inputs/business_class_reader_b.csv"
+  ],
+  "note": "kappa: Cohen, software against the four other classes, over the core registrants; the sensitivities drop, from the main sample, the firms both readers (or either reader) class as not software"
+ },
  "capsw": {
   "source": "data/v3_inputs/capitalized_software_filings.json (code/audit/capsw_scan_parse.py; cash-flow statements read 3 Nov 2026)",
   "n_filing_values": 109,

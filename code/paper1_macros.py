@@ -917,8 +917,49 @@ put('VRfourCN', str(len(_a4['core_v3_at_or_above_10pct']))); put('VRfourCNew', s
 _nl = V3B['R5']['no_listed_equity_v3']
 put('VRfiveFlagN', str(V3B['R5']['firm_years_no_listed_equity_v3'])); put('VRfiveFlagFirms', str(len(_nl)))
 assert sum(len(v) for v in _nl.values()) == V3B['R5']['firm_years_no_listed_equity_v3']
-_r2 = V3B['R2_named']
-put('VRtwoClassFirms', str(len(_r2['non_software']))); put('VRtwoClassN', str(_r2['firm_years_v3_non_software']))
+# R2 on the main sample (3 Nov 2026): the pre-set classifier on the descriptions of every core registrant, and the
+# independent readings of the same descriptions as a sensitivity
+_r2m, _rr = V3B['R2'], V3B['R2_readers']
+put('VRtwoDescribed', str(_r2m['n_described']))
+put('VRtwoClassFirms', str(len(_r2m['non_software'])))                 # firms the classifier classes not software
+put('VRtwoExclN', str(_r2m['excluded_firm_years'])); put('VRtwoExclFirms', str(_r2m['excluded_firms']))
+assert _r2m['excluded_firm_years'] == V3B['excluded']['R2_not_software']
+put('VRtwoReadN', str(_rr['n_firms'])); put('VRtwoReadAgree', str(_rr['agree']))
+num('VRtwoKappa', _rr['kappa'], 2, pct=False)
+put('VRtwoReadA', str(_rr['non_software']['a'])); put('VRtwoReadB', str(_rr['non_software']['b']))
+put('VRtwoReadBoth', str(_rr['non_software']['both'])); put('VRtwoReadEither', str(_rr['non_software']['either']))
+put('VRtwoBothFirms', str(_rr['v3_firms_dropped']['both'])); put('VRtwoBothN', str(_rr['v3_firm_years_dropped']['both']))
+put('VRtwoEitherFirms', str(_rr['v3_firms_dropped']['either'])); put('VRtwoEitherN', str(_rr['v3_firm_years_dropped']['either']))
+put('VRtwoClassAlsoBoth', str(_rr['classifier_non_software']['also_both']))
+for _rd in ('both', 'either'):                                          # headline statistics of the two reader sensitivities
+    _vn = 'E1r2' + _rd
+    _tg = _rd.capitalize()
+    for b, B_ in [('op', 'Op'), ('cash', 'Cash')]:
+        num(f'VRtwo{_tg}Fall{B_}', -vrec(f'p95_change_{b}', _vn)['est'], 1)
+        num(f'VRtwo{_tg}Psi{B_}', vrec(f'cone_{b}_slope_c90_w60', _vn)['est'], 2, pct=False)
+# C1 and the data audit of 3 Nov 2026 (notes/data_audit/; code/audit/data_audit_compare.py, capsw_scan_parse.py)
+_AUD = os.path.join(BASE, 'notes', 'data_audit')
+_ac = pd.read_csv(os.path.join(_AUD, 'compare.csv'))
+_ad = json.load(open(os.path.join(_AUD, 'sample_design.json')))
+_face = _ac[_ac.resolved != 'match (XBRL instance)']                       # values compared with the face statements
+_ok = ['match', 'match (missing in filing)', 'definition', 'missing in panel']
+AUDIT = dict(firm_years=int(_ac.accn.nunique()), items=int(_ac['item'].nunique()), values=int(len(_face)),
+             wrong=int((~_face.resolved.isin(_ok)).sum()), equal=int((_face.resolved == 'match').sum()))
+assert AUDIT['firm_years'] == sum(s_['n'] for s_ in _ad['strata'].values())
+put('AuditFirmYears', str(AUDIT['firm_years'])); put('AuditTopN', str(_ad['strata']['top_decile']['n']))
+put('AuditItems', str(AUDIT['items'])); put('AuditValues', str(AUDIT['values'])); put('AuditWrong', str(AUDIT['wrong']))
+put('AuditEqual', str(AUDIT['equal']))
+_ak = pd.read_csv(os.path.join(_AUD, 'capitalized_software.csv'))
+put('AuditCapswN', str(len(_ak))); put('AuditCapswMatch', str(int((_ak.status == 'match').sum())))
+_cs = json.load(open(os.path.join(_AUD, 'capsw_summary.json')))
+_c1 = V3B['capsw']
+t_, p_ = thousands(_cs['n_scanned']); put('CapswScanned', t_, p_)
+put('CapswCandidates', str(_cs['n_candidates'])); put('CapswCombined', str(_cs['dropped']['combined_capex_line']))
+put('CapswNotOutflow', str(_cs['dropped']['not_outflow'])); put('CapswNotRead', str(_cs['n_not_read']))
+put('CapswKept', str(_cs['n_kept'])); put('CapswKeptFirms', str(_cs['n_kept_firms']))
+put('CapswVthree', str(_c1['v3'])); put('CapswVthreeFirms', str(_c1['v3_firms']))
+num('CapswMedRev', _c1['v3_share_of_revenue']['median'], 1); num('CapswMaxRev', _c1['v3_share_of_revenue']['max'], 1)
+assert _c1['n_filing_values'] == _cs['n_kept'] and _c1['core_v2'] == _cs['n_kept']
 RT = V3['routes']
 put('VAffected', str(RT['n_flagged'])); put('VAffAcqYear', str(RT['n_acq_year'])); put('VAffFollow', str(RT['n_following_only']))
 put('VAffKept', str(RT['n_kept_pro_forma'])); put('VAffDropped', str(RT['n_dropped'])); num('VAffDroppedShare', RT['share_dropped'], 1)
@@ -1252,6 +1293,20 @@ FB10 = V3['families']['headline14B']['survivors_10pct']
 # B13: the anchor's conclusion (Pi_lb median > 0, E1) added to family B; raw bootstrap p-values from
 # notes/calibration_anchor_v3.json, Holm over the 15 tests by interval type
 _ab = json.load(open(v3path('notes', 'calibration_anchor_v3.json')))['bootstrap']['E1']['Pi_lb_med']
+# the hand-set Table tab:anchor-firms of sections/appendix_data.tex against the E1 anchor's firm-years (a firm's name in the
+# table is the start of its EDGAR name)
+_afy = json.load(open(v3path('notes', 'calibration_anchor_v3.json')))['E1']['firm_years']
+_ANCHOR_FILE = {}
+for _d in _afy:
+    _ANCHOR_FILE.setdefault(_d['name'], []).append(int(_d['year']))
+_ANCHOR_FILE = {k_: sorted(v_) for k_, v_ in _ANCHOR_FILE.items()}
+_atab = re.search(r'\\label\{tab:anchor-firms\}.*?\\midrule(.*?)\\bottomrule',
+                  open(os.path.join(BASE, 'sections', 'appendix_data.tex')).read(), re.S).group(1)
+_ANCHOR_TABLE = {}
+for _r_ in [x_ for x_ in _atab.split(r'\\') if '&' in x_]:
+    _nm, _ys = (s_.strip() for s_ in _r_.split('&'))
+    _full = [k_ for k_ in _ANCHOR_FILE if k_.startswith(_nm.replace(r'\&', '&'))]
+    _ANCHOR_TABLE[_full[0] if len(_full) == 1 else _nm] = sorted(int(y_) for y_ in re.findall(r'\d{4}', _ys))
 
 
 def holm(ps):
@@ -1326,13 +1381,27 @@ def in_none(sets, key):
 
 CLAIMS = [
     # data.tex, sample rules and the bridge (status of notes/panel_v3_build.json as estimated)
-    ('data, appendix and discussion: R2 is a sensitivity on the named firms only, not applied to the main sample',
-     _R['R2'].startswith('main sample: not applied') and 'named firms' in _R['R2']),
-    ('data: the R2 classifier classes exactly Activision, Bally, EA and PLAYSTUDIOS non-software and misses THQ, Take-Two, '
-     'Roblox, CoreWeave and Unity', sorted(V3B['R2_named']['non_software']) == sorted(['Activision Blizzard, Inc.',
-     'BALLY TECHNOLOGIES, INC.', 'ELECTRONIC ARTS INC.', 'PLAYSTUDIOS, Inc.'])
-     and all(V3B['R2_named']['classes'][f] == 'software' for f in ('THQ INC', 'TAKE TWO INTERACTIVE SOFTWARE INC',
-                                                                  'Roblox Corp', 'CoreWeave, Inc.', 'Unity Software Inc.'))),
+    ('data, appendix and discussion: R2 applies to the main sample by the rule fixed in advance, on the business descriptions '
+     'of every core registrant', _R['R2'].startswith('applied to the main sample') and 'partial check' in _R['R2']
+     and V3B['R2']['n_described'] == V3B['R2']['n_core_registrants'] == V3B['firms_v2']
+     and V3B['excluded']['R2_not_software'] == V3B['R2']['excluded_firm_years'] > 0),
+    ('data: the R2 classifier classes exactly Bally and Inspired (gambling) and Activision, Changyou, EA, GCL Global, '
+     'PLAYSTUDIOS and Snail (games) as not software, and misses THQ, Take-Two, Roblox, Unity and CoreWeave (a partial check)',
+     V3B['R2']['non_software'] == {'BALLY TECHNOLOGIES, INC.': 'gambling', 'Inspired Entertainment, Inc.': 'gambling',
+                                   'Activision Blizzard, Inc.': 'interactive_entertainment', 'Changyou.com Ltd': 'interactive_entertainment',
+                                   'ELECTRONIC ARTS INC.': 'interactive_entertainment', 'GCL Global Holdings Ltd': 'interactive_entertainment',
+                                   'PLAYSTUDIOS, Inc.': 'interactive_entertainment', 'Snail, Inc.': 'interactive_entertainment'}
+     and all(V3B['R2']['named_classes'][f] == 'software' for f in ('THQ INC', 'TAKE TWO INTERACTIVE SOFTWARE INC',
+                                                                   'Roblox Corp', 'CoreWeave, Inc.', 'Unity Software Inc.'))),
+    ('data and robustness table: the independent readings are a sensitivity (rows of tab:robust), not part of the rule',
+     all(v_ in S3 for v_ in ('E1r2both', 'E2r2both', 'E1r2either', 'E2r2either'))
+     and set(V3B['excluded']) == {'R1_not_first_reported', 'R2_not_software', 'R3_captive_related_party'}
+     and _rr['n_firms'] == V3B['R2']['n_described']),
+    ('appendix: Table tab:anchor-firms lists exactly the firm-years of the E1 anchor in notes/calibration_anchor_v3.json',
+     _ANCHOR_TABLE == _ANCHOR_FILE),
+    ('appendix (data audit): no value of the seeded sample differs from the face statements; Box fiscal 2023 capitalized '
+     'software is 16,561 thousand from its filing', AUDIT['wrong'] == 0 and _c1['box_fy2023']['cap_sw'] == 16561e3
+     and _c1['box_fy2023']['cap_sw_xbrl'] == 0),
     ('data and discussion: R5 is a flag and sensitivity, not an exclusion; foreign filers not tested',
      _R['R5'].startswith('applied (flag and sensitivity') and 'foreign_not_tested' in V3B['R5']['status_counts_v3']),
     ('data: the R5 flag names Meditech, SunGard, Infor and Epicor among its firms',
@@ -1625,7 +1694,8 @@ if _failed:
 ROWS = [('E1', r'E1: all firm-years (baseline)'),
         ('E1k2010', r'E1 plus fiscal-2010 years first reported in a later filing (R1 sensitivity)'),
         ('E1clean', r'E1 without all 16 firms the panels named as possibly not software'),
-        ('E1r2named', r'E1 without the named firms the R2 classifier classes non-software'),
+        ('E1r2both', r'E1 without the firms both independent readers class as not software (R2 sensitivity)'),
+        ('E1r2either', r'E1 without the firms either independent reader classes as not software'),
         ('E1nolist', r'E1 without the firm-years R5 flags as having no listed equity'),
         ('E1nodebt', r'E1 without the four debt-only filers a referee named'),
         ('E2', r'E2: organic growth, pro forma where disclosed (25\% flag)'),
@@ -1635,7 +1705,8 @@ ROWS = [('E1', r'E1: all firm-years (baseline)'),
         ('E2add', r'E2, ambiguous pro forma cases read additively'), ('E2max', r'E2, ambiguous pro forma cases read cumulatively'),
         ('E2testrule', r"E2 under the first test run's rule"),
         ('E2k2010', r'E2 plus fiscal-2010 years first reported in a later filing'),
-        ('E2clean', r'E2 without all 16 named firms'), ('E2r2named', r'E2 without the named firms R2 classes non-software'),
+        ('E2clean', r'E2 without all 16 named firms'), ('E2r2both', r'E2 without the firms both readers class as not software'),
+        ('E2r2either', r'E2 without the firms either reader classes as not software'),
         ('E2nolist', r'E2 without the firm-years R5 flags'), ('E2nodebt', r'E2 without the four named debt-only filers'),
         ('E2imp4', r'E2 plus the dropped years, organic growth imputed at $M=4$'),
         ('E2imp8', r'E2 plus the dropped years, organic growth imputed at $M=8$')]
@@ -1671,8 +1742,9 @@ tl += [r'\bottomrule\end{tabular}',
        r'imputed rows. Change in P95: 2016--19 to 2023--25, points. Spend ratio: median selling-and-marketing share over growth '
        r'in excess of the year median, firm-years growing faster than the median. Margin gap: GAAP operating margin of the top '
        r'decile minus the 40th--60th percentiles within growth bands, average of bands, points. Sensitivity rows add back or '
-       r'remove firm-years by the rule named; R2 and R5 cannot be applied from the local data, so the firms the review panels '
-       r'named enter only these rows.',
+       r'remove firm-years by the rule named. Every row applies rule R2 by its keyword classifier; the reader rows also drop '
+       r'the firms that both, or either, of two independent readings of the business descriptions class as not software. '
+       r'Rule R5 is a flag, so the firm-years it flags, and the firms the review panels named, are removed only in these rows.',
        r'\end{table}']
 open(os.path.join(OUT_DIR, 'tab_robust_v3.tex'), 'w').write('\n'.join(tl) + '\n')
 
