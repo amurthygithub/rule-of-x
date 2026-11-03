@@ -1,0 +1,353 @@
+
+==============================================================================
+1. Efficient frontier (Proposition prop:frontier)
+==============================================================================
+[PASS] 1a  sigma(Delta) inverts g(sigma):  g(sigma(Delta)) = G + Delta
+[PASS] 1b  kappa * Delta^beta = sigma(Delta) with kappa = (lambda h)^(-1/alpha)
+[PASS] 1c  m*'(g) = -k - beta kappa Delta^(beta-1)
+[PASS] 1d  m*''(g) = -beta (beta-1) kappa Delta^(beta-2)
+[PASS] 1e  m*'' < 0 for alpha in (0,1) (substitution alpha = 1/(1+nu), nu > 0)
+[PASS] 1f  slope at g = G is -k (limit Delta -> 0+ of m*')
+[PASS] 1g  frontier strictly decreasing and concave on 2000 random draws  ::  violations=0
+
+==============================================================================
+2. Alternative timing convention (Lemma lem:timing)
+==============================================================================
+[PASS] 2a  alt. timing: m~''(g) = 2k/(1+g)^3 - beta(beta-1) kappa (g-G)^(beta-2)
+[PASS] 2b  k g - k g/(1+g) = k g^2/(1+g) >= 0
+[PASS] 2c  alpha < 1/2, k > 0: m~'' > 0 just to the right of G (1000 draws)  ::  violations=0
+[PASS] 2d  Lemma 1(c) example (alpha=0.3,k=1.25,kappa=0.5,G=0.1,m0=0.5,X=1): corner and interior local maxima  ::  right derivative at G=-0.0331, corner score=0.48636, interior argmax g=0.7393, score=0.5954
+[PASS] 2e  same example: m~ strictly convex just right of G; linear timing gives unique optimum g = G
+[PASS] 2f  [arithmetic] gap between conventions at k=0.5, g=0.3 is k g^2/(1+g) = 0.0346
+
+==============================================================================
+3. Maximal Rule-of-X score (Proposition prop:score)
+==============================================================================
+[PASS] 3a  FOC in Delta: beta kappa Delta*^(beta-1) = X - k
+[PASS] 3b  sigma* = kappa Delta*^beta = alpha (X-k) Delta*
+[PASS] 3c  sigma* = [alpha lambda h (X-k)]^(1/(1-alpha))
+[PASS] 3d  FOC in sigma: (X-k) lambda h alpha sigma*^(alpha-1) = 1
+[PASS] 3e  SOC in sigma: d2R/dsigma2 < 0
+[PASS] 3f  R* = m0 + (X-k)G + (1-alpha)(X-k)Delta*  [f(Delta*) - R* = alpha y Delta* - kappa Delta*^beta = 0 by 3b]
+[PASS] 3g  growth surplus (1-alpha)(X-k)Delta* = C_alpha [lambda h (X-k)]^(1/(1-alpha))
+[PASS] 3h  tangency: m*'(g*) = -X  (i.e. -k - beta kappa Delta*^(beta-1) = -(k + y))
+[PASS] 3i  Delta* strictly increasing in X: d Delta*/dy = alpha/(1-alpha) Delta*/y
+[PASS] 3j  closed-form R* equals the numerical global maximum (interior draws)  ::  interior draws=2186, violations=0
+[PASS] 3k  closed-form Delta* equals the numerical argmax (interior draws)  ::  violations=0
+[PASS] 3l  X <= k: corner optimum g* = G with R* = m0 + (X-k)G  ::  corner draws=814, violations=0
+[PASS] 3m  50-digit spot checks of FOC, sigma*, growth surplus (200 draws)  ::  violations=0
+
+==============================================================================
+4. Saturation limit, small-base bound, demand-pull threshold (Proposition prop:saturation), myopic path (Proposition prop:myopic)
+==============================================================================
+[PASS] 4a  growth surplus -> 0 as h -> 0+ (s -> sbar), alpha = 1/2 and 3/4
+[PASS] 4b  dPi/dh > 0 (so R* strictly decreasing in s since h'(s) = -1/sbar < 0)
+[PASS] 4c  R*(s) - R_inf strictly decreasing in s and equal to C_alpha(lambda h y)^(1/(1-alpha)) (500 draws)  ::  violations=0
+[PASS] 4d  0 < R*(s) - R_inf < R^0 - R_inf, -> 0 as s -> sbar and -> R^0 - R_inf as s -> 0  ::  violations=0
+[PASS] 4e  threshold Lambda(Rbar): R*(lambda h = Lambda) = Rbar; Delta*, sigma* identities at the threshold  ::  violations=0
+     Rule-of-1000 example: C_alpha=0.4178, Lambda=8.7086, Delta*=13.1429, g*=13.3429, sigma*=3.9429, m=-3.3429, R=10.0000
+[PASS] 4f  Rule-of-1000 example: Lambda ~ 8.71, Delta* ~ 13.14, sigma* ~ 3.94, m ~ -3.34
+[PASS] 4g  myopic path: R*(s(t)) - R_inf <= bound (eq. myopic) and decreasing along exact ODE paths (100 draws)  ::  violations=0
+
+==============================================================================
+5. Score budget, sharpness and transience (Propositions prop:budget, prop:budget-sharp; Corollary cor:transient)
+==============================================================================
+[PASS] 5a  integral of Delta dt = ln(s(T)/s0) along exact share paths (400 random policies)  ::  violations=0
+[PASS] 5b  integral of (R - R_inf)^+ dt <= (X-k) integral of Delta dt = (X-k) ln(s(T)/s0), with s(T) < sbar  ::  violations=0
+     sharpness ratios (integral / (X-k) ln(s1/s0)), delta = 0.3, 0.1, 0.03, 0.01, 0.003, 0.001: 0.4641, 0.7491, 0.8973, 0.9604, 0.9881, 0.9960
+[PASS] 5c  prop:budget-sharp: bound approached by slow constant-growth policies (ratio -> 1)
+[PASS] 5d  discrete-time budget (eq. budget-discrete) on 2000 random paths  ::  violations=0
+     Corollary cor:transient: s0=1%: N(1000) <= 1.812, N(140) <= 9.648; s0=1e-5: N(1000) <= 5.010, N(140) <= 26.685
+[PASS] 5e  Corollary cor:transient: s0=1%: N(1000) <= 1.81 -> 1, N(140) <= 9.65 -> 9; s0=1e-5: N(1000) <= 5.01 -> 5  ::  bounds 1.812, 9.648, 5.010
+     Illustrations (X - k = 1):
+       s0=0.01, sbar=0.5: budget ln(sbar/s0)=3.912 score-years; max years at 60 points above floor = 6.52; discrete-time max periods (G=0.2) = 9.65
+       s0=0.01, sbar=0.5: budget ln(sbar/s0)=3.912 score-years; max years at 920 points above floor = 0.43; discrete-time max periods (G=0.2) = 1.81
+       s0=0.05, sbar=0.5: budget ln(sbar/s0)=2.303 score-years; max years at 60 points above floor = 3.84; discrete-time max periods (G=0.2) = 5.68
+       s0=0.001, sbar=0.5: budget ln(sbar/s0)=6.215 score-years; max years at 920 points above floor = 0.68; discrete-time max periods (G=0.2) = 2.88
+
+==============================================================================
+6. Envelope results (Proposition prop:envelope) and capital-for-labor substitution (Corollary cor:capital)
+==============================================================================
+[PASS] 6a  dR*/dm0 = 1
+[PASS] 6b  dR*/dG = X - k
+[PASS] 6c  dR*/dy = G + Delta* = g*  (hence dR*/dk = -g*, dR*/dX = g*)
+[PASS] 6d  dR*/dlambda = (X-k) Delta*/lambda > 0
+[PASS] 6e  dR*/dh = (X-k) Delta*/h, so dR*/ds = -(X-k) Delta*/(sbar - s)
+[PASS] 6f  dR*/dlambda = (X-k) h sigma*^alpha (spec form)
+[PASS] 6g  d2R*/dk2 = dDelta*/dy > 0 (convex in k)
+[PASS] 6h  d2R*/dk dlambda = -dDelta*/dlambda = -Delta*/((1-alpha) lambda) < 0
+[PASS] 6i  finite differences of numerically optimized R* match the envelope formulas (300 draws)  ::  violations=0
+[PASS] 6j  capital-for-labor: g*(k+dk)dk <= da - dR* <= g*(k)dk (exact bracket, 1000 draws)  ::  violations=0
+
+==============================================================================
+7. Valuation foundation of the Rule of X (Lemmas lem:valuation, lem:valuation2)
+==============================================================================
+[PASS] 7a  general T (A(q) = sum_{t<=T} q^t): X = V_g/V_m = m D/(1+g) with D = q A'(q)/A(q)
+[PASS] 7b  explicit finite sums, T = 1..25: X = m D/(1+g) (exact rational identity)
+[PASS] 7c  [arithmetic] numeric example: m = 0.25, D = 10, g = 0.25 gives X = 2
+     r=0.08, g=0.25: D(T=5)=3.29, D(T=10)=6.66, D(T=15)=10.53, D(T=20)=14.78; smallest T with D>=10: T=15 (D=10.53)
+     r=0.10, g=0.25: D(T=5)=3.25, D(T=10)=6.53, D(T=15)=10.25, D(T=20)=14.35; smallest T with D>=10: T=15 (D=10.25)
+     r=0.12, g=0.25: D(T=5)=3.22, D(T=10)=6.39, D(T=15)=9.96, D(T=20)=13.89; smallest T with D>=10: T=16 (D=10.72)
+[PASS] 7d  D increasing in g and in T (numeric, r = 0.10)
+[PASS] 7e  two-stage lemma: X = [m sum t q^t + m_LR T q^T Gamma] / [(1+g)(A_T + theta q^T Gamma)], T in {1,3,5,10}
+[PASS] 7f  two-stage formula matches finite-difference MRS (300 draws)  ::  violations=0
+[PASS] 7g  0 <= m <= mbar: X strictly decreasing in margin persistence theta (300 draws)  ::  violations=0
+     Implied X (r=0.10, g=0.25, G_inf=0.03, mbar=0.25):
+       T   m     theta=0   theta=0.5   theta=1
+       5  0.00      3.74        0.65      0.00
+       5  0.10      4.00        1.00      0.37
+       5  0.25      4.39        1.53      0.93
+      10  0.00      4.89        1.10      0.00
+      10  0.10      5.42        1.78      0.72
+      10  0.25      6.20        2.79      1.80
+
+==============================================================================
+8. Free entry and replication (Proposition prop:entry)
+==============================================================================
+[PASS] 8a  entrant NPV = x (P - u - r b)/(r - G) - F  (continuous-time capacity growing at G)
+[PASS] 8b  symmetric Cournot: x_n = (A - chat)/(B(n+1))
+[PASS] 8c  P_n = (A + n chat)/(n+1)
+[PASS] 8d  flow profit pi_n = (A-chat)^2/(B(n+1)^2)
+[PASS] 8e  Lerner L_n = (P_n - chat)/P_n = (A - chat)/(A + n chat)
+[PASS] 8f  m_op = (P - u)/P = r k + L with k = b/P, chat = u + r b
+[PASS] 8g  L_n -> 0 as n -> oo
+[PASS] 8h  n* = floor(Phi) - 1 by brute force (2000 draws)  ::  violations=0
+[PASS] 8i  0 < L_{n*} < (A - chat)/(chat (Phi - 1))  ::  violations=0
+     R_X along F -> 0: 0.231102, 0.122464, 0.110206, 0.108962;  limit XG + (r-G) b/chat = 0.108824
+[PASS] 8j  R_X -> XG + (r-G) b/chat as F -> 0
+[PASS] 8k  X = 1: limit equals G(1-k) + r k
+[PASS] 8l  scarce input: w_n = A - chat - B Z (n+1)/n
+[PASS] 8m  binding input: price = A - B Z independent of n
+[PASS] 8n  rent share w_n/P_Z -> rho = 1 - chat/P_Z as n -> oo
+[PASS] 8o  Lerner net of input cost: (P_Z - chat - w_n)/P_Z = B Z/(n P_Z) -> 0
+[PASS] 8p  per-firm flow profit with binding input = B Z^2/n^2
+
+==============================================================================
+9. Price channels of AI (Lemma lem:prices)
+==============================================================================
+[PASS] 9a  d gamma/du = -(1/p)[1 - phi (1 - gamma)] with pass-through phi = dp/du
+[PASS] 9b  nominal market growth under deflation: G = G_Q - (1 - epsilon) delta_p
+
+==============================================================================
+10. AI shift of the frontier and the maximal score (Proposition prop:ai)
+==============================================================================
+[PASS] 10a dR*/dzeta = (dgamma - da) + (X-k) dG - g* dk + (X-k) Delta* dlambda/lambda (300 random directions)  ::  violations=0
+[PASS] 10b up/out: lambda, G up, k down, m0 - kG up => old frontier weakly dominated; R_X* up for all X  ::  violations=0
+[PASS] 10c rotation: new frontier above old iff g < dm0/dk (1000 draws)  ::  violations=0
+
+==============================================================================
+11. Taxes (Remark rem:taxes) and full-automation ceiling (Corollary cor:ceiling)
+==============================================================================
+[PASS] 11a taxed frontier = untaxed form with m0->(1-tau)m0, k->(1-psi tau)k, lambda->(1-tau)^(-alpha) lambda
+[PASS] 11b taxed maximal score equals relabeled closed form (300 draws)  ::  violations=0
+[PASS] 11d ceiling identity: R_max(psi=1) - R_max(psi=0) = tau k G
+[PASS] 11h accountability-only high-compute case (c_c = 0.40): margin term 44.69 points; R_max reaches 100 at k = 0 only if G > 55.31%
+[PASS] 11f k = 1.5 at G = 30%: reduction 45 points; with expensing (1-tau) 45 = 38.25, 36.9, 35.55
+[PASS] 11g [arithmetic] pull adjustment (1-tau)^(-0.3): 1.050 at tau=0.15, 1.073 at tau=0.21 (5% to 7%)
+
+==============================================================================
+12. Parameter values used in the figures
+==============================================================================
+     Fig. 1, X=1: g*=0.3750, sigma*=0.0743, m*=0.3382, R*=0.7133
+     Fig. 1, X=2: g*=0.4788, sigma*=0.2159, m*=0.1862, R*=1.1438
+     Fig. 2, k=0.0: R*(s->0)=1.2422, limit m0+(1-k)G=0.7000
+     Fig. 2, k=0.3: R*(s->0)=0.9657, limit m0+(1-k)G=0.6400
+     Fig. 2, k=0.6: R*(s->0)=0.7264, limit m0+(1-k)G=0.5800
+
+==============================================================================
+13. Heterogeneous firms (Propositions prop:industry, prop:industry-full; Remark rem:segments)
+==============================================================================
+[PASS] 13a (i) possibility envelope Phi strictly decreasing for finite heterogeneous sets (300 draws)  ::  violations=0
+     two-type example: low (g,m)=(0.2069,0.2679), high (g,m)=(0.5340,0.3698), cross-sectional slope=0.3115; own frontier slopes -1.000000, -1.000000
+[PASS] 13b two-type example: chosen points (0.21,0.27), (0.53,0.37), slope ~ +0.31, own slopes = -X
+[PASS] 13c (ii)-(iii) continuum with quality condition: locus increasing, Phi = top frontier, Psi flat, quantile frontiers increasing, max score = best firm's R* at top g (100 draws)  ::  violations=0
+[PASS] 13d (iv) non-identification: locus slope xi, Psi slope min(xi,0), own slope -X, curvature -(1-alpha)(X-k)/(alpha Delta*), same segment for several (alpha, X) (200 draws)  ::  violations=0
+[PASS] 13e (v) first-order margin response dm = z1 - [k + alpha(X-k)] Delta*' z2 + L z3
+[PASS] 13f (v) population slope of m on g converges to b_W as epsilon -> 0 (100 draws)  ::  violations=0
+[PASS] 13g (v) appendix example at X = 2.5, 5, 9 (and 1): alpha=0.3, k=0, G=0.1, Delta*=0.1, a_f=0.3; zero slope needs surprise shares 0.3X/(0.3X + L) = 0.71, 0.80, 0.85 (0.52 at X = 1), rising in X  ::  X=1.0: L=0.2750, share=0.5217, X=2.5: L=0.3125, share=0.7059, X=5.0: L=0.3750, share=0.8000, X=9.0: L=0.4750, share=0.8504
+[PASS] 13h segment-specific G example: Phi(0.1) = m1*(0.1) < 0.2 < 0.5 = Phi(0.3)  ::  m1*(0.1)=0.1953
+
+==============================================================================
+14. Pass-through cases (Lemma lem:prices(a))
+==============================================================================
+[PASS] 14a Cournot linear demand: phi = n/(n+1) * u/p
+[PASS] 14b constant-elasticity monopoly: phi = u/(u + r b)
+[PASS] 14c perfect competition: phi = u/(u + r b)
+
+==============================================================================
+15. Dynamic optimality: the firm's growth weight is the marginal q of revenue (Proposition prop:dynamic)
+==============================================================================
+[PASS] 15a HJB: r V = flow + V_s sdot + V_M Mdot with V = M v(s) reduces to (r-G) v = s[m0 - sigma - kG + (v'-k) Delta]
+[PASS] 15b HJB maximand = R_X(g,m) - X G at X = v'(s)
+[PASS] 15c Gordon identity: at a root of (eq:gordon), (r - G - Delta0) v0 = m0 - k g0 - sigma0
+[PASS] 15d f'(q) = (r-G) - Delta*(lambda, q): d/dq of C_alpha [lambda (q-k)]^(1/(1-alpha)) = Delta*(lambda, q)
+[PASS] 15e smallest simple roots: g0 < r, v0 = m0/(r - g0) (Gordon), m0 > 0, f'(v0) = r - G - Delta0  ::  simple roots=294, violations=0
+     worked example v0=10: lambda=0.0698, smallest root=10.000000, g0=0.0757, sigma0=0.1071, m0_circ=0.2429, sigma/Delta=3.000
+     worked example v0=15: lambda=0.0808, smallest root=15.000000, g0=0.0924, sigma0=0.2357, m0_circ=0.1143, sigma/Delta=4.500
+[PASS] 15f worked example: lambda ~ 0.070 (v0 = 10: g 7.6%, spend 10.7%, margin 24.3%) and ~ 0.081 (v0 = 15: g 9.2%, spend 23.6%, margin 11.4%); no-growth multiple m0/(r-G) = 5.83
+     saturated HJB (v0=10, sbar=0.5): s/sbar=0.01: v'=9.077, v/s=9.409; s/sbar=0.10: v'=7.244, v/s=8.092; s/sbar=0.50: v'=5.393, v/s=6.473
+[PASS] 15g saturated HJB: growth weight v'(s) = 9.1, 7.2, 5.4 and v(s)/s = 9.4, 8.1, 6.5 at 1%, 10%, 50% of cap
+[PASS] 15h grid convergence: N=2000 vs N=4000 differ by < 0.02 in v(s)/s  ::  max diff=0.0043
+[PASS] 15i bounds: (m0-kG)s/(r-G) <= v(s) <= v0 s on the whole grid (Proposition prop:dynamic(a),(d))
+[PASS] 15j small share: v(s)/s -> v0 and v'(s) -> v0 (within 0.01 for s < 1e-6)  ::  v/s at smallest s = 9.99998, v' = 9.99997
+[PASS] 15k HJB identity R*_{v'(s)}(s) = (r-G) v(s)/s + G v'(s) on the numerical solution  ::  max residual=1.48e-04
+[PASS] 15l closed-loop simulation from s0=0.005: discounted payoff matches v(s0) within 0.5%  ::  payoff=0.047063, v(s0)=0.047043
+[PASS] 15l closed-loop simulation from s0=0.05: discounted payoff matches v(s0) within 0.5%  ::  payoff=0.404788, v(s0)=0.404616
+     constant-policy lower bound v(s0)/s0 >= 8.8139, 9.6917, 9.9290, 9.9967 (s0 = 1e-2 ... 1e-6)
+[PASS] 15m constant-policy lower bound increases to v0 as s0 -> 0 and lies below the HJB value
+[PASS] 15n [arithmetic] implication: the spend ratio identifies only alpha (X - k); X - k = rho/alpha > rho for every alpha < 1 (200 draws), and 1/alpha lies in [2.22, 4] for alpha in [0.25, 0.45]
+
+==============================================================================
+16. Screening weight (Lemma lem:valuation2): Gordon limit and coincidence with the revenue multiple
+==============================================================================
+[PASS] 16a (d) T -> oo: X_scr -> m(1+r)/[(1+g)(r-g)] = (V/S0)(1+r)/(1+g)^2 (200 draws)  ::  violations=0
+
+==============================================================================
+17. What the results assume (Remark rem:assumptions)
+==============================================================================
+[PASS] 17a (a) fixed cost: dR*/ds = Xi/(s^2 M) - (X-k) Delta*/(sbar - s) > 0 at small s
+[PASS] 17b (b) G_i != G: integral (R - R_inf,i)^+ <= (X-k)[ln(s_T/s0) + (G - G_i) T] (1000 paths)  ::  violations=0
+[PASS] 17c (c) k < 0: Rule-of-X closed forms hold; frontier peaks at Delta_0 = [-k/(beta kappa)]^(1/(beta-1))  ::  violations=0
+[PASS] 17d (c) depreciation: dR*/dk = -(g* + delta) (200 draws); hurdles 3.5 and 7.5 points at delta = 0.25  ::  violations=0
+[PASS] 17e (d) network effects: score budget holds with non-monotone headroom (200 ODE paths)  ::  violations=0
+
+==============================================================================
+18. Automation priorities (Corollary cor:priorities)
+==============================================================================
+[PASS] 18a (i)-(iii): exact gains da, Pi[(1+x)^(1/(1-alpha)) - 1], (X-k) dG; first order x sigma*/alpha (300 draws)  ::  violations=0
+[PASS] 18b (ii) spend efficiency x (same growth for spend sigma/(1+x), i.e. lambda -> lambda(1+x)^alpha) raises R* by Pi[(1+x)^(alpha/(1-alpha)) - 1] exactly and x sigma* to first order (300 draws, direct maximization); per unit of demand pull the gain is sigma*/alpha (0.434 vs 0.130 at alpha 0.3, ell 0.8, y 1)  ::  sigma*/alpha=0.4340, sigma*=0.1302
+[PASS] 18c (iv) competitive limit XG + (r-G)(k_u + a_c)/chat rises as u falls when k_u + a_c > 0 and is constant when k_u + a_c = 0
+
+==============================================================================
+19. Industry subsection opening: common frontier with high opportunity
+==============================================================================
+[PASS] 19a D-2 mapping: under a common frontier (k = 0), ell = (S_beta/b)^alpha reproduces a least-squares slope -b on the 13-point grid of [0, 0.6] exactly; S_beta and the steepest slope ~ (beta+1)(beta+2) b/6 match the dense-grid forms within 6%; the steepest-slope factor runs from 2.3 to 5 for alpha in [0.25, 0.45]
+
+==============================================================================
+20. Full-cost ceiling (Definition def:fullcost, Corollary cor:ceiling, Tables tab:ceiling and tab:fullcost)
+==============================================================================
+     Full-cost floors, percent of revenue (Appendix Table tab:fullcost):
+     favorable    risk 0.863 pqc 0.043 aic 0.096 | c_sec 1.00 c_mnt 0.15 c_err 0.93 c_anc 0.05 c_full 2.14 | base 77.66 (acc. only 79.47) | G* 22.34% (acc. only 20.53%)
+     central      risk 1.274 pqc 0.095 aic 0.195 | c_sec 1.56 c_mnt 0.60 c_err 3.86 c_anc 0.19 c_full 6.23 | base 67.46 (acc. only 72.57) | G* 32.54% (acc. only 27.43%)
+     conservative risk 2.138 pqc 0.241 aic 0.404 | c_sec 2.78 c_mnt 2.89 c_err 10.05 c_anc 0.74 c_full 16.47 | base 50.50 (acc. only 63.52) | G* 49.50% (acc. only 36.48%)
+     high compute risk 1.274 pqc 0.095 aic 0.195 | c_sec 1.56 c_mnt 0.60 c_err 3.86 c_anc 1.21 c_full 7.25 | base 38.75 (acc. only 44.69) | G* 61.25% (acc. only 55.31%)
+[PASS] 20a [text] Appendix Table tab:fullcost: risk, PQC, AI compliance, c_sec, c_mnt, the three parts of c_err, c_err, c_anc, c_full as printed in sections/appendix_proofs.tex
+[PASS] 20b c_sec risk cost: optimal spend today equals s0 = 0.69% and full-automation risk cost C_s(1 + L0 + ln M_e) equals the minimum of C + exp(-C/C_s) M_e C_inc; spend <= C_inc/e
+[PASS] 20c c_err parts: review-proof rate e_o(1-d_o) + e_h(1-d_h) = 0.0421 at central rates; capped Pareto mean E min(Z, 100) = 2.8 at tail index 1.5 (Monte Carlo); common mode nu T_con [X + H X^2/(2Y_f)]/S = 0.66% at 2 day-equivalent events, X = 0.6, Y_f = 0.3, H = 1 (round 2: W_A = s_L)
+     LaTeX rows for Table tab:ceiling:
+     Favorable & 0.03 & 0.02 & 0.015 & 2.1 & 0.15 & 77.7 & 82.7 & 92.7 & 107.7 & 85.2 & 75.2 & 62.7 & 22.3 \\
+     Central & 0.06 & 0.025 & 0.03 & 6.2 & 0.18 & 67.5 & 72.5 & 82.5 & 97.5 & 75.0 & 65.0 & 52.5 & 32.5 \\
+     Conservative & 0.12 & 0.03 & 0.046 & 16.5 & 0.21 & 50.5 & 55.5 & 65.5 & 80.5 & 58.0 & 48.0 & 35.5 & 49.5 \\
+     High compute & 0.40 & 0.025 & 0.03 & 7.2 & 0.18 & 38.7 & 43.7 & 53.7 & 68.7 & 46.2 & 36.2 & 23.7 & 61.3 \\
+[PASS] 20d [text] Table tab:ceiling rows (macros of paper1/macros.tex): base, six (G,k) cells and the 100-point threshold
+     full-cost corner grid (favorable/conservative cases): min 35.5, max 107.7
+[PASS] 20e [text] thresholds G* = 1 - margin term at k = 0 and the accountability-only thresholds, as printed (macros Gstar*, GstarAcc*)  ::  22.3 (20.5) / 32.5 (27.4) / 49.5 (36.5) / 61.3 (55.3)
+[PASS] 20f Cor ceiling(a),(b): R_inf <= R_max with equality at c_h = 0, a_op = a_min + c_full; eq. (Rmax) at X=1, psi=0, delta_K=0; expensing adds tau k G (+ tau delta_K k); replacement subtracts (1 - psi tau) delta_K k; at psi = 1 the earlier form is recovered
+     replacement at delta_K = 0.25, k = 0.5, central: 12.50 points at psi = 0, 10.25 at psi = 1
+[PASS] 20g replacement of k = 0.5 at delta_K = 0.25 lowers the central ceiling by (1 - psi tau) delta_K k: 12.5 points at psi = 0 and 10.25 at psi = 1
+     central G* at c_c = 0.01 / 0.6: 28.31 / 78.14% (acc. only 23.33 / 71.71%); slope 0.8446
+[PASS] 20h [text] c_c over its scenario bounds: central G* and accountability-only G* at both ends as printed (macros CcLo, CcHi, GstarCcLo/Hi, GstarAccCcLo/Hi); dG*/dc_c = (1 - tau)(1 + s_fin) = 0.8446
+[PASS] 20i [text] tau = 9% (GAO-23-105384 average effective rate) and a_min over its band [0.005, 0.046]: central thresholds as printed (macros GstarTauLow, GstarAccTauLow, GstarAminLo/Hi, AminLo/Hi)  ::  tau 9%: 25.1 (19.5); a_min: 30.5 to 33.8
+[PASS] 20m [text] c_err across its range: central G* at the favorable and conservative c_err and with today's highest measured error rates (no review) and unit losses (22.8 points), as printed (macros GstarCerrFav/Cons/High, CerrHigh)
+[PASS] 20j product mix: with AI products at c_c = 0.40 and the rest at 0.20, an AI revenue share of one half puts G* midway between the central and high-compute thresholds (linear in the share); 1 - 0.59 - 0.025 = 0.385 ~ 0.40
+     owning pays on the cash ceiling iff markup > 3.3 G at psi = 1: 16.5% at G = 5%, 49.5% at G = 15%; at psi = 0 (tau 0.18): 33.3% and 73.5%
+[PASS] 20k Remark rem:owncompute (FT-3): with one deduction rate for growth and replacement servers, owning raises the cash ceiling iff (1-tau) ups > (1-psi) tau s_srv + (1-psi tau) s_srv L_srv G (500 draws); at psi = 1 iff ups > 3.3 G, thresholds 16.5% and 49.5%; at psi = 0, 33% and 74%
+[PASS] 20k2 [text] the thresholds of Remark rem:owncompute printed in Section sec:horizons-ceiling (macros OwnMarkupFive, OwnMarkupFifteen) are those at psi = 1
+[PASS] 20l code/calibrate_horizons.py uses the same full-cost floors (notes/calibration_results.json, block 'ceiling')
+
+==============================================================================
+21. Attainable frontier (Assumption ass:program, Definition def:attainable, Proposition prop:attainable)
+==============================================================================
+[PASS] 21a (a) A_t and R^att_X(t) nondecreasing in t (150 random programs, 6 processes, 3 resources)  ::  violations=0
+[PASS] 21b (a) nondecreasing in capacities and nonincreasing in uses; R^att = R*(theta_0) for t < T_emb  ::  violations=0
+[PASS] 21c (a) sup of R_X over the union of feasible sets = max over packable Z of R*(theta_Z) (grid, 20 programs)  ::  violations=0
+[PASS] 21d (b) A_t = A_inf once n(t) >= nbar; nbar <= N if each process fits a wave; capacities >= total use give nbar = 1 and A_t = A_inf at T_emb  ::  violations=0
+[PASS] 21e (c) every packable Z uses at most n(t) Gamma_i of each resource; identical uses: |Z| <= n n_cap and every set of at most n n_cap processes is packable  ::  violations=0
+[PASS] 21f (d) m0 and G increments: R* additive (Delta R_p = dm0 + (X-k) dG); R^att - R*(theta_0) <= fractional knapsack value V(n Gamma_i) for every resource  ::  violations=0
+[PASS] 21g (d) the fractional knapsack value V(C) is nondecreasing, concave and piecewise linear in capacity  ::  violations=0
+[PASS] 21h Definition attainable(c): grad R*_X . dtheta = dm0 - g* dk + (X-k)(Delta* d ln lambda + dG) (finite differences)  ::  violations=0
+
+==============================================================================
+22. Expected frontier (Proposition prop:expected, Lemma lem:expected-frontier)
+==============================================================================
+     N=200, n_cap=5, waves=10, q=0.340: greedy E[#embedded]=17.04 (q n_cap n = 17.01), random plan 16.65, E[sum b] with selective reversion 13.16 <= b q n_cap n = 13.61
+     N=200, n_cap=8, waves=12, q=0.744: greedy E[#embedded]=71.39 (q n_cap n = 71.42), random plan 69.49, E[sum b] with selective reversion 55.40 <= b q n_cap n = 57.14
+     N=40, n_cap=4, waves=15, q=0.480: greedy E[#embedded]=28.93 (q n_cap n = 28.80), random plan 26.05, E[sum b] with selective reversion 22.31 <= b q n_cap n = 23.04
+[PASS] 22a (c) E[#embedded] <= min{N, p_emb n_cap n(t_R)}, with equality for the greedy plan when N >= n_cap n; E[sum b] <= min{N, bbar q n_cap n} even with selective reversion (Monte Carlo, 4 sigma)
+[PASS] 22b (b) garbling: abandoning successes with probability varpi/varpi' reproduces the low-success law (mean and variance); higher varpi raises the expected embedded count  ::  lo 9.596, garbled 9.606, hi 15.349
+[PASS] 22c (b) disruption: superposing an independent rate nu' - nu on rate nu gives survival exp(-nu' T_emb); p_emb = varpi exp(-nu_D (1 + nu_R T_frz) T_emb) falls with nu_D = nu_L(1 - kappa_keep) + nu_V
+[PASS] 22d (d) with retries every process is embedded (200 waves); E[sum b] -> N bbar, shortfall (1 - bbar) N Delta R  ::  min embedded 30, mean sum b 24.019 vs 24.0
+[PASS] 22e (a) with X-improving increments, any packable realized set with partial shares b <= 1 scores at most R^att_X (200 programs)  ::  violations=0
+[PASS] 22f Lemma expected-frontier: mbar_t concave; with m0 and k increments it equals the frontier at E theta_t; E R*_X >= sup_g [X g + mbar_t(g)] (Jensen)
+     central p_emb = 0.70, effective rate 0.0628/yr; fast p_emb = 0.80, rate 0.1719/yr; central embedded gains first exceed the in-flight dip after 4.05 years
+[PASS] 22g [text] pace numbers (macros PaceQ*, PaceRate*, PaceCrossCen) follow from the stated parameters, and calibrate_horizons.py uses the same p_emb and rate (notes/calibration_results.json, block 'pace')
+
+==============================================================================
+23. Beyond software: economic profit, ROIC and value (Proposition prop:general)
+==============================================================================
+[PASS] 23a identities: R_X = (X-k)g + e + rk = k[ROIC + (X/k - 1)g]; V/S = k + e/(r-g); V/IC = (ROIC-g)/(r-g) = 1 + (ROIC-r)/(r-g); FCF yield + g = r
+[PASS] 23b (a) e*(g) = m0 - rk - kappa (g-G)^beta = m*(g) + k(g - r): slope 0 at G, decreasing and concave
+[PASS] 23c (c) at the small-share point (g0, m0) of Prop dynamic(d), -e*'(g0) = v0 - k and e*(g0) = (v0 - k)(r - g0): the iso-value line through (r, 0) is tangent to the economic-margin frontier  ::  cases=166
+[PASS] 23d (d) same g = 15% and economic margin: k = 1.5 changes R_1 by (r - g) dk = -7.5 points; at k = 1.5 a point of growth lowers R_1 by half a point
+
+==============================================================================
+24. Ownership regimes (Remark rem:regimes)
+==============================================================================
+[PASS] 24a (i) on any common attainable set, a higher weight picks a point with weakly more growth, and less margin when growth is strictly higher (500 random finite sets)  ::  violations=0
+[PASS] 24b (ii) a program P' subset of P has a packable family contained in that of P, so A'_t is contained in A_t  ::  violations=0
+
+==============================================================================
+25. Tax deductions for capital and the accountability floor (Remark rem:taxes, Corollary cor:ceiling; Part II prop:acct-tax, prop:acct-amin)
+==============================================================================
+[PASS] 25a psi_T closed form = PV of the midpoint schedule; psi_5 = 0.796 (2022-2024 domestic), psi_15 = 0.532 (foreign, 26 U.S.C. 174); domestic development and 100%-allowance equipment have psi = 1  ::  psi5=0.7961 psi15=0.5324
+[PASS] 25b capital term of R_max at k = 1.5, G = 0.30: 45 points with psi = 0, 36 to 38 with psi = 1, 40 to 41 with psi_15 (tau 15 to 21%)
+[PASS] 25c calibration: psi = 0 reproduces the k = 0.5 column of tab:calib; deductions raise it and lower the anchor intercepts (notes/calibration_results.json, block 'psi_sensitivity')
+[PASS] 25d Remark rem:amin-values (RA-1): cheapest admissible design is one human over one AI layer at pibar = 5% ($0.75m with the $204,672 ITGC line, 3.1% a year) and one human over two AI layers at 1% ($0.80m, 0.7%); with 48 opportunities or an AI common mode of 0.01 it needs two human layers over one AI ($1.25m); three human layers pass only at 5% (5.0%); the floor with direct costs (0.30%) stays below 0.5%  ::  5%: (754672.131147541, 1, 1), 1%: (804672.131147541, 1, 2), N=48: (1254672.131147541, 2, 1), pcm 1%: (1254672.131147541, 2, 1)
+[PASS] 25e (RA-1) no all-AI design on one provider is admissible below 11.3% a year and no all-human design below 4.7%, at any depth (depth 1 to 39); at pibar = 1% every admissible design uses both types; the $10m loss of the earlier expected-loss form does not enter the floor  ::  AI limit 11.33%, human 4.69%
+[PASS] 25f (round 2, C1-C2) break-evens of Remark rem:amin-values at 1% and 5%: largest cross-type p^cc per design (P_bar - P)/(1 - P) equals the bisection on admissibility; one human over one AI fails at 5% above p^cc 0.00084 and above a human miss rate on AI-missed items of 8.4%; no all-AI design on one provider passes iff p_cm >= P_bar = 0.0021 (5%), as printed  ::  p^cc break-even 0.000844, miss-rate break-even 0.0839
+[PASS] 25g (round 2, B1, B10, B11) a pass-through rate phi on the price with the margin share at the post-cut price has first-order slope -(1 - phi u/p), the elasticity form of lem:prices(a) (300 draws); decision weights 14.6 to 1.35 at r = 9.34 to 31% solve the small-share HJB; iso-score values 12.1 to 5.2 follow lem:valuation2, as printed
+
+==============================================================================
+26. Paper 1 self-contained results: Lemma lem:fullcost and Proposition prop:amin
+==============================================================================
+[PASS] 26a lem:fullcost(a) revalidation every T_up years has annual equivalent r/(e^{rT_up}-1) under discounting (200 draws), and c_mnt = (delta_M + rho_rv/T_up) c_bld reproduces Table tab:fullcost
+[PASS] 26b lem:fullcost(b) risk cost = c_inc if c_inc <= c_eff, else c_eff[1 + ln(c_inc/c_eff)]; optimal spend c_eff ln(c_inc/c_eff)^+ <= c_inc/e and leaves residual c_eff (300 draws, numerical minimization)
+[PASS] 26c lem:fullcost(b) calibration identity c_risk = (c_sp0/L_sec)(1 + L_sec + ln xi_exp), and it reproduces the risk costs 0.86, 1.27 and 2.14 points of Table tab:fullcost  ::  [0.86, 1.27, 2.14]
+[PASS] 26d lem:fullcost(c) with AI review: escape probability chi + (1-chi)(1-d)^n_r (Monte Carlo); whatever units are reviewed, expected undetected errors >= u_bar per unit (300 draws); u_bar falls with depth to chi(e_o + e_h) and equals e_o + e_h with no review; the calibration's term is W_A u_bar L_err
+[PASS] 26d2 [text] FI-5: the full-automation ceiling uses the no-review rate u_bar = e_o + e_h = 0.0845 (central), not human catch rates (0.042); calibrate_horizons.py FC['u_rev'] and Table tab:fullcost must carry it  ::  current u_rev central 0.0845, human-review rate 0.0421, no-review rate 0.0845
+[PASS] 26e lem:fullcost(d) E min{Y, Ybar} for a Pareto multiple capped by least privilege (61 tail indices, numerical integration), uncapped limit p/(p-1), and the central misbehavior term (0.67 points at W_A = 0.60)
+[PASS] 26f lem:fullcost(e) common-mode cost nu_cm T_con [W_cm + H_cm W_cm^2/(2 Y_fb)], largest with one provider (300 draws), with nu_cm = nu_out + (1 - q_chg) nu_reg nonincreasing in the change-control share (thinning); reproduces the central common-mode term (0.33 points)
+[PASS] 26g [arithmetic] lem:fullcost and Assumption ass:layers: with a disagreement check between two providers, an error of the first escapes with probability P(second wrong | first wrong) x P(same wrong answer | both wrong); the Kim et al. figure (about 0.60 on HELM MMLU) is the second factor only (20 synthetic joint-error models)/root/Paper Review/work/repo/rule-of-x/code/verify_theory.py:2715: RuntimeWarning: overflow encountered in exp
+  lbs.append(mo * np.trapezoid(np.exp(-(r_ - G_ - D_) * tt) / (1 + (s0v / 0.5) * (np.exp(D_ * tt) - 1)), tt))
+
+[PASS] 27a prop:amin(a): P_o = p_cc + (1 - p_cc) prod_j [p_cm_j + (1 - p_cm_j) p_j^n_j] (40 random designs, Monte Carlo), strictly decreasing in depth to p_cc + (1 - p_cc) p_cm_j, strictly above the common-mode bound at finite depth, and nonincreasing in the quality of IT general controls
+[PASS] 27b prop:amin(b): pi_o <= pibar iff P_o <= Pbar_o = 1 - (1 - pibar)^(1/N_o) (300 draws); a single-type design whose common-mode bound reaches Pbar_o is inadmissible at every depth
+[PASS] 27c prop:amin(c),(d): the floor is the cheapest admissible design; with fixed dollar costs and fixed N_o it is nonincreasing in revenue and tends to omega L_nm p_cm_H p_cm_AI (errors below materiality); with AI on one provider alone no design is admissible at pibar = 1% (a_min infinite)  ::  floors ['2.33067', '0.23367', '0.02397', '0.00289', '0.00034', '0.00002']% limit 0.000024%
+[PASS] 27d [text] a_min band: one ITGC line (about $205k a year, 0.020% of revenue at $1bn), the bottom-up floor (direct costs plus the cheapest admissible design) and the number of in-scope AI applications at which the floor reaches 0.5%, as printed (macros ItgcLine, ItgcLineFb, AminFloor, AminDirect, ItgcApps, ItgcAppsFb)  ::  line $204,672 (0.0205%), floor 0.375%, n = 8, 4
+
+==============================================================================
+28. Revision v2 theory fixes (notes/theory_fixes_v2.md)
+==============================================================================
+[PASS] 28a Lemma lem:timing(d): at alpha = 1/2 the contemporaneous frontier is convex exactly on (G, (k/kappa)^(1/3) - 1) (= (0.1, 1.080) at k = 1, ell = 3), with a corner and an interior local maximum (g ~ 1.16 at X = 0.45); for alpha = 0.6 and 0.7 it is concave near G and convex where 2k(g-G)^(2-beta)/(1+g)^3 > beta(beta-1)kappa  ::  upper end 1.0801, interior max [np.float64(1.1644939662666667)]
+[PASS] 28b Lemma lem:timing(d) [arithmetic]: alpha = 0.3, k = 0.05, ell = 0.86, G = 0.1: the non-convex region ends about 2 points of excess growth above G  ::  Delta = 0.0203
+[PASS] 28c Remark rem:general-phi: for three concave non-isoelastic technologies, sigma*/Delta* = (X - k) eps(sigma*) with eps the local elasticity in (0, 1], the frontier is concave with slope -k - 1/(ell phi'(0)) at G, and firms with (X - k) ell phi'(0) <= 1 do not spend (numerical maximization)
+[PASS] 28d Corollary cor:transient(b): time at or above Rbar is at most (X-k) ln(sbar/s0)/(Rbar - R_inf) on random spend paths and at most (1-alpha) times that at the static optimum (60 draws); 0.43 and 0.30 years in the Rule-of-1000 example
+[PASS] 28e Proposition prop:budget(c): with a moving intercept, the integral of (R_X - R_inf(t))^+ stays below (X-k) ln(s_T/s0) (100 random paths); with zero-spend growth below G the budget is not finite (Remark rem:assumptions(b))
+[PASS] 28f Lemma lem:valuation2(e): T = 1, theta = 0 gives X_scr = (m + mbar M_inf)/(1+g) = (V/S0)(1+r)/(1+g)^2 (symbolic; 3.0229 at r 0.10, g 0.25, G_inf 0.03, mbar 0.25, m 0.10, equal to a finite-difference MRS); D strictly decreasing in r for T >= 2; Remark rem:cap value at a binding cap; Remark rem:r40 interval containing the optimum  ::  X_scr = 3.0229, MRS = 3.0229
+[PASS] 28g Proposition prop:dynamic(e): with lambda = 0.2 (worked-example parameters otherwise) eq. (gordon) has no positive root; Gordon multiples of constant policies diverge as growth approaches r, and the constant-policy lower bound on v(s0)/s0 grows as s0 -> 0  ::  u1 = 1.004, multiples [np.float64(6.4), np.float64(126.8), np.float64(1293.5), np.float64(12959.1)], bounds [np.float64(22.0), np.float64(46.5), np.float64(70.9), np.float64(94.9)]
+[PASS] 28h Proposition prop:dynamic proof: the HJB as an ODE in u = v/s has a singular point at (0, v0) with dPhi/du = (r - G)/Delta0 > 1, so the boundary behaviour v/s -> v0 does not select a solution  ::  dPhi/du = 1.6800
+[PASS] 28i Proposition prop:dynamic(b): the discounted payoff of 40 random piecewise-constant spend policies is at most the numerical HJB value v(s0) (verification inequality)  ::  max payoff/v = 0.6261
+[PASS] 28j Proposition prop:entry (R4-F4, FI-6, FT-4, FT-9): with customer capital the operating margin is L + rk + (r-G)k_a and the FCF margin (r-G)(k + k_a) + L (symbolic); owning and renting capital or customers have equal PV along nondecreasing output paths (100 paths); n* = floor(Z sqrt(B/Fhat)) (2000 draws); a rent cannot lift the competitive score above the pre-tax ceiling (500 draws), and at G = 5%, k = 0.5 every full-cost ceiling is below 100  ::  ceilings at (0.05, 0.5): [80.2, 70.0, 53.0, 41.2]
+[PASS] 28k Corollary cor:ceiling(a),(c): R_inf <= R_max iff the firm's total cost share is at least that of the full-automation structure (300 draws), so a leaner firm can score above R_max; the best saturated program is the full one when every process is X-improving, and a proper subset otherwise
+[PASS] 28l Remark rem:taxes: with replacement deducted at psi, m = (1-tau)(m0 - sigma) - (1-psi) tau delta_K k - (1 - psi tau) k g (symbolic); the correction vanishes at psi = 1
+[PASS] 28m Proposition prop:expected(e) (FT-7): in the divisible program the greedy plan attains p_emb c_w n(t_R) while c_w[1 + varpi(n-1)] <= 1 and falls short of min{1, varpi c_w n} by less than c_w after (200 draws); the lumpy model with n_cap = floor(c_w N) converges to it as N grows; calibrate_horizons.py computes s = bbar min{1, q rho T_par n(t_R)}, which is exact under central execution through 2036 and within one wave's capacity under fast execution  ::  lumpy [np.float64(0.4202), np.float64(0.4211)], fluid 0.4200
+[PASS] 28n Definition def:attainable(b) (R1-1): under the uniform clock with disruptions in calendar time, the greedy plan embeds p_emb n_cap n(t_R) processes in expectation with p_emb = varpi exp(-nu_D (1 + nu_R T_frz) T_emb) (Monte Carlo, two parameter sets)
+[PASS] 28o Proposition prop:expected(f) (R1-1, FT-6): with Poisson freezes the program embeds by calendar time 1.5 with probability e^-0.5 = 0.61 although the uniform clock gives t_R = 0.75 < T_emb (200,000 paths); program time over calendar time tends to 1/(1 + nu_R T_frz); a flight survives with probability exp{-nu_D T_emb - nu_R T_emb (1 - e^{-nu_D T_frz})} >= the uniform-clock value; the corrected bound with E n(t~(t)) holds  ::  P = 0.6070, clock ratio 0.8971, survival 0.5438 vs 0.5433
+[PASS] 28p Definition def:attainable(b) (R1-2): with the realized share fixed per process, reverting low shares gains nothing (E sum b = N bbar = 24 in the long run); with a fresh draw at each attempt and free reversion the level approaches the best draw (above 28 of 30 at a 0.9 threshold), so the assumption carries the claim  ::  fixed 23.89, redrawn 28.58
+[PASS] 28q Proposition prop:expected(b) (FT-4): a longer embedding lag lowers, and a share distribution that first-order dominates raises, the expected realized value of the greedy plan (Monte Carlo)  ::  T_emb 1: 13.68, T_emb 2: 8.35, better shares: 15.10
+[PASS] 28r Remark prop:general(c),(d) [arithmetic]: the cash Rule of 40 weights growth at 1 - k (positive below k = 1, zero at k = 1, negative above); on the line g + m = 0.40 with r = 0.10 the revenue multiple is 4, 7 and 16 at g = 0, 5% and 8%, so iso-score lines are not iso-value lines
+[PASS] 28s Section sec:horizons-ranges (R1-13(b)): read as one firm's path from 2025 to 2036, the upper ends of the horizon rows (k = 0) need a starting share of at most about 1% of the market at sbar = 0.5 by the score budget, and below 0.5% by share accounting, so the rows are cross-sections of possibly different firms (notes/calibration_results.json)  ::  int Pi = 4.13; s0 <= 0.80% (budget), 0.202% / 0.0273% (share accounting, alpha 0.25 / 0.45)
+
+==============================================================================
+SUMMARY: 191/191 checks passed
+==============================================================================

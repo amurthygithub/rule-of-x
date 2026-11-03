@@ -1,0 +1,116 @@
+{
+  "provenance": {
+    "python": "3.9.6 (default, Aug 25 2026, 21:26:21) \n[Clang 21.0.0 (clang-2100.3.34.2)]",
+    "platform": "macOS-26.7.2-arm64-arm-64bit",
+    "method": "Independent standard-library deterministic arithmetic; no simulation or author code; no HJB re-solve."
+  },
+  "M1": {
+    "cone_projection_slope": -0.21999999999999797,
+    "max_support_weight": 2.9999999999999996,
+    "paper_approx_multiplier": 3.851851851851853,
+    "inferred_max_weight": 0.8474074074073998,
+    "physical_share": 0.25,
+    "physical_share_cap": 0.5,
+    "lambda_value": 1.443653998629132,
+    "max_spend": 0.5399999999999999,
+    "minimum_margin": 0.2600000000000001,
+    "maximum_interior_foc_error": 1.1102230246251565e-15,
+    "scope": "Heterogeneous-weight common-frontier narrative, outside formal common-X Assumption 5."
+  },
+  "M2": {
+    "schedule": "Half-year 15-year deductions, fully mature balanced-growth vintage history; forward investment/revenue=kg.",
+    "cases": [
+      {
+        "growth": 0.05,
+        "actual_cash_factor": 0.7092766326090073,
+        "pv_factor": 0.5324255654415853,
+        "paper_minus_actual_score_points": -0.23874894067601982
+      },
+      {
+        "growth": 0.1,
+        "actual_cash_factor": 0.5324255654415853,
+        "pv_factor": 0.5324255654415853,
+        "paper_minus_actual_score_points": 0.0
+      },
+      {
+        "growth": 0.15,
+        "actual_cash_factor": 0.4190615237352284,
+        "pv_factor": 0.5324255654415853,
+        "paper_minus_actual_score_points": 0.45912436891074515
+      },
+      {
+        "growth": 0.3,
+        "actual_cash_factor": 0.2505628604884751,
+        "pv_factor": 0.5324255654415853,
+        "paper_minus_actual_score_points": 2.283087910120192
+      }
+    ]
+  },
+  "M3": {
+    "prior_revenue": 100,
+    "continuing_revenue": 100,
+    "acquired_recognized_revenue": 100,
+    "current_revenue": 200,
+    "cash_price": 300,
+    "price_per_recognized_revenue": 3,
+    "actual_cash_charge": 1.5,
+    "simple_component": 1,
+    "log_component": 0.6931471805599453,
+    "mistaken_simple_product": 3,
+    "mistaken_log_product": 2.0794415416798357,
+    "corrected_simple_charge": 1.5
+  },
+  "M4": {
+    "discount_rate": 0.1,
+    "exit_year": 5,
+    "first_benefit_year": 6,
+    "current_outlay": 1,
+    "permanent_annual_benefit": 0.2,
+    "cash_pv_through_exit": -1,
+    "exit_value": 1.809674836071919,
+    "total_npv": 0.09762327218805278,
+    "full_horizon_npv": 0.09762327218805278,
+    "terminal_value_fraction_break_even": 0.9110594001952546
+  },
+  "D3": {
+    "two_objective_union": 0.07840000000000003,
+    "two_submaterial_joint": 0.04000000000000001
+  },
+  "D4": {
+    "per_challenge_common_mode": 0.005,
+    "independent_miss": 0.02,
+    "challenges": 24,
+    "ai_layers": 3,
+    "iid_annual_floor": 0.1133464894986922,
+    "persistent_annual_risk": 0.005191022425351252,
+    "three_ai_layers_plus_itgc_cost": 354672,
+    "outside_assumption_7": true
+  },
+  "A1": {
+    "alpha": 0.5,
+    "lambda_value": 0.2,
+    "rho": 0.1,
+    "m0": 0.1,
+    "k": 0,
+    "physical_share_cap": 0.5,
+    "v0": 1.1270166537925828,
+    "delta0": 0.022540333075851657,
+    "homogeneous_exponent": 3.43649167310371,
+    "forcing_coefficient_in_z": 1.1270166537925828,
+    "particular_linear_coefficient_in_z": -0.4625571538920712,
+    "physical_s_coefficient": -0.9251143077841424,
+    "interpretation": "A supplementary universal asymptotic needs the forced term; no refutation of Proposition 2 limits."
+  },
+  "G1000": {
+    "G": 9.5,
+    "m0": 0.5,
+    "k": 0,
+    "X": 1,
+    "physical_cap": 0.5,
+    "initial_share": 0.1,
+    "spend": 0,
+    "permanent_score": 10.0,
+    "scope": "Extreme permitted static parameter example; not an economically relevant headline refutation."
+  }
+}
+All deterministic assertions passed. D2 trajectory retained in results.json.

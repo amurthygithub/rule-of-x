@@ -1,0 +1,282 @@
+{
+  "provenance": {
+    "python": "3.9.6 (default, Aug 25 2026, 21:26:21) \n[Clang 21.0.0 (clang-2100.3.34.2)]",
+    "platform": "macOS-26.7.2-arm64-arm-64bit",
+    "method": "Independent standard-library deterministic arithmetic; no simulation or author code; no HJB re-solve."
+  },
+  "M1": {
+    "cone_projection_slope": -0.21999999999999797,
+    "max_support_weight": 2.9999999999999996,
+    "paper_approx_multiplier": 3.851851851851853,
+    "inferred_max_weight": 0.8474074074073998,
+    "physical_share": 0.25,
+    "physical_share_cap": 0.5,
+    "lambda_value": 1.443653998629132,
+    "max_spend": 0.5399999999999999,
+    "minimum_margin": 0.2600000000000001,
+    "maximum_interior_foc_error": 1.1102230246251565e-15,
+    "scope": "Heterogeneous-weight common-frontier narrative, outside formal common-X Assumption 5."
+  },
+  "M2": {
+    "schedule": "Half-year 15-year deductions, fully mature balanced-growth vintage history; forward investment/revenue=kg.",
+    "cases": [
+      {
+        "growth": 0.05,
+        "actual_cash_factor": 0.7092766326090073,
+        "pv_factor": 0.5324255654415853,
+        "paper_minus_actual_score_points": -0.23874894067601982
+      },
+      {
+        "growth": 0.1,
+        "actual_cash_factor": 0.5324255654415853,
+        "pv_factor": 0.5324255654415853,
+        "paper_minus_actual_score_points": 0.0
+      },
+      {
+        "growth": 0.15,
+        "actual_cash_factor": 0.4190615237352284,
+        "pv_factor": 0.5324255654415853,
+        "paper_minus_actual_score_points": 0.45912436891074515
+      },
+      {
+        "growth": 0.3,
+        "actual_cash_factor": 0.2505628604884751,
+        "pv_factor": 0.5324255654415853,
+        "paper_minus_actual_score_points": 2.283087910120192
+      }
+    ]
+  },
+  "M3": {
+    "prior_revenue": 100,
+    "continuing_revenue": 100,
+    "acquired_recognized_revenue": 100,
+    "current_revenue": 200,
+    "cash_price": 300,
+    "price_per_recognized_revenue": 3,
+    "actual_cash_charge": 1.5,
+    "simple_component": 1,
+    "log_component": 0.6931471805599453,
+    "mistaken_simple_product": 3,
+    "mistaken_log_product": 2.0794415416798357,
+    "corrected_simple_charge": 1.5
+  },
+  "M4": {
+    "discount_rate": 0.1,
+    "exit_year": 5,
+    "first_benefit_year": 6,
+    "current_outlay": 1,
+    "permanent_annual_benefit": 0.2,
+    "cash_pv_through_exit": -1,
+    "exit_value": 1.809674836071919,
+    "total_npv": 0.09762327218805278,
+    "full_horizon_npv": 0.09762327218805278,
+    "terminal_value_fraction_break_even": 0.9110594001952546
+  },
+  "D3": {
+    "two_objective_union": 0.07840000000000003,
+    "two_submaterial_joint": 0.04000000000000001
+  },
+  "D4": {
+    "per_challenge_common_mode": 0.005,
+    "independent_miss": 0.02,
+    "challenges": 24,
+    "ai_layers": 3,
+    "iid_annual_floor": 0.1133464894986922,
+    "persistent_annual_risk": 0.005191022425351252,
+    "three_ai_layers_plus_itgc_cost": 354672,
+    "outside_assumption_7": true
+  },
+  "D2": {
+    "capacity": 0.055,
+    "probability": 0.8,
+    "records": [
+      {
+        "wave": 1,
+        "unembedded_mass": 0.956
+      },
+      {
+        "wave": 2,
+        "unembedded_mass": 0.9119999999999999
+      },
+      {
+        "wave": 3,
+        "unembedded_mass": 0.8679999999999999
+      },
+      {
+        "wave": 4,
+        "unembedded_mass": 0.8239999999999998
+      },
+      {
+        "wave": 5,
+        "unembedded_mass": 0.7799999999999998
+      },
+      {
+        "wave": 6,
+        "unembedded_mass": 0.7359999999999998
+      },
+      {
+        "wave": 7,
+        "unembedded_mass": 0.6919999999999997
+      },
+      {
+        "wave": 8,
+        "unembedded_mass": 0.6479999999999997
+      },
+      {
+        "wave": 9,
+        "unembedded_mass": 0.6039999999999996
+      },
+      {
+        "wave": 10,
+        "unembedded_mass": 0.5599999999999996
+      },
+      {
+        "wave": 11,
+        "unembedded_mass": 0.5159999999999996
+      },
+      {
+        "wave": 12,
+        "unembedded_mass": 0.4719999999999996
+      },
+      {
+        "wave": 13,
+        "unembedded_mass": 0.4279999999999996
+      },
+      {
+        "wave": 14,
+        "unembedded_mass": 0.3839999999999996
+      },
+      {
+        "wave": 15,
+        "unembedded_mass": 0.33999999999999964
+      },
+      {
+        "wave": 16,
+        "unembedded_mass": 0.29599999999999965
+      },
+      {
+        "wave": 17,
+        "unembedded_mass": 0.25199999999999967
+      },
+      {
+        "wave": 18,
+        "unembedded_mass": 0.20799999999999966
+      },
+      {
+        "wave": 19,
+        "unembedded_mass": 0.16399999999999965
+      },
+      {
+        "wave": 20,
+        "unembedded_mass": 0.11999999999999963
+      },
+      {
+        "wave": 21,
+        "unembedded_mass": 0.07599999999999962
+      },
+      {
+        "wave": 22,
+        "unembedded_mass": 0.03199999999999962
+      },
+      {
+        "wave": 23,
+        "unembedded_mass": 0.006399999999999923
+      },
+      {
+        "wave": 24,
+        "unembedded_mass": 0.0012799999999999843
+      },
+      {
+        "wave": 25,
+        "unembedded_mass": 0.0002559999999999969
+      },
+      {
+        "wave": 26,
+        "unembedded_mass": 5.1199999999999374e-05
+      },
+      {
+        "wave": 27,
+        "unembedded_mass": 1.0239999999999875e-05
+      },
+      {
+        "wave": 28,
+        "unembedded_mass": 2.0479999999999743e-06
+      },
+      {
+        "wave": 29,
+        "unembedded_mass": 4.095999999999948e-07
+      },
+      {
+        "wave": 30,
+        "unembedded_mass": 8.191999999999892e-08
+      },
+      {
+        "wave": 31,
+        "unembedded_mass": 1.6383999999999785e-08
+      },
+      {
+        "wave": 32,
+        "unembedded_mass": 3.2767999999999563e-09
+      },
+      {
+        "wave": 33,
+        "unembedded_mass": 6.55359999999991e-10
+      },
+      {
+        "wave": 34,
+        "unembedded_mass": 1.310719999999982e-10
+      },
+      {
+        "wave": 35,
+        "unembedded_mass": 2.6214399999999638e-11
+      },
+      {
+        "wave": 36,
+        "unembedded_mass": 5.242879999999927e-12
+      },
+      {
+        "wave": 37,
+        "unembedded_mass": 1.0485759999999855e-12
+      },
+      {
+        "wave": 38,
+        "unembedded_mass": 2.0971519999999707e-13
+      },
+      {
+        "wave": 39,
+        "unembedded_mass": 4.19430399999994e-14
+      },
+      {
+        "wave": 40,
+        "unembedded_mass": 8.388607999999881e-15
+      }
+    ],
+    "exact_finite_completion": false
+  },
+  "A1": {
+    "alpha": 0.5,
+    "lambda_value": 0.2,
+    "rho": 0.1,
+    "m0": 0.1,
+    "k": 0,
+    "physical_share_cap": 0.5,
+    "v0": 1.1270166537925828,
+    "delta0": 0.022540333075851657,
+    "homogeneous_exponent": 3.43649167310371,
+    "forcing_coefficient_in_z": 1.1270166537925828,
+    "particular_linear_coefficient_in_z": -0.4625571538920712,
+    "physical_s_coefficient": -0.9251143077841424,
+    "interpretation": "A supplementary universal asymptotic needs the forced term; no refutation of Proposition 2 limits."
+  },
+  "G1000": {
+    "G": 9.5,
+    "m0": 0.5,
+    "k": 0,
+    "X": 1,
+    "physical_cap": 0.5,
+    "initial_share": 0.1,
+    "spend": 0,
+    "permanent_score": 10.0,
+    "scope": "Extreme permitted static parameter example; not an economically relevant headline refutation."
+  }
+}

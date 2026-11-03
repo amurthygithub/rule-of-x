@@ -1,0 +1,9 @@
+{
+  "source_ledger.csv": "d7e62a6a7239ff47ae26b064ac0e85368bed754f24c7a3833314afb08d49cab4",
+  "C_first.sha256": "7e007ccdee9ee99076698d3574be50097d3ee5cd023fac2ed16020be192b0988",
+  "finance_inputs.json": "33e32f6c9d4dd619f67e5757dae49e82cb7e65e5667a0b85400be9cefea71d35",
+  "finance_diagnostics.py": "3d64e14b4e6a49b77fe21962578edb4005f039e0b6b879736a2afc1a8442bf2a",
+  "C_first.md": "65a0ac7d99876fc9c8afb28c4968213932cb9b9d9966bea7f219db5af88f5633",
+  "execution.log": "edecbac2fd381c130ad7dd0f61893bb751522d6bd63eec179da778bb08e8b96a",
+  "finance_results.json": "236066ee08a42ec09bc755f08d56a94a75c0982efda639d8e5e0bb4823c8d841"
+}

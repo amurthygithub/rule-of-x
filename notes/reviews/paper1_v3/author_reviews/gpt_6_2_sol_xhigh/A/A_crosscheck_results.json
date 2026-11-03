@@ -1,0 +1,81 @@
+{
+  "purpose": "Correct the literal cap in frozen A report to physical sbar=.5; original sbar=1 was normalized state domain, not a model assumption.",
+  "mapping": "physical s=.5*z; physical v(s)=.5*w(z); vprime(s)=wprime(z); v(s)/s=w(z)/z",
+  "sbar": 0.5,
+  "derivative_max_rescaling_difference": 1.6484591469634324e-11,
+  "physical_HJB_residual_max": 4.603343222962797e-07,
+  "local_asymptotic_physical_parameters": {
+    "alpha": 0.5,
+    "lambda_": 0.2,
+    "r": 0.1,
+    "G": 0,
+    "m0": 0.1,
+    "k": 0,
+    "sbar": 0.5
+  },
+  "local_asymptotic_dimensionless_results": {
+    "parameters": {
+      "alpha": 0.5,
+      "lambda_": 0.2,
+      "r": 0.1,
+      "G": 0,
+      "m0": 0.1,
+      "k": 0,
+      "sbar": 1
+    },
+    "smallest_simple_positive_root": 1.1270166537925828,
+    "delta0": 0.02254033307585166,
+    "a": 3.436491673103709,
+    "predicted_linear_coefficient": -0.46255715389207136,
+    "correct_linearization": "z du/dz = a(u-v0)+(v0-k)z+o(abs(u-v0)+z); general local solution C z^a+(v0-k)z/(1-a), a!=1; resonance z log z at a=1",
+    "diagnostic": [
+      {
+        "z": 1e-07,
+        "u_minus_root_over_z": -0.46255646424242514,
+        "u_minus_root_over_z_power_a": -5.2554083450375784e+16
+      },
+      {
+        "z": 6.348565216305223e-07,
+        "u_minus_root_over_z": -0.4625558310130019,
+        "u_minus_root_over_z_power_a": -581960478178339.1
+      },
+      {
+        "z": 4.030428030568051e-06,
+        "u_minus_root_over_z": -0.46254931920581166,
+        "u_minus_root_over_z_power_a": -6444288848621.59
+      },
+      {
+        "z": 2.558743520168589e-05,
+        "u_minus_root_over_z": -0.462507671691103,
+        "u_minus_root_over_z_power_a": -71354852598.04822
+      },
+      {
+        "z": 0.0001624435010958867,
+        "u_minus_root_over_z": -0.4622648323902082,
+        "u_minus_root_over_z_power_a": -789738022.0918529
+      }
+    ],
+    "classification": "Demonstrated local asymptotic error in supplementary discussion, not failure of Proposition 2(d) limit or conditional verification theorem."
+  },
+  "Rule1000_scope_example": {
+    "parameters": {
+      "alpha": 0.3,
+      "lambda_": 0.6,
+      "G": 9.5,
+      "m0": 0.5,
+      "k": 0,
+      "sbar": 0.5,
+      "s0": 0.1,
+      "X": 1
+    },
+    "zero_spend_policy": {
+      "sigma": 0,
+      "g": 9.5,
+      "m": 0.5,
+      "R1": 10,
+      "share_constant": 0.1
+    },
+    "static_optimal_path_saturated_limit": 10,
+    "limits": "Extreme growth economically outside scenarios, but not excluded by Assumptions1-4. Corollary1 requires target greater than R_infty, so is not contradicted."
+  }
+}

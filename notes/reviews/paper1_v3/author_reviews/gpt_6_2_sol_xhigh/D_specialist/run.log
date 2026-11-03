@@ -1,0 +1,180 @@
+{
+  "controls": {
+    "0.05": {
+      "per_challenge_threshold": 0.002134938369701545,
+      "cheapest": {
+        "cost": 754672,
+        "human": 1,
+        "AI": 1,
+        "p_challenge": 0.00129231,
+        "p_period": 0.03055884081940705
+      }
+    },
+    "0.01": {
+      "per_challenge_threshold": 0.00041867632449262514,
+      "cheapest": {
+        "cost": 804672,
+        "human": 1,
+        "AI": 2,
+        "p_challenge": 0.0002801562,
+        "p_period": 0.006702130690855797
+      }
+    },
+    "single_AI_infinite_depth_period_floor": 0.11334648949869211,
+    "single_human_infinite_depth_period_floor": 0.046912023335557974,
+    "persistent_AI_common_state": {
+      "1": 0.3872985651734669,
+      "2": 0.014508189418087045,
+      "3": 0.005191022425351063,
+      "4": 0.005003820792969737
+    },
+    "persistent_AI_three_layers_cost": 354672,
+    "two_objectives_each_4pct_period_union": 0.07840000000000003,
+    "ten_objective_equal_allocation_5pct_firm": 0.005116196891823743
+  },
+  "execution": {
+    "central": {
+      "assumed_Tpar": 0.25,
+      "horizons": {
+        "2028": {
+          "n": 6,
+          "wave": 6,
+          "E": 0.10499999999999976,
+          "unembedded": 0.8950000000000002,
+          "upper": 0.10499999999999998,
+          "attempted": 0.025,
+          "realized": 0.07034999999999984,
+          "upper_realized": 0.07035
+        },
+        "2031": {
+          "n": 17,
+          "wave": 17,
+          "E": 0.2974999999999993,
+          "unembedded": 0.7025000000000007,
+          "upper": 0.2975,
+          "attempted": 0.025,
+          "realized": 0.19932499999999956,
+          "upper_realized": 0.199325
+        },
+        "2032": {
+          "n": 21,
+          "wave": 21,
+          "E": 0.36749999999999916,
+          "unembedded": 0.6325000000000008,
+          "upper": 0.36749999999999994,
+          "attempted": 0.025,
+          "realized": 0.24622499999999944,
+          "upper_realized": 0.24622499999999997
+        },
+        "2036": {
+          "n": 35,
+          "wave": 35,
+          "E": 0.6124999999999989,
+          "unembedded": 0.387500000000001,
+          "upper": 0.6124999999999999,
+          "attempted": 0.025,
+          "realized": 0.4103749999999993,
+          "upper_realized": 0.410375
+        },
+        "2042": {
+          "n": 57,
+          "wave": 57,
+          "E": 0.9939999999999997,
+          "unembedded": 0.0060000000000002985,
+          "upper": 0.9974999999999999,
+          "attempted": 0.020000000000000993,
+          "realized": 0.6659799999999998,
+          "upper_realized": 0.668325
+        }
+      },
+      "strict_finite_completion": false,
+      "recurrence": "U_w=U_(w-1)-p*min(cw,U_(w-1))"
+    },
+    "fast": {
+      "assumed_Tpar": 0.25,
+      "horizons": {
+        "2028": {
+          "n": 8,
+          "wave": 8,
+          "E": 0.3520000000000003,
+          "unembedded": 0.6479999999999997,
+          "upper": 0.35200000000000004,
+          "attempted": 0.055,
+          "realized": 0.29920000000000024,
+          "upper_realized": 0.2992
+        },
+        "2031": {
+          "n": 20,
+          "wave": 20,
+          "E": 0.8800000000000003,
+          "unembedded": 0.11999999999999963,
+          "upper": 0.8800000000000001,
+          "attempted": 0.055,
+          "realized": 0.7480000000000002,
+          "upper_realized": 0.7480000000000001
+        },
+        "2032": {
+          "n": 24,
+          "wave": 24,
+          "E": 0.99872,
+          "unembedded": 0.0012799999999999843,
+          "upper": 1,
+          "attempted": 0.006399999999999923,
+          "realized": 0.848912,
+          "upper_realized": 0.85
+        },
+        "2036": {
+          "n": 40,
+          "wave": 40,
+          "E": 0.9999999999999916,
+          "unembedded": 8.388607999999881e-15,
+          "upper": 1,
+          "attempted": 4.19430399999994e-14,
+          "realized": 0.8499999999999928,
+          "upper_realized": 0.85
+        },
+        "2042": {
+          "n": 63,
+          "wave": 63,
+          "E": 1.0,
+          "unembedded": 7.036874417766264e-31,
+          "upper": 1,
+          "attempted": 3.518437208883132e-30,
+          "realized": 0.85,
+          "upper_realized": 0.85
+        }
+      },
+      "strict_finite_completion": false,
+      "recurrence": "U_w=U_(w-1)-p*min(cw,U_(w-1))"
+    },
+    "finite_48_all_complete_after_10_rounds_p80": 0.9999950848118262,
+    "finite_48_all_complete_after_5_rounds_p80": 0.9847549424792594
+  },
+  "ownership": {
+    "cost": 14,
+    "annual_benefit": 2,
+    "life_years": 20,
+    "holding_years": 5,
+    "discount": 0.1,
+    "undiscounted_5yr_net_cash": -4,
+    "undiscounted_payback": 7,
+    "exit_value_5": 15.212159012616732,
+    "PV_5yr_cash": 7.581573538816901,
+    "PV_exit": 9.44555390070023,
+    "NPV_5yr_including_exit": 3.0271274395171304,
+    "NPV_full_life": 3.0271274395171304
+  },
+  "random_freeze": {
+    "random_survival": 0.5957419225456863,
+    "uniform_survival": 0.5627048688069557,
+    "no_freeze_first_unit": 0.6065306597126334
+  },
+  "fluid_selection_conditional_counterexample": {
+    "mean_b": 0.5,
+    "one_wave_embeds_all_then_revert_b0": {
+      "retained_embedded_mass": 0.5,
+      "actual_realized_benefit": 0.5,
+      "bbar_times_retained_mass": 0.25
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "currency_unit": "USD thousands",
+  "sources": {
+    "F1": "https://www.sec.gov/Archives/edgar/data/2004711/000110465926071170/tm2613674-7_f1.htm",
+    "Q2_2026": "https://www.sec.gov/Archives/edgar/data/2004711/000200471126000011/bsp_ex99-2.htm",
+    "Q2_release": "https://www.sec.gov/Archives/edgar/data/2004711/000200471126000011/bsp_ex99-1.htm"
+  },
+  "annual": [
+    {"year":2023,"revenue":387067,"operating_income":84267,"ocf":59154,"sbc":14900,"ppe_cash":4044,"intangible_cash":958,"interest_expense":17173,"interest_paid":16581,"net_investing_outflow":170294},
+    {"year":2024,"revenue":671053,"operating_income":127352,"ocf":204895,"sbc":25855,"ppe_cash":604,"intangible_cash":162476,"interest_expense":32605,"interest_paid":19168,"net_investing_outflow":889654},
+    {"year":2025,"revenue":1306404,"operating_income":277851,"ocf":290600,"sbc":55523,"ppe_cash":501,"intangible_cash":67,"interest_expense":142601,"interest_paid":130881,"net_investing_outflow":1851874}
+  ],
+  "q2_2026":{"prior_revenue":311100,"revenue":704155,"operating_income":240251,"interest_expense":108970,"company_organic_growth":0.03},
+  "2025_outlay_vintages":[{"year":2023,"outlay":170294,"time":2023.5},{"year":2024,"outlay":889654,"time":2024.5},{"year":2025,"outlay":485746,"time":2025.125},{"year":2025,"outlay":89817,"time":2025.375},{"year":2025,"outlay":1276311,"time_range":[2025.75,2025.8972602739725]}],
+  "notes":["Annual inputs F-32 and F-35; no material internal-use development capitalization F-36 and F-53.","PPE-and-SBC bridge is independently computed; purchased intangible classification needs further reconciliation before claiming final FCF for 2024.","2025 outlay timing follows disclosed main pp51-52 scenario, not exact daily payment evidence."]
+}

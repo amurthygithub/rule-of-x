@@ -1,0 +1,3 @@
+6b9f09de365fc385d0f6bed09cb0b9d28d5a371eea89ec92def3e5d2a1da5a69  work/reports/A_first.md
+d57e81abf46eea14e45752808a466eb936753b782ab7505138320ab0246d5113  outputs/review_bundle/A/independent_theory.py
+6cf57153c69345a3f63c4f49f79e5224cb5e48eec32f08395a09e71a8913847a  outputs/review_bundle/A/results.json

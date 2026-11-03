@@ -1,0 +1,32 @@
+{
+  "reviewer": "E",
+  "freeze_utc": "2026-11-03T04:50:53.322566+00:00",
+  "first_snapshot_unchanged": true,
+  "files": [
+    {
+      "path": "work/reports/E_first.md",
+      "sha256": "d41ff2188ce8764a8125cf340503d64e716feaa91aedb51e95f41898a8204544",
+      "bytes": 13958
+    },
+    {
+      "path": "outputs/review_bundle/E_specialist/E_first.md",
+      "sha256": "d41ff2188ce8764a8125cf340503d64e716feaa91aedb51e95f41898a8204544",
+      "bytes": 13958
+    },
+    {
+      "path": "outputs/review_bundle/E_specialist/E_addendum.md",
+      "sha256": "c7e802525d38dc87149e373df300d0d4d4a93b9d3da6e384f932433c72c3230d",
+      "bytes": 2455
+    },
+    {
+      "path": "outputs/review_bundle/E_specialist/ledger.csv",
+      "sha256": "18ba2053c437b6a6c95ad96649b31f8e4529ae4fc5ceb35236491ed11f02a2a6",
+      "bytes": 17251
+    },
+    {
+      "path": "outputs/review_bundle/E_specialist/ledger.json",
+      "sha256": "8cb6d3dc28ef6e77c6ad5de1427d075d0c07506084e9663b6cac364cc506bd83",
+      "bytes": 25252
+    }
+  ]
+}

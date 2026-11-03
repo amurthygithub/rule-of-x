@@ -1,0 +1,23 @@
+{
+  "review_date_local": "2026-11-02",
+  "timezone": "America/Los_Angeles",
+  "python": "3.9.6 (default, Aug 25 2026, 21:26:21) \n[Clang 21.0.0 (clang-2100.3.34.2)]",
+  "platform": "macOS-26.7.2-arm64-arm-64bit",
+  "packages": {
+    "numpy": "2.0.2",
+    "scipy": "1.13.1",
+    "sympy": "1.14.0",
+    "PyMuPDF": "1.26.5",
+    "pdfplumber": "0.11.8"
+  },
+  "model": "GPT-6-based Codex, exact serving snapshot not exposed",
+  "separate_contexts": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F after first reports freeze"
+  ],
+  "shared": "model family,host,tools,filesystem; no independent model-family claim"
+}

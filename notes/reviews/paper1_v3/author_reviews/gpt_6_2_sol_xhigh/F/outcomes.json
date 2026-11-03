@@ -1,0 +1,94 @@
+{
+  "agent": "F",
+  "post_first_report_audit": true,
+  "same_inherited_model_family": true,
+  "exact_snapshot_exposed": false,
+  "reserved_history_read": false,
+  "outcomes": [
+    {
+      "id": "M1",
+      "disposition": "keep",
+      "scope": "Common-frontier heterogeneous-weight narrative only; not Proposition3 common-X theorem."
+    },
+    {
+      "id": "M2",
+      "disposition": "narrow",
+      "scope": "Delayed-deduction actual cash timing; preserve PV and immediate/nondeductible/k0 cases."
+    },
+    {
+      "id": "M3",
+      "disposition": "narrow",
+      "scope": "Finite-year denominator and timing bridge; preserve instantaneous Proposition8 and direct C/S arithmetic."
+    },
+    {
+      "id": "M4",
+      "disposition": "keep",
+      "scope": "Ownership rejection does not follow without terminal-value/payback-mandate restriction; C3 and D1 are one root cause."
+    },
+    {
+      "id": "M5",
+      "disposition": "narrow",
+      "scope": "Source-to-scenario transport and labels; no established literal error-rate addition or false assumed parameters."
+    },
+    {
+      "id": "M6",
+      "disposition": "uncertain",
+      "scope": "Numerical validity unresolved without package; keep replication request and conditional-on-years scope."
+    },
+    {
+      "id": "D3",
+      "disposition": "narrow",
+      "scope": "Aggregation-complete conditional surrogate; no invented statutory probability threshold."
+    },
+    {
+      "id": "D4",
+      "disposition": "narrow",
+      "scope": "Temporal-dependence sensitivity outside Assumption7; not theorem refutation."
+    },
+    {
+      "id": "D5",
+      "disposition": "narrow",
+      "scope": "Durable59 before4.2 dip versus approximately55 all-in; Table5 already discloses."
+    },
+    {
+      "id": "D2",
+      "disposition": "keep",
+      "scope": "Finite exact completion wording only; upper bound/pre-saturation equality and finite stochastic completion survive."
+    },
+    {
+      "id": "A1",
+      "disposition": "keep",
+      "scope": "Supplementary local forced-term correction; Proposition2 limits and conditional verification survive."
+    },
+    {
+      "id": "A2",
+      "disposition": "narrow",
+      "scope": "Worked-example global monotonicity wording only; reported three points survive; no new HJB solve by F."
+    },
+    {
+      "id": "FINITE_CAPITAL_IFF",
+      "disposition": "withdraw",
+      "scope": "Complete text already states first order; keep optional local qualifier."
+    },
+    {
+      "id": "RULE1000_EXTREME",
+      "disposition": "narrow",
+      "scope": "Extreme static permitted-parameter scope footnote, not a major economic objection."
+    },
+    {
+      "id": "CONE_ORIENTATION",
+      "disposition": "withdraw",
+      "scope": "Two-desirable-output transformation is coherent."
+    },
+    {
+      "id": "GENERIC_FRONTIER_BOOTSTRAP",
+      "disposition": "withdraw",
+      "scope": "Fixed partial quantiles are not extreme boundary maxima."
+    },
+    {
+      "id": "EXTRA_ERROR_OCCURRENCE",
+      "disposition": "withdraw",
+      "scope": "Assumption7 already defines material-error challenges."
+    }
+  ]
+}

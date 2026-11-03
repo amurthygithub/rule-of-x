@@ -1,0 +1,106 @@
+{
+  "kind": "exact population plus deterministic numerical diagnostics; no author-data re-estimation",
+  "input_sha256": "41bd2065999a1dfbd5821c85546d1e1ab8a5446a35f94ffb2a13db39780bb66d",
+  "parameters": {
+    "alpha": 0.3,
+    "G": 0,
+    "k": 0,
+    "m0": 0.8,
+    "support_max_growth": 0.6,
+    "spend_cap": 1,
+    "ell": 0.721826999314566,
+    "growth_cdf_power": 14.833990914027952,
+    "chi": 0.9,
+    "author_grid_step": 0.05,
+    "explanation": "ell chosen to make true frontier terminal slope magnitude 3; power chosen with Brent root solver on [10,20] to make exact cone LS slope -0.22. No empirical fit or random simulation."
+  },
+  "beta": 3.3333333333333335,
+  "cone_slope_on_author_grid": -0.21999999999999797,
+  "frontier_slope_on_author_grid": -0.8074218266409481,
+  "actual_frontier_steepest_slope_magnitude": 2.9999999999999996,
+  "naive_factor": 3.851851851851853,
+  "naive_inferred_steepest_slope_magnitude": 0.8474074074073998,
+  "max_spend": 0.5399999999999999,
+  "min_margin": 0.2600000000000001,
+  "max_X": 2.9999999999999996,
+  "derivative_checks": [
+    {
+      "g": 0.1,
+      "conditional_growth_quantile": 0.5137342358026403,
+      "qprime": 1.3240135814843446e-10,
+      "exact_cone_derivative": -2.765141097960326e-10,
+      "finite_difference": -2.498001805406602e-10,
+      "abs_error": 2.671392925537236e-11
+    },
+    {
+      "g": 0.3,
+      "conditional_growth_quantile": 0.513744906292482,
+      "qprime": 0.000527544080972998,
+      "exact_cone_derivative": -0.0011018047981450766,
+      "finite_difference": -0.0011018047307853607,
+      "abs_error": 6.735971589538758e-11
+    },
+    {
+      "g": 0.5,
+      "conditional_growth_quantile": 0.5303190121427293,
+      "qprime": 0.39860817202629284,
+      "exact_cone_derivative": -0.896536540515415,
+      "finite_difference": -0.8965365404511871,
+      "abs_error": 6.422784526449732e-11
+    },
+    {
+      "g": 0.59,
+      "conditional_growth_quantile": 0.591111576976887,
+      "qprime": 0.8768672809448167,
+      "exact_cone_derivative": -2.5405687654297204,
+      "finite_difference": -2.5405687654189713,
+      "abs_error": 1.0749179324420766e-11
+    }
+  ],
+  "dense_weighted_support_mesh": [
+    {
+      "support_points": 1001,
+      "max_gap": 0.0005994005994005994,
+      "cone_slope": -0.21921770898689244,
+      "max_quantile_error": 0.00031645204373931257
+    },
+    {
+      "support_points": 10001,
+      "max_gap": 5.999400059994e-05,
+      "cone_slope": -0.21986979981644775,
+      "max_quantile_error": 2.7149959696770587e-05
+    },
+    {
+      "support_points": 100001,
+      "max_gap": 5.9999400005999934e-06,
+      "cone_slope": -0.21999020017379087,
+      "max_quantile_error": 2.95622889268099e-06
+    }
+  ],
+  "optimizer_count": 101,
+  "optimizer_all_success": true,
+  "max_optimization_objective_error": 6.661338147750939e-16,
+  "sample_flow": {
+    "E1": 1788,
+    "flagged": 466,
+    "retained_flagged": 58,
+    "implied_E2": 1380,
+    "reported_E2": 1378,
+    "implied_exclusion_only": 1322,
+    "reported_exclusion_only": 1320,
+    "imputed_total": 1786,
+    "unreconciled_E2_difference": 2
+  },
+  "MC_standard_error_example": {
+    "B": 999,
+    "reported_p": 0.097,
+    "binomial_approximation": 0.009363689373248062
+  },
+  "environment": {
+    "python": "3.9.6 (default, Aug 25 2026, 21:26:21) \n[Clang 21.0.0 (clang-2100.3.34.2)]",
+    "numpy": "2.0.2",
+    "scipy": "1.13.1",
+    "platform": "macOS-26.7.2-arm64-arm-64bit"
+  },
+  "no_randomness": true
+}

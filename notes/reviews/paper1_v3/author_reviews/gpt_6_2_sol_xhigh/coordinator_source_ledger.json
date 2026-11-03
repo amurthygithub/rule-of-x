@@ -1,0 +1,179 @@
+[
+  {
+    "id": "PCAOB",
+    "title": "AS 2201: An Audit of Internal Control Over Financial Reporting That Is Integrated with An Audit of Financial Statements",
+    "author": "PCAOB",
+    "year": 2026,
+    "url": "https://pcaobus.org/oversight/standards/auditing-standards/details/AS2201",
+    "access": "Full text available; A7, .62-.70 and relevant reporting provisions inspected",
+    "judgment": "Definition and aggregation requirements verified; no numerical remote threshold supplied; model is a stylized operationalization."
+  },
+  {
+    "id": "SEC308",
+    "title": "17 CFR 229.308, Internal control over financial reporting",
+    "author": "SEC / Office of the Federal Register",
+    "year": 2025,
+    "url": "https://www.govinfo.gov/content/pkg/CFR-2025-title17-vol3/pdf/CFR-2025-title17-vol3-part229-subpart229-300.pdf",
+    "access": "Official 2025 CFR full PDF available; section on printed p430 / PDF p19 inspected; current eCFR blocked. Current SEC Financial Reporting Manual corroborates substantive rule.",
+    "judgment": "One or more material weaknesses prevents effective-ICFR conclusion; no invented numerical probability tolerance."
+  },
+  {
+    "id": "BCG2020",
+    "title": "Flipping the Odds of Digital Transformation Success",
+    "author": "Forth, Reichert, de Laubier and Chakraborty",
+    "year": 2020,
+    "url": "https://www.bcg.com/publications/2020/increasing-odds-of-success-in-digital-transformation",
+    "access": "Primary report full text available; How Winners Win and outcome definitions inspected",
+    "unit": "Self-reported transformation-level categories; 825 executives plus 70 BCG cases",
+    "reported": "30% win;44% worry;26% woe; woe is limited value under half target and no sustainable change",
+    "transport": "0.70 success-like attempt share is a scenario; 26% woe does not literally mean zero value."
+  },
+  {
+    "id": "MCK2021",
+    "title": "Losing from day one: Why even successful transformations fall short",
+    "author": "Bucy et al. / McKinsey",
+    "year": 2021,
+    "url": "https://www.mckinsey.com/capabilities/people-and-organization/our-insights/successful-transformations",
+    "access": "Primary report full text available; sample, timing and realized-value sections inspected",
+    "unit": "1034 transformation participants, May18-June29 2021; self-reported organization outcomes",
+    "reported": "67% maximum financial benefit among reported successes;37% at all others",
+    "transport": "Does not identify realized benefit of each BCG partial-success category or a persistent iid process-level benefit."
+  },
+  {
+    "id": "WEF2025",
+    "title": "The Future of Jobs Report 2025",
+    "author": "World Economic Forum",
+    "year": 2025,
+    "url": "https://www.weforum.org/publications/the-future-of-jobs-report-2025",
+    "access": "Primary report key findings/digest inspected",
+    "unit": "Employer expectations for cumulative training needs by2030",
+    "reported": "59 per100 workers need training;29 upskill current roles;19 redeploy;11 may not receive training",
+    "transport": "Training demand is not measured annual maximum migration capacity. Divide59 by5 only as an explicitly assumed analogy."
+  },
+  {
+    "id": "KWA2025",
+    "title": "Measuring AI Ability to Complete Long Tasks",
+    "author": "Kwa et al. / METR",
+    "year": 2025,
+    "url": "https://arxiv.org/html/2503.14499v1",
+    "access": "Author full text available; limitations, more inference compute, Figure13 interpretation inspected",
+    "unit": "Cost of successful software/ML agent runs relative to human salary at143.61USD/hour",
+    "reported": ">80% of successful runs below10% of human salary cost",
+    "transport": "Success-conditioned attempt cost excludes failed runs, verification, integrations and other process costs; not revenue share at full automation. Paper's0.4-1.1% own run-data calculation not reproduced."
+  },
+  {
+    "id": "GUNDLACH2025",
+    "title": "The Price of Progress: Algorithmic Efficiency and the Falling Cost of AI Inference",
+    "author": "Gundlach, Lynch, Mertens and Thompson",
+    "year": 2025,
+    "url": "https://arxiv.org/html/2511.23455v1",
+    "access": "Full author text available; sections2.2-2.4,3-4 and table results inspected",
+    "unit": "Benchmark evaluation dollars conditional on fixed score, April2024-November2025",
+    "reported": "5-10x annual decline for Pareto-frontier selected benchmarks; software estimate admits no-progress confidence range",
+    "transport": "Does not identify full enterprise compute share or scenario frontier-work fraction. Exact3-18x frontier-run growth rates not verified from inspected v1 text."
+  },
+  {
+    "id": "KIM2025",
+    "title": "Correlated Errors in Large Language Models",
+    "author": "Kim, Garg, Peng and Garg",
+    "year": 2025,
+    "url": "https://arxiv.org/html/2506.07962v1",
+    "access": "Full author text available; sections1 and3 methods/results inspected; publication metadata verified PMLR267:30038-30066",
+    "unit": "Agreement on same wrong answer conditional on both models being wrong",
+    "reported": "About60% on HELM;71models14042questions;349models12032questions HuggingFace",
+    "transport": "Not P(second wrong|first wrong), not common-cause hazard under financial controls; supplement explicitly distinguishes this."
+  },
+  {
+    "id": "ASGARI2025",
+    "title": "A framework to assess clinical safety and hallucination rates of LLMs for medical text summarisation",
+    "author": "Asgari et al.",
+    "year": 2025,
+    "url": "https://www.nature.com/articles/s41746-025-01670-7",
+    "access": "Primary full text available; Results dataset/hallucination/omission sections inspected",
+    "unit": "18 configurations of25 transcripts;12999 output note sentences;49590 transcript sentences",
+    "reported": "191/12999 hallucinations;1712/49590 omissions",
+    "transport": "Rates have different denominators. Cannot simply add them as one unit error rate. Does not identify revenue-normalized operating loss."
+  },
+  {
+    "id": "MAGESH2025",
+    "title": "Hallucination-Free? Assessing the Reliability of Leading AI Legal Research Tools",
+    "author": "Magesh et al.",
+    "year": 2025,
+    "url": "https://arxiv.org/html/2405.20362v1",
+    "access": "Author version full text available; methods5.2-5.4, results and limitations inspected; journal PDF fetch timed out; journal metadata/abstract verified DOI10.1111/jels.12413",
+    "unit": "202 preregistered legal queries; spring2024 tool versions; response-level hallucination",
+    "reported": "17-33% across systems",
+    "transport": "Different denominator, tasks, technology vintage and severity from process failure/error cost."
+  },
+  {
+    "id": "SR262",
+    "title": "Supervisory Guidance on Model Risk Management (SR26-2 attachment)",
+    "author": "Federal Reserve, FDIC and OCC",
+    "year": 2026,
+    "url": "https://www.federalreserve.gov/supervisionreg/srletters/SR2602a1.pdf",
+    "access": "Official PDF relevant scope sectionII and footnote3 inspected",
+    "reported": "Generative and agentic AI outside guidance scope; supersedes prior guidance verified in letter",
+    "transport": "Confirms manuscript current statement; exclusion is not absence of general governance duties."
+  },
+  {
+    "id": "EU1744",
+    "title": "Regulation (EU)2026/1744, Digital Omnibus on AI",
+    "author": "European Parliament and Council",
+    "year": 2026,
+    "url": "https://eur-lex.europa.eu/eli/reg/2026/1744/oj/eng",
+    "access": "Official operative Article1 amendment point40 to Article113 read via EUR-Lex indexed full text/PDF",
+    "reported": "2December2027 AnnexIII;2August2028 AnnexI",
+    "transport": "Manuscript dates corroborated; operational costs remain scenarios; not fabrication."
+  },
+  {
+    "id": "NIST8547",
+    "title": "NIST Report Provides Guidelines for Transition to Post-Quantum Cryptography Standards",
+    "author": "NIST",
+    "year": 2026,
+    "url": "https://www.nist.gov/news-events/news/2026/10/nist-report-provides-guidelines-transition-post-quantum-cryptography",
+    "access": "Official announcement relevant timeline paragraphs inspected; full NISTIR not yet reviewed",
+    "reported": "Finalized NISTIR8547 announced27October2026; federal2035 target and earlier high-value-system milestones",
+    "transport": "Confirms recent report exists; does not independently verify every algorithm-specific cutoff or corporate migration-cost share."
+  },
+  {
+    "id": "BVP2024",
+    "title": "The Rule of X",
+    "author": "Deeter and Bondy / Bessemer Venture Partners",
+    "year": 2024,
+    "url": "https://www.bvp.com/atlas/the-rule-of-x",
+    "access": "Primary practitioner full text available; takeaways, formula and valuation comparison inspected",
+    "unit": "Late-stage cloud valuation framework",
+    "reported": "2-3x growth weight, short-run range2-9",
+    "transport": "Screening/valuation antecedent, not observed causal optimum or the firm's marginal decision weight."
+  },
+  {
+    "id": "CUSTOMER2010",
+    "title": "Customer Capital",
+    "author": "Gourio and Rudanko",
+    "year": 2010,
+    "url": "https://conference.nber.org/confer/2010/EFGf10/Gourio_Rudanko.pdf",
+    "access": "38-page author conference version available; introduction pp1-3 inspected; published2014 version proof not verified",
+    "reported": "Sales effort builds valuable customer relationships; customer acquisition creates expansion bottlenecks and intangible value",
+    "transport": "Close structural antecedent; does not establish exact priority of manuscript score-specific budget."
+  },
+  {
+    "id": "ODAGIRI1981",
+    "title": "The value and growth of the firm, chapter3 in The Theory of Growth in a Corporate Economy",
+    "author": "Odagiri",
+    "year": 1981,
+    "url": "https://www.cambridge.org/core/books/abs/theory-of-growth-in-a-corporate-economy/value-and-growth-of-the-firm/8486B9FB419CC5BA2D711029292ED87C",
+    "access": "Publisher search preview only; full open timed out",
+    "reported": "Preview explicitly describes valuation-growth frontier",
+    "transport": "Close antecedent identified; no claim of unseen proof verification."
+  },
+  {
+    "id": "GORDON2002",
+    "title": "The Economics of Information Security Investment",
+    "author": "Gordon and Loeb",
+    "year": 2002,
+    "url": "https://doi.org/10.1145/581271.581274",
+    "access": "Primary indexed abstract inspected; full-text mirror403; original theorem not checked",
+    "reported": "Security-investment optimization precedent",
+    "transport": "Do not claim original1/e theorem audited. Manuscript exponential security objective independently differentiated and optimized."
+  }
+]
