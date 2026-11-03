@@ -1,0 +1,4 @@
+GAAP operating margin    trimmed   same year +0.059 (0.060) n=1777; lead -0.034 (0.050) n=1477
+GAAP operating margin    untrimmed same year +0.068 (0.060) n=1782; lead -0.038 (0.043) n=1483
+cash margin after SBC    trimmed   same year -0.032 (0.043) n=1727; lead -0.066 (0.039) n=1437
+cash margin after SBC    untrimmed same year -0.019 (0.032) n=1732; lead -0.064 (0.033) n=1443

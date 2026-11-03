@@ -35,7 +35,7 @@ It is not a forecast. Most parameters are scenario values (class d) with ranges 
    `rates_v`, `pace_v`, `central_path_v`, `payback_v`, `cc_path_v`, the lever ranking of
    `code/playbook/run_archetypes.py`, and the accountability-floor example of `code/paper1_macros.py`, whose constants
    are read from that file's source with `ast`, without executing it).
-3. **Before any sampling** (`verify_mirror`, `reproduce_paper`), 82 checks run:
+3. **Before any sampling** (`verify_mirror`, `reproduce_paper`), 87 checks run (82 before the compute-share fix of 3 Nov 2026):
    - each mirror equals the executed original, with exact float equality, on every ceiling case and horizon, every
      pace case (including the pre-commit cases and the BCG-win case), all 27 central-path cases of the tornado and
      the basis-by-pass-through grid, and the slow, central and fast paybacks plus the payback at r = 10%;
@@ -54,7 +54,26 @@ It is not a forecast. Most parameters are scenario values (class d) with ranges 
 Every range below is one the paper or its code states. Where the code models a range as discrete cases (slow,
 central and fast execution; favorable, central and conservative full cost), the underlying continuous parameters
 vary over the span of the cases. The compute share by horizon comes from its path drivers. Table: default mode,
-`--cc-mode path`, 51 dimensions. Classes follow `notes/assumptions_register.md`: (a) sourced, (b) grounded by
+`--cc-mode path`, 51 dimensions.
+
+**Compute share at 2025 prices (round 3, 3 Nov 2026).** The text, the calibration (`CC['prices2025']`), params.yaml
+and the box use one range for c_c = s_L x kappa: kappa from 0.02 (METR's cost per completed task: 1% of the human
+cost per successful run at a 50% success rate) to 1 (the value test), times s_L. In path mode the box draws kappa_2025
+log-uniform on [0.02, 1] (it spans a factor of 50; value = lo (hi/lo)^u, central 0.10 at the NaN coordinate) and s_L
+uniform on [0.50, 0.65], so c_c at 2025 prices runs from 1.0 to 65% of revenue, which contains the scenario range of
+1.2 to 60%. The run of 2 Nov 2026 (`notes/mc_results_2026-11-02/`) drew kappa uniform on [0.01, 0.35], so its c_c ran
+from 0.5 to 23% only. Every design works in unit coordinates and maps them through `dim_value`; `dim_unit` inverts
+the uniform and log-uniform laws (used to place phi = 0.5 and 0.7 in the reproduction checks). Five reproduction checks
+were added (82 -> 87): the kappa box ends equal the calibration's, the macros `KappaLo`, `CcLo` and `CcHi` at the box
+ends, and the law's inverse at the central value.
+
+**Sobol intervals and seeds (round 3).** Sobol indices carry 95% intervals: for the factors, SALib `analyze`
+(`conf_level=0.95`, 200 resamples; `S1_conf`/`ST_conf` half-widths and `S1_ci`/`ST_ci` intervals), or, without SALib,
+a nonparametric bootstrap of the N base rows (200 resamples, 2.5th-97.5th percentiles); for the groups always the
+bootstrap. `--seed` sets every random design; `--compare-to DIR` records a comparison with a run of another seed
+(block `seed_comparison`: per test the holds-everywhere verdicts, margins and box extremes; quantities, levels and the
+two sensitivity rankings). Each run also writes `draws_lhs.csv` (one row per LHS draw), which `code/mc_report_tex.py`
+reads. Classes follow `notes/assumptions_register.md`: (a) sourced, (b) grounded by
 precedent, (c) calibrated from our own data, (d) scenario value. "Law" is the sampling law used for the secondary
 shares and the Sobol indices; the primary result does not depend on it.
 
@@ -82,7 +101,7 @@ shares and the Sobol indices; the primary result does not depend on it.
 | 20 | `s_fin` Management of AI spend (share of c_c) | ancillary | 0.015 | 0.03 | 0.06 | uniform | d | code/calibrate_horizons.py:169 (FC; Appendix Table tab:fullcost) | favorable end low |
 | 21 | `anc_fixed` Incident-response and legal fixed cost ($ a year) | ancillary | 62k | 125k | 250k | uniform | d | code/calibrate_horizons.py:170 (FC; Appendix Table tab:fullcost) | favorable end low |
 | 22 | `s_L` Labor cost automated, share of revenue s_L (also the error base W_A) | compute | 0.5 | 0.6 | 0.65 | uniform | c | code/calibrate_horizons.py:91; data/tasks/params.yaml:3375 | A_auto = s_L (code comment: same base as the compute share) |
-| 23 | `kappa_2025` Compute per $ of labor replaced at 2025 prices | compute | 0.01 | 0.1 | 0.35 | uniform | b | code/calibrate_horizons.py:91; data/tasks/params.yaml:3379 |  |
+| 23 | `kappa_2025` Compute per $ of labor replaced at 2025 prices | compute | 0.02 | 0.1 | 1 | log-uniform | b | code/calibrate_horizons.py `KAPPA_LO`-`KAPPA_HI`; data/tasks/params.yaml `kappa_2025_range` | per completed task to the value test (c_c = s_L x kappa); log-uniform, central 0.10. Until 3 Nov 2026 (run of 2 Nov): 0.01 to 0.35, uniform |
 | 24 | `D` Fall of the fixed-performance price, x a year | compute | 3 | 5 | 10 | uniform | a | code/calibrate_horizons.py:92; data/tasks/params.yaml:3383 |  |
 | 25 | `kappa_front` Compute per $ of labor at the frontier | compute | 0.1 | 0.33 | 0.5 | uniform | d | code/calibrate_horizons.py:92; data/tasks/params.yaml:3388 |  |
 | 26 | `omega_2028` Share of automated labor in frontier tasks, 2028 | compute | 0.3 | 0.6 | 0.9 | uniform | d | data/tasks/params.yaml:3395 (2028) |  |
@@ -113,7 +132,8 @@ shares and the Sobol indices; the primary result does not depend on it.
 | 51 | `b_M` Maintenance base of S&M b_M | maint_base | 0.2337 | 0.2506 | 0.2744 | bootstrap 5-95% | c | code/calibrate_horizons.py:879 (bootstrap of the anchor block) | enters the lever counts only |
 
 **`--cc-mode bounds` (49 dimensions).** The compute-path drivers (rows 23 to 28) are replaced by the compute share
-itself: `cc_2025` from 0.01 to 0.60 (the text's credible range at 2025 prices, macros `CcLo`/`CcHi`, the value-test cap)
+itself: `cc_2025` from 0.012 to 0.60 (the text's scenario range at 2025 prices, macros `CcLo`/`CcHi`, read from
+`CC['prices2025']` of `code/calibrate_horizons.py`: s_L x kappa from the cost per completed task to the value test)
 and `cc_2028`, `cc_2031`, `cc_2036` over the CC credible bounds (0.02-0.30, 0.01-0.25, 0.01-0.20;
 `code/calibrate_horizons.py:111`, params.yaml `c_c_compute_share.by_horizon`). In this mode `s_L` enters only the error
 base.

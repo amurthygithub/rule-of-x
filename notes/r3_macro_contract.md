@@ -7,7 +7,7 @@ Format: `\Name` = value — meaning — source (generator; stored output). Perce
 
 | Macro | Old | New | Why | Where printed |
 |---|---|---|---|---|
-| `\CcLo` | 1 | 2 | GLM-M11 / GPT-22: low credible compute share per completed process (successful-run cost 1% at a 50% success rate) | intro.tex:13, horizons.tex:13, supp_model.tex:37 |
+| `\CcLo` | 1 | 2 | GLM-M11 / GPT-22: low credible compute share per completed process (successful-run cost 1% at a 50% success rate); superseded 3 Nov: 1.2 (units, see below) | intro.tex:13, horizons.tex:13, supp_model.tex:37 |
 | `\GstarCcLo` | 28 | 29 | same (threshold at a 2% compute share, 29.2%) | abstract, intro, exec_summary, conclusion |
 | `\GstarAccCcLo` | 23 | 24 | same, accountability-only threshold | horizons.tex:43 |
 
@@ -20,6 +20,30 @@ Not changed, but flagged (GPT-4): under the exact recurrence the fast case's NPV
 printed bound-based values (`\PayNpvFast` 212 vs exact `\PayNpvExactFast` 213; `\PayRatioFast` 6.9 vs exact
 `\PayRatioExactFast` 7.0). The printed central numbers (payback 7.5, discounted 8.5, NPV 98, ratio 3.9, the 2042 and 2032
 dates) do not move at their printed rounding (CLAIMS check). No printed number was changed for GPT-4.
+
+## Compute-share units fix (3 Nov 2026; `notes/r3_compute_fix.md`) (live)
+
+METR's run costs are kappa, compute per dollar of labor replaced; the compute share is c_c = s_L x kappa. One range for
+c_c at 2025 prices in the text, `calibrate_horizons.py` `CC['prices2025']`, params.yaml and the stress test: 1.2% to 60%.
+
+| Macro | Old | New | Meaning | Where printed |
+|---|---|---|---|---|
+| `\CcLo` | 2 | 1.2 | floor of c_c at 2025 prices, % of revenue, one decimal: s_L x kappa per completed task (r3.compute_credible.lo) | horizons.tex:13 and :43, intro.tex:13, supp_model.tex:37, tab_param_sources.tex:107, supp_stress.tex:6, Table S18 note |
+| `\GstarCcLo` | 29 | 28 | central G* at `\CcLo` (28.48%) | abstract, intro, exec_summary, conclusion, horizons.tex:43 |
+| `\GstarAccCcLo` | 24 | 23 | accountability-only G* at `\CcLo` (23.49%) | horizons.tex:43 |
+| `\CcLoRuns` | 1 | 0.6 | c_c at the cost of successful runs, % of revenue, one decimal (s_L x 0.01) | supp_model.tex:37 |
+| `\GstarCcLoRuns`, `\GstarAccCcLoRuns` | 28, 23 | 28, 23 | G* at `\CcLoRuns` (27.97%, 23.00%) | not printed |
+| `\KappaLo` | - | 2 | kappa per completed task, % of the labor's cost (r3.compute_credible.kappa_lo) | horizons.tex:13, supp_model.tex:37, tab_param_sources.tex:107 |
+| `\KappaLoRuns` | - | 1 | kappa per successful run, % of the labor's cost | supp_model.tex:37 |
+| `\CcLaborShare` | - | 60 | s_L, labor cost the ceiling automates, % of revenue (r3.compute_credible.s_L) | horizons.tex:13, supp_model.tex:37, tab_param_sources.tex:107 |
+
+Stress macros (paper1/stress_macros.tex, code/mc_report_tex.py), written only when the stored outputs have them:
+`\StSobolExecLo`/`\StSobolExecHi` 0.55/0.66, `\StSobolGLo`/`\StSobolGHi` 0.19/0.23, `\StSobolCcLo`/`\StSobolCcHi`
+0.82/0.95 (95% bootstrap intervals of the group total indices, stored run of 2 Nov); after a second-seed run in
+`<MC_DIR>/seed2`: `\StSeedTwo`, `\StSeedTwoDraws`, `\StSeedTwoAgree`, `\StSeedTwoRows`, `\StSeedTwoMaxDiff` (points),
+`\StSeedTwoNetSixPFive`, `\StSeedTwoNetSixPNinetyFive`, `\StSeedTwoGstarMin`, `\StSeedTwoGstarMax`, `\StSeedTwoSobolExec`,
+`\StSeedTwoSobolCc`, `\StSeedTwoRankSame` (yes/no). After the rerun with kappa 0.02-1 log-uniform, `\StKappaLo`/`\StKappaHi`
+become 2/100, `\StCcBoxMin`/`\StCcBoxMax` 1.0/65 and `\StReproChecks` 87; S9 needs the text of `notes/r3_compute_fix.md`.
 
 ## Macros in paper1/macros.tex (code/paper1_macros.py; calibrate_horizons.py block `r3` of notes/calibration_results.json)
 

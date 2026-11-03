@@ -134,6 +134,7 @@ Flagged, not changed (GPT-4): under the exact recurrence the fast case's NPV and
   measurements in `params_reliability.yaml`), so there was no class to change there; `params.yaml`'s c_c range
   [0.01, 0.20] (2025 prices, successful-run basis) is unchanged because engine test_regression ties it to
   calibrate_horizons.py CC, which is unchanged; the per-completed-process low end lives in `r3.compute_credible`.
+  (Superseded 3 Nov: one range, [0.012, 0.60], in CC, params.yaml and `r3.compute_credible`; see the last section.)
 
 ## Independent audit of round 3 (3 Nov): code changes
 
@@ -143,3 +144,39 @@ Flagged, not changed (GPT-4): under the exact recurrence the fast case's NPV and
   over the LHS draws, 0.93) and \StOtherCcRho (largest |Spearman| of the other per-draw quantities, 0.02; asserted < 0.05);
   figure legend wording. Stored MC outputs unchanged; no rerun.
 - code/paper1_macros.py (F2): \FamBNAnchor = family size + 1 (15).
+
+## Compute-share units fix (3 Nov 2026; `notes/r3_compute_fix.md`)
+
+The floor of the compute share at 2025 prices used kappa (compute per dollar of labor replaced, 0.02 per completed task)
+as c_c itself; c_c = s_L x kappa = 0.60 x 0.02 = 0.012. One range for c_c at 2025 prices everywhere: 0.012 to the value
+test, s_L = 0.60.
+
+| Macro | Old | New |
+|---|---|---|
+| `\CcLo` | 2 | 1.2 (one decimal) |
+| `\GstarCcLo` | 29 | 28 |
+| `\GstarAccCcLo` | 24 | 23 |
+| `\CcLoRuns` | 1 | 0.6 (one decimal) |
+| `\KappaLo`, `\KappaLoRuns`, `\CcLaborShare` | new | 2, 1, 60 |
+
+- `code/calibrate_horizons.py`: `KAPPA_LO_SUCCESSFUL_RUNS`, `METR_SUCCESS_RATE`, `KAPPA_LO`, `KAPPA_HI` beside `CC_PATH`;
+  `CC['prices2025']` bounds (0.01, 0.20) -> s_L x [0.02, 1.0] = (0.012, 0.60); `cc_sensitivity` adds 0.006 and 0.012
+  (three-decimal keys only where two would merge points); `r2.compute_range` adds `lo`, `G_lo` at the new floor;
+  `r3.compute_credible` in revenue units with its kappa inputs and asserts. Tables unchanged (byte-identical).
+- `code/data_part2/08_params.py` -> `data/tasks/params.yaml` (regenerated; the script reproduced the committed file byte for
+  byte first): `c_c_compute_share.range` [0.012, 0.6], `path.kappa_2025_range` [0.02, 1.0], source and note text,
+  `part1_ceiling.meta.one_at_a_time_threshold_range.cc` [0.2349, 0.7171].
+- `code/mc_claims.py` v1.1: kappa_2025 0.02-1.0 log-uniform in path mode (from the executed calibration), `cc_2025` from
+  `CC['prices2025']` in bounds mode; `dim_unit`; `law_label`; Sobol 95% intervals for factors and groups (`sobol.ci`);
+  `--compare-to` (block `seed_comparison`); `draws_lhs.csv` written by the script; S2 quote from the macros;
+  reproduction checks 82 -> 87.
+- `code/mc_report_tex.py`: Table S18 note from the JSON (stored run: unchanged wording, scenario range now 1.2 to 60);
+  `\StSobol*Lo/Hi` (6 new, from the stored run) and `\StSeedTwo*` (when `<MC_DIR>/seed2` exists); figure axes widen only
+  if needed (stored figure byte-identical); `MC_ALLOW_SMALL_N` for smoke tests.
+- `code/verify_theory.py` 20h: `CC_BOUNDS` (0.02, 0.60) -> s_L x kappa = (0.012, 0.60), asserts c_c = s_L x kappa
+  against the calibration record (201/201 pass).
+- `code/paper1_macros.py`: CLAIMS +2 (75 -> 77, all pass).
+- Regenerated: `notes/calibration_results.json`, `paper1/macros.tex`, `paper1/abstract_plain.txt`,
+  `paper1/claim_checks.txt`, `paper1/stress_macros.tex`, `sections/tables/tab_stress.tex`, `notes/verify_theory_output.txt`,
+  `paper1/paper1.pdf`, `paper1/supplement.pdf`.
+- `code/REPLICATION_README.md`, `notes/mc_claims_method.md`: the new law, intervals, seeds and CSV.

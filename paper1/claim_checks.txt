@@ -73,6 +73,8 @@ ok   horizons (GLM-F1, Section 7.4): near saturation the retention gain per poin
 ok   empirics (GLM-F5): with 18 or 20 tests the 2020-25 steepening keeps Holm p below 10% under every type; at 5% it survives only under the normal type with 18 tests; the anchor fails 10% under the percentile type in both families
 ok   empirics (GPT-14): the Romano-Wolf p of the GAAP P95 decline is below 0.10 but within one Monte Carlo standard error of it at the stored number of draws (its side of 0.10 is not settled)
 ok   horizons (GLM-M11): counting failed attempts raises the low end of the compute-share range and of the threshold range
+ok   horizons (GLM-M11, GPT-22; units fixed 3 Nov): the floor of the compute share is the labor share times compute per dollar of labor at the cost per completed task, below that kappa itself, and the top is the value test (c_c = s_L)
+ok   horizons (GLM-M11): one range for the compute share at 2025 prices: the text's scenario range is the calibration's bounds, and the central share lies inside it
 
 # Interval claims are checked under the percentile, basic, normal and BC 90% intervals (TYPES4); Holm under the
 # normal, percentile and basic p-values and Romano-Wolf (the outputs carry no BC p-value).

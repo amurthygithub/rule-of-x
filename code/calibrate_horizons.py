@@ -88,13 +88,25 @@ WAGE_GOV = 88400 * (1 + 0.4287)                     # compliance officer (SOC 13
 # the full-cost floors). Explicit path:
 #   kappa(H) = omega_H kappa_front + (1 - omega_H) kappa_fixed(H),  kappa_fixed(H) = max(kappa_2025 / D^(H - 2025),
 #              floor_share kappa_2025),
-# with s_L 0.60 [0.50, 0.65] (c), kappa_2025 0.10 [0.01, 0.35] (b: METR run costs, Stevens 2026, AI-native products),
+# with s_L 0.60 [0.50, 0.65] (c), kappa_2025 0.10 [0.02, 1.0] (b; bounds KAPPA_LO and KAPPA_HI below),
 # D = 5 [3, 10] a year (a: Gundlach et al. 2026), kappa_front 0.33 [0.10, 0.50] (d, capped by the value test kappa < 1),
 # omega_H the share of automated labor cost in tasks reached within two years of H (d), floor_share 0.005 (d).
 # Values (value, credible bounds, class): sources read 29 Oct 2026.
 # ----------------------------------------------------------------------------------------------
 CC_PATH = dict(s_L=0.60, kappa_2025=0.10, D=5.0, floor_share=0.005, kappa_front=0.33,
                omega={'2028': 0.6, '2031': 0.4, '2036': 0.25})
+# kappa at 2025 prices (round 3, GLM-M11 / GPT-22; units corrected 3 Nov 2026). kappa is a cost per dollar of labor
+# replaced, so its bounds enter c_c multiplied by s_L. Floor: METR's agent runs cost about 1% of the human cost per
+# successful run (code/data_part2/08_params.py keeps score_binarized == 1), so at the 50% success rate of the
+# time-horizon definition about 2% per completed task; c_c floor = 0.02 x s_L = 0.012 of revenue (0.006 at the cost of
+# successful runs). Top: the value test kappa < 1 (CC_VALUE_TEST_FACTOR below), c_c = s_L = 0.60. The analog evidence
+# (METR 0.08-1.14% of the human cost per successful run; Stevens 2026, about $0.03 per $1 of displaced freelance labor;
+# AI-native products' inference 13-23% of revenue, kappa up to about 0.35) supports the central kappa 0.10, not the
+# bounds. Before 3 Nov the per-completed-task kappa 0.02 was used as c_c itself (a share of revenue).
+KAPPA_LO_SUCCESSFUL_RUNS = 0.01
+METR_SUCCESS_RATE = 0.50
+KAPPA_LO = KAPPA_LO_SUCCESSFUL_RUNS / METR_SUCCESS_RATE   # 0.02 of the labor's cost per completed task
+KAPPA_HI = 1.0                                            # value test: compute costs at most the labor it replaces
 
 
 def cc_path(h):
@@ -108,7 +120,10 @@ def cc_path(h):
 
 
 H0_PRICES = 2025
-CC = {'prices2025': (0.06, (0.01, 0.20), 'b'),       # 2025 prices, no price path (b-anchored); the static ceiling
+# 2025 prices, no price path (b-anchored; the static ceiling): bounds s_L x [KAPPA_LO, KAPPA_HI] = [0.012, 0.60], the
+# per-completed-task floor to the value test (round 3; were (0.01, 0.20) before 3 Nov). By horizon (class d) the bounds
+# are the commit's, in shares of revenue (0.30 at the top of 2028 is the pre-round-2 cap s_L x 0.5, below the value test)
+CC = {'prices2025': (0.06, (CC_PATH['s_L'] * KAPPA_LO, CC_PATH['s_L'] * KAPPA_HI), 'b'),
       '2028': (0.12, (0.02, 0.30), 'd'), '2031': (0.08, (0.01, 0.25), 'd'), '2036': (0.05, (0.01, 0.20), 'd')}
 assert all(abs(cc_path(h) - v[0]) < 0.005 for h, v in CC.items()), 'compute-share path and CC centrals disagree'
 # Cases. c_c is a class d composite at every horizon (and b-anchored only at 2025 prices), so by the rule below the
@@ -124,6 +139,7 @@ CC_HIGH = 0.40
 CC_VALUE_TEST_FACTOR = 1.0
 CC_VALUE_TEST_CAP = CC_PATH['s_L'] * CC_VALUE_TEST_FACTOR
 CC_OLD_CAP = CC_PATH['s_L'] * 0.5
+assert KAPPA_HI == CC_VALUE_TEST_FACTOR and CC['prices2025'][1][1] == CC_VALUE_TEST_CAP, 'top of c_c is not the value test'
 
 FC = {  # favorable, central, conservative; c_c by horizon is in CC_CASES; the high-compute case uses central values
     # Rules (Appendix Table tab:fullcost): factors with a sourced or precedent range (classes a to c in
@@ -569,11 +585,15 @@ def G100_central(cc, tau=None):
     c_anc = v['s_fin'] * cc + v['anc_fixed'] / S_REF
     full = c['c_full'] - c['c_anc'] + c_anc
     return 1 - (1 - tau) * (1 - cc - v['f'] - v['a_min'] - full), 1 - (1 - tau) * (1 - cc - v['f'] - v['a_min'])
-# grid: the credible bounds of every horizon (0.01 to the value-test cap s_L = 0.60), the centrals, the old central 0.20,
-# the old cap 0.30 and the high-compute case 0.40
-CC_GRID = sorted({0.01, 0.02, 0.05, 0.06, 0.08, 0.12, 0.20, 0.25, CC_OLD_CAP, CC_HIGH, CC_VALUE_TEST_CAP})
-out['cc_sensitivity'] = {f'{cc:.2f}': G100_central(cc) for cc in CC_GRID}
-out['cc_sensitivity_by_horizon'] = {h: {f'{cc:.2f}': G100_central(cc) for cc in sorted({v[1][0], v[0], v[1][1]})}
+# grid: the credible bounds of every horizon (the 2025-price floor s_L x KAPPA_LO = 0.012 to the value-test cap
+# s_L = 0.60), the floor at the cost of successful runs (s_L x 0.01 = 0.006, round 3), the centrals, the old central
+# 0.20, the old cap 0.30 and the high-compute case 0.40. Keys: two decimals, three where two would merge grid points
+CC_GRID = sorted({CC_PATH['s_L'] * KAPPA_LO_SUCCESSFUL_RUNS, CC['prices2025'][1][0], 0.01, 0.02, 0.05, 0.06, 0.08, 0.12,
+                  0.20, 0.25, CC_OLD_CAP, CC_HIGH, CC_VALUE_TEST_CAP})
+cc_key = lambda cc: f'{cc:.2f}' if abs(round(cc, 2) - cc) < 1e-12 else f'{cc:.3f}'
+assert len({cc_key(cc) for cc in CC_GRID}) == len(CC_GRID) and all(abs(float(cc_key(cc)) - cc) < 1e-12 for cc in CC_GRID)
+out['cc_sensitivity'] = {cc_key(cc): G100_central(cc) for cc in CC_GRID}
+out['cc_sensitivity_by_horizon'] = {h: {cc_key(cc): G100_central(cc) for cc in sorted({v[1][0], v[0], v[1][1]})}
                                     for h, v in CC.items()}
 out['tau_sensitivity'] = {f'{t:.2f}': G100_central(FC['c_c'][1], t) for t in [0.09, 0.15, 0.18, 0.21]}
 out['cerr_sensitivity'] = {}
@@ -785,7 +805,8 @@ R2['pass_through'] = dict(by_phi=_pt, C0_m0A=PT_M0A, U0=U0, hhi=HHI, cournot_che
                           note='central: rate phi, all savings, net-basis anchor; others for reconciliation (same W_A = s_L)')
 
 # ---- B2. Compute share range under the stated value test (c_c <= s_L)
-R2['compute_range'] = dict(cap=CC_VALUE_TEST_CAP, old_cap=CC_OLD_CAP, G_lo=out['cc_sensitivity']['0.01'][0],
+R2['compute_range'] = dict(cap=CC_VALUE_TEST_CAP, old_cap=CC_OLD_CAP, lo=CC['prices2025'][1][0],
+                           G_lo=out['cc_sensitivity'][cc_key(CC['prices2025'][1][0])][0],
                            G_cap=G100_central(CC_VALUE_TEST_CAP)[0], G_old_cap=G100_central(CC_OLD_CAP)[0],
                            G_high=G100_central(CC_HIGH)[0], high_feasible=CC_HIGH <= CC_VALUE_TEST_CAP)
 
@@ -1290,13 +1311,20 @@ R3['vprime_shape'] = dict(
 
 # ---- GLM-M11 / GPT-22. The compute share's low credible bound per completed process. METR's run costs (0.4 to 1.1% of
 # the human cost, rounded to 1%) are for successful runs only (code/data_part2/08_params.py keeps score_binarized == 1);
-# at the 50% success rate of the time-horizon definition the cost per completed task is about twice that, 2%.
-CC_LO_SUCCESSFUL_RUNS = 0.01
-METR_SUCCESS_RATE = 0.50
-CC_CREDIBLE = dict(lo=CC_LO_SUCCESSFUL_RUNS / METR_SUCCESS_RATE, lo_successful_runs=CC_LO_SUCCESSFUL_RUNS,
-                   success_rate=METR_SUCCESS_RATE, hi=CC_VALUE_TEST_CAP)
+# at the 50% success rate of the time-horizon definition the cost per completed task is about twice that, 2%. These are
+# values of kappa (compute per dollar of labor replaced), so the compute share is s_L x kappa: 0.60 x 0.02 = 0.012 of
+# revenue (0.006 at the cost of successful runs). Units corrected 3 Nov 2026: the floor was 0.02 of revenue, kappa
+# itself. The top is the value test, kappa = 1, c_c = s_L. One range, CC['prices2025'], for the text, the stress test
+# (code/mc_claims.py) and data/tasks/params.yaml.
+CC_CREDIBLE = dict(lo=CC_PATH['s_L'] * KAPPA_LO, lo_successful_runs=CC_PATH['s_L'] * KAPPA_LO_SUCCESSFUL_RUNS,
+                   success_rate=METR_SUCCESS_RATE, hi=CC_PATH['s_L'] * KAPPA_HI, s_L=CC_PATH['s_L'],
+                   kappa_lo=KAPPA_LO, kappa_lo_successful_runs=KAPPA_LO_SUCCESSFUL_RUNS, kappa_hi=KAPPA_HI,
+                   kappa_central=CC_PATH['kappa_2025'], rule='c_c = s_L x kappa; floor kappa per completed task, top the '
+                                                           'value test kappa = 1')
 CC_CREDIBLE['G'] = {k_: G100_central(CC_CREDIBLE[k_]) for k_ in ('lo', 'lo_successful_runs', 'hi')}
-assert f"{CC_CREDIBLE['lo']:.2f}" in out['cc_sensitivity'] and abs(CC_CREDIBLE['hi'] - max(CC_GRID)) < 1e-12
+assert (CC_CREDIBLE['lo'], CC_CREDIBLE['hi']) == tuple(CC['prices2025'][1]) and CC_CREDIBLE['hi'] == CC_VALUE_TEST_CAP
+assert all(cc_key(CC_CREDIBLE[k_]) in out['cc_sensitivity'] for k_ in ('lo', 'lo_successful_runs', 'hi'))
+assert abs(CC_CREDIBLE['hi'] - max(CC_GRID)) < 1e-12 and abs(cc_path('prices2025') - CC_PATH['s_L'] * CC_PATH['kappa_2025']) < 1e-15
 R3['compute_credible'] = CC_CREDIBLE
 
 # ---- GPT-26. The execution cases' inputs as used (wave length T_par and the rest), for the parameter table

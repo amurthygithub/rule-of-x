@@ -1,0 +1,17 @@
+{
+ "seed": 20261103,
+ "frame": "data/panel_v3.csv",
+ "n_frame": 1788,
+ "strata": {
+  "top_decile": {
+   "rule": "R_fcf_sbc >= period 90th percentile",
+   "n_frame": 175,
+   "n": 16
+  },
+  "rest": {
+   "n_frame": 1613,
+   "n": 24
+  }
+ },
+ "drawn_utc": "2026-11-03T14:30:45.129245+00:00"
+}

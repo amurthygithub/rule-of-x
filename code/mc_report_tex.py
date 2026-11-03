@@ -12,6 +12,13 @@ and writes
                                    interval, and the 100-point growth threshold G* over the draws with the 30% line
 The Monte Carlo itself is reproduced by  python3 code/mc_claims.py --n 10000 --workers 4 --out notes/mc  (see
 code/REPLICATION_README.md); this script only formats its stored results. MC_DIR overrides the input folder.
+Optional inputs, used only when they exist (round 3, 3 Nov 2026):
+  the Sobol 95% intervals of the stored run (mc_claims.json sobol.outputs.*.groups.*.ST_ci)  -> \\StSobol*Lo/Hi
+  a run of the same box with a second seed, MC_SEED2_DIR (default <MC_DIR>/seed2; written by
+  python3 code/mc_claims.py --seed <other> --out <MC_DIR>/seed2 --compare-to <MC_DIR>)       -> \\StSeedTwo* macros
+The table note describes the compute share's range in the box from the JSON (law and ends of kappa_2025, against the
+scenario range of notes/calibration_results.json r3.compute_credible). MC_ALLOW_SMALL_N=1 formats a small test run
+(smoke tests only; never for the paper).
 
 Framing (as in the stress-test report): not a forecast. 'Holds everywhere' is distribution-free: no evaluated point (every
 draw, the box corners and a vertex search for each tested quantity) violates the test, which is a search, not a proof.
@@ -33,8 +40,15 @@ D = pd.read_csv(os.path.join(MC, 'draws_lhs.csv'))
 TESTS = {t['tid']: t for c in J['claims'] for t in c['tests']}
 AMIN = {a['tid']: a for a in J['amin']['tests']}
 QUANT = {q['key']: q for q in J['quantities']}
-assert J['meta']['args']['n'] == len(D) == J['design']['n_lhs'] and not J['meta']['small_n_warning']
+SMALL_OK = os.environ.get('MC_ALLOW_SMALL_N') == '1'
+if SMALL_OK and J['meta']['small_n_warning']:
+    print('WARNING: MC_ALLOW_SMALL_N=1: formatting a small test run; its outputs are not for the paper')
+assert J['meta']['args']['n'] == len(D) == J['design']['n_lhs'] and (SMALL_OK or not J['meta']['small_n_warning'])
 assert J['reproduction']['all_passed'], 'the stress test did not reproduce the paper at the centre of the box'
+CAL = json.load(open(os.path.join(BASE, 'notes', 'calibration_results.json')))
+CCR = CAL['r3']['compute_credible']                  # the scenario range of c_c at 2025 prices (text: CcLo, CcHi)
+MC2 = os.environ.get('MC_SEED2_DIR', os.path.join(MC, 'seed2'))
+J2 = json.load(open(os.path.join(MC2, 'mc_claims.json'))) if os.path.exists(os.path.join(MC2, 'mc_claims.json')) else None
 
 
 def half_up(x, nd=0):
@@ -87,26 +101,55 @@ def fmt_val(x, kind):
     raise ValueError(kind)
 
 
-def row_values(tid):
-    if tid in AMIN:
-        a = AMIN[tid]
+def row_values(tid, J_=None):
+    J_ = J if J_ is None else J_
+    if tid in {a['tid'] for a in J_['amin']['tests']}:
+        a = {a_['tid']: a_ for a_ in J_['amin']['tests']}[tid]
         thr = float(a['threshold'].rstrip('%')) / 100
         return a['holds_everywhere'], thr + a['margin_central'], a['quantity']['min'], a['quantity']['max']
-    t = TESTS[tid]
+    t = {t_['tid']: t_ for c in J_['claims'] for t_ in c['tests']}[tid]
     q = t['quantity']
     return t['holds_everywhere'], q['central'], q['min'], q['max']
 
 
-# round 3 audit (F1): the box moves the compute share through the drivers of its path (compute per dollar of labor
-# replaced at 2025 prices, kappa_2025, and the labor share automated, s_L), not over the 2-60% scenario range of
-# Section 7.2; the note, S9 and the figure say so, with the range this gives
+# round 3 audit (F1) and the compute-share fix of 3 Nov 2026: the box moves the compute share through the drivers of its
+# path (compute per dollar of labor replaced at 2025 prices, kappa_2025, and the labor share automated, s_L). The note
+# describes that range from the JSON: in the run of 2 Nov (kappa 0.01-0.35, uniform) it lies inside the scenario range
+# of Section 7.2 and not over it; with kappa from the cost per completed task to the value test (log-uniform) it covers it
 _DIM = {d_['name']: d_ for d_ in J['dims']}
 _CC = QUANT['c_c_2025']
-assert abs(_CC['min'] - _DIM['kappa_2025']['lo'] * _DIM['s_L']['lo']) < 1e-9
-assert abs(_CC['max'] - _DIM['kappa_2025']['hi'] * _DIM['s_L']['hi']) < 1e-9
+_PATH = 'kappa_2025' in _DIM
+if _PATH:
+    _K = _DIM['kappa_2025']
+    assert abs(_CC['min'] - _K['lo'] * _DIM['s_L']['lo']) < 1e-9
+    assert abs(_CC['max'] - _K['hi'] * _DIM['s_L']['hi']) < 1e-9
+else:                                                 # --cc-mode bounds: the compute share itself is a dimension
+    assert abs(_CC['min'] - _DIM['cc_2025']['lo']) < 1e-9 and abs(_CC['max'] - _DIM['cc_2025']['hi']) < 1e-9
 CC_BOX_LO, CC_BOX_HI = fnum(100 * _CC['min'], 1), fnum(100 * _CC['max'], 0)
 _PM = dict(re.findall(r'\\newcommand\{\\(\w+)\}\{([^}]*)\}', open(os.path.join(BASE, 'paper1', 'macros.tex')).read()))
 CC_SCEN_LO, CC_SCEN_HI = _PM['CcLo'], _PM['CcHi']     # the scenario range of Section 7.2, as the paper prints it
+assert CC_SCEN_LO == fnum(100 * CCR['lo'], 1) and CC_SCEN_HI == fnum(100 * CCR['hi'], 0), 'macros.tex and the calibration disagree'
+CC_COVERS = _CC['min'] <= CCR['lo'] + 1e-12 and _CC['max'] >= CCR['hi'] - 1e-12      # the box contains the scenario range
+CC_INSIDE = _CC['min'] >= CCR['lo'] - 1e-12 and _CC['max'] <= CCR['hi'] + 1e-12      # the box lies within it
+KAPPA_LOG = _PATH and _K['law'] == 'loguniform'
+KAPPA_TO_VALUE_TEST = _PATH and abs(_K['hi'] - CCR['kappa_hi']) < 1e-12
+if not _PATH:
+    CC_NOTE = (r"and the compute share at 2025 prices, which runs over its scenario range of " + CC_SCEN_LO + r" to "
+               + CC_SCEN_HI + r"\% of revenue (Section S9)")
+elif not (KAPPA_LOG or KAPPA_TO_VALUE_TEST):          # the stored run of 2 Nov 2026: the wording of that run's note
+    CC_NOTE = (r"except the compute share, which enters through the drivers of its path and so runs from " + CC_BOX_LO
+               + r" to " + CC_BOX_HI + r"\% of revenue at 2025 prices, "
+               + (r"not over the scenario range of " if not CC_COVERS else r"which contains the scenario range of ")
+               + CC_SCEN_LO + r" to " + CC_SCEN_HI + r"\% (Section S9)")
+else:
+    CC_NOTE = (r"except the compute share, which enters through the drivers of its path, compute per dollar of labor replaced"
+               + (r" (drawn log-uniform" if KAPPA_LOG else r" (drawn uniform")
+               + (r" from its cost per completed task to the value test)" if KAPPA_TO_VALUE_TEST else r")")
+               + r" times the labor share automated, and so runs from " + CC_BOX_LO + r" to " + CC_BOX_HI
+               + r"\% of revenue at 2025 prices, "
+               + (r"which contains the scenario range of " if CC_COVERS else
+                  (r"within the scenario range of " if CC_INSIDE else r"against the scenario range of "))
+               + CC_SCEN_LO + r" to " + CC_SCEN_HI + r"\% (Section S9)")
 lines = []
 for tid, claim, cond, kind in ROWS:
     ok, cen, lo, hi = row_values(tid)
@@ -122,9 +165,7 @@ Claim (quantity tested) & Conditions held & Holds everywhere & Central & Lowest 
 \par\vspace{2pt}\footnotesize\raggedright Notes: """ + (
     f"{dsg['n_lhs']:,}".replace(',', '{,}') + r" Latin-hypercube draws and " + f"{dsg['n_corners']:,}".replace(',', '{,}')
     + r" corner points of a box of " + str(len(J['dims'])) + r" dimensions, each at the ends of the range the paper states for it "
-    r"(the anchor's dimensions within their 90\% firm-cluster bootstrap intervals), except the compute share, which enters "
-    r"through the drivers of its path and so runs from " + CC_BOX_LO + r" to " + CC_BOX_HI + r"\% of revenue at 2025 prices, "
-    r"not over the scenario range of " + CC_SCEN_LO + r" to " + CC_SCEN_HI + r"\% (Section S9); three bases for selling and marketing "
+    r"(the anchor's dimensions within their 90\% firm-cluster bootstrap intervals), " + CC_NOTE + r"; three bases for selling and marketing "
     r"(netted rows: the central, maintenance-netted basis), and a vertex search for the extremum of each tested quantity. "
     r"Holds everywhere: no evaluated point violates the claim's test; this is a search, not a proof. Central: the paper's "
     r"central case. Lowest to highest: over all evaluated points. Conditions held: the claim's own stated conditions at "
@@ -179,6 +220,16 @@ S1 = {s['id']: s for s in J['sensitivity_claims']}
 num('StSobolExec', S1['S1']['sobol']['ST_execution'], 2, False)
 num('StSobolG', S1['S1']['sobol']['ST_market_growth'], 2, False)
 num('StSobolCc', S1['S2']['sobol']['ST_compute'], 2, False)
+# round 3 (3 Nov 2026): 95% bootstrap intervals of the three group total indices, written only when the run stored them
+# (sobol.outputs.<output>.groups.<group>.ST_ci: nonparametric bootstrap of the N base rows, 2.5th and 97.5th percentiles)
+_SG = (J.get('sobol') or {}).get('outputs', {})
+for nm_, out_, grp_, val_ in (('StSobolExec', 'net.R_2036', 'execution', S1['S1']['sobol']['ST_execution']),
+                              ('StSobolG', 'net.R_2036', 'market_growth', S1['S1']['sobol']['ST_market_growth']),
+                              ('StSobolCc', 'Gstar_2025', 'compute', S1['S2']['sobol']['ST_compute'])):
+    _ci = _SG.get(out_, {}).get('groups', {}).get(grp_, {}).get('ST_ci')
+    if _ci:
+        assert _SG[out_]['groups'][grp_]['ST'] == val_ and _ci[0] <= _ci[1], (nm_, _ci, val_)
+        num(nm_ + 'Lo', _ci[0], 2, False); num(nm_ + 'Hi', _ci[1], 2, False)
 S36 = QUANT['s_2036']
 num('StRealMin', S36['min']); num('StRealMax', S36['max'])
 num('StCompleteMin', QUANT['complete_year']['min'], 0, False); num('StCompleteMax', QUANT['complete_year']['max'], 0, False)
@@ -204,7 +255,11 @@ _rho = {c_: D[c_].corr(D.compute_share_2025, method='spearman') for c_ in
          'completed_program_plus_G_2036')}
 num('StGstarCcRho', _rho['Gstar_2025'], 2, False)
 _rho_other = max(abs(v_) for k_, v_ in _rho.items() if k_ != 'Gstar_2025')
-assert _rho['Gstar_2025'] > 0.9 and _rho_other < 0.05
+_rho_ok = _rho['Gstar_2025'] > 0.9 and _rho_other < 0.05      # the S9 sentence on the rank correlations
+assert _rho_ok or SMALL_OK, ('S9 says only G* moves with the compute share (rank correlation above 0.9) and no other stored '
+                             'quantity above 0.05 in absolute value: revise that sentence', _rho)
+if not _rho_ok:
+    print('WARNING: the S9 rank-correlation sentence does not hold in this run:', {k_: round(v_, 3) for k_, v_ in _rho.items()})
 num('StOtherCcRho', _rho_other, 2, False)
 
 
@@ -225,11 +280,39 @@ num('StCapHalf', float(_m.group(1)), 0); num('StCapHalfOne', float(_m.group(1)),
 _kc = [d_ for d_ in J['dims'] if d_['name'] == 'kappa_abs'][0]
 assert 0 < TESTS['B3.B.net']['quantity']['max'] < 0.01 < TESTS['B3.full.net']['quantity']['max']
 assert not TESTS['B3.B.net']['holds_everywhere'] and _kc['central'] < float(_m.group(1)) < _kc['hi']
-# the draws file and the JSON must agree (same run)
+# the draws file and the JSON must agree (same run); the CSV rounds percentages to 4 decimals (5e-7 as a fraction)
 assert abs(np.quantile(D.R2036_net, 0.05) / 100 - L36["lhs_p05"]) < 1e-6 and abs(np.quantile(D.R2036_net, 0.95) / 100 - L36["lhs_p95"]) < 1e-6   # the CSV is rounded
-assert D.Gstar_2025.min() / 100 >= G['min'] - 1e-12 and D.Gstar_2025.max() / 100 <= G['max'] + 1e-12
-assert D.realized_share_2036.min() / 100 >= S36['min'] - 1e-12 and D.realized_share_2036.max() / 100 <= S36['max'] + 1e-12
-hdr = ['% Generated by code/mc_report_tex.py from notes/mc_results_2026-11-02/mc_claims.json and draws_lhs.csv',
+assert D.Gstar_2025.min() / 100 >= G['min'] - 1e-6 and D.Gstar_2025.max() / 100 <= G['max'] + 1e-6
+assert D.realized_share_2036.min() / 100 >= S36['min'] - 1e-6 and D.realized_share_2036.max() / 100 <= S36['max'] + 1e-6
+
+# ---------------------------------------------------------------------------------------------- (b2) second seed
+# round 3 (3 Nov 2026): written only when a run of the same box with another seed exists (MC_SEED2_DIR, default
+# <MC_DIR>/seed2). StSeedTwoAgree of StSeedTwoRows rows of Table tab:stress have the same holds-everywhere verdict;
+# StSeedTwoMaxDiff is the largest change, in points, of a printed lowest or highest value among the rows in percent.
+if J2 is not None:
+    _box = lambda r_: [(d_['name'], repr(d_['lo']), repr(d_['hi']), d_['law']) for d_ in r_['dims']]
+    assert _box(J2) == _box(J), f'{MC2} is not a run of the same box'
+    assert J2['meta']['args']['seed'] != J['meta']['args']['seed'], f'{MC2} has the same seed'
+    assert J2['reproduction']['all_passed'] and (SMALL_OK or not J2['meta']['small_n_warning'])
+    _agree, _dmax = 0, 0.0
+    for tid, claim, cond, kind in ROWS:
+        a_, b_ = row_values(tid), row_values(tid, J2)
+        _agree += a_[0] == b_[0]
+        if kind in ('pct', 'pctsign'):
+            _dmax = max(_dmax, abs(100 * (b_[2] - a_[2])), abs(100 * (b_[3] - a_[3])))
+    put('StSeedTwo', str(J2['meta']['args']['seed'])); put('StSeedTwoDraws', f"{J2['design']['n_lhs']:,}".replace(',', '{,}'))
+    put('StSeedTwoAgree', str(_agree)); put('StSeedTwoRows', str(len(ROWS)))
+    num('StSeedTwoMaxDiff', _dmax / 100, 1)
+    _L2, _Q2 = J2['levels']['net.R_2036'], {q['key']: q for q in J2['quantities']}
+    num('StSeedTwoNetSixPFive', _L2['lhs_p05']); num('StSeedTwoNetSixPNinetyFive', _L2['lhs_p95'])
+    num('StSeedTwoGstarMin', _Q2['Gstar_2025']['min']); num('StSeedTwoGstarMax', _Q2['Gstar_2025']['max'])
+    _S2 = {s['id']: s for s in J2['sensitivity_claims']}
+    num('StSeedTwoSobolExec', _S2['S1']['sobol']['ST_execution'], 2, False)
+    num('StSeedTwoSobolCc', _S2['S2']['sobol']['ST_compute'], 2, False)
+    put('StSeedTwoRankSame', 'yes' if (_S2['S1']['sobol']['largest_group'] == S1['S1']['sobol']['largest_group']
+                                        and _S2['S2']['sobol']['largest_group'] == S1['S2']['sobol']['largest_group']) else 'no')
+hdr = ['% Generated by code/mc_report_tex.py from ' + os.path.relpath(MC, BASE) + '/mc_claims.json and draws_lhs.csv'
+       + ('' if J2 is None else ' (second seed: ' + os.path.relpath(MC2, BASE) + '/mc_claims.json)'),
        f"% (code/mc_claims.py v{J['meta']['version']}, config {J['meta']['config_hash']}, created {J['meta']['created']}). "
        'Do not edit by hand. Percentages without the % sign.']
 open(os.path.join(BASE, 'paper1', 'stress_macros.tex'), 'w').write(
@@ -257,24 +340,28 @@ fig, ax = plt.subplots(1, 2, figsize=(6.5, 2.7))
 r36 = D.R2036_net.to_numpy()
 lo_b, hi_b = (100 * x for x in L36['paper_anchor_interval_90'])
 ax[0].axvspan(lo_b, hi_b, ymax=0.7, color=LIGHT, lw=0, zorder=0, label='paper: 90% anchor interval')
-ax[0].hist(r36, bins=np.arange(25, 85.1, 1.5), color=MID, edgecolor='white', lw=0.3, zorder=2, label='10,000 draws')
+# axis ranges: those of the 2 Nov figure, widened only if a run's draws fall outside them (none is dropped from a histogram)
+x0_lo, x0_hi = min(25.0, 1.5 * math.floor(r36.min() / 1.5)), max(85.0, 1.5 * math.ceil(r36.max() / 1.5))
+ax[0].hist(r36, bins=np.arange(x0_lo, x0_hi + 0.1, 1.5), color=MID, edgecolor='white', lw=0.3, zorder=2,
+           label=f"{len(r36):,} draws")
 ax[0].axvline(100 * L36['central'], ymax=0.7, color=BLACK, lw=0.9, zorder=3, label='central path')
 for i_, q_ in enumerate((L36['lhs_p05'], L36['lhs_p95'])):
     ax[0].axvline(100 * q_, ymax=0.7, color=DARK, lw=0.7, ls=(0, (3, 2)), zorder=3, label='5th and 95th percentiles' if i_ == 0 else None)
 ax[0].set_xlabel('2036 central score, maintenance-netted (points)')
 ax[0].set_ylabel('Draws')
-ax[0].set_xlim(25, 85)
-ax[0].set_ylim(0, 1.5 * np.histogram(r36, bins=np.arange(25, 85.1, 1.5))[0].max())
+ax[0].set_xlim(x0_lo, x0_hi)
+ax[0].set_ylim(0, 1.5 * np.histogram(r36, bins=np.arange(x0_lo, x0_hi + 0.1, 1.5))[0].max())
 ax[0].legend(frameon=False, loc='upper left', ncol=2, columnspacing=1.0, handlelength=1.6)
 # right: the growth threshold G* at 2025 prices over the draws (compute share over the box; and with compute at 6%)
 gs, g6 = D.Gstar_2025.to_numpy(), D.Gstar_2025_cc6.to_numpy()
-bins = np.arange(20, 54.1, 1.0)
+x1_lo, x1_hi = min(20.0, math.floor(min(gs.min(), g6.min()))), max(54.0, math.ceil(max(gs.max(), g6.max())))
+bins = np.arange(x1_lo, x1_hi + 0.1, 1.0)
 ax[1].hist(gs, bins=bins, color=MID, edgecolor='white', lw=0.3, zorder=2, label='compute share over the box')
 ax[1].hist(g6, bins=bins, histtype='step', color=BLACK, lw=0.8, zorder=3, label='compute at 6% of revenue')
 ax[1].axvline(30, ymax=0.72, color=BLACK, lw=0.9, ls=(0, (3, 2)), zorder=4, label='30% market growth')
 ax[1].set_xlabel('Growth threshold $G^*$ for a cash score of 100 (% a year)')
 ax[1].set_ylabel('Draws')
-ax[1].set_xlim(20, 54)
+ax[1].set_xlim(x1_lo, x1_hi)
 ax[1].set_ylim(0, 1.45 * np.histogram(g6, bins=bins)[0].max())
 ax[1].legend(frameon=False, loc='upper left', ncol=1, handlelength=1.6)
 fig.tight_layout(w_pad=1.5)

@@ -250,8 +250,9 @@
 [PASS] 20f Cor ceiling(a),(b): R_inf <= R_max with equality at c_h = 0, a_op = a_min + c_full; eq. (Rmax) at X=1, psi=0, delta_K=0; expensing adds tau k G (+ tau delta_K k); replacement subtracts (1 - psi tau) delta_K k; at psi = 1 the earlier form is recovered
      replacement at delta_K = 0.25, k = 0.5, central: 12.50 points at psi = 0, 10.25 at psi = 1
 [PASS] 20g replacement of k = 0.5 at delta_K = 0.25 lowers the central ceiling by (1 - psi tau) delta_K k: 12.5 points at psi = 0 and 10.25 at psi = 1
-     central G* at c_c = 0.02 / 0.6: 29.16 / 78.14% (acc. only 24.15 / 71.71%); slope 0.8446
-[PASS] 20h [text] c_c over its scenario bounds: central G* and accountability-only G* at both ends as printed (macros CcLo, CcHi, GstarCcLo/Hi, GstarAccCcLo/Hi); dG*/dc_c = (1 - tau)(1 + s_fin) = 0.8446
+     central G* at c_c = 0.012 / 0.6: 28.48 / 78.14% (acc. only 23.49 / 71.71%); slope 0.8446
+     c_c = s_L x kappa: 0.6 x [0.02, 1.0] = [0.012, 0.60] (successful runs 0.6 x 0.01 = 0.006); calibration record agrees: True
+[PASS] 20h [text] c_c over its scenario bounds, c_c = s_L x kappa (floor kappa 2% per completed task times s_L 60% = 1.2% of revenue; top the value test kappa = 1, c_c = s_L): central G* and accountability-only G* at both ends as printed (macros CcLo, CcHi, GstarCcLo/Hi, GstarAccCcLo/Hi, KappaLo, KappaLoRuns, CcLoRuns, CcLaborShare); dG*/dc_c = (1 - tau)(1 + s_fin) = 0.8446
 [PASS] 20i [text] tau = 9% (GAO-23-105384 average effective rate) and a_min over its band [0.005, 0.046]: central thresholds as printed (macros GstarTauLow, GstarAccTauLow, GstarAminLo/Hi, AminLo/Hi)  ::  tau 9%: 25.1 (19.5); a_min: 30.5 to 33.8
 [PASS] 20m [text] c_err across its range: central G* at the favorable and conservative c_err and with today's highest measured error rates (no review) and unit losses (22.8 points), as printed (macros GstarCerrFav/Cons/High, CerrHigh)
 [PASS] 20j product mix: with AI products at c_c = 0.40 and the rest at 0.20, an AI revenue share of one half puts G* midway between the central and high-compute thresholds (linear in the share); 1 - 0.59 - 0.025 = 0.385 ~ 0.40
@@ -337,7 +338,7 @@
 [PASS] 28d Corollary cor:transient(b): time at or above Rbar is at most (X-k) ln(sbar/s0)/(Rbar - R_inf) on random spend paths and at most (1-alpha) times that at the static optimum (60 draws); 0.43 and 0.30 years in the Rule-of-1000 example
 [PASS] 28e Proposition prop:budget(c): with a moving intercept, the integral of (R_X - R_inf(t))^+ stays below (X-k) ln(s_T/s0) (100 random paths); with zero-spend growth below G the budget is not finite (Remark rem:assumptions(b))
 [PASS] 28f Lemma lem:valuation2(e): T = 1, theta = 0 gives X_scr = (m + mbar M_inf)/(1+g) = (V/S0)(1+r)/(1+g)^2 (symbolic; 3.0229 at r 0.10, g 0.25, G_inf 0.03, mbar 0.25, m 0.10, equal to a finite-difference MRS); D strictly decreasing in r for T >= 2; Remark rem:cap value at a binding cap; Remark rem:r40 interval containing the optimum  ::  X_scr = 3.0229, MRS = 3.0229
-/home/claude/paper/code/verify_theory.py:2752: RuntimeWarning: overflow encountered in exp
+/home/claude/paper/code/verify_theory.py:2776: RuntimeWarning: overflow encountered in exp
   lbs.append(mo * np.trapezoid(np.exp(-(r_ - G_ - D_) * tt) / (1 + (s0v / 0.5) * (np.exp(D_ * tt) - 1)), tt))
 [PASS] 28g Proposition prop:dynamic(e): with lambda = 0.2 (worked-example parameters otherwise) eq. (gordon) has no positive root; Gordon multiples of constant policies diverge as growth approaches r, and the constant-policy lower bound on v(s0)/s0 grows as s0 -> 0  ::  u1 = 1.004, multiples [np.float64(6.4), np.float64(126.8), np.float64(1293.5), np.float64(12959.1)], bounds [np.float64(22.0), np.float64(46.5), np.float64(70.9), np.float64(94.9)]
 [PASS] 28h Proposition prop:dynamic proof: the HJB as an ODE in u = v/s has a singular point at (0, v0) with dPhi/du = (r - G)/Delta0 > 1, so the boundary behaviour v/s -> v0 does not select a solution  ::  dPhi/du = 1.6800

@@ -173,15 +173,23 @@ for tag, key in cases:
     for col, (G, kk) in zip('ABCDEF', [(0.05, 0), (0.15, 0), (0.30, 0), (0.15, 0.5), (0.05, 1.5), (0.30, 1.5)]):
         num('CeilTab' + tag + col, c['base'] + (1 - kk) * G, 1)
 cc = {float(k): v for k, v in CAL['cc_sensitivity'].items()}
-# round 3 (GLM-M11, GPT-22): the low credible bound is the compute share per completed process, 2% (successful runs
-# only: 1%, kept as CcLoRuns); calibrate_horizons.py block r3.compute_credible. Was min(cc) = 0.01 (CcLo 1, GstarCcLo 28).
+# round 3 (GLM-M11, GPT-22): the low credible bound is the compute share per completed process; calibrate_horizons.py
+# block r3.compute_credible. Units corrected 3 Nov 2026: METR's run costs are kappa, compute per dollar of labor
+# replaced (KappaLoRuns 1% of the labor's cost per successful run, KappaLo 2% per completed task), and the compute share
+# is s_L x kappa (CcLaborShare 60% of revenue): CcLo 1.2% of revenue, CcLoRuns 0.6% (one decimal). Before: CcLo 2 and
+# CcLoRuns 1 (kappa printed as a share of revenue), GstarCcLo 29, GstarAccCcLo 24; earlier still min(cc) = 0.01.
 CCR = CAL['r3']['compute_credible']
 assert abs(CCR['hi'] - max(cc)) < 1e-12 and CCR['lo'] in cc and CCR['lo_successful_runs'] in cc
-num('CcLo', CCR['lo']); num('CcHi', CCR['hi'])
+assert all(abs(CCR[c_] - CCR['s_L'] * CCR[k_]) < 1e-15 for c_, k_ in
+           (('lo', 'kappa_lo'), ('lo_successful_runs', 'kappa_lo_successful_runs'), ('hi', 'kappa_hi'))), 'c_c != s_L x kappa'
+assert list(CAL['compute_share']['values']['prices2025']['bounds']) == [CCR['lo'], CCR['hi']], 'two ranges for c_c at 2025 prices'
+num('CcLo', CCR['lo'], 1); num('CcHi', CCR['hi'])
 num('GstarCcLo', cc[CCR['lo']][0]); num('GstarCcHi', cc[max(cc)][0])
 num('GstarAccCcLo', cc[CCR['lo']][1]); num('GstarAccCcHi', cc[max(cc)][1])
-num('CcLoRuns', CCR['lo_successful_runs']); num('GstarCcLoRuns', cc[CCR['lo_successful_runs']][0])
+num('CcLoRuns', CCR['lo_successful_runs'], 1); num('GstarCcLoRuns', cc[CCR['lo_successful_runs']][0])
 num('GstarAccCcLoRuns', cc[CCR['lo_successful_runs']][1]); num('CcSuccessRate', CCR['success_rate'])
+num('KappaLo', CCR['kappa_lo']); num('KappaLoRuns', CCR['kappa_lo_successful_runs'])   # % of the labor's cost
+num('CcLaborShare', CCR['s_L'])                         # s_L, labor cost the ceiling automates, % of revenue
 tau = {float(k): v for k, v in CAL['tau_sensitivity'].items()}
 num('TauLow', 0.09); num('GstarTauLow', tau[0.09][0]); num('GstarAccTauLow', tau[0.09][1])
 num('GstarTauLo', tau[0.15][0]); num('GstarTauHi', tau[0.21][0])
@@ -1586,6 +1594,15 @@ CLAIMS += [
      _rwp < 0.10 and abs(0.10 - _rwp) < math.sqrt(_rwp * (1 - _rwp) / _B3)),
     ('horizons (GLM-M11): counting failed attempts raises the low end of the compute-share range and of the threshold range',
      CCR['lo'] > CCR['lo_successful_runs'] and CCR['G']['lo'][0] > CCR['G']['lo_successful_runs'][0]),
+    ('horizons (GLM-M11, GPT-22; units fixed 3 Nov): the floor of the compute share is the labor share times compute per '
+     'dollar of labor at the cost per completed task, below that kappa itself, and the top is the value test (c_c = s_L)',
+     abs(CCR['lo'] - CCR['s_L'] * CCR['kappa_lo']) < 1e-15 and CCR['lo'] < CCR['kappa_lo']
+     and abs(CCR['kappa_lo'] - CCR['kappa_lo_successful_runs'] / CCR['success_rate']) < 1e-15
+     and CCR['kappa_hi'] == 1.0 and CCR['hi'] == CCR['s_L'] == CAL['compute_share']['high_compute_case']['value_test_cap']),
+    ('horizons (GLM-M11): one range for the compute share at 2025 prices: the text\'s scenario range is the calibration\'s '
+     'bounds, and the central share lies inside it',
+     list(CAL['compute_share']['values']['prices2025']['bounds']) == [CCR['lo'], CCR['hi']]
+     and CCR['lo'] < CAL['compute_share']['values']['prices2025']['value'] < CCR['hi']),
 ]
 _failed = [c for c, ok in CLAIMS if not ok]
 os.makedirs(OUT_DIR, exist_ok=True)

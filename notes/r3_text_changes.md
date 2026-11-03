@@ -179,3 +179,15 @@ Numbers in new text are macros from `notes/r3_macro_contract.md` or existing mac
 | notes/reviews/paper1_v3/response_to_outside_reviews.md | F5 | DS-17 list matches the 16 places; ST-1/ST-2 cells say where the joint range is and is not quoted. |
 | notes/r3_macro_contract.md, this file | F8 | Stale macro requests resolved; Table S17 -> S18. |
 | (none) | F9 | Duplicate hyperref destination of the Table 2 longtable: harmless, left. |
+
+## Compute-share units fix (3 Nov 2026, coding agent at the lead's request; `notes/r3_compute_fix.md`)
+
+| File | Finding | Change |
+|---|---|---|
+| sections/horizons.tex:13 | GPT-22, GLM-M11 (units) | "labor costs of 60\% of revenue" -> "\CcLaborShare\%"; floor sentence "from \CcLo\%, labor replaced at the cost per completed task of today's agent runs, failed attempts included, to \CcHi\%, the value test, under which compute can cost at most the labor it replaces, 60\% of revenue" -> "from \CcLo\%, labor at \CcLaborShare\% of revenue replaced at the cost per completed task of today's agent runs, failed attempts included, about \KappaLo\% of the labor's cost, to \CcHi\%, the value test, under which compute can cost at most the labor it replaces" (prints 1.2\%, 60\%, 2\%) |
+| sections/supp_model.tex:37 | same | "successful runs cost 0.4 to 1.1\% of it, about \CcLoRuns\%" -> "about \KappaLoRuns\%"; "the cost per completed task is about \CcLo\%, which sets the low end" -> "about \KappaLo\% of the human cost. These are costs per dollar of labor replaced; times the labor share automated, \CcLaborShare\% of revenue, they give a compute share of \CcLo\% of revenue at the cost per completed task, which sets the low end of the scenario range (\CcLoRuns\% at the cost of successful runs alone)" |
+| sections/tables/tab_param_sources.tex:107 | same | "with a scenario range of \CcLo{} to \CcHi\%" -> "... \CcHi\% of revenue (labor at \CcLaborShare\% of revenue replaced at \KappaLo\% of its cost per completed task, up to the value test)" |
+| abstract, intro.tex:13, exec_summary.tex:11, conclusion.tex:5, horizons.tex:43 | same | no edit; the macros now print 1.2 to 60\% and 28 to 78\% (23 to 72\% accountability-only); checked in the built PDFs |
+| sections/tables/tab_stress.tex (generated) | same | note: "scenario range of 2 to 60\%" -> "1.2 to 60\%" (the stored run's box, 0.5 to 23\%, is still "not over" it) |
+| sections/supp_stress.tex | (pending rerun) | not edited: true of the stored run; replacement text for after the rerun in `notes/r3_compute_fix.md` |
+

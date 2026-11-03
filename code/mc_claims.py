@@ -14,7 +14,20 @@ Usage
   python3 code/mc_claims.py --n 500 --sobol-n 128 --out /tmp/mc_test     # quick test
   python3 code/mc_claims.py --print-dims           # the dimension table (markdown) and exit
   python3 code/mc_claims.py --verify-only          # reproduction checks only
+  python3 code/mc_claims.py --seed 20261104 --out notes/mc_seed2 --compare-to notes/mc      # a second seed, recorded
+                                                   # against the first run (block seed_comparison of its JSON and report)
 An interrupted run resumes from <out>/ckpt/<configuration hash>/ when the same command is run again; --fresh discards it.
+Each run writes <out>/mc_claims.json, <out>/mc_claims_report.md and <out>/draws_lhs.csv (selected outputs per
+Latin-hypercube draw, read by code/mc_report_tex.py). The seed is recorded in the JSON (meta.args.seed, design.seed).
+
+Sampling laws (round 3, 3 Nov 2026): uniform over each stated range, except compute per dollar of labor replaced at 2025
+prices (kappa_2025, path mode), which spans 0.02 (the cost per completed task of agent runs) to 1 (the value test), a
+factor of 50, and is drawn log-uniform: value = lo (hi/lo)^u, central 0.10 (the NaN coordinate). Every design works in
+unit coordinates (LHS, corners, vertex search, Sobol, failure scans) and maps them through dim_value; dim_unit inverts it.
+Sobol indices carry 95% confidence intervals: SALib analyze (num_resamples 200, conf_level 0.95; S1_conf and ST_conf are
+the half-widths of its normal bootstrap interval, S1_ci and ST_ci the intervals) for the factors when SALib is used, and
+a nonparametric bootstrap of the N base rows (200 resamples, 2.5th and 97.5th percentiles) for the groups and for the
+numpy backend.
 
 Nothing in the repository is written except under --out. code/calibrate_horizons.py is executed unchanged into a
 namespace whose output paths point at a scratch copy of the tree (<out>/_shadow); its JSON is compared byte for byte
@@ -54,7 +67,7 @@ except ImportError:                                   # pragma: no cover
     resource = None
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-VERSION = "1.0"
+VERSION = "1.1"                                     # 1.1 (3 Nov 2026): kappa_2025 0.02-1 log-uniform; Sobol CIs; seed comparison; draws_lhs.csv
 STRATA = ("net", "ub", "lb")
 STRATUM_LABEL = {"net": "netted (central): S&M above the maintenance base buys growth",
                  "ub": "all S&M buys growth (bound)", "lb": "no S&M buys growth (bound)"}
@@ -65,6 +78,14 @@ N_PROC = 48
 S_REF = 1e9
 TOL = 1e-12
 UNIFORM_LABEL = "uniform over the stated ranges (an assumption, not a measured distribution)"
+
+
+def law_label(dims):
+    """Label of the secondary shares: uniform over the stated ranges, naming any dimension drawn log-uniform."""
+    lg = [d["name"] for d in dims if d.get("law") == "loguniform"]
+    if not lg:
+        return UNIFORM_LABEL
+    return "uniform over the stated ranges, log-uniform for %s (an assumption, not a measured distribution)" % ", ".join(lg)
 SHADOW_INPUTS = ("notes/calibration_anchor_v3.json", "notes/empirics_v3.json", "notes/bootstrap_draws_v3.npz",
                  "notes/frontier_slope_v3.json", "data/panel_v3.csv", "data/v3_inputs/interest_income_deferred.json")
 CALIB = "code/calibrate_horizons.py"
@@ -418,6 +439,7 @@ def build_snapshot(g):
     snap = dict(
         FC=FC, CC={h: [float(v[0]), [float(v[1][0]), float(v[1][1])], v[2]] for h, v in g["CC"].items()},
         CC_PATH=dict(g["CC_PATH"]), CC_VALUE_TEST_CAP=float(g["CC_VALUE_TEST_CAP"]),
+        KAPPA_2025=[float(g["KAPPA_LO"]), float(g["KAPPA_HI"])],      # round 3: the kappa bounds of the text (CcLo/CcHi)
         PACE={k: dict(v) for k, v in g["PACE"].items()}, PHI=[float(x) for x in g["PHI"]],
         HZ_mu={h: [float(x) for x in g["HZ"][h]["mu"]] for h in HZ}, G_BAND=[float(x) for x in g["G_BAND"]],
         G25=float(g["G25"]), ALPHA_C=float(g["ALPHA_C"]), ALPHAS=[float(x) for x in g["ALPHAS"]], TAU=float(g["TAU"]),
@@ -508,9 +530,10 @@ VARIANTS = {   # named conditions of a claim, held at their central values in th
 
 def build_dims(snap, opts):
     """The parameter box: every dimension with its low, central and high value, sampling law, class and source.
-    law 'uniform': value = lo + u (hi - lo). law 'boot:<series>': u maps to the bootstrap quantile at level
-    0.05 + 0.9 u (the paper's 90% interval; the central value is the point estimate). 'iqr:<stratum>' (option
-    --anchor-range iqr): uniform between the firm-year quartiles."""
+    law 'uniform': value = lo + u (hi - lo). law 'loguniform': value = lo (hi/lo)^u (kappa_2025, which spans a factor
+    of 50). law 'boot:<series>': u maps to the bootstrap quantile at level 0.05 + 0.9 u (the paper's 90% interval; the
+    central value is the point estimate). 'iqr:<stratum>' (option --anchor-range iqr): uniform between the firm-year
+    quartiles."""
     FC, PACE = snap["FC"], snap["PACE"]
     D = []
 
@@ -538,8 +561,13 @@ def build_dims(snap, opts):
         add(name="s_L", label="Labor cost automated, share of revenue s_L (also the error base W_A)", group="compute",
             cls="c", lo=0.50, central=cp["s_L"], hi=0.65, src=src_line(CALIB, r"with s_L 0\.60") + "; " + src_line(PARAMS, r"s_L_range:"),
             note="A_auto = s_L (code comment: same base as the compute share)")
+        # round 3 (3 Nov 2026): from the cost per completed task of agent runs (0.02) to the value test (1), the bounds of
+        # the text's range of c_c = s_L x kappa (macros KappaLo, CcLo, CcHi); log-uniform, central 0.10. Was 0.01-0.35, uniform
+        k_lo, k_hi = snap["KAPPA_2025"]
         add(name="kappa_2025", label="Compute per $ of labor replaced at 2025 prices", group="compute", cls="b",
-            lo=0.01, central=cp["kappa_2025"], hi=0.35, src=src_line(CALIB, r"kappa_2025 0\.10") + "; " + src_line(PARAMS, r"kappa_2025_range:"))
+            lo=k_lo, central=cp["kappa_2025"], hi=k_hi, law="loguniform",
+            src=src_line(CALIB, r"^KAPPA_LO = ") + "-" + src_line(CALIB, r"^KAPPA_HI = ") + "; " + src_line(PARAMS, r"kappa_2025_range:"),
+            note="per completed task to the value test (c_c = s_L x kappa); log-uniform, central 0.10")
         add(name="D", label="Fall of the fixed-performance price, x a year", group="compute", cls="a", lo=3.0,
             central=cp["D"], hi=10.0, src=src_line(CALIB, r"D = 5 \[3, 10\]") + "; " + src_line(PARAMS, r"D_range:"))
         add(name="kappa_front", label="Compute per $ of labor at the frontier", group="compute", cls="d", lo=0.10,
@@ -550,9 +578,10 @@ def build_dims(snap, opts):
     else:
         add(name="s_L", label="Labor cost automated, share of revenue s_L (error base W_A only)", group="compute",
             cls="c", lo=0.50, central=cp["s_L"], hi=0.65, src=src_line(PARAMS, r"s_L_range:"))
+        c_lo, c_hi = snap["CC"]["prices2025"][1]          # round 3: the text's range (CcLo/CcHi), from the calibration
         add(name="cc_2025", label="Compute share at 2025 prices (credible range of the text)", group="compute",
-            cls="b", lo=0.01, central=snap["CC"]["prices2025"][0], hi=0.60,
-            src="macros CcLo/CcHi; " + src_line(CALIB, r"CC_VALUE_TEST_CAP = "))
+            cls="b", lo=c_lo, central=snap["CC"]["prices2025"][0], hi=c_hi,
+            src="macros CcLo/CcHi; " + src_line(CALIB, r"^CC = \{"), note="s_L x kappa: per completed task to the value test")
         for h in HZ:
             c0, (lo, hi), _ = snap["CC"][h]
             add(name="cc_" + h, label="Compute share " + h, group="compute", cls="d", lo=lo, central=c0, hi=hi,
@@ -659,6 +688,10 @@ def dim_value(d, u, stratum=None):
         if u != u:
             return d["central"]
         return d["lo"] if u == 0.0 else (d["hi"] if u == 1.0 else d["lo"] + u * (d["hi"] - d["lo"]))
+    if law == "loguniform":                            # lo (hi/lo)^u; the ends exactly, the central value at NaN
+        if u != u:
+            return d["central"]
+        return d["lo"] if u == 0.0 else (d["hi"] if u == 1.0 else d["lo"] * (d["hi"] / d["lo"]) ** u)
     if law.startswith("boot:"):
         ser = law[5:]
         if ser == "m0A":
@@ -680,6 +713,15 @@ def dim_value(d, u, stratum=None):
             return cen
         return lo if u == 0.0 else (hi if u == 1.0 else lo + u * (hi - lo))
     raise ValueError(law)
+
+
+def dim_unit(d, x):
+    """Unit coordinate of the physical value x of a uniform or log-uniform dimension (the inverse of dim_value)."""
+    if d["law"] == "uniform":
+        return (x - d["lo"]) / (d["hi"] - d["lo"])
+    if d["law"] == "loguniform":
+        return math.log(x / d["lo"]) / math.log(d["hi"] / d["lo"])
+    raise ValueError("dim_unit: no inverse for law %s" % d["law"])
 
 
 def assemble(u):
@@ -1269,7 +1311,7 @@ def reproduce_paper(snap, opts, g=None):
     for phi, tag in ((0.5, "Half"), (0.7, "Seven")):
         u = np.full(_M["k"], np.nan)
         d_ = _M["dims"][_M["idx"]["phi"]]
-        u[_M["idx"]["phi"]] = (phi - d_["lo"]) / (d_["hi"] - d_["lo"])
+        u[_M["idx"]["phi"]] = dim_unit(d_, phi)
         r_ = evaluate(u, parts=frozenset(["path"]))
         for h, yn in (("2028", "Eight"), ("2031", "One"), ("2036", "Six")):
             _eq_check(checks, "R_%s phi=%.1f == JSON" % (h, phi), r_["net.R_" + h], CAL["central_path"]["pass_through"]["%.1f" % phi]["net"][h]["R"], tol=1e-12)
@@ -1320,6 +1362,27 @@ def reproduce_paper(snap, opts, g=None):
             vals.append(c["net.R_2036"])
         _eq_check(checks, "tornado 2036 row '%s' low/high from the box" % key, min(vals), T36[key]["low"])
         _eq_check(checks, "tornado 2036 row '%s' high from the box" % key, max(vals), T36[key]["high"])
+    # round 3 (3 Nov 2026): the compute share's ends in the box are the text's range, c_c = s_L x kappa (one range for the
+    # text, the calibration and the box), and the log-uniform law inverts exactly at the central kappa
+    CCR = CAL["r3"]["compute_credible"]
+    sL_c = snap["CC_PATH"]["s_L"]
+    if "kappa_2025" in _M["idx"]:
+        dk = _M["dims"][_M["idx"]["kappa_2025"]]
+        k_ends = (dim_value(dk, 0.0), dim_value(dk, 1.0))
+        checks.append(dict(check="kappa_2025 box ends == calibration r3.compute_credible kappa_lo, kappa_hi",
+                           expected=repr((CCR["kappa_lo"], CCR["kappa_hi"])), got=repr(k_ends),
+                           ok=bool(k_ends == (CCR["kappa_lo"], CCR["kappa_hi"]))))
+        _macro_check(checks, macros, "KappaLo", k_ends[0])
+        _macro_check(checks, macros, "CcLo", sL_c * k_ends[0])
+        _macro_check(checks, macros, "CcHi", sL_c * k_ends[1])
+        _eq_check(checks, "kappa_2025 law (%s): dim_value(dim_unit(central)) == central" % dk["law"],
+                  dim_value(dk, dim_unit(dk, dk["central"])), dk["central"])
+    else:
+        dc = _M["dims"][_M["idx"]["cc_2025"]]
+        checks.append(dict(check="cc_2025 box ends == calibration r3.compute_credible lo, hi", expected=repr((CCR["lo"], CCR["hi"])),
+                           got=repr((dc["lo"], dc["hi"])), ok=bool((dc["lo"], dc["hi"]) == (CCR["lo"], CCR["hi"]))))
+        _macro_check(checks, macros, "CcLo", dc["lo"])
+        _macro_check(checks, macros, "CcHi", dc["hi"])
     ok = all(ch["ok"] for ch in checks)
     if g is not None:
         checks = verify_mirror(g, snap, opts) + checks
@@ -1539,7 +1602,11 @@ def describe_point(dims, u, idx_list, stratum=None):
 def parse_args(argv=None):
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0], formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--n", type=int, default=10000, help="Latin-hypercube draws (default 10,000)")
-    ap.add_argument("--seed", type=int, default=20261102, help="seed of every random design (default 20261102)")
+    ap.add_argument("--seed", type=int, default=20261102, help="seed of every random design (default 20261102); a second "
+                    "seed checks that the results do not depend on the draws (see --compare-to)")
+    ap.add_argument("--compare-to", default=None, metavar="DIR",
+                    help="output folder (or mc_claims.json) of a run with another seed: its results are compared with this "
+                         "run's and the comparison is recorded in this run's JSON (seed_comparison) and report")
     ap.add_argument("--workers", type=int, default=os.cpu_count() or 1, help="worker processes (default: all cores)")
     ap.add_argument("--chunk", type=int, default=200, help="draws per task and per checkpoint file (default 200)")
     ap.add_argument("--corners", type=int, default=2048, help="random vertices of the box when k > 14 (default 2048)")
@@ -1571,7 +1638,8 @@ def dims_markdown(dims):
     for d in dims:
         def f(x):
             return fmt_val(d, x)
-        law = {"uniform": "uniform"}.get(d["law"], d["law"].replace("boot:", "bootstrap 5-95%: ").replace("iqr:", "uniform IQR: "))
+        law = {"uniform": "uniform", "loguniform": "log-uniform"}.get(
+            d["law"], d["law"].replace("boot:", "bootstrap 5-95%: ").replace("iqr:", "uniform IQR: "))
         lines.append("| %d | `%s` %s | %s | %s | %s | %s | %s | %s | %s | %s |" % (
             d["idx"] + 1, d["name"], d["label"], d["group"], f(d["lo"]), f(d["central"]), f(d["hi"]), law, d["cls"],
             d["src"], d["note"]))
@@ -1603,6 +1671,7 @@ class Runner(object):
         gc.collect()
         self.dims = _M["dims"]
         self.k = len(self.dims)
+        self.law_label = law_label(self.dims)
         self.claims = _claims(self.snap)
         self.cfg = config_hash(a, self.dims, self.snap)
         self.ck = os.path.join(self.out, "ckpt", self.cfg)
@@ -1819,9 +1888,17 @@ class Runner(object):
         for tag, M_ in blocks:
             Y[tag] = np.vstack([np.load(os.path.join(ck, "%s_%07d.npy" % (tag.replace(":", "_"), i0)))
                                 for i0 in range(0, M_.shape[0], step)])
+        n_boot = 200
         res = dict(N=N, base_design=how, backend_factors="SALib %s" % _salib_version() if use_salib else "numpy (Saltelli 2010 S1, Jansen 1999 ST)",
-                   backend_groups="numpy (Saltelli 2010 S1, Jansen 1999 ST)", law=UNIFORM_LABEL + "; anchor dimensions: bootstrap law",
-                   n_evaluations=int(sum(v_.shape[0] for v_ in Y.values())), outputs={})
+                   backend_groups="numpy (Saltelli 2010 S1, Jansen 1999 ST)", law=self.law_label + "; anchor dimensions: bootstrap law",
+                   n_evaluations=int(sum(v_.shape[0] for v_ in Y.values())), outputs={},
+                   ci=dict(level=0.95, n_resamples=n_boot,
+                           factors=("SALib analyze, conf_level 0.95, num_resamples %d: S1_conf and ST_conf are the half-widths of "
+                                    "its normal-approximation bootstrap interval; S1_ci and ST_ci = index -/+ half-width" % n_boot)
+                           if use_salib else ("nonparametric bootstrap of the N base rows (%d resamples with replacement), "
+                                              "2.5th and 97.5th percentiles (S1_ci, ST_ci)" % n_boot),
+                           groups="nonparametric bootstrap of the N base rows (%d resamples with replacement), 2.5th and 97.5th "
+                                  "percentiles (S1_ci, ST_ci)" % n_boot))
         for oi, oname in enumerate(SOBOL_OUTPUTS):
             fA, fB = Y["A"][:, oi], Y["B"][:, oi]
             o = dict(factors={}, groups={})
@@ -1829,16 +1906,17 @@ class Runner(object):
                 from SALib.analyze import sobol as salib_analyze
                 problem = dict(num_vars=self.k, names=[d["name"] for d in self.dims], bounds=[[0.0, 1.0]] * self.k)
                 with contextlib.redirect_stdout(io.StringIO()):
-                    Si = salib_analyze.analyze(problem, Y["salib"][:, oi], calc_second_order=False, num_resamples=200,
+                    Si = salib_analyze.analyze(problem, Y["salib"][:, oi], calc_second_order=False, num_resamples=n_boot,
                                                conf_level=0.95, seed=a.seed + 11, print_to_console=False)
                 for j, d in enumerate(self.dims):
-                    o["factors"][d["name"]] = dict(S1=float(Si["S1"][j]), ST=float(Si["ST"][j]),
-                                                   S1_conf=float(Si["S1_conf"][j]), ST_conf=float(Si["ST_conf"][j]))
+                    s1, st, s1c, stc = (float(Si[k_][j]) for k_ in ("S1", "ST", "S1_conf", "ST_conf"))
+                    o["factors"][d["name"]] = dict(S1=s1, ST=st, S1_conf=s1c, ST_conf=stc,
+                                                   S1_ci=[s1 - s1c, s1 + s1c], ST_ci=[st - stc, st + stc])
             else:
                 for j, d in enumerate(self.dims):
-                    o["factors"][d["name"]] = sobol_indices(fA, fB, Y["f%d" % j][:, oi], seed=a.seed + j)
+                    o["factors"][d["name"]] = sobol_indices(fA, fB, Y["f%d" % j][:, oi], n_boot=n_boot, seed=a.seed + j)
             for g_ in groups:
-                o["groups"][g_] = sobol_indices(fA, fB, Y["g:" + g_][:, oi], seed=a.seed + 500)
+                o["groups"][g_] = sobol_indices(fA, fB, Y["g:" + g_][:, oi], n_boot=n_boot, seed=a.seed + 500)
             o["var"] = float(np.var(np.concatenate([fA, fB])))
             o["mean"] = float(np.mean(np.concatenate([fA, fB])))
             res["outputs"][oname] = o
@@ -2044,7 +2122,7 @@ class Runner(object):
                     rec["worst_point_found_by"] = found_by
                     rec["worst_point_u"] = [None if (x is None or x != x) else x for x in worst_u]
                     rec["share_holds_uniform"] = float(ok[:n_lhs][in_dom[:n_lhs]].mean()) if in_dom[:n_lhs].any() else None
-                    rec["share_label"] = UNIFORM_LABEL
+                    rec["share_label"] = self.law_label
                     rec["corners_hold"] = bool(ok[n_lhs:].all()) if len(ok) > n_lhs else None
                     if oat:
                         eff = sorted(((abs(v_), int(j)) for j, v_ in oat.items() if v_ is not None), reverse=True)
@@ -2338,8 +2416,10 @@ class Runner(object):
                                               "execution the largest group", execution=sw36["execution"]["swing"],
                                          market_growth=sw36["market_growth"]["swing"], largest_group=top_sw,
                                          holds=bool(sw36["execution"]["swing"] > sw36["market_growth"]["swing"] and top_sw == "execution")))
+        pm = read_macros()          # the quote as the paper now prints it (round 3: the range was 1 to 60, then 2 to 60)
         s2 = dict(id="S2", title="The compute share is the dominant uncertainty in the threshold",
-                  quote="Over its credible bounds of 1 to 60% of revenue, the threshold runs from 28 to 78%. This is the dominant uncertainty.",
+                  quote="Over its scenario range of %s to %s%% of revenue, the threshold runs from %s to %s%%. This is the dominant "
+                        "uncertainty." % (pm["CcLo"], pm["CcHi"], pm["GstarCcLo"], pm["GstarCcHi"]),
                   where="Sec. 7.2 'The ceiling'",
                   distribution_free=dict(test="group swing of G* (others central): compute the largest group",
                                          largest_group=top_swg, compute=swg["compute"]["swing"], holds=bool(top_swg == "compute")))
@@ -2349,12 +2429,19 @@ class Runner(object):
             cand = [g_ for g_ in gr36 if g_ != "fullcost_target"]
             top = max(cand, key=lambda g_: gr36[g_]["ST"])
             topg = max([g_ for g_ in grg if g_ != "fullcost_target"], key=lambda g_: grg[g_]["ST"])
+            ci_ = lambda gr, g_: gr[g_].get("ST_ci")
+            # round 3: 95% bootstrap intervals of the group indices; 'holds_ci' asks whether the ordering survives them
+            # (the leader's lower bound above every other group's upper bound)
+            sep = lambda gr, g0: all(gr[g0]["ST_ci"][0] > gr[g_]["ST_ci"][1] for g_ in gr if g_ not in (g0, "fullcost_target"))
             s1["sobol"] = dict(test="group total index ST: execution > market growth, and execution the largest group",
                                ST_execution=gr36["execution"]["ST"], ST_market_growth=gr36["market_growth"]["ST"],
+                               ST_execution_ci=ci_(gr36, "execution"), ST_market_growth_ci=ci_(gr36, "market_growth"),
                                largest_group=top, holds=bool(gr36["execution"]["ST"] > gr36["market_growth"]["ST"] and top == "execution"),
-                               label=UNIFORM_LABEL)
+                               holds_ci=bool(gr36["execution"]["ST_ci"][0] > gr36["market_growth"]["ST_ci"][1] and sep(gr36, "execution")),
+                               label=self.law_label, ci_method=sob["ci"]["groups"])
             s2["sobol"] = dict(test="group total index ST of G*: compute the largest group", largest_group=topg,
-                               ST_compute=grg["compute"]["ST"], holds=bool(topg == "compute"), label=UNIFORM_LABEL)
+                               ST_compute=grg["compute"]["ST"], ST_compute_ci=ci_(grg, "compute"), holds=bool(topg == "compute"),
+                               holds_ci=bool(sep(grg, "compute")), label=self.law_label, ci_method=sob["ci"]["groups"])
         sclaims = [s1, s2]
         mem = {}
         if resource is not None:
@@ -2371,8 +2458,9 @@ class Runner(object):
                       small_n_warning=(a.n < 5000)),
             framing=("Not a forecast. Most parameters are scenario values (class d) with ranges but no measured distribution. "
                      "Primary result: does each claim hold at every point of the box of the paper's own stated ranges, and "
-                     "if not, where does it fail. Shares of draws are secondary: " + UNIFORM_LABEL + "; the anchor "
+                     "if not, where does it fail. Shares of draws are secondary: " + self.law_label + "; the anchor "
                      "dimensions follow the firm-cluster bootstrap within its 90% interval."),
+            law_label=self.law_label,
             reproduction=dict(checks=self.checks, all_passed=all(c["ok"] for c in self.checks),
                               shadow_outputs_byte_identical=self.byte_identical, shadow_json_numeric_diff=self.json_diff),
             dims=[{k_: (v_ if k_ != "law" else v_) for k_, v_ in d.items()} for d in self.dims],
@@ -2387,11 +2475,119 @@ class Runner(object):
             claims=self.claims_out, sensitivity_claims=sclaims, levels=lv, quantities=self.quantities(), group_swings=swings,
             tornado_comparison=comp, sobol=sob, amin=self.amin)
         res = _clean(res)
+        if a.compare_to:                                # a second seed, recorded against the first run
+            p_ = a.compare_to if a.compare_to.endswith(".json") else os.path.join(a.compare_to, "mc_claims.json")
+            res["seed_comparison"] = _clean(compare_runs(res, json.load(open(p_)), other_path=p_))
+            sc = res["seed_comparison"]["summary"]
+            _log("seed comparison with %s (seed %s): %d of %d tests agree on holds-everywhere; largest change of a box extreme "
+                 "%.2f points" % (p_, res["seed_comparison"]["other"]["seed"], sc["n_agree"], sc["n_tests"], sc["max_abs_diff_extreme_pts"]))
         _atomic_json(os.path.join(self.out, "mc_claims.json"), res)
         with open(os.path.join(self.out, "mc_claims_report.md"), "w") as fh:
             fh.write(render_report(res))
-        _log("wrote %s and %s" % (os.path.join(self.out, "mc_claims.json"), os.path.join(self.out, "mc_claims_report.md")))
+        self.write_draws_csv(os.path.join(self.out, "draws_lhs.csv"))
+        _log("wrote %s, %s and draws_lhs.csv" % (os.path.join(self.out, "mc_claims.json"), os.path.join(self.out, "mc_claims_report.md")))
         return res
+
+    # draws_lhs.csv: one row per Latin-hypercube draw (the format of notes/mc_results_2026-11-02/draws_lhs.csv, which was
+    # taken from that run's checkpoint): six input dimensions at their physical values (5 decimals) and the outputs that
+    # code/mc_report_tex.py reads, in percent (4 decimals) or years; a payback that never happens is written as inf
+    CSV_INPUTS = ("kappa_2025", "kappa_abs", "varpi", "G", "tau", "a_min")
+    CSV_OUTPUTS = (("R2028_net", "net.R_2028", 100), ("R2031_net", "net.R_2031", 100), ("R2036_net", "net.R_2036", 100),
+                   ("R2036_none", "lb.R_2036", 100), ("R2036_all", "ub.R_2036", 100), ("R2036_net_combined", "net.boot.R_2036", 100),
+                   ("Gstar_2025", "Gstar_2025", 100), ("Gstar_2025_cc6", "Gstar_2025_cc6", 100),
+                   ("compute_share_2025", "c_c_2025", 100), ("payback_years", "net.pb.pb_u", 1),
+                   ("payback_years_central_exec", "net.B.pb.pb_u", 1), ("npv_pct_revenue", "net.pb.npv", 100),
+                   ("realized_share_2036", "s_2036", 100), ("levers_growth_engine_first_count", "lev.net.n_ge_first", 1),
+                   ("completed_program_plus_G_2036", "net.completed_2036", 100))
+
+    def write_draws_csv(self, path):
+        n = self.n_lhs
+        cols = ["draw"] + [nm for nm in self.CSV_INPUTS if nm in _M["idx"]] + [c_ for c_, _, _ in self.CSV_OUTPUTS]
+        ins = {nm: [dim_value(self.dims[_M["idx"][nm]], float(self.U[i, _M["idx"][nm]])) for i in range(n)]
+               for nm in self.CSV_INPUTS if nm in _M["idx"]}
+
+        def f_(x, nd):
+            x = float(x)
+            if x != x:
+                return ""
+            if math.isinf(x):
+                return "inf" if x > 0 else "-inf"
+            return repr(round(x, nd))
+        tmp = path + ".tmp"
+        with open(tmp, "w") as fh:
+            fh.write(",".join(cols) + "\n")
+            for i in range(n):
+                row = [str(i)] + [f_(ins[nm][i], 5) for nm in self.CSV_INPUTS if nm in ins]
+                for _, key, sc in self.CSV_OUTPUTS:
+                    x = self.R[key][i] if key in self.R else float("nan")
+                    row.append(f_(x * sc, 4) if key != "lev.net.n_ge_first" else f_(x, 1))
+                fh.write(",".join(row) + "\n")
+        os.replace(tmp, path)
+
+
+def _unit_of(key):
+    """'yr' for years, 'x' for ratios and counts, 'pts' for shares of revenue and percent a year (shown x 100)."""
+    if key.endswith(("pb_u", "pb_d", "cross", "gap", "complete")) or key == "complete_year":
+        return "yr"
+    if key.endswith("ratio") or key == "pull_multiple" or key.startswith("lev."):
+        return "x"
+    return "pts"
+
+
+def compare_runs(a, b, other_path=""):
+    """Compare this run (a) with a run of the same box under another seed (b): for every claim test the
+    holds-everywhere verdict, the margin minimum and the extremes of the tested quantity over the box; the quoted
+    quantities and the central-path levels (extremes and the 5-95% spread of the draws); the Sobol group indices of the
+    two sensitivity claims with their 95% intervals. Differences are b - a, in points for shares of revenue."""
+    box = lambda r: [(d["name"], repr(d["lo"]), repr(d["hi"]), d["law"]) for d in r["dims"]]
+    ta = {t["tid"]: t for c in a["claims"] for t in c["tests"]}
+    tb = {t["tid"]: t for c in b["claims"] for t in c["tests"]}
+    sc = lambda key: 100.0 if _unit_of(key) == "pts" else 1.0
+    dif = lambda x, y, s: None if (x is None or y is None) else s * (y - x)
+    tests, dmax = {}, {"pts": 0.0, "yr": 0.0, "x": 0.0}
+    for tid in sorted(set(ta) & set(tb)):
+        x, y = ta[tid], tb[tid]
+        s_, u_ = sc(x["key"]), _unit_of(x["key"])
+        rec = dict(key=x["key"], unit=u_, holds_a=x["holds_everywhere"], holds_b=y["holds_everywhere"],
+                   agree=bool(x["holds_everywhere"] == y["holds_everywhere"]),
+                   margin_min_a=x["margin_min"], margin_min_b=y["margin_min"],
+                   min_a=x["quantity"]["min"], min_b=y["quantity"]["min"], max_a=x["quantity"]["max"], max_b=y["quantity"]["max"],
+                   d_min=dif(x["quantity"]["min"], y["quantity"]["min"], s_), d_max=dif(x["quantity"]["max"], y["quantity"]["max"], s_),
+                   share_a=x.get("share_holds_uniform"), share_b=y.get("share_holds_uniform"))
+        for d_ in (rec["d_min"], rec["d_max"]):
+            if d_ is not None and math.isfinite(d_):
+                dmax[u_] = max(dmax[u_], abs(d_))
+        tests[tid] = rec
+    qa, qb = {q["key"]: q for q in a.get("quantities", [])}, {q["key"]: q for q in b.get("quantities", [])}
+    quants = {k_: {f_ + s_: q[k_].get(f_) for f_ in ("min", "max", "lhs_p05", "lhs_p95") for s_, q in (("_a", qa), ("_b", qb))}
+              for k_ in sorted(set(qa) & set(qb))}
+    levels = {k_: {f_ + s_: lv[k_].get(f_) for f_ in ("box_min", "box_max", "lhs_p05", "lhs_p95", "combined_band_90")
+                   for s_, lv in (("_a", a["levels"]), ("_b", b["levels"]))} for k_ in sorted(set(a["levels"]) & set(b["levels"]))}
+    sens = {}
+    for sa in a.get("sensitivity_claims", []):
+        sb = {s_["id"]: s_ for s_ in b.get("sensitivity_claims", [])}.get(sa["id"])
+        if sb is None:
+            continue
+        rec = dict(distribution_free_a=sa["distribution_free"]["holds"], distribution_free_b=sb["distribution_free"]["holds"])
+        if sa.get("sobol") and sb.get("sobol"):
+            rec.update(sobol_a=sa["sobol"]["holds"], sobol_b=sb["sobol"]["holds"], largest_a=sa["sobol"]["largest_group"],
+                       largest_b=sb["sobol"]["largest_group"], holds_ci_a=sa["sobol"].get("holds_ci"),
+                       holds_ci_b=sb["sobol"].get("holds_ci"),
+                       ST_a={k_: v_ for k_, v_ in sa["sobol"].items() if k_.startswith("ST_")},
+                       ST_b={k_: v_ for k_, v_ in sb["sobol"].items() if k_.startswith("ST_")})
+        rec["agree"] = bool(all(rec.get(k_ + "_a") == rec.get(k_ + "_b") for k_ in ("distribution_free", "sobol", "largest")))
+        sens[sa["id"]] = rec
+    n_agree = sum(t_["agree"] for t_ in tests.values())
+    return dict(this=dict(seed=a["meta"]["args"]["seed"], config_hash=a["meta"]["config_hash"], n=a["design"]["n_lhs"]),
+                other=dict(seed=b["meta"]["args"]["seed"], config_hash=b["meta"]["config_hash"], n=b["design"]["n_lhs"],
+                           path=other_path, created=b["meta"].get("created")),
+                same_box=bool(box(a) == box(b)), same_seed=bool(a["meta"]["args"]["seed"] == b["meta"]["args"]["seed"]),
+                tests=tests, quantities=quants, levels=levels, sensitivity_claims=sens,
+                summary=dict(n_tests=len(tests), n_agree=n_agree, disagree=[k_ for k_, t_ in tests.items() if not t_["agree"]],
+                             max_abs_diff_extreme_pts=dmax["pts"], max_abs_diff_extreme_years=dmax["yr"],
+                             max_abs_diff_extreme_ratio=dmax["x"], sensitivity_agree=bool(all(s_["agree"] for s_ in sens.values()))),
+                note="differences are other minus this; 'pts' = points of revenue or percent a year; a verdict that differs "
+                     "between seeds marks a claim decided by a few points of the box")
 
 
 def _salib_version():
@@ -2433,6 +2629,7 @@ def _qfmt(key, x):
 def render_report(r):
     L = []
     m = r["meta"]
+    UL = r.get("law_label", UNIFORM_LABEL)          # the law of the main box (the accountability sub-box is uniform)
     L.append("# Joint-parameter stress test of Paper 1's headline claims")
     L.append("")
     if m["small_n_warning"]:
@@ -2449,7 +2646,7 @@ def render_report(r):
              "by a vertex search for each tested quantity; 'yes' means no evaluated point violates it (a search, not a "
              "proof). *Margin min* is the smallest value of the test's margin (positive = holds). *Range* is the min and "
              "max of the tested quantity over the box. *Uniform share* is the share of LHS draws in which the claim "
-             "holds: " + UNIFORM_LABEL + ".")
+             "holds: " + UL + ".")
     L.append("")
     rp = r["reproduction"]
     L.append("## Reproduction of the paper at the centre of the box")
@@ -2504,7 +2701,7 @@ def render_report(r):
     L.append("## Claims")
     L.append("")
     L.append("| Test | Variant | Stratum | Test made | Holds everywhere | Margin min | Central | Range over box | "
-             "Share of draws holding (" + UNIFORM_LABEL + ") |")
+             "Share of draws holding (" + UL + ") |")
     L.append("|---|---|---|---|---|---|---|---|---|")
     for c in r["claims"]:
         for tt in c["tests"]:
@@ -2529,7 +2726,7 @@ def render_report(r):
             line = "- **%s** (%s%s): %s. Holds everywhere: **%s**; margin min %s (%s); share of draws holding %s (%s)." % (
                 tt["tid"], tt["variant_label"], (", " + STRATUM_LABEL[tt["stratum"]]) if tt["stratum"] else "", tt["test"],
                 "yes" if tt["holds_everywhere"] else "NO", _f(tt["margin_min"], 4), tt["worst_point_found_by"],
-                _f(tt["share_holds_uniform"], 3), UNIFORM_LABEL)
+                _f(tt["share_holds_uniform"], 3), UL)
             L.append(line)
             if tt.get("note"):
                 L.append("  - Note: %s." % tt["note"])
@@ -2552,7 +2749,7 @@ def render_report(r):
                 L.append("  - Least favorable point (most influential dimensions): %s." % tt["worst_point"])
             fl = tt.get("failure")
             if fl:
-                L.append("  - Failure region: fails in %s%% of LHS draws (%s)." % (_f(100 * fl["share_fail_uniform"], 1), UNIFORM_LABEL))
+                L.append("  - Failure region: fails in %s%% of LHS draws (%s)." % (_f(100 * fl["share_fail_uniform"], 1), UL))
                 for ru in fl.get("tree_rules", [])[:3]:
                     L.append("    - tree leaf: %s: fails in %.0f%% of the leaf's draws (%d of %d; %.0f%% of all failures)." % (
                         ru["rule"], 100 * ru["fail_share_in_leaf"], ru["n_fail"], ru["n"], 100 * ru["share_of_failures"]))
@@ -2571,6 +2768,12 @@ def render_report(r):
         if sc.get("sobol"):
             so = sc["sobol"]
             L.append("- Sobol (%s; %s): **%s**; largest group: `%s`." % (so["test"], so["label"], "holds" if so["holds"] else "does NOT hold", so["largest_group"]))
+            cis = [(k_[3:-3], so[k_[:-3]], so[k_]) for k_ in sorted(so) if k_.startswith("ST_") and k_.endswith("_ci") and so.get(k_)]
+            if cis:
+                L.append("  - 95%% intervals of ST: %s; ordering %s at the 95%% intervals (the leader's lower bound above every "
+                         "other group's upper bound; %s)." % (
+                             "; ".join("%s %.3f [%.3f, %.3f]" % (nm, v_, c_[0], c_[1]) for nm, v_, c_ in cis),
+                             "survives" if so.get("holds_ci") else "does NOT survive", so.get("ci_method", "bootstrap")))
         L.append("")
     L.append("### Comparison with Table 6 (one-at-a-time tornado, 2036, netted central path)")
     L.append("")
@@ -2593,22 +2796,55 @@ def render_report(r):
         L.append("")
         L.append("N = %d, %s; factor indices: %s; group indices: %s; %d model evaluations." % (
             sob["N"], sob["base_design"], sob["backend_factors"], sob["backend_groups"], sob["n_evaluations"]))
+        if sob.get("ci"):
+            L.append("")
+            L.append("95%% confidence intervals: factors, %s; groups, %s." % (sob["ci"]["factors"], sob["ci"]["groups"]))
         L.append("")
+
+        def ci_(v_, k_):
+            c_ = v_.get(k_ + "_ci")
+            if c_ is None and v_.get(k_ + "_conf") is not None:            # runs before round 3: SALib half-width only
+                c_ = [v_[k_] - v_[k_ + "_conf"], v_[k_] + v_[k_ + "_conf"]]
+            return "[%.3f, %.3f]" % tuple(c_) if c_ else "-"
         for oname in ("net.R_2036", "Gstar_2025"):
             o = sob["outputs"][oname]
             L.append("**%s** (mean %.3f, variance %.5f). Groups by total index:" % (oname, o["mean"], o["var"]))
             L.append("")
-            L.append("| Group | S1 | ST | ST 95% CI |")
-            L.append("|---|---|---|---|")
+            L.append("| Group | S1 | S1 95% CI | ST | ST 95% CI |")
+            L.append("|---|---|---|---|---|")
             for g_, v_ in sorted(o["groups"].items(), key=lambda kv: -kv[1]["ST"]):
-                L.append("| %s | %.3f | %.3f | [%.3f, %.3f] |" % (g_, v_["S1"], v_["ST"], v_["ST_ci"][0], v_["ST_ci"][1]))
+                L.append("| %s | %.3f | %s | %.3f | %s |" % (g_, v_["S1"], ci_(v_, "S1"), v_["ST"], ci_(v_, "ST")))
             L.append("")
             top = sorted(o["factors"].items(), key=lambda kv: -kv[1]["ST"])[:10]
-            L.append("Top factors by ST: " + ", ".join("`%s` %.3f" % (k_, v_["ST"]) for k_, v_ in top) + ".")
+            L.append("Top factors by ST (95% CI): " + ", ".join("`%s` %.3f %s" % (k_, v_["ST"], ci_(v_, "ST")) for k_, v_ in top) + ".")
             L.append("")
+    scmp = r.get("seed_comparison")
+    if scmp:
+        su = scmp["summary"]
+        L.append("## Second seed")
+        L.append("")
+        L.append("This run (seed %s, config `%s`, %d draws) against `%s` (seed %s, config `%s`, %d draws, created %s); same box: "
+                 "**%s**%s." % (scmp["this"]["seed"], scmp["this"]["config_hash"], scmp["this"]["n"], scmp["other"]["path"],
+                                scmp["other"]["seed"], scmp["other"]["config_hash"], scmp["other"]["n"], scmp["other"]["created"],
+                                "yes" if scmp["same_box"] else "NO", " (the seeds are equal)" if scmp["same_seed"] else ""))
+        L.append("")
+        L.append("- Holds everywhere: the two runs agree on %d of %d tests%s." % (
+            su["n_agree"], su["n_tests"], (" (they differ on %s)" % ", ".join(su["disagree"])) if su["disagree"] else ""))
+        L.append("- Largest change of a box extreme of a tested quantity: %.2f points of revenue or percent a year, %.2f years, "
+                 "%.3f (ratios and counts)." % (su["max_abs_diff_extreme_pts"], su["max_abs_diff_extreme_years"],
+                                                su["max_abs_diff_extreme_ratio"]))
+        L.append("- Sensitivity rankings (S1, S2) agree: **%s**." % ("yes" if su["sensitivity_agree"] else "NO"))
+        L.append("")
+        L.append("| Test | Holds (this) | Holds (other) | Min (this / other) | Max (this / other) |")
+        L.append("|---|---|---|---|---|")
+        for tid, t_ in scmp["tests"].items():
+            L.append("| %s | %s | %s | %s / %s | %s / %s |" % (
+                tid, "yes" if t_["holds_a"] else "NO", "yes" if t_["holds_b"] else "NO", _qfmt(t_["key"], t_["min_a"]),
+                _qfmt(t_["key"], t_["min_b"]), _qfmt(t_["key"], t_["max_a"]), _qfmt(t_["key"], t_["max_b"])))
+        L.append("")
     L.append("## Quoted quantities over the box")
     L.append("")
-    L.append("| Quantity | Central | Box min | Box max | 5-95% of draws (" + UNIFORM_LABEL + ") | Extremes from |")
+    L.append("| Quantity | Central | Box min | Box max | 5-95% of draws (" + UL + ") | Extremes from |")
     L.append("|---|---|---|---|---|---|")
 
     def qf(x, unit):
@@ -2631,8 +2867,8 @@ def render_report(r):
     L.append("")
     L.append("## Central-path levels: box range, uniform spread and combined band")
     L.append("")
-    L.append("| Score | Central | Paper's 90% anchor interval | Box min | Box max | 5-95% of draws (" + UNIFORM_LABEL + ") | "
-             "Share of draws in the paper's interval (" + UNIFORM_LABEL + ") | Combined 90% band (conditional on " + UNIFORM_LABEL + ") |")
+    L.append("| Score | Central | Paper's 90% anchor interval | Box min | Box max | 5-95% of draws (" + UL + ") | "
+             "Share of draws in the paper's interval (" + UL + ") | Combined 90% band (conditional on " + UL + ") |")
     L.append("|---|---|---|---|---|---|---|---|")
     for k_, v_ in r["levels"].items():
         cb = v_.get("combined_band_90")
@@ -2670,7 +2906,9 @@ def render_report(r):
     L.append("## Run")
     L.append("")
     L.append("```")
-    L.append("python3 code/mc_claims.py --n %d --workers %d --out %s" % (m["args"]["n"], m["args"]["workers"], m["args"]["out"]))
+    L.append("python3 code/mc_claims.py --n %d --seed %d --workers %d --out %s%s" % (
+        m["args"]["n"], m["args"]["seed"], m["args"]["workers"], m["args"]["out"],
+        (" --compare-to %s" % m["args"]["compare_to"]) if m["args"].get("compare_to") else ""))
     L.append("```")
     L.append("")
     return "\n".join(L) + "\n"

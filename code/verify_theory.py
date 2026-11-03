@@ -1498,13 +1498,21 @@ header("20. Full-cost ceiling (Definition def:fullcost, Corollary cor:ceiling, T
 # ==============================================================================================
 # Inputs duplicate code/calibrate_horizons.py (FC); check 20l confirms that its JSON reproduces them. Compute share at
 # 2025 prices since the params commit of 29 Oct 2026: central 0.06 (b-anchored), halved and doubled for the favorable
-# and conservative cases (calibrate_horizons.py CC_CASES); credible bounds [0.01, 0.30] (the value-test cap).
+# and conservative cases (calibrate_horizons.py CC_CASES); scenario bounds [0.012, 0.60] (per-completed-task floor to
+# the value-test cap).
 S_REF = 1e9
 WAGE_GOV = 88400 * (1 + 0.4287)
-CC_CENTRAL_2025, CC_BOUNDS = 0.06, (0.02, 0.60)   # round 2 (B2): value test c_c <= s_L = 0.60
-# round 3 (GLM-M11, GPT-22): the low bound is the compute share per completed process, 2% (METR's successful-run cost of
-# 1% at the 50% success rate of the time-horizon definition); the successful-run value 0.01 is checked too (CcLoRuns)
-CC_LO_RUNS = 0.01
+# c_c = s_L x kappa (independent copy of the inputs; calibrate_horizons.py CC_PATH, KAPPA_LO, KAPPA_HI). s_L = 0.60 of
+# revenue in automated labor; kappa = compute per dollar of labor replaced: central 0.10; floor (round 3, GLM-M11,
+# GPT-22) METR's successful-run cost of 1% of the human cost at the 50% success rate of the time-horizon definition, 2%
+# per completed task; top the value test kappa = 1 (round 2, B2). Units corrected 3 Nov 2026: the floor was 0.02 of
+# revenue (kappa itself); it is 0.60 x 0.02 = 0.012. The successful-run value 0.60 x 0.01 = 0.006 is checked too.
+S_L_AUTO, KAPPA_CEN, KAPPA_RUNS, METR_SUCCESS, KAPPA_TOP = 0.60, 0.10, 0.01, 0.50, 1.0
+KAPPA_FLOOR = KAPPA_RUNS / METR_SUCCESS
+CC_CENTRAL_2025 = S_L_AUTO * KAPPA_CEN
+CC_BOUNDS = (S_L_AUTO * KAPPA_FLOOR, S_L_AUTO * KAPPA_TOP)
+CC_LO_RUNS = S_L_AUTO * KAPPA_RUNS
+assert abs(CC_CENTRAL_2025 - 0.06) < 1e-15 and abs(CC_BOUNDS[0] - 0.012) < 1e-15 and CC_BOUNDS[1] == 0.60
 FC = {
     'c_c': (CC_CENTRAL_2025 / 2, CC_CENTRAL_2025, 2 * CC_CENTRAL_2025), 'f': (0.02, 0.025, 0.03), 'tau': (0.15, 0.18, 0.21), 'a_min': (0.015, 0.03, 0.046),
     's0': (0.0069, 0.0069, 0.0069), 'L0': (4.0, 2.0, 1.0), 'Me': (1.0, 2.0, 3.0), 'sec_it': (0.119, 0.109, 0.086),
@@ -1678,12 +1686,28 @@ sens = {cc: (gc(cc)['G100'], gc(cc)['G100_acc']) for cc in [cc_lo, cc_hi]}
 slope = (gc(0.30)['G100'] - gc(0.10)['G100']) / 0.20
 print(f"     central G* at c_c = {cc_lo} / {cc_hi}: {100 * sens[cc_lo][0]:.2f} / {100 * sens[cc_hi][0]:.2f}% (acc. only "
       f"{100 * sens[cc_lo][1]:.2f} / {100 * sens[cc_hi][1]:.2f}%); slope {slope:.4f}")
-check("20h [text] c_c over its scenario bounds: central G* and accountability-only G* at both ends as printed (macros "
-      "CcLo, CcHi, GstarCcLo/Hi, GstarAccCcLo/Hi); dG*/dc_c = (1 - tau)(1 + s_fin) = 0.8446",
-      printed('CcLo', cc_lo) and printed('CcHi', cc_hi) and printed('GstarCcLo', sens[cc_lo][0])
+import json as _json20h
+_p20h = _osh.path.join(_ROOT, 'notes', 'calibration_results.json')
+_C20h = _json20h.load(open(_p20h)) if _osh.path.exists(_p20h) else {}
+_ccr = _C20h.get('r3', {}).get('compute_credible', {})   # the calibration's record: c_c = s_L x kappa at both ends, one range
+_cc_units = bool(_ccr) and 'kappa_lo' in _ccr and (
+             abs(_ccr['lo'] - _ccr['s_L'] * _ccr['kappa_lo']) < 1e-15 and abs(_ccr['hi'] - _ccr['s_L'] * _ccr['kappa_hi']) < 1e-15
+             and abs(_ccr['lo_successful_runs'] - _ccr['s_L'] * _ccr['kappa_lo_successful_runs']) < 1e-15
+             and abs(_ccr['lo'] - cc_lo) < 1e-15 and abs(_ccr['hi'] - cc_hi) < 1e-15 and abs(_ccr['s_L'] - S_L_AUTO) < 1e-15
+             and abs(_ccr['kappa_lo'] - KAPPA_FLOOR) < 1e-15 and abs(_ccr['kappa_lo_successful_runs'] - KAPPA_RUNS) < 1e-15
+             and list(_C20h['compute_share']['values']['prices2025']['bounds']) == [_ccr['lo'], _ccr['hi']]
+             and abs(_C20h['compute_share']['values']['prices2025']['value'] - S_L_AUTO * KAPPA_CEN) < 1e-15)
+print(f"     c_c = s_L x kappa: {S_L_AUTO} x [{KAPPA_FLOOR}, {KAPPA_TOP}] = [{cc_lo:.3f}, {cc_hi:.2f}] (successful runs "
+      f"{S_L_AUTO} x {KAPPA_RUNS} = {CC_LO_RUNS:.3f}); calibration record agrees: {_cc_units}")
+check("20h [text] c_c over its scenario bounds, c_c = s_L x kappa (floor kappa 2% per completed task times s_L 60% = "
+      "1.2% of revenue; top the value test kappa = 1, c_c = s_L): central G* and accountability-only G* at both ends as "
+      "printed (macros CcLo, CcHi, GstarCcLo/Hi, GstarAccCcLo/Hi, KappaLo, KappaLoRuns, CcLoRuns, CcLaborShare); "
+      "dG*/dc_c = (1 - tau)(1 + s_fin) = 0.8446",
+      _cc_units and printed('CcLo', cc_lo, 1) and printed('CcHi', cc_hi) and printed('GstarCcLo', sens[cc_lo][0])
       and printed('GstarCcHi', sens[cc_hi][0]) and printed('GstarAccCcLo', sens[cc_lo][1])
       and printed('GstarAccCcHi', sens[cc_hi][1]) and abs(slope - 0.82 * 1.03) < 1e-12
-      and printed('CcLoRuns', CC_LO_RUNS) and printed('GstarCcLoRuns', gc(CC_LO_RUNS)['G100'])
+      and printed('KappaLo', KAPPA_FLOOR) and printed('KappaLoRuns', KAPPA_RUNS) and printed('CcLaborShare', S_L_AUTO)
+      and printed('CcLoRuns', CC_LO_RUNS, 1) and printed('GstarCcLoRuns', gc(CC_LO_RUNS)['G100'])
       and printed('GstarAccCcLoRuns', gc(CC_LO_RUNS)['G100_acc']))
 t9 = fullcost('central', tau_=0.09)
 am = [fullcost('central', amin_=x) for x in [0.005, 0.046]]

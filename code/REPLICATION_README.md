@@ -61,10 +61,14 @@ output in stage `stress_report`). To reproduce it, run from the repository root
 python3 code/mc_claims.py --n 10000 --workers 4 --out notes/mc
 ```
 
-which writes `mc_claims.json`, `mc_claims_report.md`, `draws_lhs.csv` and `amin_points.csv` to `notes/mc/` (about 75 seconds on
-four cores; seeds 20261102 for the draws and 20261103 for the corners, fixed in the script). The committed results in
-`notes/mc_results_2026-11-02/` come from that command (`--out` aside); `MC_DIR=notes/mc python3 code/mc_report_tex.py` formats
-a new run. The method is in `notes/mc_claims_method.md`.
+which writes `mc_claims.json`, `mc_claims_report.md` and `draws_lhs.csv` to `notes/mc/` (about 75 seconds on
+four cores; seeds 20261102 for the draws and 20261103 for the corners by default, `--seed` to change them). The committed results in
+`notes/mc_results_2026-11-02/` come from that command (`--out` aside; that run predates the compute-share fix of 3 Nov 2026, and its
+`draws_lhs.csv` and `amin_points.csv` were taken from its checkpoint for the dashboard); `MC_DIR=notes/mc python3 code/mc_report_tex.py` formats
+a new run. A second seed, recorded against the first:
+`python3 code/mc_claims.py --n 10000 --seed 20261104 --workers 4 --out notes/mc/seed2 --compare-to notes/mc`;
+`mc_report_tex.py` then also writes the `\StSeedTwo*` macros (`MC_SEED2_DIR` overrides `<MC_DIR>/seed2`).
+The method is in `notes/mc_claims_method.md`.
 
 `estimate_organic.py` must run before `calibrate_horizons.py`, because the calibration reads its anchor file. On a first run from an empty `notes/` folder, `estimate_organic.py` skips its regression check against `notes/calibration_results.json` (which does not exist yet) and says so in the anchor file; running it again after `calibrate_horizons.py` performs the check. `estimate_v3.py` runs after `build_panel_v3.py`, and its v2 run comes first, because the v3 notes compare against it.
 
