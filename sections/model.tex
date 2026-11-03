@@ -77,7 +77,7 @@ The feasible set $\mathcal F=\{(g,m):g\in I,\ m\le m^*(g)\}$ is convex. A feasib
 Geometrically, the frontier is a transformation curve between growth and margin, and a Rule-of-$X$ score is a price line with slope $-X$; its level sets are iso-score lines, not iso-value lines (\autoref{prop:general}(c)). The tangency between the two has antecedents in the growth-valuation frontier of the managerial firm \citep{marris1964economic,solow1971some,odagiri1981theory}, and recent firm-level evidence that firms grow by acquiring customers through marketing and distribution at roughly constant markups supports the growth technology behind it \citep{fitzgerald2024how,argente2025how,afrouzi2023concentration}. Given the functional form, the closed forms below are a routine power-function calculation.
 
 \begin{lemma}[Maximal Rule-of-$X$ score]\label{prop:score}\label{prop:optimum}
-Fix $X\ge 0$ and $s$. In parts (b) and (e), assume that the financing cap does not bind, that is, $\sigma^*\le\bar\sigma$ with $\sigma^*$ given in \eqref{eq:sigstar}; this always holds if $\bar\sigma=\infty$.
+Fix $X\ge 0$ and $s$. In parts (b) and (e), assume that the financing cap does not bind, that is, $\sigma^*\le\bar\sigma$ with $\sigma^*$ given in \eqref{eq:sigstar} if $X>k$ and $\sigma^*=0$ if $X\le k$; this always holds if $\bar\sigma=\infty$.
 \begin{enumerate}
 \item[(a)] Iso-score sets $\{(g,m):Xg+m=c\}$ are straight lines of slope $-X$. A maximizer of $R_X$ on $\mathcal F$ exists, and every maximizer lies on the frontier.
 \item[(b)] If $X>k$, the maximizer is unique and interior ($g^*>G$), and there the frontier is tangent to the iso-score line: $m^{*\prime}(g^*)=-X$ (if $\sigma^*=\bar\sigma$, the maximizer is the right endpoint $\bar g$ of $I$ and the tangency holds for the left derivative). In closed form,
@@ -144,7 +144,7 @@ Let the firm sell in a single market whose size grows exogenously at rate $G$, w
 \begin{equation}\label{eq:budget-discrete}
 \sum_{t=0}^{T-1}\ln\!\Bigl(1+\frac{(R_{X,t}-R_\infty)^+}{(X-k)(1+G)}\Bigr)\;\le\;\ln\frac{s_T}{s_0}\;\le\;\ln\frac{\bar s}{s_0}.
 \end{equation}
-\item[(c)] (Moving intercept.) If the margin intercept moves over time, $m_0(t)$, then (a) and (b) hold with $R_\infty(t)=m_0(t)+(X-k)G$ in place of $R_\infty$.
+\item[(c)] (Moving intercept.) If the margin intercept moves over time along a measurable path $m_0(t)$, then (a) and (b) hold with $R_\infty(t)=m_0(t)+(X-k)G$ in place of $R_\infty$.
 \end{enumerate}
 \end{proposition}
 
