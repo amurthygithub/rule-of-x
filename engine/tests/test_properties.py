@@ -1,5 +1,5 @@
 # Copyright (c) 2026 Akshaya Bangalore Sreenivasa Murthy. Licensed under the PolyForm Noncommercial License 1.0.0 or, at your option, the PolyForm Internal Use License 1.0.0 (see LICENSE.md and LICENSE-INTERNAL-USE.md).
-# Commercial use requires prior written permission from the copyright holder.
+# Any other commercial use requires prior written permission from the copyright holder.
 """Property tests (spec 19.1): comparative statics the theory proves, checked on the engine's formulas and on the
 synthetic firm."""
 import itertools

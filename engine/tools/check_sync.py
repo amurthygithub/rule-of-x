@@ -1,5 +1,5 @@
 # Copyright (c) 2026 Akshaya Bangalore Sreenivasa Murthy. Licensed under the PolyForm Noncommercial License 1.0.0 or, at your option, the PolyForm Internal Use License 1.0.0 (see LICENSE.md and LICENSE-INTERNAL-USE.md).
-# Commercial use requires prior written permission from the copyright holder.
+# Any other commercial use requires prior written permission from the copyright holder.
 """Change control (spec 19.1): fail when a theory or data note the engine implements has changed since the engine
 was last brought in line with it.
 

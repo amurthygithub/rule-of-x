@@ -1,5 +1,5 @@
 # Copyright (c) 2026 Akshaya Bangalore Sreenivasa Murthy. Licensed under the PolyForm Noncommercial License 1.0.0 or, at your option, the PolyForm Internal Use License 1.0.0 (see LICENSE.md and LICENSE-INTERNAL-USE.md).
-# Commercial use requires prior written permission from the copyright holder.
+# Any other commercial use requires prior written permission from the copyright holder.
 """Snapshot Paper 1's margin-gap decomposition (Table tab:gap; notes/gap_decomposition.json, written by
 code/decompose_gap.py) into src/autofrontier/priors/frontier_gap_bands.csv for the lever map's position binding
 constraint (notes/playbook_engine_spec.md 2.5). Growth bands: 0-10, 10-20, 20-30, 30-40, 40-60 percent.

@@ -1,5 +1,5 @@
 # Copyright (c) 2026 Akshaya Bangalore Sreenivasa Murthy. Licensed under the PolyForm Noncommercial License 1.0.0 or, at your option, the PolyForm Internal Use License 1.0.0 (see LICENSE.md and LICENSE-INTERNAL-USE.md).
-# Commercial use requires prior written permission from the copyright holder.
+# Any other commercial use requires prior written permission from the copyright holder.
 """Process plans ("columns"): for every process, readiness level, start year, variant and pilot choice, the
 mode vector that maximizes the process value W(Z) (core 4.6 and 4.12) and the transition's expected cash flows
 (core 4.9), resource use and score-path components.

@@ -1,5 +1,5 @@
 # Copyright (c) 2026 Akshaya Bangalore Sreenivasa Murthy. Licensed under the PolyForm Noncommercial License 1.0.0 or, at your option, the PolyForm Internal Use License 1.0.0 (see LICENSE.md and LICENSE-INTERNAL-USE.md).
-# Commercial use requires prior written permission from the copyright holder.
+# Any other commercial use requires prior written permission from the copyright holder.
 """Accounting regression tests (spec 24.4; part2 accounting notes): the tax factor does not depend on book
 capitalization, amortization starts at go-live, ASC 420 versus 712 timing, the accountability floor a_min of
 prop:acct-amin, and no double count of the error floor for financial-reporting processes."""

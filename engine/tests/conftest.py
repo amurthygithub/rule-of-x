@@ -1,5 +1,5 @@
 # Copyright (c) 2026 Akshaya Bangalore Sreenivasa Murthy. Licensed under the PolyForm Noncommercial License 1.0.0 or, at your option, the PolyForm Internal Use License 1.0.0 (see LICENSE.md and LICENSE-INTERNAL-USE.md).
-# Commercial use requires prior written permission from the copyright holder.
+# Any other commercial use requires prior written permission from the copyright holder.
 """Shared fixtures: parameters, synthetic firms (generated into a temporary folder), quick pipeline runs, a socket
 guard, and a loader for the theory's reference implementations in code/verify_part2_*.py (imported by path,
 functions only: the scripts run their checks at module level, so only imports, constant assignments and function

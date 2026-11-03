@@ -1,5 +1,5 @@
 # Copyright (c) 2026 Akshaya Bangalore Sreenivasa Murthy. Licensed under the PolyForm Noncommercial License 1.0.0 or, at your option, the PolyForm Internal Use License 1.0.0 (see LICENSE.md and LICENSE-INTERNAL-USE.md).
-# Commercial use requires prior written permission from the copyright holder.
+# Any other commercial use requires prior written permission from the copyright holder.
 """Scenarios, sensitivity and robustness (spec 5, 8, 20.2, 24.2, 24.7).
 
 - Named scenarios: capability speed (slow, fast, plateau, AGI, constant-hazard reliability), an AI-native entrant,

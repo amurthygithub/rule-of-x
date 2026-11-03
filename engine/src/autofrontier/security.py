@@ -1,5 +1,5 @@
 # Copyright (c) 2026 Akshaya Bangalore Sreenivasa Murthy. Licensed under the PolyForm Noncommercial License 1.0.0 or, at your option, the PolyForm Internal Use License 1.0.0 (see LICENSE.md and LICENSE-INTERNAL-USE.md).
-# Commercial use requires prior written permission from the copyright holder.
+# Any other commercial use requires prior written permission from the copyright holder.
 """Security, maintenance, compliance and AI failure modes for the report (spec 18, 20.2, 23; core 4.12, 4.13).
 
 Per selected process: full-cost run lines (maintenance, revalidation, integrations, technical debt), the exposure

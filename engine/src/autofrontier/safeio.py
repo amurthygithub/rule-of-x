@@ -1,5 +1,5 @@
 # Copyright (c) 2026 Akshaya Bangalore Sreenivasa Murthy. Licensed under the PolyForm Noncommercial License 1.0.0 or, at your option, the PolyForm Internal Use License 1.0.0 (see LICENSE.md and LICENSE-INTERNAL-USE.md).
-# Commercial use requires prior written permission from the copyright holder.
+# Any other commercial use requires prior written permission from the copyright holder.
 """Safe output (spec 19.2 item 9). Every file the engine writes goes through OutputDir, which
   - resolves each path inside the chosen output folder and refuses absolute paths, '..' and symlinks that
     lead outside it;

@@ -1,5 +1,5 @@
 # Copyright (c) 2026 Akshaya Bangalore Sreenivasa Murthy. Licensed under the PolyForm Noncommercial License 1.0.0 or, at your option, the PolyForm Internal Use License 1.0.0 (see LICENSE.md and LICENSE-INTERNAL-USE.md).
-# Commercial use requires prior written permission from the copyright holder.
+# Any other commercial use requires prior written permission from the copyright holder.
 """Read a folder of CSV/XLSX input files, validate them, report the tier each piece reaches, and map
 cost centers and GL accounts to the function taxonomy, job titles to SOC codes, and vendors to
 categories. Every mapping carries a confidence score and is written to mapping_review.csv, which the

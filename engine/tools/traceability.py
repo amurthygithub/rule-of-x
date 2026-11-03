@@ -1,5 +1,5 @@
 # Copyright (c) 2026 Akshaya Bangalore Sreenivasa Murthy. Licensed under the PolyForm Noncommercial License 1.0.0 or, at your option, the PolyForm Internal Use License 1.0.0 (see LICENSE.md and LICENSE-INTERNAL-USE.md).
-# Commercial use requires prior written permission from the copyright holder.
+# Any other commercial use requires prior written permission from the copyright holder.
 """Generate engine/TRACEABILITY.md (spec 19.1): every formula in formulas.py with the paper label it implements,
 the spec section, the notes section and its status, and every parameter with its grounding class, source and the
 outputs it affects.

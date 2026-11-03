@@ -1,5 +1,5 @@
 # Copyright (c) 2026 Akshaya Bangalore Sreenivasa Murthy. Licensed under the PolyForm Noncommercial License 1.0.0 or, at your option, the PolyForm Internal Use License 1.0.0 (see LICENSE.md and LICENSE-INTERNAL-USE.md).
-# Commercial use requires prior written permission from the copyright holder.
+# Any other commercial use requires prior written permission from the copyright holder.
 """Program selection (spec Sections 9, 13.2, 14, 16): choose at most one plan (column) per process so as to
 maximize the owner's risk-adjusted value, subject to the one-time budget, the dual-running budget, change
 capacity, decision bandwidth, security-review capacity and, for leveraged owners, the debt covenant.

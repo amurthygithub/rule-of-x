@@ -1,5 +1,5 @@
 # Copyright (c) 2026 Akshaya Bangalore Sreenivasa Murthy. Licensed under the PolyForm Noncommercial License 1.0.0 or, at your option, the PolyForm Internal Use License 1.0.0 (see LICENSE.md and LICENSE-INTERNAL-USE.md).
-# Commercial use requires prior written permission from the copyright holder.
+# Any other commercial use requires prior written permission from the copyright holder.
 """Input validation and the command line (spec 19.1): actionable messages that say what to fix, and clear exit
 codes (0 success, 2 usage or parameter error, 3 input error, 4 runtime error, 5 refused output path)."""
 import shutil

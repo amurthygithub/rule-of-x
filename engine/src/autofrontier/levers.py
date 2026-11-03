@@ -1,5 +1,5 @@
 # Copyright (c) 2026 Akshaya Bangalore Sreenivasa Murthy. Licensed under the PolyForm Noncommercial License 1.0.0 or, at your option, the PolyForm Internal Use License 1.0.0 (see LICENSE.md and LICENSE-INTERNAL-USE.md).
-# Commercial use requires prior written permission from the copyright holder.
+# Any other commercial use requires prior written permission from the copyright holder.
 """The lever map (spec 28; notes/playbook_engine_spec.md Section 2; part2/theory_playbook.tex sec:playbook): for each
 ownership regime, the value of every lever at a common proportion, the switch thresholds with the firm's distance
 to each, the binding constraint (position and setup) and the levers that do not pay, with the rule that excludes

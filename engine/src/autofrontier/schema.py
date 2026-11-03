@@ -1,5 +1,5 @@
 # Copyright (c) 2026 Akshaya Bangalore Sreenivasa Murthy. Licensed under the PolyForm Noncommercial License 1.0.0 or, at your option, the PolyForm Internal Use License 1.0.0 (see LICENSE.md and LICENSE-INTERNAL-USE.md).
-# Commercial use requires prior written permission from the copyright holder.
+# Any other commercial use requires prior written permission from the copyright holder.
 """Input tiers (spec Section 9, plus the Tier 3 organizational inputs of Section 14) as pydantic
 models, and the templates a user fills in (CSV and XLSX, with a README per file)."""
 from __future__ import annotations

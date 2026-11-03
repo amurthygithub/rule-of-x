@@ -1,5 +1,5 @@
 # Copyright (c) 2026 Akshaya Bangalore Sreenivasa Murthy. Licensed under the PolyForm Noncommercial License 1.0.0 or, at your option, the PolyForm Internal Use License 1.0.0 (see LICENSE.md and LICENSE-INTERNAL-USE.md).
-# Commercial use requires prior written permission from the copyright holder.
+# Any other commercial use requires prior written permission from the copyright holder.
 """End-to-end tests (spec 19.1): golden snapshots of the synthetic, small and PE-owned firms; determinism with a
 fixed seed; a Tier-0-only run that reports wide ranges; the full synthetic run under two minutes with the report's
 required sections; and the size generator from 100 to 100,000 employees.

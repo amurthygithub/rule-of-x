@@ -1,5 +1,5 @@
 # Copyright (c) 2026 Akshaya Bangalore Sreenivasa Murthy. Licensed under the PolyForm Noncommercial License 1.0.0 or, at your option, the PolyForm Internal Use License 1.0.0 (see LICENSE.md and LICENSE-INTERNAL-USE.md).
-# Commercial use requires prior written permission from the copyright holder.
+# Any other commercial use requires prior written permission from the copyright holder.
 """Rate conventions (spec 18; notes/theory_regimes_notes.md): the engine discounts in continuous time, every rate
 parameter is tagged annual or continuous, and annual sources are converted once at load with to_continuous()."""
 import math

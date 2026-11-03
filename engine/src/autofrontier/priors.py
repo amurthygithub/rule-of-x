@@ -1,5 +1,5 @@
 # Copyright (c) 2026 Akshaya Bangalore Sreenivasa Murthy. Licensed under the PolyForm Noncommercial License 1.0.0 or, at your option, the PolyForm Internal Use License 1.0.0 (see LICENSE.md and LICENSE-INTERNAL-USE.md).
-# Commercial use requires prior written permission from the copyright holder.
+# Any other commercial use requires prior written permission from the copyright holder.
 """Priors: the data agent's files in data/tasks/ (spec Section 12) when present, otherwise the
 built-in fallback tables in autofrontier/priors/ (all marked assumed). Each table records where it
 came from, so the report can trace every prior."""

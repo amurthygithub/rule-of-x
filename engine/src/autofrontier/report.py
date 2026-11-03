@@ -1,5 +1,5 @@
 # Copyright (c) 2026 Akshaya Bangalore Sreenivasa Murthy. Licensed under the PolyForm Noncommercial License 1.0.0 or, at your option, the PolyForm Internal Use License 1.0.0 (see LICENSE.md and LICENSE-INTERNAL-USE.md).
-# Commercial use requires prior written permission from the copyright holder.
+# Any other commercial use requires prior written permission from the copyright holder.
 """Report writer: report.json (every number, with provenance) and report.md (plain language), plus CSV tables.
 All files go through safeio.OutputDir. Every result that depends on a class d parameter is shown as a range
 (P10 to P90 over the Monte Carlo, the low and high ends of the parameter, or Sobol bounds), never as a point alone.

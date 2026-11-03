@@ -1,5 +1,5 @@
 # Copyright (c) 2026 Akshaya Bangalore Sreenivasa Murthy. Licensed under the PolyForm Noncommercial License 1.0.0 or, at your option, the PolyForm Internal Use License 1.0.0 (see LICENSE.md and LICENSE-INTERNAL-USE.md).
-# Commercial use requires prior written permission from the copyright holder.
+# Any other commercial use requires prior written permission from the copyright holder.
 """The people plan (spec 7, 9, 24.5, 24.6; ext def:ext-org, lem:ext-staffing, prop:ext-team, prop:ext-hierarchy).
 
 - Residual organization at the end of the plan: hours left by function and occupation (from the chosen modes),
