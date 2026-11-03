@@ -1,6 +1,6 @@
 # Third-party raw data (not included)
 
-The files in this folder are third-party datasets. They are not redistributed here: their licences differ, and one source (METR's run-level results) has no licence at the commit used. Every derived file that the papers and the engine read is included elsewhere in `data/`, so the papers' checks and the engine run without this folder. It is needed only to rebuild the derived data with `code/data_part2/`.
+The files in this folder are third-party datasets. Except for two O*NET 31.0 files (`onet_31_0/job_titles.csv` and `onet_31_0/occupation_data.csv`, CC BY 4.0, unmodified), which the engine reads to match job titles, they are not redistributed here: their licences differ, and one source (METR's run-level results) has no licence at the commit used. Every derived file that the papers and the engine read is included elsewhere in `data/`, so the papers' checks and the engine run with only those two files. It is needed only to rebuild the derived data with `code/data_part2/`.
 
 | Folder | Source | Terms |
 |---|---|---|
