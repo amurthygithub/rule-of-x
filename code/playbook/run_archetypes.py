@@ -624,8 +624,11 @@ def explicit_macros(R: dict, archs, steps: pd.DataFrame, acts: pd.DataFrame) -> 
     M = {}
     cuts = R["cuts"]
     pc = lambda v, d=1: _num(v, d, pct=True)
-    M["SpendRatioPB"] = _num(AR.spend_ratio(), 2)          # central (netted) spend ratio, 0.99 (decision 7)
+    M["SpendRatioPB"] = _num(AR.spend_ratio(), 2)          # central (netted) spend ratio, Paper 1's AlphaNet (decision 7)
     M["SpendRatioPBAll"] = _num(AR.SPEND_RATIO, 1)         # all-S&M bound, 3.3
+    # Lemma lem:playbook-calib(c): X_hat - k = r_sigma/alpha for alpha in [0.25, 0.45] (proofs_playbook.tex)
+    for nm, r in (("Net", AR.spend_ratio()), ("All", AR.SPEND_RATIO)):
+        M[f"pbXhatK{nm}Lo"], M[f"pbXhatK{nm}Hi"] = _num(r / 0.45, 1), _num(r / 0.25, 1)
     M["pbCutNpop"] = str(cuts["n_population"])
     M["pbCutNEtwo"] = str(cuts["n_E2"])
     M["pbCutGtwentyfive"], M["pbCutGmed"], M["pbCutGseventyfive"] = pc(cuts["g25"]), pc(cuts["g50"]), pc(cuts["g75"])

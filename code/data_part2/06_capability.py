@@ -12,8 +12,9 @@ Also reports the logistic slope, which converts a 50% horizon into a horizon at 
   h_r / h_50 = 2^(-logit(r)/|coef|), the chi(r) of spec Section 6, and the cost of agent runs relative to human
   baseline cost where METR recorded generation cost.
 """
+import os
 import sys
-sys.path.insert(0, '/home/claude/paper/code/data_part2')
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import json
 import numpy as np
 import pandas as pd

@@ -7,8 +7,9 @@ ownerships as published; when an industry is published by ownership, the 'cross-
 row 5 is used, in that order). Suppressed employment ('**') is dropped; the share of the industry total covered by
 published detailed rows is reported as coverage.
 """
+import os
 import sys
-sys.path.insert(0, '/home/claude/paper/code/data_part2')
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import numpy as np
 import pandas as pd
 from common import oews_industry, num, write_csv, save_meta

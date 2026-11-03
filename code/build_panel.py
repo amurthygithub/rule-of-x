@@ -17,7 +17,7 @@ import pandas as pd
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from exclusions import is_excluded  # noqa: E402  registrants excluded at the author's request
 
-BASE = '/home/claude/paper'
+BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))   # repository root
 uni = [r for r in json.load(open(f'{BASE}/data/sic_universe.json')) if not is_excluded(r[1])]
 sic_map = {int(r[1]): int(r[0]) for r in uni}
 name_map = {int(r[1]): r[2] for r in uni}

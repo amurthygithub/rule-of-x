@@ -56,7 +56,7 @@ ONET_TABLES = ["task_statements", "task_ratings", "task_categories", "tasks_to_d
                "gwas_to_iwas", "occupation_data", "content_model_reference", "work_context", "work_context_categories",
                "job_zones", "scales_reference", "work_activities", "job_titles"]   # as in 00_onet_mysql_to_csv.py
 
-BLS_MANUAL = ("bls.gov often refuses scripted downloads (HTTP 403). Open each link above in a browser (they are direct "
+BLS_MANUAL = ("bls.gov often refuses scripted downloads (HTTP 403). Open each link in a browser (they are direct "
               "file links; the tables pages are https://www.bls.gov/oes/tables.htm and https://www.bls.gov/soc/), save "
               "the file unchanged under the name shown, and rerun with --from-dir <download folder>; or retry with "
               "--user-agent \"Your Name your.email@example.com\".")
@@ -220,21 +220,41 @@ class Fetcher:
         os.replace(tmp, dest)
         return True
 
+    def _mkdirs(self, d: Path) -> list[Path]:
+        made = []
+        while not d.exists() and d != self.raw and self.raw in d.parents:
+            made.append(d)
+            d = d.parent
+        for x in reversed(made):
+            x.mkdir(exist_ok=True)                    # parallel downloads may create it at the same time
+        return made
+
+    @staticmethod
+    def _rmdirs(made: list[Path]) -> None:      # folders this run created for a file it could not get
+        for x in made:
+            try:
+                x.rmdir()
+            except OSError:
+                break
+
     def download(self, rel: str) -> bool:
         dest = self.raw / rel
+        made = []
         for url in urls_for(rel):
             host = urllib.parse.urlsplit(url).hostname or ""
             if host in self.refused_hosts:
                 self.note(rel, f"not requested: {host} refused an earlier request ({self.refused_hosts[host]})")
                 continue
-            dest.parent.mkdir(parents=True, exist_ok=True)
+            made += self._mkdirs(dest.parent)
             tmp = dest.with_name(f".{dest.name}.part")
             for attempt in range(3):
                 try:
                     req = urllib.request.Request(url, headers={"User-Agent": self.ua})
                     with urllib.request.urlopen(req, timeout=self.timeout) as r, open(tmp, "wb") as fh:
                         shutil.copyfileobj(r, fh, 1 << 20)
-                    return self._install(tmp, dest, rel, f"download from {url}")     # file closed and flushed
+                    if self._install(tmp, dest, rel, f"download from {url}"):        # file closed and flushed
+                        return True
+                    break                                                            # another file: try the next URL
                 except urllib.error.HTTPError as e:
                     msg = f"HTTP {e.code} from {url}"
                     if e.code in (429, 500, 502, 503, 504) and attempt < 2:
@@ -255,6 +275,7 @@ class Fetcher:
                 finally:
                     if tmp.exists():
                         tmp.unlink()
+        self._rmdirs(made)
         return False
 
     def from_dir(self, rel: str, folder: Path) -> bool:
@@ -268,7 +289,7 @@ class Fetcher:
         for c in cands:
             if c.is_file() and c.stat().st_size == size and sha256_of(c) == sha:
                 dest = self.raw / rel
-                dest.parent.mkdir(parents=True, exist_ok=True)
+                self._mkdirs(dest.parent)
                 tmp = dest.with_name(f".{dest.name}.part")
                 try:
                     shutil.copyfile(c, tmp)
@@ -331,11 +352,42 @@ def report(raw: Path, rels: list[str], sums, strict: bool, quiet: bool) -> tuple
             continue
         tag = "verified" if not probs else ("FAILED" if req_bad else "verified (optional files missing)")
         print(f"  {src:<20} {n_ok:>3}/{len(sts):<3} {tag}")
-        for rel, s in probs:
+        if len(probs) == len(sts) and len(sts) > 3 and all(s == "missing" for _, s in probs):
+            print(f"      missing           all {len(sts)} files of data/raw/{src}/")
+            continue
+        for i, (rel, s) in enumerate(probs):
+            if i == 12 and len(probs) > 13:
+                print(f"      ... and {len(probs) - 12} more")
+                break
             what = {"missing": "missing", "size": "differs (size)", "differs": "differs (sha256)"}[s]
             opt = "  [optional: no script reads it]" if is_optional(rel) else ""
             print(f"      {what:<17} data/raw/{rel}{opt}")
     return bad, problems
+
+
+def instructions(problems: dict[str, list[tuple[str, str]]], sums, strict: bool) -> None:
+    """Where each failing file comes from, and the manual route (each distinct text once)."""
+    print("Sources:")
+    srcs = [s for s, pr in problems.items() if any(strict or not is_optional(r) for r, _ in pr)]
+    for s in srcs:
+        S = SOURCES[s]
+        bad = {r for r, _ in problems[s] if strict or not is_optional(r)}
+        if S["kind"] == "github":
+            owner, repo, commit = S["github"]
+            print(f"  {s}: https://github.com/{owner}/{repo} at commit {commit} (by hand: git clone the repository into "
+                  f"data/raw/{s}/repo and check out that commit)")
+        derived = S.get("derived") or {}
+        for rel, urls in (S.get("url") or {}).items():
+            if rel in bad or any(derived.get(d) == rel for d in bad):
+                print(f"  {s}: {' or '.join(urls)}  ->  data/raw/{rel}")
+        for rel in sorted(r for r in bad if not urls_for(r) and r not in derived):
+            print(f"  {s}: data/raw/{rel} has no download link (below)")
+    seen = {}
+    for s in srcs:
+        if SOURCES[s].get("manual"):
+            seen.setdefault(SOURCES[s]["manual"], []).append(s)
+    for text, ss in seen.items():
+        print(f"  Note on {', '.join(ss)}: {text}")
 
 
 def list_sources(sums) -> None:
@@ -391,6 +443,7 @@ def main(argv=None) -> int:
     rels = sorted(r for r in sums if source_of(r) in sel)
 
     if not a.check:
+        raw.mkdir(parents=True, exist_ok=True)
         f = Fetcher(raw, sums, a.user_agent, a.timeout, a.quiet)
         todo = [r for r in rels if not (raw / r).exists()]
         present_bad = [r for r in rels if (raw / r).exists() and status(raw, r, sums) != "ok"]
@@ -447,9 +500,7 @@ def main(argv=None) -> int:
         failing = [s for s, pr in problems.items() if any(a.strict or not is_optional(r) for r, _ in pr)]
         print(f"RESULT: {bad} required file(s) missing or different, in {', '.join(failing)}.")
         print(f"To fetch them:  python3 code/fetch_raw_data.py {' '.join(failing)}")
-        for s in failing:
-            if SOURCES[s].get("manual"):
-                print(f"  {s}: {SOURCES[s]['manual']}")
+        instructions(problems, sums, a.strict)
         return 1
     print("RESULT: every required file is present and matches CHECKSUMS.sha256.")
     return 0

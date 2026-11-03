@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Rebuild every Part II data contract file. Re-run after new raw files land in data/raw/.
 set -euo pipefail
-cd /home/claude/paper/code/data_part2
+cd "$(dirname "$0")"
 for s in 00_onet_mysql_to_csv.py 01_functions.py 02_occupations.py 03_activities.py 04_industry_staffing.py 05_function_priors.py \
          07_processes.py 08_params.py \
          11_nonsoftware_priors.py 12_task_statements.py 09_checksums.py 10_validate.py; do

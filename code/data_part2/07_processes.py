@@ -31,9 +31,9 @@ Construction rules
    system), integration (its data reaches an in-scope system through an interface), policy (an accounting policy or
    estimate, for example ASC 450 or ASC 606 judgments); several channels are separated by '; '.
 """
-import sys
-sys.path.insert(0, '/home/claude/paper/code/data_part2')
 import os
+import sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import warnings
 warnings.filterwarnings("ignore", message="This pattern")
 import re

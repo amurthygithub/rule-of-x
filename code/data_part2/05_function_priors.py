@@ -14,8 +14,9 @@ industry_function_shares.csv
   2023-2025, by revenue size band: firm means over the window, then the cross-firm mean and sd. The split of each
   bucket across functions (WITHIN) is ASSUMED, with a range; share_of_revenue = bucket share x within-bucket split.
 """
+import os
 import sys
-sys.path.insert(0, '/home/claude/paper/code/data_part2')
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import numpy as np
 import pandas as pd
 from common import BASE, OUT, write_csv, save_meta, oews_industry, num, load_meta, read_sec_panel

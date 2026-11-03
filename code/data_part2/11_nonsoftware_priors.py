@@ -33,12 +33,12 @@ Method (details and limits in notes/data_sources_nonsoftware.md):
    assumed). Pools follow functions.csv cost_bucket: cogs, rnd, and sm + ga for SG&A. A pool whose Damodaran bucket
    is below 0.5% of sales (banks' COGS, R&D outside technology) is merged into the SG&A pool.
 """
+import os
 import sys
-sys.path.insert(0, '/home/claude/paper/code/data_part2')
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import csv
 import hashlib
 import io
-import os
 import re
 import zipfile
 

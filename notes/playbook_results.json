@@ -1,6 +1,6 @@
 {
- "generated": "2026-11-03 08:21",
- "seconds": 165.5059266090393,
+ "generated": "2026-11-03 08:48",
+ "seconds": 164.8580391407013,
  "overrides": [
   "finance.rd_expansion_share=0"
  ],
@@ -281,7 +281,7 @@
    "code": "A1",
    "case": "low",
    "iota0": 0.4,
-   "seconds": 7.3970513343811035,
+   "seconds": 7.633259296417236,
    "inputs": {
     "tier0": {
      "company_name": "Archetype A1 (constructed from cell medians)",
@@ -1226,7 +1226,7 @@
    "code": "A1",
    "case": "high",
    "iota0": 0.9,
-   "seconds": 6.434114694595337,
+   "seconds": 6.294910907745361,
    "inputs": {
     "tier0": {
      "company_name": "Archetype A1 (constructed from cell medians)",
@@ -2152,7 +2152,7 @@
    "code": "A2",
    "case": "low",
    "iota0": 0.4,
-   "seconds": 8.68560004234314,
+   "seconds": 8.943212032318115,
    "inputs": {
     "tier0": {
      "company_name": "Archetype A2 (constructed from cell medians)",
@@ -3100,7 +3100,7 @@
    "code": "A2",
    "case": "high",
    "iota0": 0.9,
-   "seconds": 7.180567264556885,
+   "seconds": 7.600926637649536,
    "inputs": {
     "tier0": {
      "company_name": "Archetype A2 (constructed from cell medians)",
@@ -4030,7 +4030,7 @@
    "code": "A3",
    "case": "low",
    "iota0": 0.4,
-   "seconds": 9.442686080932617,
+   "seconds": 9.49210000038147,
    "inputs": {
     "tier0": {
      "company_name": "Archetype A3 (constructed from cell medians)",
@@ -4993,7 +4993,7 @@
    "code": "A3",
    "case": "high",
    "iota0": 0.9,
-   "seconds": 7.933371543884277,
+   "seconds": 7.477787494659424,
    "inputs": {
     "tier0": {
      "company_name": "Archetype A3 (constructed from cell medians)",
@@ -5934,7 +5934,7 @@
    "code": "A4",
    "case": "low",
    "iota0": 0.4,
-   "seconds": 7.792076349258423,
+   "seconds": 7.603665113449097,
    "inputs": {
     "tier0": {
      "company_name": "Archetype A4 (constructed from cell medians)",
@@ -6889,7 +6889,7 @@
    "code": "A4",
    "case": "high",
    "iota0": 0.9,
-   "seconds": 6.503518342971802,
+   "seconds": 6.583730459213257,
    "inputs": {
     "tier0": {
      "company_name": "Archetype A4 (constructed from cell medians)",
@@ -7821,7 +7821,7 @@
    "code": "A5",
    "case": "low",
    "iota0": 0.4,
-   "seconds": 6.9505932331085205,
+   "seconds": 6.891765594482422,
    "inputs": {
     "tier0": {
      "company_name": "Archetype A5 (constructed from cell medians)",
@@ -8732,7 +8732,7 @@
    "code": "A5",
    "case": "high",
    "iota0": 0.9,
-   "seconds": 5.947668075561523,
+   "seconds": 6.095602989196777,
    "inputs": {
     "tier0": {
      "company_name": "Archetype A5 (constructed from cell medians)",
@@ -9622,7 +9622,7 @@
    "code": "A6",
    "case": "low",
    "iota0": 0.4,
-   "seconds": 8.341777563095093,
+   "seconds": 8.264646053314209,
    "inputs": {
     "tier0": {
      "company_name": "Archetype A6 (constructed from cell medians)",
@@ -10512,7 +10512,7 @@
    "code": "A6",
    "case": "high",
    "iota0": 0.9,
-   "seconds": 7.070521831512451,
+   "seconds": 6.721834659576416,
    "inputs": {
     "tier0": {
      "company_name": "Archetype A6 (constructed from cell medians)",
@@ -12064,6 +12064,10 @@
  "macros": {
   "SpendRatioPB": "0.94",
   "SpendRatioPBAll": "3.3",
+  "pbXhatKNetLo": "2.1",
+  "pbXhatKNetHi": "3.8",
+  "pbXhatKAllLo": "7.3",
+  "pbXhatKAllHi": "13.2",
   "pbCutNpop": "425",
   "pbCutNEtwo": "356",
   "pbCutGtwentyfive": "5.6",
