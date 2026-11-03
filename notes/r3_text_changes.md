@@ -200,7 +200,7 @@ Numbers in new text are macros from `notes/r3_macro_contract.md` or existing mac
 | sections/model.tex (taxes) | L6 | ADS exclusion cited to 26 U.S.C. 168(k)(2)(D) and 26 CFR 1.168(k)-2(b)(2)(ii)(B). |
 | sections/discussion.tex | L4 | AS 2201 B29 states sufficient conditions: "may benchmark ... when", not "only when". |
 | sections/tables/tab_param_sources.tex (EU AI Act row); paper1/refs_paper1.bib (eu2026reg1744) | L5 | Dates cited to Article 1, point (40), of Regulation (EU) 2026/1744 (operative text read at EUR-Lex). |
-| paper1/refs_paper1.bib (irs2026notice202611, usc2026sec55) | L7, L8 | Notice sections 2.02(1) and 4.03 for the 40% election; IR-2026-06 of 14 Jan 2026 confirmed at irs.gov; stale "not read" note removed. |
+| paper1/refs_paper1.bib (irs2026notice202611, usc2026sec55) | L7, L8 | Notice sections 2.02(1) and 4.03 for the 40% election; IR-2026-06 of 14 Jan 2026 confirmed at irs.gov by the lead agent on 3 Nov (the newsroom page, after the legal pass had found it unreachable; see that note's section B); stale "not read" note removed. |
 | sections/horizons.tex; tab_param_sources.tex (cash tax rate) | L3 | Corporate AMT: three-year average above $1 billion, or $100 million for a US member of a foreign-parented group (26 U.S.C. 59(k)(1)-(2)). |
 | sections/supp_model.tex (non-GAAP) | L2 | Regulation G (comparable measure and reconciliation in any public disclosure) separated from Item 10(e) (equal or greater prominence in filings and Item 2.02 releases). |
 

@@ -21,7 +21,7 @@ No file was edited. Sources were read at the official sites listed; where WebFet
 
 ### B. Could not verify (what was tried)
 - Statutory text of P.L. 119-21 §70301 at govinfo (https://www.govinfo.gov/content/pkg/PLAW-119publ21/html/PLAW-119publ21.htm) is truncated by the site before Title VII; uscode.house.gov returned client errors. The amendment was instead verified from LII's codified §168 (source credit "Pub. L. 119–21, title VII, §§ 70301(a)(1)–(5)(C), (b) ... 139 Stat. 188, 189"; (k)(6) and (k)(8) shown "[Repealed. Pub. L. 119–21 ... § 70301(b)(1)(B) ... 139 Stat. 189]") and its Effective Date note quoting §70301(c)(1): "shall apply to property acquired after January 19, 2025", plus Notice 2026-11. I consider the statement verified; only the Statutes at Large page itself was not read.
-- IR-2026-06 (see L7).
+- IR-2026-06 (see L7). Resolved later on 3 November: the newsroom page https://www.irs.gov/newsroom/treasury-irs-issue-guidance-on-the-additional-first-year-depreciation-deduction-amended-as-part-of-the-one-big-beautiful-bill, fetched by the lead agent, gives "IR-2026-06", "Jan. 14, 2026" and announces Notice 2026-11; the bib note cites it.
 - ASC 805-10-25-23, 805-10-50-2(h), 350-20 (measurement_acquired.tex:37, data.tex:16): the FASB Codification requires a login; paragraph numbers match my knowledge of the Codification (acquisition-related costs expensed; acquiree revenue since acquisition date; goodwill not amortized by public business entities, with the private-company alternative), but were not read at the source. Not law; low risk.
 
 ### C. Statements checked and found Correct

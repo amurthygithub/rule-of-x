@@ -5,7 +5,7 @@ Prepared by the editor-author agent on 2 November 2026 for the revision of the t
 - DS-*, DeepSeek V4 Pro (high effort): `notes/reviews/paper1_v3/author_reviews/deepseek_v4_pro_high/issue_log.md`
 - GPT-*, GPT-6.2 Sol (extra-high effort): `notes/reviews/paper1_v3/author_reviews/gpt_6_2_sol_xhigh/issue_log.md`
 - GLM-*, GLM 5.3 (high effort): `notes/reviews/paper1_v3/author_reviews/glm_5_3_high/issue_log.md`
-- ST-1 to ST-6: the joint-parameter stress test, `notes/mc_claims_method.md` and `notes/mc_results_2026-11-02/mc_claims_report.md`
+- ST-1 to ST-6: the joint-parameter stress test, `notes/mc_claims_method.md` and `notes/mc_results_2026-11-02/mc_claims_report.md` (rerun of 3 Nov over the corrected compute range: `notes/mc_results_2026-11-03/` and its `seed2/`)
 
 This document continues the round-2 response, `notes/reviews/paper1_v2/response_to_reviewers_r2.md`, which links here.
 
@@ -214,7 +214,7 @@ The stress test (`code/mc_claims.py`; S9) varies the calibrated inputs jointly o
 | ST-3 | Payback after more than five years (7.5 years; "no payback within five years") | Fixed | Under central execution the payback runs 4.99 to 9.29 years in the rerun of 3 Nov (4.81 to 9.36 on 2 Nov) as the other inputs move; it is below five years only on compute paths that start high and fall steeply. Over the full box it runs 3.51 to 29.07 years (3.40 to 29.17 on 2 Nov). Wording: "under central execution", with the joint range, in the summary box item 6, M 1, M 7.3 and M 9 ("except at a few points of the joint range"). M 8.2 already says "under central execution". S9. |
 | ST-4 | Cumulative effect negative at three and five years (undiscounted and discounted) | Fixed | Under central execution the largest of the four effects is positive at a few points only, by at most +0.004 point-years in the rerun of 3 Nov (+0.1 on 2 Nov); over the full box, +11.7. Wording "at all but a few points" in the summary box item 6 and M 1; M 7.3 says the statement is for central execution and turns marginally positive at a few points. S9. |
 | ST-5 | Less than half of the program realized by 2036 (41%) | Fixed | Fixed at 41% under central execution. Over the stated execution ranges the realized share runs 4.9 to 85.0%, and it exceeds half once change capacity is above about 13% of the program a year. Wording "under central execution", with the range, in M 1, M 7.3 and the summary box item 6. In the abstract the condition is "on a central scenario". S9. |
-| ST-6 | The lever count: the growth engine leads the G&A cut at 1 of 6 positions (G&A first at 5 of 6) | Fixed | Holds at the central maintenance base only. After the re-estimation of 3 Nov (R2 in the main sample, capitalized software corrected; maintenance base 25.7%), over its 90% bootstrap interval the growth engine leads at 0 to 1 positions and the stated count holds in 57.6% of the draws (0 to 2 and 70.4% on 2 Nov). Wording "at the central maintenance level", with the 0 to 2 range, in the summary box item 7, M 1, M 7.5 and M 9. S9. |
+| ST-6 | The lever count: the growth engine leads the G&A cut at 1 of 6 positions (G&A first at 5 of 6) | Fixed | Holds at the central maintenance base only. After the re-estimation of 3 Nov (R2 in the main sample, capitalized software corrected; maintenance base 25.7%), over its 90% bootstrap interval the growth engine leads at 0 to 1 positions and the stated count holds in 57.6% of the draws (0 to 2 and 70.4% on 2 Nov). Wording "at the central maintenance level", with the bootstrap range (0 to 1 since 3 Nov; 0 to 2 on 2 Nov), in the summary box item 7, M 1, M 7.5 and M 9. S9. |
 
 ## Mistral Large 4 (high effort), received 3 Nov
 
@@ -231,5 +231,5 @@ Issue log and verification scripts: `author_reviews/mistral_large_4_high/`. Verd
 | MI-Emp-7 | Within-firm slopes differ | Not valid (reviewer's specification) | The growth trim of the regression stated in the text |
 | MI-Ed-5, RS-6 | Primary-source pass of the legal and tax citations | Partly valid | Pass run (`notes/legal_primary_source_pass_2026-11-03.md`): none incorrect, eight imprecise, all fixed |
 | MI-RS-2 | Compute-share caveat on the ceiling table | Partly valid | Caption caveat added; the floor's units corrected (range 28 to 78%) |
-| MI-RS-7 | Independent full reproduction | Valid | Fresh-clone reproduction: every output byte-identical once the third-party raw data are supplied; a fetch-and-verify script added |
+| MI-RS-7 | Independent full reproduction | Valid | A fetch-and-verify script for the third-party raw data added (`code/fetch_raw_data.py`). A first fresh-clone run at be86d24 (before the re-estimation) stopped at stage `params` for want of those data; a second, with them, ran to Paper 1's LaTeX, but its comparison was not recorded. In progress (3 Nov): a fresh clone at 3998b33 in a fresh environment, compared file by file with the commit; the result will be recorded in `notes/reviews/paper1_v3/audit_2026-11-03_revision.md`. |
 

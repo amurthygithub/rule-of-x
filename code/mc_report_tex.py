@@ -260,7 +260,7 @@ assert _rho_ok or SMALL_OK, ('S9 says only G* moves with the compute share (rank
                              'quantity above 0.05 in absolute value: revise that sentence', _rho)
 if not _rho_ok:
     print('WARNING: the S9 rank-correlation sentence does not hold in this run:', {k_: round(v_, 3) for k_, v_ in _rho.items()})
-num('StOtherCcRho', _rho_other, 2, False)
+num('StOtherCcRho', math.ceil(_rho_other * 100) / 100, 2, False)   # rounded up: S9 says no other rank correlation is above it
 
 
 def sgn(name, x, nd=1):

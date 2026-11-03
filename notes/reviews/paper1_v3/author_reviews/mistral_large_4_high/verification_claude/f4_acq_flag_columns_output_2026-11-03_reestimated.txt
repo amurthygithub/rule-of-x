@@ -1,0 +1,6 @@
+firm-years 1732 | rows where acq_flag != acq_flag_v3: 15
+estimate_organic.py line 130: P['acq_flag'], P['acq_now'], P['gw_jump'] = P.acq_flag_v3, P.acq_now_v3, P.gw_jump_v3
+estimate_organic.py line 195: core['acq_flag'], core['acq_now'], core['gw_jump'] = core.acq_flag_v3, core.acq_now_v3, core.gw_jump_v3
+acq_flag    : cut 44.41, anchor firm-years 15, firms 8
+acq_flag_v3 : cut 44.41, anchor firm-years 14, firms 7
+notes/calibration_anchor_v3.json keys: ['E1', 'E1_minus_E2', 'E1all', 'E1r2both', 'E1r2either', 'E2', 'E2clean', 'E2imp4', 'E2imp8', 'E2k2010', 'E2nodebt', 'E2testrule']
