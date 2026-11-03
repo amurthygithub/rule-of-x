@@ -1,0 +1,2 @@
+draws_lhs,points_total,dimensions,draws_per_second,total_seconds,cores,reproduction_checks,sobol_evaluations,run_date
+10000,12050,51,222.0,75.0,4,82,73728,2026-11-02

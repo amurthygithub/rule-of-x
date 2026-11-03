@@ -1,0 +1,30 @@
+threshold,design,share,points
+5% a year,3 human + 1 AI,0.005,10
+5% a year,none admissible,0.4285,857
+5% a year,3 human + 2 AI,0.1275,255
+5% a year,5 human + 2 AI,0.028,56
+5% a year,2 human + 2 AI,0.1855,371
+5% a year,1 human + 3 AI,0.0055,11
+5% a year,1 human + 2 AI,0.0775,155
+5% a year,4 human + 2 AI,0.049,98
+5% a year,6 human + 2 AI,0.01,20
+5% a year,2 human + 3 AI,0.012,24
+5% a year,2 human + 1 AI,0.06,120
+5% a year,6 human + 3 AI,0.0005,1
+5% a year,3 human + 3 AI,0.007,14
+5% a year,1 human + 1 AI,0.0015,3
+5% a year,4 human + 3 AI,0.0015,3
+5% a year,5 human + 3 AI,0.001,2
+1% a year,none admissible,0.8945,1789
+1% a year,3 human + 2 AI,0.029,58
+1% a year,5 human + 2 AI,0.016,32
+1% a year,3 human + 1 AI,0.003,6
+1% a year,6 human + 2 AI,0.009,18
+1% a year,4 human + 2 AI,0.026,52
+1% a year,2 human + 2 AI,0.0125,25
+1% a year,2 human + 1 AI,0.0045,9
+1% a year,3 human + 3 AI,0.0025,5
+1% a year,5 human + 3 AI,0.001,2
+1% a year,6 human + 3 AI,0.001,2
+1% a year,2 human + 3 AI,0.0005,1
+1% a year,1 human + 2 AI,0.0005,1
