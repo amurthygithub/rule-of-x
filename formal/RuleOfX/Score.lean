@@ -104,7 +104,7 @@ theorem Δstar_rpow (hα : 0 < α) (hα1 : α < 1) (hℓ : 0 < ℓ) (hy : 0 < y)
   have h1α : (1 - α) ≠ 0 := by linarith
   have hα0 : α ≠ 0 := hα.ne'
   have e1 : 1 / (1 - α) * (β α - 1) = β α := by
-    unfold β; field_simp; ring
+    unfold β; field_simp
   have e2 : α / (1 - α) * (β α - 1) = 1 := by
     unfold β; field_simp
   rw [e1, e2, Real.rpow_one]
@@ -143,19 +143,19 @@ theorem S_strictAntiOn (hα : 0 < α) (hα1 : α < 1) (hℓ : 0 < ℓ) (hy : 0 <
 
 theorem S_le_S_Δstar (hα : 0 < α) (hα1 : α < 1) (hℓ : 0 < ℓ) (hy : 0 < y) {Δ : ℝ}
     (hΔ : 0 ≤ Δ) : S α ℓ y Δ ≤ S α ℓ y (Δstar α ℓ y) := by
-  rcases le_or_lt Δ (Δstar α ℓ y) with h | h
+  rcases le_or_gt Δ (Δstar α ℓ y) with h | h
   · exact (S_strictMonoOn hα hα1 hℓ hy).monotoneOn ⟨hΔ, h⟩ ⟨(Δstar_pos hα hℓ hy).le, le_rfl⟩ h
-  · exact ((S_strictAntiOn hα hα1 hℓ hy) left_mem_Ici h.le h).le
+  · exact ((S_strictAntiOn hα hα1 hℓ hy) self_mem_Ici h.le h).le
 
 theorem S_lt_S_Δstar (hα : 0 < α) (hα1 : α < 1) (hℓ : 0 < ℓ) (hy : 0 < y) {Δ : ℝ}
     (hΔ : 0 ≤ Δ) (hne : Δ ≠ Δstar α ℓ y) : S α ℓ y Δ < S α ℓ y (Δstar α ℓ y) := by
   rcases lt_or_gt_of_ne hne with h | h
   · exact (S_strictMonoOn hα hα1 hℓ hy) ⟨hΔ, h.le⟩ ⟨(Δstar_pos hα hℓ hy).le, le_rfl⟩ h
-  · exact (S_strictAntiOn hα hα1 hℓ hy) left_mem_Ici h.le h
+  · exact (S_strictAntiOn hα hα1 hℓ hy) self_mem_Ici h.le h
 
 theorem S_le_min (hα : 0 < α) (hα1 : α < 1) (hℓ : 0 < ℓ) (hy : 0 < y) {Δ D : ℝ}
     (hΔ : 0 ≤ Δ) (hΔD : Δ ≤ D) : S α ℓ y Δ ≤ S α ℓ y (min (Δstar α ℓ y) D) := by
-  rcases le_or_lt (Δstar α ℓ y) D with h | h
+  rcases le_or_gt (Δstar α ℓ y) D with h | h
   · rw [min_eq_left h]; exact S_le_S_Δstar hα hα1 hℓ hy hΔ
   · rw [min_eq_right h.le]
     exact (S_strictMonoOn hα hα1 hℓ hy).monotoneOn ⟨hΔ, hΔD.trans h.le⟩ ⟨hΔ.trans hΔD, h.le⟩ hΔD
@@ -206,7 +206,7 @@ theorem S_Δstar (hα : 0 < α) (hα1 : α < 1) (hℓ : 0 < ℓ) (hy : 0 < y) :
   unfold S; rw [κ_Δstar_rpow hα hα1 hℓ hy]; ring
 
 /-- eq:Rstar, equality of the two forms: `(1-α) y Δ* = C_α (ℓ y)^{1/(1-α)}`. -/
-theorem Π_eq (hα : 0 < α) (hα1 : α < 1) (hℓ : 0 < ℓ) (hy : 0 < y) :
+theorem surplus_eq (hα : 0 < α) (hα1 : α < 1) (hℓ : 0 < ℓ) (hy : 0 < y) :
     (1 - α) * y * Δstar α ℓ y = Cα α * (ℓ * y) ^ (1 / (1 - α)) := by
   unfold Δstar Cα
   rw [Real.mul_rpow hℓ.le hy.le, Real.mul_rpow hα.le hy.le]
@@ -236,20 +236,20 @@ theorem gstar_of_lt {X : ℝ} (hX : k < X) : gstar G k α ℓ X = G + Δstar α 
 theorem gstar_of_le (hα : 0 < α) (hα1 : α < 1) {X : ℝ} (hX : X ≤ k) : gstar G k α ℓ X = G := by
   unfold gstar; rw [Δplus_of_nonpos hα hα1 (sub_nonpos.2 hX), add_zero]
 
-theorem Π_of_nonpos (hα : 0 < α) (hα1 : α < 1) (hy : y ≤ 0) : Π α ℓ y = 0 := by
-  unfold Π; rw [Δplus_of_nonpos hα hα1 hy, mul_zero]
+theorem surplus_of_nonpos (hα : 0 < α) (hα1 : α < 1) (hy : y ≤ 0) : surplus α ℓ y = 0 := by
+  unfold surplus; rw [Δplus_of_nonpos hα hα1 hy, mul_zero]
 
-theorem Π_of_pos (hy : 0 ≤ y) : Π α ℓ y = (1 - α) * y * Δstar α ℓ y := by
-  unfold Π; rw [Δplus_of_pos hy]
+theorem surplus_of_pos (hy : 0 ≤ y) : surplus α ℓ y = (1 - α) * y * Δstar α ℓ y := by
+  unfold surplus; rw [Δplus_of_pos hy]
 
 /-- `Π = C_α (ℓ y₊)^{1/(1-α)}` for every `y`. -/
-theorem Π_eq_Cα (hα : 0 < α) (hα1 : α < 1) (hℓ : 0 < ℓ) (y : ℝ) :
-    Π α ℓ y = Cα α * (ℓ * max y 0) ^ (1 / (1 - α)) := by
-  rcases le_or_lt y 0 with hy | hy
-  · rw [Π_of_nonpos hα hα1 hy, max_eq_right hy, mul_zero, Real.zero_rpow (q_pos hα1).ne',
+theorem surplus_eq_Cα (hα : 0 < α) (hα1 : α < 1) (hℓ : 0 < ℓ) (y : ℝ) :
+    surplus α ℓ y = Cα α * (ℓ * max y 0) ^ (1 / (1 - α)) := by
+  rcases le_or_gt y 0 with hy | hy
+  · rw [surplus_of_nonpos hα hα1 hy, max_eq_right hy, mul_zero, Real.zero_rpow (q_pos hα1).ne',
       mul_zero]
-  · rw [Π_of_pos hy.le, max_eq_left hy.le]
-    exact Π_eq hα hα1 hℓ hy
+  · rw [surplus_of_pos hy.le, max_eq_left hy.le]
+    exact surplus_eq hα hα1 hℓ hy
 
 /-! ### Part (a) -/
 
@@ -277,7 +277,7 @@ theorem mem_I_coe {b g : ℝ} (hg : G ≤ g) (hgb : g ≤ growth G ℓ α b) :
 /-- Existence of a maximizer (with any cap). -/
 theorem exists_isMax (hα : 0 < α) (hα1 : α < 1) (hℓ : 0 < ℓ) (hk : 0 ≤ k) (hσbar : 0 < σbar)
     (X : ℝ) : ∃ p, IsMax m0 G k α ℓ σbar X p := by
-  rcases le_or_lt X k with hXk | hXk
+  rcases le_or_gt X k with hXk | hXk
   · refine ⟨(G, mstar m0 G k α ℓ G), frontier_point_feasible hα hℓ hσbar (G_mem_I hα hℓ hσbar),
       fun q hq => ?_⟩
     have h1 := score_le_frontier (X := X) hα hℓ hσbar hq
@@ -294,7 +294,8 @@ theorem exists_isMax (hα : 0 < α) (hα1 : α < 1) (hℓ : 0 < ℓ) (hk : 0 ≤
       have h1 := score_le_frontier (X := X) hα hℓ hσbar hq
       have hqI := ((feasible_iff hα hℓ hσbar q).1 hq).1.1
       rw [score_frontier, add_sub_cancel_left]
-      exact h1.trans (add_le_add_left (S_le_S_Δstar hα hα1 hℓ hy0 (sub_nonneg.2 hqI)) _)
+      have h2 := S_le_S_Δstar hα hα1 hℓ hy0 (sub_nonneg.2 hqI)
+      linarith
     | coe b =>
       have hb : (0 : ℝ) < b := by exact_mod_cast hσbar
       set D := ℓ * b ^ α with hD
@@ -311,7 +312,8 @@ theorem exists_isMax (hα : 0 < α) (hα1 : α < 1) (hℓ : 0 < ℓ) (hk : 0 ≤
         have hqD : q.1 - G ≤ D := by
           have := hqI.1.2; unfold growth at this; linarith
         rw [score_frontier, add_sub_cancel_left]
-        exact h1.trans (add_le_add_left (S_le_min hα hα1 hℓ hy0 (sub_nonneg.2 hqI.1.1) hqD) _)
+        have h2 := S_le_min hα hα1 hℓ hy0 (sub_nonneg.2 hqI.1.1) hqD
+        linarith
 
 /-- **Lemma prop:score (a).** "Iso-score sets `{(g,m) : Xg + m = c}` are straight lines of
 slope `-X`. A maximizer of `R_X` on `𝓕` exists, and every maximizer lies on the frontier." -/
@@ -323,7 +325,7 @@ theorem prop_score_a (hα : 0 < α) (hα1 : α < 1) (hℓ : 0 < ℓ) (hk : 0 ≤
   refine ⟨fun c => ?_, exists_isMax hα hα1 hℓ hk hσbar X,
     fun p hp => isMax_mem_frontier hα hℓ hk hσbar hp⟩
   ext p
-  simp only [score, Set.mem_setOf_eq]
+  simp only [score, Set.mem_ofPred_eq]
   constructor <;> intro h <;> linarith
 
 /-! ### Part (b) -/
@@ -348,7 +350,7 @@ theorem isUniqueMax_gstar (hα : 0 < α) (hα1 : α < 1) (hℓ : 0 < ℓ) (hk : 
     (hcap : (σstar α ℓ (X - k) : WithTop ℝ) ≤ σbar) :
     IsUniqueMax m0 G k α ℓ σbar X (gstar G k α ℓ X, mstar m0 G k α ℓ (gstar G k α ℓ X)) := by
   have hy0 : 0 < X - k := sub_pos.2 hX
-  have hgI := gstar_mem_I hα hα1 hℓ hσbar hX hcap
+  have hgI := gstar_mem_I (G := G) hα hα1 hℓ hσbar hX hcap
   refine ⟨frontier_point_feasible hα hℓ hσbar hgI, fun q hq hne => ?_⟩
   rw [gstar_of_lt hX] at hne ⊢
   have hq' := (feasible_iff hα hℓ hσbar q).1 hq
@@ -406,7 +408,7 @@ theorem prop_score_b (hα : 0 < α) (hα1 : α < 1) (hℓ : 0 < ℓ) (hk : 0 ≤
     rw [← h, hg]
     simp [gbar, WithTop.map_coe, growth_σstar hα hα1 hℓ hy0]
   · rw [score_frontier, hg, add_sub_cancel_left, S_Δstar hα hα1 hℓ hy0]
-  · rw [score_frontier, hg, add_sub_cancel_left, S_Δstar hα hα1 hℓ hy0, Π_eq hα hα1 hℓ hy0]
+  · rw [score_frontier, hg, add_sub_cancel_left, S_Δstar hα hα1 hℓ hy0, surplus_eq hα hα1 hℓ hy0]
   · unfold mstar
     rw [hg, spendOf_Δstar hα hα1 hℓ hy0, σstar_eq hα hα1 hℓ hy0]
 
@@ -522,7 +524,7 @@ theorem prop_score_d (hα : 0 < α) (hα1 : α < 1) (hℓ : 0 < ℓ) (hk : 0 ≤
         have := spendOf_monotoneOn (G := G) hα hℓ hg.le (growth_nonneg_sub hℓ hb.le) hgb.le
         rw [spendOf_growth hα hℓ hb.le] at this
         exact_mod_cast this
-    have := isUniqueMax_gstar (m0 := m0) hα hα1 hℓ hk hσbar hXk hcap
+    have := isUniqueMax_gstar (m0 := m0) (G := G) hα hα1 hℓ hk hσbar hXk hcap
     rwa [hgeq] at this
   · intro X
     constructor
@@ -561,7 +563,7 @@ theorem prop_score_d_uncapped (hα : 0 < α) (hα1 : α < 1) (hℓ : 0 < ℓ) (h
     StrictMonoOn (gstar G k α ℓ) (Ioi k) := by
   have hq : 0 ≤ α / (1 - α) := (div_pos hα (by linarith)).le
   refine ⟨fun X => ?_, ?_, ?_, ?_⟩
-  · rcases le_or_lt X k with hX | hX
+  · rcases le_or_gt X k with hX | hX
     · rw [gstar_of_le hα hα1 hX]
       exact (prop_score_c hα hα1 hℓ hk zero_lt_top hX).1
     · exact isUniqueMax_gstar hα hα1 hℓ hk zero_lt_top hX le_top
@@ -592,14 +594,14 @@ satisfies `Π = max_{σ ≥ 0} {(X-k) ℓ σ^α - σ}`, so that `R*_X = m₀ + (
 The maximum is stated as `IsGreatest`; the second claim holds under the cap condition
 `σ* ≤ σ̄` (with `σ* = 0` when `X ≤ k`). -/
 theorem prop_score_e (hα : 0 < α) (hα1 : α < 1) (hℓ : 0 < ℓ) (hk : 0 ≤ k) (X : ℝ) :
-    IsGreatest ((fun σ => (X - k) * ℓ * σ ^ α - σ) '' Ici 0) (Π α ℓ (X - k)) ∧
+    IsGreatest ((fun σ => (X - k) * ℓ * σ ^ α - σ) '' Ici 0) (surplus α ℓ (X - k)) ∧
     (∀ σbar : WithTop ℝ, 0 < σbar → (σplus α ℓ (X - k) : WithTop ℝ) ≤ σbar →
-      IsGreatest (score X '' Feasible m0 G k α ℓ σbar) (m0 + (X - k) * G + Π α ℓ (X - k))) := by
+      IsGreatest (score X '' Feasible m0 G k α ℓ σbar) (m0 + (X - k) * G + surplus α ℓ (X - k))) := by
   constructor
-  · rcases le_or_lt X k with hX | hX
+  · rcases le_or_gt X k with hX | hX
     · have hy0 : X - k ≤ 0 := sub_nonpos.2 hX
-      rw [Π_of_nonpos hα hα1 hy0]
-      refine ⟨⟨0, left_mem_Ici, ?_⟩, ?_⟩
+      rw [surplus_of_nonpos hα hα1 hy0]
+      refine ⟨⟨0, self_mem_Ici, ?_⟩, ?_⟩
       · show (X - k) * ℓ * (0 : ℝ) ^ α - 0 = 0
         rw [Real.zero_rpow hα.ne']; ring
       · rintro _ ⟨σ, hσ, rfl⟩
@@ -608,7 +610,7 @@ theorem prop_score_e (hα : 0 < α) (hα1 : α < 1) (hℓ : 0 < ℓ) (hk : 0 ≤
         have h1 : 0 ≤ ℓ * σ ^ α := mul_nonneg hℓ.le (Real.rpow_nonneg hσ0 _)
         nlinarith
     · have hy0 : 0 < X - k := sub_pos.2 hX
-      rw [Π_of_pos hy0.le]
+      rw [surplus_of_pos hy0.le]
       refine ⟨⟨σstar α ℓ (X - k), σstar_nonneg hα hℓ hy0.le, ?_⟩, ?_⟩
       · show (X - k) * ℓ * σstar α ℓ (X - k) ^ α - σstar α ℓ (X - k) = _
         have h1 : ℓ * σstar α ℓ (X - k) ^ α = Δstar α ℓ (X - k) := by
@@ -629,20 +631,20 @@ theorem prop_score_e (hα : 0 < α) (hα1 : α < 1) (hℓ : 0 < ℓ) (hk : 0 ≤
         rw [h1] at h2
         linarith
   · intro σbar hσbar hcap
-    rcases le_or_lt X k with hX | hX
-    · have h := (prop_score_c (m0 := m0) hα hα1 hℓ hk hσbar hX)
-      rw [Π_of_nonpos hα hα1 (sub_nonpos.2 hX), add_zero, ← h.2.2.2.2]
+    rcases le_or_gt X k with hX | hX
+    · have h := (prop_score_c (m0 := m0) (G := G) hα hα1 hℓ hk hσbar hX)
+      rw [surplus_of_nonpos hα hα1 (sub_nonpos.2 hX), add_zero, ← h.2.2.2.2]
       exact h.1.isGreatest
     · rw [σplus_of_pos (sub_pos.2 hX).le] at hcap
-      have h := prop_score_b (m0 := m0) hα hα1 hℓ hk hσbar hX hcap
-      rw [Π_of_pos (sub_pos.2 hX).le, ← h.2.2.2.2.2.2.2.2.2.2.1]
+      have h := prop_score_b (m0 := m0) (G := G) hα hα1 hℓ hk hσbar hX hcap
+      rw [surplus_of_pos (sub_pos.2 hX).le, ← h.2.2.2.2.2.2.2.2.2.2.1]
       exact h.1.isGreatest
 
 /-- The maximal score with `σ̄ = ∞`, for every `X`: `R*_X = m₀ + (X-k)G + C_α(ℓ (X-k)_+)^{1/(1-α)}`. -/
 theorem Rstar_isGreatest (hα : 0 < α) (hα1 : α < 1) (hℓ : 0 < ℓ) (hk : 0 ≤ k) (X : ℝ) :
     IsGreatest (score X '' Feasible m0 G k α ℓ ⊤)
       (m0 + (X - k) * G + Cα α * (ℓ * max (X - k) 0) ^ (1 / (1 - α))) := by
-  rw [← Π_eq_Cα hα hα1 hℓ]
+  rw [← surplus_eq_Cα hα hα1 hℓ]
   exact (prop_score_e hα hα1 hℓ hk X).2 ⊤ zero_lt_top le_top
 
 end RuleOfX

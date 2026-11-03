@@ -96,7 +96,7 @@ def σplus (α ℓ y : ℝ) : ℝ := σstar α ℓ (max y 0)
 def gstar (G k α ℓ X : ℝ) : ℝ := G + Δplus α ℓ (X - k)
 
 /-- Growth surplus `Π = (1-α)(X-k)Δ*`, zero if `X ≤ k`. -/
-def Π (α ℓ y : ℝ) : ℝ := (1 - α) * y * Δplus α ℓ y
+def surplus (α ℓ y : ℝ) : ℝ := (1 - α) * y * Δplus α ℓ y
 
 /-- Score along the frontier as a function of excess growth: `𝓢(Δ) = y Δ - κ Δ^β`. -/
 def S (α ℓ y Δ : ℝ) : ℝ := y * Δ - κ α ℓ * Δ ^ β α
@@ -282,7 +282,7 @@ theorem I_subset_Ici (σbar : WithTop ℝ) : I G ℓ α σbar ⊆ Ici G := fun _
 theorem G_mem_I (hα : 0 < α) (hℓ : 0 < ℓ) {σbar : WithTop ℝ} (hσbar : 0 < σbar) :
     G ∈ I G ℓ α σbar := by
   induction σbar using WithTop.recTopCoe with
-  | top => rw [I_top]; exact left_mem_Ici
+  | top => rw [I_top]; exact self_mem_Ici
   | coe b =>
     rw [I_coe]
     have hb : (0 : ℝ) < b := by exact_mod_cast hσbar

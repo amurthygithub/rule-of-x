@@ -56,8 +56,8 @@ theorem mstar_strictConcaveOn (hα : 0 < α) (hα1 : α < 1) (hℓ : 0 < ℓ) :
   have hconv := strictConvexOn_rpow (one_lt_β hα hα1)
   refine ⟨convex_Ici G, ?_⟩
   intro x hx y hy hxy a b ha hb hab
-  have hx' : x - G ∈ Ici (0 : ℝ) := sub_nonneg.2 hx
-  have hy' : y - G ∈ Ici (0 : ℝ) := sub_nonneg.2 hy
+  have hx' : x - G ∈ Ici (0 : ℝ) := mem_Ici.2 (sub_nonneg.2 hx)
+  have hy' : y - G ∈ Ici (0 : ℝ) := mem_Ici.2 (sub_nonneg.2 hy)
   have hne : x - G ≠ y - G := fun h => hxy (by linarith)
   have key := hconv.2 hx' hy' hne ha hb hab
   simp only [smul_eq_mul] at key ⊢
@@ -115,7 +115,7 @@ theorem dominated_iff (hα : 0 < α) (hℓ : 0 < ℓ) (hk : 0 ≤ k) (hσbar : 0
 theorem frontier_eq (hα : 0 < α) (hℓ : 0 < ℓ) (hk : 0 ≤ k) (hσbar : 0 < σbar) :
     Frontier m0 G k α ℓ σbar = {p | p.1 ∈ I G ℓ α σbar ∧ p.2 = mstar m0 G k α ℓ p.1} := by
   ext p
-  simp only [Frontier, Set.mem_setOf_eq]
+  simp only [Frontier, Set.mem_ofPred_eq]
   constructor
   · rintro ⟨hp, hnd⟩
     have hp' := (feasible_iff hα hℓ hσbar p).1 hp
@@ -259,7 +259,7 @@ theorem deriv2_limit_gt (hα : 1 / 2 < α) (hα1 : α < 1) (hℓ : 0 < ℓ) :
         (nhdsWithin_le_nhds (s := Ioi G))
       rw [sub_self] at this
       exact this
-    · exact eventually_nhdsWithin_of_forall fun g hg => sub_pos.2 hg
+    · exact eventually_nhdsWithin_of_forall fun g hg => mem_Ioi.2 (sub_pos.2 hg)
   -- `(g - G)⁻¹ → +∞`, then `((g - G)⁻¹)^{2-β} → +∞`
   have h2 : Tendsto (fun g : ℝ => ((g - G)⁻¹) ^ (2 - β α)) (𝓝[>] G) atTop :=
     (tendsto_rpow_atTop hβ2).comp (tendsto_inv_nhdsGT_zero.comp h1)
@@ -268,6 +268,7 @@ theorem deriv2_limit_gt (hα : 1 / 2 < α) (hα1 : α < 1) (hℓ : 0 < ℓ) :
     refine (h2.const_mul_atTop hc).congr' ?_
     refine eventually_nhdsWithin_of_forall fun g hg => ?_
     have hpos : (0 : ℝ) ≤ g - G := (sub_pos.2 hg).le
+    dsimp only
     rw [Real.inv_rpow hpos, ← Real.rpow_neg hpos, neg_sub]
   exact tendsto_neg_atTop_atBot.comp h3
 
