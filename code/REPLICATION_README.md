@@ -36,7 +36,7 @@ This package regenerates every table and figure in the paper from SEC XBRL data.
 
 ## Running
 
-Requirements: Python 3.11 or later with the packages pinned in `requirements.txt` (`python3 -m pip install -r requirements.txt`).
+Requirements: Python 3.11 or later with the packages pinned in `requirements.txt` (`python3 -m pip install -r requirements.txt`). For byte-identical figures use `requirements-lock.txt`, the exact versions of every package in the clean Python 3.13.18 environment that produced the committed outputs; other versions of indirect dependencies (fonttools, pillow) can shift figure layout by a fraction of a point.
 
 The whole build runs in dependency order with `code/regenerate_all.sh` (stages: `bash code/regenerate_all.sh --list`; logs in `build_logs/`). Three of its stages read third-party files in `data/raw/`, which the repository does not redistribute: `params` (`code/data_part2/08_params.py`, METR's run data), `backtest` (`code/validation/backtest.py`, GPTs-are-GPTs, the BLS OEWS and SOC files and O*NET job zones) and `playbook` (`code/playbook/run_archetypes.py`, O*NET task statements). Before its first stage, the script checks that the folders the selected stages read are present and match `data/raw/CHECKSUMS.sha256`, and stops naming `code/fetch_raw_data.py` if they are not. On a fresh clone, either fetch them first or skip those stages:
 

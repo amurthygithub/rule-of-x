@@ -47,3 +47,10 @@
 | RS-2 | Compute-share caveat in the abstract and the caption of Table tab:ceiling; "28–78" | Partly valid | Done (3 Nov): the caption of Table tab:ceiling says the compute share is a scenario value that no source measures; the floor's units are corrected (1.2% of revenue, not 2%), so the range is 28 to 78%. |
 | RS-7 | Independent full-pipeline reproduction | Valid | Running: a fresh clone at be86d24 with a fresh environment (task 50). The first attempt stopped at stage `params` because the third-party raw data are not redistributed; the replication package needs a retrieval script and a clear message (packaging fix). |
 | RS-8 | Keep the post-hoc choices in Appendix A | Valid; no change | None |
+
+## Status after the round-3 tests (3 November, afternoon)
+
+- **F-2 / Ed-3 / RS-4 (R2 for all registrants):** done. Descriptions of all 293 core registrants retrieved; R2 applied to the main sample by the pre-set keyword rule (8 firms, 56 firm-years out); two blind readers as a sensitivity (kappa 0.95). Headline values re-estimated (Appendix A.4 item 7 lists before and after).
+- **M-8 / Ed-5 / RS-6 (primary-source pass of the legal and tax items):** done (`notes/legal_primary_source_pass_2026-11-03.md`): none incorrect, eight imprecise, all fixed; the IR-2026-06 number and date confirmed on the IRS newsroom page later the same day.
+- **RS-7 (independent full reproduction):** done at commit 3998b33; see `notes/reviews/paper1_v3/audit_2026-11-03_revision.md` (F1).
+- **F-4 / M-2:** counts after the re-estimation in the F-4 row.
