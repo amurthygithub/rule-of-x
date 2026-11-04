@@ -1,0 +1,11 @@
+id,basis,sample,n,firms,weight,weight_lo,weight_hi,beta_g,beta_m,equal_weights_p,r2_within_full,r2_within_score
+gaap|all,GAAP operating margin,All firm-years,1272,219,4.40,3.13,7.73,2.87,0.65,0.000,0.199,0.099
+gaap|2010-19,GAAP operating margin,2010-19,653,139,4.07,2.62,11.13,2.56,0.63,0.000,0.202,0.113
+gaap|2020-25,GAAP operating margin,2020-25,619,167,4.83,3.24,9.01,3.22,0.67,0.000,0.202,0.090
+gaap|top40,GAAP operating margin,Score of 40 or more,171,60,1.40,0.17,,0.55,0.39,0.799,0.006,0.005
+gaap|no_acq,GAAP operating margin,Without acquisition-affected years,911,203,4.04,3.03,6.33,3.34,0.83,0.000,0.229,0.120
+cash|all,Free cash flow after SBC,All firm-years,1247,217,4.84,3.08,15.84,2.81,0.58,0.000,0.188,0.104
+cash|2010-19,Free cash flow after SBC,2010-19,647,137,4.79,2.53,,2.50,0.52,0.000,0.194,0.121
+cash|2020-25,Free cash flow after SBC,2020-25,600,163,5.00,3.08,16.60,3.17,0.63,0.000,0.189,0.092
+cash|top40,Free cash flow after SBC,Score of 40 or more,181,79,,,,0.37,-0.91,0.020,0.038,0.003
+cash|no_acq,Free cash flow after SBC,Without acquisition-affected years,898,202,3.90,2.80,8.03,3.30,0.84,0.000,0.216,0.126

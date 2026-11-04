@@ -163,3 +163,27 @@ These files were read from sec.gov on 3 Nov 2026 through the browser on the auth
 **Capitalized-software scan.** For every firm-year of that frame with no capitalized software in companyfacts (PaymentsForSoftware + PaymentsToDevelopSoftware = 0) and capital expenditure reported (1,213), the cash-flow statement of the filing the panel used was read from its XBRL rendering: `FilingSummary.xml` of the filing, then the statement's R page. The rows of the investing section whose labels mention software or capitalization were kept with the page's unit (`notes/data_audit/capsw_cashflow_rows_2026-11-03.json`, keyed by accession number without dashes; SHA-256 10fdb9224b6e14ff9ad3f9fa9d2991f47db308d1c7bb169c052e1eca98492f15). One filing could not be read (FilingSummary.xml returned 404).
 
 **Derived file.** `code/audit/capsw_scan_parse.py` reads the fiscal-year value of each capitalized-software line (121 candidate firm-years, `notes/data_audit/capsw_missed.csv`) and keeps a line when it is an outflow, is not a combined capital-expenditure line ("capital expenditures, including capitalization of software costs", "capitalized software and expenditures") and cannot be contained in the panel's capex: the capex came from PaymentsToAcquirePropertyPlantAndEquipment or, where it came from PaymentsToAcquireProductiveAssets, it is smaller than the software line, so the two are separate lines of the statement (7 firm-years: MedAssets 2010-11, Coursera 2021-25). Kept: 109 firm-years of 23 firms, written to `capitalized_software_filings.json` ({cik: {fy_end: {value (dollars), accn, label}}}; SHA-256 2fe3b7da3671ed46f906b09a89cba1fa1170a5961064cdda78d7e344d3ae7004); dropped: 9 combined lines and 3 lines that are not outflows (non-cash add-backs). Counts in `notes/data_audit/capsw_summary.json`. `build_panel_v3.py` uses the value where the XBRL cap_sw is 0 and recomputes the free-cash-flow margins, scores and capital intensity (column `cap_sw_source`; `cap_sw_xbrl` keeps the XBRL value). Check: Box, Inc. (CIK 1372612), fiscal year ending 31 Jan 2024, "Capitalized internal-use software costs" 16,561 thousand.
+
+# Third retrieval (3 Nov 2026): public float values
+
+**Approval and method.** The author approved this retrieval on 3 Nov 2026 at about 18:15 UTC−8 ("Yes, fetch it"),
+for public float, debt and cash from data.sec.gov XBRL frames, up to roughly 120 files and 50 MB, kept for the core
+registrants. Only public float was fetched. It ran at about 18:20 UTC−8 in the built-in browser of the Claude desktop
+app on the author's computer, with `code/retrieval_float_browser.js` (written by the lead agent). Nothing was entered
+into any site.
+
+**Endpoint and calls.** `https://data.sec.gov/api/xbrl/frames/dei/EntityPublicFloat/USD/{CY2010Q1I..CY2026Q3I}.json`:
+67 calls, 3 parallel workers, 200 ms pause; all returned 200; 13.2 MB of JSON received (uncompressed).
+
+**Filter.** The 293 registrants of `data/panel_v3.csv` and `data/panel_v3_core_full.csv`, less any registrant whose
+SHA-256 digest of the decimal CIK is excluded (`code/exclusions.py`). 1,806 facts were kept, 79 of them zero.
+
+**Transfer and check.** Each row was reduced to CIK (delta-encoded), the float instant (days since 2000-01-01) and the
+value in thousands of dollars, all in base 36, sorted by CIK and date; the text (21,051 characters) was gzip-compressed,
+base64-encoded and copied into the container. Its FNV-1a hash (6e6b4f5f) matched. Raw file:
+`raw/sec_float_values_2026-11-03.txt`; decoded: `public_float.csv` (cik, float_date, public_float_usd_thousands).
+
+**Limits.** Public float is the market value of common equity held by non-affiliates at the end of the second fiscal
+quarter, as stated on the 10-K cover page; it excludes shares held by officers, directors and large holders, so it
+understates the equity value of founder-controlled firms. Frames keep the latest filed value per company and period.
+Debt and cash were not fetched, so enterprise value is not built.

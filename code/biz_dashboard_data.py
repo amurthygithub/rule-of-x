@@ -463,6 +463,59 @@ for k, v, src, note in [
         ('ref_s10', 'Supplementary Appendix, Section S10', '', ''),
         ('ref_comp', 'Companion paper (in preparation), as cited in Paper 1, Section 7.5', '', '')]:
     fact(k, v, src or v, note)
+# ------------------------------------------------------------------------- new analyses (not in Paper 1), 3 Nov 2026
+NEWP = 'New analysis, not in Paper 1: code/biz_open_questions.py (Paper 1 calibration, executed unchanged)'
+NEWV = 'New analysis, not in Paper 1: code/biz_valuation.py (Paper 1 core sample and SEC public float)'
+PJ = json.load(open(os.path.join(BASE, 'notes', 'open_questions', 'paths.json')))
+VJ = json.load(open(os.path.join(BASE, 'notes', 'open_questions', 'valuation.json')))
+p1 = lambda x: f'{100 * x:.1f}'
+for k, v in [('dn_today', PJ['anchor_R2025']), ('dn_adopt28', PJ['adopter']['0.0']['2028']['R_net']),
+             ('dn_adopt31', PJ['adopter']['0.0']['2031']['R_net']), ('dn_adopt36', PJ['adopter']['0.0']['2036']['R_net']),
+             ('dn_adopt5_36', PJ['adopter']['0.5']['2036']['R_net']), ('dn_none5c_36', PJ['do_nothing']['0.5|central']['2036']['R']),
+             ('dn_none5f_36', PJ['do_nothing']['0.5|fast']['2036']['R']), ('dn_none7f_36', PJ['do_nothing']['0.7|fast']['2036']['R']),
+             ('dn_none7c_36', PJ['do_nothing']['0.7|central']['2036']['R']),
+             ('dn_adopt5rf_36', PJ['adopter_rivals_fast']['0.5']['2036']['R_net']),
+             ('ty_today', PJ['typical']['R2025']), ('ty_m0', PJ['typical']['m0A']), ('ty_r36', PJ['typical']['path']['2036']['R']),
+             ('ty_r36_net', PJ['typical']['path']['2036']['R_net']), ('ty_r28_net', PJ['typical']['path']['2028']['R_net']),
+             ('ty_r36_k', PJ['typical']['path_own_k']['2036']['R'])]:
+    fact(k, p1(v), NEWP)
+fact('ty_g', p1(PJ['typical']['g']) + '%', NEWP, 'median growth of 2023-25 core firm-years with revenue of $1-5 billion')
+fact('ty_k', f"{PJ['typical']['k']:.2f}", NEWP, 'median capital intensity of the same firm-years')
+fact('ty_gain', p1(PJ['typical']['path']['2036']['R'] - PJ['typical']['R2025']), NEWP, 'rise of the durable score 2025-2036')
+fact('top_gain', p1(PJ['adopter']['0.0']['2036']['R'] - PJ['anchor_R2025']), NEWP, 'the same for the top-tail path')
+fact('ty_payback', f"{PJ['typical']['payback']['payback_undiscounted']:.1f}", NEWP, 'years, central execution')
+fact('dn_gap36', p1(PJ['adopter']['0.0']['2036']['R_net'] - PJ['do_nothing']['0.0|central']['2036']['R']), NEWP, 'fixed prices')
+fact('dn_gap5f', p1(PJ['adopter_rivals_fast']['0.5']['2036']['R_net'] - PJ['do_nothing']['0.5|fast']['2036']['R']), NEWP,
+     'half passed to price, rivals fast')
+vc, vg = VJ['cash']['all'], VJ['gaap']['all']
+fact('v_n', f"{VJ['n_matched']:,}", NEWV, 'firm-years matched to a public float'); fact('v_firms', str(VJ['firms']), NEWV)
+fact('v_panel', f"{VJ['n_panel']:,}", NEWV, 'firm-years in the core sample')
+fact('v_median', f"{VJ['median_multiple']:.1f}", NEWV, 'median public float over revenue')
+fact('v_w_cash', f"{vc['weight']:.1f}", NEWV, 'points of margin worth one point of growth, cash basis')
+fact('v_w_cash_lo', f"{vc['weight_ci90'][0]:.1f}", NEWV, '90% firm-cluster bootstrap interval')
+fact('v_w_cash_hi', f"{vc['weight_ci90'][1]:.1f}", NEWV)
+fact('v_w_gaap', f"{vg['weight']:.1f}", NEWV); fact('v_w_gaap_lo', f"{vg['weight_ci90'][0]:.1f}", NEWV)
+fact('v_w_gaap_hi', f"{vg['weight_ci90'][1]:.1f}", NEWV)
+fact('v_w_early', f"{VJ['cash']['2010-19']['weight']:.1f}", NEWV); fact('v_w_late', f"{VJ['cash']['2020-25']['weight']:.1f}", NEWV)
+fact('v_w_noacq', f"{VJ['cash']['no_acq']['weight']:.1f}", NEWV)
+fact('v_r2_full', f"{100 * vc['r2_within_full']:.0f}%", NEWV, 'share of within-year variation of the log multiple explained by growth and margin')
+fact('v_r2_score', f"{100 * vc['r2_within_score']:.0f}%", NEWV, 'the same by the score alone')
+fact('v_r2_top', f"{100 * VJ['cash']['top40']['r2_within_score']:.1f}%", NEWV, 'the score alone among firm-years scoring 40 or more')
+fact('v_top_n', f"{VJ['cash']['top40']['n']}", NEWV)
+DEC = list(csv.DictReader(open(os.path.join(OUT, 'valuation_deciles.csv'))))
+dcash = [r for r in DEC if r['basis'] == 'Free cash flow after SBC']
+fact('v_dec1', dcash[0]['multiple_median'], NEWV, 'median multiple, bottom tenth by cash score')
+fact('v_dec10', dcash[-1]['multiple_median'], NEWV, 'median multiple, top tenth')
+fact('screen_lo', '1.8', S['sec:discussion'], "Paper 1's screening weight for a ten-year runway (Section 8.1)")
+fact('screen_hi', '2.8', S['sec:discussion'])
+fact('ref_s81b', 'Paper 1, Section 8.1', '', '')
+fact('ci90', '90%', NEWV, 'level of the bootstrap intervals'); fact('y1019w', '2010–19', NEWV, 'period'); fact('y2025w', '2020–25', NEWV, 'period')
+fact('rev_1to5', '$1–5 billion', S['sec:horizons-ceiling'], "revenue band of the paper's typical company")
+fact('ref_newv', 'New analysis: code/biz_valuation.py, notes/open_questions/valuation.json', '', '')
+fact('ref_newp', 'New analysis: code/biz_open_questions.py, notes/open_questions/paths.json', '', '')
+# constants of the company calculator (Paper 1, Table 4 central case; Table 7)
+for k, nme in [('tau_cen', 'CeilTauCen'), ('fee_cen', 'CeilFCen')]:
+    fm(k, nme, S['sec:horizons-ceiling'])
 write('facts.csv', F, ['key', 'display', 'macro', 'source', 'note'])
 keys = [f['key'] for f in F]
 assert len(keys) == len(set(keys)), 'duplicate fact keys'

@@ -80,6 +80,10 @@
   .st-method p { margin: 0; font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); line-height: 1.55; }
   [data-dash-source-state=empty] { color: transparent; }
   [data-dash-source-state=refreshing] { opacity: .5; transition: opacity var(--cds-dur-slow); }
+  .st-new { align-self: flex-start; font-size: var(--cds-font-size-caption); color: var(--color-warn); border: 1px solid currentColor; border-radius: 999px; padding: 0.05rem 0.5rem; }
+  .st-form { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr)); gap: var(--cds-gap-sm) var(--cds-gap-md); }
+  .st-form label { display: flex; flex-direction: column; gap: 0.25rem; font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); min-width: 0; }
+  .st-form input, .st-form select { font: inherit; font-size: var(--cds-font-size-body); padding: var(--cds-pad-xs) var(--cds-pad-sm); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); background: var(--color-bg); color: var(--color-fg); min-width: 0; font-variant-numeric: tabular-nums; }
   @media (max-width: 40rem) { .st-hide-narrow { display: none; } }
 </style>
 
@@ -97,6 +101,8 @@
       <button type="button" class="st-btn" data-go="drivers">What drives it</button>
       <button type="button" class="st-btn" data-go="floors">Costs that stay</button>
       <button type="button" class="st-btn" data-go="questions">Leaders' questions</button>
+      <button type="button" class="st-btn" data-go="open">Open questions</button>
+      <button type="button" class="st-btn" data-go="calculator">Your company</button>
       <button type="button" class="st-btn" data-go="claims">Claims tested</button>
       <button type="button" class="st-btn" data-go="words">Words used</button>
       <button type="button" class="st-btn" data-go="method">How this was made</button>
@@ -528,6 +534,127 @@
     </div>
   </section>
 
+  <section class="st-section" id="open">
+    <h2 class="st-h2">Questions the paper does not answer yet</h2>
+    <p class="st-note">Three are answered here with new analysis that is not in Paper 1: it uses the paper's own sample and calibration, and a different model checked it. A calculator places your own company. The rest wait for the companion paper or for data that no one has published.</p>
+
+    <div class="st-grid">
+      <div class="st-card">
+        <span class="st-new">New analysis, not in the paper</span>
+        <h3 class="st-card-title">Does the market pay for a higher score?</h3>
+        <p class="st-card-note">Median market value over revenue by tenth of the score, <b>{{v_n}}</b> firm-years of <b>{{v_firms}}</b> companies, <b>{{y1025}}</b>. Bars: median; whiskers: middle half. Market value is public float, measured six months after each year ends.</p>
+        <div class="st-nav st-vbasis" role="group" aria-label="Margin basis of the score">
+          <button type="button" class="st-btn" data-vbasis="Free cash flow after SBC" aria-pressed="true">Free cash flow after SBC</button>
+          <button type="button" class="st-btn" data-vbasis="GAAP operating margin" aria-pressed="false">GAAP operating margin</button>
+        </div>
+        <div class="st-chart dash-skeleton" data-draw="val_deciles" data-source="valuation_deciles"></div>
+        <p class="st-plain"><span class="st-plain-k">In plain English:</span> yes, but not the way the rule counts. The median multiple rises from <b>{{v_dec1}}</b> times revenue in the bottom tenth to <b>{{v_dec10}}</b> in the top tenth. But the market valued one point of growth like about <b>{{v_w_cash}}</b> points of margin (<b>{{v_w_cash_lo}}</b> to <b>{{v_w_cash_hi}}</b>), where the rule counts them the same. Growth and margin entered separately explain <b>{{v_r2_full}}</b> of the differences in multiples within a year; the score alone explains <b>{{v_r2_score}}</b>. Among firm-years scoring <b>{{rule40}}</b> or more, the score explains almost none of them (<b>{{v_r2_top}}</b>).</p>
+      </div>
+      <div class="st-card">
+        <span class="st-new">New analysis, not in the paper</span>
+        <h3 class="st-card-title">How much is a point of growth worth in margin?</h3>
+        <p class="st-card-note">Points of margin the market treats as worth one point of growth, with <b>{{ci90}}</b> intervals from resampling companies. Year effects removed; growth and margin trimmed at the extremes.</p>
+        <div class="st-tablebox">
+          <table class="st-table" data-source="valuation_weights" data-row-key="id">
+            <thead>
+              <tr>
+                <th data-field="basis">Margin basis</th>
+                <th data-field="sample">Firm-years</th>
+                <th data-field="weight" class="st-num">Weight</th>
+                <th data-field="weight_lo" class="st-num">Low</th>
+                <th data-field="weight_hi" class="st-num">High</th>
+                <th data-field="n" class="st-num st-hide-narrow">Count</th>
+              </tr>
+            </thead>
+            <tbody data-draw="val_weights"></tbody>
+          </table>
+        </div>
+        <p class="st-plain"><span class="st-plain-k">In plain English:</span> the weight is close to <b>{{v_w_early}}</b> in <b>{{y1019w}}</b> and <b>{{v_w_late}}</b> in <b>{{y2025w}}</b>, and <b>{{v_w_noacq}}</b> without acquisition-affected years. It is higher than the paper's own screening weight for a ten-year runway, <b>{{screen_lo}}</b> to <b>{{screen_hi}}</b>, which would fit investors expecting growth to last longer than that. A blank interval end means the margin coefficient's interval reaches zero. Above the bar of <b>{{rule40}}</b> the weights cannot be told apart from noise.</p>
+        <p class="st-caveat"><span class="st-plain-k">Limits.</span> Public float leaves out shares held by insiders, so it understates founder-controlled companies, and it ignores debt and cash. These are associations across companies, not evidence that raising your own score raises your multiple, and share-price returns are not tested. Sources: <span>{{ref_newv}}</span>; <span>{{ref_s81b}}</span>.</p>
+      </div>
+    </div>
+
+    <div class="st-grid">
+      <div class="st-card">
+        <span class="st-new">New analysis, not in the paper</span>
+        <h3 class="st-card-title">What happens if we don't automate?</h3>
+        <p class="st-card-note">Top-tail company, durable score. The automating company is shown after the cost of its changes in flight; the one that does nothing has none.</p>
+        <div class="st-nav st-scen" role="group" aria-label="Pricing and rivals">
+          <button type="button" class="st-btn" data-scen="fixed" aria-pressed="true">Prices fixed</button>
+          <button type="button" class="st-btn" data-scen="phi5c" aria-pressed="false">Half of savings to price</button>
+          <button type="button" class="st-btn" data-scen="phi5f" aria-pressed="false">Half to price, rivals fast</button>
+          <button type="button" class="st-btn" data-scen="phi7f" aria-pressed="false">Seven tenths, rivals fast</button>
+        </div>
+        <div class="st-chart dash-skeleton" data-draw="paths_chart" data-source="paths"></div>
+        <ul class="st-legend">
+          <li><span class="st-sw" style="background: var(--st-c0)"></span>Automates (central execution)</li>
+          <li><span class="st-sw" style="background: var(--cds-chart-status-critical)"></span>Does nothing</li>
+        </ul>
+        <p class="st-plain"><span class="st-plain-k">In plain English:</span> it depends on whether competitors pass their savings on to customers. At fixed prices, a company that does nothing keeps today's score of <b>{{dn_today}}</b>, and in <b>{{y28}}</b> it even reports more than one that is automating (<b>{{dn_adopt28}}</b>, after the cost of changes in flight). By <b>{{y36}}</b> the automating company leads by <b>{{dn_gap36}}</b> points. If rivals automate fast and pass half their savings into price, standing still falls to <b>{{dn_none5f_36}}</b> by <b>{{y36}}</b>, <b>{{dn_gap5f}}</b> points behind a company automating at the central pace; at seven tenths it falls to <b>{{dn_none7f_36}}</b>.</p>
+        <p class="st-caveat"><span class="st-plain-k">How.</span> Paper 1's pass-through scenario, in which rivals realize their programs and pass a share of each unit-cost saving into price, with the company's own automation set to zero. Demand and market growth are held as in the paper's path, and rivals' savings are the top-tail company's. Source: <span>{{ref_newp}}</span>.</p>
+      </div>
+      <div class="st-card">
+        <span class="st-new">New analysis, not in the paper</span>
+        <h3 class="st-card-title">What about a typical company, not the top tail?</h3>
+        <p class="st-card-note">The paper's typical company: medians of <b>{{y2325}}</b> firm-years with revenue of <b>{{rev_1to5}}</b>, its own growth, the same program, pace and target, prices fixed.</p>
+        <div class="st-chart dash-skeleton" data-draw="typical_chart" data-source="paths"></div>
+        <ul class="st-legend">
+          <li><span class="st-sw" style="background: var(--st-c1)"></span>Typical, durable</li>
+          <li><span class="st-sw" style="background: var(--st-c1); opacity: .5"></span>Typical, after changes in flight</li>
+          <li><span class="st-sw" style="background: var(--st-c0)"></span>Top tail, after changes in flight</li>
+        </ul>
+        <p class="st-plain"><span class="st-plain-k">In plain English:</span> a typical company starts lower, at <b>{{ty_today}}</b>, because its margin before growth spending is only <b>{{ty_m0}}</b> points against growth of <b>{{ty_g}}</b>. On the same program it reaches <b>{{ty_r36}}</b> by <b>{{y36}}</b> (<b>{{ty_r36_net}}</b> while still paying for changes): a gain of <b>{{ty_gain}}</b> points against <b>{{top_gain}}</b> for the top tail, because it has more cost to remove. Payback is about the same, <b>{{ty_payback}}</b> years, because gains and transition costs grow together. At its own capital intensity (<b>{{ty_k}}</b>) the <b>{{y36}}</b> score is <b>{{ty_r36_k}}</b>. Source: <span>{{ref_newp}}</span>.</p>
+      </div>
+    </div>
+
+    <div class="st-card" id="calculator">
+      <h3 class="st-card-title">Where does your company sit?</h3>
+      <p class="st-card-note">Enter your own numbers in percent of revenue, or start from one of the six positions. The page applies the paper's formulas: score points from a <b>{{lever_x}}</b> saving in each line (<span>{{ref_p9}}</span>), the capital hurdle (<span>{{ref_s75}}</span>) and the market growth a fully automated company would need for a cash score of <b>{{rule100}}</b> (<span>{{ref_s72}}</span>), at the paper's central costs.</p>
+      <div class="st-form">
+        <label>Start from<select data-draw="calc_preset" data-source="positions" aria-label="Start from a position"></select></label>
+        <label>Revenue growth<input type="number" step="0.1" data-calc="g"></label>
+        <label>Margin (free cash flow after SBC)<input type="number" step="0.1" data-calc="m"></label>
+        <label>Sales and marketing<input type="number" step="0.1" data-calc="sm"></label>
+        <label>General and administrative<input type="number" step="0.1" data-calc="ga"></label>
+        <label>Research and development<input type="number" step="0.1" data-calc="rd"></label>
+        <label>People cost in cost of revenue<input type="number" step="0.1" data-calc="ch" placeholder="optional"></label>
+        <label>Capital per dollar of new revenue<input type="number" step="0.01" data-calc="k"></label>
+        <label>Compute share at full automation<input type="number" step="0.1" data-calc="cc"></label>
+        <label>Savings passed to price<select data-calc="phi"><option value="0">None (prices fixed)</option><option value="0.5">Half</option><option value="0.7">Seven tenths</option></select></label>
+        <label>Selling spend that buys growth<select data-calc="basis"><option value="net">Above the maintenance level</option><option value="all">All of it</option><option value="none">None of it</option></select></label>
+      </div>
+      <div class="st-chart st-short dash-skeleton" data-draw="calc_out" data-source="facts"></div>
+      <p class="st-caveat"><span class="st-plain-k">What it does not do.</span> It compares savings of the same size and leaves out what each saving costs to get. It treats engineering as a cost line, ignores what selling spend buys beyond the chosen basis, and uses the paper's central cost structure for the threshold. It is a first screen, not a plan.</p>
+    </div>
+
+    <div class="st-grid">
+      <div class="st-card">
+        <h3 class="st-card-title">Answered once the companion paper is audited</h3>
+        <p class="st-card-note">The companion paper (in preparation) covers these; they go on this page after its own independent check.</p>
+        <ul class="st-list">
+          <li>When to start, and when waiting pays because compute keeps getting cheaper.</li>
+          <li>Which tasks to automate first, data readiness, and pilots as a go/no-go step.</li>
+          <li>Labor law, engineering talent, the employees who stay, and where data may be held.</li>
+          <li>Ownership: public, private equity and buyouts, how big a dip each can carry, and the pace each allows.</li>
+          <li>AI in the product: pricing labor-substituting AI, fewer seats when customers automate, product gross margins and cannibalization.</li>
+          <li>Accounting: capitalized software and internal control when AI runs the controls.</li>
+        </ul>
+      </div>
+      <div class="st-card">
+        <h3 class="st-card-title">What no available data can answer yet</h3>
+        <ul class="st-list">
+          <li><span class="st-plain-k">The weight on growth your company acts on.</span> The data do not identify it. The market's weight above is investors' view across companies, not yours. What would answer it: your own value of an extra dollar of revenue.</li>
+          <li><span class="st-plain-k">Whether your growth spending earns back its cost.</span> What would answer it: payback and retention by customer cohort at a stated discount rate.</li>
+          <li><span class="st-plain-k">Why the top of the score distribution fell.</span> The data cannot separate fewer fast growers from lower margins among them.</li>
+          <li><span class="st-plain-k">What AI will be able to do, and when.</span> The paper assumes every process can be automated from the start. Measured task length has doubled about every <b>{{metr_days}}</b>, but that is outside the model.</li>
+          <li><span class="st-plain-k">Private AI-native companies and companies outside US public software.</span> They are not in SEC filings; answering needs private-company or non-US filings data.</li>
+          <li><span class="st-plain-k">Whether a higher score predicts share-price returns.</span> SEC filings carry no prices; answering needs a price database.</li>
+        </ul>
+        <p class="st-plain">Sources: <span>{{ref_s86}}</span>; <span>{{ref_s81}}</span>; <span>{{ref_s5}}</span>.</p>
+      </div>
+    </div>
+  </section>
+
   <section class="st-section" id="claims">
     <h2 class="st-h2">Which of the paper's claims held up</h2>
     <p class="st-note"><b>{{claims_hold}}</b> of the <b>{{claims_rows}}</b> headline claims hold in every world tested. The others hold at the paper's central values; where they break, the paper now states the condition or reports the case. A second run with another seed gave the same verdict on <b>{{seed_agree}}</b> of <b>{{seed_tests}}</b> tests.</p>
@@ -572,6 +699,8 @@
       <div><dt>Full-cost floors</dt><dd>The recurring costs of maintaining, securing and supervising AI, including the losses from its errors.</dd></div>
       <div><dt>Accountability floor</dt><dd>The cost of audits, internal controls and the accountable people behind them, which automation does not remove.</dd></div>
       <div><dt>Simulated world</dt><dd>One run of the paper's model with one mix of assumptions, each inside the range the paper states. The stress test ran a million per seed.</dd></div>
+      <div><dt>Public float</dt><dd>The market value of shares held by people outside the company's insiders, as each company states it in its annual report.</dd></div>
+      <div><dt>Multiple</dt><dd>Market value divided by revenue.</dd></div>
       <div><dt>Central value</dt><dd>The paper's answer with every assumption at its middle setting.</dd></div>
       <div><dt>Sobol index</dt><dd>The share of the differences between worlds that one group of assumptions explains, counting how it interacts with the others.</dd></div>
     </dl>
@@ -973,6 +1102,160 @@
     dash.draw('claims_table');
   }));
   document.querySelectorAll('#st-claim-search').forEach((inp) => inp.addEventListener('input', () => { query = inp.value.trim().toLowerCase(); dash.draw('claims_table'); }));
+
+  // ---- open questions: valuation by score tenth ----
+  let vbasis = 'Free cash flow after SBC';
+  dash.draw('val_deciles', (el) => {
+    if (!prep(el, 'valuation_deciles')) return;
+    const rs = rows('valuation_deciles').filter((r) => r.basis === vbasis).sort((p, q) => +p.decile - +q.decile);
+    const W = Math.max(280, el.clientWidth), H = 240;
+    const svg = d3.select(el).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`).attr('role', 'img');
+    const ymax = d3.max(rows('valuation_deciles'), (r) => +r.multiple_p75) || 1;
+    const y = d3.scaleLinear([0, ymax * 1.05], [H - 30, 8]).nice();
+    const yTicks = y.ticks(5);
+    const fx = (v) => d3.format('.0f')(v) + '×';
+    const left = Math.ceil(textW(svg, yTicks.map(fx))) + 10;
+    const x = d3.scaleBand(rs.map((r) => String(r.decile)), [left, W - 8]).padding(0.25);
+    const gy = svg.append('g').attr('transform', `translate(${left},0)`).call(d3.axisLeft(y).tickValues(yTicks).tickFormat(fx).tickSize(-(W - 8 - left)));
+    styleAxis(gy); gy.select('.domain').remove();
+    const gx = svg.append('g').attr('transform', `translate(0,${H - 30})`).call(d3.axisBottom(x).tickSizeOuter(0));
+    styleAxis(gx);
+    caption(svg.append('text').attr('x', W - 8).attr('y', H - 2).attr('text-anchor', 'end')).text('Tenth of the score, lowest to highest');
+    const bw = Math.min(32, x.bandwidth());
+    const tt = tooltip(el);
+    rs.forEach((r) => {
+      const cx = x(String(r.decile)) + x.bandwidth() / 2;
+      svg.append('rect').attr('x', cx - bw / 2).attr('width', bw).attr('y', y(+r.multiple_median)).attr('height', y(0) - y(+r.multiple_median)).attr('rx', 2).attr('fill', dash.colors[0]);
+      svg.append('line').attr('x1', cx).attr('x2', cx).attr('y1', y(+r.multiple_p25)).attr('y2', y(+r.multiple_p75)).attr('stroke', 'var(--color-fg)').attr('stroke-width', 1.5);
+      svg.append('rect').attr('x', x(String(r.decile))).attr('width', x.bandwidth()).attr('y', 8).attr('height', H - 38).attr('fill', 'transparent')
+        .on('mousemove', (ev) => { const er = el.getBoundingClientRect(); showTip(el, tt, [[`Tenth ${r.decile}: score ${f1(+r.score_lo)} to ${f1(+r.score_hi)}`], ['Median multiple', f2(+r.multiple_median) + '×'], ['Middle half', `${f2(+r.multiple_p25)}× to ${f2(+r.multiple_p75)}×`], ['Firm-years', String(r.n)]], ev.clientX - er.left, ev.clientY - er.top); })
+        .on('mouseleave', () => hideTip(tt));
+    });
+  });
+  document.querySelectorAll('.st-vbasis button[data-vbasis]').forEach((btn) => btn.addEventListener('click', () => {
+    vbasis = btn.dataset.vbasis;
+    document.querySelectorAll('.st-vbasis button[data-vbasis]').forEach((b) => b.setAttribute('aria-pressed', String(b === btn)));
+    dash.draw('val_deciles');
+  }));
+  dash.draw('val_weights', (tbody) => {
+    tbody.replaceChildren();
+    if (dash.data('valuation_weights').status !== 'ok') return;
+    rows('valuation_weights').forEach((r) => {
+      const tr = document.createElement('tr'); tr.dataset.key = r.id;
+      cell(tr, r.basis); cell(tr, r.sample); cell(tr, r.weight, 'st-num'); cell(tr, r.weight_lo, 'st-num'); cell(tr, r.weight_hi, 'st-num'); cell(tr, r.n, 'st-num st-hide-narrow');
+      tbody.appendChild(tr);
+    });
+  });
+
+  // ---- open questions: score paths by year ----
+  const lineChart = (el, series, yd) => {
+    const W = Math.max(280, el.clientWidth), H = 240;
+    const svg = d3.select(el).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`).attr('role', 'img');
+    const y = d3.scaleLinear(yd, [H - 26, 10]).nice();
+    const yTicks = y.ticks(5);
+    const left = Math.ceil(textW(svg, yTicks.map(f0))) + 10;
+    const years = Array.from(new Set(series.flatMap((s) => s.rows.map((r) => +r.year)))).sort();
+    const endW = Math.ceil(textW(svg, ['00.0'])) + 10;
+    const x = d3.scaleLinear([d3.min(years), d3.max(years)], [left + 6, W - endW]);
+    const gy = svg.append('g').attr('transform', `translate(${left},0)`).call(d3.axisLeft(y).tickValues(yTicks).tickFormat(f0).tickSize(-(W - endW - left)));
+    styleAxis(gy); gy.select('.domain').remove();
+    const gx = svg.append('g').attr('transform', `translate(0,${H - 26})`).call(d3.axisBottom(x).tickValues(years).tickFormat(d3.format('d')).tickSizeOuter(0));
+    styleAxis(gx);
+    series.forEach((s) => {
+      const pts = s.rows.map((r) => [x(+r.year), y(+r.score)]);
+      svg.append('path').attr('d', d3.line()(pts)).attr('fill', 'none').attr('stroke', s.color).attr('stroke-width', 2).attr('stroke-linejoin', 'round').attr('stroke-linecap', 'round').attr('opacity', s.opacity || 1).attr('stroke-dasharray', s.dash || null);
+      svg.append('g').selectAll('circle').data(s.rows).join('circle').attr('cx', (r) => x(+r.year)).attr('cy', (r) => y(+r.score)).attr('r', 3).attr('fill', s.color).attr('opacity', s.opacity || 1);
+      const last = s.rows[s.rows.length - 1];
+      if (last) caption(svg.append('text').attr('x', x(+last.year) + 6).attr('y', y(+last.score)).attr('dy', '0.35em')).style('font-variant-numeric', 'tabular-nums').text(f1(+last.score));
+    });
+    const tt = tooltip(el);
+    svg.append('rect').attr('x', left).attr('y', 10).attr('width', W - endW - left).attr('height', H - 36).attr('fill', 'transparent')
+      .on('mousemove', (ev) => {
+        const [mx] = d3.pointer(ev);
+        const yr = years.reduce((a, b) => (Math.abs(x(b) - mx) < Math.abs(x(a) - mx) ? b : a));
+        const lines = [[String(yr)]].concat(series.map((s) => { const r = s.rows.find((q) => +q.year === yr); return [s.name, r ? f1(+r.score) : '']; }));
+        const er = el.getBoundingClientRect(); showTip(el, tt, lines, ev.clientX - er.left, ev.clientY - er.top);
+      })
+      .on('mouseleave', () => hideTip(tt));
+  };
+  const pathRows = (scen) => rows('paths').filter((r) => r.scenario === scen).sort((p, q) => +p.year - +q.year);
+  const SCEN = { fixed: ['adopt_fixed', 'none_fixed'], phi5c: ['adopt_phi5', 'none_phi5_central'], phi5f: ['adopt_phi5_rfast', 'none_phi5_fast'], phi7f: ['adopt_phi7_rfast', 'none_phi7_fast'] };
+  let scen = 'fixed';
+  dash.draw('paths_chart', (el) => {
+    if (!prep(el, 'paths')) return;
+    const all = Object.values(SCEN).flat().flatMap(pathRows).map((r) => +r.score);
+    const [a, b] = SCEN[scen];
+    lineChart(el, [{ rows: pathRows(a), color: dash.colors[0], name: 'Automates' }, { rows: pathRows(b), color: 'var(--cds-chart-status-critical)', name: 'Does nothing' }], [d3.min(all) - 2, d3.max(all) + 2]);
+  });
+  document.querySelectorAll('.st-scen button[data-scen]').forEach((btn) => btn.addEventListener('click', () => {
+    scen = btn.dataset.scen;
+    document.querySelectorAll('.st-scen button[data-scen]').forEach((b) => b.setAttribute('aria-pressed', String(b === btn)));
+    dash.draw('paths_chart');
+  }));
+  dash.draw('typical_chart', (el) => {
+    if (!prep(el, 'paths')) return;
+    const ser = [{ rows: pathRows('typical_durable'), color: dash.colors[1], name: 'Typical, durable' },
+      { rows: pathRows('typical_net'), color: dash.colors[1], name: 'Typical, after changes in flight', opacity: 0.5, dash: '5 3' },
+      { rows: pathRows('adopt_fixed'), color: dash.colors[0], name: 'Top tail, after changes in flight' }];
+    const all = ser.flatMap((s) => s.rows.map((r) => +r.score));
+    lineChart(el, ser, [d3.min(all) - 2, d3.max(all) + 2]);
+  });
+
+  // ---- calculator ----
+  const inputs = () => { const v = {}; document.querySelectorAll('[data-calc]').forEach((e) => { v[e.dataset.calc] = e.value; }); return v; };
+  const setInput = (k, val) => document.querySelectorAll(`[data-calc="${k}"]`).forEach((e) => { e.value = val; });
+  const applyPreset = (code) => {
+    const r = rows('positions').find((q) => q.code === code); if (!r) return;
+    setInput('g', r.growth); setInput('m', r.margin); setInput('sm', r.sm); setInput('ga', r.ga); setInput('rd', r.rd); setInput('k', r.k); setInput('ch', '');
+    const cc = factNum('cc_cen'); if (Number.isFinite(cc)) setInput('cc', String(cc));
+    dash.draw('calc_out');
+  };
+  let presetDone = false;
+  dash.draw('calc_preset', (sel) => {
+    const d = dash.data('positions');
+    sel.replaceChildren(...(d.status === 'ok' ? rows('positions') : []).map((r) => new Option(r.position, r.code)), new Option('My own numbers', ''));
+    sel.onchange = () => { if (sel.value) applyPreset(sel.value); };
+    if (!presetDone && d.status === 'ok' && dash.data('facts').status === 'ok' && rows('positions').length) { presetDone = true; sel.value = rows('positions')[0].code; applyPreset(sel.value); }
+  });
+  document.querySelectorAll('[data-calc]').forEach((e) => e.addEventListener('input', () => {
+    document.querySelectorAll('[data-draw="calc_preset"]').forEach((s) => { s.value = ''; });
+    dash.draw('calc_out');
+  }));
+  dash.draw('calc_out', (el) => {
+    if (!prep(el, 'facts')) return;
+    const v = inputs(), num = (k) => (v[k] === '' || v[k] === undefined ? NaN : Number(v[k]));
+    const X = factNum('lever_x') / 100, maint = factNum('sm_maint'), delta = factNum('cap_delta'), base0 = factNum('margin_cen'), cc0 = factNum('cc_cen'), tau = factNum('tau_cen');
+    const g = num('g'), m = num('m'), sm = num('sm'), ga = num('ga'), rd = num('rd'), ch = num('ch'), k = num('k'), cc = num('cc'), phi = num('phi');
+    const sigma = v.basis === 'all' ? sm : v.basis === 'none' ? 0 : Math.max(sm - maint, 0);
+    const lev = [{ label: 'Engineering (R&D)', v: X * rd, c: dash.colors[0] }, { label: 'Back office (G&A)', v: X * ga, c: dash.colors[1] },
+      { label: 'Growth engine (S&M)', v: X * sigma, c: dash.colors[2] }, { label: 'Cost of revenue', v: X * ch * (1 - phi), c: dash.colors[3] }];
+    const ok = lev.filter((l) => Number.isFinite(l.v));
+    if (!ok.length) { const p = document.createElement('p'); p.className = 'st-card-note'; p.textContent = 'Enter cost lines to see the ranking.'; el.appendChild(p); return; }
+    const ranked = ok.slice().sort((p, q) => q.v - p.v);
+    const W = Math.max(280, el.clientWidth), rowH = 24, H = lev.length * rowH + 6;
+    const svg = d3.select(el).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`).attr('role', 'img');
+    const labW = Math.ceil(textW(svg, lev.map((l) => l.label))) + 10, valW = Math.ceil(textW(svg, ['00.00 points'])) + 10;
+    const xs = d3.scaleLinear([0, Math.max(d3.max(ok, (l) => l.v), 0.01)], [labW, Math.max(labW + 20, W - valW)]);
+    lev.forEach((l, i) => {
+      const y0 = i * rowH + 3;
+      svg.append('text').attr('x', labW - 6).attr('y', y0 + rowH / 2 - 2).attr('dy', '0.35em').attr('text-anchor', 'end').attr('fill', 'var(--color-fg)').style('font-size', 'var(--cds-font-size-caption)').text(l.label);
+      if (!Number.isFinite(l.v)) { caption(svg.append('text').attr('x', labW).attr('y', y0 + rowH / 2 - 2).attr('dy', '0.35em')).text('enter its cost to rank it'); return; }
+      svg.append('rect').attr('x', labW).attr('y', y0 + 2).attr('height', rowH - 8).attr('width', Math.max(1, xs(l.v) - labW)).attr('rx', 2).attr('fill', l.c).attr('opacity', l === ranked[0] ? 1 : 0.55);
+      caption(svg.append('text').attr('x', xs(l.v) + 4).attr('y', y0 + rowH / 2 - 2).attr('dy', '0.35em')).style('font-variant-numeric', 'tabular-nums').text(f2(l.v) + ' points');
+    });
+    const out = document.createElement('ul'); out.className = 'st-list';
+    const li = (t) => { const e = document.createElement('li'); e.textContent = t; out.appendChild(e); };
+    li(`First: ${ranked[0].label}${ranked[1] ? `; second: ${ranked[1].label}` : ''} (score points from a ${f0(X * 100)}% saving in each line).`);
+    if (Number.isFinite(g) && Number.isFinite(m)) li(`Your score today: ${f1(g + m)} (growth ${f1(g)} plus margin ${f1(m)}).`);
+    if (Number.isFinite(g)) li(`Owning AI capacity pays only if each dollar of capital removes more than ${f2(g / 100 + delta)} dollars of yearly cost (growth plus a ${f2(delta)} replacement rate).`);
+    if (Number.isFinite(cc)) {
+      const base = base0 + (1 - tau) * (cc0 - cc), kk = Number.isFinite(k) ? k : 0;
+      if (base >= 100) li(`At a compute share of ${f1(cc)}% the fully automated margin alone exceeds 100.`);
+      else if (kk >= 1) li(`With capital of ${f2(kk)} per dollar of new revenue, growth lowers the cash score, so full automation cannot reach 100 at any growth rate.`);
+      else li(`A fully automated company like yours would need market growth above ${f1((100 - base) / (1 - kk))}% a year for a cash score of 100 (compute ${f1(cc)}% of revenue, central costs, fixed prices).`);
+    }
+    el.appendChild(out);
+  });
 
   // ---- questions: show one role or all ----
   document.querySelectorAll('.st-role button[data-role]').forEach((btn) => btn.addEventListener('click', () => {
