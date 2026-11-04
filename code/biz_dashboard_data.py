@@ -426,8 +426,8 @@ fm('rev_op', 'RevealedOpMed', S['sec:horizons-ranges'])
 # run
 fact('draws', f'{N:,}', S['supp:stress'], 'Latin-hypercube draws per seed')
 fact('dims', str(len(J['dims'])), S['supp:stress'])
-fact('seed_agree', str(n_agree), S['supp:stress'], 'tests with the same verdict under the second seed')
-fact('seed_tests', str(len(sc)), S['supp:stress'])
+fact('seed_agree', str(n_agree), 'Stress-test run: notes/mc_results_2026-11-03_1m/seed2/mc_claims.json seed_comparison', 'tests with the same verdict under the second seed')
+fact('seed_tests', str(len(sc)), 'Stress-test run: notes/mc_results_2026-11-03_1m/seed2/mc_claims.json seed_comparison')
 fm('seed_maxdiff', 'StSeedTwoMaxDiff', S['supp:stress'])
 fm('mc_se', 'StMcShareSeMax', S['supp:stress'])
 fact('claims_hold', str(n_hold), S['supp:stress'], 'rows of Table S18 that hold everywhere')
@@ -452,10 +452,10 @@ for k, v, src, note in [
         ('metr_days', '131 days', S['sec:discussion-limits'], 'doubling time of the task length agents complete half the time (METR)'),
         ('y22', '2022', S['sec:horizons-ranges'], 'fiscal years of the cost-program comparison'), ('y24', '2024', S['sec:horizons-ranges'], ''),
         ('rev_100m', '$100 million', S['sec:horizons-ranges'], 'revenue floor of that comparison'),
-        ('rule40', '40', S['sec:data'], 'the Rule-of-40 bar'), ('ci_level', '95%', S['supp:stress'], 'level of the Sobol intervals'),
+        ('rule40', '40', S['sec:data'], 'the Rule-of-40 bar'), ('sox404', 'Section 404', S['sec:horizons-ceiling'], 'Sarbanes-Oxley Act section on internal control'), ('ci_level', '95%', S['supp:stress'], 'level of the Sobol intervals'),
         ('ref_s1', 'Paper 1, Section 1', '', ''), ('ref_s4', 'Paper 1, Section 4', '', ''), ('ref_s5', 'Paper 1, Section 5', '', ''),
         ('ref_s6', 'Paper 1, Section 6', '', ''), ('ref_s72', 'Paper 1, Section 7.2', '', ''), ('ref_s73', 'Paper 1, Section 7.3', '', ''),
-        ('ref_s75', 'Paper 1, Section 7.5 and Table 7', '', ''), ('ref_s81', 'Paper 1, Section 8.1', '', ''),
+        ('ref_s75', 'Paper 1, Section 7.5 and Table 7', '', ''), ('ref_s74', 'Paper 1, Section 7.4', '', ''), ('ref_s81', 'Paper 1, Section 8.1', '', ''),
         ('ref_s82', 'Paper 1, Section 8.2', '', ''), ('ref_s83', 'Paper 1, Section 8.3', '', ''), ('ref_s84', 'Paper 1, Section 8.4', '', ''),
         ('ref_s85', 'Paper 1, Section 8.5', '', ''), ('ref_s86', 'Paper 1, Section 8.6', '', ''), ('ref_s9', 'Paper 1, Section 9', '', ''),
         ('ref_c3', 'Paper 1, Corollary 3', '', ''), ('ref_p4', 'Paper 1, Proposition 4', '', ''),

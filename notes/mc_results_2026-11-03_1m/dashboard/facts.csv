@@ -183,8 +183,8 @@ acq_hi,114,\acqConvHi,"Paper 1, Section 6",
 rev_op,8.6,\RevealedOpMed,"Paper 1, Section 7.3",
 draws,"1,000,000",,"Supplementary Appendix, Section S10",Latin-hypercube draws per seed
 dims,51,,"Supplementary Appendix, Section S10",
-seed_agree,69,,"Supplementary Appendix, Section S10",tests with the same verdict under the second seed
-seed_tests,69,,"Supplementary Appendix, Section S10",
+seed_agree,69,,Stress-test run: notes/mc_results_2026-11-03_1m/seed2/mc_claims.json seed_comparison,tests with the same verdict under the second seed
+seed_tests,69,,Stress-test run: notes/mc_results_2026-11-03_1m/seed2/mc_claims.json seed_comparison,
 seed_maxdiff,0.02,\StSeedTwoMaxDiff,"Supplementary Appendix, Section S10",
 mc_se,0.05,\StMcShareSeMax,"Supplementary Appendix, Section S10",
 claims_hold,6,,"Supplementary Appendix, Section S10",rows of Table S18 that hold everywhere
@@ -213,6 +213,7 @@ y22,2022,,"Paper 1, Section 7.3",fiscal years of the cost-program comparison
 y24,2024,,"Paper 1, Section 7.3",
 rev_100m,$100 million,,"Paper 1, Section 7.3",revenue floor of that comparison
 rule40,40,,"Paper 1, Section 4",the Rule-of-40 bar
+sox404,Section 404,,"Paper 1, Section 7.2",Sarbanes-Oxley Act section on internal control
 ci_level,95%,,"Supplementary Appendix, Section S10",level of the Sobol intervals
 ref_s1,"Paper 1, Section 1",,"Paper 1, Section 1",
 ref_s4,"Paper 1, Section 4",,"Paper 1, Section 4",
@@ -221,6 +222,7 @@ ref_s6,"Paper 1, Section 6",,"Paper 1, Section 6",
 ref_s72,"Paper 1, Section 7.2",,"Paper 1, Section 7.2",
 ref_s73,"Paper 1, Section 7.3",,"Paper 1, Section 7.3",
 ref_s75,"Paper 1, Section 7.5 and Table 7",,"Paper 1, Section 7.5 and Table 7",
+ref_s74,"Paper 1, Section 7.4",,"Paper 1, Section 7.4",
 ref_s81,"Paper 1, Section 8.1",,"Paper 1, Section 8.1",
 ref_s82,"Paper 1, Section 8.2",,"Paper 1, Section 8.2",
 ref_s83,"Paper 1, Section 8.3",,"Paper 1, Section 8.3",
