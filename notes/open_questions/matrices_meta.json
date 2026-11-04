@@ -1,0 +1,13 @@
+{
+ "box_median_R2036": 52.2008,
+ "box_median_payback": 10.2493,
+ "score_cap_growth_nonfinite": 0,
+ "payback_cap_win_nonfinite": 0,
+ "boom_share_all": 0.18123496391339214,
+ "boom_share_hglm": 0.36633663366336633,
+ "rel_hglm": 2.0017339591588232,
+ "rel_lghm": 0.826846544114175,
+ "rel_hghm": 1.1824418990781722,
+ "rel_lglm": 0.3189503145931074,
+ "margin_up_columns": 4
+}

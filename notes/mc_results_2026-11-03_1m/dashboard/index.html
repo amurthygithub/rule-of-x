@@ -314,15 +314,15 @@
           <li>An owner who sells within five years still gains if the price reflects the benefits to come, which are worth <b data-draw="f" data-source="facts" data-field="display" data-where="key=pay_exit5">—</b> of a year's revenue at year five.</li>
           <li>During the program the cash score runs <b data-draw="f" data-source="facts" data-field="display" data-where="key=dip28">—</b> to <b data-draw="f" data-source="facts" data-field="display" data-where="key=dip36">—</b> points below its durable level under central execution. A screen that reads that dip as weakness penalizes companies that are executing.</li>
         </ul>
-        <p class="st-plain"><span class="st-plain-k">In plain English:</span> under central or fast execution the program is worth more than it costs, but it takes years to repay; under slow execution it is not worth funding. Faster execution is what shortens the wait. Sources: <span class="st-ref" data-draw="f" data-source="facts" data-field="display" data-where="key=ref_s73">—</span>; <span class="st-ref" data-draw="f" data-source="facts" data-field="display" data-where="key=ref_s82">—</span>; <span class="st-ref" data-draw="f" data-source="facts" data-field="display" data-where="key=ref_s10">—</span>.</p>
+        <p class="st-plain"><span class="st-plain-k">In plain English:</span> under central or fast execution the program is worth more than it costs, but it takes years to repay; under slow execution it is not worth funding. Faster execution shortens the wait mainly through its higher success rate: the paper's fast case also raises change capacity, which on its own barely moves payback (next chart). Sources: <span class="st-ref" data-draw="f" data-source="facts" data-field="display" data-where="key=ref_s73">—</span>; <span class="st-ref" data-draw="f" data-source="facts" data-field="display" data-where="key=ref_s82">—</span>; <span class="st-ref" data-draw="f" data-source="facts" data-field="display" data-where="key=ref_s10">—</span>.</p>
       </div>
     </div>
     <div class="st-grid">
       <div class="st-card">
         <h3 class="st-card-title">Payback by change capacity and success</h3>
-        <p class="st-card-note">Median payback in years over the whole stress test. Rows: change capacity. Columns: share of attempted changes that create value. Darker means a longer wait.</p>
+        <p class="st-card-note">Median payback in years of the simulated worlds in each cell. Rows: change capacity. Columns: share of attempted changes that create value. Darker means a longer wait. Each cell averages over every other input of the stress test, many of them less favorable than the paper's central case, so cells run above its <b data-draw="f" data-source="facts" data-field="display" data-where="key=pay_back">—</b> years (median of the whole stress test: <b data-draw="f" data-source="facts" data-field="display" data-where="key=hm_box_pay">—</b>).</p>
         <div class="st-chart st-heat dash-skeleton" data-draw="heatmap" data-source="matrices" data-matrix="payback_cap_win"></div>
-        <p class="st-plain"><span class="st-plain-k">In plain English:</span> payback hardly moves down a column: changing more work each year brings gains and transition costs forward together. It shortens across a row, from <b data-draw="f" data-source="facts" data-field="display" data-where="key=hm_p_lo">—</b> years when fewer changes succeed to <b data-draw="f" data-source="facts" data-field="display" data-where="key=hm_p_hi">—</b> when more do. Speed buys a higher score sooner; success buys a faster payback.</p>
+        <p class="st-plain"><span class="st-plain-k">In plain English:</span> payback hardly moves down a column: changing more work each year brings gains and transition costs forward together. It shortens across a row, from <b data-draw="f" data-source="facts" data-field="display" data-where="key=hm_p_lo">—</b> years when fewer changes succeed to <b data-draw="f" data-source="facts" data-field="display" data-where="key=hm_p_hi">—</b> when more do. More change capacity buys a higher score by <span data-draw="f" data-source="facts" data-field="display" data-where="key=y36">—</span> (next section); more success buys a faster payback.</p>
       </div>
     </div>
   </section>
@@ -352,7 +352,7 @@
     <div class="st-grid">
       <div class="st-card">
         <h3 class="st-card-title">The Rule-of-100 growth threshold by compute cost and capital needs</h3>
-        <p class="st-card-note">Market growth a fully automated company needs for a cash score of <b data-draw="f" data-source="facts" data-field="display" data-where="key=rule100">—</b>, from the paper's formula at central costs and fixed prices. Rows: compute share of revenue at <span data-draw="f" data-source="facts" data-field="display" data-where="key=y25">—</span> prices. Columns: capital per dollar of new revenue, negative when customers pay in advance. Darker means a higher bar.</p>
+        <p class="st-card-note">Market growth a fully automated company needs for a cash score of <b data-draw="f" data-source="facts" data-field="display" data-where="key=rule100">—</b>, from the paper's formula at central costs and fixed prices. Rows: compute share of revenue at <span data-draw="f" data-source="facts" data-field="display" data-where="key=y25">—</span> prices. Columns: capital per dollar of new revenue, negative when customers pay in advance; capital spending is not tax-deductible, as in the paper's formula. Darker means a higher bar; the colours follow a log scale.</p>
         <div class="st-chart st-heat dash-skeleton" data-draw="heatmap" data-source="matrices" data-matrix="gstar_cc_k"></div>
         <p class="st-plain"><span class="st-plain-k">In plain English:</span> cheap compute and advance billing make a Rule of 100 easiest, at <b data-draw="f" data-source="facts" data-field="display" data-where="key=hm_g_best">—</b> in the top-left corner. Capital needs push it out of reach fast: with compute at <b data-draw="f" data-source="facts" data-field="display" data-where="key=cc_cen">—</b> of revenue and half a dollar of capital per dollar of new revenue it takes <b data-draw="f" data-source="facts" data-field="display" data-where="key=hm_g_k5">—</b>. Cells above <b data-draw="f" data-source="facts" data-field="display" data-where="key=rule100">—</b>% ask for growth no market sustains. Source: <span class="st-ref" data-draw="f" data-source="facts" data-field="display" data-where="key=ref_s72">—</span>.</p>
       </div>
@@ -387,7 +387,7 @@
     <div class="st-grid">
       <div class="st-card">
         <h3 class="st-card-title">Score in <span data-draw="f" data-source="facts" data-field="display" data-where="key=y36">—</span> by change capacity and market growth</h3>
-        <p class="st-card-note">Median <span data-draw="f" data-source="facts" data-field="display" data-where="key=y36">—</span> score of the simulated worlds in each cell, central basis. Rows: change capacity, the share of the program changed a year. Columns: market growth a year. Darker means a higher score.</p>
+        <p class="st-card-note">Median durable <span data-draw="f" data-source="facts" data-field="display" data-where="key=y36">—</span> score (before the cost of changes in flight) of the simulated worlds in each cell, central basis. Rows: change capacity, the share of the program changed a year. Columns: market growth a year. Darker means a higher score. Each cell averages over every other input of the stress test, so cells run below the paper's central case (<b data-draw="f" data-source="facts" data-field="display" data-where="key=r36">—</b> at <b data-draw="f" data-source="facts" data-field="display" data-where="key=cap_cen">—</b> capacity and <b data-draw="f" data-source="facts" data-field="display" data-where="key=g_central">—</b> growth; median of the whole stress test: <b data-draw="f" data-source="facts" data-field="display" data-where="key=hm_box_r36">—</b>).</p>
         <div class="st-chart st-heat dash-skeleton" data-draw="heatmap" data-source="matrices" data-matrix="score_cap_growth"></div>
         <p class="st-plain"><span class="st-plain-k">In plain English:</span> moving down a column (more change capacity) adds about as much as moving across a row (a faster market). The fastest-changing companies in the slowest markets end at <b data-draw="f" data-source="facts" data-field="display" data-where="key=hm_s_hl">—</b>, above the slowest-changing companies in the fastest markets at <b data-draw="f" data-source="facts" data-field="display" data-where="key=hm_s_lh">—</b>; the corners run from <b data-draw="f" data-source="facts" data-field="display" data-where="key=hm_s_ll">—</b> to <b data-draw="f" data-source="facts" data-field="display" data-where="key=hm_s_hh">—</b>.</p>
       </div>
@@ -641,14 +641,16 @@
 
     <div class="st-grid">
       <div class="st-card">
+        <span class="st-new">New analysis, not in the paper</span>
         <h3 class="st-card-title">Multiple by growth and margin</h3>
-        <p class="st-card-note">Median market value over revenue in each fifth of growth (columns, slowest to fastest) and of margin (rows, free cash flow after SBC, highest at the top). Faded cells hold fewer than <b data-draw="f" data-source="facts" data-field="display" data-where="key=hm_few">—</b> firm-years.</p>
-        <div class="st-chart st-heat dash-skeleton" data-draw="heatmap" data-source="matrices" data-matrix="mult_g_m"></div>
-        <p class="st-plain"><span class="st-plain-k">In plain English:</span> the multiple rises far more from left to right than from bottom to top. Slow growers with the best margins sit at <b data-draw="f" data-source="facts" data-field="display" data-where="key=hm_m_lghm">—</b> revenue, fast growers with the worst margins at <b data-draw="f" data-source="facts" data-field="display" data-where="key=hm_m_hglm">—</b>, and slow growers with the worst margins at <b data-draw="f" data-source="facts" data-field="display" data-where="key=hm_m_lglm">—</b>. That is the market's heavier weight on growth, cell by cell. Source: <span class="st-ref" data-draw="f" data-source="facts" data-field="display" data-where="key=ref_newv">—</span>.</p>
+        <p class="st-card-note">Median public float over revenue in each fifth of growth (columns, slowest to fastest) and of margin (rows, free cash flow after SBC, highest at the top), pooled across fiscal years <span><span data-draw="f" data-source="facts" data-field="display" data-where="key=y1025w">—</span></span>. Public float is the market value of shares held outside the company's insiders, not full market value. Faded cells hold fewer than <b data-draw="f" data-source="facts" data-field="display" data-where="key=hm_few">—</b> firm-years.</p>
+        <div class="st-chart st-heat dash-skeleton" data-draw="heatmap" data-source="matrices facts" data-matrix="mult_g_m"></div>
+        <p class="st-plain"><span class="st-plain-k">In plain English:</span> the multiple rises far more from left to right than from bottom to top. Slow growers with the best margins sit at <b data-draw="f" data-source="facts" data-field="display" data-where="key=hm_m_lghm">—</b> revenue, fast growers with the worst margins at <b data-draw="f" data-source="facts" data-field="display" data-where="key=hm_m_hglm">—</b>, and slow growers with the worst margins at <b data-draw="f" data-source="facts" data-field="display" data-where="key=hm_m_lglm">—</b>. In <b data-draw="f" data-source="facts" data-field="display" data-where="key=hm_m_up">—</b> of the five growth bands a better margin carries a higher multiple; the fastest band is the exception, where the best margins sit at <b data-draw="f" data-source="facts" data-field="display" data-where="key=hm_m_hghm">—</b> in a faded cell. Part of the contrast is timing: <b data-draw="f" data-source="facts" data-field="display" data-where="key=hm_m_boom">—</b> of the fastest, lowest-margin cell falls in <span><span data-draw="f" data-source="facts" data-field="display" data-where="key=y2021w">—</span></span>, against <b data-draw="f" data-source="facts" data-field="display" data-where="key=hm_m_boom_all">—</b> of the sample. Against each year's median multiple, that cell sits at <b data-draw="f" data-source="facts" data-field="display" data-where="key=hm_m_rel_hglm">—</b> and the slow growers with the best margins at <b data-draw="f" data-source="facts" data-field="display" data-where="key=hm_m_rel_lghm">—</b>, so the direction holds. The weights in the table above remove year effects. Sources: <span class="st-ref" data-draw="f" data-source="facts" data-field="display" data-where="key=ref_newv">—</span>; <span class="st-ref" data-draw="f" data-source="facts" data-field="display" data-where="key=ref_newm">—</span>.</p>
       </div>
       <div class="st-card">
+        <span class="st-new">New analysis, not in the paper</span>
         <h3 class="st-card-title">Cost of doing nothing, by pricing and rivals' pace</h3>
-        <p class="st-card-note">Points by which a company automating at the central pace leads one doing nothing in <span data-draw="f" data-source="facts" data-field="display" data-where="key=y36">—</span>, after its own changes in flight. Rows: share of savings passed to price. Columns: rivals' pace. Darker means a larger gap.</p>
+        <p class="st-card-note">Points by which a company automating at the central pace leads one doing nothing in <span data-draw="f" data-source="facts" data-field="display" data-where="key=y36">—</span>, after its own changes in flight. Rows: share of savings passed to price (the quarter row is added here; the others are the cases of the chart above). Columns: rivals' pace. Darker means a larger gap.</p>
         <div class="st-chart st-heat dash-skeleton" data-draw="heatmap" data-source="matrices" data-matrix="gap_phi_pace"></div>
         <p class="st-plain"><span class="st-plain-k">In plain English:</span> at fixed prices the gap is <b data-draw="f" data-source="facts" data-field="display" data-where="key=hm_gap_fix">—</b> points whatever rivals do. It widens when savings reach prices and rivals move fast, to <b data-draw="f" data-source="facts" data-field="display" data-where="key=hm_gap_worst">—</b> points. Source: <span class="st-ref" data-draw="f" data-source="facts" data-field="display" data-where="key=ref_newp">—</span>.</p>
       </div>
@@ -1363,7 +1365,7 @@
     // row labels: one line where they fit, otherwise two
     const titleWord = opt.rowTitle ? 1.1 * textW(svg, (opt.rowTitle + ' ↓').split(' ')) : 0;   // widest word of the row title, set bold
     const labW = Math.min(W * (W < 480 ? 0.34 : 0.42), Math.ceil(Math.max(textW(svg, rl.map((r) => r[1])), titleWord)) + 10);   // narrower on phones: long row labels wrap
-    const rowLines = rl.map(([, lab]) => (textW(svg, [lab]) <= labW - 10 ? [lab] : wrapLab(svg, lab, labW - 10).slice(0, 2)));
+    const rowLines = rl.map(([, lab]) => { if (textW(svg, [lab]) <= labW - 10) return [lab]; const w = wrapLab(svg, lab, labW - 10); return w.length > 2 ? [w[0], w.slice(1).join(' ')] : w; });
     const cw = (W - labW) / cl.length;
     // column labels: wrapped to two lines; then the short name in brackets, e.g. "(R&D)"; then set vertically
     let colLines = cl.map(([, lab]) => wrapLab(svg, lab, cw - 6));
@@ -1397,7 +1399,8 @@
     });
     const vals = cells.map((c) => +c.value).filter((v) => Number.isFinite(v) && (!opt.log || v > 0));
     const tr = opt.log ? Math.log : (v) => v;
-    const lo = vals.length ? tr(d3.min(vals)) : 0, hi = vals.length ? tr(d3.max(vals)) : 0;
+    const dom = opt.domain || (vals.length ? [d3.min(vals), d3.max(vals)] : [0, 0]);   // a fixed domain keeps colours comparable across views
+    const lo = tr(dom[0]), hi = tr(dom[1]);
     const aOf = (v) => (hi > lo ? 0.1 + 0.85 * (tr(v) - lo) / (hi - lo) : 0.5);
     const base = bgOf(el), ink = rgbOf(dash.colors[0], el), fg = rgbOf('var(--color-fg)', el), bgc = rgbOf('var(--color-bg)', el);
     const tt = tooltip(el);
@@ -1420,7 +1423,7 @@
         capStyle(svg.append('text').attr('x', x0 + cw / 2).attr('y', y0 + cellH / 2).attr('dy', '0.35em').attr('text-anchor', 'middle')
           .attr('fill', few || !ok ? 'var(--color-fg-muted)' : txt).style('font-variant-numeric', 'tabular-nums').text(ok ? c.display : '–'));
         svg.append('rect').attr('x', x0).attr('y', y0).attr('width', cw).attr('height', cellH).attr('fill', 'transparent')
-          .on('mousemove', (ev) => { const er = el.getBoundingClientRect(); const ls2 = [[`${lab} × ${c.col_label}`], [opt.what || 'Value', ok ? c.display : 'no data']]; if (c.n !== '' && c.n !== undefined) ls2.push([opt.nName || 'Count', f0(+c.n)]); if (few) ls2.push(['Few observations']); showTip(el, tt, ls2, ev.clientX - er.left, ev.clientY - er.top); })
+          .on('mousemove', (ev) => { const er = el.getBoundingClientRect(); const ls2 = [[`${opt.what || 'Value'}: ${ok ? c.display : 'no data'}`], [opt.rowTitle || 'Row', lab], [opt.colTitle || 'Column', c.col_label]]; if (c.n !== '' && c.n !== undefined) ls2.push([opt.nName || 'Count', f0(+c.n)]); if (opt.extra) opt.extra(c).forEach((e) => ls2.push(e)); if (few) ls2.push(['Few observations']); showTip(el, tt, ls2, ev.clientX - er.left, ev.clientY - er.top); })
           .on('mouseleave', () => hideTip(tt));
       });
     });
@@ -1451,7 +1454,9 @@
       const r = rs.find((q) => q.code === code && q.lever === lv); if (!r) return;
       cells.push({ row: ri, row_label: r.position, col: ci, col_label: lv, value: r.points, display: f2(+r.points), n: '', rank: String(r.rank) });
     }));
-    heat(el, cells, { what: 'Pre-tax points per saving', rowTitle: 'Position', colTitle: 'Cost line', mark: (c) => c.rank === '1', label: 'Lever points by position and cost line' });
+    const allPts = rows('levers').map((r) => +r.points).filter(Number.isFinite);
+    heat(el, cells, { what: 'Pre-tax points per saving', rowTitle: 'Position', colTitle: 'Cost line', mark: (c) => c.rank === '1', label: 'Lever points by position and cost line',
+      domain: [d3.min(allPts), d3.max(allPts)], extra: (c) => [['Spend basis', basis], ['Rank', c.rank]] });
   });
   const reheat = () => { dash.draw('heatmap'); dash.draw('lever_heat'); };
   try { matchMedia('(prefers-color-scheme: dark)').addEventListener('change', reheat); } catch (e) { /* older browsers */ }

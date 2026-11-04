@@ -524,6 +524,20 @@ for k, cid, src in [('hm_s_ll', 'score_cap_growth|0|0', SRC_ST), ('hm_s_hh', 'sc
                     ('hm_m_lghm', 'mult_g_m|0|0', NEWV), ('hm_m_hglm', 'mult_g_m|4|4', NEWV), ('hm_m_lglm', 'mult_g_m|4|0', NEWV)]:
     fact(k, MX[cid]['display'], src, f"cell {MX[cid]['row_label']} x {MX[cid]['col_label']}")
 fact('hm_few', '30', NEWV, 'firm-years below which a valuation cell is faded')
+fact('hm_m_hghm', MX['mult_g_m|0|4']['display'], NEWV, 'cell fastest growth x best margin')
+MM = json.load(open(os.path.join(BASE, 'notes', 'open_questions', 'matrices_meta.json')))
+NEWM = 'New analysis: code/biz_matrices.py, notes/open_questions/matrices_meta.json'
+fact('hm_box_r36', f"{MM['box_median_R2036']:.0f}", SRC_ST, 'median 2036 score over all draws of the stress test')
+fact('hm_box_pay', f"{MM['box_median_payback']:.1f}", SRC_ST, 'median payback in years over all draws of the stress test')
+fact('hm_m_up', {5: 'all five', 4: 'four', 3: 'three', 2: 'two', 1: 'one', 0: 'none'}[MM['margin_up_columns']], NEWM,
+     'growth bands in which the best margins carry a higher median multiple than the worst')
+fact('hm_m_boom', f"{100 * MM['boom_share_hglm']:.0f}%", NEWM, 'share of 2020-21 firm-years in the fastest-growth, worst-margin cell')
+fact('hm_m_boom_all', f"{100 * MM['boom_share_all']:.0f}%", NEWM, 'share of 2020-21 firm-years in the matched sample')
+fact('hm_m_rel_hglm', f"{MM['rel_hglm']:.1f}×", NEWM, 'median multiple relative to its year median, fastest growth x worst margin')
+fact('hm_m_rel_lghm', f"{MM['rel_lghm']:.1f}×", NEWM, 'median multiple relative to its year median, slowest growth x best margin')
+fact('y2021w', '2020–21', NEWV, 'period')
+fact('y1025w', '2010–25', NEWV, 'period')
+fact('ref_newm', 'New analysis: code/biz_matrices.py, notes/open_questions/matrices_meta.json', '', '')
 # constants of the company calculator (Paper 1, Table 4 central case; Table 7)
 for k, nme in [('tau_cen', 'CeilTauCen'), ('fee_cen', 'CeilFCen')]:
     fm(k, nme, S['sec:horizons-ceiling'])

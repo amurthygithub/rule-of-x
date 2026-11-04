@@ -10,7 +10,8 @@
                      rivals' pace (new analysis, paths.json)
   mult_g_m           median public float over revenue by quintile of growth x quintile of margin (free cash flow after
                      SBC), Paper 1's core sample matched as in code/biz_valuation.py (new analysis)
-Writes notes/mc_results_2026-11-03_1m/dashboard/matrices.csv (long form: one row per cell).
+Writes notes/mc_results_2026-11-03_1m/dashboard/matrices.csv (long form: one row per cell) and
+notes/open_questions/matrices_meta.json (whole-box medians; boom-year share and year-relative multiples for the valuation grid).
 Run after code/biz_open_questions.py and code/biz_valuation.py:  python3 code/biz_matrices.py
 """
 import csv
@@ -38,6 +39,7 @@ def pct_bins(lo, hi, k):
 
 
 D = pd.read_csv(os.path.join(MC, 'draws_lhs.csv.gz'), usecols=['kappa_abs', 'varpi', 'G', 'R2036_net', 'payback_years'])
+META = {'box_median_R2036': float(D.R2036_net.median()), 'box_median_payback': float(D.payback_years.median())}
 J = json.load(open(os.path.join(MC, 'mc_claims.json')))
 dim = {d['name']: d for d in J['dims']}
 
@@ -48,6 +50,9 @@ def grid(mid, ycol, xcol, ytitle_bins, xtitle_bins, val, fmt):
     iy = np.clip(np.searchsorted(ey, D[ycol].to_numpy(), side='right') - 1, 0, len(ly) - 1)
     ix = np.clip(np.searchsorted(ex, D[xcol].to_numpy(), side='right') - 1, 0, len(lx) - 1)
     v = D[val].to_numpy(float)
+    bad = int((~np.isfinite(v)).sum())          # e.g. a world that never pays back is written as inf
+    META[f'{mid}_nonfinite'] = bad
+    assert bad == 0, f'{mid}: {bad} non-finite values would be dropped from the medians; report them before using the grid'
     for a in range(len(ly)):
         for b in range(len(lx)):
             sel = (iy == a) & (ix == b) & np.isfinite(v)
@@ -98,6 +103,19 @@ for a in range(5):            # rows: margin, highest first
         sel = (qm == mi) & (qg == b)
         med = float(m.mult[sel].median()) if sel.sum() else float('nan')
         add('mult_g_m', a, lab(em, mi), b, lab(eg, b), med, f'{med:.1f}×' if np.isfinite(med) else '', int(sel.sum()))
+
+# context for the valuation grid: cells pool 2010-25, so report the boom years' share and the grid on multiples relative to
+# each year's median multiple (the regressions in biz_valuation.py remove year effects; this grid does not)
+m['rel'] = m.mult / m.groupby('year').mult.transform('median')
+boom = m.year.isin([2020, 2021])
+hglm = (qm == 0) & (qg == 4); lghm = (qm == 4) & (qg == 0); hghm = (qm == 4) & (qg == 4); lglm = (qm == 0) & (qg == 0)
+META.update(boom_share_all=float(boom.mean()), boom_share_hglm=float(boom[hglm].mean()),
+            rel_hglm=float(m.rel[hglm].median()), rel_lghm=float(m.rel[lghm].median()), rel_hghm=float(m.rel[hghm].median()),
+            rel_lglm=float(m.rel[lglm].median()),
+            margin_up_columns=int(sum(np.log(m.mult[(qm == 4) & (qg == b)].median()) > np.log(m.mult[(qm == 0) & (qg == b)].median())
+                                      for b in range(5))))
+json.dump(META, open(os.path.join(BASE, 'notes', 'open_questions', 'matrices_meta.json'), 'w'), indent=1)
+print('meta', {k: round(v, 3) if isinstance(v, float) else v for k, v in META.items()})
 
 with open(OUT, 'w', newline='') as fh:
     w = csv.DictWriter(fh, fieldnames=['id', 'matrix', 'row', 'row_label', 'col', 'col_label', 'value', 'display', 'n'], lineterminator='\n')

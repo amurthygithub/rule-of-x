@@ -311,5 +311,16 @@ hm_m_lghm,3.4×,,"New analysis, not in Paper 1: code/biz_valuation.py (Paper 1 c
 hm_m_hglm,8.5×,,"New analysis, not in Paper 1: code/biz_valuation.py (Paper 1 core sample and SEC public float)",cell below −15% x 33% or more
 hm_m_lglm,1.1×,,"New analysis, not in Paper 1: code/biz_valuation.py (Paper 1 core sample and SEC public float)",cell below −15% x below 5%
 hm_few,30,,"New analysis, not in Paper 1: code/biz_valuation.py (Paper 1 core sample and SEC public float)",firm-years below which a valuation cell is faded
+hm_m_hghm,4.7×,,"New analysis, not in Paper 1: code/biz_valuation.py (Paper 1 core sample and SEC public float)",cell fastest growth x best margin
+hm_box_r36,52,,"Supplementary Appendix, Section S10 (draws of the stress test, binned: code/biz_matrices.py)",median 2036 score over all draws of the stress test
+hm_box_pay,10.2,,"Supplementary Appendix, Section S10 (draws of the stress test, binned: code/biz_matrices.py)",median payback in years over all draws of the stress test
+hm_m_up,four,,"New analysis: code/biz_matrices.py, notes/open_questions/matrices_meta.json",growth bands in which the best margins carry a higher median multiple than the worst
+hm_m_boom,37%,,"New analysis: code/biz_matrices.py, notes/open_questions/matrices_meta.json","share of 2020-21 firm-years in the fastest-growth, worst-margin cell"
+hm_m_boom_all,18%,,"New analysis: code/biz_matrices.py, notes/open_questions/matrices_meta.json",share of 2020-21 firm-years in the matched sample
+hm_m_rel_hglm,2.0×,,"New analysis: code/biz_matrices.py, notes/open_questions/matrices_meta.json","median multiple relative to its year median, fastest growth x worst margin"
+hm_m_rel_lghm,0.8×,,"New analysis: code/biz_matrices.py, notes/open_questions/matrices_meta.json","median multiple relative to its year median, slowest growth x best margin"
+y2021w,2020–21,,"New analysis, not in Paper 1: code/biz_valuation.py (Paper 1 core sample and SEC public float)",period
+y1025w,2010–25,,"New analysis, not in Paper 1: code/biz_valuation.py (Paper 1 core sample and SEC public float)",period
+ref_newm,"New analysis: code/biz_matrices.py, notes/open_questions/matrices_meta.json",,,
 tau_cen,0.18,\CeilTauCen,"Paper 1, Section 7.2",
 fee_cen,0.025,\CeilFCen,"Paper 1, Section 7.2",
