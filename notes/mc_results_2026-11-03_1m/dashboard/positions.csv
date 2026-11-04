@@ -1,0 +1,7 @@
+code,position,firm_years,growth,margin,sm,growth_spend,ga,rd,k,cap_hurdle,first_netted,second_netted,first_all,second_all,first_none,second_none
+A1,Growth corner,28,29.9,-23.0,49.7,24.0,23.7,31.8,0.09,0.55,Engineering (R&D),Growth engine (S&M),Growth engine (S&M),Engineering (R&D),Engineering (R&D),Back office (G&A)
+A2,Balanced upper quartile,42,20.5,13.6,25.2,0.0,10.1,20.2,0.11,0.46,Engineering (R&D),Back office (G&A),Growth engine (S&M),Engineering (R&D),Engineering (R&D),Back office (G&A)
+A3,Mature cash generator,50,8.0,19.3,18.9,0.0,10.6,14.6,0.20,0.33,Engineering (R&D),Back office (G&A),Growth engine (S&M),Engineering (R&D),Engineering (R&D),Back office (G&A)
+A4,Sub-40 grower,48,17.2,-5.0,42.3,16.5,18.8,26.1,0.13,0.42,Engineering (R&D),Back office (G&A),Growth engine (S&M),Engineering (R&D),Engineering (R&D),Back office (G&A)
+A5,Stalled,80,2.1,-13.1,32.3,6.6,19.7,25.4,1.18,0.27,Engineering (R&D),Back office (G&A),Growth engine (S&M),Engineering (R&D),Engineering (R&D),Back office (G&A)
+A6,Near-frontier elite,14,34.8,22.1,21.7,0.0,16.1,19.6,0.04,0.60,Engineering (R&D),Back office (G&A),Growth engine (S&M),Engineering (R&D),Engineering (R&D),Back office (G&A)

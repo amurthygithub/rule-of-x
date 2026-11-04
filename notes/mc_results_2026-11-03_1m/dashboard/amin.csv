@@ -1,0 +1,11 @@
+test_id,threshold,claim,result,share_holding,points,no_design_points
+A1.One,1%,No design built only from AI layers on one provider passes,Holds everywhere,1.000,100032,0
+A2.One,1%,All-human designs do not pass at 1%,Holds everywhere,1.000,100032,0
+A3.One,1%,Cheapest admissible design is 1 human over 2 AI,Fails somewhere,0.000,100032,0
+A4.One,1%,Floor within the stated range 0.26-0.76% (audit fees),Fails somewhere,0.075,100032,89701
+A5.One,1%,Floor below the a_min band's lower end (0.5%) (informational),Fails somewhere,0.021,100032,89701
+A1.Five,5%,No design built only from AI layers on one provider passes,Holds everywhere,1.000,100032,0
+A2.Five,5%,An all-human design passes at 5% (three layers),Fails somewhere,0.002,100032,0
+A3.Five,5%,Cheapest admissible design is 1 human over 1 AI,Fails somewhere,0.001,100032,0
+A4.Five,5%,Floor within the stated range 0.26-0.76% (audit fees),Fails somewhere,0.484,100032,42125
+A5.Five,5%,Floor below the a_min band's lower end (0.5%) (informational),Fails somewhere,0.185,100032,42125

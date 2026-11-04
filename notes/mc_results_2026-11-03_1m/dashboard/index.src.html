@@ -1,0 +1,998 @@
+<meta name="dash-one-writer">
+<style>
+  .st-page { max-width: 72rem; margin-inline: auto; display: flex; flex-direction: column; gap: var(--cds-gap-xl); font-family: var(--font-anthropic-sans); }
+  .st-head { display: flex; flex-direction: column; gap: var(--cds-gap-sm); }
+  .st-title { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: var(--cds-font-size-title); margin: 0; text-wrap: balance; }
+  .st-lede { margin: 0; max-width: 64ch; font-size: var(--cds-font-size-body); line-height: 1.5; }
+  .st-page b { font-weight: var(--cds-font-weight-medium); font-variant-numeric: tabular-nums; }
+  .st-frame { margin: 0; max-width: 72ch; color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); line-height: 1.5; }
+  .st-nav { display: flex; flex-wrap: wrap; gap: var(--cds-gap-xs) var(--cds-gap-sm); }
+  .st-btn { font: inherit; font-size: var(--cds-font-size-caption); padding: var(--cds-pad-xs) var(--cds-pad-sm); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); background: var(--color-panel); color: var(--color-fg); cursor: pointer; }
+  .st-btn:hover { border-color: var(--cds-chart-axis); }
+  .st-btn:focus-visible { outline: 2px solid var(--cds-chart-axis); outline-offset: 2px; }
+  .st-btn[aria-pressed=true] { background: var(--color-fg); color: var(--color-bg); border-color: var(--color-fg); }
+  .st-tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr)); gap: var(--cds-gap-md); }
+  .st-tile { background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-lg); display: flex; flex-direction: column; gap: var(--cds-gap-xs); min-width: 0; }
+  .st-tile-label { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+  .st-tile-value { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: var(--cds-font-size-title); font-variant-numeric: tabular-nums; line-height: 1.15; }
+  .st-tile-value b { font-weight: 400; }
+  .st-tile-sub { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); line-height: 1.45; }
+  .st-section { display: flex; flex-direction: column; gap: var(--cds-gap-md); scroll-margin-top: var(--cds-gap-lg); }
+  .st-h2 { margin: 0; font-size: var(--cds-font-size-heading); font-weight: var(--cds-font-weight-medium); text-wrap: balance; }
+  .st-h3 { margin: 0; font-size: var(--cds-font-size-body); font-weight: var(--cds-font-weight-medium); }
+  .st-note { margin: 0; max-width: 70ch; color: var(--color-fg-muted); font-size: var(--cds-font-size-body); line-height: 1.55; }
+  .st-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr)); gap: var(--cds-gap-md); }
+  .st-card { background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-lg); display: flex; flex-direction: column; gap: var(--cds-gap-sm); min-width: 0; }
+  .st-card-title { margin: 0; font-size: var(--cds-font-size-body); font-weight: var(--cds-font-weight-medium); }
+  .st-card-note { margin: 0; font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); line-height: 1.45; }
+  .st-chart { position: relative; min-height: 15rem; width: 100%; }
+  .st-chart.st-tall { min-height: 19rem; }
+  .st-chart.st-short { min-height: 9rem; }
+  .st-chart svg { display: block; overflow: visible; }
+  .st-legend { display: flex; flex-wrap: wrap; gap: var(--cds-gap-sm) var(--cds-gap-md); font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); margin: 0; padding: 0; list-style: none; }
+  .st-legend li { display: inline-flex; align-items: center; gap: 0.4rem; }
+  .st-sw { width: 0.75rem; height: 0.75rem; border-radius: 2px; display: inline-block; }
+  .st-sw-line { width: 1rem; height: 0; border-top: 2px dashed var(--cds-chart-reference); border-radius: 0; }
+  .st-tt { position: absolute; pointer-events: none; background: var(--cds-surface-popover); border: 1px solid var(--cds-border); border-radius: var(--cds-radius); box-shadow: var(--cds-shadow-popover); padding: var(--cds-pad-xs) var(--cds-pad-sm); font-size: var(--cds-font-size-caption); font-variant-numeric: tabular-nums; white-space: nowrap; z-index: 2; }
+  .st-tt .st-tt-k { color: var(--cds-text-secondary); }
+  .st-fail { display: flex; align-items: center; justify-content: center; gap: 0.5rem; min-height: inherit; color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); }
+  .st-fail::before { content: ""; width: 0.375rem; height: 0.375rem; border-radius: 50%; background: var(--color-bad); }
+  .st-tablebox { max-height: 34rem; overflow: auto; border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); }
+  .st-table { width: 100%; border-collapse: collapse; font-size: var(--cds-font-size-caption); font-variant-numeric: tabular-nums; }
+  .st-table th { position: sticky; top: 0; background: var(--color-panel); text-align: left; font-weight: var(--cds-font-weight-medium); padding: var(--cds-pad-sm); border-bottom: 1px solid var(--color-border-line); white-space: nowrap; }
+  .st-table th button { all: unset; cursor: pointer; }
+  .st-table th button:focus-visible { outline: 2px solid var(--cds-chart-axis); outline-offset: 2px; }
+  .st-table td { padding: var(--cds-pad-xs) var(--cds-pad-sm); border-bottom: 1px solid var(--color-border-line); vertical-align: top; }
+  .st-table td.st-num, .st-table th.st-num { text-align: right; }
+  .st-table td.st-wide { min-width: 14rem; }
+  .st-pill { display: inline-block; padding: 0.1rem 0.5rem; border-radius: 999px; font-size: var(--cds-font-size-caption); white-space: nowrap; border: 1px solid currentColor; }
+  .st-pill-ok { color: var(--color-ok); }
+  .st-pill-warn { color: var(--color-warn); }
+  .st-filter { display: flex; flex-wrap: wrap; gap: var(--cds-gap-sm); align-items: center; }
+  .st-filter input { font: inherit; font-size: var(--cds-font-size-caption); padding: var(--cds-pad-xs) var(--cds-pad-sm); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); background: var(--color-bg); color: var(--color-fg); min-width: 0; flex: 1 1 14rem; max-width: 24rem; }
+  .st-plain { margin: 0; font-size: var(--cds-font-size-caption); line-height: 1.55; color: var(--color-fg); border-top: 1px solid var(--color-border-line); padding-top: var(--cds-pad-sm); max-width: 70ch; }
+  .st-plain-k { font-weight: var(--cds-font-weight-medium); }
+  .st-steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr)); gap: var(--cds-gap-md); counter-reset: step; }
+  .st-step { counter-increment: step; background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-lg); display: flex; flex-direction: column; gap: var(--cds-gap-xs); min-width: 0; }
+  .st-step::before { content: counter(step); font-family: var(--font-anthropic-serif); font-size: var(--cds-font-size-title); line-height: 1; color: var(--color-fg-muted); }
+  .st-step h3 { margin: 0; font-size: var(--cds-font-size-body); font-weight: var(--cds-font-weight-medium); }
+  .st-step p { margin: 0; font-size: var(--cds-font-size-caption); line-height: 1.55; }
+  .st-step .st-tag { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+  .st-also { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr)); gap: var(--cds-gap-sm) var(--cds-gap-lg); margin: 0; }
+  .st-also div { min-width: 0; }
+  .st-also dt { font-size: var(--cds-font-size-body); font-weight: var(--cds-font-weight-medium); }
+  .st-also dd { margin: 0.2rem 0 0; font-size: var(--cds-font-size-caption); line-height: 1.55; color: var(--color-fg); }
+  .st-caveat { margin: 0; font-size: var(--cds-font-size-caption); line-height: 1.55; color: var(--color-fg-muted); max-width: 72ch; }
+  .st-list { margin: 0; padding-left: 1.1rem; display: flex; flex-direction: column; gap: var(--cds-gap-xs); font-size: var(--cds-font-size-caption); line-height: 1.55; max-width: 72ch; }
+  .st-qa-groups { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr)); gap: var(--cds-gap-md); align-items: start; }
+  .st-qa-group { display: flex; flex-direction: column; gap: var(--cds-gap-sm); min-width: 0; }
+  .st-qa-group.st-off { display: none; }
+  .st-qa { background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-md) var(--cds-pad-lg); display: flex; flex-direction: column; gap: var(--cds-gap-xs); }
+  .st-qa h4 { margin: 0; font-size: var(--cds-font-size-body); font-weight: var(--cds-font-weight-medium); line-height: 1.35; }
+  .st-qa p { margin: 0; font-size: var(--cds-font-size-caption); line-height: 1.6; }
+  .st-qa .st-src { color: var(--color-fg-muted); }
+  .st-gloss { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr)); gap: var(--cds-gap-sm) var(--cds-gap-lg); margin: 0; }
+  .st-gloss div { min-width: 0; }
+  .st-gloss dt { font-size: var(--cds-font-size-caption); font-weight: var(--cds-font-weight-medium); }
+  .st-gloss dd { margin: 0.15rem 0 0; font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); line-height: 1.5; }
+  .st-method { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr)); gap: var(--cds-gap-md); }
+  .st-method p { margin: 0; font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); line-height: 1.55; }
+  [data-dash-source-state=empty] { color: transparent; }
+  [data-dash-source-state=refreshing] { opacity: .5; transition: opacity var(--cds-dur-slow); }
+  @media (max-width: 40rem) { .st-hide-narrow { display: none; } }
+</style>
+
+<div class="st-page">
+  <header class="st-head">
+    <h1 class="st-title" id="top">Rule of 40 and AI: business guide</h1>
+    <p class="st-lede">Automate engineering first and the back office next. Keep the growth engine for companies whose selling spend is far above its maintenance level. And build the capacity to change, which moves the outcome more than any other input.</p>
+    <p class="st-frame">A plain-language reading of Paper 1, "The Rule of 40 as a Price Line", and its stress test of <b>{{draws}}</b> simulated worlds per seed. These are scenarios, not forecasts: each figure holds at the paper's stated assumptions, and the ranges show how far it moves when all of those assumptions move together. Every number comes from the paper, its supplement or the stress-test run, and each section names its source.</p>
+    <nav class="st-nav" aria-label="Sections of this page">
+      <button type="button" class="st-btn" data-go="answers">Short answer</button>
+      <button type="button" class="st-btn" data-go="levers">What to automate</button>
+      <button type="button" class="st-btn" data-go="path">How far, how fast</button>
+      <button type="button" class="st-btn" data-go="payback">Payback</button>
+      <button type="button" class="st-btn" data-go="ceiling">Rule of 100</button>
+      <button type="button" class="st-btn" data-go="drivers">What drives it</button>
+      <button type="button" class="st-btn" data-go="floors">Costs that stay</button>
+      <button type="button" class="st-btn" data-go="questions">Leaders' questions</button>
+      <button type="button" class="st-btn" data-go="claims">Claims tested</button>
+      <button type="button" class="st-btn" data-go="words">Words used</button>
+      <button type="button" class="st-btn" data-go="method">How this was made</button>
+    </nav>
+  </header>
+
+  <section class="st-section" id="answers" aria-label="Short answer">
+    <h2 class="st-h2">The short answer</h2>
+    <div class="st-tiles">
+      <div class="st-tile">
+        <span class="st-tile-label">Automate first</span>
+        <span class="st-tile-value">Engineering</span>
+        <span class="st-tile-sub">First at <b>{{eng_first}}</b> of <b>{{n_positions}}</b> typical company positions</span>
+        <p class="st-plain"><span class="st-plain-k">In plain English:</span> the same <b>{{lever_x}}</b> saving adds more to the score in engineering than in any other cost line, and the saving lasts.</p>
+      </div>
+      <div class="st-tile">
+        <span class="st-tile-label">Automate next</span>
+        <span class="st-tile-value">Back office</span>
+        <span class="st-tile-sub">Finance, HR, legal and administration (G&amp;A): second at <b>{{ga_second}}</b> of <b>{{n_positions}}</b> positions</span>
+        <p class="st-plain"><span class="st-plain-k">In plain English:</span> back-office savings keep paying as the market fills up. Gains from a better sales engine fade.</p>
+      </div>
+      <div class="st-tile">
+        <span class="st-tile-label">Best durable score by <b>{{y36}}</b>, central scenario</span>
+        <span class="st-tile-value"><b>{{r36}}</b></span>
+        <span class="st-tile-sub"><b>{{p05}}</b> to <b>{{p95}}</b> in nine of ten simulated worlds</span>
+        <p class="st-plain"><span class="st-plain-k">In plain English:</span> what a top-tail software company's score can reach under central execution, with prices held fixed.</p>
+      </div>
+      <div class="st-tile">
+        <span class="st-tile-label">Benefits realized by <b>{{y36}}</b></span>
+        <span class="st-tile-value"><b>{{pace36}}</b></span>
+        <span class="st-tile-sub">Central execution; <b>{{fast36}}</b> with fast execution</span>
+        <p class="st-plain"><span class="st-plain-k">In plain English:</span> how much of the automation program has turned into savings. Change capacity sets the pace, not technology.</p>
+      </div>
+      <div class="st-tile">
+        <span class="st-tile-label">Program payback</span>
+        <span class="st-tile-value"><b>{{pay_back}}</b> years</span>
+        <span class="st-tile-sub"><b>{{pay_disc}}</b> discounted; yearly gains overtake costs after <b>{{pay_cross}}</b></span>
+        <p class="st-plain"><span class="st-plain-k">In plain English:</span> under central execution the program does not pay back within <b>{{ref_payback}}</b> years. Under fast execution it does.</p>
+      </div>
+      <div class="st-tile">
+        <span class="st-tile-label">Market growth needed for a Rule of 100</span>
+        <span class="st-tile-value"><b>{{gstar}}</b> a year</span>
+        <span class="st-tile-sub"><b>{{gstar_cc_lo}}</b> to <b>{{gstar_cc_hi}}</b> over the range of AI compute cost</span>
+        <p class="st-plain"><span class="st-plain-k">In plain English:</span> even full automation lifts a mature company to a cash score of <b>{{rule100}}</b> only in a market growing this fast. Few markets do.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="st-section" id="levers">
+    <h2 class="st-h2">What to automate first, and what comes next</h2>
+    <p class="st-note">The companion paper compares four cost lines at six typical company positions by the score points that the same <b>{{lever_x}}</b> saving adds in each. Engineering comes first at every position. The back office comes second at <b>{{ga_second}}</b> of them. The growth engine moves up only where selling spend is far above its maintenance level, and to first place only if all selling spend buys growth.</p>
+    <div class="st-card">
+      <h3 class="st-card-title">Score points from a <b>{{lever_x}}</b> saving in each cost line, by company position</h3>
+      <p class="st-card-note">Cell medians of non-acquisition firm-years, <b>{{y2325}}</b>, on the free-cash-flow-after-SBC basis. The basis decides how much selling and marketing (S&amp;M) counts as buying growth.</p>
+      <div class="st-nav st-basis" role="group" aria-label="How much selling spend buys growth">
+        <button type="button" class="st-btn" data-basis="Central" aria-pressed="true">Central: S&amp;M above maintenance</button>
+        <button type="button" class="st-btn" data-basis="All S&amp;M buys growth" aria-pressed="false">All S&amp;M buys growth</button>
+        <button type="button" class="st-btn" data-basis="No S&amp;M buys growth" aria-pressed="false">No S&amp;M buys growth</button>
+      </div>
+      <div class="st-chart st-tall dash-skeleton" id="levers-chart" data-draw="levers_chart" data-source="levers"></div>
+      <ul class="st-legend">
+        <li><span class="st-sw" style="background: var(--st-c0)"></span>Engineering (R&amp;D)</li>
+        <li><span class="st-sw" style="background: var(--st-c1)"></span>Back office (G&amp;A)</li>
+        <li><span class="st-sw" style="background: var(--st-c2)"></span>Growth engine (S&amp;M)</li>
+        <li><span class="st-sw" style="background: var(--st-c3)"></span>Cost of revenue</li>
+      </ul>
+      <p class="st-plain"><span class="st-plain-k">In plain English:</span> each small chart is one kind of company, and a longer bar adds more points to its score. On the central basis engineering wins everywhere. Switch to "All S&amp;M buys growth" and the growth engine jumps to first at every position, because then all of sales and marketing is spend that a better engine makes cheaper. Switch to "No S&amp;M" and the growth engine adds nothing.</p>
+    </div>
+
+    <h3 class="st-h3">The order, and why</h3>
+    <ol class="st-steps">
+      <li class="st-step">
+        <h3>Engineering (R&amp;D)</h3>
+        <span class="st-tag">First at <b>{{eng_first}}</b> of <b>{{n_positions}}</b> positions</span>
+        <p>Adds <b>{{eng_pts_lo}}</b> to <b>{{eng_pts_hi}}</b> points per <b>{{lever_x}}</b> saving. Engineering spend is larger than the back office at every position, the ranking counts its saving in full, and a cost saving keeps paying after the market fills. The ranking counts engineering as a cost line; it does not count what engineering adds to future growth.</p>
+      </li>
+      <li class="st-step">
+        <h3>Back office (G&amp;A)</h3>
+        <span class="st-tag">Second at <b>{{ga_second}}</b> of <b>{{n_positions}}</b> positions</span>
+        <p>Finance, HR, legal and administration. Adds <b>{{ga_pts_lo}}</b> to <b>{{ga_pts_hi}}</b> points. Cutting it outranks automating the growth engine at <b>{{ga_over_ge}}</b> of <b>{{n_positions}}</b> positions on the central basis, and the gain survives as the market fills.</p>
+      </li>
+      <li class="st-step">
+        <h3>Growth engine (sales and marketing)</h3>
+        <span class="st-tag">Where selling spend is far above maintenance</span>
+        <p>Ahead of the back office only in the growth corner, and there almost tied (<b>{{gc_ge}}</b> against <b>{{gc_ga}}</b> points). If all selling spend bought growth it would rank first at <b>{{ge_first_all}}</b> positions; if none did, at <b>{{ge_first_none}}</b>. Its gains are transient: they fade as the market fills.</p>
+      </li>
+      <li class="st-step">
+        <h3>Cost of revenue</h3>
+        <span class="st-tag">Third at <b>{{cor_third}}</b> positions, last at the others</span>
+        <p>Support, services and hosting. Adds <b>{{cor_pts_lo}}</b> to <b>{{cor_pts_hi}}</b> points, because a saving is worth only what pricing power lets you keep. Where rivals can copy you freely, competition passes it on to customers.</p>
+      </li>
+    </ol>
+
+    <div class="st-card">
+      <h3 class="st-card-title">Alongside every step</h3>
+      <dl class="st-also">
+        <div><dt>Capacity to change</dt><dd>Execution explains <b>{{so_exec_pct}}</b> of the spread in the <b>{{y36}}</b> score, three times as much as market growth (<b>{{so_g_pct}}</b>). With the other inputs central, raising change capacity from <b>{{cap_cen}}</b> to about <b>{{cap_half}}</b> of the program a year lifts realized benefits above half by <b>{{y36}}</b>.</dd></div>
+        <div><dt>Retention</dt><dd>A point of net revenue retention raises the score at every stage, and the gain does not fade as the market fills. Spending on customer success and support sustains retention, so cutting it can cost more than it saves.</dd></div>
+        <div><dt>Controls</dt><dd>Keep accountable people in the loop. No control design built only from AI layers on one model provider passes in any of the <b>{{amin_points}}</b> cases tested. The diversity of the design, not headcount, decides.</dd></div>
+        <div><dt>Capital</dt><dd>Owning AI capacity pays only where growth is slow: each dollar of capital must remove more than <b>{{cap_hurdle_lo}}</b> to <b>{{cap_hurdle_hi}}</b> dollars of yearly cost at these positions (growth plus a <b>{{cap_delta}}</b> replacement rate).</dd></div>
+      </dl>
+      <p class="st-caveat"><span class="st-plain-k">What this ranking is not.</span> It is not a return on investment: it compares the same proportional saving in each line, so it does not count how hard each saving is to get or what the AI costs to run there (the paper prices those costs separately; see "Costs that stay"). It is not a plan for a particular company: the positions are medians, and the companion paper adds gates for ownership, readiness, regulated processes, labor law, product model and market structure. Sources: <span>{{ref_comp}}</span>; <span>{{ref_s75}}</span>; <span>{{ref_c3}}</span>; <span>{{ref_s10}}</span>.</p>
+    </div>
+
+    <div class="st-card">
+      <h3 class="st-card-title">The six positions</h3>
+      <p class="st-card-note">Percent of revenue except the firm-year count and the capital hurdle. Growth spend is S&amp;M above the maintenance level of <b>{{sm_maint}}</b> of revenue. The capital hurdle is the yearly cost a dollar of compute capital must remove.</p>
+      <div class="st-tablebox">
+        <table class="st-table" data-source="positions" data-row-key="code">
+          <thead>
+            <tr>
+              <th data-field="position">Position</th>
+              <th data-field="firm_years" class="st-num st-hide-narrow">Firm-years</th>
+              <th data-field="growth" class="st-num">Growth</th>
+              <th data-field="margin" class="st-num">Margin</th>
+              <th data-field="sm" class="st-num st-hide-narrow">S&amp;M</th>
+              <th data-field="growth_spend" class="st-num st-hide-narrow">Growth spend</th>
+              <th data-field="ga" class="st-num st-hide-narrow">G&amp;A</th>
+              <th data-field="rd" class="st-num st-hide-narrow">R&amp;D</th>
+              <th data-field="first_netted">First</th>
+              <th data-field="second_netted">Second</th>
+              <th data-field="cap_hurdle" class="st-num st-hide-narrow">Capital hurdle</th>
+            </tr>
+          </thead>
+          <tbody data-draw="positions_table"></tbody>
+        </table>
+      </div>
+      <p class="st-plain"><span class="st-plain-k">In plain English:</span> the growth corner grows fast and loses money; the mature cash generator grows slowly and earns well; the near-frontier elite already scores at the top. Find the row that looks most like your company.</p>
+    </div>
+  </section>
+
+  <section class="st-section" id="path">
+    <h2 class="st-h2">How far and how fast the score can move</h2>
+    <p class="st-note">On the central scenario a top-tail company's best durable score rises to <b>{{r28}}</b> in <b>{{y28}}</b>, <b>{{r31}}</b> in <b>{{y31}}</b> and <b>{{r36}}</b> in <b>{{y36}}</b>, or about <b>{{r36_net}}</b> while it still pays for the changes in flight. With every assumption moving together, nine in ten simulated worlds end between <b>{{p05}}</b> and <b>{{p95}}</b> in <b>{{y36}}</b>, and none on the central basis reaches <b>{{rule100}}</b>.</p>
+    <div class="st-grid">
+      <div class="st-card">
+        <h3 class="st-card-title">Score in <b>{{y36}}</b> across <b>{{draws}}</b> simulated worlds</h3>
+        <p class="st-card-note">Share of worlds by score, central basis. The band is the paper's interval from resampling the anchor firms alone; the dashed line is its central value.</p>
+        <div class="st-chart dash-skeleton" data-draw="hist_score" data-source="hist levels"></div>
+        <ul class="st-legend">
+          <li><span class="st-sw" style="background: var(--st-c0)"></span>Simulated worlds</li>
+          <li><span class="st-sw" style="background: var(--cds-chart-reference); opacity: .25"></span>Paper's interval</li>
+          <li><span class="st-sw st-sw-line"></span>Central value</li>
+        </ul>
+        <p class="st-plain"><span class="st-plain-k">In plain English:</span> the paper's own interval holds only <b>{{in_paper}}</b> of the worlds, because it varies only which companies the calculation starts from. When execution, market growth and costs also vary, the spread is much wider. Quote the central value with that range.</p>
+      </div>
+      <div class="st-card">
+        <h3 class="st-card-title">Score by year and by how much selling spend buys growth</h3>
+        <p class="st-card-note">Thin line: lowest to highest. Pale bar: middle nine in ten worlds. Dark bar: the paper's interval. Dot: central value.</p>
+        <div class="st-chart st-tall dash-skeleton" data-draw="levels_chart" data-source="levels"></div>
+        <p class="st-plain"><span class="st-plain-k">In plain English:</span> if all sales and marketing buys growth, the score starts higher; if none does, lower. Either way it climbs slowly, because the program takes years to embed.</p>
+      </div>
+    </div>
+    <div class="st-grid">
+      <div class="st-card">
+        <h3 class="st-card-title">Share of the program's benefits realized</h3>
+        <p class="st-card-note">Central execution realizes the benefits of changes that embed; fast execution changes more work a year and keeps more of it.</p>
+        <div class="st-chart dash-skeleton" data-draw="pace_chart" data-source="pace"></div>
+        <ul class="st-legend">
+          <li><span class="st-sw" style="background: var(--st-c0)"></span>Central, realized</li>
+          <li><span class="st-sw" style="background: var(--cds-chart-muted)"></span>Central, embedded</li>
+          <li><span class="st-sw" style="background: var(--st-c1)"></span>Fast, realized</li>
+        </ul>
+        <p class="st-plain"><span class="st-plain-k">In plain English:</span> central execution changes the work of <b>{{cap_cen}}</b> of employees a year and fast execution <b>{{cap_fast}}</b>. Only changes that stick deliver value, and they deliver only part of the savings they target, so by <b>{{y36}}</b> the central company has embedded <b>{{emb36}}</b> of its program but realized <b>{{pace36}}</b>.</p>
+      </div>
+      <div class="st-card">
+        <h3 class="st-card-title">Score in <b>{{y36}}</b> by change capacity</h3>
+        <p class="st-card-note">Median and middle ranges of the worlds in each band of change capacity (share of the program changed a year).</p>
+        <div class="st-chart dash-skeleton" data-draw="band_capacity" data-source="bands"></div>
+        <ul class="st-legend">
+          <li><span class="st-sw" style="background: var(--st-c0)"></span>Median</li>
+          <li><span class="st-sw" style="background: var(--st-c0); opacity: .35"></span>Middle half</li>
+          <li><span class="st-sw" style="background: var(--st-c0); opacity: .15"></span>Middle nine in ten</li>
+        </ul>
+        <p class="st-plain"><span class="st-plain-k">In plain English:</span> the more work a company can change each year, the higher it ends. Over the range of execution the realized share by <b>{{y36}}</b> runs from <b>{{real_lo}}</b> to <b>{{real_hi}}</b>. Sources: <span>{{ref_s73}}</span>; <span>{{ref_s10}}</span>.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="st-section" id="payback">
+    <h2 class="st-h2">When the program pays back</h2>
+    <p class="st-note">Yearly gains exceed the cost of the changes in flight after about <b>{{pay_cross}}</b> years, but the whole program repays those costs only after <b>{{pay_back}}</b> years (<b>{{pay_disc}}</b> discounted at <b>{{disc_rate}}</b>). Its cumulative effect is still negative at three and at five years.</p>
+    <div class="st-grid">
+      <div class="st-card">
+        <h3 class="st-card-title">Years to repay the transition costs</h3>
+        <p class="st-card-note">Share of worlds by payback year, central basis. The last bar collects everything at or beyond its start. Dashed line: the <b>{{ref_payback}}</b>-year test.</p>
+        <div class="st-chart dash-skeleton" data-draw="hist_payback" data-source="hist facts"></div>
+        <ul class="st-legend">
+          <li><span class="st-sw" style="background: var(--st-c0)"></span>All inputs move</li>
+          <li><span class="st-sw" style="background: var(--st-c1)"></span>Central execution</li>
+          <li><span class="st-sw st-sw-line"></span>Payback test</li>
+        </ul>
+        <p class="st-plain"><span class="st-plain-k">In plain English:</span> at the central pace, payback falls in a narrow window, <b>{{pay_cen_lo}}</b> to <b>{{pay_cen_hi}}</b> years as costs and compute move. When the pace itself is uncertain, nine in ten worlds pay back between <b>{{pay_p05}}</b> and <b>{{pay_p95}}</b> years.</p>
+      </div>
+      <div class="st-card">
+        <h3 class="st-card-title">Is it worth funding?</h3>
+        <ul class="st-list">
+          <li>Over its life the program's gains are worth <b>{{pay_ratio}}</b> times its transition costs in present value, and its net present value is <b>{{pay_npv}}</b> of a year's revenue under central execution.</li>
+          <li>Fast execution pays back after <b>{{pay_fast}}</b> years (<b>{{pay_fast_disc}}</b> discounted), so it passes a <b>{{ref_payback}}</b>-year test.</li>
+          <li>Slow execution has a net present value of <b>{{pay_npv_slow}}</b> of a year's revenue: not worth funding at any horizon.</li>
+          <li>An owner who sells within five years still gains if the price reflects the benefits to come, which are worth <b>{{pay_exit5}}</b> of a year's revenue at year five.</li>
+          <li>During the program the cash score runs <b>{{dip28}}</b> to <b>{{dip36}}</b> points below its durable level under central execution. A screen that reads that dip as weakness penalizes companies that are executing.</li>
+        </ul>
+        <p class="st-plain"><span class="st-plain-k">In plain English:</span> the program is a good investment that takes patience. Faster execution is what shortens the wait. Sources: <span>{{ref_s73}}</span>; <span>{{ref_s82}}</span>; <span>{{ref_s10}}</span>.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="st-section" id="ceiling">
+    <h2 class="st-h2">Can AI take a company to a Rule of 100?</h2>
+    <p class="st-note">Only with a market growing faster than about <b>{{gstar}}</b> a year at the central full-automation cost structure, and that threshold rests mostly on what AI compute will cost. Along the paper's compute path it is about <b>{{gstar28}}</b> in <b>{{y28}}</b>, <b>{{gstar31}}</b> in <b>{{y31}}</b> and <b>{{gstar36}}</b> in <b>{{y36}}</b>; if half or seven tenths of savings pass to customers through price, it rises to <b>{{gstar_phi5}}</b> or <b>{{gstar_phi7}}</b>.</p>
+    <div class="st-grid">
+      <div class="st-card">
+        <h3 class="st-card-title">Market growth needed for a cash score of <b>{{rule100}}</b></h3>
+        <p class="st-card-note">Share of worlds by threshold, with the compute share moving and held at the central value. Dashed line: <b>{{ref_g}}</b>. The last bar collects everything at or beyond its start.</p>
+        <div class="st-chart dash-skeleton" data-draw="hist_gstar" data-source="hist facts"></div>
+        <ul class="st-legend">
+          <li><span class="st-sw" style="background: var(--st-c0)"></span>All inputs move</li>
+          <li><span class="st-sw" style="background: var(--st-c1)"></span>Compute at <b>{{cc_cen}}</b> of revenue</li>
+          <li><span class="st-sw st-sw-line"></span><b>{{ref_g}}</b> market growth</li>
+        </ul>
+        <p class="st-plain"><span class="st-plain-k">In plain English:</span> in most worlds a market must grow faster than <b>{{ref_g}}</b> a year; in <b>{{gstar_below30}}</b> of them, mostly where compute is very cheap, less is enough. Nine in ten worlds need <b>{{gstar_p05}}</b> to <b>{{gstar_p95}}</b>.</p>
+      </div>
+      <div class="st-card">
+        <h3 class="st-card-title">The threshold against the cost of AI compute</h3>
+        <p class="st-card-note">Median and middle ranges of the worlds in each band of the compute share at <b>{{y25}}</b> prices (log scale).</p>
+        <div class="st-chart dash-skeleton" data-draw="band_compute" data-source="bands facts"></div>
+        <p class="st-plain"><span class="st-plain-k">In plain English:</span> the cheaper AI computing is relative to the labor it replaces, the easier a Rule of 100 becomes. Over the paper's scenario range of <b>{{cc_lo}}</b> to <b>{{cc_hi}}</b> of revenue the central threshold runs from <b>{{gstar_cc_lo}}</b> to <b>{{gstar_cc_hi}}</b>.</p>
+      </div>
+    </div>
+    <div class="st-card">
+      <h3 class="st-card-title">What else the ceiling says</h3>
+      <ul class="st-list">
+        <li>At the central cost structure the ceiling of a fully automated, asset-light company is <b>{{ceil5}}</b>, <b>{{ceil15}}</b> and <b>{{ceil30}}</b> points at market growth of five, fifteen and thirty percent a year. It is a bound at that cost structure, not a forecast or a target; a company with leaner costs can score above it.</li>
+        <li>A company that bills in advance needs less: at the median deferred-revenue intensity of growing firms the threshold is about <b>{{gstar_kdef}}</b>.</li>
+        <li>A Rule of 1000 is not a steady state: it needs <b>{{pull_lo}}</b> to <b>{{pull_hi}}</b> times the demand pull of today's best public software firms.</li>
+        <li>Where rivals can copy the product freely, automation's savings lift the score only for a company that holds an input rivals cannot replicate, and then only up to the ceiling.</li>
+      </ul>
+      <p class="st-plain">Sources: <span>{{ref_s72}}</span>; <span>{{ref_p4}}</span>; <span>{{ref_s10}}</span>.</p>
+    </div>
+  </section>
+
+  <section class="st-section" id="drivers">
+    <h2 class="st-h2">What drives the outcome</h2>
+    <p class="st-note">Share of the differences between worlds that each group of assumptions explains, counting its interactions (the Sobol total index, with its <b>{{ci_level}}</b> interval as a whisker). Execution dominates the <b>{{y36}}</b> score; the cost of AI compute dominates the Rule-of-100 threshold.</p>
+    <div class="st-grid">
+      <div class="st-card">
+        <h3 class="st-card-title">Score in <b>{{y36}}</b>, central basis</h3>
+        <div class="st-chart dash-skeleton" data-draw="sobol_score" data-source="sobol"></div>
+        <p class="st-plain"><span class="st-plain-k">In plain English:</span> how fast and how well a company carries out its program explains <b>{{so_exec_pct}}</b> of why outcomes differ; market growth <b>{{so_g_pct}}</b>. Cost assumptions barely matter for the path.</p>
+      </div>
+      <div class="st-card">
+        <h3 class="st-card-title">Market growth needed for a Rule of 100</h3>
+        <div class="st-chart dash-skeleton" data-draw="sobol_gstar" data-source="sobol"></div>
+        <p class="st-plain"><span class="st-plain-k">In plain English:</span> the price of AI computing explains <b>{{so_cc_pct}}</b> of the differences in this threshold. It is the number to watch when judging how high scores can go. Source: <span>{{ref_s10}}</span>.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="st-section" id="floors">
+    <h2 class="st-h2">The costs automation does not remove</h2>
+    <p class="st-note">Taxes, payment fees, audits and controls, security, upkeep of AI builds and the cost of AI errors stay after automation. The recurring costs of maintaining, securing and supervising AI come to <b>{{cfull_cen}}</b> points of revenue in the central case (<b>{{cfull_fav}}</b> favorable, <b>{{cfull_cons}}</b> conservative), on top of compute at <b>{{cc_cen}}</b> of revenue.</p>
+    <div class="st-grid">
+      <div class="st-card">
+        <h3 class="st-card-title">How much each cost moves the Rule-of-100 threshold</h3>
+        <p class="st-card-note">Each bar runs from the threshold with that cost at its favorable end to the threshold at its conservative end, every other input central. The dashed line is the central threshold. Compute is shown for scale.</p>
+        <div class="st-chart dash-skeleton" data-draw="swings_chart" data-source="swings facts"></div>
+        <p class="st-plain"><span class="st-plain-k">In plain English:</span> of the costs that stay, AI errors and failures matter most, then taxes and the cost of audits and controls. All of them together matter less than the price of AI computing.</p>
+      </div>
+      <div class="st-card">
+        <h3 class="st-card-title">Can a control design pass the audit?</h3>
+        <p class="st-card-note">Share of the <b>{{amin_points}}</b> tested mixes of control assumptions in which some design keeps the chance of missing a material error below each yearly threshold.</p>
+        <div class="st-chart st-short dash-skeleton" data-draw="amin_chart" data-source="amin"></div>
+        <ul class="st-legend">
+          <li><span class="st-sw" style="background: var(--st-c0)"></span>Some design passes</li>
+          <li><span class="st-sw" style="background: var(--cds-chart-status-critical)"></span>No design passes</li>
+        </ul>
+        <p class="st-plain"><span class="st-plain-k">In plain English:</span> for a <b>{{rev_1b}}</b> company the cheapest passing design costs about <b>{{floor5}}</b> to <b>{{floor1}}</b> of revenue in the paper's example (<b>{{floor_lo}}</b> to <b>{{floor_hi}}</b> over the range of audit fees). A design built only from AI on one provider never passes: its best yearly miss chance is <b>{{ai_only_min}}</b>, because the layers share the same failures. Sources: <span>{{ref_p5}}</span>; <span>{{ref_s85}}</span>; <span>{{ref_s10}}</span>.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="st-section" id="questions">
+    <h2 class="st-h2">Questions leaders ask</h2>
+    <p class="st-note">Short answers, with the number first and the condition after. Each names the part of the paper it comes from.</p>
+    <div class="st-nav st-role" role="group" aria-label="Show questions for">
+      <button type="button" class="st-btn" data-role="all" aria-pressed="true">All</button>
+      <button type="button" class="st-btn" data-role="ceo" aria-pressed="false">CEO</button>
+      <button type="button" class="st-btn" data-role="cfo" aria-pressed="false">CFO</button>
+      <button type="button" class="st-btn" data-role="cto" aria-pressed="false">CTO</button>
+    </div>
+    <div class="st-qa-groups">
+      <div class="st-qa-group" data-role="ceo">
+        <h3 class="st-h3">CEO</h3>
+        <article class="st-qa">
+          <h4>Is the Rule of 40 still the right bar?</h4>
+          <p>Use it as a pass mark, not as the best you can do. Among the best software firms, a point of extra growth came with well under a point less margin: about a fifth of a point over <b>{{y1025}}</b> on the GAAP basis in the baseline and <b>{{slope_lo}}</b> to <b>{{slope_hi}}</b> of a point for <b>{{spec_share}}</b> of reasonable analysis choices, far from the one-for-one trade the rule assumes. That describes choices across firms, not the trade-off your firm faces, and its sign is not statistically firm. The top also fell: the <b>{{pct95}}</b>-percentile score dropped <b>{{top_fall}}</b> points on the GAAP basis between <b>{{y1619}}</b> and <b>{{y2325}}</b>. The data do not say why, and the top partly recovered in <b>{{y25}}</b>.</p>
+          <p class="st-src"><span>{{ref_s5}}</span>; <span>{{ref_s9}}</span></p>
+        </article>
+        <article class="st-qa">
+          <h4>Where should we start with AI, and what comes next?</h4>
+          <p>Engineering first: it ranks first at <b>{{eng_first}}</b> of <b>{{n_positions}}</b> positions. The back office (G&amp;A) next, second at <b>{{ga_second}}</b>. The growth engine only if your selling spend is far above its maintenance level of about <b>{{sm_maint}}</b> of revenue. Cost of revenue after those, since its savings are worth only what pricing power lets you keep. Throughout, invest in change capacity, retention and controls.</p>
+          <p class="st-src"><span>{{ref_comp}}</span>; <span>{{ref_s75}}</span>; <span>{{ref_c3}}</span></p>
+        </article>
+        <article class="st-qa">
+          <h4>How much can AI lift our score, and by when?</h4>
+          <p>For a top-tail company on the central scenario: to about <b>{{r28}}</b> in <b>{{y28}}</b>, <b>{{r31}}</b> in <b>{{y31}}</b> and <b>{{r36}}</b> in <b>{{y36}}</b> (about <b>{{r36_net}}</b> net of the cost of changes in flight), with nine in ten simulated worlds between <b>{{p05}}</b> and <b>{{p95}}</b>. Even a completed program brings the durable score only to its target, about <b>{{target36}}</b>, plus market growth of <b>{{g_central}}</b>. By <b>{{y28}}</b> the program raises the margin intercept by only <b>{{rise28}}</b> points; between fiscal <b>{{y22}}</b> and <b>{{y24}}</b> the median sample company with at least <b>{{rev_100m}}</b> of revenue raised its GAAP operating margin by <b>{{rev_op}}</b> points through cost programs of every kind.</p>
+          <p class="st-src"><span>{{ref_s73}}</span>; <span>{{ref_s10}}</span></p>
+        </article>
+        <article class="st-qa">
+          <h4>Can we reach a Rule of 100?</h4>
+          <p>Not as a lasting state, for most companies. Full automation lifts a mature, asset-light company to a cash score of <b>{{rule100}}</b> only if its market grows faster than about <b>{{gstar}}</b> a year at central costs, and more if savings pass to customers. No simulated world on the central basis reaches it by <b>{{y36}}</b>: the highest is <b>{{r36_max}}</b>. Scores far above that are possible only briefly, in new markets with exceptional demand pull.</p>
+          <p class="st-src"><span>{{ref_s72}}</span>; <span>{{ref_s9}}</span>; <span>{{ref_s10}}</span></p>
+        </article>
+        <article class="st-qa">
+          <h4>What decides whether we succeed?</h4>
+          <p>Execution. It explains <b>{{so_exec_pct}}</b> of the spread in the <b>{{y36}}</b> score, against <b>{{so_g_pct}}</b> for market growth. Under fast execution a company realizes <b>{{fast36}}</b> of its program's benefits by <b>{{y36}}</b>, against <b>{{pace36}}</b> under central execution. What binds is the capacity to change people's work, not decision speed or security review: failures, rollbacks, leadership changes and reorganizations slow the program.</p>
+          <p class="st-src"><span>{{ref_s73}}</span>; <span>{{ref_s82}}</span>; <span>{{ref_s10}}</span></p>
+        </article>
+        <article class="st-qa">
+          <h4>Will the gains last once competitors use the same AI?</h4>
+          <p>Only if you hold something rivals cannot copy. Where entry is free and the product is homogeneous, competition removes the margin automation creates unless the company holds a scarce input, and even then the score cannot rise above the full-cost ceiling. The paper names one input of that kind: the ability to bear accountability credibly and cheaply.</p>
+          <p class="st-src"><span>{{ref_p4}}</span>; <span>{{ref_s72}}</span>; <span>{{ref_s85}}</span></p>
+        </article>
+        <article class="st-qa">
+          <h4>Does this mean cutting headcount?</h4>
+          <p>No. Full automation in the paper is an analytical bound, not a staffing plan, and nothing in it implies that accountable people or control owners can be removed. The program's constraint is the capacity to change people's work: central execution changes the work of <b>{{cap_cen}}</b> of employees a year, fast execution <b>{{cap_fast}}</b>.</p>
+          <p class="st-src"><span>{{ref_s1}}</span>; <span>{{ref_s73}}</span></p>
+        </article>
+        <article class="st-qa">
+          <h4>Should we keep spending on growth if it lowers our score?</h4>
+          <p>Yes, if each extra dollar of growth spend earns more than it costs. A fixed bar marks such a company down. If you make that case, show it from the payback and retention of customer cohorts at a stated discount rate; the data do not show which companies meet that test. Retention counts at every stage: a point of it raises the score, and the gain does not fade as the market fills.</p>
+          <p class="st-src"><span>{{ref_s81}}</span>; <span>{{ref_c3}}</span></p>
+        </article>
+      </div>
+
+      <div class="st-qa-group" data-role="cfo">
+        <h3 class="st-h3">CFO</h3>
+        <article class="st-qa">
+          <h4>When does the AI program pay back?</h4>
+          <p>Under central execution, yearly gains pass the cost of changes in flight after about <b>{{pay_cross}}</b> years, and the whole program repays those costs after <b>{{pay_back}}</b> years, <b>{{pay_disc}}</b> discounted at <b>{{disc_rate}}</b>. The cumulative effect is <b>{{pay_hold3}}</b> and <b>{{pay_hold5}}</b> points of revenue times years at three and five years. As costs and compute move, payback runs from <b>{{pay_cen_lo}}</b> to <b>{{pay_cen_hi}}</b> years; fast execution pays back in <b>{{pay_fast}}</b>.</p>
+          <p class="st-src"><span>{{ref_s73}}</span>; <span>{{ref_s10}}</span></p>
+        </article>
+        <article class="st-qa">
+          <h4>Is it worth funding with a payback that long?</h4>
+          <p>Under central execution, yes: the gains are worth <b>{{pay_ratio}}</b> times the transition costs in present value, a net present value of <b>{{pay_npv}}</b> of a year's revenue. Under slow execution it is <b>{{pay_npv_slow}}</b>, so not worth funding at any horizon. An owner who must sell within five years still gains if the price reflects the remaining benefits (<b>{{pay_exit5}}</b> of a year's revenue at year five), and would decline only if a sale recovered less than <b>{{pay_exit_break}}</b> of that value or the program had to be repaid in cash.</p>
+          <p class="st-src"><span>{{ref_s73}}</span></p>
+        </article>
+        <article class="st-qa">
+          <h4>What will our score look like during the program?</h4>
+          <p>Lower than its durable level, by the cost of the changes in flight: about <b>{{dip28}}</b> to <b>{{dip36}}</b> points under central execution and <b>{{dip_fast}}</b> in <b>{{y28}}</b> under fast execution. Holding the program to a guided dip of one point of revenue a year slows it: a public company that does so realizes <b>{{dip1_share}}</b> of the benefits by <b>{{y36}}</b> instead of <b>{{pace36}}</b>, and <b>{{dip2_share}}</b> at two points.</p>
+          <p class="st-src"><span>{{ref_s73}}</span>; <span>{{ref_s82}}</span></p>
+        </article>
+        <article class="st-qa">
+          <h4>Which basis should we report the score on?</h4>
+          <p>Annual free cash flow after stock-based compensation and capital expenditure, and say so every time: the basis decides the answer. In <b>{{y2325}}</b>, <b>{{pass_fcf}}</b> of firm-years cleared <b>{{rule40}}</b> on free cash flow before stock-based compensation and <b>{{pass_cash}}</b> after it. A published score on adjusted margins, free cash flow or organic growth is a non-GAAP measure, and the ceiling, durable score and central path are scenario values, not reportable targets.</p>
+          <p class="st-src"><span>{{ref_s4}}</span>; <span>{{ref_s83}}</span>; <span>{{ref_s9}}</span></p>
+        </article>
+        <article class="st-qa">
+          <h4>How should acquisitions count?</h4>
+          <p>Charge acquired growth with what it cost. Bought revenue enters a reported score without the capital paid for it: one serial acquirer's <b>{{y25}}</b> GAAP score of <b>{{acq_gaap}}</b> is <b>{{acq_lo}}</b> to <b>{{acq_hi}}</b> on its cash margin before interest once its acquisitions are charged as capital. Charge either interest or a cost of capital on that capital, not both.</p>
+          <p class="st-src"><span>{{ref_s6}}</span>; <span>{{ref_s9}}</span></p>
+        </article>
+        <article class="st-qa">
+          <h4>Should we pass AI savings on to customers?</h4>
+          <p>Passing savings through price lowers the path and raises the bar for a Rule of 100. If half of every unit-cost saving goes to customers, the central <b>{{y36}}</b> score is <b>{{r36_phi5}}</b> instead of <b>{{r36}}</b> and the threshold <b>{{gstar_phi5}}</b>; at seven tenths, <b>{{r36_phi7}}</b> and <b>{{gstar_phi7}}</b>. Savings in cost of revenue are worth only what pricing power lets you keep.</p>
+          <p class="st-src"><span>{{ref_s72}}</span>; <span>{{ref_s73}}</span>; <span>{{ref_c3}}</span></p>
+        </article>
+        <article class="st-qa">
+          <h4>What new costs come with AI?</h4>
+          <p>Compute, at <b>{{cc_cen}}</b> of revenue in the central full-automation case at <b>{{y25}}</b> prices, and the recurring costs of maintaining, securing and supervising AI, <b>{{cfull_cen}}</b> points of revenue (<b>{{cfull_fav}}</b> to <b>{{cfull_cons}}</b> across the cases). AI errors and failures are the largest of those. The accountability floor of audits, controls and the people behind them stays, at <b>{{amin_lo}}</b> to <b>{{amin_hi}}</b> of revenue in the paper's band.</p>
+          <p class="st-src"><span>{{ref_s72}}</span>; <span>{{ref_s85}}</span></p>
+        </article>
+        <article class="st-qa">
+          <h4>Should we own our AI compute?</h4>
+          <p>Only if the vendor's markup is large relative to your growth. Owning raises the cash ceiling only if the markup exceeds <b>{{own_mult}}</b> times market growth when servers take the full first-year allowance of current law: about <b>{{own5}}</b> at <b>{{g5}}</b> market growth and <b>{{own15}}</b> at <b>{{g15}}</b>, assuming the capacity is fully used. More generally, automation that adds capital pays only if each dollar removes more than growth plus replacement in yearly cost, <b>{{cap_hurdle_lo}}</b> to <b>{{cap_hurdle_hi}}</b> at the six positions.</p>
+          <p class="st-src"><span>{{ref_s72}}</span>; <span>{{ref_p9}}</span>; <span>{{ref_s75}}</span></p>
+        </article>
+        <article class="st-qa">
+          <h4>What should the board track besides the score?</h4>
+          <p>Economic profit (after-tax operating profit minus the cost of capital on invested capital, leases and purchase commitments included) plus growth at its net value, and gross profit per dollar of computing cost, because the compute share is the largest uncertainty in the ceiling. Two firms can both score <b>{{rule100}}</b> while earning very different returns on the capital behind it.</p>
+          <p class="st-src"><span>{{ref_s84}}</span>; <span>{{ref_s9}}</span></p>
+        </article>
+      </div>
+
+      <div class="st-qa-group" data-role="cto">
+        <h3 class="st-h3">CTO</h3>
+        <article class="st-qa">
+          <h4>Why does engineering come first, and what does that assume?</h4>
+          <p>Engineering spend is larger than the back office at every position and the ranking counts its saving in full, so the same <b>{{lever_x}}</b> saving adds the most: <b>{{eng_pts_lo}}</b> to <b>{{eng_pts_hi}}</b> points, against <b>{{ga_pts_lo}}</b> to <b>{{ga_pts_hi}}</b> for the back office. The ranking treats engineering spend as a cost line and does not count its effect on future growth, and it compares savings of the same size, not the effort or the AI cost needed to get each.</p>
+          <p class="st-src"><span>{{ref_comp}}</span>; <span>{{ref_s75}}</span></p>
+        </article>
+        <article class="st-qa">
+          <h4>How much will compute cost, and how much does it matter?</h4>
+          <p>No source measures it for a company's own automation, so the paper uses scenarios. It matters most for the ceiling: compute explains <b>{{so_cc_pct}}</b> of the spread in the Rule-of-100 threshold, which runs from <b>{{gstar_cc_lo}}</b> to <b>{{gstar_cc_hi}}</b> as the compute share runs from <b>{{cc_lo}}</b> to <b>{{cc_hi}}</b> of revenue. On the paper's path the central share rises to <b>{{cc28}}</b> in <b>{{y28}}</b>, because work only frontier models can do costs more, then falls to <b>{{cc31}}</b> in <b>{{y31}}</b> and <b>{{cc36}}</b> in <b>{{y36}}</b>.</p>
+          <p class="st-src"><span>{{ref_s72}}</span>; <span>{{ref_s10}}</span></p>
+        </article>
+        <article class="st-qa">
+          <h4>What does running AI cost beyond compute?</h4>
+          <p>Upkeep of builds as models are retired, security scaled to full automation, and losses from errors, misbehavior and provider incidents. In the central case they come to <b>{{cfull_cen}}</b> points of revenue. Of the market growth a company needs for a Rule of 100, AI failure accounts for <b>{{gd_err}}</b> points, security <b>{{gd_sec}}</b>, maintenance <b>{{gd_mnt}}</b> and the rest <b>{{gd_anc}}</b>.</p>
+          <p class="st-src"><span>{{ref_s72}}</span></p>
+        </article>
+        <article class="st-qa">
+          <h4>Can AI check AI in our financial controls?</h4>
+          <p>Not on its own, from one provider. Layers that share one model share its failures, so stacking more of them does not remove the common part. In the paper's example no design built only from AI layers on one provider passes at either threshold, and in the stress test it never passes in <b>{{amin_points}}</b> cases. Mixed designs of people and AI can pass; IT general controls and design diversity decide. Each AI application in scope adds its own controls, and at about <b>{{itgc_apps}}</b> such applications per <b>{{rev_1b}}</b> of revenue the floor reaches the band's lower end.</p>
+          <p class="st-src"><span>{{ref_p5}}</span>; <span>{{ref_s72}}</span>; <span>{{ref_s85}}</span>; <span>{{ref_s10}}</span></p>
+        </article>
+        <article class="st-qa">
+          <h4>How fast can we roll it out?</h4>
+          <p>As fast as the organization can change its work. For a program of <b>{{n_proc}}</b> processes, decision bandwidth and security review allow a faster pace than change capacity, so change capacity binds, and faster decisions alone change nothing. Central execution changes <b>{{cap_cen}}</b> of employees' work a year, within a range of <b>{{cap_slow}}</b> to <b>{{cap_fast}}</b>.</p>
+          <p class="st-src"><span>{{ref_s73}}</span>; <span>{{ref_s82}}</span></p>
+        </article>
+        <article class="st-qa">
+          <h4>Does depending on one model provider matter?</h4>
+          <p>Yes, for controls and for failure costs. Provider incidents and common failures are part of the cost of running AI, and they decide whether a control design can pass: even the best AI-only design on one provider misses a material error with a yearly chance of at least <b>{{ai_only_min}}</b> in the cases tested. Diversify the design, and improve the IT general controls that lower the shared failure rate.</p>
+          <p class="st-src"><span>{{ref_p5}}</span>; <span>{{ref_s85}}</span>; <span>{{ref_s10}}</span></p>
+        </article>
+        <article class="st-qa">
+          <h4>Does the paper account for what AI can and cannot yet do?</h4>
+          <p>No. It assumes every process is technically automatable from the program's start and does not model AI capability, whose measured growth is fast: the length of software tasks that agents complete half the time has doubled about every <b>{{metr_days}}</b>. Its numbers are about cost, pace and accountability, given feasibility.</p>
+          <p class="st-src"><span>{{ref_s73}}</span>; <span>{{ref_s86}}</span></p>
+        </article>
+        <article class="st-qa">
+          <h4>What should we measure?</h4>
+          <p>The share of changes that create value and the stability of their sponsorship, which separate fast from central execution; gross profit per dollar of computing cost; and the quality of IT general controls over AI applications. Evaluate each AI initiative by the parameter it moves: the margin intercept, demand pull, capital intensity, pricing power, the accountability floor, the full-cost floors or execution capacity.</p>
+          <p class="st-src"><span>{{ref_s82}}</span>; <span>{{ref_s84}}</span>; <span>{{ref_s9}}</span></p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="st-section" id="claims">
+    <h2 class="st-h2">Which of the paper's claims held up</h2>
+    <p class="st-note"><b>{{claims_hold}}</b> of the <b>{{claims_rows}}</b> headline claims hold in every world tested. The others hold at the paper's central values; where they break, the paper now states the condition or reports the case. A second run with another seed gave the same verdict on <b>{{seed_agree}}</b> of <b>{{seed_tests}}</b> tests.</p>
+    <div class="st-filter">
+      <input id="st-claim-search" type="search" placeholder="Filter claims" aria-label="Filter claims">
+    </div>
+    <div class="st-tablebox">
+      <table class="st-table" data-source="claims" data-row-key="test_id">
+        <thead>
+          <tr>
+            <th data-field="claim"><button type="button" data-sort="claim">Claim</button></th>
+            <th data-field="conditions" class="st-hide-narrow"><button type="button" data-sort="conditions">Conditions held</button></th>
+            <th data-field="result"><button type="button" data-sort="result">Result</button></th>
+            <th data-field="central" class="st-num"><button type="button" data-sort="central">Central</button></th>
+            <th data-field="lowest" class="st-num"><button type="button" data-sort="lowest">Lowest</button></th>
+            <th data-field="highest" class="st-num"><button type="button" data-sort="highest">Highest</button></th>
+            <th data-field="meaning" class="st-hide-narrow"><button type="button" data-sort="meaning">What it means</button></th>
+          </tr>
+        </thead>
+        <tbody data-draw="claims_table"></tbody>
+      </table>
+    </div>
+    <p class="st-plain"><span class="st-plain-k">In plain English:</span> "Holds everywhere" means no simulated world, extreme case or targeted search broke the claim. "Fails somewhere" means some mix of assumptions did; the claim is still true at the paper's middle assumptions, and the last column says where it breaks. Source: <span>{{ref_s10}}</span>.</p>
+  </section>
+
+  <section class="st-section st-card" id="words" aria-label="Words used on this page">
+    <h2 class="st-card-title">Words used on this page</h2>
+    <dl class="st-gloss">
+      <div><dt>Rule of 40 score</dt><dd>Revenue growth plus profit margin, both in percent. Here the margin is annual free cash flow after stock-based compensation and capital expenditure.</dd></div>
+      <div><dt>Durable score</dt><dd>The part of the score that lasts once the market is full: the margin a company earns at market growth, plus market growth net of capital needs.</dd></div>
+      <div><dt>Position</dt><dd>A typical kind of company, such as the growth corner or the mature cash generator, taken as the medians of real firm-years.</dd></div>
+      <div><dt>Lever</dt><dd>A cost line AI can shrink: engineering, the back office, the growth engine or cost of revenue.</dd></div>
+      <div><dt>Back office (G&amp;A)</dt><dd>General and administrative cost: finance, HR, legal and administration.</dd></div>
+      <div><dt>Growth engine</dt><dd>The part of sales and marketing that buys growth. A better engine buys the same growth for less.</dd></div>
+      <div><dt>Maintenance level</dt><dd>The sales and marketing a company spends just to keep its customers; on the central basis only spend above it buys growth.</dd></div>
+      <div><dt>Pass-through</dt><dd>The share of a cost saving that competition hands to customers as lower prices.</dd></div>
+      <div><dt>Change capacity</dt><dd>How much of its work a company can change in a year. It sets the pace of the program.</dd></div>
+      <div><dt>Changes in flight</dt><dd>Transitions under way and not yet paying off. Their cost is the dip in the score during the program.</dd></div>
+      <div><dt>Payback</dt><dd>Years until the program's cumulative gains repay its cumulative transition costs. It comes later than the year when yearly gains first exceed yearly costs.</dd></div>
+      <div><dt>Rule-of-100 threshold</dt><dd>How fast a market must grow each year for a fully automated company to reach a cash score of <b>{{rule100}}</b>.</dd></div>
+      <div><dt>Compute share</dt><dd>The cost of AI computing as a share of revenue once work is automated.</dd></div>
+      <div><dt>Full-cost floors</dt><dd>The recurring costs of maintaining, securing and supervising AI, including the losses from its errors.</dd></div>
+      <div><dt>Accountability floor</dt><dd>The cost of audits, internal controls and the accountable people behind them, which automation does not remove.</dd></div>
+      <div><dt>Simulated world</dt><dd>One run of the paper's model with one mix of assumptions, each inside the range the paper states. The stress test ran a million per seed.</dd></div>
+      <div><dt>Central value</dt><dd>The paper's answer with every assumption at its middle setting.</dd></div>
+      <div><dt>Sobol index</dt><dd>The share of the differences between worlds that one group of assumptions explains, counting how it interacts with the others.</dd></div>
+    </dl>
+  </section>
+
+  <section class="st-section" id="method">
+    <h2 class="st-h2">How this was made</h2>
+    <div class="st-method">
+      <p>The stress test drew <b>{{draws}}</b> Latin-hypercube worlds per seed over <b>{{dims}}</b> assumptions, each over the range the paper states, plus <b>{{corners}}</b> extreme corners and a search for the worst case of every claim. Sobol indices use <b>{{sobol_base}}</b> base samples (<b>{{sobol_evals}}</b> model runs). Before sampling, the script reproduced the paper's central values: <b>{{repro}}</b> checks, all passing.</p>
+      <p>Shares of worlds assume every input is equally likely anywhere in its range (compute per dollar of labor on a log scale), an assumption, not a measurement. Sampling error is small: each share has a standard error of at most <b>{{mc_se}}</b> percentage points, and a second seed moved no reported extreme by more than <b>{{seed_maxdiff}}</b> point.</p>
+      <p>The lever ranking comes from the companion paper's comparison of four proportional savings at the six positions of Paper 1's lever table, at the weight each position's own spending reveals. Positions are cell medians of non-acquisition firm-years of SEC-registered software companies.</p>
+      <p>Sources: Paper 1, "The Rule of 40 as a Price Line" (Akshaya Bangalore Sreenivasa Murthy), with its Supplementary Appendix; the companion paper, "The Economics of AI Transformation" (in preparation). Data files and the scripts that build them: code/biz_dashboard_data.py, code/mc_claims.py and notes/mc_results_2026-11-03_1m/ in the replication package.</p>
+    </div>
+  </section>
+</div>
+
+<script>
+(function () {
+  const setVar = () => document.querySelectorAll('.st-page').forEach((r) => {
+    for (let i = 0; i < 4; i += 1) r.style.setProperty('--st-c' + i, dash.colors[i]);
+  });
+  setVar();
+
+  // ---- helpers ----
+  const stat = (...ids) => {
+    const s = ids.map((id) => dash.data(id).status);
+    if (s.every((x) => x === 'ok')) return 'ok';
+    if (s.some((x) => x === 'error' || x === 'declined' || x === 'missing' || x === 'connect')) return 'error';
+    return 'loading';
+  };
+  const failBox = (el) => { el.classList.remove('dash-skeleton'); el.replaceChildren(); const d = document.createElement('div'); d.className = 'st-fail'; d.textContent = 'Failed to load'; el.appendChild(d); };
+  const prep = (el, ...ids) => {
+    const s = stat(...ids);
+    if (s === 'ok') { el.classList.remove('dash-skeleton'); el.replaceChildren(); return true; }
+    if (s === 'error') { failBox(el); return false; }
+    el.replaceChildren(); el.classList.add('dash-skeleton'); return false;
+  };
+  const rows = (id) => dash.data(id).data || [];
+  const pct0 = d3.format('.0%'), pct1 = d3.format('.1%'), f0 = d3.format(',.0f'), f1 = d3.format('.1f'), f2 = d3.format('.2f');
+  const factRow = (k) => (dash.data('facts').status === 'ok' ? rows('facts').find((r) => r.key === k) : null);
+  const factNum = (k) => { const r = factRow(k); return r ? Number(String(r.display).replace(/−/g, '-').replace(/[^0-9.\-]/g, '')) : NaN; };
+  const textW = (svg, strings) => {
+    const g = svg.append('g').style('font-size', 'var(--cds-font-size-caption)');
+    let w = 0;
+    strings.forEach((s) => { const t = g.append('text').text(s); w = Math.max(w, t.node().getComputedTextLength()); });
+    g.remove();
+    return w;
+  };
+  const styleAxis = (g) => {
+    g.attr('font-size', null).attr('font-family', null).style('font-size', 'var(--cds-font-size-caption)');
+    g.selectAll('text').attr('fill', 'var(--color-fg-muted)');
+    g.selectAll('.domain').attr('stroke', 'var(--cds-chart-axis)');
+    g.selectAll('.tick line').attr('stroke', 'var(--cds-chart-grid)');
+  };
+  const tooltip = (el) => { const t = document.createElement('div'); t.className = 'st-tt'; t.hidden = true; el.appendChild(t); return t; };
+  const showTip = (el, tt, lines, x, y) => {
+    tt.replaceChildren();
+    lines.forEach(([k, v], i) => { const line = document.createElement('div'); if (i === 0) { line.className = 'st-tt-k'; line.textContent = k; } else { line.textContent = k + (v !== undefined ? ': ' + v : ''); } tt.appendChild(line); });
+    tt.hidden = false;
+    const w = tt.offsetWidth, h = tt.offsetHeight, W = el.clientWidth;
+    let left = x + 12; if (left + w > W) left = Math.max(0, x - w - 12);
+    let top = y - h - 8; if (top < 0) top = y + 12;
+    tt.style.left = left + 'px'; tt.style.top = top + 'px';
+  };
+  const hideTip = (tt) => { tt.hidden = true; };
+  const caption = (sel) => sel.attr('fill', 'var(--color-fg-muted)').style('font-size', 'var(--cds-font-size-caption)');
+
+  // ---- every number in the text: one drawing per marked element, its value from the facts file ----
+  dash.draw('f', (el) => {
+    const w = el.getAttribute('data-where') || '';
+    const r = w.startsWith('key=') ? factRow(decodeURIComponent(w.slice(4))) : null;
+    el.textContent = r ? r.display : '—';
+  });
+
+  // ---- histogram of pre-binned shares: first series as bars (side by side if several), 'step' series as a line ----
+  const histBinned = (el, opts) => {
+    const W = Math.max(280, el.clientWidth), H = 240;
+    const svg = d3.select(el).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`).attr('role', 'img');
+    const sets = opts.series.map((s) => s.rows.map((r) => ({ x0: +r.bin_lo, x1: +r.bin_hi, share: +r.share, open: r.open_top === '1' || r.open_top === 1 })));
+    const a = d3.min(sets[0], (d) => d.x0), b = d3.max(sets[0], (d) => d.x1);
+    const ymax = d3.max(sets.flat(), (d) => d.share) || 0.01;
+    const y = d3.scaleLinear([0, ymax * 1.08], [H - 26, 8]).nice();
+    const yTicks = y.ticks(4);
+    const left = Math.ceil(textW(svg, yTicks.map(pct0))) + 10;
+    const x = d3.scaleLinear([a, b], [left, W - 8]);
+    const gy = svg.append('g').attr('transform', `translate(${left},0)`).call(d3.axisLeft(y).tickValues(yTicks).tickFormat(pct0).tickSize(-(W - 8 - left)));
+    styleAxis(gy); gy.select('.domain').remove();
+    const gx = svg.append('g').attr('transform', `translate(0,${H - 26})`).call(d3.axisBottom(x).ticks(Math.max(3, Math.floor((W - left) / 70))).tickFormat(opts.fmtX).tickSizeOuter(0));
+    styleAxis(gx);
+    if (opts.band) svg.append('rect').attr('x', x(opts.band[0])).attr('width', Math.max(1, x(opts.band[1]) - x(opts.band[0]))).attr('y', 8).attr('height', H - 34).attr('fill', 'var(--cds-chart-reference)').attr('opacity', 0.14);
+    const barSets = opts.series.map((s, i) => ({ s, i })).filter((o) => o.s.as !== 'step');
+    sets.forEach((bins, i) => {
+      const s = opts.series[i];
+      if (s.as === 'step') {
+        const pts = bins.flatMap((d) => [[x(d.x0), y(d.share)], [x(d.x1), y(d.share)]]);
+        svg.append('path').attr('d', d3.line()(pts)).attr('fill', 'none').attr('stroke', s.color).attr('stroke-width', 2).attr('stroke-linejoin', 'round');
+        return;
+      }
+      const k = barSets.findIndex((o) => o.i === i), nB = barSets.length;
+      const bw = Math.max(1, x(bins[0].x1) - x(bins[0].x0) - 1), wEach = bw / nB;
+      svg.append('g').selectAll('rect').data(bins).join('rect')
+        .attr('x', (d) => x(d.x0) + 0.5 + k * wEach).attr('width', Math.max(0.5, wEach))
+        .attr('y', (d) => y(d.share)).attr('height', (d) => y(0) - y(d.share)).attr('rx', 1).attr('fill', s.color);
+    });
+    (opts.lines || []).forEach((v) => {
+      if (!Number.isFinite(v) || v < a || v > b) return;
+      svg.append('line').attr('x1', x(v)).attr('x2', x(v)).attr('y1', 8).attr('y2', H - 26).attr('stroke', 'var(--cds-chart-reference)').attr('stroke-width', 1.5).attr('stroke-dasharray', '4 3');
+    });
+    const tt = tooltip(el);
+    svg.append('rect').attr('x', left).attr('y', 8).attr('width', W - 8 - left).attr('height', H - 34).attr('fill', 'transparent')
+      .on('mousemove', (ev) => {
+        const [mx] = d3.pointer(ev);
+        const v = x.invert(mx);
+        const k = sets[0].findIndex((d) => v >= d.x0 && v < d.x1);
+        if (k < 0) { hideTip(tt); return; }
+        const d0 = sets[0][k];
+        const lines = [[d0.open ? `${opts.fmtX(d0.x0)} or more` : `${opts.fmtX(d0.x0)} to ${opts.fmtX(d0.x1)}`]];
+        opts.series.forEach((s, i) => lines.push([s.name, sets[i][k] ? pct1(sets[i][k].share) : '']));
+        const r = el.getBoundingClientRect(), sr = svg.node().getBoundingClientRect();
+        showTip(el, tt, lines, (mx / W) * sr.width + (sr.left - r.left), ev.clientY - r.top);
+      })
+      .on('mouseleave', () => hideTip(tt));
+  };
+  const histRows = (metric, series) => rows('hist').filter((r) => r.metric === metric && r.series === series);
+
+  dash.draw('hist_score', (el) => {
+    if (!prep(el, 'hist', 'levels')) return;
+    const lv = rows('levels').find((r) => r.basis === 'Central' && String(r.year) === '2036');
+    histBinned(el, { series: [{ rows: histRows('score2036', 'All inputs move'), color: dash.colors[0], name: 'Share of worlds' }],
+      band: lv ? [+lv.paper_lo, +lv.paper_hi] : null, lines: lv ? [+lv.central] : [], fmtX: f0 });
+  });
+
+  dash.draw('hist_payback', (el) => {
+    if (!prep(el, 'hist', 'facts')) return;
+    histBinned(el, { series: [{ rows: histRows('payback', 'All inputs move'), color: dash.colors[0], name: 'All inputs move' },
+      { rows: histRows('payback', 'Central execution'), color: dash.colors[1], name: 'Central execution' }],
+      lines: [factNum('ref_payback')], fmtX: (v) => f0(v) + ' yr' });
+  });
+
+  dash.draw('hist_gstar', (el) => {
+    if (!prep(el, 'hist', 'facts')) return;
+    histBinned(el, { series: [{ rows: histRows('gstar', 'All inputs move'), color: dash.colors[0], name: 'All inputs move' },
+      { rows: histRows('gstar', 'Compute held at 6%'), color: dash.colors[1], name: 'Compute at the central share', as: 'step' }],
+      lines: [factNum('ref_g')], fmtX: (v) => f0(v) + '%' });
+  });
+
+  // ---- levels: one row per year and basis ----
+  dash.draw('levels_chart', (el) => {
+    if (!prep(el, 'levels')) return;
+    const order = ['Central', 'No S&M buys growth', 'All S&M buys growth'];
+    const rs = rows('levels').map((r) => ({ ...r, year: String(r.year) })).sort((p, q) => order.indexOf(p.basis) - order.indexOf(q.basis) || p.year.localeCompare(q.year));
+    const W = Math.max(280, el.clientWidth), rowH = 26, gap = 14;
+    const svg = d3.select(el).append('svg').attr('width', '100%');
+    const labW = Math.ceil(textW(svg, rs.map((r) => r.year))) + 12;
+    const x = d3.scaleLinear([0, d3.max(rs, (r) => +r.box_max) * 1.02], [labW, W - 10]).nice();
+    let yPos = 4; const yOf = [];
+    rs.forEach((r, i) => { if (i === 0 || rs[i - 1].basis !== r.basis) yPos += (i === 0 ? 16 : gap + 16); yOf.push(yPos); yPos += rowH; });
+    const H = yPos + 28;
+    svg.attr('viewBox', `0 0 ${W} ${H}`).attr('role', 'img');
+    const gx = svg.append('g').attr('transform', `translate(0,${H - 24})`).call(d3.axisBottom(x).ticks(Math.max(3, Math.floor((W - labW) / 70))).tickSize(-(H - 28)).tickSizeOuter(0));
+    styleAxis(gx);
+    if (x.domain()[1] >= 100) svg.append('line').attr('x1', x(100)).attr('x2', x(100)).attr('y1', 0).attr('y2', H - 24).attr('stroke', 'var(--cds-chart-status-critical)').attr('stroke-width', 1).attr('stroke-dasharray', '4 3');
+    order.forEach((bs) => { const i0 = rs.findIndex((r) => r.basis === bs); if (i0 >= 0) caption(svg.append('text').attr('x', 0).attr('y', yOf[i0] - 6)).text(bs === 'Central' ? 'Central: S&M above maintenance' : bs); });
+    const tt = tooltip(el);
+    rs.forEach((r, i) => {
+      const cy = yOf[i] + rowH / 2;
+      svg.append('text').attr('x', labW - 8).attr('y', cy).attr('dy', '0.35em').attr('text-anchor', 'end').attr('fill', 'var(--color-fg)').style('font-size', 'var(--cds-font-size-caption)').text(r.year);
+      svg.append('line').attr('x1', x(+r.box_min)).attr('x2', x(+r.box_max)).attr('y1', cy).attr('y2', cy).attr('stroke', 'var(--cds-chart-muted)').attr('stroke-width', 2).attr('stroke-linecap', 'round');
+      svg.append('rect').attr('x', x(+r.p05)).attr('width', Math.max(1, x(+r.p95) - x(+r.p05))).attr('y', cy - 7).attr('height', 14).attr('rx', 3).attr('fill', dash.colors[0]).attr('opacity', 0.3);
+      svg.append('rect').attr('x', x(+r.paper_lo)).attr('width', Math.max(1, x(+r.paper_hi) - x(+r.paper_lo))).attr('y', cy - 4).attr('height', 8).attr('rx', 2).attr('fill', dash.colors[0]);
+      svg.append('circle').attr('cx', x(+r.central)).attr('cy', cy).attr('r', 4).attr('fill', 'var(--color-bg)').attr('stroke', 'var(--color-fg)').attr('stroke-width', 1.5);
+      svg.append('rect').attr('x', labW).attr('y', yOf[i]).attr('width', W - 10 - labW).attr('height', rowH).attr('fill', 'transparent')
+        .on('mousemove', (ev) => {
+          const er = el.getBoundingClientRect(), sr = svg.node().getBoundingClientRect();
+          showTip(el, tt, [[`${r.basis}, ${r.year}`], ['Central', f1(+r.central)], ["Paper's interval", `${f1(+r.paper_lo)} to ${f1(+r.paper_hi)}`], ['Middle nine in ten worlds', `${f1(+r.p05)} to ${f1(+r.p95)}`], ['Lowest to highest', `${f1(+r.box_min)} to ${f1(+r.box_max)}`]], ev.clientX - er.left, (cy / H) * sr.height + (sr.top - er.top));
+        })
+        .on('mouseleave', () => hideTip(tt));
+    });
+  });
+
+  // ---- pace: grouped bars by year ----
+  dash.draw('pace_chart', (el) => {
+    if (!prep(el, 'pace')) return;
+    const rs = rows('pace');
+    const series = [{ k: 'central_realized', name: 'Central, realized', color: dash.colors[0] }, { k: 'central_embedded', name: 'Central, embedded', color: 'var(--cds-chart-muted)' }, { k: 'fast_realized', name: 'Fast, realized', color: dash.colors[1] }];
+    const W = Math.max(280, el.clientWidth), H = 240;
+    const svg = d3.select(el).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`).attr('role', 'img');
+    const y = d3.scaleLinear([0, 100], [H - 26, 14]);
+    const yTicks = [0, 25, 50, 75, 100];
+    const left = Math.ceil(textW(svg, yTicks.map((v) => v + '%'))) + 10;
+    const x0 = d3.scaleBand(rs.map((r) => String(r.year)), [left, W - 8]).paddingInner(0.25).paddingOuter(0.1);
+    const x1 = d3.scaleBand(series.map((s) => s.k), [0, x0.bandwidth()]).padding(0.08);
+    const gy = svg.append('g').attr('transform', `translate(${left},0)`).call(d3.axisLeft(y).tickValues(yTicks).tickFormat((v) => v + '%').tickSize(-(W - 8 - left)));
+    styleAxis(gy); gy.select('.domain').remove();
+    const gx = svg.append('g').attr('transform', `translate(0,${H - 26})`).call(d3.axisBottom(x0).tickSizeOuter(0));
+    styleAxis(gx);
+    const bw = Math.min(32, x1.bandwidth());
+    const tt = tooltip(el);
+    rs.forEach((r) => {
+      series.forEach((s) => {
+        const v = +r[s.k];
+        const bx = x0(String(r.year)) + x1(s.k) + (x1.bandwidth() - bw) / 2;
+        svg.append('rect').attr('x', bx).attr('width', bw).attr('y', y(v)).attr('height', y(0) - y(v)).attr('rx', 2).attr('fill', s.color);
+        caption(svg.append('text').attr('x', bx + bw / 2).attr('y', y(v) - 4).attr('text-anchor', 'middle')).style('font-variant-numeric', 'tabular-nums').text(f0(v) + '%');
+      });
+      svg.append('rect').attr('x', x0(String(r.year))).attr('width', x0.bandwidth()).attr('y', 14).attr('height', H - 40).attr('fill', 'transparent')
+        .on('mousemove', (ev) => { const er = el.getBoundingClientRect(); showTip(el, tt, [[String(r.year)]].concat(series.map((s) => [s.name, f0(+r[s.k]) + '%'])), ev.clientX - er.left, ev.clientY - er.top); })
+        .on('mouseleave', () => hideTip(tt));
+    });
+  });
+
+  // ---- bands: median line with the middle half and the middle nine in ten of the worlds in each bin ----
+  const bandChart = (el, rs, o) => {
+    const W = Math.max(280, el.clientWidth), H = 240;
+    const svg = d3.select(el).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`).attr('role', 'img');
+    const pts = rs.map((r) => ({ x: +r.x_mid, lo: +r.x_lo, hi: +r.x_hi, p05: +r.p05, p25: +r.p25, p50: +r.p50, p75: +r.p75, p95: +r.p95, n: +r.n })).sort((p, q) => p.x - q.x);
+    const ymin = d3.min(pts, (d) => d.p05), ymax = d3.max(pts, (d) => d.p95);
+    const y = d3.scaleLinear([Math.min(ymin, o.hline ?? ymin) * 0.95, Math.max(ymax, o.hline ?? ymax) * 1.03], [H - 30, 8]).nice();
+    const yTicks = y.ticks(5);
+    const left = Math.ceil(textW(svg, yTicks.map(o.fmtY))) + 10;
+    const xd = [d3.min(pts, (d) => d.lo), d3.max(pts, (d) => d.hi)];
+    const x = (o.log ? d3.scaleLog(xd, [left, W - 10]) : d3.scaleLinear(xd, [left, W - 10]));
+    const gy = svg.append('g').attr('transform', `translate(${left},0)`).call(d3.axisLeft(y).tickValues(yTicks).tickFormat(o.fmtY).tickSize(-(W - 10 - left)));
+    styleAxis(gy); gy.select('.domain').remove();
+    const xt = o.log ? [1, 2, 5, 10, 20, 50].filter((v) => v >= xd[0] && v <= xd[1]) : x.ticks(Math.max(3, Math.floor((W - left) / 70)));
+    const gx = svg.append('g').attr('transform', `translate(0,${H - 30})`).call(d3.axisBottom(x).tickValues(xt).tickFormat(o.fmtX).tickSizeOuter(0));
+    styleAxis(gx);
+    const area = (lo, hi) => d3.area().x((d) => x(d.x)).y0((d) => y(d[lo])).y1((d) => y(d[hi]));
+    svg.append('path').attr('d', area('p05', 'p95')(pts)).attr('fill', dash.colors[0]).attr('opacity', 0.15);
+    svg.append('path').attr('d', area('p25', 'p75')(pts)).attr('fill', dash.colors[0]).attr('opacity', 0.3);
+    svg.append('path').attr('d', d3.line().x((d) => x(d.x)).y((d) => y(d.p50))(pts)).attr('fill', 'none').attr('stroke', dash.colors[0]).attr('stroke-width', 2).attr('stroke-linejoin', 'round').attr('stroke-linecap', 'round');
+    if (Number.isFinite(o.hline)) svg.append('line').attr('x1', left).attr('x2', W - 10).attr('y1', y(o.hline)).attr('y2', y(o.hline)).attr('stroke', 'var(--cds-chart-reference)').attr('stroke-width', 1.5).attr('stroke-dasharray', '4 3');
+    const tt = tooltip(el);
+    const dot = svg.append('circle').attr('r', 4).attr('fill', dash.colors[0]).attr('visibility', 'hidden');
+    svg.append('rect').attr('x', left).attr('y', 8).attr('width', W - 10 - left).attr('height', H - 38).attr('fill', 'transparent')
+      .on('mousemove', (ev) => {
+        const [mx] = d3.pointer(ev);
+        const v = x.invert(mx);
+        const d = pts.find((p) => v >= p.lo && v < p.hi) || (v < pts[0].lo ? pts[0] : pts[pts.length - 1]);
+        dot.attr('cx', x(d.x)).attr('cy', y(d.p50)).attr('visibility', 'visible');
+        const er = el.getBoundingClientRect(), sr = svg.node().getBoundingClientRect();
+        showTip(el, tt, [[`${o.xName} ${o.fmtX(d.lo)} to ${o.fmtX(d.hi)}`], ['Median', o.fmtY(d.p50)], ['Middle half', `${o.fmtY(d.p25)} to ${o.fmtY(d.p75)}`], ['Middle nine in ten', `${o.fmtY(d.p05)} to ${o.fmtY(d.p95)}`], ['Worlds', f0(d.n)]],
+          (x(d.x) / W) * sr.width + (sr.left - er.left), (y(d.p50) / H) * sr.height + (sr.top - er.top));
+      })
+      .on('mouseleave', () => { hideTip(tt); dot.attr('visibility', 'hidden'); });
+  };
+  dash.draw('band_capacity', (el) => {
+    if (!prep(el, 'bands')) return;
+    bandChart(el, rows('bands').filter((r) => r.band === 'score_by_capacity'), { fmtX: (v) => f0(v) + '%', fmtY: f0, xName: 'Change capacity' });
+  });
+  dash.draw('band_compute', (el) => {
+    if (!prep(el, 'bands', 'facts')) return;
+    bandChart(el, rows('bands').filter((r) => r.band === 'gstar_by_compute'), { log: true, fmtX: (v) => (v < 10 ? d3.format('.1~f')(v) : f0(v)) + '%', fmtY: (v) => f0(v) + '%', xName: 'Compute share', hline: factNum('ref_g') });
+  });
+
+  // ---- Sobol: horizontal bars with 95% whiskers ----
+  const sobolDraw = (name, output) => dash.draw(name, (el) => {
+    if (!prep(el, 'sobol')) return;
+    const rs = rows('sobol').filter((r) => r.output === output).map((r) => ({ label: r.group, v: +r.st, lo: +r.st_lo, hi: +r.st_hi })).sort((p, q) => q.v - p.v).slice(0, 7);
+    const W = Math.max(280, el.clientWidth), rowH = 26, H = rs.length * rowH + 8;
+    const svg = d3.select(el).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`).attr('role', 'img');
+    const labW = Math.min(W * 0.55, Math.ceil(textW(svg, rs.map((r) => r.label))) + 10);
+    const valW = Math.ceil(textW(svg, ['100%'])) + 10;
+    const x = d3.scaleLinear([0, Math.max(d3.max(rs, (r) => r.hi) || 1, 0.01)], [labW, Math.max(labW + 20, W - valW)]);
+    rs.forEach((r, i) => {
+      const y0 = i * rowH + 4;
+      svg.append('text').attr('x', labW - 8).attr('y', y0 + rowH / 2 - 2).attr('dy', '0.35em').attr('text-anchor', 'end').attr('fill', 'var(--color-fg)').style('font-size', 'var(--cds-font-size-caption)').text(r.label);
+      svg.append('rect').attr('x', labW).attr('y', y0 + 3).attr('height', rowH - 12).attr('width', Math.max(1, x(r.v) - labW)).attr('rx', 2).attr('fill', i === 0 ? dash.colors[0] : 'var(--cds-chart-muted)');
+      svg.append('line').attr('x1', x(r.lo)).attr('x2', x(r.hi)).attr('y1', y0 + rowH / 2 - 2).attr('y2', y0 + rowH / 2 - 2).attr('stroke', 'var(--color-fg)').attr('stroke-width', 1.5);
+      caption(svg.append('text').attr('x', x(Math.max(r.v, r.hi)) + 6).attr('y', y0 + rowH / 2 - 2).attr('dy', '0.35em')).style('font-variant-numeric', 'tabular-nums').text(pct0(r.v));
+    });
+  });
+  sobolDraw('sobol_score', '2036 score');
+  sobolDraw('sobol_gstar', 'Rule-of-100 growth threshold');
+
+  // ---- cost swings on the threshold ----
+  dash.draw('swings_chart', (el) => {
+    if (!prep(el, 'swings', 'facts')) return;
+    const rs = rows('swings').map((r) => ({ label: r.group, lo: +r.gstar_low, hi: +r.gstar_high, compute: r.kind === 'compute' })).sort((p, q) => (q.hi - q.lo) - (p.hi - p.lo));
+    const W = Math.max(280, el.clientWidth), rowH = 26, H = rs.length * rowH + 34;
+    const svg = d3.select(el).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`).attr('role', 'img');
+    const labW = Math.min(W * 0.5, Math.ceil(textW(svg, rs.map((r) => r.label))) + 12);
+    const x = d3.scaleLinear([d3.min(rs, (r) => r.lo) - 1, d3.max(rs, (r) => r.hi) + 1], [labW, W - 12]).nice();
+    const gx = svg.append('g').attr('transform', `translate(0,${H - 24})`).call(d3.axisBottom(x).ticks(Math.max(3, Math.floor((W - labW) / 70))).tickFormat((v) => f0(v) + '%').tickSize(-(H - 30)).tickSizeOuter(0));
+    styleAxis(gx);
+    const c = factNum('gstar');
+    if (Number.isFinite(c)) svg.append('line').attr('x1', x(c)).attr('x2', x(c)).attr('y1', 0).attr('y2', H - 24).attr('stroke', 'var(--cds-chart-reference)').attr('stroke-width', 1.5).attr('stroke-dasharray', '4 3');
+    const tt = tooltip(el);
+    rs.forEach((d, i) => {
+      const y0 = i * rowH + 4;
+      svg.append('text').attr('x', labW - 8).attr('y', y0 + rowH / 2).attr('dy', '0.35em').attr('text-anchor', 'end').attr('fill', 'var(--color-fg)').style('font-size', 'var(--cds-font-size-caption)').text(d.label);
+      svg.append('rect').attr('x', x(d.lo)).attr('y', y0 + 5).attr('height', rowH - 12).attr('width', Math.max(2, x(d.hi) - x(d.lo))).attr('rx', 2).attr('fill', d.compute ? 'var(--cds-chart-muted)' : dash.colors[0]);
+      svg.append('rect').attr('x', labW).attr('y', y0).attr('width', W - 12 - labW).attr('height', rowH).attr('fill', 'transparent')
+        .on('mousemove', (ev) => { const er = el.getBoundingClientRect(); showTip(el, tt, [[d.label], ['Favorable end', f1(d.lo) + '%'], ['Conservative end', f1(d.hi) + '%'], ['Swing', f1(d.hi - d.lo) + ' points']], ev.clientX - er.left, ev.clientY - er.top); })
+        .on('mouseleave', () => hideTip(tt));
+    });
+  });
+
+  // ---- accountability: share of the sub-box with some passing design, by threshold ----
+  dash.draw('amin_chart', (el) => {
+    if (!prep(el, 'amin')) return;
+    const rs = rows('amin').filter((r) => r.no_design_points !== '' && r.no_design_points !== undefined && r.test_id.startsWith('A4.'))
+      .map((r) => ({ label: r.threshold + ' a year', none: +r.no_design_points / +r.points })).sort((p, q) => q.none - p.none);
+    const W = Math.max(280, el.clientWidth), rowH = 34, H = rs.length * rowH + 30;
+    const svg = d3.select(el).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`).attr('role', 'img');
+    const labW = Math.ceil(textW(svg, rs.map((r) => r.label))) + 12;
+    const x = d3.scaleLinear([0, 1], [labW, W - 8]);
+    const gx = svg.append('g').attr('transform', `translate(0,${H - 24})`).call(d3.axisBottom(x).ticks(4).tickFormat(pct0).tickSizeOuter(0));
+    styleAxis(gx);
+    const tt = tooltip(el);
+    rs.forEach((r, i) => {
+      const y0 = i * rowH + 4, pass = 1 - r.none;
+      svg.append('text').attr('x', labW - 8).attr('y', y0 + rowH / 2 - 2).attr('dy', '0.35em').attr('text-anchor', 'end').attr('fill', 'var(--color-fg)').style('font-size', 'var(--cds-font-size-caption)').text(r.label);
+      svg.append('rect').attr('x', x(0)).attr('y', y0 + 4).attr('height', rowH - 14).attr('width', Math.max(1, x(pass) - x(0))).attr('rx', 2).attr('fill', dash.colors[0]);
+      svg.append('rect').attr('x', x(pass)).attr('y', y0 + 4).attr('height', rowH - 14).attr('width', Math.max(1, x(1) - x(pass))).attr('rx', 2).attr('fill', 'var(--cds-chart-status-critical)').attr('opacity', 0.8);
+      svg.append('rect').attr('x', labW).attr('y', y0).attr('width', W - 8 - labW).attr('height', rowH).attr('fill', 'transparent')
+        .on('mousemove', (ev) => { const er = el.getBoundingClientRect(); showTip(el, tt, [[r.label], ['Some design passes', pct1(pass)], ['No design passes', pct1(r.none)]], ev.clientX - er.left, ev.clientY - er.top); })
+        .on('mouseleave', () => hideTip(tt));
+    });
+  });
+
+  // ---- levers: one small chart per position, for the chosen basis ----
+  let basis = 'Central';
+  const LEVERS = ['Engineering (R&D)', 'Back office (G&A)', 'Growth engine (S&M)', 'Cost of revenue'];
+  dash.draw('levers_chart', (el) => {
+    if (!prep(el, 'levers')) return;
+    const rs = rows('levers').filter((r) => r.basis === basis);
+    const codes = Array.from(new Set(rs.map((r) => r.code))).sort();
+    const W = Math.max(280, el.clientWidth);
+    const cols = W >= 900 ? 3 : W >= 560 ? 2 : 1;
+    const gapX = 24, panelW = (W - gapX * (cols - 1)) / cols, barH = 18, headH = 22, panelH = headH + LEVERS.length * (barH + 6) + 10;
+    const nRows = Math.ceil(codes.length / cols), H = nRows * panelH + 8;
+    const svg = d3.select(el).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`).attr('role', 'img');
+    const vmax = d3.max(rows('levers'), (r) => +r.points) || 1;
+    const labW = Math.ceil(textW(svg, LEVERS)) + 10;
+    const valW = Math.ceil(textW(svg, ['0.00'])) + 8;
+    const tt = tooltip(el);
+    codes.forEach((code, i) => {
+      const cx = (i % cols) * (panelW + gapX), cy = Math.floor(i / cols) * panelH;
+      const g = svg.append('g').attr('transform', `translate(${cx},${cy})`);
+      const pr = rs.filter((r) => r.code === code);
+      g.append('text').attr('x', 0).attr('y', 14).attr('fill', 'var(--color-fg)').style('font-size', 'var(--cds-font-size-caption)').style('font-weight', 'var(--cds-font-weight-medium)').text(pr.length ? pr[0].position : code);
+      const x = d3.scaleLinear([0, vmax], [labW, Math.max(labW + 20, panelW - valW)]);
+      LEVERS.forEach((lv, j) => {
+        const r = pr.find((q) => q.lever === lv); if (!r) return;
+        const y0 = headH + j * (barH + 6), v = +r.points;
+        g.append('text').attr('x', labW - 6).attr('y', y0 + barH / 2).attr('dy', '0.35em').attr('text-anchor', 'end').attr('fill', 'var(--color-fg-muted)').style('font-size', 'var(--cds-font-size-caption)').text(lv);
+        g.append('rect').attr('x', labW).attr('y', y0).attr('height', barH).attr('width', Math.max(1, x(v) - labW)).attr('rx', 2).attr('fill', dash.colors[j]).attr('opacity', String(r.rank) === '1' ? 1 : 0.55);
+        caption(g.append('text').attr('x', x(v) + 4).attr('y', y0 + barH / 2).attr('dy', '0.35em')).style('font-variant-numeric', 'tabular-nums').text(f2(v));
+        g.append('rect').attr('x', 0).attr('y', y0 - 3).attr('width', panelW).attr('height', barH + 6).attr('fill', 'transparent')
+          .on('mousemove', (ev) => { const er = el.getBoundingClientRect(); showTip(el, tt, [[`${r.position}, ${r.basis}`], [lv, f2(v) + ' points'], ['Rank', String(r.rank)]], ev.clientX - er.left, ev.clientY - er.top); })
+          .on('mouseleave', () => hideTip(tt));
+      });
+    });
+  });
+  document.querySelectorAll('.st-basis button[data-basis]').forEach((btn) => btn.addEventListener('click', () => {
+    basis = btn.dataset.basis;
+    document.querySelectorAll('.st-basis button[data-basis]').forEach((b) => b.setAttribute('aria-pressed', String(b === btn)));
+    dash.draw('levers_chart');
+  }));
+
+  // ---- tables ----
+  const cell = (tr, txt, cls) => { const c = document.createElement('td'); if (cls) c.className = cls; c.textContent = txt; tr.appendChild(c); return c; };
+  dash.draw('positions_table', (tbody) => {
+    tbody.replaceChildren();
+    if (dash.data('positions').status !== 'ok') return;
+    rows('positions').forEach((r) => {
+      const tr = document.createElement('tr'); tr.dataset.key = r.code;
+      cell(tr, r.position); cell(tr, r.firm_years, 'st-num st-hide-narrow'); cell(tr, r.growth, 'st-num'); cell(tr, r.margin, 'st-num');
+      cell(tr, r.sm, 'st-num st-hide-narrow'); cell(tr, r.growth_spend, 'st-num st-hide-narrow'); cell(tr, r.ga, 'st-num st-hide-narrow'); cell(tr, r.rd, 'st-num st-hide-narrow');
+      cell(tr, r.first_netted); cell(tr, r.second_netted); cell(tr, r.cap_hurdle, 'st-num st-hide-narrow');
+      tbody.appendChild(tr);
+    });
+  });
+
+  let sortKey = null, sortDir = 1, query = '';
+  const numCols = new Set(['central', 'lowest', 'highest']);
+  const asNum = (s) => Number(String(s).replace(/%/g, ''));
+  dash.draw('claims_table', (tbody) => {
+    tbody.replaceChildren();
+    if (dash.data('claims').status !== 'ok') return;
+    let rs = rows('claims').slice();
+    if (query) rs = rs.filter((r) => Object.values(r).join(' ').toLowerCase().includes(query));
+    if (sortKey) rs.sort((p, q) => { const a = numCols.has(sortKey) ? asNum(p[sortKey]) : String(p[sortKey]); const b = numCols.has(sortKey) ? asNum(q[sortKey]) : String(q[sortKey]); return (a < b ? -1 : a > b ? 1 : 0) * sortDir; });
+    rs.forEach((r) => {
+      const tr = document.createElement('tr'); tr.dataset.key = r.test_id;
+      cell(tr, r.claim, 'st-wide'); cell(tr, r.conditions, 'st-hide-narrow');
+      const pc = document.createElement('td'); const pill = document.createElement('span');
+      pill.className = 'st-pill ' + (r.result === 'Holds everywhere' ? 'st-pill-ok' : 'st-pill-warn'); pill.textContent = r.result; pc.appendChild(pill); tr.appendChild(pc);
+      cell(tr, r.central, 'st-num'); cell(tr, r.lowest, 'st-num'); cell(tr, r.highest, 'st-num'); cell(tr, r.meaning, 'st-wide st-hide-narrow');
+      tbody.appendChild(tr);
+    });
+  });
+  document.querySelectorAll('.st-table th button[data-sort]').forEach((btn) => btn.addEventListener('click', () => {
+    const k = btn.dataset.sort;
+    sortDir = sortKey === k ? -sortDir : 1; sortKey = k;
+    btn.closest('tr').querySelectorAll('th').forEach((th) => th.removeAttribute('aria-sort'));
+    btn.parentElement.setAttribute('aria-sort', sortDir > 0 ? 'ascending' : 'descending');
+    dash.draw('claims_table');
+  }));
+  document.querySelectorAll('#st-claim-search').forEach((inp) => inp.addEventListener('input', () => { query = inp.value.trim().toLowerCase(); dash.draw('claims_table'); }));
+
+  // ---- questions: show one role or all ----
+  document.querySelectorAll('.st-role button[data-role]').forEach((btn) => btn.addEventListener('click', () => {
+    const role = btn.dataset.role;
+    document.querySelectorAll('.st-role button[data-role]').forEach((b) => b.setAttribute('aria-pressed', String(b === btn)));
+    document.querySelectorAll('.st-qa-group[data-role]').forEach((g) => g.classList.toggle('st-off', role !== 'all' && g.dataset.role !== role));
+  }));
+
+  // ---- section links ----
+  const go = (el) => { el.scrollIntoView({ behavior: 'smooth', block: 'start' }); dash.setLink(el.id); };
+  document.querySelectorAll('.st-nav button[data-go]').forEach((btn) => btn.addEventListener('click', () => {
+    const t = document.getElementById(btn.dataset.go); if (t) go(t);
+  }));
+  let linked = false;
+  dash.onData(() => {
+    setVar();
+    if (!linked && dash.data('facts').status === 'ok') {
+      linked = true;
+      const named = document.getElementById(decodeURIComponent(location.hash.slice(1)));
+      if (named && named.closest('.st-page')) requestAnimationFrame(() => go(named));
+    }
+  });
+})();
+</script>

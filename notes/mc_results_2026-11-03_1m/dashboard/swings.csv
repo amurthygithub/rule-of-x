@@ -1,0 +1,9 @@
+id,group,kind,gstar_low,gstar_high,gstar_swing,score_low,score_high,score_swing
+compute,AI compute cost,compute,27.78,82.63,54.85,53.71,59.52,5.82
+tax,Cash tax rate,cost floor,30.07,35.00,4.94,56.75,58.78,2.03
+ai_failure,AI errors and failures,cost floor,30.13,37.61,7.48,55.70,58.74,3.04
+accountability,"Accountability floor (audit, SOX)",cost floor,30.49,33.85,3.36,57.23,58.60,1.37
+security,Security,cost floor,32.07,33.53,1.46,57.36,57.95,0.59
+maintenance,Upkeep of AI builds,cost floor,32.17,34.41,2.24,57.00,57.92,0.91
+fees,Payment fees,cost floor,32.13,32.95,0.82,57.60,57.93,0.33
+ancillary,Other AI running costs,cost floor,32.46,32.69,0.24,57.71,57.79,0.08
