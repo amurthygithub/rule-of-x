@@ -513,6 +513,17 @@ fact('ci90', '90%', NEWV, 'level of the bootstrap intervals'); fact('dn_obs', p1
 fact('rev_1to5', '$1–5 billion', S['sec:horizons-ceiling'], "revenue band of the paper's typical company")
 fact('ref_newv', 'New analysis: code/biz_valuation.py, notes/open_questions/valuation.json', '', '')
 fact('ref_newp', 'New analysis: code/biz_open_questions.py, notes/open_questions/paths.json', '', '')
+# heatmap grids (code/biz_matrices.py)
+MX = {r['id']: r for r in csv.DictReader(open(os.path.join(OUT, 'matrices.csv')))}
+SRC_ST = S['supp:stress'] + ' (draws of the stress test, binned: code/biz_matrices.py)'
+for k, cid, src in [('hm_s_ll', 'score_cap_growth|0|0', SRC_ST), ('hm_s_hh', 'score_cap_growth|5|5', SRC_ST),
+                    ('hm_s_lh', 'score_cap_growth|0|5', SRC_ST), ('hm_s_hl', 'score_cap_growth|5|0', SRC_ST),
+                    ('hm_p_lo', 'payback_cap_win|2|0', SRC_ST), ('hm_p_hi', 'payback_cap_win|2|5', SRC_ST),
+                    ('hm_g_best', 'gstar_cc_k|0|0', S['sec:horizons-ceiling']), ('hm_g_k5', 'gstar_cc_k|2|3', S['sec:horizons-ceiling']),
+                    ('hm_gap_fix', 'gap_phi_pace|0|1', NEWP), ('hm_gap_worst', 'gap_phi_pace|3|2', NEWP),
+                    ('hm_m_lghm', 'mult_g_m|0|0', NEWV), ('hm_m_hglm', 'mult_g_m|4|4', NEWV), ('hm_m_lglm', 'mult_g_m|4|0', NEWV)]:
+    fact(k, MX[cid]['display'], src, f"cell {MX[cid]['row_label']} x {MX[cid]['col_label']}")
+fact('hm_few', '30', NEWV, 'firm-years below which a valuation cell is faded')
 # constants of the company calculator (Paper 1, Table 4 central case; Table 7)
 for k, nme in [('tau_cen', 'CeilTauCen'), ('fee_cen', 'CeilFCen')]:
     fm(k, nme, S['sec:horizons-ceiling'])

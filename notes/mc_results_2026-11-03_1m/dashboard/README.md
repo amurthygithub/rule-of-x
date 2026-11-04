@@ -12,6 +12,11 @@ plain-language reading of Paper 1 and its million-draw stress test. It replaced 
 - `levels.csv`, `hist.csv`, `bands.csv`, `sobol.csv`, `swings.csv`, `claims.csv`, `amin.csv`: from `../mc_claims.json`,
   `../seed2/mc_claims.json` and `../draws_lhs.csv.gz` (histograms and quantile bands over all 1,000,000 draws of seed 1).
 - `pace.csv`: realized and embedded shares of the program by year (Paper 1 Section 7.3 macros).
+- `paths.csv`, `valuation_deciles.csv`, `valuation_weights.csv`: new analyses, not in Paper 1 (`code/biz_open_questions.py`,
+  `code/biz_valuation.py`; see `notes/open_questions/README.md`).
+- `matrices.csv`: the cells of the six heatmaps, one row per cell (`code/biz_matrices.py`; the lever map is drawn from
+  `levers.csv`). Stress-test grids are medians over the draws in each pair of equal-width bins; the valuation grid is a
+  new analysis.
 - `index.src.html`: the page with `{{key}}` for each number; `index.html`: the page as published.
 
-Build: `python3 code/biz_dashboard_data.py && python3 code/biz_dashboard_page.py` (reads committed outputs only).
+Build: `python3 code/biz_open_questions.py && python3 code/biz_valuation.py && python3 code/biz_matrices.py && python3 code/biz_dashboard_data.py && python3 code/biz_dashboard_page.py` (reads committed outputs only).

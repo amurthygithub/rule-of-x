@@ -28,6 +28,7 @@
   .st-chart { position: relative; min-height: 15rem; width: 100%; }
   .st-chart.st-tall { min-height: 19rem; }
   .st-chart.st-short { min-height: 9rem; }
+  .st-chart.st-heat { min-height: 12rem; }
   .st-chart svg { display: block; overflow: visible; }
   .st-legend { display: flex; flex-wrap: wrap; gap: var(--cds-gap-sm) var(--cds-gap-md); font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); margin: 0; padding: 0; list-style: none; }
   .st-legend li { display: inline-flex; align-items: center; gap: 0.4rem; }
@@ -172,6 +173,13 @@
       <p class="st-plain"><span class="st-plain-k">In plain English:</span> each small chart is one kind of company, and a longer bar adds more points to its score. On the central basis engineering wins everywhere. Switch to "All S&amp;M buys growth" and the growth engine jumps to first at every position, because then all of sales and marketing is spend that a better engine makes cheaper. Switch to "No S&amp;M" and the growth engine adds nothing.</p>
     </div>
 
+    <div class="st-card">
+        <h3 class="st-card-title">All six positions at a glance</h3>
+        <p class="st-card-note">Pre-tax score points from a <b>{{lever_x}}</b> saving, on the spend basis chosen above. Rows: company positions. Columns: cost lines. Darker means more points; the outlined cell is each position's first lever.</p>
+        <div class="st-chart st-heat dash-skeleton" data-draw="lever_heat" data-source="levers"></div>
+        <p class="st-plain"><span class="st-plain-k">In plain English:</span> read across a row to see what pays most for that kind of company, and down a column to see where a lever matters most. On the central basis the engineering column is the darkest; switch to "All S&amp;M buys growth" and the growth-engine column takes over.</p>
+      </div>
+
     <h3 class="st-h3">The order, and why</h3>
     <ol class="st-steps">
       <li class="st-step">
@@ -309,6 +317,14 @@
         <p class="st-plain"><span class="st-plain-k">In plain English:</span> under central or fast execution the program is worth more than it costs, but it takes years to repay; under slow execution it is not worth funding. Faster execution is what shortens the wait. Sources: <span>{{ref_s73}}</span>; <span>{{ref_s82}}</span>; <span>{{ref_s10}}</span>.</p>
       </div>
     </div>
+    <div class="st-grid">
+      <div class="st-card">
+        <h3 class="st-card-title">Payback by change capacity and success</h3>
+        <p class="st-card-note">Median payback in years over the whole stress test. Rows: change capacity. Columns: share of attempted changes that create value. Darker means a longer wait.</p>
+        <div class="st-chart st-heat dash-skeleton" data-draw="heatmap" data-source="matrices" data-matrix="payback_cap_win"></div>
+        <p class="st-plain"><span class="st-plain-k">In plain English:</span> payback hardly moves down a column: changing more work each year brings gains and transition costs forward together. It shortens across a row, from <b>{{hm_p_lo}}</b> years when fewer changes succeed to <b>{{hm_p_hi}}</b> when more do. Speed buys a higher score sooner; success buys a faster payback.</p>
+      </div>
+    </div>
   </section>
 
   <section class="st-section" id="ceiling">
@@ -331,6 +347,14 @@
         <p class="st-card-note">Median and middle ranges of the worlds in each band of the compute share at <b>{{y25}}</b> prices (log scale).</p>
         <div class="st-chart dash-skeleton" data-draw="band_compute" data-source="bands facts"></div>
         <p class="st-plain"><span class="st-plain-k">In plain English:</span> the cheaper AI computing is relative to the labor it replaces, the easier a Rule of 100 becomes. Over the paper's scenario range of <b>{{cc_lo}}</b> to <b>{{cc_hi}}</b> of revenue the central threshold runs from <b>{{gstar_cc_lo}}</b> to <b>{{gstar_cc_hi}}</b>.</p>
+      </div>
+    </div>
+    <div class="st-grid">
+      <div class="st-card">
+        <h3 class="st-card-title">The Rule-of-100 growth threshold by compute cost and capital needs</h3>
+        <p class="st-card-note">Market growth a fully automated company needs for a cash score of <b>{{rule100}}</b>, from the paper's formula at central costs and fixed prices. Rows: compute share of revenue at <b>{{y25}}</b> prices. Columns: capital per dollar of new revenue, negative when customers pay in advance. Darker means a higher bar.</p>
+        <div class="st-chart st-heat dash-skeleton" data-draw="heatmap" data-source="matrices" data-matrix="gstar_cc_k"></div>
+        <p class="st-plain"><span class="st-plain-k">In plain English:</span> cheap compute and advance billing make a Rule of 100 easiest, at <b>{{hm_g_best}}</b> in the top-left corner. Capital needs push it out of reach fast: with compute at <b>{{cc_cen}}</b> of revenue and half a dollar of capital per dollar of new revenue it takes <b>{{hm_g_k5}}</b>. Cells above <b>{{rule100}}</b>% ask for growth no market sustains. Source: <span>{{ref_s72}}</span>.</p>
       </div>
     </div>
     <div class="st-card">
@@ -358,6 +382,14 @@
         <h3 class="st-card-title">Market growth needed for a Rule of 100</h3>
         <div class="st-chart dash-skeleton" data-draw="sobol_gstar" data-source="sobol"></div>
         <p class="st-plain"><span class="st-plain-k">In plain English:</span> the price of AI computing explains <b>{{so_cc_pct}}</b> of the differences in this threshold. It is the number to watch when judging how high scores can go. Source: <span>{{ref_s10}}</span>.</p>
+      </div>
+    </div>
+    <div class="st-grid">
+      <div class="st-card">
+        <h3 class="st-card-title">Score in <b>{{y36}}</b> by change capacity and market growth</h3>
+        <p class="st-card-note">Median <b>{{y36}}</b> score of the simulated worlds in each cell, central basis. Rows: change capacity, the share of the program changed a year. Columns: market growth a year. Darker means a higher score.</p>
+        <div class="st-chart st-heat dash-skeleton" data-draw="heatmap" data-source="matrices" data-matrix="score_cap_growth"></div>
+        <p class="st-plain"><span class="st-plain-k">In plain English:</span> moving down a column (more change capacity) adds about as much as moving across a row (a faster market). The fastest-changing companies in the slowest markets end at <b>{{hm_s_hl}}</b>, above the slowest-changing companies in the fastest markets at <b>{{hm_s_lh}}</b>; the corners run from <b>{{hm_s_ll}}</b> to <b>{{hm_s_hh}}</b>.</p>
       </div>
     </div>
   </section>
@@ -607,6 +639,21 @@
       </div>
     </div>
 
+    <div class="st-grid">
+      <div class="st-card">
+        <h3 class="st-card-title">Multiple by growth and margin</h3>
+        <p class="st-card-note">Median market value over revenue in each fifth of growth (columns, slowest to fastest) and of margin (rows, free cash flow after SBC, highest at the top). Faded cells hold fewer than <b>{{hm_few}}</b> firm-years.</p>
+        <div class="st-chart st-heat dash-skeleton" data-draw="heatmap" data-source="matrices" data-matrix="mult_g_m"></div>
+        <p class="st-plain"><span class="st-plain-k">In plain English:</span> the multiple rises far more from left to right than from bottom to top. Slow growers with the best margins sit at <b>{{hm_m_lghm}}</b> revenue, fast growers with the worst margins at <b>{{hm_m_hglm}}</b>, and slow growers with the worst margins at <b>{{hm_m_lglm}}</b>. That is the market's heavier weight on growth, cell by cell. Source: <span>{{ref_newv}}</span>.</p>
+      </div>
+      <div class="st-card">
+        <h3 class="st-card-title">Cost of doing nothing, by pricing and rivals' pace</h3>
+        <p class="st-card-note">Points by which a company automating at the central pace leads one doing nothing in <b>{{y36}}</b>, after its own changes in flight. Rows: share of savings passed to price. Columns: rivals' pace. Darker means a larger gap.</p>
+        <div class="st-chart st-heat dash-skeleton" data-draw="heatmap" data-source="matrices" data-matrix="gap_phi_pace"></div>
+        <p class="st-plain"><span class="st-plain-k">In plain English:</span> at fixed prices the gap is <b>{{hm_gap_fix}}</b> points whatever rivals do. It widens when savings reach prices and rivals move fast, to <b>{{hm_gap_worst}}</b> points. Source: <span>{{ref_newp}}</span>.</p>
+      </div>
+    </div>
+
     <div class="st-card" id="calculator">
       <h3 class="st-card-title">Where does your company sit?</h3>
       <p class="st-card-note">Enter your own numbers in percent of revenue, or start from one of the six positions. The page applies the paper's formulas: score points from a <b>{{lever_x}}</b> saving in each line (the companion paper's four-lever ranking, with the formulas of <span>{{ref_p9}}</span>), the capital hurdle (<span>{{ref_s75}}</span>) and the market growth a fully automated company would need for a cash score of <b>{{rule100}}</b> (<span>{{ref_s72}}</span>), at the paper's central costs.</p>
@@ -754,6 +801,35 @@
     g.selectAll('text').attr('fill', 'var(--color-fg-muted)');
     g.selectAll('.domain').attr('stroke', 'var(--cds-chart-axis)');
     g.selectAll('.tick line').attr('stroke', 'var(--cds-chart-grid)');
+    // keep the end labels of a horizontal axis inside the chart: anchor them inward when they would spill over
+    const svgN = g.node().ownerSVGElement, vb = svgN && svgN.viewBox && svgN.viewBox.baseVal;
+    if (!vb || !vb.width) return;
+    const off = (n) => { const m = /translate\(([-\d.e]+)/.exec(n.getAttribute('transform') || ''); return m ? +m[1] : 0; };
+    const gx0 = off(g.node());
+    g.selectAll('.tick').each(function () {
+      const t = this.querySelector('text'); if (!t || t.getAttribute('dy') !== '0.71em') return;   // bottom axis labels only
+      t.setAttribute('y', String((+t.getAttribute('y') || 0) + 2));   // clear the lowest label of the vertical axis
+      const x = gx0 + off(this), w = t.getComputedTextLength();
+      if (x + w / 2 > vb.width - 1) t.setAttribute('text-anchor', 'end');
+      else if (x - w / 2 < 1) t.setAttribute('text-anchor', 'start');
+    });
+  };
+  const wrapLab = (svg, s, maxW) => {
+    if (textW(svg, [s]) <= maxW) return [s];
+    const words = s.replace(/–/g, '– ').split(' ').filter(Boolean), out = [];
+    let cur = '';
+    words.forEach((w) => { const t = cur ? (cur.endsWith('–') ? cur + w : cur + ' ' + w) : w; if (cur && textW(svg, [t]) > maxW) { out.push(cur); cur = w; } else cur = t; });
+    if (cur) out.push(cur);
+    return out;
+  };
+  // a label to the left of a bar or cell, wrapped to two lines when it is wider than its column
+  const sideLabel = (svg, x, yMid, text, maxW, lineH = 12) => {
+    let ls = textW(svg, [text]) <= maxW ? [text] : wrapLab(svg, text, maxW);
+    if (ls.length > 2) ls = [ls[0], ls.slice(1).join(' ')];
+    const t = svg.append('text').attr('text-anchor', 'end').attr('fill', 'var(--color-fg)').style('font-size', 'var(--cds-font-size-caption)');
+    t.append('title').text(text);
+    ls.forEach((ln, k) => t.append('tspan').attr('x', x).attr('y', yMid + (k - (ls.length - 1) / 2) * lineH).attr('dy', '0.35em').text(ln));
+    return t;
   };
   const tooltip = (el) => { const t = document.createElement('div'); t.className = 'st-tt'; t.hidden = true; el.appendChild(t); return t; };
   const showTip = (el, tt, lines, x, y) => {
@@ -967,7 +1043,7 @@
     const x = d3.scaleLinear([0, Math.max(d3.max(rs, (r) => r.hi) || 1, 0.01)], [labW, Math.max(labW + 20, W - valW)]);
     rs.forEach((r, i) => {
       const y0 = i * rowH + 4;
-      svg.append('text').attr('x', labW - 8).attr('y', y0 + rowH / 2 - 2).attr('dy', '0.35em').attr('text-anchor', 'end').attr('fill', 'var(--color-fg)').style('font-size', 'var(--cds-font-size-caption)').text(r.label);
+      sideLabel(svg, labW - 8, y0 + rowH / 2 - 2, r.label, labW - 10);
       svg.append('rect').attr('x', labW).attr('y', y0 + 3).attr('height', rowH - 12).attr('width', Math.max(1, x(r.v) - labW)).attr('rx', 2).attr('fill', i === 0 ? dash.colors[0] : 'var(--cds-chart-muted)');
       svg.append('line').attr('x1', x(r.lo)).attr('x2', x(r.hi)).attr('y1', y0 + rowH / 2 - 2).attr('y2', y0 + rowH / 2 - 2).attr('stroke', 'var(--color-fg)').attr('stroke-width', 1.5);
       caption(svg.append('text').attr('x', x(Math.max(r.v, r.hi)) + 6).attr('y', y0 + rowH / 2 - 2).attr('dy', '0.35em')).style('font-variant-numeric', 'tabular-nums').text(pct0(r.v));
@@ -991,7 +1067,7 @@
     const tt = tooltip(el);
     rs.forEach((d, i) => {
       const y0 = i * rowH + 4;
-      svg.append('text').attr('x', labW - 8).attr('y', y0 + rowH / 2).attr('dy', '0.35em').attr('text-anchor', 'end').attr('fill', 'var(--color-fg)').style('font-size', 'var(--cds-font-size-caption)').text(d.label);
+      sideLabel(svg, labW - 8, y0 + rowH / 2, d.label, labW - 10);
       svg.append('rect').attr('x', x(d.lo)).attr('y', y0 + 5).attr('height', rowH - 12).attr('width', Math.max(2, x(d.hi) - x(d.lo))).attr('rx', 2).attr('fill', d.compute ? 'var(--cds-chart-muted)' : dash.colors[0]);
       svg.append('rect').attr('x', labW).attr('y', y0).attr('width', W - 12 - labW).attr('height', rowH).attr('fill', 'transparent')
         .on('mousemove', (ev) => { const er = el.getBoundingClientRect(); showTip(el, tt, [[d.label], ['Favorable end', f1(d.lo) + '%'], ['Conservative end', f1(d.hi) + '%'], ['Swing', f1(d.hi - d.lo) + ' points']], ev.clientX - er.left, ev.clientY - er.top); })
@@ -1013,7 +1089,7 @@
     const tt = tooltip(el);
     rs.forEach((r, i) => {
       const y0 = i * rowH + 4, pass = 1 - r.none;
-      svg.append('text').attr('x', labW - 8).attr('y', y0 + rowH / 2 - 2).attr('dy', '0.35em').attr('text-anchor', 'end').attr('fill', 'var(--color-fg)').style('font-size', 'var(--cds-font-size-caption)').text(r.label);
+      sideLabel(svg, labW - 8, y0 + rowH / 2 - 2, r.label, labW - 10);
       svg.append('rect').attr('x', x(0)).attr('y', y0 + 4).attr('height', rowH - 14).attr('width', Math.max(1, x(pass) - x(0))).attr('rx', 2).attr('fill', dash.colors[0]);
       svg.append('rect').attr('x', x(pass)).attr('y', y0 + 4).attr('height', rowH - 14).attr('width', Math.max(1, x(1) - x(pass))).attr('rx', 2).attr('fill', 'var(--cds-chart-status-critical)').attr('opacity', 0.8);
       svg.append('rect').attr('x', labW).attr('y', y0).attr('width', W - 8 - labW).attr('height', rowH).attr('fill', 'transparent')
@@ -1060,6 +1136,7 @@
     basis = btn.dataset.basis;
     document.querySelectorAll('.st-basis button[data-basis]').forEach((b) => b.setAttribute('aria-pressed', String(b === btn)));
     dash.draw('levers_chart');
+    dash.draw('lever_heat');
   }));
 
   // ---- tables ----
@@ -1111,14 +1188,14 @@
     const W = Math.max(280, el.clientWidth), H = 240;
     const svg = d3.select(el).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`).attr('role', 'img');
     const ymax = d3.max(rows('valuation_deciles'), (r) => +r.multiple_p75) || 1;
-    const y = d3.scaleLinear([0, ymax * 1.05], [H - 30, 8]).nice();
+    const y = d3.scaleLinear([0, ymax * 1.05], [H - 38, 8]).nice();
     const yTicks = y.ticks(5);
     const fx = (v) => d3.format('.0f')(v) + '×';
     const left = Math.ceil(textW(svg, yTicks.map(fx))) + 10;
     const x = d3.scaleBand(rs.map((r) => String(r.decile)), [left, W - 8]).padding(0.25);
     const gy = svg.append('g').attr('transform', `translate(${left},0)`).call(d3.axisLeft(y).tickValues(yTicks).tickFormat(fx).tickSize(-(W - 8 - left)));
     styleAxis(gy); gy.select('.domain').remove();
-    const gx = svg.append('g').attr('transform', `translate(0,${H - 30})`).call(d3.axisBottom(x).tickSizeOuter(0));
+    const gx = svg.append('g').attr('transform', `translate(0,${H - 38})`).call(d3.axisBottom(x).tickSizeOuter(0));
     styleAxis(gx);
     caption(svg.append('text').attr('x', W - 8).attr('y', H - 2).attr('text-anchor', 'end')).text('Tenth of the score, lowest to highest');
     const bw = Math.min(32, x.bandwidth());
@@ -1161,13 +1238,19 @@
     styleAxis(gy); gy.select('.domain').remove();
     const gx = svg.append('g').attr('transform', `translate(0,${H - 26})`).call(d3.axisBottom(x).tickValues(years).tickFormat(d3.format('d')).tickSizeOuter(0));
     styleAxis(gx);
+    const ends = [];
     series.forEach((s) => {
       const pts = s.rows.map((r) => [x(+r.year), y(+r.score)]);
       svg.append('path').attr('d', d3.line()(pts)).attr('fill', 'none').attr('stroke', s.color).attr('stroke-width', 2).attr('stroke-linejoin', 'round').attr('stroke-linecap', 'round').attr('opacity', s.opacity || 1).attr('stroke-dasharray', s.dash || null);
       svg.append('g').selectAll('circle').data(s.rows).join('circle').attr('cx', (r) => x(+r.year)).attr('cy', (r) => y(+r.score)).attr('r', 3).attr('fill', s.color).attr('opacity', s.opacity || 1);
       const last = s.rows[s.rows.length - 1];
-      if (last) caption(svg.append('text').attr('x', x(+last.year) + 6).attr('y', y(+last.score)).attr('dy', '0.35em')).style('font-variant-numeric', 'tabular-nums').text(f1(+last.score));
+      if (last) ends.push({ x: x(+last.year) + 6, y: y(+last.score), t: f1(+last.score) });
     });
+    ends.sort((p, q) => p.y - q.y);
+    for (let i = 1; i < ends.length; i += 1) if (ends[i].y - ends[i - 1].y < 15) ends[i].y = ends[i - 1].y + 15;
+    const over = ends.length ? ends[ends.length - 1].y - (H - 30) : 0;
+    if (over > 0) ends.forEach((e) => { e.y -= over; });
+    ends.forEach((e) => caption(svg.append('text').attr('x', e.x).attr('y', e.y).attr('dy', '0.35em')).style('font-variant-numeric', 'tabular-nums').text(e.t));
     const tt = tooltip(el);
     svg.append('rect').attr('x', left).attr('y', 10).attr('width', W - endW - left).attr('height', H - 36).attr('fill', 'transparent')
       .on('mousemove', (ev) => {
@@ -1258,6 +1341,121 @@
     }
     el.appendChild(out);
   });
+
+  // ---- heatmaps: one colour at rising opacity, the value written in each cell ----
+  // Text colour per cell is whichever of the page's text and background colours contrasts more with the
+  // cell's actual blended colour, so the grid reads in both themes.
+  const cv1 = document.createElement('canvas'); cv1.width = 1; cv1.height = 1;
+  const cx1 = cv1.getContext('2d', { willReadFrequently: true });
+  const paint = (css) => { cx1.clearRect(0, 0, 1, 1); cx1.fillStyle = '#000'; cx1.fillStyle = css; cx1.fillRect(0, 0, 1, 1); const d = cx1.getImageData(0, 0, 1, 1).data; return [d[0], d[1], d[2]]; };
+  const rgbOf = (css, host) => { const p = document.createElement('span'); p.style.color = css; (host || document.body).appendChild(p); const s = getComputedStyle(p).color; p.remove(); return paint(s); };
+  const bgOf = (el) => { for (let n = el; n && n.nodeType === 1; n = n.parentElement) { const s = getComputedStyle(n).backgroundColor; if (s && !/rgba\([^)]*,\s*0\)$/.test(s) && s !== 'transparent') return paint(s); } return rgbOf('var(--color-bg)'); };
+  const lum = (c) => { const f = (v) => { v /= 255; return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4); }; return 0.2126 * f(c[0]) + 0.7152 * f(c[1]) + 0.0722 * f(c[2]); };
+  const contrast = (a, b) => { const x = lum(a), y = lum(b); return (Math.max(x, y) + 0.05) / (Math.min(x, y) + 0.05); };
+  const heat = (el, cells, opt) => {
+    const rl = Array.from(new Map(cells.map((c) => [+c.row, c.row_label])).entries()).sort((p, q) => p[0] - q[0]);
+    const cl = Array.from(new Map(cells.map((c) => [+c.col, c.col_label])).entries()).sort((p, q) => p[0] - q[0]);
+    const W = Math.max(280, el.clientWidth);
+    const svg = d3.select(el).append('svg').attr('width', '100%').attr('role', 'img');
+    if (opt.label) svg.attr('aria-label', opt.label);
+    const capStyle = (t) => t.style('font-size', 'var(--cds-font-size-caption)');
+    const lineH = 13, cellH = 30, fits = (ls, w) => ls.every((s) => textW(svg, [s]) <= w);
+    // row labels: one line where they fit, otherwise two
+    const titleWord = opt.rowTitle ? 1.1 * textW(svg, (opt.rowTitle + ' ↓').split(' ')) : 0;   // widest word of the row title, set bold
+    const labW = Math.min(W * (W < 480 ? 0.34 : 0.42), Math.ceil(Math.max(textW(svg, rl.map((r) => r[1])), titleWord)) + 10);   // narrower on phones: long row labels wrap
+    const rowLines = rl.map(([, lab]) => (textW(svg, [lab]) <= labW - 10 ? [lab] : wrapLab(svg, lab, labW - 10).slice(0, 2)));
+    const cw = (W - labW) / cl.length;
+    // column labels: wrapped to two lines; then the short name in brackets, e.g. "(R&D)"; then set vertically
+    let colLines = cl.map(([, lab]) => wrapLab(svg, lab, cw - 6));
+    if (!colLines.every((ls) => ls.length <= 2 && fits(ls, cw - 6))) {
+      const shortL = cl.map(([, lab]) => { const m = lab.match(/\(([^)]+)\)\s*$/); return wrapLab(svg, m ? m[1] : lab, cw - 6); });
+      if (shortL.every((ls) => ls.length <= 3 && fits(ls, cw - 6))) colLines = shortL;
+    }
+    const vertical = !colLines.every((ls) => ls.length <= 3 && fits(ls, cw - 6));
+    const vertLen = vertical ? Math.ceil(textW(svg, cl.map((c) => c[1]))) : 0;
+    const rowT = opt.rowTitle ? opt.rowTitle + ' ↓' : '';
+    const rtLines = rowT ? (1.1 * textW(svg, [rowT]) <= labW - 10 ? [rowT] : wrapLab(svg, rowT, (labW - 10) / 1.1)) : [];
+    const titleH = opt.colTitle ? 18 : 0;
+    const labH = vertical ? Math.max(vertLen + 4, rtLines.length * lineH) : Math.max(d3.max(colLines, (l) => l.length), rtLines.length) * lineH;
+    const headH = titleH + labH + 10;
+    const H = headH + rl.length * cellH + 4;
+    svg.attr('viewBox', `0 0 ${W} ${H}`);
+    if (opt.colTitle) capStyle(svg.append('text').attr('x', labW + (W - labW) / 2).attr('y', 12).attr('text-anchor', 'middle').attr('fill', 'var(--color-fg)').style('font-weight', '600').text(opt.colTitle + ' →'));
+    if (rtLines.length) {
+      const t = capStyle(svg.append('text').attr('text-anchor', 'end').attr('fill', 'var(--color-fg)').style('font-weight', '600'));
+      rtLines.forEach((ln, k) => t.append('tspan').attr('x', labW - 8).attr('y', headH - 8 - (rtLines.length - 1 - k) * lineH).text(ln));
+    }
+    cl.forEach(([ci, lab], j) => {
+      const x = labW + ci * cw + cw / 2;
+      if (vertical) {
+        capStyle(svg.append('text').attr('transform', `translate(${x},${headH - 6}) rotate(-90)`).attr('dy', '0.35em').attr('text-anchor', 'start').attr('fill', 'var(--color-fg-muted)').text(lab));
+        return;
+      }
+      const ls = colLines[j];
+      const t = capStyle(svg.append('text').attr('x', x).attr('text-anchor', 'middle').attr('fill', 'var(--color-fg-muted)'));
+      ls.forEach((s, k) => t.append('tspan').attr('x', x).attr('y', headH - 8 - (ls.length - 1 - k) * lineH).text(s));
+    });
+    const vals = cells.map((c) => +c.value).filter((v) => Number.isFinite(v) && (!opt.log || v > 0));
+    const tr = opt.log ? Math.log : (v) => v;
+    const lo = vals.length ? tr(d3.min(vals)) : 0, hi = vals.length ? tr(d3.max(vals)) : 0;
+    const aOf = (v) => (hi > lo ? 0.1 + 0.85 * (tr(v) - lo) / (hi - lo) : 0.5);
+    const base = bgOf(el), ink = rgbOf(dash.colors[0], el), fg = rgbOf('var(--color-fg)', el), bgc = rgbOf('var(--color-bg)', el);
+    const tt = tooltip(el);
+    rl.forEach(([ri, lab], i) => {
+      const y0 = headH + ri * cellH, ls = rowLines[i];
+      const t = capStyle(svg.append('text').attr('text-anchor', 'end').attr('fill', 'var(--color-fg)'));
+      ls.forEach((s, k) => t.append('tspan').attr('x', labW - 8).attr('y', y0 + cellH / 2 + (k - (ls.length - 1) / 2) * lineH).attr('dy', '0.35em').text(s));
+      cl.forEach(([ci]) => {
+        const c = cells.find((q) => +q.row === ri && +q.col === ci); if (!c) return;
+        const v = +c.value, ok = c.value !== '' && Number.isFinite(v) && (!opt.log || v > 0);
+        const few = !!opt.few && c.n !== '' && c.n !== undefined && +c.n < opt.few;
+        const a = ok ? aOf(v) * (few ? 0.35 : 1) : 0;
+        const mix = base.map((b, k) => b * (1 - a) + ink[k] * a);
+        const txt = contrast(fg, mix) >= contrast(bgc, mix) ? 'var(--color-fg)' : 'var(--color-bg)';
+        const x0 = labW + ci * cw, mark = opt.mark && opt.mark(c);
+        const r = svg.append('rect').attr('x', x0 + 1).attr('y', y0 + 1).attr('width', Math.max(1, cw - 2)).attr('height', cellH - 2).attr('rx', 2)
+          .attr('fill', dash.colors[0]).attr('fill-opacity', a);
+        if (mark) r.attr('stroke', 'var(--color-fg)').attr('stroke-width', 2);
+        else if (few || !ok) r.attr('stroke', 'var(--color-fg-muted)').attr('stroke-width', 1).attr('stroke-dasharray', '3 2');
+        capStyle(svg.append('text').attr('x', x0 + cw / 2).attr('y', y0 + cellH / 2).attr('dy', '0.35em').attr('text-anchor', 'middle')
+          .attr('fill', few || !ok ? 'var(--color-fg-muted)' : txt).style('font-variant-numeric', 'tabular-nums').text(ok ? c.display : '–'));
+        svg.append('rect').attr('x', x0).attr('y', y0).attr('width', cw).attr('height', cellH).attr('fill', 'transparent')
+          .on('mousemove', (ev) => { const er = el.getBoundingClientRect(); const ls2 = [[`${lab} × ${c.col_label}`], [opt.what || 'Value', ok ? c.display : 'no data']]; if (c.n !== '' && c.n !== undefined) ls2.push([opt.nName || 'Count', f0(+c.n)]); if (few) ls2.push(['Few observations']); showTip(el, tt, ls2, ev.clientX - er.left, ev.clientY - er.top); })
+          .on('mouseleave', () => hideTip(tt));
+      });
+    });
+  };
+  const HEAT = {
+    score_cap_growth: { what: 'Median 2036 score', nName: 'Simulated worlds', rowTitle: 'Change capacity', colTitle: 'Market growth a year' },
+    payback_cap_win: { what: 'Median payback, years', nName: 'Simulated worlds', rowTitle: 'Change capacity', colTitle: 'Share of changes that create value' },
+    gstar_cc_k: { what: 'Market growth needed', rowTitle: 'Compute share', colTitle: 'Capital per dollar of new revenue', log: true },
+    gap_phi_pace: { what: 'Points ahead in 2036', rowTitle: 'Passed to price', colTitle: "Rivals' pace" },
+    mult_g_m: { what: 'Median multiple of revenue', nName: 'Firm-years', rowTitle: 'Margin', colTitle: 'Growth', few: true },
+  };
+  dash.draw('heatmap', (el) => {
+    if (!prep(el, 'matrices')) return;
+    const id = el.getAttribute('data-matrix');
+    const cells = rows('matrices').filter((r) => r.matrix === id);
+    const o = Object.assign({}, HEAT[id] || {});
+    if (o.few) { const fewN = factNum('hm_few'); o.few = Number.isFinite(fewN) ? fewN : 0; }
+    const card = el.closest('.st-card'), h = card && card.querySelector('.st-card-title, h3, h4');
+    if (h) o.label = h.textContent;
+    heat(el, cells, o);
+  });
+  dash.draw('lever_heat', (el) => {
+    if (!prep(el, 'levers')) return;
+    const rs = rows('levers').filter((r) => r.basis === basis);
+    const codes = Array.from(new Set(rs.map((r) => r.code))).sort();
+    const cells = [];
+    codes.forEach((code, ri) => LEVERS.forEach((lv, ci) => {
+      const r = rs.find((q) => q.code === code && q.lever === lv); if (!r) return;
+      cells.push({ row: ri, row_label: r.position, col: ci, col_label: lv, value: r.points, display: f2(+r.points), n: '', rank: String(r.rank) });
+    }));
+    heat(el, cells, { what: 'Pre-tax points per saving', rowTitle: 'Position', colTitle: 'Cost line', mark: (c) => c.rank === '1', label: 'Lever points by position and cost line' });
+  });
+  const reheat = () => { dash.draw('heatmap'); dash.draw('lever_heat'); };
+  try { matchMedia('(prefers-color-scheme: dark)').addEventListener('change', reheat); } catch (e) { /* older browsers */ }
+  new MutationObserver(reheat).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
 
   // ---- questions: show one role or all ----
   document.querySelectorAll('.st-role button[data-role]').forEach((btn) => btn.addEventListener('click', () => {

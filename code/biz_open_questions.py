@@ -97,6 +97,21 @@ R['typical'] = dict(m0A=TYP['m0_net'], g=TYP['g'], k=TYP['k'], n=TYP['n'], firms
                     path_own_k={h: dict(R=tk[h]['R'], R_net=tk[h]['R_net']) for h in H},
                     payback=payback(t0, PACE['central']), payback_anchor=payback(ref, PACE['central']))
 R['anchor_R2025'] = m0A + ref['2036']['G']
+# grids for the dashboard's heatmaps (3 Nov 2026, 19:21 request)
+G100 = g['G100_central']
+CC_G = [0.012, 0.03, 0.06, 0.12, 0.24, 0.40, 0.60]
+K_G = [-0.3, 0.0, 0.25, 0.5, 0.75]
+R['grids'] = {
+    'gstar_cc_k': {'cc': CC_G, 'k': K_G, 'G': [[G100(cc)[0] / (1 - k_) for k_ in K_G] for cc in CC_G],
+                   'note': "Paper 1's threshold at the central full-cost structure, G100_central(cc)[0] / (1 - k) (psi = 0)"},
+    'gap_phi_pace': {'phi': [0.0, 0.25, 0.5, 0.7], 'pace': ['slow', 'central', 'fast'],
+                     'gap': [[adopt_vs_rivals(ph, rp)['2036']['R_net'] - do_nothing(ph, rp)['2036']['R'] for rp in ('slow', 'central', 'fast')]
+                             for ph in (0.0, 0.25, 0.5, 0.7)],
+                     'none': [[do_nothing(ph, rp)['2036']['R'] for rp in ('slow', 'central', 'fast')] for ph in (0.0, 0.25, 0.5, 0.7)],
+                     'note': '2036: automating at the central pace (net of its dip) minus doing nothing, rivals at each pace'}}
+gg = R['grids']['gstar_cc_k']['G']
+assert abs(gg[CC_G.index(0.06)][K_G.index(0.0)] - 0.325352356655251) < 1e-12          # the paper's 32.5%
+assert abs(gg[CC_G.index(0.06)][K_G.index(-0.3)] - 0.325352356655251 / 1.3) < 1e-12     # 25% at k = -0.3 (Section 7.2)
 R['anchor_R_observed'] = anchor['R'][1]            # median observed cash score of the top-tail anchor firm-years
 R['typical']['R_observed'] = TYP['R_fcf_sbc']       # median observed cash score of the typical firm-years
 

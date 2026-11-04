@@ -297,5 +297,19 @@ y2025w,2020–25,,"New analysis, not in Paper 1: code/biz_valuation.py (Paper 1 
 rev_1to5,$1–5 billion,,"Paper 1, Section 7.2",revenue band of the paper's typical company
 ref_newv,"New analysis: code/biz_valuation.py, notes/open_questions/valuation.json",,,
 ref_newp,"New analysis: code/biz_open_questions.py, notes/open_questions/paths.json",,,
+hm_s_ll,41,,"Supplementary Appendix, Section S10 (draws of the stress test, binned: code/biz_matrices.py)",cell 5.0–7.8% x 5.9–8.5%
+hm_s_hh,63,,"Supplementary Appendix, Section S10 (draws of the stress test, binned: code/biz_matrices.py)",cell 19.2–22.0% x 19.0–21.6%
+hm_s_lh,51,,"Supplementary Appendix, Section S10 (draws of the stress test, binned: code/biz_matrices.py)",cell 5.0–7.8% x 19.0–21.6%
+hm_s_hl,53,,"Supplementary Appendix, Section S10 (draws of the stress test, binned: code/biz_matrices.py)",cell 19.2–22.0% x 5.9–8.5%
+hm_p_lo,11.6,,"Supplementary Appendix, Section S10 (draws of the stress test, binned: code/biz_matrices.py)",cell 10.7–13.5% x 54.0–58.3%
+hm_p_hi,9.2,,"Supplementary Appendix, Section S10 (draws of the stress test, binned: code/biz_matrices.py)",cell 10.7–13.5% x 75.7–80.0%
+hm_g_best,22%,,"Paper 1, Section 7.2",cell 1.2% x −0.30
+hm_g_k5,65%,,"Paper 1, Section 7.2",cell 6% x +0.50
+hm_gap_fix,11.6,,"New analysis, not in Paper 1: code/biz_open_questions.py (Paper 1 calibration, executed unchanged)",cell None (prices fixed) x Central
+hm_gap_worst,18.8,,"New analysis, not in Paper 1: code/biz_open_questions.py (Paper 1 calibration, executed unchanged)",cell Seven tenths x Fast
+hm_m_lghm,3.4×,,"New analysis, not in Paper 1: code/biz_valuation.py (Paper 1 core sample and SEC public float)",cell 16% or more x below 5%
+hm_m_hglm,8.5×,,"New analysis, not in Paper 1: code/biz_valuation.py (Paper 1 core sample and SEC public float)",cell below −15% x 33% or more
+hm_m_lglm,1.1×,,"New analysis, not in Paper 1: code/biz_valuation.py (Paper 1 core sample and SEC public float)",cell below −15% x below 5%
+hm_few,30,,"New analysis, not in Paper 1: code/biz_valuation.py (Paper 1 core sample and SEC public float)",firm-years below which a valuation cell is faded
 tau_cen,0.18,\CeilTauCen,"Paper 1, Section 7.2",
 fee_cen,0.025,\CeilFCen,"Paper 1, Section 7.2",
