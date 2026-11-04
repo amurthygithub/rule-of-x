@@ -17,6 +17,10 @@ plain-language reading of Paper 1 and its million-draw stress test. It replaced 
 - `matrices.csv`: the cells of the six heatmaps, one row per cell (`code/biz_matrices.py`; the lever map is drawn from
   `levers.csv`). Stress-test grids are medians over the draws in each pair of equal-width bins; the valuation grid is a
   new analysis.
+- `export/`: shareable copies made by `code/biz_dashboard_export.py` (4 November 2026): `rule40_ai_business_guide.html`,
+  one self-contained file that works offline with every chart, button, tooltip and the calculator, and
+  `rule40_ai_business_guide.pdf`, US Letter, with each toggle option drawn in turn, section links and bookmarks. Both are
+  snapshots of the published page and its data files on the day of export.
 - `index.src.html`: the page with `{{key}}` for each number; `index.html`: the page as published.
 
 Build: `python3 code/biz_open_questions.py && python3 code/biz_valuation.py && python3 code/biz_matrices.py && python3 code/biz_dashboard_data.py && python3 code/biz_dashboard_page.py` (reads committed outputs only).
