@@ -245,7 +245,7 @@ dn_none5c_36,36.1,,"New analysis, not in Paper 1: code/biz_open_questions.py (Pa
 dn_none5f_36,28.5,,"New analysis, not in Paper 1: code/biz_open_questions.py (Paper 1 calibration, executed unchanged)",
 dn_none7f_36,21.1,,"New analysis, not in Paper 1: code/biz_open_questions.py (Paper 1 calibration, executed unchanged)",
 dn_none7c_36,33.6,,"New analysis, not in Paper 1: code/biz_open_questions.py (Paper 1 calibration, executed unchanged)",
-dn_adopt5rf_36,44.3,,"New analysis, not in Paper 1: code/biz_open_questions.py (Paper 1 calibration, executed unchanged)",
+dn_adopt5rf_36,44.7,,"New analysis, not in Paper 1: code/biz_open_questions.py (Paper 1 calibration, executed unchanged)",
 ty_today,33.3,,"New analysis, not in Paper 1: code/biz_open_questions.py (Paper 1 calibration, executed unchanged)",
 ty_m0,17.9,,"New analysis, not in Paper 1: code/biz_open_questions.py (Paper 1 calibration, executed unchanged)",
 ty_r36,53.8,,"New analysis, not in Paper 1: code/biz_open_questions.py (Paper 1 calibration, executed unchanged)",
@@ -258,7 +258,7 @@ ty_gain,20.5,,"New analysis, not in Paper 1: code/biz_open_questions.py (Paper 1
 top_gain,16.1,,"New analysis, not in Paper 1: code/biz_open_questions.py (Paper 1 calibration, executed unchanged)",the same for the top-tail path
 ty_payback,7.6,,"New analysis, not in Paper 1: code/biz_open_questions.py (Paper 1 calibration, executed unchanged)","years, central execution"
 dn_gap36,11.6,,"New analysis, not in Paper 1: code/biz_open_questions.py (Paper 1 calibration, executed unchanged)",fixed prices
-dn_gap5f,15.8,,"New analysis, not in Paper 1: code/biz_open_questions.py (Paper 1 calibration, executed unchanged)","half passed to price, rivals fast"
+dn_gap5f,16.2,,"New analysis, not in Paper 1: code/biz_open_questions.py (Paper 1 calibration, executed unchanged)","half passed to price, rivals fast"
 v_n,"1,277",,"New analysis, not in Paper 1: code/biz_valuation.py (Paper 1 core sample and SEC public float)",firm-years matched to a public float
 v_firms,220,,"New analysis, not in Paper 1: code/biz_valuation.py (Paper 1 core sample and SEC public float)",
 v_panel,"1,732",,"New analysis, not in Paper 1: code/biz_valuation.py (Paper 1 core sample and SEC public float)",firm-years in the core sample
@@ -282,6 +282,16 @@ screen_lo,1.8,,"Paper 1, Section 8",Paper 1's screening weight for a ten-year ru
 screen_hi,2.8,,"Paper 1, Section 8",
 ref_s81b,"Paper 1, Section 8.1",,,
 ci90,90%,,"New analysis, not in Paper 1: code/biz_valuation.py (Paper 1 core sample and SEC public float)",level of the bootstrap intervals
+dn_obs,53.5,,"New analysis, not in Paper 1: code/biz_open_questions.py (Paper 1 calibration, executed unchanged)",median observed cash score of the top-tail anchor firm-years (includes the growth surplus the path leaves out)
+ty_obs,23.9,,"New analysis, not in Paper 1: code/biz_open_questions.py (Paper 1 calibration, executed unchanged)",median observed cash score of the typical firm-years
+v_n_cash,"1,247",,"New analysis, not in Paper 1: code/biz_valuation.py (Paper 1 core sample and SEC public float)",
+v_firms_cash,217,,"New analysis, not in Paper 1: code/biz_valuation.py (Paper 1 core sample and SEC public float)",
+v_n_gaap,"1,272",,"New analysis, not in Paper 1: code/biz_valuation.py (Paper 1 core sample and SEC public float)",
+v_unm_nofloat,191,,"New analysis, not in Paper 1: code/biz_valuation.py (Paper 1 core sample and SEC public float)",unmatched firm-years of registrants that report no public float
+v_unm_2025,132,,"New analysis, not in Paper 1: code/biz_valuation.py (Paper 1 core sample and SEC public float)",unmatched 2025 firm-years whose next float is not yet filed
+after_tax,0.82,,"Paper 1, Section 7.2",one minus the central cash tax rate: after-tax points per pre-tax point of cost (Section 7.1)
+dw_lo,5,,"Paper 1, Section 8",decision weight close to the revenue multiple in the worked example at 10% (Section 8.1)
+dw_hi,15,,"Paper 1, Section 8",
 y1019w,2010–19,,"New analysis, not in Paper 1: code/biz_valuation.py (Paper 1 core sample and SEC public float)",period
 y2025w,2020–25,,"New analysis, not in Paper 1: code/biz_valuation.py (Paper 1 core sample and SEC public float)",period
 rev_1to5,$1–5 billion,,"Paper 1, Section 7.2",revenue band of the paper's typical company

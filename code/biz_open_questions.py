@@ -64,8 +64,9 @@ def do_nothing(phi, rival_pace):
 
 def adopt_vs_rivals(phi, rival_pace):
     """A firm that automates at the central pace while rivals realize their share at rival_pace:
-    m0 = (1 - tau)[1 - f - (C0 - s_own S_h) / (1 - phi s_r S_h)], less its own in-flight dip."""
-    own, rivals = central_path(), central_path(pace_case=rival_pace)
+    m0 = (1 - tau)[1 - f - (C0 - s_own S_h) / (1 - phi s_r S_h)], less its own in-flight dip, taken from the paper's
+    pass-through path at the same phi (the dip is the cost of transitions toward the target net of pass-through)."""
+    own, rivals = central_path(phi=phi), central_path(pace_case=rival_pace)
     out = {}
     for h in H:
         c = CEIL_H[h]['central']
@@ -84,7 +85,7 @@ for phi in PHI:
         R['do_nothing'][f'{phi:.1f}|{rp}'] = do_nothing(phi, rp)
     R['adopter_rivals_fast'][f'{phi:.1f}'] = adopt_vs_rivals(phi, 'fast')
     chk = adopt_vs_rivals(phi, 'central')                     # same pace as rivals: the paper's own path
-    assert all(abs(chk[h]['R'] - a[h]['R']) < 1e-12 for h in H)
+    assert all(abs(chk[h]['R'] - a[h]['R']) < 1e-12 and abs(chk[h]['R_net'] - a[h]['R_net']) < 1e-12 for h in H)
 assert all(abs(R['do_nothing'][f'0.0|{rp}'][h]['m0'] - m0A) < 1e-12 for rp in ('central', 'fast') for h in H)
 
 Gt = {h: TYP['g'] for h in H}
@@ -96,6 +97,8 @@ R['typical'] = dict(m0A=TYP['m0_net'], g=TYP['g'], k=TYP['k'], n=TYP['n'], firms
                     path_own_k={h: dict(R=tk[h]['R'], R_net=tk[h]['R_net']) for h in H},
                     payback=payback(t0, PACE['central']), payback_anchor=payback(ref, PACE['central']))
 R['anchor_R2025'] = m0A + ref['2036']['G']
+R['anchor_R_observed'] = anchor['R'][1]            # median observed cash score of the top-tail anchor firm-years
+R['typical']['R_observed'] = TYP['R_fcf_sbc']       # median observed cash score of the typical firm-years
 
 os.makedirs(os.path.join(BASE, 'notes', 'open_questions'), exist_ok=True)
 json.dump(R, open(os.path.join(BASE, 'notes', 'open_questions', 'paths.json'), 'w'), indent=1, default=float)

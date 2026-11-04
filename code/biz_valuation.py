@@ -18,7 +18,7 @@ Tests, on the GAAP operating margin and on free cash flow after SBC (the paper's
   (b) how much of the variation the score alone explains, against growth and margin entered separately;
   (c) the same by period (2010-19, 2020-25) and among firm-years scoring at least 40;
   (d) median multiple by score decile, for the dashboard.
-Growth and margins are winsorized at the 1st and 99th percentiles. Associations across firms, not causal effects.
+Growth and margins are winsorized (capped, not dropped) at the 1st and 99th percentiles. Associations across firms, not causal effects.
 
 Writes notes/open_questions/valuation.json and notes/mc_results_2026-11-03_1m/dashboard/valuation_deciles.csv,
 valuation_weights.csv.  Run from anywhere:  python3 code/biz_valuation.py
@@ -56,6 +56,11 @@ m['R_op_w'] = m.g_w + m.m_op_w
 m['R_fcf_sbc_w'] = m.g_w + m.m_fcf_sbc_w
 m['period'] = np.where(m.year <= 2019, '2010-19', '2020-25')
 N_PANEL, N_MATCH = len(P), len(m)
+_um = P.merge(m[['cik', 'fy_end']].assign(hit=1), on=['cik', 'fy_end'], how='left')
+_um = _um[_um.hit.isna()]
+_pos = set(F.cik)
+UNMATCHED = dict(total=int(len(_um)), registrant_without_float=int((~_um.cik.isin(_pos)).sum()),
+                 fy2025=int((_um.year == 2025).sum()))
 
 BASES = {'gaap': ('m_op_w', 'R_op_w', 'GAAP operating margin'), 'cash': ('m_fcf_sbc_w', 'R_fcf_sbc_w', 'Free cash flow after SBC')}
 
@@ -106,7 +111,7 @@ def analyse(df, key):
     return r
 
 
-RES = {'n_panel': N_PANEL, 'n_matched': N_MATCH, 'firms': int(m.cik.nunique()),
+RES = {'n_panel': N_PANEL, 'n_matched': N_MATCH, 'firms': int(m.cik.nunique()), 'unmatched': UNMATCHED,
        'median_multiple': float(m.mult.median()), 'years': [int(m.year.min()), int(m.year.max())]}
 for key in BASES:
     RES[key] = {'all': analyse(m, key)}

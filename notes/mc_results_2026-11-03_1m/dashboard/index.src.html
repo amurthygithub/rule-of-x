@@ -156,7 +156,7 @@
     <p class="st-note">The companion paper compares four cost lines at six typical company positions by the score points that the same <b>{{lever_x}}</b> saving adds in each. Engineering comes first at every position. The back office comes second at <b>{{ga_second}}</b> of them. The growth engine moves up only where selling spend is far above its maintenance level, and to first place only if all selling spend buys growth.</p>
     <div class="st-card">
       <h3 class="st-card-title">Score points from a <b>{{lever_x}}</b> saving in each cost line, by company position</h3>
-      <p class="st-card-note">Cell medians of non-acquisition firm-years, <b>{{y2325}}</b>, with margins on free cash flow after stock-based compensation (SBC). The spend basis (buttons below) decides how much selling and marketing (S&amp;M) counts as buying growth.</p>
+      <p class="st-card-note">Cell medians of non-acquisition firm-years, <b>{{y2325}}</b>, with margins on free cash flow after stock-based compensation (SBC). The spend basis (buttons below) decides how much selling and marketing (S&amp;M) counts as buying growth. Points are before tax; on the after-tax cash basis each is about <b>{{after_tax}}</b> as large.</p>
       <div class="st-nav st-basis" role="group" aria-label="How much selling spend buys growth">
         <button type="button" class="st-btn" data-basis="Central" aria-pressed="true">Central: S&amp;M above maintenance</button>
         <button type="button" class="st-btn" data-basis="All S&amp;M buys growth" aria-pressed="false">All S&amp;M buys growth</button>
@@ -542,24 +542,24 @@
       <div class="st-card">
         <span class="st-new">New analysis, not in the paper</span>
         <h3 class="st-card-title">Does the market pay for a higher score?</h3>
-        <p class="st-card-note">Median market value over revenue by tenth of the score, <b>{{v_n}}</b> firm-years of <b>{{v_firms}}</b> companies, <b>{{y1025}}</b>. Bars: median; whiskers: middle half. Market value is public float, measured six months after each year ends.</p>
+        <p class="st-card-note">Median market value over revenue by tenth of the score, <b>{{y1025}}</b>: <b>{{v_n_cash}}</b> firm-years of <b>{{v_firms_cash}}</b> companies on the cash basis, <b>{{v_n_gaap}}</b> on the GAAP basis. Bars: median; whiskers: middle half. Market value is public float, measured six months after each year ends.</p>
         <div class="st-nav st-vbasis" role="group" aria-label="Margin basis of the score">
           <button type="button" class="st-btn" data-vbasis="Free cash flow after SBC" aria-pressed="true">Free cash flow after SBC</button>
           <button type="button" class="st-btn" data-vbasis="GAAP operating margin" aria-pressed="false">GAAP operating margin</button>
         </div>
         <div class="st-chart dash-skeleton" data-draw="val_deciles" data-source="valuation_deciles"></div>
-        <p class="st-plain"><span class="st-plain-k">In plain English:</span> yes, but not the way the rule counts. The median multiple rises from <b>{{v_dec1}}</b> times revenue in the bottom tenth to <b>{{v_dec10}}</b> in the top tenth. But the market valued one point of growth like about <b>{{v_w_cash}}</b> points of margin (<b>{{v_w_cash_lo}}</b> to <b>{{v_w_cash_hi}}</b>), where the rule counts them the same. Growth and margin entered separately explain <b>{{v_r2_full}}</b> of the differences in multiples within a year; the score alone explains <b>{{v_r2_score}}</b>. Among firm-years scoring <b>{{rule40}}</b> or more, the score explains almost none of them (<b>{{v_r2_top}}</b>).</p>
+        <p class="st-plain"><span class="st-plain-k">In plain English:</span> yes, but not the way the rule counts. On the cash basis the median multiple rises from <b>{{v_dec1}}</b> times revenue in the bottom tenth to <b>{{v_dec10}}</b> in the top tenth. But the market valued one point of growth like about <b>{{v_w_cash}}</b> points of margin (<b>{{v_w_cash_lo}}</b> to <b>{{v_w_cash_hi}}</b>), where the rule counts them the same. Growth and margin entered separately explain <b>{{v_r2_full}}</b> of the differences in multiples within a year; the score alone explains <b>{{v_r2_score}}</b>. Among firm-years scoring <b>{{rule40}}</b> or more, the score explains almost none of them (<b>{{v_r2_top}}</b>), partly because selecting on the score narrows its range.</p>
       </div>
       <div class="st-card">
         <span class="st-new">New analysis, not in the paper</span>
         <h3 class="st-card-title">How much is a point of growth worth in margin?</h3>
-        <p class="st-card-note">Points of margin the market treats as worth one point of growth, with <b>{{ci90}}</b> intervals from resampling companies. Year effects removed; growth and margin trimmed at the extremes.</p>
+        <p class="st-card-note">Points of margin the market treats as worth one point of growth, with <b>{{ci90}}</b> intervals from resampling companies. Year effects removed; growth and margin capped at their most extreme hundredths.</p>
         <div class="st-tablebox">
           <table class="st-table" data-source="valuation_weights" data-row-key="id">
             <thead>
               <tr>
                 <th data-field="basis">Margin basis</th>
-                <th data-field="sample">Firm-years</th>
+                <th data-field="sample">Sample</th>
                 <th data-field="weight" class="st-num">Weight</th>
                 <th data-field="weight_lo" class="st-num">Low</th>
                 <th data-field="weight_hi" class="st-num">High</th>
@@ -569,8 +569,8 @@
             <tbody data-draw="val_weights"></tbody>
           </table>
         </div>
-        <p class="st-plain"><span class="st-plain-k">In plain English:</span> the weight is close to <b>{{v_w_early}}</b> in <b>{{y1019w}}</b> and <b>{{v_w_late}}</b> in <b>{{y2025w}}</b>, and <b>{{v_w_noacq}}</b> without acquisition-affected years. It is higher than the paper's own screening weight for a ten-year runway, <b>{{screen_lo}}</b> to <b>{{screen_hi}}</b>, which would fit investors expecting growth to last longer than that. A blank interval end means the margin coefficient's interval reaches zero. Above the bar of <b>{{rule40}}</b> the weights cannot be told apart from noise.</p>
-        <p class="st-caveat"><span class="st-plain-k">Limits.</span> Public float leaves out shares held by insiders, so it understates founder-controlled companies, and it ignores debt and cash. These are associations across companies, not evidence that raising your own score raises your multiple, and share-price returns are not tested. Sources: <span>{{ref_newv}}</span>; <span>{{ref_s81b}}</span>.</p>
+        <p class="st-plain"><span class="st-plain-k">In plain English:</span> the weight is close to <b>{{v_w_early}}</b> in <b>{{y1019w}}</b> and <b>{{v_w_late}}</b> in <b>{{y2025w}}</b>, and <b>{{v_w_noacq}}</b> without acquisition-affected years. Paper 1 offers two benchmarks: a screening weight of <b>{{screen_lo}}</b> to <b>{{screen_hi}}</b> for a ten-year runway, and a decision weight close to the revenue multiple, <b>{{dw_lo}}</b> to <b>{{dw_hi}}</b> in its worked example. The estimate sits between them, near the sample's median multiple of <b>{{v_median}}</b>; a ratio across companies is not the same quantity as either. A blank interval end means the margin coefficient's interval reaches zero. Above the bar of <b>{{rule40}}</b> the weights cannot be told apart from noise.</p>
+        <p class="st-caveat"><span class="st-plain-k">Limits.</span> Public float leaves out shares held by insiders, so it understates founder-controlled companies, and it ignores debt and cash. Of the <b>{{v_panel}}</b> core firm-years, <b>{{v_unm_nofloat}}</b> belong to companies that report no public float (foreign filers) and <b>{{v_unm_2025}}</b> are fiscal <b>{{y25}}</b> years whose next float is not filed yet. These are associations across companies, not evidence that raising your own score raises your multiple, and share-price returns are not tested. Sources: <span>{{ref_newv}}</span>; <span>{{ref_s81b}}</span>.</p>
       </div>
     </div>
 
@@ -590,8 +590,8 @@
           <li><span class="st-sw" style="background: var(--st-c0)"></span>Automates (central execution)</li>
           <li><span class="st-sw" style="background: var(--cds-chart-status-critical)"></span>Does nothing</li>
         </ul>
-        <p class="st-plain"><span class="st-plain-k">In plain English:</span> it depends on whether competitors pass their savings on to customers. At fixed prices, a company that does nothing keeps today's score of <b>{{dn_today}}</b>, and in <b>{{y28}}</b> it even reports more than one that is automating (<b>{{dn_adopt28}}</b>, after the cost of changes in flight). By <b>{{y36}}</b> the automating company leads by <b>{{dn_gap36}}</b> points. If rivals automate fast and pass half their savings into price, standing still falls to <b>{{dn_none5f_36}}</b> by <b>{{y36}}</b>, <b>{{dn_gap5f}}</b> points behind a company automating at the central pace; at seven tenths it falls to <b>{{dn_none7f_36}}</b>.</p>
-        <p class="st-caveat"><span class="st-plain-k">How.</span> Paper 1's pass-through scenario, in which rivals realize their programs and pass a share of each unit-cost saving into price, with the company's own automation set to zero. Demand and market growth are held as in the paper's path, and rivals' savings are the top-tail company's. Source: <span>{{ref_newp}}</span>.</p>
+        <p class="st-plain"><span class="st-plain-k">In plain English:</span> it depends on whether competitors pass their savings on to customers. At fixed prices, a company that does nothing keeps its durable score of <b>{{dn_today}}</b> (its reported score, <b>{{dn_obs}}</b> at the median, also carries a growth surplus the path leaves out), and in <b>{{y28}}</b> it even reports more than one that is automating (<b>{{dn_adopt28}}</b>, after the cost of changes in flight). By <b>{{y36}}</b> the automating company leads by <b>{{dn_gap36}}</b> points. If rivals automate fast and pass half their savings into price, standing still falls to <b>{{dn_none5f_36}}</b> by <b>{{y36}}</b>, <b>{{dn_gap5f}}</b> points behind a company automating at the central pace; at seven tenths it falls to <b>{{dn_none7f_36}}</b>.</p>
+        <p class="st-caveat"><span class="st-plain-k">How.</span> Paper 1's pass-through scenario, in which rivals realize their programs and pass a share of each unit-cost saving into price, with the company's own automation set to zero. Demand and market growth are held as in the paper's path, so the company that does nothing keeps its volume and growth at the lower price, and rivals' savings are the top-tail company's. Source: <span>{{ref_newp}}</span>.</p>
       </div>
       <div class="st-card">
         <span class="st-new">New analysis, not in the paper</span>
@@ -603,13 +603,13 @@
           <li><span class="st-sw" style="background: var(--st-c1); opacity: .5"></span>Typical, after changes in flight</li>
           <li><span class="st-sw" style="background: var(--st-c0)"></span>Top tail, after changes in flight</li>
         </ul>
-        <p class="st-plain"><span class="st-plain-k">In plain English:</span> a typical company starts lower, at <b>{{ty_today}}</b>, because its margin before growth spending is only <b>{{ty_m0}}</b> points against growth of <b>{{ty_g}}</b>. On the same program it reaches <b>{{ty_r36}}</b> by <b>{{y36}}</b> (<b>{{ty_r36_net}}</b> while still paying for changes): a gain of <b>{{ty_gain}}</b> points against <b>{{top_gain}}</b> for the top tail, because it has more cost to remove. Payback is about the same, <b>{{ty_payback}}</b> years, because gains and transition costs grow together. At its own capital intensity (<b>{{ty_k}}</b>) the <b>{{y36}}</b> score is <b>{{ty_r36_k}}</b>. Source: <span>{{ref_newp}}</span>.</p>
+        <p class="st-plain"><span class="st-plain-k">In plain English:</span> a typical company's durable score starts lower, at <b>{{ty_today}}</b> (its reported cash score is lower still, <b>{{ty_obs}}</b> at the median), because its margin before growth spending is only <b>{{ty_m0}}</b> points against growth of <b>{{ty_g}}</b>. On the same program it reaches <b>{{ty_r36}}</b> by <b>{{y36}}</b> (<b>{{ty_r36_net}}</b> while still paying for changes): a gain of <b>{{ty_gain}}</b> points against <b>{{top_gain}}</b> for the top tail, because it has more cost to remove. Payback is about the same, <b>{{ty_payback}}</b> years, because gains and transition costs grow together. At its own capital intensity (<b>{{ty_k}}</b>) the <b>{{y36}}</b> score is <b>{{ty_r36_k}}</b>. Source: <span>{{ref_newp}}</span>.</p>
       </div>
     </div>
 
     <div class="st-card" id="calculator">
       <h3 class="st-card-title">Where does your company sit?</h3>
-      <p class="st-card-note">Enter your own numbers in percent of revenue, or start from one of the six positions. The page applies the paper's formulas: score points from a <b>{{lever_x}}</b> saving in each line (<span>{{ref_p9}}</span>), the capital hurdle (<span>{{ref_s75}}</span>) and the market growth a fully automated company would need for a cash score of <b>{{rule100}}</b> (<span>{{ref_s72}}</span>), at the paper's central costs.</p>
+      <p class="st-card-note">Enter your own numbers in percent of revenue, or start from one of the six positions. The page applies the paper's formulas: score points from a <b>{{lever_x}}</b> saving in each line (the companion paper's four-lever ranking, with the formulas of <span>{{ref_p9}}</span>), the capital hurdle (<span>{{ref_s75}}</span>) and the market growth a fully automated company would need for a cash score of <b>{{rule100}}</b> (<span>{{ref_s72}}</span>), at the paper's central costs.</p>
       <div class="st-form">
         <label>Start from<select data-draw="calc_preset" data-source="positions" aria-label="Start from a position"></select></label>
         <label>Revenue growth<input type="number" step="0.1" data-calc="g"></label>
@@ -624,7 +624,7 @@
         <label>Selling spend that buys growth<select data-calc="basis"><option value="net">Above the maintenance level</option><option value="all">All of it</option><option value="none">None of it</option></select></label>
       </div>
       <div class="st-chart st-short dash-skeleton" data-draw="calc_out" data-source="facts"></div>
-      <p class="st-caveat"><span class="st-plain-k">What it does not do.</span> It compares savings of the same size and leaves out what each saving costs to get. It treats engineering as a cost line, ignores what selling spend buys beyond the chosen basis, and uses the paper's central cost structure for the threshold. It is a first screen, not a plan.</p>
+      <p class="st-caveat"><span class="st-plain-k">What it does not do.</span> It compares savings of the same size and leaves out what each saving costs to get. Points are before tax; on the after-tax cash basis each is about <b>{{after_tax}}</b> as large, which does not change the order. It treats engineering as a cost line, assumes your selling spend is at its own best level, and counts growth-engine gains that fade as the market fills alongside cost savings that last. The threshold is approximate and uses the paper's central costs. The engineering lever and the four-way ranking come from the companion paper, which is not yet audited. It is a first screen, not a plan.</p>
     </div>
 
     <div class="st-grid">
@@ -648,7 +648,7 @@
           <li><span class="st-plain-k">Why the top of the score distribution fell.</span> The data cannot separate fewer fast growers from lower margins among them.</li>
           <li><span class="st-plain-k">What AI will be able to do, and when.</span> The paper assumes every process can be automated from the start. Measured task length has doubled about every <b>{{metr_days}}</b>, but that is outside the model.</li>
           <li><span class="st-plain-k">Private AI-native companies and companies outside US public software.</span> They are not in SEC filings; answering needs private-company or non-US filings data.</li>
-          <li><span class="st-plain-k">Whether a higher score predicts share-price returns.</span> SEC filings carry no prices; answering needs a price database.</li>
+          <li><span class="st-plain-k">Whether a higher score predicts share-price returns.</span> SEC filings carry one market value a year, not a price series; answering needs a price database.</li>
         </ul>
         <p class="st-plain">Sources: <span>{{ref_s86}}</span>; <span>{{ref_s81}}</span>; <span>{{ref_s5}}</span>.</p>
       </div>
@@ -1227,8 +1227,10 @@
     const X = factNum('lever_x') / 100, maint = factNum('sm_maint'), delta = factNum('cap_delta'), base0 = factNum('margin_cen'), cc0 = factNum('cc_cen'), tau = factNum('tau_cen');
     const g = num('g'), m = num('m'), sm = num('sm'), ga = num('ga'), rd = num('rd'), ch = num('ch'), k = num('k'), cc = num('cc'), phi = num('phi');
     const sigma = v.basis === 'all' ? sm : v.basis === 'none' ? 0 : Math.max(sm - maint, 0);
+    // share of a cost-of-revenue saving the company keeps: 1 - phi C0, C0 = 1 - f - m0 the unit cost on the basis, m0 = m + sigma + k g
+    const fee = factNum('fee_cen'), m0 = (m + sigma + (Number.isFinite(k) ? k * g : 0)) / 100, keep = 1 - phi * Math.max(1 - fee - m0, 0);
     const lev = [{ label: 'Engineering (R&D)', v: X * rd, c: dash.colors[0] }, { label: 'Back office (G&A)', v: X * ga, c: dash.colors[1] },
-      { label: 'Growth engine (S&M)', v: X * sigma, c: dash.colors[2] }, { label: 'Cost of revenue', v: X * ch * (1 - phi), c: dash.colors[3] }];
+      { label: 'Growth engine (S&M)', v: X * sigma, c: dash.colors[2] }, { label: 'Cost of revenue', v: X * ch * keep, c: dash.colors[3] }];
     const ok = lev.filter((l) => Number.isFinite(l.v));
     if (!ok.length) { const p = document.createElement('p'); p.className = 'st-card-note'; p.textContent = 'Enter cost lines to see the ranking.'; el.appendChild(p); return; }
     const ranked = ok.slice().sort((p, q) => q.v - p.v);
@@ -1245,14 +1247,14 @@
     });
     const out = document.createElement('ul'); out.className = 'st-list';
     const li = (t) => { const e = document.createElement('li'); e.textContent = t; out.appendChild(e); };
-    li(`First: ${ranked[0].label}${ranked[1] ? `; second: ${ranked[1].label}` : ''} (score points from a ${f0(X * 100)}% saving in each line).`);
+    li(`First: ${ranked[0].label}${ranked[1] ? `; second: ${ranked[1].label}` : ''} (pre-tax score points from a ${f0(X * 100)}% saving in each line).`);
     if (Number.isFinite(g) && Number.isFinite(m)) li(`Your score today: ${f1(g + m)} (growth ${f1(g)} plus margin ${f1(m)}).`);
     if (Number.isFinite(g)) li(`Owning AI capacity pays only if each dollar of capital removes more than ${f2(g / 100 + delta)} dollars of yearly cost (growth plus a ${f2(delta)} replacement rate).`);
     if (Number.isFinite(cc)) {
       const base = base0 + (1 - tau) * (cc0 - cc), kk = Number.isFinite(k) ? k : 0;
       if (base >= 100) li(`At a compute share of ${f1(cc)}% the fully automated margin alone exceeds 100.`);
       else if (kk >= 1) li(`With capital of ${f2(kk)} per dollar of new revenue, growth lowers the cash score, so full automation cannot reach 100 at any growth rate.`);
-      else li(`A fully automated company like yours would need market growth above ${f1((100 - base) / (1 - kk))}% a year for a cash score of 100 (compute ${f1(cc)}% of revenue, central costs, fixed prices).`);
+      else li(`A fully automated company like yours would need market growth above about ${f1((100 - base) / (1 - kk))}% a year for a cash score of 100 (compute ${f1(cc)}% of revenue, central costs, fixed prices).`);
     }
     el.appendChild(out);
   });

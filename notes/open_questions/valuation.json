@@ -2,6 +2,11 @@
  "n_panel": 1732,
  "n_matched": 1277,
  "firms": 220,
+ "unmatched": {
+  "total": 455,
+  "registrant_without_float": 191,
+  "fy2025": 132
+ },
  "median_multiple": 4.49459573021905,
  "years": [
   2010,
