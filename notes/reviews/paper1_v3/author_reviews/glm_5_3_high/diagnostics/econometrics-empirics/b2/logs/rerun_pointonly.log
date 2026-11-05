@@ -1,0 +1,7 @@
+[    38s] point estimates done
+Traceback (most recent call last):
+  File "<string>", line 6, in <module>
+  File "code/estimate_v3.py", line 1045, in <module>
+    D = DRAWS[bn]
+        ~~~~~^^^^
+KeyError: 'slopes'

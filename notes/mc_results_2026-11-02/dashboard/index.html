@@ -1,0 +1,760 @@
+<meta name="dash-one-writer">
+<style>
+  /* Layout: one reading column of findings, each a heading, a one-line note and a chart card; a tile row up top. */
+  .st-page { max-width: 72rem; margin-inline: auto; display: flex; flex-direction: column; gap: var(--cds-gap-xl); font-family: var(--font-anthropic-sans); }
+  .st-head { display: flex; flex-direction: column; gap: var(--cds-gap-sm); }
+  .st-title { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: var(--cds-font-size-title); margin: 0; text-wrap: balance; }
+  .st-lede { margin: 0; max-width: 62ch; font-size: var(--cds-font-size-body); line-height: 1.5; }
+  .st-page b { font-weight: var(--cds-font-weight-medium); }
+  .st-frame { margin: 0; max-width: 70ch; color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); line-height: 1.5; }
+  .st-tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr)); gap: var(--cds-gap-md); }
+  .st-tile { background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-lg); display: flex; flex-direction: column; gap: var(--cds-gap-xs); min-width: 0; }
+  .st-tile-label { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+  .st-tile-value { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: var(--cds-font-size-title); font-variant-numeric: tabular-nums; line-height: 1.15; }
+  .st-tile-sub { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); font-variant-numeric: tabular-nums; }
+  .st-section { display: flex; flex-direction: column; gap: var(--cds-gap-md); }
+  .st-h2 { margin: 0; font-size: var(--cds-font-size-heading); font-weight: var(--cds-font-weight-medium); text-wrap: balance; }
+  .st-note { margin: 0; max-width: 68ch; color: var(--color-fg-muted); font-size: var(--cds-font-size-body); line-height: 1.5; }
+  .st-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr)); gap: var(--cds-gap-md); }
+  .st-card { background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-lg); display: flex; flex-direction: column; gap: var(--cds-gap-sm); min-width: 0; }
+  .st-card-title { margin: 0; font-size: var(--cds-font-size-body); font-weight: var(--cds-font-weight-medium); }
+  .st-card-note { margin: 0; font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); line-height: 1.45; }
+  .st-chart { position: relative; min-height: 15rem; width: 100%; }
+  .st-chart.st-tall { min-height: 19rem; }
+  .st-chart svg { display: block; overflow: visible; }
+  .st-legend { display: flex; flex-wrap: wrap; gap: var(--cds-gap-sm) var(--cds-gap-md); font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); margin: 0; padding: 0; list-style: none; }
+  .st-legend li { display: inline-flex; align-items: center; gap: 0.4rem; }
+  .st-sw { width: 0.75rem; height: 0.75rem; border-radius: 2px; display: inline-block; }
+  .st-sw-line { width: 1rem; height: 0; border-top: 2px dashed var(--cds-chart-reference); border-radius: 0; }
+  .st-tt { position: absolute; pointer-events: none; background: var(--cds-surface-popover); border: 1px solid var(--cds-border); border-radius: var(--cds-radius); box-shadow: var(--cds-shadow-popover); padding: var(--cds-pad-xs) var(--cds-pad-sm); font-size: var(--cds-font-size-caption); font-variant-numeric: tabular-nums; white-space: nowrap; z-index: 2; }
+  .st-tt .st-tt-k { color: var(--cds-text-secondary); }
+  .st-fail { display: flex; align-items: center; justify-content: center; gap: 0.5rem; min-height: inherit; color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); }
+  .st-fail::before { content: ""; width: 0.375rem; height: 0.375rem; border-radius: 50%; background: var(--color-bad); }
+  .st-tablebox { max-height: 34rem; overflow: auto; border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); }
+  .st-table { width: 100%; border-collapse: collapse; font-size: var(--cds-font-size-caption); font-variant-numeric: tabular-nums; }
+  .st-table th { position: sticky; top: 0; background: var(--color-panel); text-align: left; font-weight: var(--cds-font-weight-medium); padding: var(--cds-pad-sm); border-bottom: 1px solid var(--color-border-line); white-space: nowrap; }
+  .st-table th button { all: unset; cursor: pointer; }
+  .st-table th button:focus-visible { outline: 2px solid var(--cds-chart-axis); outline-offset: 2px; }
+  .st-table td { padding: var(--cds-pad-xs) var(--cds-pad-sm); border-bottom: 1px solid var(--color-border-line); vertical-align: top; }
+  .st-table td.st-num, .st-table th.st-num { text-align: right; }
+  .st-table td.st-claim { min-width: 14rem; }
+  .st-pill { display: inline-block; padding: 0.1rem 0.5rem; border-radius: 999px; font-size: var(--cds-font-size-caption); white-space: nowrap; border: 1px solid currentColor; }
+  .st-pill-ok { color: var(--color-ok); }
+  .st-pill-warn { color: var(--color-warn); }
+  .st-filter { display: flex; flex-wrap: wrap; gap: var(--cds-gap-sm); align-items: center; }
+  .st-filter input { font: inherit; font-size: var(--cds-font-size-caption); padding: var(--cds-pad-xs) var(--cds-pad-sm); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); background: var(--color-bg); color: var(--color-fg); min-width: 0; flex: 1 1 14rem; max-width: 24rem; }
+  .st-method { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr)); gap: var(--cds-gap-md); }
+  .st-method p { margin: 0; font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); line-height: 1.55; }
+  .st-plain { margin: 0; font-size: var(--cds-font-size-caption); line-height: 1.5; color: var(--color-fg); border-top: 1px solid var(--color-border-line); padding-top: var(--cds-pad-sm); max-width: 68ch; }
+  .st-plain-k { font-weight: var(--cds-font-weight-medium); }
+  .st-gloss { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr)); gap: var(--cds-gap-sm) var(--cds-gap-lg); margin: 0; }
+  .st-gloss div { min-width: 0; }
+  .st-gloss dt { font-size: var(--cds-font-size-caption); font-weight: var(--cds-font-weight-medium); }
+  .st-gloss dd { margin: 0.15rem 0 0; font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); line-height: 1.5; }
+  [data-dash-source-state=empty] { color: transparent; }
+  [data-dash-source-state=refreshing] { opacity: .5; transition: opacity var(--cds-dur-slow); }
+  @media (max-width: 40rem) { .st-hide-narrow { display: none; } }
+</style>
+
+<div class="st-page">
+  <header class="st-head">
+    <h1 class="st-title" id="top">Rule of 40 stress test</h1>
+    <p class="st-lede"><b data-draw="n_hold" data-source="claim_counts" data-field="hold">—</b> of the <b data-draw="n_tests" data-source="claim_counts" data-field="tests">—</b> tests of Paper 1's headline claims hold at every point of the paper's own parameter ranges. The others hold at the paper's central values but turn on execution, compute and cost assumptions, so the text should state them as conditional.</p>
+    <p class="st-frame">Not a forecast. Every input moves together over the range the paper itself states. "Holds everywhere" means no sampled point, box corner or targeted search broke the claim. Shares of draws assume every input is equally likely anywhere in its range, which no data measures.</p>
+  </header>
+
+  <section class="st-card" aria-label="Words used on this page">
+    <h2 class="st-card-title">Words used on this page</h2>
+    <dl class="st-gloss">
+      <div><dt>Rule of 40 score</dt><dd>A company's revenue growth rate plus its profit margin, both in percent. Investors use 40 as a pass mark for software companies.</dd></div>
+      <div><dt>Rule of 100</dt><dd>A score of 100: the level some people expect AI automation to make possible. The paper argues it is not a lasting state for a mature company.</dd></div>
+      <div><dt>Draw (one "world")</dt><dd>One run of the paper's model with one particular set of assumptions. We ran thousands, each with a different mix.</dd></div>
+      <div><dt>Stated range</dt><dd>For each assumption, the lowest and highest values the paper itself says are reasonable. Every draw stays inside these ranges.</dd></div>
+      <div><dt>Central value</dt><dd>The answer the paper gives with all assumptions at their middle settings.</dd></div>
+      <div><dt>Central basis</dt><dd>The paper's main way of treating sales and marketing: only spending above a maintenance level counts as buying growth. The two other bases count all of it or none of it.</dd></div>
+      <div><dt>G* (growth threshold)</dt><dd>How fast a company's market must grow each year before full AI automation can lift its score to 100.</dd></div>
+      <div><dt>Payback</dt><dd>The number of years until the savings from automation repay the cost and disruption of making the change.</dd></div>
+    </dl>
+  </section>
+
+  <section class="st-tiles" aria-label="Headline figures">
+    <div class="st-tile">
+      <span class="st-tile-label">Joint draws of every input</span>
+      <span class="st-tile-value" data-draw="kpi_draws" data-source="meta" data-field="draws_lhs">—</span>
+      <span class="st-tile-sub">Points evaluated with corners and searches: <span data-draw="kpi_points" data-source="meta" data-field="points_total">—</span></span>
+      <p class="st-plain"><span class="st-plain-k">In plain English:</span> we reran the paper's model this many times, each time with a different mix of assumptions. Think of each run as one possible world.</p>
+    </div>
+    <div class="st-tile">
+      <span class="st-tile-label">Parameters varied together</span>
+      <span class="st-tile-value" data-draw="kpi_dims" data-source="meta" data-field="dimensions">—</span>
+      <span class="st-tile-sub">Each over the range the paper or its code states</span>
+      <p class="st-plain"><span class="st-plain-k">In plain English:</span> the number of assumptions we changed at the same time, such as tax rates, the cost of AI computing, how fast a company can change and how fast its market grows.</p>
+    </div>
+    <div class="st-tile">
+      <span class="st-tile-label">2036 score, central basis, middle 90% of draws</span>
+      <span class="st-tile-value"><span data-draw="kpi_r_lo" data-source="levels" data-field="p05" data-where="basis=Netted (central)&amp;year=2036">—</span> to <span data-draw="kpi_r_hi" data-source="levels" data-field="p95" data-where="basis=Netted (central)&amp;year=2036">—</span></span>
+      <span class="st-tile-sub">Paper's bracket, anchor firms only: <span data-draw="kpi_p_lo" data-source="levels" data-field="paper_lo" data-where="basis=Netted (central)&amp;year=2036">—</span> to <span data-draw="kpi_p_hi" data-source="levels" data-field="paper_hi" data-where="basis=Netted (central)&amp;year=2036">—</span></span>
+      <p class="st-plain"><span class="st-plain-k">In plain English:</span> in 9 out of 10 worlds, a top software company's best possible score in 2036 lands in this range. The paper's own range is narrower because it varied only which companies it started from, not the assumptions.</p>
+    </div>
+    <div class="st-tile">
+      <span class="st-tile-label">Growth threshold G* for a Rule of 100</span>
+      <span class="st-tile-value"><span data-draw="kpi_g_lo" data-source="claims" data-field="box_min" data-where="test_id=C1.full">—</span> to <span data-draw="kpi_g_hi" data-source="claims" data-field="box_max" data-where="test_id=C1.full">—</span></span>
+      <span class="st-tile-sub">Paper's central value: <span data-draw="kpi_g_c" data-source="claims" data-field="central" data-where="test_id=C1.full">—</span></span>
+      <p class="st-plain"><span class="st-plain-k">In plain English:</span> how fast a market would have to grow each year for a fully automated company to reach a score of 100. The paper gives one number; across all the worlds it can be this low or this high.</p>
+    </div>
+  </section>
+
+  <section class="st-section" id="claims">
+    <h2 class="st-h2">Which claims survive joint variation</h2>
+    <p class="st-note">Each row is one test the paper's text makes. Rows that fail somewhere are not errors at the central values; they mark claims whose wording should carry their conditions.</p>
+    <p class="st-plain"><span class="st-plain-k">In plain English:</span> each row is one statement the paper makes. "Holds everywhere" means it stayed true in every world we tried. "Fails somewhere" means at least one mix of assumptions broke it; it is still true with the paper's middle assumptions, so the paper should add "under these assumptions". Central is the paper's own value, Lowest and Highest are the most extreme values we found, and Draws holding is the share of worlds in which the statement stayed true.</p>
+    <div class="st-filter">
+      <input id="st-claim-search" type="search" placeholder="Filter claims" aria-label="Filter claims">
+    </div>
+    <div class="st-tablebox">
+      <table class="st-table" data-source="claims" data-row-key="test_id">
+        <thead>
+          <tr>
+            <th data-field="claim"><button type="button" data-sort="claim">Claim</button></th>
+            <th data-field="conditions" class="st-hide-narrow"><button type="button" data-sort="conditions">Conditions</button></th>
+            <th data-field="holds"><button type="button" data-sort="holds">Result</button></th>
+            <th data-field="central" class="st-num"><button type="button" data-sort="central">Central</button></th>
+            <th data-field="box_min" class="st-num"><button type="button" data-sort="box_min">Lowest</button></th>
+            <th data-field="box_max" class="st-num"><button type="button" data-sort="box_max">Highest</button></th>
+            <th data-field="unit" class="st-hide-narrow"><button type="button" data-sort="unit">Unit</button></th>
+            <th data-field="share_holding" class="st-num"><button type="button" data-sort="share_holding">Draws holding</button></th>
+          </tr>
+        </thead>
+        <tbody data-draw="claims_table"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="st-section" id="path">
+    <h2 class="st-h2">The 2036 score is far less certain than the paper's bracket</h2>
+    <p class="st-note">The paper's bracket resamples only the anchor firms and holds the program fixed. Moving execution, market growth, costs and the anchor together roughly triples the spread. No draw reaches a Rule of 100 on the central basis.</p>
+    <div class="st-grid">
+      <div class="st-card">
+        <h3 class="st-card-title">2036 score, central basis, across <span data-draw="draws_txt" data-source="meta" data-field="draws_lhs">—</span> draws</h3>
+        <p class="st-card-note">Share of draws by score. The band is the paper's bracket, the dashed line its central value.</p>
+        <div class="st-chart dash-skeleton" data-draw="hist_r2036" data-source="draws levels"></div>
+        <ul class="st-legend">
+          <li><span class="st-sw" style="background: var(--st-c0)"></span>Draws</li>
+          <li><span class="st-sw" style="background: var(--cds-chart-reference); opacity: .25"></span>Paper's bracket</li>
+          <li><span class="st-sw st-sw-line"></span>Paper's central value</li>
+        </ul>
+        <p class="st-plain"><span class="st-plain-k">In plain English:</span> each bar shows what share of the worlds ended with that score in 2036. Tall bars are common outcomes. The shaded band is the range the paper reports and the dashed line is its single estimate. The bars spread well beyond the band, so the paper's range understates how uncertain the future is. No world reached a score of 100.</p>
+      </div>
+      <div class="st-card">
+        <h3 class="st-card-title">Score by year and basis</h3>
+        <p class="st-card-note">Thin line: lowest to highest over the box. Wide bar: middle 90% of draws. Dark bar: the paper's bracket. Dot: central value.</p>
+        <div class="st-chart st-tall dash-skeleton" data-draw="levels_chart" data-source="levels"></div>
+        <p class="st-plain"><span class="st-plain-k">In plain English:</span> each row is one year under one way of counting sales and marketing. The thin grey line covers every outcome we saw, the wide pale bar holds the middle 90% of worlds, the short dark bar is the paper's own range, and the dot is the paper's estimate. The dashed line at the right marks a score of 100. Every row on the central basis stays left of it.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="st-section" id="threshold">
+    <h2 class="st-h2">The growth threshold rests on the compute share and the cost floors</h2>
+    <p class="st-note">The paper's <b data-draw="g_central_txt" data-source="claims" data-field="central" data-where="test_id=C1.full">—</b> assumes compute at 6% of revenue and central costs. With every input moving, the threshold drops below 30% when tax, the accountability floor and the AI failure costs sit at their favorable ends together, or when compute is very cheap.</p>
+    <div class="st-grid">
+      <div class="st-card">
+        <h3 class="st-card-title">G* across the draws</h3>
+        <p class="st-card-note">Share of draws by threshold, with the compute share moving and held at 6%. Dashed line: the 30% the claim needs.</p>
+        <div class="st-chart dash-skeleton" data-draw="hist_gstar" data-source="draws"></div>
+        <ul class="st-legend">
+          <li><span class="st-sw" style="background: var(--st-c0)"></span>All inputs move</li>
+          <li><span class="st-sw" style="background: var(--st-c1)"></span>Compute held at 6%</li>
+          <li><span class="st-sw st-sw-line"></span>30% threshold</li>
+        </ul>
+        <p class="st-plain"><span class="st-plain-k">In plain English:</span> this shows how fast a market must grow for a fully automated company to reach 100, across the worlds. The solid bars let every assumption move; the outline holds the cost of AI computing at the paper's assumption. To the right of the dashed 30% line the paper's statement holds; to the left it does not. Most worlds sit to the right, but not all.</p>
+      </div>
+      <div class="st-card">
+        <h3 class="st-card-title">G* against the compute share</h3>
+        <p class="st-card-note">One dot per draw, every fifth draw shown. Dots below the line break the claim.</p>
+        <div class="st-chart dash-skeleton" data-draw="scatter_gstar" data-source="draws"></div>
+        <p class="st-plain"><span class="st-plain-k">In plain English:</span> each dot is one world. Left to right is how much AI computing costs as a share of revenue; up and down is the growth threshold. Highlighted dots fall below 30%, where the paper's statement breaks. They gather where computing is very cheap, because cheaper AI makes a score of 100 easier to reach.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="st-section" id="payback">
+    <h2 class="st-h2">Payback is long under central execution and spreads wide without it</h2>
+    <p class="st-note">At central execution the program repays its transition costs in a narrow window around the paper's figure. Letting execution vary stretches the tail to decades, and favorable compute paths pull a few draws under five years.</p>
+    <div class="st-card">
+      <h3 class="st-card-title">Years to repay the transition costs, central basis</h3>
+      <p class="st-card-note">Share of draws by payback year. Draws beyond 20 years are counted in the last bar. Dashed line: five years.</p>
+      <div class="st-chart dash-skeleton" data-draw="hist_payback" data-source="draws"></div>
+      <ul class="st-legend">
+        <li><span class="st-sw" style="background: var(--st-c0)"></span>All inputs move</li>
+        <li><span class="st-sw" style="background: var(--st-c1)"></span>Central execution</li>
+        <li><span class="st-sw st-sw-line"></span>Five years</li>
+      </ul>
+      <p class="st-plain"><span class="st-plain-k">In plain English:</span> this is how many years it takes for the savings to repay the cost of the change. When the company changes at the paper's middle pace, payback falls in a narrow window close to the paper's figure. When the pace itself is uncertain, some worlds take far longer, and a few pay back in under five years.</p>
+    </div>
+  </section>
+
+  <section class="st-section" id="drivers">
+    <h2 class="st-h2">Execution drives the path; compute drives the threshold</h2>
+    <p class="st-note">Share of each answer's variance that a group of inputs explains, counting its interactions (Sobol total index). This confirms the order of the paper's one-at-a-time sensitivity table.</p>
+    <div class="st-grid">
+      <div class="st-card">
+        <h3 class="st-card-title">2036 score, central basis</h3>
+        <div class="st-chart dash-skeleton" data-draw="sobol_r" data-source="sobol"></div>
+        <p class="st-plain"><span class="st-plain-k">In plain English:</span> a longer bar means that group of assumptions explains more of why the 2036 score differs from world to world. How fast and how well a company carries out its AI program matters far more than anything else, followed by how fast its market grows.</p>
+      </div>
+      <div class="st-card">
+        <h3 class="st-card-title">Growth threshold G*</h3>
+        <div class="st-chart dash-skeleton" data-draw="sobol_g" data-source="sobol"></div>
+        <p class="st-plain"><span class="st-plain-k">In plain English:</span> for the growth threshold, the cost of AI computing explains almost all of the differences between worlds. Taxes and the cost of controls and AI errors matter a little; the rest barely at all.</p>
+      </div>
+    </div>
+    <div class="st-card">
+      <h3 class="st-card-title">2036 score against the pace of change</h3>
+      <p class="st-card-note">One dot per draw, every fifth draw shown. Pace is the share of the program a firm can change in a year.</p>
+      <div class="st-chart dash-skeleton" data-draw="scatter_pace" data-source="draws"></div>
+      <p class="st-plain"><span class="st-plain-k">In plain English:</span> each dot is one world. Left to right is how much of its work a company can change each year; up and down is its 2036 score. Scores rise as the pace rises: execution speed is the biggest single reason the outcome is uncertain.</p>
+    </div>
+  </section>
+
+  <section class="st-section" id="levers">
+    <h2 class="st-h2">Lever rankings: engineering always first, the growth-engine count moves</h2>
+    <p class="st-note">Engineering ranks first at all six positions in every draw. The paper says the growth engine beats the G&amp;A cut at <b data-draw="lev_c" data-source="claims" data-field="central" data-where="test_id=L1.full.net">—</b> of the six positions on the central basis; across the draws that count runs from <b data-draw="lev_lo" data-source="claims" data-field="box_min" data-where="test_id=L1.full.net">—</b> to <b data-draw="lev_hi" data-source="claims" data-field="box_max" data-where="test_id=L1.full.net">—</b>, depending on the maintenance base of selling spend.</p>
+    <div class="st-card">
+      <h3 class="st-card-title">Positions where the growth engine beats the G&amp;A cut</h3>
+      <p class="st-card-note">Share of draws by count of the six positions, central basis.</p>
+      <div class="st-chart dash-skeleton" data-draw="bar_levers" data-source="draws"></div>
+      <p class="st-plain"><span class="st-plain-k">In plain English:</span> the paper compares where a company should spend first. This counts, out of six typical company situations, how many favor investing in the sales and marketing engine over cutting overhead (G&amp;A). Most worlds agree with the paper's count, but some give one fewer or one more, so the paper should present it as a range. Engineering comes first in every world.</p>
+    </div>
+  </section>
+
+  <section class="st-section" id="floors">
+    <h2 class="st-h2">Cost floors: which ones matter, and what controls cost</h2>
+    <p class="st-note">Cost floors are the costs that automation cannot remove: taxes, payment fees, audits and SOX controls, security, maintenance and the cost of AI errors. The first chart shows how much each one moves the growth threshold. The other two test the accountability floor, the cost of controls a public company needs to keep its financial reporting reliable, on its own set of assumptions.</p>
+    <div class="st-card">
+      <h3 class="st-card-title">How much each cost floor moves the growth threshold G*</h3>
+      <p class="st-card-note">Each bar runs from G* with that floor at its favorable end to G* at its conservative end, every other input at the paper's central value. The vertical line is the paper's central G*. Compute is shown for scale.</p>
+      <div class="st-chart dash-skeleton" data-draw="floor_swings" data-source="floor_swings"></div>
+      <p class="st-plain"><span class="st-plain-k">In plain English:</span> a longer bar means that cost matters more for how fast a market must grow before a fully automated company can reach 100. The cost of AI mistakes and failures is the largest of the floors, then taxes and the cost of audits and controls. All of them together matter less than the price of AI computing.</p>
+    </div>
+    <div class="st-grid">
+      <div class="st-card">
+        <h3 class="st-card-title">Accountability floor against shared failures</h3>
+        <p class="st-card-note">Each dot is one mix of control assumptions: the cheapest design that keeps the chance of missing a material error below 5% a year, as a share of revenue. Dots in the top strip have no design that passes.</p>
+        <div class="st-chart st-tall dash-skeleton" data-draw="amin_scatter" data-source="amin_points"></div>
+        <p class="st-plain"><span class="st-plain-k">In plain English:</span> left to right is how often the AI tools and the human reviewers miss the same error together. While that is rare, controls cost between <b data-draw="amin_lo" data-source="amin_summary" data-field="floor_min">—</b> and <b data-draw="amin_hi" data-source="amin_summary" data-field="floor_max">—</b> of revenue. Past a point, adding more reviewers or more AI tools no longer helps, and no design passes; the paper reports that tipping point. Even the best design built only from AI tools on one provider fails at least <b data-draw="amin_ai" data-source="amin_summary" data-field="ai_only_min">—</b> of the time each year, so it never passes.</p>
+      </div>
+      <div class="st-card">
+        <h3 class="st-card-title">Cheapest control design that passes</h3>
+        <p class="st-card-note">Share of the control assumptions by the cheapest design that passes, at the 5% and 1% thresholds. "None admissible" means no design passes.</p>
+        <div class="st-chart st-tall dash-skeleton" data-draw="amin_designs" data-source="amin_designs"></div>
+        <p class="st-plain"><span class="st-plain-k">In plain English:</span> the paper's middle case needs one human reviewer over one AI tool. When shared failures or human misses are more common, the cheapest passing design needs more people, or nothing passes at all. Mixing people with AI always beats AI alone. These shares depend on how wide we set the ranges, so read them as which designs appear, not how likely each one is.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="st-section" id="method">
+    <h2 class="st-h2">How this was run</h2>
+    <div class="st-method">
+      <p>Before sampling, the script reproduced the paper's central values: <span data-draw="m_checks" data-source="meta" data-field="reproduction_checks">—</span> checks against the paper's macros and calibration outputs, all passing.</p>
+      <p>Latin hypercube draws plus box corners and an extremum search for every tested quantity, then <span data-draw="m_sobol" data-source="meta" data-field="sobol_evaluations">—</span> model runs for the Sobol indices.</p>
+      <p>Run on the author's Mac on <span data-draw="m_cores" data-source="meta" data-field="cores">—</span> cores at <span data-draw="m_rate" data-source="meta" data-field="draws_per_second">—</span> draws a second; the whole run took <span data-draw="m_secs" data-source="meta" data-field="total_seconds">—</span> seconds.</p>
+      <p><span class="st-plain-k">In plain English:</span> we picked the worlds so they cover every range evenly instead of bunching up (a Latin hypercube), added the extreme cases where every assumption sits at an end of its range, and searched for the worst case of each statement. The Sobol index is the share of the differences between worlds that one group of assumptions explains.</p>
+      <p>The basis for selling spend is a separate stratum, not a sampled input. The anchor firm's intercept follows the paper's firm-cluster bootstrap within its 90% interval. Script: code/mc_claims.py; method: notes/mc_claims_method.md.</p>
+    </div>
+  </section>
+</div>
+
+<script>
+(function () {
+  // ---- shared helpers (on window: each script runs in its own scope) ----
+  const root = document.querySelector('.st-page');
+  const setVar = () => { if (root) { root.style.setProperty('--st-c0', dash.colors[0]); root.style.setProperty('--st-c1', dash.colors[1]); } };
+  setVar();
+
+  const cache = new WeakMap();
+  const col = (rows, name) => {
+    let m = cache.get(rows);
+    if (!m) { m = {}; cache.set(rows, m); }
+    if (!m[name]) m[name] = rows.map((r) => (r[name] === '' || r[name] == null ? NaN : Number(r[name])));
+    return m[name];
+  };
+  const stat = (...ids) => {
+    const s = ids.map((id) => dash.data(id).status);
+    if (s.every((x) => x === 'ok')) return 'ok';
+    if (s.some((x) => x === 'error' || x === 'declined' || x === 'missing' || x === 'connect')) return 'error';
+    return 'loading';
+  };
+  const failBox = (el) => { el.classList.remove('dash-skeleton'); el.replaceChildren(); const d = document.createElement('div'); d.className = 'st-fail'; d.textContent = 'Failed to load'; el.appendChild(d); };
+  const prep = (el, ...ids) => {
+    const s = stat(...ids);
+    if (s === 'ok') { el.classList.remove('dash-skeleton'); el.replaceChildren(); return true; }
+    if (s === 'error') { failBox(el); return false; }
+    el.replaceChildren(); el.classList.add('dash-skeleton'); return false;
+  };
+  const pct0 = d3.format('.0%'), pct1 = d3.format('.1%'), f1 = d3.format('.1f'), f0 = d3.format(',.0f'), f2 = d3.format('.2f');
+  const textW = (svg, strings, cls) => {
+    const g = svg.append('g').attr('class', cls || '').style('font-size', 'var(--cds-font-size-caption)');
+    let w = 0;
+    strings.forEach((s) => { const t = g.append('text').text(s); w = Math.max(w, t.node().getComputedTextLength()); });
+    g.remove();
+    return w;
+  };
+  const styleAxis = (g) => {
+    g.attr('font-size', null).attr('font-family', null).style('font-size', 'var(--cds-font-size-caption)');
+    g.selectAll('text').attr('fill', 'var(--color-fg-muted)');
+    g.selectAll('.domain').attr('stroke', 'var(--cds-chart-axis)');
+    g.selectAll('.tick line').attr('stroke', 'var(--cds-chart-grid)');
+  };
+  const tooltip = (el) => { const t = document.createElement('div'); t.className = 'st-tt'; t.hidden = true; el.appendChild(t); return t; };
+  const showTip = (el, tt, html, x, y) => {
+    tt.replaceChildren();
+    html.forEach(([k, v], i) => { const line = document.createElement('div'); if (i === 0) { line.className = 'st-tt-k'; line.textContent = k; } else { line.textContent = k + (v !== undefined ? ': ' + v : ''); } tt.appendChild(line); });
+    tt.hidden = false;
+    const w = tt.offsetWidth, h = tt.offsetHeight, W = el.clientWidth;
+    let left = x + 12; if (left + w > W) left = Math.max(0, x - w - 12);
+    let top = y - h - 8; if (top < 0) top = y + 12;
+    tt.style.left = left + 'px'; tt.style.top = top + 'px';
+  };
+  const hideTip = (tt) => { tt.hidden = true; };
+
+  // Histogram of one or two series, with optional reference band and lines.
+  // opts: {series:[{values, color, name}], domain:[a,b], step, clipHigh, band:[a,b], lines:[{x,label}], fmtX, xLabel}
+  const hist = (el, opts) => {
+    const W = Math.max(280, el.clientWidth), H = 240;
+    const svg = d3.select(el).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`).attr('role', 'img');
+    const [a, b] = opts.domain;
+    const thresholds = d3.range(a, b + 1e-9, opts.step);
+    const binsets = opts.series.map((s) => {
+      const vals = s.values.filter((v) => Number.isFinite(v)).map((v) => (opts.clipHigh && v >= b ? b - opts.step / 2 : Math.max(a, v)));
+      const bins = d3.bin().domain([a, b]).thresholds(thresholds)(vals);
+      const n = s.values.filter((v) => Number.isFinite(v)).length || 1;
+      return bins.map((bn) => ({ x0: bn.x0, x1: bn.x1, share: bn.length / n }));
+    });
+    const ymax = d3.max(binsets.flat(), (d) => d.share) || 0.01;
+    const y = d3.scaleLinear([0, ymax * 1.08], [H - 26, 8]).nice();
+    const yTicks = y.ticks(4);
+    const left = Math.ceil(textW(svg, yTicks.map(pct0))) + 10;
+    const x = d3.scaleLinear([a, b], [left, W - 8]);
+    const gy = svg.append('g').attr('transform', `translate(${left},0)`).call(d3.axisLeft(y).tickValues(yTicks).tickFormat(pct0).tickSize(-(W - 8 - left)));
+    styleAxis(gy); gy.select('.domain').remove();
+    const xt = x.ticks(Math.max(3, Math.floor((W - left) / 70)));
+    const gx = svg.append('g').attr('transform', `translate(0,${H - 26})`).call(d3.axisBottom(x).tickValues(xt).tickFormat(opts.fmtX).tickSizeOuter(0));
+    styleAxis(gx);
+    if (opts.band) {
+      svg.append('rect').attr('x', x(opts.band[0])).attr('width', Math.max(1, x(opts.band[1]) - x(opts.band[0]))).attr('y', 8).attr('height', H - 34)
+        .attr('fill', 'var(--cds-chart-reference)').attr('opacity', 0.14);
+    }
+    const nS = opts.series.length;
+    binsets.forEach((bins, i) => {
+      const s = opts.series[i];
+      if (i === 0 || s.as !== 'step') {
+        const bw = (x(bins[0].x1) - x(bins[0].x0));
+        const inner = Math.max(1, bw - 1);
+        const wEach = nS > 1 && s.as !== 'step' ? inner / nS : inner;
+        svg.append('g').selectAll('rect').data(bins).join('rect')
+          .attr('x', (d) => x(d.x0) + 0.5 + (nS > 1 && s.as !== 'step' ? i * wEach : 0)).attr('width', wEach)
+          .attr('y', (d) => y(d.share)).attr('height', (d) => y(0) - y(d.share)).attr('rx', 1)
+          .attr('fill', s.color).attr('opacity', i === 0 ? 0.9 : 0.85);
+      } else {
+        const pts = bins.flatMap((d) => [[x(d.x0), y(d.share)], [x(d.x1), y(d.share)]]);
+        svg.append('path').attr('d', d3.line()(pts)).attr('fill', 'none').attr('stroke', s.color).attr('stroke-width', 2).attr('stroke-linejoin', 'round');
+      }
+    });
+    (opts.lines || []).forEach((ln) => {
+      svg.append('line').attr('x1', x(ln.x)).attr('x2', x(ln.x)).attr('y1', 8).attr('y2', H - 26)
+        .attr('stroke', 'var(--cds-chart-reference)').attr('stroke-width', 1.5).attr('stroke-dasharray', '4 3');
+    });
+    const tt = tooltip(el);
+    const overlay = svg.append('rect').attr('x', left).attr('y', 8).attr('width', W - 8 - left).attr('height', H - 34).attr('fill', 'transparent');
+    overlay.on('mousemove', (ev) => {
+      const [mx] = d3.pointer(ev);
+      const v = x.invert(mx);
+      const k = binsets[0].findIndex((d) => v >= d.x0 && v < d.x1);
+      if (k < 0) return hideTip(tt);
+      const d0 = binsets[0][k];
+      const rows = [[`${opts.fmtX(d0.x0)} to ${opts.fmtX(d0.x1)}${opts.clipHigh && k === binsets[0].length - 1 ? ' or more' : ''}`]];
+      opts.series.forEach((s, i) => rows.push([s.name, pct1(binsets[i][k].share)]));
+      const r = el.getBoundingClientRect(), sr = svg.node().getBoundingClientRect();
+      showTip(el, tt, rows, (mx / W) * sr.width + (sr.left - r.left), ev.clientY - r.top);
+    }).on('mouseleave', () => hideTip(tt));
+  };
+
+  // Scatter of a sample of points with a reference line and nearest-point tooltip.
+  const scatter = (el, opts) => {
+    const W = Math.max(280, el.clientWidth), H = 240;
+    const svg = d3.select(el).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`).attr('role', 'img');
+    const pts = opts.points;
+    const y = d3.scaleLinear(opts.yDomain, [H - 30, 8]).nice();
+    const yTicks = y.ticks(5);
+    const left = Math.ceil(textW(svg, yTicks.map(opts.fmtY))) + 10;
+    const x = d3.scaleLinear(opts.xDomain, [left, W - 10]).nice();
+    const gy = svg.append('g').attr('transform', `translate(${left},0)`).call(d3.axisLeft(y).tickValues(yTicks).tickFormat(opts.fmtY).tickSize(-(W - 10 - left)));
+    styleAxis(gy); gy.select('.domain').remove();
+    const gx = svg.append('g').attr('transform', `translate(0,${H - 30})`).call(d3.axisBottom(x).ticks(Math.max(3, Math.floor((W - left) / 80))).tickFormat(opts.fmtX).tickSizeOuter(0));
+    styleAxis(gx);
+    if (opts.hline !== undefined) {
+      svg.append('line').attr('x1', left).attr('x2', W - 10).attr('y1', y(opts.hline)).attr('y2', y(opts.hline))
+        .attr('stroke', 'var(--cds-chart-reference)').attr('stroke-width', 1.5).attr('stroke-dasharray', '4 3');
+    }
+    svg.append('g').selectAll('circle').data(pts).join('circle')
+      .attr('cx', (d) => x(d.x)).attr('cy', (d) => y(d.y)).attr('r', 2)
+      .attr('fill', (d) => (opts.flag && opts.flag(d) ? 'var(--cds-chart-status-critical)' : opts.color)).attr('opacity', 0.55);
+    const del = d3.Delaunay.from(pts, (d) => x(d.x), (d) => y(d.y));
+    const tt = tooltip(el);
+    const dot = svg.append('circle').attr('r', 4).attr('fill', 'none').attr('stroke', 'var(--color-fg)').attr('stroke-width', 1.5).attr('visibility', 'hidden');
+    svg.append('rect').attr('x', left).attr('y', 8).attr('width', W - 10 - left).attr('height', H - 38).attr('fill', 'transparent')
+      .on('mousemove', (ev) => {
+        const [mx, my] = d3.pointer(ev);
+        const i = del.find(mx, my); const d = pts[i]; if (!d) return;
+        dot.attr('cx', x(d.x)).attr('cy', y(d.y)).attr('visibility', 'visible');
+        const r = el.getBoundingClientRect(), sr = svg.node().getBoundingClientRect();
+        showTip(el, tt, [[`Draw ${d.id}`], [opts.xName, opts.fmtX(d.x)], [opts.yName, opts.fmtY(d.y)]], (x(d.x) / W) * sr.width + (sr.left - r.left), (y(d.y) / H) * sr.height + (sr.top - r.top));
+      })
+      .on('mouseleave', () => { hideTip(tt); dot.attr('visibility', 'hidden'); });
+  };
+
+  // Horizontal bars, sorted, with value labels.
+  const hbars = (el, rows, fmtV, color) => {
+    const W = Math.max(280, el.clientWidth);
+    const rowH = 26, H = rows.length * rowH + 8;
+    const svg = d3.select(el).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`).attr('role', 'img');
+    const labW = Math.ceil(textW(svg, rows.map((r) => r.label))) + 10;
+    const valW = Math.ceil(textW(svg, rows.map((r) => fmtV(r.value)))) + 8;
+    const x = d3.scaleLinear([0, d3.max(rows, (r) => r.value) || 1], [labW, Math.max(labW + 20, W - valW)]);
+    const g = svg.append('g').selectAll('g').data(rows).join('g').attr('transform', (d, i) => `translate(0,${i * rowH + 4})`);
+    g.append('text').attr('x', labW - 8).attr('y', rowH / 2).attr('dy', '0.35em').attr('text-anchor', 'end').attr('fill', 'var(--color-fg)').style('font-size', 'var(--cds-font-size-caption)').text((d) => d.label);
+    g.append('rect').attr('x', labW).attr('y', 4).attr('height', rowH - 10).attr('width', (d) => Math.max(1, x(d.value) - labW)).attr('rx', 2).attr('fill', (d, i) => (i === 0 ? color : 'var(--cds-chart-muted)'));
+    g.append('text').attr('x', (d) => x(d.value) + 6).attr('y', rowH / 2).attr('dy', '0.35em').attr('fill', 'var(--color-fg-muted)').style('font-size', 'var(--cds-font-size-caption)').style('font-variant-numeric', 'tabular-nums').text((d) => fmtV(d.value));
+  };
+
+  // ---- computed values ----
+  dash.calc('claim_counts', {
+    inputs: ['claims'],
+    title: 'Claims holding everywhere',
+    description: 'Count of tests in the claims table, and of those that hold at every evaluated point.',
+    fn: (claims) => [{ tests: claims.length, hold: claims.filter((r) => r.holds === 'Holds everywhere').length }],
+  });
+
+  // ---- text values ----
+  const val = (id, field, where) => {
+    const d = dash.data(id);
+    if (d.status !== 'ok') return null;
+    const rows = d.data || [];
+    const r = where ? rows.find((row) => Object.entries(where).every(([k, v]) => String(row[k]) === String(v))) : rows[0];
+    return r ? r[field] : null;
+  };
+  const textDraw = (name, id, field, where, fmt) => dash.draw(name, (el) => {
+    const v = val(id, field, where);
+    if (v === null || v === undefined || v === '') { el.textContent = '—'; return; }
+    el.textContent = fmt ? fmt(Number(v)) : String(v);
+  });
+  textDraw('n_hold', 'claim_counts', 'hold', null, f0);
+  textDraw('n_tests', 'claim_counts', 'tests', null, f0);
+  textDraw('kpi_draws', 'meta', 'draws_lhs', null, f0);
+  textDraw('kpi_points', 'meta', 'points_total', null, f0);
+  textDraw('kpi_dims', 'meta', 'dimensions', null, f0);
+  const net36 = { basis: 'Netted (central)', year: '2036' };
+  textDraw('kpi_r_lo', 'levels', 'p05', net36, f1);
+  textDraw('kpi_r_hi', 'levels', 'p95', net36, f1);
+  textDraw('kpi_p_lo', 'levels', 'paper_lo', net36, f1);
+  textDraw('kpi_p_hi', 'levels', 'paper_hi', net36, f1);
+  const pctPts = (v) => f1(v) + '%';
+  textDraw('kpi_g_lo', 'claims', 'box_min', { test_id: 'C1.full' }, pctPts);
+  textDraw('kpi_g_hi', 'claims', 'box_max', { test_id: 'C1.full' }, pctPts);
+  textDraw('kpi_g_c', 'claims', 'central', { test_id: 'C1.full' }, pctPts);
+  textDraw('m_checks', 'meta', 'reproduction_checks', null, f0);
+  textDraw('g_central_txt', 'claims', 'central', { test_id: 'C1.full' }, pctPts);
+  textDraw('draws_txt', 'meta', 'draws_lhs', null, f0);
+  textDraw('lev_c', 'claims', 'central', { test_id: 'L1.full.net' }, f0);
+  textDraw('lev_lo', 'claims', 'box_min', { test_id: 'L1.full.net' }, f0);
+  textDraw('lev_hi', 'claims', 'box_max', { test_id: 'L1.full.net' }, f0);
+  textDraw('m_sobol', 'meta', 'sobol_evaluations', null, f0);
+  textDraw('m_cores', 'meta', 'cores', null, f0);
+  textDraw('m_rate', 'meta', 'draws_per_second', null, f0);
+  textDraw('m_secs', 'meta', 'total_seconds', null, f0);
+
+  // ---- claims table ----
+  let sortKey = null, sortDir = 1, query = '';
+  const numCols = new Set(['central', 'box_min', 'box_max', 'share_holding']);
+  dash.draw('claims_table', (tbody) => {
+    tbody.replaceChildren();
+    const d = dash.data('claims');
+    if (d.status !== 'ok') return;
+    let rows = (d.data || []).slice();
+    if (query) rows = rows.filter((r) => Object.values(r).join(' ').toLowerCase().includes(query));
+    if (sortKey) rows.sort((a, b) => {
+      const va = numCols.has(sortKey) ? Number(a[sortKey] === '' ? -Infinity : a[sortKey]) : String(a[sortKey]);
+      const vb = numCols.has(sortKey) ? Number(b[sortKey] === '' ? -Infinity : b[sortKey]) : String(b[sortKey]);
+      return (va < vb ? -1 : va > vb ? 1 : 0) * sortDir;
+    });
+    const fmtNum = (r, k) => {
+      const v = r[k];
+      if (v === '' || v === null || v === undefined) return '';
+      const n = Number(v);
+      if (k === 'share_holding') return pct1(n);
+      return Math.abs(n) >= 1000 ? f0(n) : (Number.isInteger(n) ? String(n) : f2(n));
+    };
+    rows.forEach((r) => {
+      const tr = document.createElement('tr');
+      tr.dataset.key = r.test_id;
+      const td = (txt, cls) => { const c = document.createElement('td'); if (cls) c.className = cls; c.textContent = txt; tr.appendChild(c); return c; };
+      td(r.claim, 'st-claim');
+      td(r.conditions, 'st-hide-narrow');
+      const pc = document.createElement('td');
+      const pill = document.createElement('span');
+      pill.className = 'st-pill ' + (r.holds === 'Holds everywhere' ? 'st-pill-ok' : 'st-pill-warn');
+      pill.textContent = r.holds;
+      pc.appendChild(pill); tr.appendChild(pc);
+      td(fmtNum(r, 'central'), 'st-num');
+      td(fmtNum(r, 'box_min'), 'st-num');
+      td(fmtNum(r, 'box_max'), 'st-num');
+      td(r.unit, 'st-hide-narrow');
+      td(fmtNum(r, 'share_holding'), 'st-num');
+      tbody.appendChild(tr);
+    });
+  });
+  document.querySelectorAll('.st-table th button[data-sort]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const k = btn.dataset.sort;
+      sortDir = sortKey === k ? -sortDir : 1; sortKey = k;
+      document.querySelectorAll('.st-table th').forEach((th) => th.removeAttribute('aria-sort'));
+      btn.parentElement.setAttribute('aria-sort', sortDir > 0 ? 'ascending' : 'descending');
+      dash.draw('claims_table');
+    });
+  });
+  document.querySelectorAll('#st-claim-search').forEach((inp) => inp.addEventListener('input', () => { query = inp.value.trim().toLowerCase(); dash.draw('claims_table'); }));
+
+  // ---- charts ----
+  const fmtPts = (v) => f0(v);
+  const fmtPctPts = (v) => f0(v) + '%';
+  dash.draw('hist_r2036', (el) => {
+    if (!prep(el, 'draws', 'levels')) return;
+    const rows = dash.data('draws').data;
+    const lv = dash.data('levels').data.find((r) => r.basis === 'Netted (central)' && String(r.year) === '2036');
+    hist(el, {
+      series: [{ values: col(rows, 'R2036_net'), color: dash.colors[0], name: 'Draws' }],
+      domain: [20, 100], step: 2.5, band: lv ? [Number(lv.paper_lo), Number(lv.paper_hi)] : null,
+      lines: lv ? [{ x: Number(lv.central) }] : [], fmtX: fmtPts,
+    });
+  });
+
+  dash.draw('levels_chart', (el) => {
+    if (!prep(el, 'levels')) return;
+    const rows = dash.data('levels').data.map((r) => ({ ...r, year: String(r.year) }));
+    const order = ['Netted (central)', 'No S&M buys growth', 'All S&M buys growth'];
+    rows.sort((a, b) => order.indexOf(a.basis) - order.indexOf(b.basis) || a.year.localeCompare(b.year));
+    const W = Math.max(280, el.clientWidth), rowH = 28, groupGap = 14;
+    const svg = d3.select(el).append('svg').attr('width', '100%');
+    const labels = rows.map((r) => r.year);
+    const labW = Math.ceil(textW(svg, labels)) + 12;
+    const x = d3.scaleLinear([0, d3.max(rows, (r) => Number(r.box_max)) * 1.02], [labW, W - 10]).nice();
+    let yPos = 4; const yOf = [];
+    rows.forEach((r, i) => { if (i > 0 && rows[i - 1].basis !== r.basis) yPos += groupGap + 16; else if (i === 0) yPos += 16; yOf.push(yPos); yPos += rowH; });
+    const H = yPos + 28;
+    svg.attr('viewBox', `0 0 ${W} ${H}`);
+    const gx = svg.append('g').attr('transform', `translate(0,${H - 24})`).call(d3.axisBottom(x).ticks(Math.max(3, Math.floor((W - labW) / 70))).tickSize(-(H - 28)).tickSizeOuter(0));
+    styleAxis(gx); gx.select('.domain').attr('stroke', 'var(--cds-chart-axis)');
+    gx.selectAll('.tick line').attr('stroke', 'var(--cds-chart-grid)');
+    svg.append('line').attr('x1', x(100)).attr('x2', x(100)).attr('y1', 0).attr('y2', H - 24).attr('stroke', 'var(--cds-chart-status-critical)').attr('stroke-width', 1).attr('stroke-dasharray', '4 3');
+    const groups = order.filter((b) => rows.some((r) => r.basis === b));
+    groups.forEach((b) => {
+      const i0 = rows.findIndex((r) => r.basis === b);
+      svg.append('text').attr('x', labW - 12).attr('y', yOf[i0] - 8).attr('fill', 'var(--color-fg-muted)').style('font-size', 'var(--cds-font-size-caption)').text(b);
+    });
+    const tt = tooltip(el);
+    rows.forEach((r, i) => {
+      const cy = yOf[i] + rowH / 2;
+      const g = svg.append('g');
+      g.append('text').attr('x', labW - 8).attr('y', cy).attr('dy', '0.35em').attr('text-anchor', 'end').attr('fill', 'var(--color-fg)').style('font-size', 'var(--cds-font-size-caption)').text(r.year);
+      g.append('line').attr('x1', x(+r.box_min)).attr('x2', x(+r.box_max)).attr('y1', cy).attr('y2', cy).attr('stroke', 'var(--cds-chart-muted)').attr('stroke-width', 2).attr('stroke-linecap', 'round');
+      g.append('rect').attr('x', x(+r.p05)).attr('width', Math.max(1, x(+r.p95) - x(+r.p05))).attr('y', cy - 7).attr('height', 14).attr('rx', 3).attr('fill', dash.colors[0]).attr('opacity', 0.35);
+      g.append('rect').attr('x', x(+r.paper_lo)).attr('width', Math.max(1, x(+r.paper_hi) - x(+r.paper_lo))).attr('y', cy - 4).attr('height', 8).attr('rx', 2).attr('fill', dash.colors[0]);
+      g.append('circle').attr('cx', x(+r.central)).attr('cy', cy).attr('r', 4).attr('fill', 'var(--color-bg)').attr('stroke', 'var(--color-fg)').attr('stroke-width', 1.5);
+      g.append('rect').attr('x', labW).attr('y', yOf[i]).attr('width', W - 10 - labW).attr('height', rowH).attr('fill', 'transparent')
+        .on('mousemove', (ev) => {
+          const er = el.getBoundingClientRect(), sr = svg.node().getBoundingClientRect();
+          showTip(el, tt, [[`${r.basis}, ${r.year}`], ['Central', f1(+r.central)], ["Paper's bracket", `${f1(+r.paper_lo)} to ${f1(+r.paper_hi)}`], ['Middle 90% of draws', `${f1(+r.p05)} to ${f1(+r.p95)}`], ['Lowest to highest', `${f1(+r.box_min)} to ${f1(+r.box_max)}`]], ev.clientX - er.left, (cy / H) * sr.height + (sr.top - er.top));
+        })
+        .on('mouseleave', () => hideTip(tt));
+    });
+    svg.append('text').attr('x', x(100)).attr('y', 10).attr('dx', -4).attr('text-anchor', 'end').attr('fill', 'var(--color-fg-muted)').style('font-size', 'var(--cds-font-size-caption)').text('Rule of 100');
+  });
+
+  dash.draw('hist_gstar', (el) => {
+    if (!prep(el, 'draws')) return;
+    const rows = dash.data('draws').data;
+    hist(el, {
+      series: [{ values: col(rows, 'Gstar_2025'), color: dash.colors[0], name: 'All inputs move' }, { values: col(rows, 'Gstar_2025_cc6'), color: dash.colors[1], name: 'Compute held at 6%', as: 'step' }],
+      domain: [15, 60], step: 1.5, lines: [{ x: 30 }], fmtX: fmtPctPts,
+    });
+  });
+
+  dash.draw('scatter_gstar', (el) => {
+    if (!prep(el, 'draws')) return;
+    const rows = dash.data('draws').data;
+    const xs = col(rows, 'compute_share_2025'), ys = col(rows, 'Gstar_2025'), ids = col(rows, 'draw');
+    const pts = [];
+    for (let i = 0; i < rows.length; i += 5) if (Number.isFinite(xs[i]) && Number.isFinite(ys[i])) pts.push({ x: xs[i], y: ys[i], id: ids[i] });
+    scatter(el, { points: pts, xDomain: [0, d3.max(pts, (d) => d.x)], yDomain: [15, d3.max(pts, (d) => d.y)], hline: 30, flag: (d) => d.y < 30,
+      color: dash.colors[0], fmtX: (v) => f0(v) + '%', fmtY: (v) => f0(v) + '%', xName: 'Compute share, 2025', yName: 'G*' });
+  });
+
+  dash.draw('hist_payback', (el) => {
+    if (!prep(el, 'draws')) return;
+    const rows = dash.data('draws').data;
+    hist(el, {
+      series: [{ values: col(rows, 'payback_years'), color: dash.colors[0], name: 'All inputs move' }, { values: col(rows, 'payback_years_central_exec'), color: dash.colors[1], name: 'Central execution' }],
+      domain: [3, 20], step: 0.5, clipHigh: true, lines: [{ x: 5 }], fmtX: (v) => f0(v) + ' yr',
+    });
+  });
+
+  const sobolDraw = (name, output) => dash.draw(name, (el) => {
+    if (!prep(el, 'sobol')) return;
+    const rows = dash.data('sobol').data.filter((r) => r.output === output).map((r) => ({ label: r.driver, value: Number(r.total_index) })).sort((a, b) => b.value - a.value).slice(0, 7);
+    hbars(el, rows, pct0, dash.colors[0]);
+  });
+  sobolDraw('sobol_r', '2036 score (netted)');
+  sobolDraw('sobol_g', 'Growth threshold G*');
+
+  dash.draw('scatter_pace', (el) => {
+    if (!prep(el, 'draws')) return;
+    const rows = dash.data('draws').data;
+    const xs = col(rows, 'kappa_abs'), ys = col(rows, 'R2036_net'), ids = col(rows, 'draw');
+    const pts = [];
+    for (let i = 0; i < rows.length; i += 5) if (Number.isFinite(xs[i]) && Number.isFinite(ys[i])) pts.push({ x: xs[i] * 100, y: ys[i], id: ids[i] });
+    scatter(el, { points: pts, xDomain: d3.extent(pts, (d) => d.x), yDomain: [20, 100], hline: 100,
+      color: dash.colors[0], fmtX: (v) => f0(v) + '%', fmtY: (v) => f0(v), xName: 'Share of the program changed a year', yName: '2036 score' });
+  });
+
+  dash.draw('bar_levers', (el) => {
+    if (!prep(el, 'draws')) return;
+    const rows = dash.data('draws').data;
+    const c = col(rows, 'levers_growth_engine_first_count').filter(Number.isFinite);
+    const n = c.length || 1;
+    const counts = d3.rollup(c, (v) => v.length, (v) => v);
+    const keys = d3.range(0, 7).filter((k) => counts.has(k));
+    const data = keys.map((k) => ({ label: `${k} of 6 positions`, value: counts.get(k) / n }));
+    hbars(el, data, pct1, dash.colors[0]);
+  });
+
+  // ---- cost floors ----
+  dash.calc('amin_summary', {
+    inputs: ['amin_points'],
+    title: 'Accountability floor summary',
+    description: 'Lowest and highest floor at the 5% threshold where a design passes, and the lowest yearly failure chance of any AI-only design (sampled points).',
+    fn: (amin_points) => {
+      const lhs = amin_points.filter((r) => r.kind === 'lhs');
+      const fl = lhs.filter((r) => r.floor_pct_5 !== '').map((r) => Number(r.floor_pct_5));
+      const ai = lhs.map((r) => Number(r.ai_only_fail_prob)).filter(Number.isFinite);
+      return [{ floor_min: Math.min(...fl), floor_max: Math.max(...fl), ai_only_min: Math.min(...ai) }];
+    },
+  });
+  textDraw('amin_lo', 'amin_summary', 'floor_min', null, (v) => d3.format('.2f')(v) + '%');
+  textDraw('amin_hi', 'amin_summary', 'floor_max', null, (v) => d3.format('.2f')(v) + '%');
+  textDraw('amin_ai', 'amin_summary', 'ai_only_min', null, (v) => d3.format('.1f')(v) + '%');
+
+  dash.draw('floor_swings', (el) => {
+    if (!prep(el, 'floor_swings')) return;
+    const rows = dash.data('floor_swings').data.map((r) => ({ label: r.component, lo: +r.gstar_low, hi: +r.gstar_high, c: +r.gstar_central, compute: r.kind === 'compute' }))
+      .sort((a, b) => (b.hi - b.lo) - (a.hi - a.lo));
+    const W = Math.max(280, el.clientWidth), rowH = 26, H = rows.length * rowH + 34;
+    const svg = d3.select(el).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`).attr('role', 'img');
+    const labW = Math.ceil(textW(svg, rows.map((r) => r.label))) + 12;
+    const x = d3.scaleLinear([d3.min(rows, (r) => r.lo) - 1, d3.max(rows, (r) => r.hi) + 1], [labW, W - 12]).nice();
+    const gx = svg.append('g').attr('transform', `translate(0,${H - 24})`).call(d3.axisBottom(x).ticks(Math.max(3, Math.floor((W - labW) / 70))).tickFormat((v) => f0(v) + '%').tickSize(-(H - 30)).tickSizeOuter(0));
+    styleAxis(gx);
+    const c = rows[0].c;
+    svg.append('line').attr('x1', x(c)).attr('x2', x(c)).attr('y1', 0).attr('y2', H - 24).attr('stroke', 'var(--cds-chart-reference)').attr('stroke-width', 1.5).attr('stroke-dasharray', '4 3');
+    const tt = tooltip(el);
+    const g = svg.append('g').selectAll('g').data(rows).join('g').attr('transform', (d, i) => `translate(0,${i * rowH + 4})`);
+    g.append('text').attr('x', labW - 8).attr('y', rowH / 2).attr('dy', '0.35em').attr('text-anchor', 'end').attr('fill', 'var(--color-fg)').style('font-size', 'var(--cds-font-size-caption)').text((d) => d.label);
+    g.append('rect').attr('x', (d) => x(d.lo)).attr('y', 5).attr('height', rowH - 12).attr('width', (d) => Math.max(2, x(d.hi) - x(d.lo))).attr('rx', 2)
+      .attr('fill', (d) => (d.compute ? 'var(--cds-chart-muted)' : dash.colors[0]));
+    g.append('rect').attr('x', labW).attr('y', 0).attr('width', W - 12 - labW).attr('height', rowH).attr('fill', 'transparent')
+      .on('mousemove', (ev, d) => {
+        const er = el.getBoundingClientRect();
+        showTip(el, tt, [[d.label], ['Favorable end', pct1(d.lo / 100)], ['Conservative end', pct1(d.hi / 100)], ['Swing', f1(d.hi - d.lo) + ' points']], ev.clientX - er.left, ev.clientY - er.top);
+      })
+      .on('mouseleave', () => hideTip(tt));
+  });
+
+  dash.draw('amin_scatter', (el) => {
+    if (!prep(el, 'amin_points')) return;
+    const rows = dash.data('amin_points').data.filter((r) => r.kind === 'lhs');
+    const W = Math.max(280, el.clientWidth), H = 290, stripH = 26;
+    const svg = d3.select(el).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`).attr('role', 'img');
+    const pts = rows.map((r) => ({ x: Number(r.pcc) * 100, y: r.floor_pct_5 === '' ? NaN : Number(r.floor_pct_5), id: r.point, design: r.design_5, phm: Number(r.phm) }));
+    const ok = pts.filter((d) => Number.isFinite(d.y)), none = pts.filter((d) => !Number.isFinite(d.y));
+    const y = d3.scaleLinear([0, d3.max(ok, (d) => d.y) * 1.05], [H - 30, stripH + 14]).nice();
+    const yTicks = y.ticks(5);
+    const left = Math.ceil(textW(svg, yTicks.map((v) => d3.format('.1f')(v) + '%'))) + 10;
+    const x = d3.scaleLinear([0, d3.max(pts, (d) => d.x)], [left, W - 10]).nice();
+    const gy = svg.append('g').attr('transform', `translate(${left},0)`).call(d3.axisLeft(y).tickValues(yTicks).tickFormat((v) => d3.format('.1f')(v) + '%').tickSize(-(W - 10 - left)));
+    styleAxis(gy); gy.select('.domain').remove();
+    const gx = svg.append('g').attr('transform', `translate(0,${H - 30})`).call(d3.axisBottom(x).ticks(Math.max(3, Math.floor((W - left) / 80))).tickFormat((v) => d3.format('.2f')(v) + '%').tickSizeOuter(0));
+    styleAxis(gx);
+    svg.append('rect').attr('x', left).attr('y', 4).attr('width', W - 10 - left).attr('height', stripH).attr('rx', 3).attr('fill', 'var(--cds-chart-status-critical)').attr('opacity', 0.08);
+    svg.append('text').attr('x', left + 6).attr('y', 4 + stripH / 2).attr('dy', '0.35em').attr('fill', 'var(--color-fg-muted)').style('font-size', 'var(--cds-font-size-caption)').text('No design passes');
+    const jitter = (id) => ((Number(id) * 9301 + 49297) % 233280) / 233280;
+    svg.append('g').selectAll('circle').data(none).join('circle').attr('cx', (d) => x(d.x)).attr('cy', (d) => 4 + 4 + jitter(d.id) * (stripH - 8)).attr('r', 2).attr('fill', 'var(--cds-chart-status-critical)').attr('opacity', 0.5);
+    svg.append('g').selectAll('circle').data(ok).join('circle').attr('cx', (d) => x(d.x)).attr('cy', (d) => y(d.y)).attr('r', 2.2).attr('fill', dash.colors[0]).attr('opacity', 0.6);
+    const all = ok.map((d) => ({ ...d, py: y(d.y) })).concat(none.map((d) => ({ ...d, py: 4 + 4 + jitter(d.id) * (stripH - 8) })));
+    const del = d3.Delaunay.from(all, (d) => x(d.x), (d) => d.py);
+    const tt = tooltip(el);
+    const dot = svg.append('circle').attr('r', 4).attr('fill', 'none').attr('stroke', 'var(--color-fg)').attr('stroke-width', 1.5).attr('visibility', 'hidden');
+    svg.append('rect').attr('x', left).attr('y', 4).attr('width', W - 10 - left).attr('height', H - 34).attr('fill', 'transparent')
+      .on('mousemove', (ev) => {
+        const [mx, my] = d3.pointer(ev);
+        const d = all[del.find(mx, my)]; if (!d) return;
+        dot.attr('cx', x(d.x)).attr('cy', d.py).attr('visibility', 'visible');
+        const er = el.getBoundingClientRect(), sr = svg.node().getBoundingClientRect();
+        showTip(el, tt, [[d.design], ['Shared failure rate', d3.format('.3f')(d.x) + '%'], ['Human miss rate', pct0(d.phm)], ['Floor', Number.isFinite(d.y) ? d3.format('.2f')(d.y) + '% of revenue' : 'no design passes']],
+          (x(d.x) / W) * sr.width + (sr.left - er.left), (d.py / H) * sr.height + (sr.top - er.top));
+      })
+      .on('mouseleave', () => { hideTip(tt); dot.attr('visibility', 'hidden'); });
+  });
+
+  dash.draw('amin_designs', (el) => {
+    if (!prep(el, 'amin_designs')) return;
+    const rows = dash.data('amin_designs').data;
+    const W = Math.max(280, el.clientWidth);
+    const thr = ['5% a year', '1% a year'];
+    const designs = Array.from(new Set(rows.map((r) => r.design)));
+    const total = (dsg) => d3.sum(rows.filter((r) => r.design === dsg), (r) => +r.share);
+    designs.sort((a, b) => (a === 'none admissible') - (b === 'none admissible') || total(b) - total(a));
+    const top = designs.filter((d) => d !== 'none admissible').slice(0, 6).concat(designs.includes('none admissible') ? ['none admissible'] : []);
+    const rowH = 30, H = top.length * rowH + 34;
+    const svg = d3.select(el).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`).attr('role', 'img');
+    const labW = Math.ceil(textW(svg, top)) + 12;
+    const x = d3.scaleLinear([0, d3.max(rows, (r) => +r.share) || 1], [labW, W - 46]);
+    const tt = tooltip(el);
+    top.forEach((dsg, i) => {
+      const y0 = i * rowH + 4;
+      svg.append('text').attr('x', labW - 8).attr('y', y0 + rowH / 2 - 2).attr('dy', '0.35em').attr('text-anchor', 'end').attr('fill', 'var(--color-fg)').style('font-size', 'var(--cds-font-size-caption)').text(dsg);
+      thr.forEach((t, j) => {
+        const r = rows.find((q) => q.design === dsg && q.threshold === t);
+        const v = r ? +r.share : 0;
+        const by = y0 + 3 + j * 11;
+        svg.append('rect').attr('x', labW).attr('y', by).attr('height', 9).attr('width', Math.max(1, x(v) - labW)).attr('rx', 2)
+          .attr('fill', dsg === 'none admissible' ? 'var(--cds-chart-status-critical)' : dash.colors[j]).attr('opacity', dsg === 'none admissible' ? (j ? 0.5 : 0.85) : 1);
+        svg.append('text').attr('x', x(v) + 4).attr('y', by + 4.5).attr('dy', '0.35em').attr('fill', 'var(--color-fg-muted)').style('font-size', 'var(--cds-font-size-caption)').style('font-variant-numeric', 'tabular-nums').text(pct1(v));
+      });
+      svg.append('rect').attr('x', labW).attr('y', y0).attr('width', W - labW).attr('height', rowH).attr('fill', 'transparent')
+        .on('mousemove', (ev) => {
+          const er = el.getBoundingClientRect();
+          const a = rows.find((q) => q.design === dsg && q.threshold === thr[0]), b = rows.find((q) => q.design === dsg && q.threshold === thr[1]);
+          showTip(el, tt, [[dsg], ['At 5% a year', pct1(a ? +a.share : 0)], ['At 1% a year', pct1(b ? +b.share : 0)]], ev.clientX - er.left, ev.clientY - er.top);
+        })
+        .on('mouseleave', () => hideTip(tt));
+    });
+    const lg = svg.append('g').attr('transform', `translate(${labW},${H - 14})`);
+    thr.forEach((t, j) => {
+      lg.append('rect').attr('x', j * 110).attr('y', -8).attr('width', 10).attr('height', 10).attr('rx', 2).attr('fill', dash.colors[j]);
+      lg.append('text').attr('x', j * 110 + 14).attr('y', -3).attr('dy', '0.35em').attr('fill', 'var(--color-fg-muted)').style('font-size', 'var(--cds-font-size-caption)').text('Threshold ' + t);
+    });
+  });
+
+  dash.onData(() => { setVar(); });
+})();
+</script>

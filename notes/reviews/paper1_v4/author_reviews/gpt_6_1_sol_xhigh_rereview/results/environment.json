@@ -1,0 +1,18 @@
+{
+  "recorded_utc": "2026-11-05T02:59:46.717227+00:00",
+  "recorded_client_time": "2026-11-04T18:59:46.717227-08:00",
+  "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "python_executable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+  "platform": "Linux-6.18.57-x86_64-with-glibc2.39",
+  "tools": {
+    "git": "/usr/local/bin/git",
+    "pdftotext": "/usr/bin/pdftotext",
+    "pdftoppm": "/opt/codex/runtimes/codex-primary-runtime/dependencies/bin/override/pdftoppm",
+    "pdflatex": "/usr/bin/pdflatex",
+    "latexmk": "/usr/bin/latexmk",
+    "lean": null,
+    "lake": null
+  },
+  "model_disclosure": "Codex, GPT-6-based according to session instructions; exact serving build and configured effort level not exposed. The prompt label GPT-6.2 Sol (extra-high) is not verified runtime metadata.",
+  "delegation": "Four AI subreviews: mathematical theory; empirical methods; execution and stress tests; controls, finance units and primary sources. Same inherited backend, not independent external human referees."
+}

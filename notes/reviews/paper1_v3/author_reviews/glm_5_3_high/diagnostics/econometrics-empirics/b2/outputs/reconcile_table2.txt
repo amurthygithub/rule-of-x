@@ -1,0 +1,173 @@
+statistic                                    view                 paper               json   ok?
+Psi0.90 slope 2010-25, 0-60% GAAP            E1                   -0.22              -0.22    OK se dev=0.001
+Psi0.90 slope 2010-25, 0-60% GAAP            E2                   -0.29              -0.29    OK se dev=0.002
+Psi0.90 slope 2010-25, 0-60% GAAP            E2imp4               -0.39              -0.39    OK se dev=0.005
+Psi0.90 slope 2010-25, 0-60% GAAP            E2imp8               -0.36              -0.36    OK se dev=0.002
+Psi0.90 slope 2010-25, 0-60% cash            E1                   -0.16              -0.16    OK se dev=0.003
+Psi0.90 slope 2010-25, 0-60% cash            E2                   -0.22              -0.22    OK se dev=0.001
+Psi0.90 slope 2010-25, 0-60% cash            E2imp4               -0.25              -0.25    OK se dev=0.001
+Psi0.90 slope 2010-25, 0-60% cash            E2imp8               -0.26              -0.26    OK se dev=0.001
+Psi0.90 slope 2010-25, 0-40% GAAP            E1                   -0.31              -0.31    OK se dev=0.001
+Psi0.90 slope 2010-25, 0-40% GAAP            E2                   -0.49              -0.49    OK se dev=0.002
+Psi0.90 slope 2010-25, 0-40% GAAP            E2imp4               -0.44              -0.44    OK se dev=0.003
+Psi0.90 slope 2010-25, 0-40% GAAP            E2imp8                -0.4              -0.40    OK se dev=0.000
+Psi0.90 slope 2010-25, 0-40% cash            E1                   -0.27              -0.27    OK se dev=0.004
+Psi0.90 slope 2010-25, 0-40% cash            E2                   -0.37              -0.37    OK se dev=0.000
+Psi0.90 slope 2010-25, 0-40% cash            E2imp4               -0.39              -0.39    OK se dev=0.004
+Psi0.90 slope 2010-25, 0-40% cash            E2imp8               -0.37              -0.37    OK se dev=0.004
+Psi0.90 slope 2010-19, 0-40% GAAP            E1                   -0.22              -0.22    OK se dev=0.001
+Psi0.90 slope 2010-19, 0-40% GAAP            E2                   -0.28              -0.28    OK se dev=0.002
+Psi0.90 slope 2010-19, 0-40% GAAP            E2imp4               -0.29              -0.29    OK se dev=0.005
+Psi0.90 slope 2010-19, 0-40% GAAP            E2imp8               -0.28              -0.28    OK se dev=0.001
+Psi0.90 slope 2010-19, 0-40% cash            E1                   -0.16              -0.16    OK se dev=0.003
+Psi0.90 slope 2010-19, 0-40% cash            E2                   -0.39              -0.39    OK se dev=0.002
+Psi0.90 slope 2010-19, 0-40% cash            E2imp4               -0.37              -0.37    OK se dev=0.001
+Psi0.90 slope 2010-19, 0-40% cash            E2imp8               -0.38              -0.38    OK se dev=0.003
+Psi0.90 slope 2020-25, 0-40% GAAP            E1                    -0.6              -0.60    OK se dev=0.004
+Psi0.90 slope 2020-25, 0-40% GAAP            E2                   -0.66              -0.66    OK se dev=0.000
+Psi0.90 slope 2020-25, 0-40% GAAP            E2imp4                -0.6              -0.60    OK se dev=0.002
+Psi0.90 slope 2020-25, 0-40% GAAP            E2imp8               -0.58              -0.58    OK se dev=0.000
+Psi0.90 slope 2020-25, 0-40% cash            E1                   -0.35              -0.35    OK se dev=0.004
+Psi0.90 slope 2020-25, 0-40% cash            E2                   -0.34              -0.34    OK se dev=0.002
+Psi0.90 slope 2020-25, 0-40% cash            E2imp4               -0.35              -0.35    OK se dev=0.002
+Psi0.90 slope 2020-25, 0-40% cash            E2imp8               -0.33              -0.33    OK se dev=0.003
+Steepening 2020-25 minus 2010-19 GAAP        E1                   -0.38              -0.38    OK se dev=0.001
+Steepening 2020-25 minus 2010-19 GAAP        E2                   -0.37              -0.37    OK se dev=0.002
+Steepening 2020-25 minus 2010-19 GAAP        E2imp4               -0.31              -0.31    OK se dev=0.003
+Steepening 2020-25 minus 2010-19 GAAP        E2imp8                -0.3              -0.30    OK se dev=0.001
+Steepening 2020-25 minus 2010-19 cash        E1                   -0.19              -0.19    OK se dev=0.002
+Steepening 2020-25 minus 2010-19 cash        E2                    0.05               0.05    OK se dev=0.001
+Steepening 2020-25 minus 2010-19 cash        E2imp4                0.02               0.02    OK se dev=0.001
+Steepening 2020-25 minus 2010-19 cash        E2imp8                0.05               0.05    OK se dev=0.001
+Local Q0.90 slope 2010-25 GAAP               E1                   -0.41              -0.41    OK se dev=0.000
+Local Q0.90 slope 2010-25 GAAP               E2                   -0.61              -0.61    OK se dev=0.006
+Local Q0.90 slope 2010-25 cash               E1                   -0.35              -0.35    OK se dev=0.007
+Local Q0.90 slope 2010-25 cash               E2                   -0.43              -0.43    OK se dev=0.006
+Local Q0.90 slope 2010-19 GAAP               E1                   -0.29              -0.29    OK se dev=0.002
+Local Q0.90 slope 2010-19 GAAP               E2                   -0.43              -0.43    OK se dev=0.004
+Local Q0.90 slope 2010-19 GAAP               E2imp4               -0.41              -0.41    OK se dev=0.002
+Local Q0.90 slope 2010-19 GAAP               E2imp8               -0.34              -0.34    OK se dev=0.001
+Local Q0.90 slope 2010-19 cash               E1                    -0.2              -0.20    OK se dev=0.002
+Local Q0.90 slope 2010-19 cash               E2                   -0.48              -0.48    OK se dev=0.003
+Local Q0.90 slope 2010-19 cash               E2imp4               -0.48              -0.48    OK se dev=0.000
+Local Q0.90 slope 2010-19 cash               E2imp8               -0.42              -0.42    OK se dev=0.005
+Local Q0.90 slope 2020-25 GAAP               E1                   -0.71              -0.71    OK se dev=0.002
+Local Q0.90 slope 2020-25 GAAP               E2                   -0.79              -0.79    OK se dev=0.004
+Local Q0.90 slope 2020-25 GAAP               E2imp4               -0.68              -0.68    OK se dev=0.002
+Local Q0.90 slope 2020-25 GAAP               E2imp8                -0.7              -0.70    OK se dev=0.003
+Local Q0.90 slope 2020-25 cash               E1                    -0.4              -0.40    OK se dev=0.002
+Local Q0.90 slope 2020-25 cash               E2                   -0.42              -0.42    OK se dev=0.001
+Local Q0.90 slope 2020-25 cash               E2imp4               -0.37              -0.37    OK se dev=0.000
+Local Q0.90 slope 2020-25 cash               E2imp8               -0.41              -0.41    OK se dev=0.002
+Spend-to-excess-growth ratio (median)        E1                    3.02               3.02    OK se dev=0.001
+Spend-to-excess-growth ratio (median)        E2                    3.47               3.47    OK se dev=0.001
+Spend-to-excess-growth ratio (median)        E2imp4                3.34               3.34    OK se dev=0.001
+Spend-to-excess-growth ratio (median)        E2imp8                3.15               3.15    OK se dev=0.001
+P95 of R per tenfold revenue GAAP            E1                     2.4               2.38    OK se dev=0.043
+P95 of R per tenfold revenue GAAP            E2                     4.0               3.98    OK se dev=0.007
+P95 of R per tenfold revenue GAAP            E2imp4                 3.4               3.40    OK se dev=0.006
+P95 of R per tenfold revenue GAAP            E2imp8                 3.2               3.20    OK se dev=0.047
+P95 of R per tenfold revenue cash            E1                    -4.1              -4.06    OK se dev=0.042
+P95 of R per tenfold revenue cash            E2                    -1.1              -1.09    OK se dev=0.013
+P95 of R per tenfold revenue cash            E2imp4                -2.5              -2.50    OK se dev=0.037
+P95 of R per tenfold revenue cash            E2imp8                -2.8              -2.82    OK se dev=0.010
+Capital-intensity gap P95 R 2023-25 GAAP     E1                    -1.8              -1.85    OK ci dev=(0.014,0.047)
+Capital-intensity gap P95 R 2023-25 GAAP     E2                    -0.7              -0.68    OK ci dev=(0.019,0.028)
+Capital-intensity gap P95 R 2023-25 GAAP     E2imp4                -0.8              -0.77    OK ci dev=(0.019,0.028)
+Capital-intensity gap P95 R 2023-25 GAAP     E2imp8                -1.2              -1.24    OK ci dev=(0.042,0.018)
+Capital-intensity gap P95 R 2023-25 cash     E1                   -12.5             -12.53    OK ci dev=(0.019,0.038)
+Capital-intensity gap P95 R 2023-25 cash     E2                    -7.4              -7.37    OK ci dev=(0.001,0.048)
+Capital-intensity gap P95 R 2023-25 cash     E2imp4                -8.3              -8.34    OK ci dev=(0.019,0.030)
+Capital-intensity gap P95 R 2023-25 cash     E2imp8               -12.3             -12.28    OK ci dev=(0.025,0.037)
+Cap-int gap capex added back                 E1                    -4.6              -4.64    OK ci dev=(0.023,0.035)
+Cap-int gap capex added back                 E2                    -0.2              -0.15    OK ci dev=(0.044,0.034)
+Cap-int gap capex added back                 E2imp4                 0.1               0.15    OK ci dev=(0.030,0.003)
+Cap-int gap capex added back                 E2imp8                -4.2              -4.21    OK ci dev=(0.014,0.032)
+Change in T(0%), GAAP                        E1                     0.8               0.75    OK ci dev=(0.033,0.042)
+Change in T(0%), GAAP                        E2                     0.4               0.41    OK ci dev=(0.029,0.038)
+Change in T(0%), GAAP                        E2imp4                 0.4               0.42    OK ci dev=(0.036,0.040)
+Change in T(0%), GAAP                        E2imp8                 0.8               0.80    OK ci dev=(0.043,0.033)
+Change in T(0%), cash                        E1                    -3.3              -3.25    OK ci dev=(0.043,0.049)
+Change in T(0%), cash                        E2                    -2.5              -2.48    OK ci dev=(0.007,0.041)
+Change in T(0%), cash                        E2imp4                -3.3              -3.27    OK ci dev=(0.028,0.002)
+Change in T(0%), cash                        E2imp8                -3.2              -3.22    OK ci dev=(0.031,0.021)
+Change in T(20%), GAAP                       E1                   -10.2             -10.23    OK ci dev=(0.029,0.047)
+Change in T(20%), GAAP                       E2                    -9.7              -9.69    OK ci dev=(0.022,0.048)
+Change in T(20%), GAAP                       E2imp4                -7.2              -7.21    OK ci dev=(0.014,0.038)
+Change in T(20%), GAAP                       E2imp8                -6.3              -6.29    OK ci dev=(0.030,0.041)
+Change in T(20%), cash                       E1                    -3.0              -3.01    OK ci dev=(0.002,0.016)
+Change in T(20%), cash                       E2                    -1.1              -1.05    OK ci dev=(0.015,0.026)
+Change in T(20%), cash                       E2imp4                -1.3              -1.34    OK ci dev=(0.040,0.030)
+Change in T(20%), cash                       E2imp8                -1.8              -1.80    OK ci dev=(0.048,0.036)
+Change in T(40%), GAAP (dagger)              E1                    -9.9              -9.88    OK 
+Change in T(40%), GAAP (dagger)              E2                    None                  —    OK 
+Change in T(40%), GAAP (dagger)              E2imp4                 1.0               1.03    OK 
+Change in T(40%), GAAP (dagger)              E2imp8                -2.0              -2.02    OK 
+Change in T(40%), cash (dagger)              E1                     1.6               1.64    OK 
+Change in T(40%), cash (dagger)              E2                    None                  —    OK 
+Change in T(40%), cash (dagger)              E2imp4                 7.6               7.64    OK 
+Change in T(40%), cash (dagger)              E2imp8                 7.2               7.19    OK 
+Near-frontier margin gap, avg of bands       E1                    34.5              34.49    OK ci dev=(0.035,0.001)
+Near-frontier margin gap, avg of bands       E2                    32.7              32.72    OK ci dev=(0.045,0.005)
+Near-frontier margin gap, avg of bands       E2imp4                33.5              33.51    OK ci dev=(0.019,0.013)
+Near-frontier margin gap, avg of bands       E2imp8                34.7              34.72    OK ci dev=(0.028,0.027)
+  of which selling and marketing             E1                    16.0              15.99    OK ci dev=(0.023,0.047)
+  of which selling and marketing             E2                    16.8              16.77    OK ci dev=(0.037,0.019)
+  of which selling and marketing             E2imp4                17.1              17.08    OK ci dev=(0.030,0.009)
+  of which selling and marketing             E2imp8                16.1              16.14    OK ci dev=(0.031,0.015)
+  of which R&D                               E1                     7.1               7.05    OK ci dev=(0.048,0.023)
+  of which R&D                               E2                     6.9               6.86    OK ci dev=(0.023,0.033)
+  of which R&D                               E2imp4                 6.5               6.50    OK ci dev=(0.033,0.008)
+  of which R&D                               E2imp8                 7.1               7.12    OK ci dev=(0.007,0.026)
+  of which gross margin                      E1                     5.7               5.71    OK ci dev=(0.028,0.041)
+  of which gross margin                      E2                     2.9               2.88    OK ci dev=(0.001,0.034)
+  of which gross margin                      E2imp4                 4.0               3.95    OK ci dev=(0.029,0.004)
+  of which gross margin                      E2imp8                 4.9               4.94    OK ci dev=(0.001,0.016)
+  of which G&A                               E1                     5.5               5.45    OK ci dev=(0.013,0.010)
+  of which G&A                               E2                     6.2               6.20    OK ci dev=(0.003,0.027)
+  of which G&A                               E2imp4                 5.7               5.69    OK ci dev=(0.044,0.012)
+  of which G&A                               E2imp8                 5.8               5.79    OK ci dev=(0.012,0.008)
+Anchor: median Pi, all S&M buys growth       E1                    -1.3              -1.28    OK ci dev=(0.008,0.040)
+Anchor: median Pi, all S&M buys growth       E2                    -7.0              -6.97    OK ci dev=(0.041,0.012)
+Anchor: median Pi, all S&M buys growth       E2imp4                -0.5              -0.45    OK ci dev=(0.045,0.022)
+Anchor: median Pi, all S&M buys growth       E2imp8                -0.7              -0.67    OK ci dev=(0.016,0.002)
+Anchor: median Pi, no S&M buys growth        E1                    19.5              19.52    OK ci dev=(0.005,0.026)
+Anchor: median Pi, no S&M buys growth        E2                    18.5              18.46    OK ci dev=(0.017,0.018)
+Anchor: median Pi, no S&M buys growth        E2imp4                20.0              19.96    OK ci dev=(0.031,0.030)
+Anchor: median Pi, no S&M buys growth        E2imp8                20.2              20.16    OK ci dev=(0.048,0.029)
+Anchor: median Pi, maintenance-netted        E1                    12.4              12.41    OK ci dev=(0.039,0.039)
+Anchor: median Pi, maintenance-netted        E2                    12.2              12.19    OK ci dev=(0.039,0.003)
+Anchor: median Pi, maintenance-netted        E2imp4                13.2              13.23    OK ci dev=(0.004,0.015)
+Anchor: median Pi, maintenance-netted        E2imp8                13.2              13.21    OK ci dev=(0.038,0.021)
+P95 of R, 2016-19, GAAP                      E1                    55.9              55.86    OK ci dev=(0.011,0.032)
+P95 of R, 2016-19, GAAP                      E2                    54.3              54.25    OK ci dev=(0.022,0.047)
+P95 of R, 2016-19, GAAP                      E2imp4                51.1              51.07    OK ci dev=(0.033,0.043)
+P95 of R, 2016-19, GAAP                      E2imp8                51.8              51.77    OK ci dev=(0.042,0.033)
+P95 of R, 2016-19, cash                      E1                    57.3              57.29    OK ci dev=(0.017,0.022)
+P95 of R, 2016-19, cash                      E2                    53.9              53.92    OK ci dev=(0.029,0.045)
+P95 of R, 2016-19, cash                      E2imp4                51.7              51.70    OK ci dev=(0.017,0.000)
+P95 of R, 2016-19, cash                      E2imp8                53.1              53.15    OK ci dev=(0.013,0.022)
+P95 of R, 2023-25, GAAP                      E1                    43.9              43.93    OK ci dev=(0.036,0.045)
+P95 of R, 2023-25, GAAP                      E2                    42.8              42.83    OK ci dev=(0.024,0.015)
+P95 of R, 2023-25, GAAP                      E2imp4                43.2              43.23    OK ci dev=(0.012,0.012)
+P95 of R, 2023-25, GAAP                      E2imp8                43.5              43.51    OK ci dev=(0.019,0.017)
+P95 of R, 2023-25, cash                      E1                    44.6              44.59    OK ci dev=(0.009,0.029)
+P95 of R, 2023-25, cash                      E2                    43.1              43.07    OK ci dev=(0.032,0.033)
+P95 of R, 2023-25, cash                      E2imp4                43.4              43.39    OK ci dev=(0.035,0.044)
+P95 of R, 2023-25, cash                      E2imp8                43.9              43.88    OK ci dev=(0.024,0.029)
+Change in P95 of R, GAAP                     E1                   -11.9             -11.94    OK ci dev=(0.034,0.027)
+Change in P95 of R, GAAP                     E2                   -11.4             -11.43    OK ci dev=(0.024,0.044)
+Change in P95 of R, GAAP                     E2imp4                -7.8              -7.84    OK ci dev=(0.039,0.022)
+Change in P95 of R, GAAP                     E2imp8                -8.3              -8.26    OK ci dev=(0.014,0.035)
+Change in P95 of R, cash                     E1                   -12.7             -12.71    OK ci dev=(0.030,0.014)
+Change in P95 of R, cash                     E2                   -10.9             -10.85    OK ci dev=(0.004,0.016)
+Change in P95 of R, cash                     E2imp4                -8.3              -8.31    OK ci dev=(0.025,0.046)
+Change in P95 of R, cash                     E2imp8                -9.3              -9.27    OK ci dev=(0.032,0.038)
+
+--- Sample counts ---
+Firm-years (E1/E2/imp4/imp8): paper=[(1788, 292), (1378, 277), (1786, 291), (1786, 291)] json=[1788, 1378, 1786, 1786]
+of which acquisition-affected: paper=[466, 58, 466, 466] json=[466, 58, 466, 466]
+Firm-years with g>50%: paper=[106, 62, 89, 92] json=[106, 62, 89, 92]
+
+Total cells checked (point est): 164
+Mismatches: 0

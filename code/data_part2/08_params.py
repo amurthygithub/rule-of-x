@@ -1631,10 +1631,17 @@ def gstar(tau, cc, f, amin):
 # Compute share at full automation (assumptions round 2, Section 2; adopted 29 Oct 2026). Explicit path
 #   c_c(H) = s_L [omega_H kappa_front + (1 - omega_H) kappa_fixed(H)],  kappa_fixed(H) = max(kappa_2025 / D^(H - 2025),
 #   floor_share kappa_2025); central inputs below reproduce the proposal's centrals 0.06 (2025 prices), 0.12, 0.08, 0.05.
-CC_PATH = dict(s_L=0.60, s_L_range=[0.50, 0.65], kappa_2025=0.10, kappa_2025_range=[0.01, 0.35], D=5.0, D_range=[3.0, 10.0],
+# kappa_2025 bounds (Paper 1 round 3, GLM-M11 / GPT-22; units corrected 3 Nov 2026; code/calibrate_horizons.py KAPPA_LO,
+# KAPPA_HI): floor = METR's cost per completed task, 1% of the human cost per successful run at the 50% success rate of
+# the time-horizon definition, so 0.02; top = the value test kappa < 1. Was [0.01, 0.35] (the field analogs).
+KAPPA_LO_RUNS, METR_SUCCESS_RATE, KAPPA_HI = 0.01, 0.50, 1.0
+CC_PATH = dict(s_L=0.60, s_L_range=[0.50, 0.65], kappa_2025=0.10, kappa_2025_range=[KAPPA_LO_RUNS / METR_SUCCESS_RATE, KAPPA_HI],
+               D=5.0, D_range=[3.0, 10.0],
                floor_share=0.005, kappa_front=0.33, kappa_front_range=[0.10, 0.50],
                omega={'2028': 0.6, '2031': 0.4, '2036': 0.25},
                omega_range={'2028': [0.3, 0.9], '2031': [0.2, 0.7], '2036': [0.1, 0.5]})
+# one range for c_c at 2025 prices (Paper 1 text, stress test and this file): s_L x kappa bounds = [0.012, 0.60]
+CC_RANGE_2025 = [r(CC_PATH['s_L'] * CC_PATH['kappa_2025_range'][0], 4), r(CC_PATH['s_L'] * CC_PATH['kappa_2025_range'][1], 4)]
 
 
 def cc_path(H, s_L=CC_PATH['s_L'], k25=CC_PATH['kappa_2025'], D=CC_PATH['D'], floor=CC_PATH['floor_share'],
@@ -1651,7 +1658,7 @@ assert abs(cc_path(None) - 0.06) < 1e-12 and all(abs(cc_path(int(h)) - v) < 0.00
     'compute-share path no longer reproduces the round-2 centrals'
 CENT = dict(tau=0.18, cc=0.06, f=0.025, amin=0.03)
 sens = {k: [gstar(**{**CENT, k: lo}), gstar(**{**CENT, k: hi})]
-        for k, (lo, hi) in dict(tau=(0.15, 0.21), cc=(0.01, 0.20), f=(0.02, 0.03), amin=(0.015, 0.06)).items()}
+        for k, (lo, hi) in dict(tau=(0.15, 0.21), cc=tuple(CC_RANGE_2025), f=(0.02, 0.03), amin=(0.015, 0.06)).items()}
 params['part1_ceiling'] = {
     'meta': {'formula': 'G* = 1 - (1 - tau)(1 - c_c - f - a_min): market growth at which R_max = 1 with k = 0, X = 1, psi = 0',
              'central_threshold': gstar(**CENT), 'one_at_a_time_threshold_range': sens,
@@ -1693,16 +1700,23 @@ params['part1_ceiling'] = {
                 'favorable 1.5% lies inside the band; the conservative 6% lies above the p5 G&A share of $1B-10B firms and outside '
                 'the band. G&A includes SBC.'},
     'c_c_compute_share': {
-        'value': r(cc_path(None), 4), 'range': [0.01, 0.20], 'quality': 'working_paper', 'assumed': False, 'grounding': 'b',
+        'value': r(cc_path(None), 4), 'range': CC_RANGE_2025, 'quality': 'working_paper', 'assumed': False, 'grounding': 'b',
         'basis': '2025 prices, no price path (b-anchored)',
-        'source': 'c_c = s_L x kappa (assumptions round 2, Section 2; read 29 Oct 2026). kappa at 2025 prices 0.10 [0.01, 0.35] (b): '
-                  'METR agent runs (ai_cost.inference_cost_usd_per_human_hour: median '
+        # Paper 1 round 3 (3 Nov 2026): one range for c_c at 2025 prices, s_L x the kappa bounds; the range was [0.01, 0.20]
+        'source': 'c_c = s_L x kappa (assumptions round 2, Section 2; read 29 Oct 2026). kappa at 2025 prices 0.10 (b), '
+                  f"bounds {CC_PATH['kappa_2025_range']} (Paper 1 round 3, GLM-M11 / GPT-22, units corrected 3 Nov 2026): the "
+                  'floor is the cost per completed task of METR agent runs, about 1% of the human cost per successful run at the '
+                  '50% success rate of the time-horizon definition, so 2%, and c_c floor = kappa floor x s_L = '
+                  f"{CC_RANGE_2025[0]} of revenue (it was 0.02, kappa itself); the top is the value test kappa < 1, c_c = s_L = "
+                  f"{CC_RANGE_2025[1]}. The analog evidence supports the central kappa 0.10, not the bounds: METR agent runs "
+                  '(ai_cost.inference_cost_usd_per_human_hour: median '
                   f"{r(min(v['share_of_human_baseline_cost_median'] for v in obs.values()) * 100, 2)}-"
                   f"{r(max(v['share_of_human_baseline_cost_median'] for v in obs.values()) * 100, 2)}% of the human baseline cost "
-                  f'across {len(obs)} recent agents, METR TH1.0; c); Stevens (2026), Payrolls to Prompts, arXiv:2602.00139: about $0.03 '
-                  'of AI spend per $1 of displaced freelance labor (a, preprint); AI-native products, inference 13-23% of revenue at '
-                  '2025 prices (ICONIQ 2026 via SaaStr, secondary; the revenue mapping is the auditor\'s calculation); central 0.10 = '
-                  'geometric middle of the field analogs. s_L 0.60 [0.50, 0.65] (c): labor cost the ceiling automates, share of revenue',
+                  f'per successful run across {len(obs)} recent agents, METR TH1.0; c); Stevens (2026), Payrolls to Prompts, '
+                  'arXiv:2602.00139: about $0.03 of AI spend per $1 of displaced freelance labor (a, preprint); AI-native products, '
+                  'inference 13-23% of revenue at 2025 prices, kappa up to about 0.35 (ICONIQ 2026 via SaaStr, secondary; the revenue '
+                  'mapping is the auditor\'s calculation); central 0.10 = geometric middle of the field analogs. s_L 0.60 [0.50, '
+                  '0.65] (c): labor cost the ceiling automates, share of revenue',
         'by_horizon': {h: {'value': v, 'range': rg, 'grounding': 'd', 'model': r(cc_path(int(h)), 4)} for h, (v, rg) in CC_BY_H.items()},
         'path': dict(CC_PATH, formula='c_c(H) = s_L [omega_H kappa_front + (1 - omega_H) max(kappa_2025 / D^(H - 2025), '
                                       'floor_share kappa_2025)]',
@@ -1726,9 +1740,11 @@ params['part1_ceiling'] = {
                                            'GstarHigh). Before round 2 the',
                                            'cap was s_L x 0.5 = 0.30, a factor with no source, and the case was labelled '
                                            'infeasible. Credible range of c_c at',
-                                           '2025 prices against the cap: 1-60% (G* 28-78%, Paper 1 macros GstarCcLo, GstarCcHi); '
-                                           'the old cap 0.30 gives G* 52.8%',
-                                           '(GstarCcOldCap)')},
+                                           '2025 prices: 1.2-60% of revenue, s_L x kappa from 0.02 per completed task to the '
+                                           'value test (Paper 1 round 3,',
+                                           '3 Nov 2026; G* 28-78%, Paper 1 macros CcLo, CcHi, GstarCcLo, GstarCcHi; before: '
+                                           '1-60%, then 2-60%); the old cap 0.30',
+                                           'gives G* 52.8% (GstarCcOldCap)')},
         'previous': {'value': 0.20, 'range': [0.15, 0.25], 'scenario_bounds': [0.01, 0.55], 'grounding': 'd',
                      'note': 'horizon-invariant scenario value before the params commit of 29 Oct 2026'},
         'note': 'the horizon values are class d (the mix omega_H and the frontier cap are scenarios), with the 2025 anchor class b. '

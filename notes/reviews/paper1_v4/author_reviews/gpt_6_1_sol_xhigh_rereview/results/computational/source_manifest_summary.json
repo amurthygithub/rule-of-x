@@ -1,0 +1,12 @@
+{
+  "repository": "amurthygithub/rule-of-x",
+  "pinned_commit": "eb7537bee7585f2902304f62a722edea6ced8539",
+  "recursive_tree_truncated": false,
+  "recursive_entries": 1116,
+  "observed_review_branch_head": "786228da26e12235a9d0c7aa53f2ef1fde3c07bf",
+  "head_difference": "One commit; only notes/reviews/paper1_v4/rereview_prompt.md changed; contents not read.",
+  "remote_writes": false,
+  "materialization": "GitHub API file/blob reads and scoped raw file URLs supplied by directory metadata; each local baseline checked against Git blob SHA.",
+  "initial_transfer_truncations": "Three local files were incomplete; identified by full snapshot integrity check, repaired, all295selected files verified before final evidence assembly. No author defect inferred.",
+  "tree_response_sha": "eb7537bee7585f2902304f62a722edea6ced8539"
+}

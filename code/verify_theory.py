@@ -1224,6 +1224,59 @@ Rstar = np.array([closed_form(m0_, G_, k_, Xv, lam10 * (1 - sv / sbar_), a_)[2] 
 resid = np.max(np.abs(Rstar - ((r_ - G_) * v_h[idx] / s_h[idx] + G_ * Xd)))
 check("15k HJB identity R*_{v'(s)}(s) = (r-G) v(s)/s + G v'(s) on the numerical solution", resid < 5e-3,
       f"max residual={resid:.2e}")
+# 15l-15p (round 3, GLM-F1 / GPT-2): the shape of v'(s) on this grid (np.gradient of the N = 4000 sweep), with the
+# acceptance tests as the GLM issue log corrects them (0.99 and 0.9999 of the cap, not 0.95 and 0.99)
+z_h = s_h / sbar_
+vlim = (m0_ - k_ * G_) / (r_ - G_)
+atz = lambda zz: float(np.interp(zz, z_h, vp_h))
+check("15l saturated HJB shape (GLM-F1): v'(0.99 sbar) > v'(0.5 sbar), so the weight rises again near the cap",
+      atz(0.99) > atz(0.5), f"v'(0.99) = {atz(0.99):.4f}, v'(0.5) = {atz(0.5):.4f}")
+check("15m saturated HJB shape: v'(0.9999 sbar) is within 1% of the never-spend multiple (m0 - kG)/(r - G) = 5.83",
+      abs(atz(0.9999) - vlim) / vlim < 0.01, f"v'(0.9999) = {atz(0.9999):.4f}, limit {vlim:.4f}")
+_msk = (z_h > 0.02) & (z_h < 0.9999)
+_im = int(np.argmin(np.where(_msk, vp_h, np.inf)))
+check("15n saturated HJB shape: v' has an interior minimum below the limit, between 70% and 90% of the cap, and stays below "
+      "its 1% value from 50% of the cap on; v' < v/s at every share (weight below the revenue multiple)",
+      vp_h[_im] < vlim and 0.7 < z_h[_im] < 0.9 and float(np.max(vp_h[(z_h >= 0.5) & (z_h < 0.9999)])) < atz(0.01)
+      and float(np.max((vp_h - v_h / s_h)[_msk])) < 0,
+      f"min {vp_h[_im]:.4f} at {z_h[_im]:.3f} of the cap; max(v' - v/s) = {float(np.max((vp_h - v_h / s_h)[_msk])):.4f}")
+sig_at = lambda zz: float(np.interp(zz, z_h, sig_h))
+check("15o retention near saturation (GLM-F1, Section 7.4): the gain per point of G_i at the firm's own weight, v' - k, is "
+      "at least half its small-share value from the minimum to 99.9% of the cap, while growth spend sigma*(s) falls below a "
+      "tenth of its small-share value by 95% of the cap", vp_h[_im] - k_ > 0.5 * (atz(0.01) - k_) and sig_at(0.95) < 0.1 * sig_at(0.01),
+      f"gain {vp_h[_im] - k_:.3f} to {atz(0.999) - k_:.3f} against {atz(0.01) - k_:.3f}; sigma {sig_at(0.01):.4f} -> {sig_at(0.95):.4f}")
+_vpm = {k__: TEXM.get(k__) for k__ in ('VpOnePct', 'VpTenPct', 'VpFiftyPct', 'VpMinTwo', 'VpMinAt', 'VpLimitTwo', 'VpSatLo', 'VpSatHi',
+                                       'VpNinetyNine', 'VpFourNines')}
+_ok15p = None not in _vpm.values()
+if _ok15p:
+    _want = dict(VpOnePct=(atz(0.01), 0.06), VpTenPct=(atz(0.1), 0.06), VpFiftyPct=(atz(0.5), 0.06), VpMinTwo=(vp_h[_im], 0.01),
+                 VpMinAt=(100 * z_h[_im], 1.0), VpLimitTwo=(vlim, 0.006), VpSatLo=(vp_h[_im], 0.01), VpSatHi=(atz(0.999), 0.01),
+                 VpNinetyNine=(atz(0.99), 0.01), VpFourNines=(atz(0.9999), 0.02))
+    _ok15p = all(abs(float(_vpm[k__]) - v__) <= tol for k__, (v__, tol) in _want.items())
+check("15p [text] the v'(s) profile macros of paper1/macros.tex (9.1 / 7.2 / 5.4 at 1, 10, 50% of the cap; minimum 5.08 at "
+      "80%; limit 5.83; 5.08 to 5.70 near saturation; 5.50 at 99%, 5.78 at 99.99%) agree with this grid", _ok15p,
+      str(_vpm))
+# 15q (round 3, Mistral F-6): a solver-independent lower bound on the value. A constant spend of 5% of revenue until the
+# share reaches 40% of the market, then no spend, is an admissible policy; its discounted payoff (explicit Euler, dt =
+# 0.002, horizon 400 years plus the no-spend tail) bounds v(s0) from below whatever the HJB solver. It exceeds the
+# no-spend value m0/(r - G) = 5.83 per unit of share, so the no-spend solution is not optimal at these parameters, and the
+# grid value of the sweep lies above the bound (verification_claude/f6_hjb_policy_bound.py in the Mistral review log).
+def _policy_payoff(s0_, sig_c, s_stop, T_=400.0, dt_=0.002):
+    sv, tv, V_ = s0_, 0.0, 0.0
+    while tv < T_:
+        sg = sig_c if sv < s_stop else 0.0
+        D_ = lam10 * (1 - sv / sbar_) * sg ** a_
+        V_ += np.exp(-(r_ - G_) * tv) * sv * (m0_ - sg - k_ * (G_ + D_)) * dt_
+        sv += sv * D_ * dt_
+        tv += dt_
+    return V_ + np.exp(-(r_ - G_) * tv) * sv * (m0_ - k_ * G_) / (r_ - G_)
+_lb = {s0v: _policy_payoff(s0v, 0.05, 0.4) / s0v for s0v in (0.01, 0.1)}
+_ns = (m0_ - k_ * G_) / (r_ - G_)
+check("15q solver-independent lower bound (Mistral F-6): spending 5% of revenue until the share reaches 0.4 is worth "
+      "more than no spend (v/s 9.02 at s0 = 0.01 and 7.33 at s0 = 0.1, against 5.83), and the sweep's v(s0)/s0 is at least "
+      "that bound", all(_lb[s0v] > _ns * 1.2 for s0v in _lb) and all(at(v_h, s0v) / s0v >= _lb[s0v] * (1 - 1e-3) for s0v in _lb)
+      and abs(_lb[0.01] - 9.02) < 0.01 and abs(_lb[0.1] - 7.33) < 0.01,
+      f"bound {_lb[0.01]:.3f} / {_lb[0.1]:.3f}; grid {at(v_h, 0.01) / 0.01:.3f} / {at(v_h, 0.1) / 0.1:.3f}; no spend {_ns:.3f}")
 # simulate the closed-loop feedback policy and compare discounted payoff with v(s0)
 from scipy.integrate import solve_ivp
 for s0v in [0.005, 0.05]:
@@ -1238,7 +1291,7 @@ for s0v in [0.005, 0.05]:
 
     sol = solve_ivp(rhs, (0, 600), [s0v, 0.0], rtol=1e-9, atol=1e-12, max_step=0.5)
     payoff = sol.y[1, -1]
-    check(f"15l closed-loop simulation from s0={s0v}: discounted payoff matches v(s0) within 0.5%",
+    check(f"15r closed-loop simulation from s0={s0v}: discounted payoff matches v(s0) within 0.5%",
           abs(payoff - at(v_h, s0v)) / at(v_h, s0v) < 5e-3, f"payoff={payoff:.6f}, v(s0)={at(v_h, s0v):.6f}")
 # lower bound of Proposition prop:dynamic(d) with the constant policy sigma0
 D0 = ex[10.0][2] - G_
@@ -1250,7 +1303,7 @@ for s0v in [1e-2, 1e-3, 1e-4, 1e-6]:
     tt = np.linspace(0, 3000, 600001)
     lbs.append(mo * np.trapezoid(integrand(tt), tt))
 print("     constant-policy lower bound v(s0)/s0 >= " + ", ".join(f"{lb:.4f}" for lb in lbs) + " (s0 = 1e-2 ... 1e-6)")
-check("15m constant-policy lower bound increases to v0 as s0 -> 0 and lies below the HJB value",
+check("15s constant-policy lower bound increases to v0 as s0 -> 0 and lies below the HJB value",
       all(np.diff(lbs) > 0) and abs(lbs[-1] - 10) < 0.01
       and all(lb <= at(v_h, sv) / sv + 1e-6 for lb, sv in zip(lbs, [1e-2, 1e-3, 1e-4, 1e-6])))
 # implication for measurement (decision D-1): sigma*/Delta* = alpha (X - k) identifies only the product; conditional
@@ -1263,7 +1316,7 @@ for _ in range(200):
     D_, sg, _ = closed_form(0.3, 0.05, k_, X_, lam_ * h_, a_)
     rho_ = sg / D_
     ok &= abs(rho_ - a_ * (X_ - k_)) < 1e-9 * (1 + rho_) and X_ - k_ > rho_ and abs(rho_ / a_ - (X_ - k_)) < 1e-9 * X_
-check("15n [arithmetic] implication: the spend ratio identifies only alpha (X - k); X - k = rho/alpha > rho for every "
+check("15t [arithmetic] implication: the spend ratio identifies only alpha (X - k); X - k = rho/alpha > rho for every "
       "alpha < 1 (200 draws), and 1/alpha lies in [2.22, 4] for alpha in [0.25, 0.45]",
       ok and abs(1 / 0.45 - 2.222) < 1e-3 and 1 / 0.25 == 4)
 
@@ -1466,10 +1519,21 @@ header("20. Full-cost ceiling (Definition def:fullcost, Corollary cor:ceiling, T
 # ==============================================================================================
 # Inputs duplicate code/calibrate_horizons.py (FC); check 20l confirms that its JSON reproduces them. Compute share at
 # 2025 prices since the params commit of 29 Oct 2026: central 0.06 (b-anchored), halved and doubled for the favorable
-# and conservative cases (calibrate_horizons.py CC_CASES); credible bounds [0.01, 0.30] (the value-test cap).
+# and conservative cases (calibrate_horizons.py CC_CASES); scenario bounds [0.012, 0.60] (per-completed-task floor to
+# the value-test cap).
 S_REF = 1e9
 WAGE_GOV = 88400 * (1 + 0.4287)
-CC_CENTRAL_2025, CC_BOUNDS = 0.06, (0.01, 0.60)   # round 2 (B2): value test c_c <= s_L = 0.60
+# c_c = s_L x kappa (independent copy of the inputs; calibrate_horizons.py CC_PATH, KAPPA_LO, KAPPA_HI). s_L = 0.60 of
+# revenue in automated labor; kappa = compute per dollar of labor replaced: central 0.10; floor (round 3, GLM-M11,
+# GPT-22) METR's successful-run cost of 1% of the human cost at the 50% success rate of the time-horizon definition, 2%
+# per completed task; top the value test kappa = 1 (round 2, B2). Units corrected 3 Nov 2026: the floor was 0.02 of
+# revenue (kappa itself); it is 0.60 x 0.02 = 0.012. The successful-run value 0.60 x 0.01 = 0.006 is checked too.
+S_L_AUTO, KAPPA_CEN, KAPPA_RUNS, METR_SUCCESS, KAPPA_TOP = 0.60, 0.10, 0.01, 0.50, 1.0
+KAPPA_FLOOR = KAPPA_RUNS / METR_SUCCESS
+CC_CENTRAL_2025 = S_L_AUTO * KAPPA_CEN
+CC_BOUNDS = (S_L_AUTO * KAPPA_FLOOR, S_L_AUTO * KAPPA_TOP)
+CC_LO_RUNS = S_L_AUTO * KAPPA_RUNS
+assert abs(CC_CENTRAL_2025 - 0.06) < 1e-15 and abs(CC_BOUNDS[0] - 0.012) < 1e-15 and CC_BOUNDS[1] == 0.60
 FC = {
     'c_c': (CC_CENTRAL_2025 / 2, CC_CENTRAL_2025, 2 * CC_CENTRAL_2025), 'f': (0.02, 0.025, 0.03), 'tau': (0.15, 0.18, 0.21), 'a_min': (0.015, 0.03, 0.046),
     's0': (0.0069, 0.0069, 0.0069), 'L0': (4.0, 2.0, 1.0), 'Me': (1.0, 2.0, 3.0), 'sec_it': (0.119, 0.109, 0.086),
@@ -1643,11 +1707,29 @@ sens = {cc: (gc(cc)['G100'], gc(cc)['G100_acc']) for cc in [cc_lo, cc_hi]}
 slope = (gc(0.30)['G100'] - gc(0.10)['G100']) / 0.20
 print(f"     central G* at c_c = {cc_lo} / {cc_hi}: {100 * sens[cc_lo][0]:.2f} / {100 * sens[cc_hi][0]:.2f}% (acc. only "
       f"{100 * sens[cc_lo][1]:.2f} / {100 * sens[cc_hi][1]:.2f}%); slope {slope:.4f}")
-check("20h [text] c_c over its scenario bounds: central G* and accountability-only G* at both ends as printed (macros "
-      "CcLo, CcHi, GstarCcLo/Hi, GstarAccCcLo/Hi); dG*/dc_c = (1 - tau)(1 + s_fin) = 0.8446",
-      printed('CcLo', cc_lo) and printed('CcHi', cc_hi) and printed('GstarCcLo', sens[cc_lo][0])
+import json as _json20h
+_p20h = _osh.path.join(_ROOT, 'notes', 'calibration_results.json')
+_C20h = _json20h.load(open(_p20h)) if _osh.path.exists(_p20h) else {}
+_ccr = _C20h.get('r3', {}).get('compute_credible', {})   # the calibration's record: c_c = s_L x kappa at both ends, one range
+_cc_units = bool(_ccr) and 'kappa_lo' in _ccr and (
+             abs(_ccr['lo'] - _ccr['s_L'] * _ccr['kappa_lo']) < 1e-15 and abs(_ccr['hi'] - _ccr['s_L'] * _ccr['kappa_hi']) < 1e-15
+             and abs(_ccr['lo_successful_runs'] - _ccr['s_L'] * _ccr['kappa_lo_successful_runs']) < 1e-15
+             and abs(_ccr['lo'] - cc_lo) < 1e-15 and abs(_ccr['hi'] - cc_hi) < 1e-15 and abs(_ccr['s_L'] - S_L_AUTO) < 1e-15
+             and abs(_ccr['kappa_lo'] - KAPPA_FLOOR) < 1e-15 and abs(_ccr['kappa_lo_successful_runs'] - KAPPA_RUNS) < 1e-15
+             and list(_C20h['compute_share']['values']['prices2025']['bounds']) == [_ccr['lo'], _ccr['hi']]
+             and abs(_C20h['compute_share']['values']['prices2025']['value'] - S_L_AUTO * KAPPA_CEN) < 1e-15)
+print(f"     c_c = s_L x kappa: {S_L_AUTO} x [{KAPPA_FLOOR}, {KAPPA_TOP}] = [{cc_lo:.3f}, {cc_hi:.2f}] (successful runs "
+      f"{S_L_AUTO} x {KAPPA_RUNS} = {CC_LO_RUNS:.3f}); calibration record agrees: {_cc_units}")
+check("20h [text] c_c over its scenario bounds, c_c = s_L x kappa (floor kappa 2% per completed task times s_L 60% = "
+      "1.2% of revenue; top the value test kappa = 1, c_c = s_L): central G* and accountability-only G* at both ends as "
+      "printed (macros CcLo, CcHi, GstarCcLo/Hi, GstarAccCcLo/Hi, KappaLo, KappaLoRuns, CcLoRuns, CcLaborShare); "
+      "dG*/dc_c = (1 - tau)(1 + s_fin) = 0.8446",
+      _cc_units and printed('CcLo', cc_lo, 1) and printed('CcHi', cc_hi) and printed('GstarCcLo', sens[cc_lo][0])
       and printed('GstarCcHi', sens[cc_hi][0]) and printed('GstarAccCcLo', sens[cc_lo][1])
-      and printed('GstarAccCcHi', sens[cc_hi][1]) and abs(slope - 0.82 * 1.03) < 1e-12)
+      and printed('GstarAccCcHi', sens[cc_hi][1]) and abs(slope - 0.82 * 1.03) < 1e-12
+      and printed('KappaLo', KAPPA_FLOOR) and printed('KappaLoRuns', KAPPA_RUNS) and printed('CcLaborShare', S_L_AUTO)
+      and printed('CcLoRuns', CC_LO_RUNS, 1) and printed('GstarCcLoRuns', gc(CC_LO_RUNS)['G100'])
+      and printed('GstarAccCcLoRuns', gc(CC_LO_RUNS)['G100_acc']))
 t9 = fullcost('central', tau_=0.09)
 am = [fullcost('central', amin_=x) for x in [0.005, 0.046]]
 check("20i [text] tau = 9% (GAO-23-105384 average effective rate) and a_min over its band [0.005, 0.046]: central "
@@ -1670,32 +1752,77 @@ check("20j product mix: with AI products at c_c = 0.40 and the rest at 0.20, an 
       "midway between the central and high-compute thresholds (linear in the share); 1 - 0.59 - 0.025 = 0.385 ~ 0.40",
       abs(blend['G100'] - 0.5 * (FCR['central']['G100'] + FCR['high compute']['G100'])) < 1e-12
       and abs((1 - 0.59 - 0.025) - 0.385) < 1e-12)
-# owning the compute (Remark rem:owncompute, revision v2): one deduction rate psi for growth and replacement servers;
-# own - buy = (1-tau) ups TCO - (1-psi) tau s_srv TCO - (1 - psi tau) s_srv L_srv TCO G
+# owning the compute (Remark rem:owncompute, revision v2; cash basis after the outside re-review, GPT F03, 5 Nov 2026):
+# one deduction rate psi for growth and replacement; with TCO the cash cost (running cost plus straight-line replacement),
+# owned capital kappa TCO and replacement s TCO: own - buy = (1-tau) ups TCO - (1-psi) tau s TCO - (1 - psi tau) kappa TCO G
 ok = True
 for _ in range(500):
     TCO, ups, G_ = RNG.uniform(0.02, 0.4), RNG.uniform(0, 1.5), RNG.uniform(0, 0.4)
-    tau_, ssrv, L = RNG.uniform(0.1, 0.3), RNG.uniform(0.3, 0.8), RNG.uniform(3, 7)
+    tau_, s_own, kap = RNG.uniform(0.1, 0.3), RNG.uniform(0.3, 0.95), RNG.uniform(1, 8)
     psi_ = RNG.uniform(0, 1)
     api = (1 - tau_) * (1 - (1 + ups) * TCO)
-    kc = ssrv * L * TCO
-    own = (1 - tau_) * (1 - (1 - ssrv) * TCO) - (1 - psi_ * tau_) * (kc / L) - (1 - psi_ * tau_) * kc * G_
-    ok &= abs((own - api) - ((1 - tau_) * ups * TCO - (1 - psi_) * tau_ * ssrv * TCO
-                             - (1 - psi_ * tau_) * ssrv * L * TCO * G_)) < 1e-12
-    own1 = (1 - tau_) * (1 - (1 - ssrv) * TCO) - (1 - tau_) * (kc / L) - (1 - tau_) * kc * G_
-    ok &= abs((own1 - api) - (1 - tau_) * (ups - ssrv * L * G_) * TCO) < 1e-12        # psi = 1: tax-free threshold
-thr_own = [3.3 * G_ for G_ in [0.05, 0.15]]
-thr_own0 = [(0.18 * 0.6 + 3.3 * G_) / 0.82 for G_ in [0.05, 0.15]]
-print(f"     owning pays on the cash ceiling iff markup > 3.3 G at psi = 1: {100 * thr_own[0]:.1f}% at G = 5%, "
-      f"{100 * thr_own[1]:.1f}% at G = 15%; at psi = 0 (tau 0.18): {100 * thr_own0[0]:.1f}% and {100 * thr_own0[1]:.1f}%")
-check("20k Remark rem:owncompute (FT-3): with one deduction rate for growth and replacement servers, owning raises the "
-      "cash ceiling iff (1-tau) ups > (1-psi) tau s_srv + (1-psi tau) s_srv L_srv G (500 draws); at psi = 1 iff "
-      "ups > 3.3 G, thresholds 16.5% and 49.5%; at psi = 0, 33% and 74%",
-      ok and round(100 * thr_own[0], 1) == 16.5 and round(100 * thr_own[1], 1) == 49.5
-      and round(100 * thr_own0[0]) == 33 and round(100 * thr_own0[1]) == 74 and abs(0.6 * 5.5 - 3.3) < 1e-12)
-check("20k2 [text] the thresholds of Remark rem:owncompute printed in Section sec:horizons-ceiling (macros "
-      "OwnMarkupFive, OwnMarkupFifteen) are those at psi = 1", printed('OwnMarkupFive', thr_own[0])
-      and printed('OwnMarkupFifteen', thr_own[1]))
+    kc = kap * TCO
+    own = (1 - tau_) * (1 - (1 - s_own) * TCO) - (1 - psi_ * tau_) * (s_own * TCO) - (1 - psi_ * tau_) * kc * G_
+    ok &= abs((own - api) - ((1 - tau_) * ups * TCO - (1 - psi_) * tau_ * s_own * TCO
+                             - (1 - psi_ * tau_) * kap * TCO * G_)) < 1e-12
+    own1 = (1 - tau_) * (1 - (1 - s_own) * TCO) - (1 - tau_) * (s_own * TCO) - (1 - tau_) * kc * G_
+    ok &= abs((own1 - api) - (1 - tau_) * (ups - kap * G_) * TCO) < 1e-12        # psi = 1: tax-free threshold
+    thr0 = (tau_ * s_own + kap * G_) / (1 - tau_)                                  # psi = 0: zero of own - buy
+    own0 = (1 - tau_) * (1 - (1 - s_own) * TCO) - s_own * TCO - kc * G_
+    ok &= abs(own0 - (1 - tau_) * (1 - (1 + thr0) * TCO)) < 1e-12
+# Epoch AI's cost tables, read from the single transcription in code/paper1_macros.py (dict EPOCH_DC; CSVs fetched
+# 5 Nov 2026) and recomputed here independently: lives 5 years for IT equipment (servers, network), 14 for the facility
+# and utility works, land never replaced
+import ast as _ast20k
+_src20k = open(_osh.path.join(_ROOT, 'code', 'paper1_macros.py')).read()
+_m20k = _reh.search(r'^EPOCH_DC = (\{.*?\n\})', _src20k, _reh.S | _reh.M)
+ED = _ast20k.literal_eval(_m20k.group(1)) if _m20k else None
+
+
+def _own20k(L_it):
+    U_ = ED['upfront']
+    rep = U_['servers'] / L_it + U_['network'] / L_it + (U_['facility'] + U_['utility_works']) / ED['life_facility']
+    T_ = ED['opex'] + rep
+    return dict(T=T_, ksrv=U_['servers'] / T_, ssrv=U_['servers'] / L_it / T_, kall=sum(U_.values()) / T_)
+
+
+ok_src = ED is not None and ED['fetched'] == '2026-11-05' and ED['life_it'] == 5 and ED['life_facility'] == 14 \
+    and ED['upfront']['servers'] == 21188 and ED['upfront']['facility'] == 11433 and ED['upfront']['network'] == 4925 \
+    and ED['annualized_capex']['servers'] == 5021 and ED['annualized_capex']['facility'] == 1387 \
+    and ED['annualized_capex']['network'] == 1167 and ED['opex'] == 907
+O5, O55 = (_own20k(5.0), _own20k(5.5)) if ED else ({}, {})
+thr_own = [O5['ksrv'] * G_ for G_ in [0.05, 0.15]] if ED else [0, 0]
+thr_all = [O5['kall'] * G_ for G_ in [0.05, 0.15]] if ED else [0, 0]
+thr_own0 = [(0.18 * O5['ssrv'] + O5['ksrv'] * G_) / 0.82 for G_ in [0.05, 0.15]] if ED else [0, 0]
+thr_meta = [O55['ksrv'] * G_ for G_ in [0.05, 0.15]] + [O55['kall'] * G_ for G_ in [0.05, 0.15]] if ED else [0] * 4
+print(f"     cash basis (Epoch AI tables): TCO {O5.get('T', 0):,.0f} m a year; servers only kappa = {O5.get('ksrv', 0):.3f} "
+      f"(s_srv {O5.get('ssrv', 0):.3f}), whole data center {O5.get('kall', 0):.3f}; bars at psi = 1: "
+      f"{100 * thr_own[0]:.1f}% / {100 * thr_own[1]:.1f}% (servers), {100 * thr_all[0]:.1f}% / {100 * thr_all[1]:.1f}% (whole); "
+      f"psi = 0 servers {100 * thr_own0[0]:.1f}% / {100 * thr_own0[1]:.1f}%; 5.5-year IT life "
+      + ' / '.join(f'{100 * x:.1f}%' for x in thr_meta))
+check("20k Remark rem:owncompute (FT-3; cash basis, re-review F03): with one deduction rate for growth and replacement, "
+      "owning raises the cash ceiling iff (1-tau) ups > (1-psi) tau s + (1-psi tau) kappa G (500 draws; at psi = 1 iff "
+      "ups > kappa G, at psi = 0 iff ups > (tau s + kappa G)/(1 - tau)); kappa and s derived from Epoch AI's tables as "
+      "transcribed: servers only kappa = 3.05, bars about 15% and 46%; whole data center kappa = 5.44, about 27% and 82%; "
+      "5.5-year IT life 16%/49% and 29%/88% (the verification log's values)",
+      ok and ok_src and abs(O5['ksrv'] - O5['ssrv'] * 5.0) < 1e-12 and 3.0 < O5['ksrv'] < 3.1 and 5.4 < O5['kall'] < 5.5
+      and round(100 * thr_own[0]) == 15 and round(100 * thr_own[1]) == 46
+      and round(100 * thr_all[0]) == 27 and round(100 * thr_all[1]) == 82
+      and [round(100 * x) for x in thr_meta] == [16, 49, 29, 88])
+check("20k2 [text] the thresholds of Remark rem:owncompute and Section sec:horizons-ceiling (macros OwnMarkupFive, "
+      "OwnMarkupFifteen, OwnMarkupFiveAll, OwnMarkupFifteenAll, OwnMarkupFiveNone, OwnMarkupFifteenNone, the 5.5-year "
+      "sensitivities and OwnKapSrv, OwnKapAll) are those of the cash basis computed here",
+      printed('OwnMarkupFive', thr_own[0]) and printed('OwnMarkupFifteen', thr_own[1])
+      and printed('OwnMarkupFiveAll', thr_all[0]) and printed('OwnMarkupFifteenAll', thr_all[1])
+      and printed('OwnMarkupFiveNone', thr_own0[0]) and printed('OwnMarkupFifteenNone', thr_own0[1])
+      and printed('OwnMarkupFiveMeta', thr_meta[0]) and printed('OwnMarkupFifteenMeta', thr_meta[1])
+      and printed('OwnMarkupFiveAllMeta', thr_meta[2]) and printed('OwnMarkupFifteenAllMeta', thr_meta[3])
+      and printed('OwnKapSrv', O5['ksrv'], 2, pct=False) and printed('OwnKapAll', O5['kall'], 2, pct=False)
+      and printed('OwnSrvShare', O5['ssrv']))
+check("20k3 [text] Remark rem:owncompute no longer states the factor 3.3, the 60% share as replacement cash or the old "
+      "bars 16.5%/49.5% and 33%/74%, and Section sec:horizons-ceiling no longer types a factor",
+      all(t_ not in open(_osh.path.join(_ROOT, 'sections', f_)).read() for f_ in ('appendix_proofs.tex', 'horizons.tex', 'supp_proofs.tex')
+          for t_ in ('3.3 times', 's_{\\rm srv}L_{\\rm srv}=3.3', '16.5\\%', '49.5\\%', '0.6\\times5.5')))
 import json as _json
 import os as _os
 _cal = _os.path.join(_os.path.dirname(_os.path.dirname(_os.path.abspath(__file__))), 'notes', 'calibration_results.json')
@@ -3073,6 +3200,110 @@ check("28s Section sec:horizons-ranges (R1-13(b)): read as one firm's path from 
       "horizon rows (k = 0) need a starting share of at most about 1% of the market at sbar = 0.5 by the score budget, "
       "and below 0.5% by share accounting, so the rows are cross-sections of possibly different firms "
       "(notes/calibration_results.json)", ok, det28s)
+
+# ----------------------------------------------------------------------------------------------
+header("29. Round 3: outside reviews of v3 (notes/reviews/paper1_v3/author_reviews/*/issue_log.md)")
+# ----------------------------------------------------------------------------------------------
+_J29 = _json.load(open(_cal)) if _os.path.exists(_cal) else {}
+_R3 = _J29.get('r3', {})
+# 29a/29b GPT-M1: the frontier-slope multiplier through the sample's growth distribution, recomputed here by solving
+# for ell (brentq) instead of the closed form of code/calibrate_horizons.py, on the E1 firm-years of each basis
+import csv as _csv29
+from scipy.optimize import brentq as _brentq29
+_root29 = _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__)))
+_g29 = {'op': [], 'cash': []}
+with open(_os.path.join(_root29, 'data', 'panel_v3.csv')) as _fh:
+    for _row in _csv29.DictReader(_fh):
+        for _b, _c in (('op', 'm_op'), ('cash', 'm_fcf_sbc')):
+            if _row['g'] not in ('', 'nan') and _row[_c] not in ('', 'nan'):
+                _g29[_b].append(float(_row['g']))
+_g29 = {b: np.array(v) for b, v in _g29.items()}
+_grid29 = np.round(np.arange(0, 0.6001, 0.05), 2)
+
+
+def _cone_slope29(gv, ell, beta):
+    m = 0.5 - (np.maximum(gv, 0) / ell) ** beta
+    return float(np.polyfit(_grid29, [np.quantile(m[gv >= g0], 0.90) for g0 in _grid29], 1)[0])
+
+
+_fs29 = _json.load(open(_os.path.join(_root29, 'notes', 'frontier_slope_v3.json')))['central']
+_ok29, _det29, _st29 = bool(_R3), [], {'op': [], 'cash': []}
+for _b in ('op', 'cash'):
+    _bb = abs(_fs29[_b]['E1']['est'])
+    for _al in (0.25, 0.30, 0.35, 0.45):
+        _be = 1 / _al
+        _ell = _brentq29(lambda l_: _cone_slope29(_g29[_b], l_, _be) + _bb, 0.05, 20.0, xtol=1e-13)
+        _st = _be * 0.6 ** (_be - 1) / _ell ** _be
+        _rec = _R3.get('ell_psi_cone', {}).get('by_basis', {}).get(_b, {}).get('by_alpha', {}).get(f'{_al:.2f}', {})
+        _ok29 &= bool(_rec) and abs(_rec['steepest'] - _st) < 1e-7 and abs(_rec['ell'] - _ell) < 1e-7 and _st < 1.0 \
+            and _st / _bb < (_be + 1) * (_be + 2) / 6
+        _det29.append(f"{_b} {_al:.2f}: {_st / _bb:.3f}b = {_st:.3f}")
+        _st29[_b].append((_st, _st / _bb))
+check("29a GPT-M1 Section model-industry: at the E1 growth values a common frontier m0 - (Delta/ell)^beta whose Psi_0.90 slope "
+      "on the estimator's grid equals the measured one has a steepest slope at W = 60% of 2.07b (alpha = 0.45) to 4.0b "
+      "(alpha = 0.25), below the approximation (beta+1)(beta+2)/6 and below one on both bases; brentq on ell reproduces the "
+      "closed form of calibrate_horizons.py r3.ell_psi_cone", _ok29, '; '.join(_det29))
+_w29 = {k__: TEXM.get(k__) for k__ in ('PsiMultLo', 'PsiMultHi', 'PsiSteepConeOpLo', 'PsiSteepConeOpHi', 'PsiSteepConeCashLo',
+                                       'PsiSteepConeCashHi')}
+# round 3 (3 Nov): the expected text values are derived from the independent brentq solution of 29a, not hard-coded, so
+# that a re-estimation that moves the Psi slopes moves them too (they were 0.45-0.86 / 0.33-0.64 before R2 and the
+# capitalized-software correction)
+_m29 = [m_ for b_ in _st29 for _, m_ in _st29[b_]]
+_want29 = dict(PsiMultLo=f"{min(_m29):.1f}", PsiMultHi=f"{max(_m29):.1f}",
+               PsiSteepConeOpLo=f"{min(v_ for v_, _ in _st29['op']):.2f}", PsiSteepConeOpHi=f"{max(v_ for v_, _ in _st29['op']):.2f}",
+               PsiSteepConeCashLo=f"{min(v_ for v_, _ in _st29['cash']):.2f}", PsiSteepConeCashHi=f"{max(v_ for v_, _ in _st29['cash']):.2f}")
+check("29b [text] GPT-M1 macros: the multiplier and the steepest slopes (GAAP, after SBC) printed in the text equal the "
+      "independent brentq solution of 29a", _w29 == _want29, f"text {_w29}; recomputed {_want29}")
+# 29c GPT-M2: psi_T evaluated at the growth rate is the period cash deduction per dollar of current investment on a
+# steady path (explicit vintage schedule, half-year convention), and the period-cash loss at k = 1.5, G = 30%
+_wT = lambda T: np.r_[1 / (2 * T), np.full(T - 1, 1 / T), 1 / (2 * T)]
+_fac = lambda T, x: float((_wT(T) * (1 + x) ** -np.arange(T + 1)).sum())
+_vint = lambda g, T=15, n=400: (lambda S: sum(_wT(T)[a] * 1.5 * g * S[n - a] for a in range(T + 1)) / S[n])((1 + g) ** np.arange(n + 1))
+_pc = _R3.get('psi_period_cash', {})
+_ok29c = bool(_pc) and all(abs(_pc['psi15_at_g'][f'{g:.2f}'] - _fac(15, g)) < 1e-12 for g in (0.05, 0.10, 0.15, 0.30))
+_ok29c &= abs(_vint(0.30) - 1.5 * 0.30 * _fac(15, 0.30)) < 1e-12 and abs(_fac(15, 0.10) - _J29['psi_sensitivity']['psi']['foreign_15y']) < 1e-12
+_ok29c &= all(abs(_pc['ceiling_k15_G30_loss_period_cash'][f'{t:.2f}'] - (1 - _fac(15, 0.30) * t) * 0.45) < 1e-12 for t in (0.15, 0.18, 0.21))
+_ok29c &= TEXM.get('KcapLossForCash') == '43' and TEXM.get('PsiFifteenCashThirty') == '0.25'
+check("29c GPT-M2 Remark rem:taxes: on a mature vintage history growing at g the period deduction per dollar of current "
+      "investment is psi_15 evaluated at g (0.71, 0.53, 0.42, 0.25 at 5, 10, 15, 30%), equal to the PV factor only at g = r; "
+      "[text] the period-cash loss at k = 1.5, G = 30% is 43 points (KcapLossForCash) against the PV-equivalent 40 to 41",
+      _ok29c)
+# 29d GPT-M4: exit value identities on the stored payback outputs
+_ev = _R3.get('exit_value', {})
+_ok29d = bool(_ev)
+for _pc_ in ('central', 'central_r10', 'fast', 'slow'):
+    _pb = _J29['r2']['payback'][_pc_]
+    _e = _ev.get(_pc_, {})
+    _ok29d &= abs(_e['value_at_5'] / (1 + _pb['r']) ** 5 + _pb['hold']['5']['cum_disc'] - _pb['npv_points_years']) < 1e-12
+    if _pb['npv_points_years'] > 0:
+        _ok29d &= abs(_e['breakeven_recovery'] * _e['value_at_5'] / (1 + _pb['r']) ** 5 + _pb['hold']['5']['cum_disc']) < 1e-12
+_want29d = dict(PayExitFiveCen=f"{100 * _ev['central']['value_at_5']:.0f}", PayExitBreakCen=f"{100 * _ev['central']['breakeven_recovery']:.1f}",
+                PayExitBreakCenTen=f"{100 * _ev['central_r10']['breakeven_recovery']:.1f}")
+_got29d = {k_: TEXM.get(k_) for k_ in _want29d}
+_ok29d &= _got29d == _want29d
+check("29d GPT-M4: the value at year 5 of the later flows, discounted, plus the discounted cash to year 5 is the NPV; a sale "
+      "recovering the break-even share of it leaves a five-year owner at zero; [text] the printed value at year 5 and the "
+      "break-even shares (central, and at r = 10%) equal these outputs", _ok29d, f"text {_got29d}; outputs {_want29d}")
+# 29e GPT-4: the exact expected recurrence U_w = U_{w-1} - q min(c, U_{w-1}) equals the capped bound while U >= c and then
+# decays geometrically; the 99% wave count recomputed from the rates
+_ex = _R3.get('exact_recurrence', {})
+_ok29e = bool(_ex)
+for _pc_ in ('central', 'fast'):
+    _p = _J29['pace'][_pc_]
+    _q, _rho, _Tp = _p['q'], min(_p['params']['kappa_abs'], 1e9), _p['params']['Tpar']
+    _c = _p['rho'] * _Tp if 'rho' in _p else _rho * _Tp
+    _U, _n, _geo = 1.0, 0, True
+    while 1.0 - _U < 0.99:
+        _a = min(_c, _U)
+        _Un = _U - _q * _a
+        if _U < _c:
+            _geo &= abs(_Un - (1 - _q) * _U) < 1e-15
+        _U, _n = _Un, _n + 1
+    _ok29e &= _n == _ex[_pc_]['waves_to_share'] and _geo and abs(_n * _q * _c - 1) < 2 * _q * _c
+check("29e GPT-4 Proposition prop:expected(e): with the divisible program's exact recurrence the share approaches one "
+      "geometrically once the residual is below a wave's capacity, and the 99% wave count of calibrate_horizons.py "
+      "r3.exact_recurrence is reproduced (central and fast)", _ok29e,
+      '; '.join(f"{pc}: {_ex.get(pc, {}).get('waves_to_share')} waves, {_ex.get(pc, {}).get('year_share', 0):.2f}" for pc in ('central', 'fast')))
 
 # ----------------------------------------------------------------------------------------------
 n_fail = sum(1 for _, ok in RESULTS if not ok)

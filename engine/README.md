@@ -51,7 +51,7 @@ says which tier pays most for your firm.
   evidence keys with grounding classes and O*NET task statements, a confidence tier and the distance to each switch
   threshold (spec 29); the firm's own task list (tier3_tasks) and acceptance values (tier3_policy) override the
   defaults. The lever map ranks levers by position and setup for every ownership regime (spec 28), with growth
-  spend on Paper 1's central basis, S&M above a maintenance base of 25.1 percent of revenue (finance.sm_basis =
+  spend on Paper 1's central basis, S&M above a maintenance base of 25.7 percent of revenue (finance.sm_basis =
   netted), and all S&M and no S&M as bounds stated in the report.
 - Product strategy (theory_product), accounting path (prop:acct-path), labor law, talent and jurisdiction
   (theory_labor), competition (should versus could), ICFR scope and controls (spec 25).

@@ -1,0 +1,13 @@
+{
+  "alpha": 0.3,
+  "G": 0,
+  "k": 0,
+  "m0": 0.8,
+  "support_max_growth": 0.6,
+  "spend_cap": 1,
+  "ell": 0.721826999314566,
+  "growth_cdf_power": 14.833990914027952,
+  "chi": 0.9,
+  "author_grid_step": 0.05,
+  "explanation": "ell chosen to make true frontier terminal slope magnitude 3; power chosen with Brent root solver on [10,20] to make exact cone LS slope -0.22. No empirical fit or random simulation."
+}

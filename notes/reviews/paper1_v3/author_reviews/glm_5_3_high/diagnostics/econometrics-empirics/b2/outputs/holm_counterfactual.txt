@@ -1,0 +1,33 @@
+=== (1) Holm recomputation on headline14B ===
+  normal: max |recomputed - stored| = 0  -> MATCH
+  percentile: max |recomputed - stored| = 0  -> MATCH
+  basic: max |recomputed - stored| = 0  -> MATCH
+  family members: psi_op_E1_vs_m1, psi_cash_E1_vs_m1, psi_op_E1_vs_0, psi_cash_E1_vs_0, size_cash_E1, capint_cash_E1, p95chg_op_E1, p95chg_cash_E1, T40_cash_E1, gap_E1, gap_fast_sm_E1, d_psi_op, d_size_cash, psi_op_E1_2020_25_minus_2010_19
+
+=== (2) §5.8 claim: anchor Pi_lb added to the family ===
+  normal: anchor Pi_lb Holm p = 0.006  (paper: 0.006 normal / 0.084 percentile / 0.028 basic)
+  percentile: anchor Pi_lb Holm p = 0.096  (paper: 0.006 normal / 0.084 percentile / 0.028 basic)
+  basic: anchor Pi_lb Holm p = 0.030  (paper: 0.006 normal / 0.084 percentile / 0.028 basic)
+
+=== (3) Counterfactual families: what if all §5 headline claims were members? ===
+  base unadjusted p (normal): steepening 0.00373, p95chg_op 0.005989, anchorPi_lb 0.000566, T20_GAAP 0.03705, T20_cash 0.4793
+
+  Family: published (14)
+    normal: Holm steepening = 0.037  p95chg_op = 0.054
+    percentile: Holm steepening = 0.060  p95chg_op = 0.060
+    basic: Holm steepening = 0.040  p95chg_op = 0.208
+
+  Family: +anchorPi_lb (15, paper's §5.8)
+    normal: Holm steepening = 0.037  p95chg_op = 0.054  anchorPi_lb = 0.006
+    percentile: Holm steepening = 0.066  p95chg_op = 0.066  anchorPi_lb = 0.096
+    basic: Holm steepening = 0.040  p95chg_op = 0.208  anchorPi_lb = 0.030
+
+  Family: +anchor +T20 both bases +T0_cash (18)
+    normal: Holm steepening = 0.048  p95chg_op = 0.072  anchorPi_lb = 0.008
+    percentile: Holm steepening = 0.084  p95chg_op = 0.084  anchorPi_lb = 0.132
+    basic: Holm steepening = 0.052  p95chg_op = 0.260  anchorPi_lb = 0.036
+
+  Family: + all extras (20)
+    normal: Holm steepening = 0.052  p95chg_op = 0.078  anchorPi_lb = 0.371
+    percentile: Holm steepening = 0.090  p95chg_op = 0.090  anchorPi_lb = 0.992
+    basic: Holm steepening = 0.052  p95chg_op = 0.260  anchorPi_lb = 0.052

@@ -1,0 +1,27 @@
+{
+  "status": "minimum_author_suite_complete",
+  "pinned_commit": "eb7537bee7585f2902304f62a722edea6ced8539",
+  "branch": "review-round-3",
+  "observed_head": "786228da26e12235a9d0c7aa53f2ef1fde3c07bf",
+  "head_code_equals_pinned": true,
+  "source_access": "successful_after_personal_connection",
+  "minimum_commands_passed": 4,
+  "theory_checks_passed": 202,
+  "stress_mirror_checks_passed": 87,
+  "supplement_checks_passed_complete": 27,
+  "empirical_replications": 999,
+  "bootstrap_npz_arrays_exact": 65,
+  "lean_main": "passed",
+  "lean_checks": "passed",
+  "axioms": [
+    "propext",
+    "Classical.choice",
+    "Quot.sound"
+  ],
+  "raw_reextraction": "not_run",
+  "full_specification_grid": "not_run",
+  "fresh_million_draw_joint_stress": "not_run",
+  "remote_writes": false,
+  "part_b_frozen_sha256": "85de8d0a40cb04f00202c73bf11b5e83f9b692618bfda30d1c328e2cf3c3e327",
+  "initial_access_failure_record": "replication_status_initial.json"
+}

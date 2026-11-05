@@ -20,7 +20,7 @@ import pandas as pd
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from exclusions import drop_excluded, is_excluded  # noqa: E402  registrants excluded at the author's request
 
-BASE = '/home/claude/paper'
+BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))   # repository root
 raw = json.load(open(f'{BASE}/data/companyconcept_revenue.json'))
 raw = {k: v for k, v in raw.items() if not is_excluded(k.split('|')[0])}
 by_firm = defaultdict(dict)

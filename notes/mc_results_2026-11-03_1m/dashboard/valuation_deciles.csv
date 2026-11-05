@@ -1,0 +1,21 @@
+id,basis,decile,score_lo,score_hi,score_median,multiple_median,multiple_p25,multiple_p75,n
+gaap|1,GAAP operating margin,1,-132.1,-17.1,-34.8,2.16,0.97,4.85,128
+gaap|2,GAAP operating margin,2,-16.9,-2.3,-8.5,3.19,1.60,6.17,127
+gaap|3,GAAP operating margin,3,-2.3,6.7,2.5,3.36,1.90,6.74,127
+gaap|4,GAAP operating margin,4,6.7,12.5,9.7,4.00,2.25,6.85,127
+gaap|5,GAAP operating margin,5,12.5,17.9,15.4,4.26,2.33,8.00,127
+gaap|6,GAAP operating margin,6,18.0,24.2,21.3,3.83,2.14,7.92,127
+gaap|7,GAAP operating margin,7,24.2,28.6,26.2,5.42,3.26,9.26,127
+gaap|8,GAAP operating margin,8,28.6,34.8,31.3,6.37,3.18,9.84,127
+gaap|9,GAAP operating margin,9,34.9,43.6,38.2,6.46,3.58,9.99,127
+gaap|10,GAAP operating margin,10,43.7,104.6,52.9,8.94,4.28,13.32,128
+cash|1,Free cash flow after SBC,1,-78.6,-12.1,-25.2,2.26,1.01,4.83,125
+cash|2,Free cash flow after SBC,2,-11.9,1.9,-3.3,2.88,1.38,5.28,125
+cash|3,Free cash flow after SBC,3,2.0,10.1,6.7,2.84,1.75,5.13,124
+cash|4,Free cash flow after SBC,4,10.2,15.7,13.2,3.71,2.00,6.78,125
+cash|5,Free cash flow after SBC,5,15.7,20.4,18.0,4.32,2.42,7.71,125
+cash|6,Free cash flow after SBC,6,20.4,25.1,22.7,4.96,2.75,7.98,124
+cash|7,Free cash flow after SBC,7,25.2,30.4,27.8,4.56,3.16,8.74,125
+cash|8,Free cash flow after SBC,8,30.4,35.9,33.0,6.05,3.46,10.24,124
+cash|9,Free cash flow after SBC,9,35.9,44.2,39.5,7.06,4.00,10.64,125
+cash|10,Free cash flow after SBC,10,44.3,112.1,53.5,8.21,4.28,14.30,125

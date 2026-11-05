@@ -1,0 +1,66 @@
+⚠ [2829/2840] Built RuleOfX.Imports (7.3s)
+warning: RuleOfX/Imports.lean: imports `Mathlib.Analysis.SpecialFunctions.Pow.Deriv` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: RuleOfX/Imports.lean: imports `Mathlib.Analysis.Convex.Deriv` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: RuleOfX/Imports.lean: imports `Mathlib.Analysis.SpecialFunctions.Log.Deriv` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: RuleOfX/Imports.lean: imports `Mathlib.Order.Filter.AtTopBot.Basic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: RuleOfX/Imports.lean: imports `Mathlib.Analysis.Convex.SpecificFunctions.Basic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: RuleOfX/Imports.lean: imports `Mathlib.Analysis.Convex.Slope` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: RuleOfX/Imports.lean: imports `Mathlib.Analysis.Convex.Function` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: RuleOfX/Imports.lean: imports `Mathlib.Analysis.SpecialFunctions.Pow.Asymptotics` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: RuleOfX/Imports.lean: imports `Mathlib.Analysis.Calculus.Deriv.MeanValue` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: RuleOfX/Imports.lean: imports `Mathlib.Analysis.Calculus.LocalExtr.Basic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: RuleOfX/Imports.lean: imports `Mathlib.Analysis.Calculus.ContDiff.Deriv` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: RuleOfX/Imports.lean: imports `Mathlib.Topology.Algebra.Order.Field` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+✔ [2830/2840] Built RuleOfX.Defs (3.4s)
+✔ [2831/2840] Built RuleOfX.Budget (3.7s)
+✔ [2832/2840] Built RuleOfX.Frontier (3.7s)
+✔ [2833/2840] Built RuleOfX.Score (3.2s)
+✔ [2834/2840] Built RuleOfX.Saturation (4.3s)
+✔ [2835/2840] Built RuleOfX.Envelope (3.5s)
+⚠ [2836/2840] Built RuleOfX.BudgetCont (4.3s)
+warning: RuleOfX/BudgetCont.lean: imports `Mathlib.MeasureTheory.Integral.IntervalIntegral.FundThmCalculus` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: RuleOfX/BudgetCont.lean: imports `Mathlib.MeasureTheory.Integral.IntervalIntegral.Basic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: RuleOfX/BudgetCont.lean: imports `Mathlib.MeasureTheory.Integral.IntervalIntegral.AbsolutelyContinuousFun` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: RuleOfX/BudgetCont.lean: imports `Mathlib.MeasureTheory.Function.AbsolutelyContinuous` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: RuleOfX/BudgetCont.lean: imports `Mathlib.MeasureTheory.Function.SpecialFunctions.Basic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: RuleOfX/BudgetCont.lean: imports `Mathlib.MeasureTheory.Integral.Bochner.Basic` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+warning: RuleOfX/BudgetCont.lean: imports `Mathlib.Analysis.Calculus.MeanValue` from package `mathlib`, which is designed for use with the module system; consider adding `module` to the start of this file
+✔ [2837/2840] Built RuleOfX.Capital (3.7s)
+ℹ [2838/2840] Built RuleOfX.Axioms (2.1s)
+info: RuleOfX/Axioms.lean:18:0: 'RuleOfX.one_lt_β' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: RuleOfX/Axioms.lean:19:0: 'RuleOfX.Cα_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: RuleOfX/Axioms.lean:20:0: 'RuleOfX.Cα_lt_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: RuleOfX/Axioms.lean:21:0: 'RuleOfX.prop_frontier_a' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: RuleOfX/Axioms.lean:22:0: 'RuleOfX.prop_frontier_b' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: RuleOfX/Axioms.lean:23:0: 'RuleOfX.prop_frontier_c' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: RuleOfX/Axioms.lean:24:0: 'RuleOfX.prop_frontier_d' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: RuleOfX/Axioms.lean:25:0: 'RuleOfX.prop_score_a' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: RuleOfX/Axioms.lean:26:0: 'RuleOfX.prop_score_b' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: RuleOfX/Axioms.lean:27:0: 'RuleOfX.prop_score_c' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: RuleOfX/Axioms.lean:28:0: 'RuleOfX.prop_score_d' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: RuleOfX/Axioms.lean:29:0: 'RuleOfX.prop_score_d_uncapped' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: RuleOfX/Axioms.lean:30:0: 'RuleOfX.prop_score_e' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: RuleOfX/Axioms.lean:31:0: 'RuleOfX.prop_saturation_a' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: RuleOfX/Axioms.lean:32:0: 'RuleOfX.prop_saturation_b' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: RuleOfX/Axioms.lean:33:0: 'RuleOfX.prop_saturation_c' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: RuleOfX/Axioms.lean:34:0: 'RuleOfX.prop_saturation_d' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: RuleOfX/Axioms.lean:35:0: 'RuleOfX.prop_envelope' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: RuleOfX/Axioms.lean:36:0: 'RuleOfX.cor_capital' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: RuleOfX/Axioms.lean:37:0: 'RuleOfX.cor_priorities_i' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: RuleOfX/Axioms.lean:38:0: 'RuleOfX.cor_priorities_ii' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: RuleOfX/Axioms.lean:39:0: 'RuleOfX.cor_priorities_iii' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: RuleOfX/Axioms.lean:40:0: 'RuleOfX.cor_priorities_v' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: RuleOfX/Axioms.lean:41:0: 'RuleOfX.prop_budget_b' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: RuleOfX/Axioms.lean:42:0: 'RuleOfX.prop_budget_c_discrete' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: RuleOfX/Axioms.lean:43:0: 'RuleOfX.cor_transient_a' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: RuleOfX/Axioms.lean:44:0: 'RuleOfX.prop_budget_a' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: RuleOfX/Axioms.lean:45:0: 'RuleOfX.prop_budget_c_continuous' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: RuleOfX/Axioms.lean:46:0: 'RuleOfX.cor_transient_b' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: RuleOfX/Axioms.lean:47:0: 'RuleOfX.cor_transient_b_optimum' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: RuleOfX/Axioms.lean:48:0: 'RuleOfX.induced_isPath' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: RuleOfX/Axioms.lean:49:0: 'RuleOfX.prop_budget_a_induced' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: RuleOfX/Axioms.lean:50:0: 'RuleOfX.prop_budget_c_continuous_induced' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: RuleOfX/Axioms.lean:51:0: 'RuleOfX.cor_transient_b_induced' depends on axioms: [propext, Classical.choice, Quot.sound]
+info: RuleOfX/Axioms.lean:52:0: 'RuleOfX.cor_transient_b_optimum_induced' depends on axioms: [propext, Classical.choice, Quot.sound]
+✔ [2839/2840] Built RuleOfX (1.9s)
+Build completed successfully (2840 jobs).

@@ -1,0 +1,30 @@
+test_id,claim_id,claim,test,conditions,holds,central,box_min,box_max,unit,share_holding
+C1.cond,C1,Rule of 100 needs market growth above G*,G* > 30% (ceiling below 100 for market growth up to 30%),compute at 6%,Fails somewhere,32.54,23.95,45.13,%,0.9047
+C1.full,C1,Rule of 100 needs market growth above G*,G* > 30% with the compute share on its range,all inputs vary,Fails somewhere,32.54,19.21,59.16,%,0.8763
+C1.fav,C1,Rule of 100 needs market growth above G*,"G* at least the favorable case's 22.3%, the lowest threshold the paper states at 2025 prices",all inputs vary,Fails somewhere,32.54,19.21,59.16,%,1.0
+C1.iqr,C1,Rule of 100 needs market growth above G*,G* above the upper quartile of 2023-25 growth (21.4%),all inputs vary,Fails somewhere,32.54,19.21,59.16,%,1.0
+C2.full,C2,G* stays above 30% at every horizon,"min over 2028, 2031, 2036 of G* > 30%",all inputs vary,Fails somewhere,31.69,19.21,53.84,%,0.6938
+C3.full.net,C3,Pass-through raises every threshold,G*(phi) - G*(0) >= 0 at 2025 prices and every horizon,all inputs vary,Holds everywhere,0.0,0.0,9.45,points,1.0
+P1.full.net,P1,No Rule of 100 on the central path,"max(R_2028, R_2031, R_2036) < 100",all inputs vary,Holds everywhere,58.65,27.43,95.31,points,1.0
+P2a.full.net,P2,Completed program brings the score only to target plus growth,m0(2036) <= target m0F(2036),all inputs vary,Holds everywhere,22.38,1.31,53.9,points,1.0
+P2b.full.net,P2,Completed program brings the score only to target plus growth,target + (1-k)G in 2036 < 100,all inputs vary,Fails somewhere,81.03,41.49,102.22,points,1.0
+P2b.A.net,P2,Completed program brings the score only to target plus growth,target + G in 2036 < 100,"fixed prices, k = 0",Fails somewhere,81.03,51.6,102.22,points,1.0
+P3.full,P3,Less than half the program realized by 2036,realized share bbar E(2036) < 0.5,all inputs vary,Fails somewhere,40.66,4.88,85.0,%,0.7324
+P3b.full,P3b,Program still running in 2036,expected completion date after 2036,all inputs vary,Fails somewhere,2042.32,2031.51,2087.4,years,0.8783
+P4.full.net,P4,The central path rises 2028 to 2036,R_2028 <= R_2031 <= R_2036,all inputs vary,Fails somewhere,4.73,-5.21,21.39,points,1.0
+P5.full.net,P5,Pass-through lowers the path,R_h(phi = 0) - R_h(phi) >= 0 at every horizon,all inputs vary,Holds everywhere,0.0,-0.0,6.77,points,1.0
+P6.full,P6,Netted score sits between the two bounds,R(no S&M) <= R(netted) <= R(all S&M) at every horizon,all inputs vary,Holds everywhere,3.84,0.3,6.87,points,1.0
+B1.full.net,B1,Gains pass costs before the program pays back,payback - flow crossing > 0,all inputs vary,Holds everywhere,3.48,0.52,16.07,years,1.0
+B1.B.net,B1,Gains pass costs before the program pays back,payback - flow crossing > 0,central execution,Holds everywhere,3.48,0.76,5.31,years,1.0
+B2.full.net,B2,Payback takes more than five years,undiscounted payback > 5 years,all inputs vary,Fails somewhere,7.53,3.4,29.17,years,1.0
+B2.B.net,B2,Payback takes more than five years,undiscounted payback > 5 years,central execution,Fails somewhere,7.53,4.81,9.36,years,1.0
+B3.full.net,B3,Cumulative effect negative at 3 and 5 years,"max(cum3, cum5, NPV3, NPV5) < 0",all inputs vary,Fails somewhere,-7.8,-64.11,11.66,point-years,1.0
+B3.B.net,B3,Cumulative effect negative at 3 and 5 years,"max(cum3, cum5, NPV3, NPV5) < 0",central execution,Fails somewhere,-7.8,-14.08,0.09,point-years,1.0
+B4.full.net,B4,Program worth more than its transition costs,PV(gains) / PV(dip) > 1,all inputs vary,Fails somewhere,3.87,0.5,85.25,x,0.9994
+B4.B.net,B4,Program worth more than its transition costs,PV(gains) / PV(dip) > 1,central execution,Holds everywhere,3.87,2.57,9.79,x,1.0
+R1.full,R1,A Rule of 1000 is not a steady state,required demand pull / today's best > 1,all inputs vary,Holds everywhere,13.44,9.01,20.04,x,1.0
+L1.full.net,L1,Growth engine beats the G&A cut at 1 of 6 positions,count of positions with sigma > a_GA equals the stated count,all inputs vary,Fails somewhere,1.0,0.0,2.0,positions,0.7041
+L2.full.net,L2,Engineering ranks above both levers at 6 of 6,"count of positions with R&D > max(sigma, a_GA) = 6",all inputs vary,Holds everywhere,6.0,6.0,6.0,positions,1.0
+L3.full.net,L3,Engineering is the first lever at 6 of 6,count of positions where R&D ranks first = 6,all inputs vary,Holds everywhere,6.0,6.0,6.0,positions,1.0
+A1.One,A1,One AI provider alone never passes the control standard,min over all-AI designs of P(miss in year) > threshold,remote threshold 1%,Holds everywhere,,11.33,45.26,% failure probability,1.0
+A1.Five,A1,One AI provider alone never passes the control standard,min over all-AI designs of P(miss in year) > threshold,remote threshold 5%,Holds everywhere,,11.33,45.26,% failure probability,1.0

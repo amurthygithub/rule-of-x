@@ -1,0 +1,18 @@
+[
+  {
+    "file": "paper1",
+    "input_sha256": "9e986ecac307d445b0f9a636788100d8fc680f3a5508b609b430ab457788c55b",
+    "pinned_sha256": "9e986ecac307d445b0f9a636788100d8fc680f3a5508b609b430ab457788c55b",
+    "rebuilt_sha256": "e7d4b4fb93044cd68fb30a632a9dddbfadd9b725891a4a21501db4eeebdfce11",
+    "pinned_equals_input": true,
+    "rebuilt_text_equals_input": true
+  },
+  {
+    "file": "supplement",
+    "input_sha256": "1da736731466b00d583ee0055480bae7ad809c114edb25ad232a6d8078f2b81f",
+    "pinned_sha256": "1da736731466b00d583ee0055480bae7ad809c114edb25ad232a6d8078f2b81f",
+    "rebuilt_sha256": "fdb961e4053ff00b94cbaba0217a9e66b66f4885fe590647cffd5e7879fda6e7",
+    "pinned_equals_input": true,
+    "rebuilt_text_equals_input": true
+  }
+]

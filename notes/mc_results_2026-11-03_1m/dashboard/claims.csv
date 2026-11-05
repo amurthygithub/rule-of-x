@@ -1,0 +1,19 @@
+test_id,claim,conditions,result,central,lowest,highest,share_holding,second_seed_agrees,meaning
+C1.full,A cash score of 100 needs market growth above 30% a year,All inputs move,Fails somewhere,32.5%,19.6%,94.5%,0.790,yes,"Usually true, not always: very cheap compute or favorable costs together can bring the threshold below 30%."
+C1.cond,"The same, with compute at 6% of revenue","Compute 6%, fixed prices, no capital",Fails somewhere,32.5%,24.0%,45.1%,0.902,yes,"Below 30% only when tax, the accountability floor and AI failure costs are all near their favorable ends."
+C2.full,"The threshold stays above 30% in 2028, 2031 and 2036",All inputs move,Fails somewhere,31.7%,19.2%,53.9%,0.695,yes,As for the first row: it depends on the compute path.
+C3.full.net,Passing savings to customers raises every threshold,All inputs move,Fails somewhere,0.0,-14.5,9.8,0.965,yes,Not where compute costs nearly as much as the labor it replaces; there full automation costs more than today.
+P1.full.net,No Rule of 100 on the central path by 2036,All inputs move,Holds everywhere,57.8,27.6,95.4,1.000,yes,Holds in every world tested: the best score found is below 100.
+P2b.full.net,Even a completed program stays below 100 in 2036,All inputs move,Fails somewhere,81.2,41.6,102.4,1.000,yes,Crosses 100 only at the top of market growth with the most favorable costs.
+P3.full,Less than half the program realized by 2036,All inputs move,Fails somewhere,40.7%,4.9%,85.0%,0.739,yes,True at the central pace; a firm that changes faster can realize much more.
+P3b.full,The program is still running in 2036,All inputs move,Fails somewhere,2042.3,2031.5,2087.4,0.878,yes,"Fast execution can finish before 2036, as the paper's fast case does."
+P4.full.net,The central path rises from 2028 to 2036,All inputs move,Fails somewhere,5.0,-5.2,21.4,1.000,yes,Can dip between horizons if frontier-only work grows over time.
+P6.full,The central path lies between its two spend-basis bounds,All inputs move,Holds everywhere,3.0,0.3,6.9,1.000,yes,Holds in every world tested.
+B1.full.net,Yearly gains overtake transition costs before payback,All inputs move,Holds everywhere,3.48,0.64,15.95,1.000,yes,Holds in every world tested.
+B2.full.net,No payback within five years,All inputs move,Fails somewhere,7.53,3.51,29.07,1.000,yes,Fast execution or favorable compute paths can pay back sooner.
+B2.B.net,"The same, at central execution","Central execution, fixed prices, no capital",Fails somewhere,7.53,4.99,9.29,1.000,yes,Below five years only on compute paths that start high and fall steeply.
+B4.full.net,Lifetime gains are worth more than the transition costs,All inputs move,Fails somewhere,3.85,0.50,79.44,0.999,yes,"Slow execution can leave the gains below the costs, as the paper's slow case does."
+B4.B.net,"The same, at central execution","Central execution, fixed prices, no capital",Holds everywhere,3.85,2.59,9.62,1.000,yes,Holds in every world tested.
+R1.full,A Rule of 1000 is not a steady state,All inputs move,Holds everywhere,13.82,9.23,20.70,1.000,yes,Holds in every world tested.
+L1.full.net,The growth engine beats the back-office cut at one of six positions,Maintenance level drawn,Fails somewhere,1,0,1,0.576,yes,"Zero or one position, depending on the maintenance level of selling spend; the back office leads elsewhere."
+A1.Five,No AI-only control design on one provider passes,"Accountability sub-box, 5% threshold",Holds everywhere,11.3%,11.3%,45.3%,1.000,not compared,Holds in every world tested: shared failures of one model never fall far enough.

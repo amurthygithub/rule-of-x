@@ -26,6 +26,14 @@ def test_R_max_and_threshold_consistent():
     assert F.R_max(0.21, 0.2, 0.025, 0.03, 1.0, 0.0, G) == pytest.approx(1.0)
 
 
+def test_owned_compute_share_keeps_explicit_zero():
+    from autofrontier.economics import owned_compute_share
+    assert owned_compute_share({"owned_compute_share": 0.0}, 0.4) == 0.0      # explicit 0 is kept, not the default
+    assert owned_compute_share({"owned_compute_share": 0.25}, 0.4) == 0.25
+    assert owned_compute_share({}, 0.4) == 0.4                                 # missing: the configured default
+    assert owned_compute_share({"owned_compute_share": None}, 0.4) == 0.4
+
+
 # ---------------- review, detection rate, failure taxonomy ----------------
 def test_review_share_detection_reduces_to_core_at_d1():
     e, L, wtR = 0.072, 60.0, 4.32

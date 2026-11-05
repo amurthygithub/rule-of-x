@@ -1,0 +1,182 @@
+
+==============================================================================
+A. The F-1 extract: tables parsed, text figures extracted, arithmetic recomputed
+==============================================================================
+[PASS] A0 extract tables parsed: income statement (5 periods, 12 lines), cash flows (3 lines), balance sheet (4 items)
+[PASS] A1 extract income statement adds up in every period (gross profit, operating income, pre-tax, net; rounding of $2 thousand in the F-1's figures)
+[PASS] A2 extract balance sheet 31 Mar 2026: assets = liabilities + equity
+  -> growth 2024 0.7337, 2025 0.9468, Q1 2026 YoY 1.3222; log 2025 0.6662
+  -> op margin 2025 0.2127; interest 0.1092 (Q1 2026 0.1550); after interest 0.1035; OCF margin 0.2224; investing outflow 1.4175
+  -> Rule-of-40 2025: GAAP 115.9, after interest 105.0, OCF 116.9, charging all net investing -24.8; 2024 92.3 / 87.5; Q1 2026 152.2 / 136.7
+[PASS] A3 brief's 2025 numbers recomputed from the table: growth 94.7%, GAAP operating margin 21.3%, score 116, after interest 105, operating-cash-flow margin 22.2%, interest 10.9% (2025) and 15.5% (Q1 2026) of revenue
+[PASS] A4 the extract's stated operating-cash-flow growth (246%, 42%, 254%; CAGR 122%) matches its own table  ::  [246.4, 41.8, 254.4, 121.6]
+  -> TTM to Mar 2026: revenue 1648779k (IPOScoop 1.65B), net income 139466k (IPOScoop: loss 84.5M); KuCoin 13.1B vs 1.306B
+[PASS] A5 caught secondary errors: IPOScoop TTM revenue matches (1.65B) but its TTM net loss does not (table gives +139.5M); KuCoin's 2025 revenue is about ten times the F-1's
+[PASS] A6 text figures extracted by pattern (hurdles, debt policy, covenant, team, NRR, tenure, AI, IPO)
+[PASS] A7 revenue per Spooner is consistent with the team count: Q1 2026 revenue / $0.97M = 620 vs 621 at quarter end; implied average Spooners 346 (2023) and 508 (2025); total FTE about 2,300; Talent team 8.9% of Spooners (stated 9%)  ::  619.9, 345.6, 508.3, 2300.0
+  -> Spooners 621, technical 261; Remini-sized transformations at once <= 20.7; hire rate 0.0358%; liabilities/assets 0.848; capital deployed Q1 2026 / 2023 10.4
+[PASS] A8 capital deployed in acquisitions (F-1 measure) exceeds the net investing outflow in Q1 2026 ($2.01B vs $1.65B) and in 2023 ($194M vs $170M): the two measure different things
+[PASS] A9 424B4 non-GAAP reconciliation: its operating income equals the F-1 table in every period, the add-backs sum to Adjusted Operating Income (rounding of $2 thousand), and the stated adjusted margins match
+  -> reorganization share of revenue 2023: 0.0349, 2024: 0.0772, 2025: 0.0602, Q1 2025: 0.1723, Q1 2026: 0.1260; transaction 2025 0.0654; amortization 2025 0.1152; score on the adjusted margin 2025 141.6
+[PASS] A10 the coordinator's figures: reorganization 6.0% of revenue in 2025 and 12.6% in Q1 2026, transaction 6.5% in 2025, a score on the adjusted margin of about 142 in 2025
+  -> pro forma 2025: revenue 2608496k (1.997 x actual), operating margin 0.1950, interest 0.1411; price / revenue AOL 2.296, Eventbrite 1.730, Vimeo 3.230 (annualized from 327 days)
+[PASS] A11 424B4 Article 11 pro forma for 2025: components add to the combined revenue and operating income (rounding of $1 thousand); purchase price over annual revenue AOL 2.30, Eventbrite 1.73, Vimeo about 3.2 (327 days annualized)
+  -> Q2 2026: growth 1.2634, operating margin 0.3412, adjusted 0.5413; reported score 160.5, organic score 37.1; reorganization 0.0724 of revenue; net debt 4.087B vs 4.09B; EBITDA implied by the 2.4x ratio 1.70B
+[PASS] A12 6-K Q2 2026: growth 126%, GAAP operating margin 34%, reported score about 160 and organic score about 37 (the company's 3% organic growth); net debt = long-term debt - cash ($4.09B)
+  -> notes $1.25B at 9.625% and EUR500M at 8.625% due 2032; Tractive EV 759M (Wikipedia 900M); new shares 34,398,640 -> gross $0.998B vs net proceeds $1.1B; Berkshire $930M for 4% -> implied equity $23.2B
+  -> over-allotment 5,244,026 company shares: gross with full exercise $1150M; estimated net $933M / $1079M; 6-K net $1100M leaves $21M unexplained
+[PASS] A13 424B4 offering terms match the secondary IPO figures used (57.97M shares at $29.00; 34.4M new); the 6-K's net proceeds ($1.10B) exceed the gross value of the new shares ($0.998B) but fit the over-allotment option on 5,244,026 company shares (estimated net $1,079M with full exercise, gross $1,150M), leaving about $21M unexplained and unused; Wikipedia's Tractive figure ($900M) is not the 6-K's EV ($759M)
+  -> Q2 2026 (6-K Ex. 99.1 tables): interest 0.1548, reorganization 0.0721, transaction 0.0093, amortization 0.1169 of revenue; reported score 160.5, after interest 145.0; organic 37.1, after interest 21.6, before reorganization 44.3, after interest and before reorganization 28.9; adjusted 180.5
+[PASS] A14 6-K Q2 2026 tables (Ex. 99.1): they match the figures quoted earlier in the extract and add up; interest is 15.5% and reorganization 7.2% of revenue (RA-4, Fable IO/AI F12), so the organic score of about 37 is about 22 after interest (IB-4's estimate) and about 44 before the reorganization charge (29 with both)
+  -> H1 interest paid / interest expense: {'H1 2025': 0.9035041508474269, 'H1 2026': 0.7971793780978857}; PP&E / investing outflow {'H1 2025': 0.0004899550527049167, 'H1 2026': 0.0017330152281781553}; acquisitions / investing outflow {'H1 2025': 0.9994179611962548, 'H1 2026': 0.9982669847718219}; IRES 0.24
+[PASS] A15 6-K Ex. 99.2: U.S. GAAP basis, so operating cash flow is after interest paid (ASC 230-10-45-17(d)); interest paid was 90% and 80% of interest expense in H1 2025 and H1 2026; capital spending is negligible (PP&E under 0.5% of the investing outflow, acquisitions over 99.5%); interest saves tax at Italy's IRES rate of 24% at most (it is outside the IRAP base)
+[PASS] A16 RA-4: the F-1 and 424B4 summary risk factor on material weaknesses is quoted verbatim in the extract; the 6-K presents organic growth among unaudited operating results, outside its non-GAAP measures, with estimated pre-acquisition revenue, and reports no Rule-of-40 score
+
+==============================================================================
+B. Owner capability (Assumption ass:acq-owner, Proposition prop:acq-owner)
+==============================================================================
+[PASS] B0 core's invoice transition reproduced from data/examples/invoice_chain.json (eq:tasks-npv)  ::  -3,777,612
+[PASS] B1 prop:acq-owner(a): NPV^o - NPV = (F - F^o) + b S_r (varpi^o W^o - varpi W) - e^{-rT_par}(varpi^o - varpi)[(1 - p_u) C^str - p_u L_roll] (symbolic)
+[PASS] B2 run costs split exactly into maintenance + revalidation + technical debt + risk cost C_s[1 + ln(C^inc/C_s)] (prop:tasks-security(b)); technical debt = integrations + coupled pairs
+[PASS] B3 W^o(N_pl = 1, no rebuild) = W and NPV^o(standalone capability) = NPV
+  -> W0 164,895; C_run 329,038; C_spec 144,000; pooling-only limit W0 - C_spec 20,895; N_pl^min with rebuild 2.08 (linear approximation C_run/W0 = 2.00)
+  -> without a rebuild: W^o > 0 once N_pl > 11.16; limit 20,895 a year
+[PASS] B4 prop:acq-owner(b): W^o is nondecreasing in N_pl; without a rebuild W^o < W0 - C^spec for all N_pl; in the example C^spec < W0, so pooling alone makes the process save money once enough businesses share it, but never more than W0 - C^spec a year, and fewer businesses are needed with a rebuild  ::  W0 164,895, C_spec 144,000, N without rebuild 11.16, with 2.08
+[PASS] B5 prop:acq-owner(b): with a rebuild W^o > 0 iff N_pl exceeds the root of W0 = [C^pool + C^spec + C^risk(N C^inc)]/N
+  -> floor NPV (all build and integration reused, rebuilt, unlimited scale): T_h = 4: -569,679; T_h = inf: 141,147; break-even success at T_h = inf 0.726; at T_h = 4 with varpi = 1: -458,061
+[PASS] B6 prop:acq-owner(c): the floor bounds NPV^o for every capability (2,000 random capabilities) and is negative at the build's life T_h = 4 even with certain success; at T_h = infinity it is negative below the break-even varpi and positive above it, and the standalone varpi (0.82 since the invoice example's regeneration) is above it
+[PASS] B7 prop:acq-owner(c): NPV^o is nondecreasing in u_F and N_pl, and in varpi^o where the success condition b W^o S_r >= e^{-rT_par}[(1 - p_u)C^str - p_u L_roll] holds, so the flipping capabilities form an upper set (400 draws)
+  -> with the other levers at their best: break-even varpi 0.726; minimum N_pl 6.7; minimum u_F 0.845; minimum horizon 12.4 years; floor at varpi = 1, T_h = inf: 407,611
+[PASS] B8 prop:acq-owner(c): with certain success and a permanent horizon the floor is positive, and each single lever has a finite break-even (success, platform scale, reuse share, horizon) beyond the build's life
+[PASS] B9 sec:regimes take-private firm reproduced: status quo 1,399.8 and program 551.1 at r_w (prop:reg-lbo example)  ::  1399.77, 551.14
+[PASS] B10 prop:acq-owner(d): in the frictionless benchmark the owner's maximum premium exceeds the sponsor's by Delta V^cap / P0 exactly (100 draws)
+[PASS] B11 prop:acq-owner(e): with reuse, platform scale and success nondecreasing in the deal count (and the success condition), NPV^o of the i-th business is nondecreasing in i (200 draws)
+
+==============================================================================
+C. Replace or transform in place (Assumption ass:acq-replace, Proposition prop:acq-replace)
+==============================================================================
+[PASS] C1 prop:acq-replace(c): sum_k e^{-r t_k} = e^{-r T_emb}(1 - e^{-rKT})/(1 - e^{-rT}) for full waves (300 draws)
+[PASS] C2 prop:acq-replace(b): the speed gain falls with the replacement date and with in-place capacity
+  -> speed gains ($M): {(0.25, 'US'): 8.43, (0.25, 'UK'): 8.43, (0.25, 'IN'): 8.43, (0.25, 'DE'): 6.45, (0.25, 'FR'): 5.87, (0.5, 'US'): 5.53, (0.5, 'UK'): 5.53, (0.5, 'IN'): 5.53, (0.5, 'DE'): 5.53, (0.5, 'FR'): 5.53}  (t = 0 bound 11.4 )
+[PASS] C3 prop:acq-replace example: with a three-month build the gain is largest where leads are shortest (U.S., U.K., India at the build date) and smaller in Germany and France; with a six-month build every lead is slack
+  -> break-even extra displaced FTE (US gain): {'US': 337, 'DE': 387, 'FR': 705, 'UK': 1124}; break-even permanent revenue loss share at X = 1: 0.0169; at the XBOUNDS placeholders X = 2.5: 0.0067, X = 5: 0.0034, X = 9: 0.0019
+[PASS] C4 prop:acq-replace example: break-even extra displaced FTE = gain/(T^sev w) and break-even revenue share lost = gain/(X S) are computed from the same gain; the second scales as 1/X, so its sign never flips with X (evaluated at the XBOUNDS placeholders)
+  -> P_mw right after the close 0.0237; four at once 0.0916 vs four years 0.0949; bunching is worse if congestion lifts the per-cutover risk above 0.0246 (+3.8%)
+[PASS] C5 prop:acq-replace(d): without congestion bunching n cutovers into one year never raises expected weakness-years (1 - (1 - P)^n <= nP); with P(n) the bunching cost exceeds spreading iff P(n) > 1 - (1 - nP(1))^{1/n}
+  -> date channel: P right after the close 0.0237, with half a year or less to go 0.0900; four bunched late 0.3143 vs 0.0949 spread; bunching at one date is worse once it is later than z = 0.176 (3.4 days after the earliest open date); crossover P 0.0246 vs 0.0237
+[PASS] C7 prop:acq-replace(d) corrected: bunched at position z^rpl, bunching is worse iff P_mw(1 - z^rpl; congested) > 1 - [1 - n P_mw(1 - T_cl)]^{1/n} (500 draws); with the accounting values 2.37% after a close, 9.0% with half a year or less to go, 31.4% for four bunched late against 9.5% spread; the date alone reverses the ranking after z = 0.176 (verify_part2_accounting.py check 6k)
+[PASS] C8 prop:acq-replace calibration: 2025's reorganization-related expense (6.0% of revenue) scaled to the example's $500M is $30.1M, about 3.6 times the U.S. speed gain of the twelve-process program  ::  30.09, 3.568
+[PASS] C6 prop:acq-replace(e): with additive process gains, replacement's attainable score dominates in-place from t^rpl when it carries no permanent penalty, and a permanent penalty creates a crossing after which in place dominates (300 draws)
+
+==============================================================================
+D. Permanent-capital serial acquirer (Assumption ass:acq-pc, Proposition prop:acq-pc)
+==============================================================================
+  -> hurdles continuous: unlevered 0.2231, levered 0.5008; PE 22% -> 0.1989
+[PASS] D0 annual hurdles converted with ln(1 + r): 25% -> 22.31%, 65% -> 50.08%, 22% -> 19.89%
+[PASS] D1 prop:acq-pc(a): method IRR >= permanent IRR iff permanent IRR >= r_tv (150 random cash-flow paths)
+[PASS] D2 prop:acq-pc(b): e^{-(i - r_tv)T} V^tv <= P^max(i) <= V^tv for every hurdle i >= r_tv (150 paths)
+[PASS] D3 prop:acq-pc(c)(i): levered IRR > unlevered IRR iff unlevered IRR > r_debt, under the disclosed debt policy (150 paths)
+[PASS] D4 prop:acq-pc(c)(iii): when ND^rep binds and T^rep = T^IRR, the levered method IRR is ln[TV/(P - ND^rep)]/T
+[PASS] D5 sec:regimes reproduced: multiple paid 18.2x and the sponsor's levered break-even hurdle 13.5% continuous (14.4% annual) at h_x = 1
+  -> at the take-private price (18.48x EBITDA with costs): method IRR 0.1010 (0.1063), permanent 0.0914, levered under the policy 0.1020; sponsor's deal unlevered 0.1241, levered break-even 0.1346
+  -> P^max at the 25% hurdle: method 10.59x EBITDA (0.543 of V^tv; bound 0.512), permanent 4.08x; uplift needed at the price: 1.06 of EBITDA (t_run = 2), 1.01 (t_run = 0.5) vs 0.30 in the program
+[PASS] D6 prop:acq-pc example: at the take-private price the permanent-capital owner's unlevered method IRR is below the sponsor's levered break-even and far below 25%; the hurdle needs an entry multiple of at most P^max/EB0 or a run-rate uplift several times the program's
+  -> NRR 0.91, f1 0.3: P^max/S0 method 0.83, permanent 0.69; levered IRR at P^max 0.4174
+  -> NRR 0.91, f1 0.4: P^max/S0 method 1.11, permanent 0.92; levered IRR at P^max 0.4174
+  -> NRR 0.91, f1 0.5: P^max/S0 method 1.38, permanent 1.15; levered IRR at P^max 0.4174
+  -> NRR 0.95, f1 0.3: P^max/S0 method 1.09, permanent 0.83; levered IRR at P^max 0.3391
+  -> NRR 0.95, f1 0.4: P^max/S0 method 1.46, permanent 1.11; levered IRR at P^max 0.3391
+  -> NRR 0.95, f1 0.5: P^max/S0 method 1.82, permanent 1.38; levered IRR at P^max 0.3391
+[PASS] D7 prop:acq-pc grid: P^max/S0 rises with the post-transformation margin and with retention; at the unlevered hurdle the levered method IRR is below the levered hurdle in every cell
+  -> unlevered method IRR at the levered hurdle: {0.91: 0.308, 0.95: 0.301, 1.0: 0.3096}
+[PASS] D8 prop:acq-pc(c): for flat-margin businesses the levered hurdle implies an unlevered method IRR above the unlevered hurdle, so the levered hurdle binds (NRR 91%, 95%, 100%)
+[PASS] D10 prop:acq-pc grid against the 424B4 prices: Eventbrite (1.7x revenue) lies inside the grid's admissible range (up to 1.82x at f1 = 0.5 and NRR 95%), AOL (2.3x) and Vimeo (3.2x) above it; AOL's own 2025 operating margin in the pro forma is 53%  ::  grid max 1.82, AOL margin 0.5267
+[PASS] D9 prop:acq-pc(e) / prop:acq-retention(d): X^G(r_pc)/X^G(r_w) = (r_w - G_i)/(r_pc - G_i) (symbolic) and its value at G_i = ln NRR(2025)  ::  0.512
+
+==============================================================================
+E. Paper 1: growth that is bought (Definition def:acquired-growth, Proposition prop:acquired-score)
+==============================================================================
+[PASS] E1 prop:acquired-score(a): R^A_X = (X g^org + m) + (X - k^acq) g^acq (symbolic)
+[PASS] E2 prop:acquired-score(a): acquired growth raises the cash score iff k^acq < X; for the Rule of 40 iff k^acq < 1
+[PASS] E3 prop:acquired-score(b): max over spend and acquisitions = R*_X + (X - k^acq)^+ abar (eq:acquired-Rstar; 300 draws, grid search against the closed form)
+[PASS] E4 prop:acquired-score(d) and (f) after Fable F21: G_i = ln[1 + (S_sub/S)(NRR - 1) + (1 - S_sub/S) gamma_ns] equals ln NRR when all revenue is subscription revenue (or the rest also retains at NRR) and lies in [ln NRR, 0] when NRR < 1 and gamma_ns in [NRR - 1, 0] (2,000 draws); exp(G_i) is the annual ratio of the base; with acquisitions at a and organic decay d revenue grows at a - d, so holding g needs g^acq = g + d^org (symbolic); in 2025 the subscription base fell by 1 - NRR = 5% before new customers
+[PASS] E5 prop:acquired-score(c): the operating-margin score exceeds the score after interest by the interest share (2025 and Q1 2026)
+[PASS] E6 prop:acquired-score(e): each acquired business adds a nonnegative budget (X - k)[ln(s_bar/s_b) + (G - G_i)T] when its retention lags the market, so the firm's budget is a sum over acquisitions (200 draws)
+  -> bounds (points): 2024: GAAP 92.3, after interest 87.5, OCF 103.9, fully charged -28.7; 2025: GAAP 115.9, after interest 105.0, OCF 116.9, fully charged -24.8
+[PASS] E7 rem:acquired-bounds: the coordinator's bounds recomputed from the tables: GAAP 92.3 / 115.9, after interest 87.5 / 105.0, operating cash flow 103.9 / 116.9, fully charged after interest -28.7 / -24.8 (2024 / 2025; round-1 basis, operating cash flow after interest paid less the net investing outflow, kept as a regression check; Table 3 uses the before-interest -25.0 / -16.5 of acqRAllInvU*); net investing outflow 132.6% / 141.8% of revenue
+  -> NRR range 0.91-0.95: mean life 10.6-19.5 years, CRF at r_w 0.1459-0.1083; annuity-charged score 2024: 80.9 to 86.8; 2025: 84.4 to 92.8
+[PASS] E8 rem:acquired-bounds middle case: CRF(r, L) = r / (1 - e^{-rL}) repays a dollar at r over L (symbolic; 1/L as r -> 0); with the NRR range as a scenario the annuity-charged score lies strictly between the bounds in both years, because the annuity on all outflows since 2023 is below the current year's outflow
+  -> margins before interest (tau 0 / IRES): 2024: 35.4% / 34.2%; 2025: 33.2% / 30.5%; Q1 2026: 28.1% / 24.4%
+  -> 2024 charged as capital before interest, tau = IRES: laFull 84.5 to 90.5; ucEnd 80.3 to 86.1; ucAvg 91.5 to 95.0; laAvg 94.2 to 97.7
+  -> 2025 charged as capital before interest, tau = IRES: laFull 92.7 to 101.1; ucEnd 87.2 to 95.2; ucAvg 100.9 to 108.0; laAvg 104.4 to 111.3
+  -> 2025 over all conventions, lives, timings and tau: 87.2 to 114.0 before interest; the same charges after interest (double-charged) 78.9 to 103.0; double charge 8.3 (IRES) to 10.9 (tau 0) points; return on time-weighted acquisition capital 22.3% to 28.0%, after decay 13.6% to 21.9%; capital / revenue 1.18 to 2.14
+[PASS] E12 rem:acquired-bounds after IB-4: set against operating cash flow after interest paid, a charge at a cost of capital charges the debt-financed share twice, by exactly (1 - tau) c_fin: 8.3 points of 2025 revenue at Italy's 24% IRES rate (the Fable finance referee's 'about 8'), 10.9 at tau = 0; the earlier middle case 84.4-92.8 is the double-charged level annuity
+[PASS] E13 charged as capital on margins before interest: in both years every convention (level annuity or user cost (r + d), on year-end or time-weighted capital, NRR 91-95%, tau 0 or 24%, second-half 2025 outlays between mid-H2 and Vimeo's close) lies strictly between the fully charged and uncharged scores; the user cost on year-end capital is the lowest and the time-weighted charges score higher; 2025 range 87 to 114 (79 to 103 if double-charged); the time average of decayed capital is exact (symbolic)
+[PASS] E14 return on acquisition capital (IB-4): unlevered operating cash flow over the time-weighted capital deployed since 2023 is 22% to 28% in 2025, 14% to 22% after economic depreciation at d = -ln NRR, above the 8.93% cost of capital in every cell (NRR, tau, timing)
+  -> Part I flag read from data.tex: ('25', '10', '26', '41', '50'); empirics p95 fall 7.0-13.0; outflow / prior-year revenue 2.30, 2.76; acquisitions needed for the flag 0.109, 0.091 of the outflow; Q1 2026 capital deployed / 2025 revenue 1.54; full-charge correction at the threshold and g = 0.5: 16.7 points
+[PASS] E9 Part I's acquisition flag (read from sections/data.tex): net investing outflows were 2.3 and 2.8 times prior-year revenue, so 2024 and 2025 carry the flag unless acquisitions were under about a ninth and an eleventh of them; capital deployed in Q1 2026 alone exceeds the threshold on 2025 revenue; at the threshold the fully charged correction is at least 25/(1+g) points
+  -> X = 1 at prices 1.73-3.23x revenue: full charge loses 0.73-2.23 points per point of acquired growth; the annuity charges 0.19-0.47; pro forma revenue exceeds actual by 0.997 (flag 0.1); Q2 2026 reported minus organic score 123.3 points
+[PASS] E11 prop:acquired-score(a) on the 424B4 prices: at 1.7 to 3.2 times revenue acquired growth lowers the fully charged Rule-of-40 score and raises the annuity-charged one; the pro forma flag of Part I fires (revenue doubled); in Q2 2026 the gap between reported and organic scores is the acquired growth credited without its price
+  -> user cost per point of acquired growth up to 0.59; at the XBOUNDS placeholders the full charge raises R^A_X for: X = 2.5: ['AOL', 'Eventbrite']; X = 5: ['AOL', 'Eventbrite', 'Vimeo']; X = 9: ['AOL', 'Eventbrite', 'Vimeo']; sign flips at X = k^acq in [1.73, 3.23]
+[PASS] E15 prop:acquired-score(a) at the firm's own weight (XBOUNDS placeholders 2.5, 5, 9): charged in full, acquired growth raises R^A_X iff X > k^acq, so at X = 2.5 for Eventbrite (1.7) and AOL (2.3) but not Vimeo (3.2), and at 5 and 9 for all three; the sign flips at X = k^acq, between 1.7 and 3.2; spread as an annuity or a user cost (at most 0.59 points per point) it raises the score at every placeholder
+[PASS] E10 prop:acquired-score(f): with g^acq = g + d^org (d^org = -g^org) the charged Rule-of-40 score is g + m - k^acq (g + d^org), falling by k^acq per unit of organic decay (dR/dg^org = k^acq; symbolic) and, at the 2025 NRR with no new customers and all revenue on subscription, acquisitions must supply more than the measured growth
+
+==============================================================================
+F. Repricing and retention (Proposition prop:acq-retention)
+==============================================================================
+[PASS] F1 prop:acq-retention(a): inverse-hazard condition; with exponential switching-cost ratios the revenue-maximizing repricing is xbar - 1 (symbolic)
+[PASS] F2 prop:acq-retention(a): with one switching-cost ratio, retention after a repricing is 1 + x or 0, never strictly between 0 and 1
+[PASS] F3 prop:acq-retention(c): steady-state share of revenue with tenure >= tau is e^{-(nu + g_in) tau} and mean tenure 1/(nu + g_in) (symbolic)
+  -> tenure-implied nu + g_in: 5y 0.1468, 10y 0.1273, mean 0.1250; nu from NRR 2025 0.0513, 2024 0.0943; implied g_in (0.07370670561244942, 0.09550054062848952) (2025) (0.03068932052875871, 0.05248315554479881) (2024)
+[PASS] F4 prop:acq-retention(c): Sh(10) > Sh(5)^2 rejects a single constant hazard (the revenue hazard falls with tenure), and the tenure-implied rates exceed the NRR-implied decay
+  -> two-type stationary fit: 0.225 of revenue at hazard 0.543, 0.775 at 0.102; implied one-year revenue retention 0.831 vs NRR 0.95
+[PASS] F5 prop:acq-retention(c): a unique two-type stationary fit matches the three tenure moments, and its implied one-year revenue retention is below the reported NRR (so the moments are consistent only with non-stationary inflows)
+[PASS] F6 prop:acq-retention(b): business-level zero-spend growth of subscription revenue, ln NRR (G_i of an all-subscription business, prop:acquired-score(d)), spans [ln 0.87, ln 0.99]
+
+==============================================================================
+H. Limits to buying growth (Assumption ass:acq-limits, Proposition prop:acq-limits)
+==============================================================================
+[PASS] H1 prop:acq-limits(a): with k^acq > nd the owner finances growth g without new equity iff g <= g^max = (m - r_debt nd + k^acq g^org)/(k^acq - nd); g^org + m/k^acq without debt; dg^max/dk^acq = -(m - r_debt nd + nd g^org)/(k^acq - nd)^2 (symbolic)
+  -> standing still with no new customers: acquired growth 0.0513-0.0943 a year, $67-123M of run-rate at 2025 revenue; cash 0.089-0.305 of revenue at 1.73-3.23x; 2025 financing inflow 1.482 of revenue; g^max without debt at 2025 NRR: m=0.2, k=1.73: 0.064, m=0.2, k=3.23: 0.011, m=0.3, k=1.73: 0.122, m=0.3, k=3.23: 0.042
+[PASS] H2 prop:acq-limits(a) worked numbers: standing still needs acquired revenue of -ln NRR a year (5.1% to 9.4% at the portfolio's NRR range); 2025 growth exceeded every self-financing limit of the scenario grid and came with a financing inflow above revenue
+  -> holding 2025's growth (0.6662 continuously compounded) needs acquired growth 0.7175 to 0.7605 with no new customers (cash 1.242 to 2.457 of revenue at the 424B4 prices), 0.6366 at the company's Q2 2026 organic growth (0.0296); g^max without debt there 0.091 to 0.203
+[PASS] H6 prop:acq-limits(a) after F21: holding growth g needs acquired growth g + d^org; at 2025's growth (66.6% continuously compounded) that is 71.7% to 76.0% of revenue a year from NRR 91-95% with no new customers and all revenue on subscription (less if part of revenue does not decay), and 63.7% at the company's reported 3% organic growth
+[PASS] H3 prop:acq-limits(b): with at most n^dl deals a year and hurdle headroom falling with target size at elasticity eps_sz, growth g is attainable iff S <= S^max = n^dl S^tg_max / (g - g^org), and beyond it at most g^org + n^dl S^tg_max / S (300 draws)
+[PASS] H4 prop:acq-limits(c): with a convex challenge probability in cumulative niche share, the expected regulatory cost of the n-th deal rises with n and series review stops the owner no later than deal-by-deal review (300 draws); an FDI delay T^fdi with probability p^fdi scales the deal's net value by 1 - p^fdi(1 - e^{-r T^fdi}) (symbolic)
+[PASS] H5 prop:acq-limits(d): scaling switching costs by h^cp moves the exponential optimum to h^cp xbar - 1 (symbolic); with a cap the optimum is min{(h^cp xbar - 1)^+, cap}, and retained revenue at any repricing falls (200 draws)
+
+==============================================================================
+G. Secondary sources (verified 29 Oct 2026) against the extract, and lint of the .tex files
+==============================================================================
+[PASS] G1 extract's IPO figures match the verified sources ($29.00, about $1.68B; first day about 40% vs 39.7%)
+[PASS] G2 derived secondary figures: primary proceeds about $1.0B (34.4M shares at $29); the reported Harvest example is a 1,523% rise ('roughly 1,500%'); Brightcove's cut is 33% of 'over 600'
+[PASS] G3 lint: no F-1 figure is typed into the four .tex files of either paper (all come from macros)  ::  []
+
+==============================================================================
+Write macros
+==============================================================================
+
+==============================================================================
+F. Round 2 (D3; IB2-N6, F2-5, F2-other): interest paid, run-rate interest after the post-IPO debt, marginal coupon
+==============================================================================
+  -> interest paid / revenue: 2023 4.3% (expense 4.4%; paid/expense 0.97), 2024 2.9% (expense 4.9%; paid/expense 0.59), 2025 10.0% (expense 10.9%; paid/expense 0.92), Q1 2026 14.8% (expense 15.5%; paid/expense 0.96)
+  -> 2025 charged scores before interest, all conventions: interest paid 86.6 to 113.1 (interest expense 87.2 to 114.0); charged at the notes' coupon 9.625%: 86.0 to 112.8
+  -> run-rate interest: H1 2026 annualized $404M + notes $167.8M = $572M; with $2234M of unpriced new principal at 9.625%: $787M; share of Q2-annualized revenue $2817M: 20.3% to 27.9%; with the acquired ARR ($480M + $600M): 14.7% to 20.2% (EUR at 1.100)
+[PASS] F1 (D3) interest paid replaces interest expense on the cash basis: 424B4 interests paid 16.6, 19.2 and 130.9 $M (2023-25) and 89.0 (Q1 2026) are 59-97% of interest expense; the before-interest charged 2025 scores move by (1 - tau)(paid - expense)/revenue
+[PASS] F2 (D3) the run-rate interest uses only coupons and amounts stated in the 6-Ks (notes $1.25B at 9.625% and EUR 500M at 8.625%, about $1.8B in all; term loan B add-ons $1.25B and EUR 395M and the EUR 500M SACE loan without a stated rate); charging acquisitions at the notes' coupon instead of the 9.34% WACC lowers every charged score
+[PASS] I1 raw filings: the final prospectus and the F-1 (and the 6-K exhibits 99.1 and 99.2) decompress to the SHA-256 recorded in data/v3_inputs/README_retrieval.md section 5 and in the figures file  ::  424b4 86d91db82f3c; f1 fbe3a1076900
+[PASS] I2 every figure of the figures file is found in both the final prospectus and the F-1, with the same values, on the printed pages it gives: organic growth 7% (2024) and 13% (2025) with the company's definition (estimated pre-acquisition revenue) on the same page, subscriptions 95/92/93%, equity compensation, the investing lines, interest paid, the 2025 pro forma revenue row and the three purchase prices
+[PASS] I3 the raw filings reproduce the extract and the cash-interest file: operating and investing cash flows 2023-25, interest paid, the investing lines adding up to the net investing outflow (rounding of $1 thousand in 2023 and 2025), and (DS-69) the 2025 pro forma revenue components, total ($2,608.5 million) and the three purchase prices behind acqPfRev, acqPfRatio and acqKEb to acqKVim
+  -> annual organic scores (company measure): 2024: g_org 0.07, before interest 25.98, after 21.12, before reorganization 33.70, after interest and before reorganization 28.84; 2025: g_org 0.13, before interest 34.27, after 23.35, before reorganization 40.29, after interest and before reorganization 29.37
+  -> SBC / revenue 2023 0.0385, 2024 0.0385, 2025 0.0425; cash score after interest paid and SBC 2024 100.05, 2025 112.67; and capex (panel basis) 2024 99.96, 2025 112.64; acquisitions / intangibles / PP&E share of the net investing outflow 2024 0.8167 / 0.1826 / 0.00068, 2025 0.9997 / 0.0000 / 0.00027
+[PASS] I4 (GLM-F2) Table 3 annual organic rows, the company's organic growth plus the GAAP operating margin: 26.0 / 34.3 before interest, 21.1 / 23.4 after interest expense, 33.7 / 40.3 with reorganization added back and 28.8 / 29.4 after interest with it added back (2024 / 2025); every 2025 organic score lies inside the Q2 2026 range (21.6 to 44.3)
+[PASS] I5 (GLM-F2, GPT-17) the 2025 cash score on the panel's basis (free cash flow after SBC, after interest paid): operating cash flow less equity compensation (4.25% of revenue) and purchases of property and equipment gives 112.6 (100.0 in 2024), 4.29 points below Table 3's 116.9; capex is under 0.1% of revenue in both years
+[PASS] I6 (GLM-F2, GLM-6) the annual investing split: acquisitions of businesses were 81.7% of the 2024 net investing outflow and purchases of intangible assets (including the Mosaic asset deal) 18.3%; in 2025 acquisitions were 99.97%
+  -> GPT-M3 annual units at 2025 growth (0.9468): average charge factor 1/(1+g) 0.514; net effect per point of simple annual growth at X = 1: AOL -0.179, Eventbrite +0.111, Vimeo -0.659; annuity 0.096-0.242, user cost up to 0.305
+[PASS] I7 (GPT-M3) per point of simple annual acquired growth with full-year recognition at 2025 growth, the full charge is k^acq/(1+g): the net effect at X = 1 is +0.11 (Eventbrite), -0.18 (AOL) and -0.66 (Vimeo, at its unrounded 3.23; the review's -0.64 uses 3.2) instead of -0.7 to -2.2 per point of run-rate revenue; the annual identity holds on the review's example (C/S 1.5 = k g_simple/(1+g))
+[PASS] I8 (GLM-M6) charged at the notes' coupon, the 2025 charged scores are 86.0 to 112.8 with interest paid added back and 86.7 to 113.7 with interest expense added back, the basis of the 87-114 range
+  -> wrote 492 macros to part2/tables/acquirer_macros.tex and 203 to sections/tables/acquired_macros.tex
+[PASS] G4 every \acq macro used in either paper's .tex files is generated by this script  ::  []
+[PASS] G5 Paper 1 file references only Paper 1 labels (sections/*.tex), none from part2/  ::  []
+
+SUMMARY: 90/90 checks passed

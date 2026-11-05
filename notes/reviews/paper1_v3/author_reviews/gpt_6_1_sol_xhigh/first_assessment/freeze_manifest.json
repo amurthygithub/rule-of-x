@@ -1,0 +1,23 @@
+{
+  "frozen_at_utc": "2026-11-03T04:58:59.189231+00:00",
+  "local_review_date": "2026-11-02",
+  "status": "Substantive coordinator first assessment preserved after A-E and F, before deliberate AppendixA/S7 reading",
+  "reports": [
+    {
+      "file": "referee_report.txt",
+      "sha256": "702e6b6c4d42b09b1a8f5624574890d2faeac6bdde95ca52707a7cd0801c1c30",
+      "bytes": 80988
+    },
+    {
+      "file": "referee_report.html",
+      "sha256": "4ac96c4661426ac81f290ae9996ab401bac2bd206c62f51f9bb121cabaacb9d4",
+      "bytes": 87353
+    },
+    {
+      "file": "referee_report.pdf",
+      "sha256": "184cbf22144c9727d6cb061789493de93bd98f57ed9d6da414996889b1734608",
+      "bytes": 140589
+    }
+  ],
+  "limitations": "Earlier accidental embedded-history snippets disclosed; no fully blind claim."
+}

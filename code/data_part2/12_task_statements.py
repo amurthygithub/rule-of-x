@@ -10,8 +10,9 @@ Also writes data/tasks/data_dictionary.csv (columns of task_statements.csv and t
 License: O*NET 31.0 Database, CC BY 4.0; attribution below (wording from https://www.onetcenter.org/license_db.html,
 read 29 Oct 2026; the archive's Read Me.txt states the CC BY 4.0 license).
 """
+import os
 import sys
-sys.path.insert(0, '/home/claude/paper/code/data_part2')
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import pandas as pd
 from common import OUT, read_onet, pick, normcols, write_csv, save_meta
 

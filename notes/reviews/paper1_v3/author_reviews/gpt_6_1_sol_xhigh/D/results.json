@@ -1,0 +1,308 @@
+{
+  "seed": 20261102,
+  "type": "independent deterministic derivation, optimization, exact recurrence and Monte Carlo; no author code",
+  "control_designs": [
+    {
+      "threshold": 0.01,
+      "pcc": 0,
+      "best": {
+        "human": 1,
+        "AI": 2,
+        "cost_usd": 804672,
+        "per_opportunity": 0.0002801562,
+        "annual": 0.006702130690855797
+      }
+    },
+    {
+      "threshold": 0.01,
+      "pcc": 0.0001,
+      "best": {
+        "human": 1,
+        "AI": 2,
+        "cost_usd": 804672,
+        "per_opportunity": 0.00038012818438,
+        "annual": 0.009083306084458282
+      }
+    },
+    {
+      "threshold": 0.01,
+      "pcc": 0.0002,
+      "best": {
+        "human": 2,
+        "AI": 1,
+        "cost_usd": 1254672,
+        "per_opportunity": 0.00031190311490000004,
+        "annual": 0.007458885810828162
+      }
+    },
+    {
+      "threshold": 0.01,
+      "pcc": 0.0005,
+      "best": null
+    },
+    {
+      "threshold": 0.01,
+      "pcc": 0.0008,
+      "best": null
+    },
+    {
+      "threshold": 0.01,
+      "pcc": 0.001,
+      "best": null
+    },
+    {
+      "threshold": 0.01,
+      "pcc": 0.0015,
+      "best": null
+    },
+    {
+      "threshold": 0.01,
+      "pcc": 0.002,
+      "best": null
+    },
+    {
+      "threshold": 0.01,
+      "pcc": 0.0025,
+      "best": null
+    },
+    {
+      "threshold": 0.05,
+      "pcc": 0,
+      "best": {
+        "human": 1,
+        "AI": 1,
+        "cost_usd": 754672,
+        "per_opportunity": 0.00129231,
+        "annual": 0.03055884081940705
+      }
+    },
+    {
+      "threshold": 0.05,
+      "pcc": 0.0001,
+      "best": {
+        "human": 1,
+        "AI": 1,
+        "cost_usd": 754672,
+        "per_opportunity": 0.0013921807690000002,
+        "annual": 0.03288282590496033
+      }
+    },
+    {
+      "threshold": 0.05,
+      "pcc": 0.0002,
+      "best": {
+        "human": 1,
+        "AI": 1,
+        "cost_usd": 754672,
+        "per_opportunity": 0.0014920515380000003,
+        "annual": 0.035201471433798925
+      }
+    },
+    {
+      "threshold": 0.05,
+      "pcc": 0.0005,
+      "best": {
+        "human": 1,
+        "AI": 1,
+        "cost_usd": 754672,
+        "per_opportunity": 0.0017916638450000003,
+        "annual": 0.042125487915659496
+      }
+    },
+    {
+      "threshold": 0.05,
+      "pcc": 0.0008,
+      "best": {
+        "human": 1,
+        "AI": 1,
+        "cost_usd": 754672,
+        "per_opportunity": 0.0020912761520000002,
+        "annual": 0.0490018694036197
+      }
+    },
+    {
+      "threshold": 0.05,
+      "pcc": 0.001,
+      "best": {
+        "human": 1,
+        "AI": 2,
+        "cost_usd": 804672,
+        "per_opportunity": 0.0012798760438,
+        "annual": 0.030269129264536038
+      }
+    },
+    {
+      "threshold": 0.05,
+      "pcc": 0.0015,
+      "best": {
+        "human": 1,
+        "AI": 2,
+        "cost_usd": 804672,
+        "per_opportunity": 0.0017797359657000002,
+        "annual": 0.041850748112384054
+      }
+    },
+    {
+      "threshold": 0.05,
+      "pcc": 0.002,
+      "best": {
+        "human": 2,
+        "AI": 1,
+        "cost_usd": 1254672,
+        "per_opportunity": 0.002111701649,
+        "annual": 0.04946892705924946
+      }
+    },
+    {
+      "threshold": 0.05,
+      "pcc": 0.0025,
+      "best": null
+    }
+  ],
+  "all_AI_annual_lower_bound": 0.11334648949869211,
+  "security": [
+    {
+      "L": 4,
+      "exposure": 1,
+      "analytic": 0.008625,
+      "numerical": 0.008624999999999999,
+      "abs_residual": 1.734723475976807e-18
+    },
+    {
+      "L": 2,
+      "exposure": 2,
+      "analytic": 0.01274135777293181,
+      "numerical": 0.012741357772931812,
+      "abs_residual": 1.734723475976807e-18
+    },
+    {
+      "L": 1,
+      "exposure": 3,
+      "analytic": 0.02138042479180996,
+      "numerical": 0.021380424791809956,
+      "abs_residual": 3.469446951953614e-18
+    }
+  ],
+  "symbolic_security_first_order_residual": "0",
+  "symbolic_pareto_integral": "Piecewise((cap**(1 - p)/(1 - p) - 1/(1 - p), Ne(p, 1)), (log(cap), True)) + 1",
+  "fluid_illustrations": {
+    "central_quarterly_illustration": {
+      "parameters": {
+        "success": 0.7,
+        "cw": 0.025,
+        "Tpar": 0.25,
+        "warning": "Tpar is illustrative; not verified author input. Not a reproduction of dated path."
+      },
+      "selected": [
+        {
+          "wave": 20,
+          "embedded": 0.3499999999999992,
+          "unembedded": 0.6500000000000008,
+          "linear_cap": 0.35
+        },
+        {
+          "wave": 24,
+          "embedded": 0.41999999999999904,
+          "unembedded": 0.580000000000001,
+          "linear_cap": 0.41999999999999993
+        },
+        {
+          "wave": 35,
+          "embedded": 0.6124999999999989,
+          "unembedded": 0.387500000000001,
+          "linear_cap": 0.6124999999999999
+        },
+        {
+          "wave": 57,
+          "embedded": 0.9939999999999997,
+          "unembedded": 0.0060000000000002985,
+          "linear_cap": 0.9974999999999999
+        },
+        {
+          "wave": 60,
+          "embedded": 0.999838,
+          "unembedded": 0.0001620000000000081,
+          "linear_cap": 1.0
+        }
+      ],
+      "first_99_percent_wave": 57,
+      "first_99_9_percent_wave": 59,
+      "largest_bound_shortfall": 0.0035000000000002807
+    },
+    "fast_quarterly_illustration": {
+      "parameters": {
+        "success": 0.8,
+        "cw": 0.055,
+        "Tpar": 0.25,
+        "warning": "Tpar is illustrative; not verified author input. Not a reproduction of dated path."
+      },
+      "selected": [
+        {
+          "wave": 20,
+          "embedded": 0.8800000000000003,
+          "unembedded": 0.11999999999999963,
+          "linear_cap": 0.8800000000000001
+        },
+        {
+          "wave": 24,
+          "embedded": 0.99872,
+          "unembedded": 0.0012799999999999843,
+          "linear_cap": 1.0
+        },
+        {
+          "wave": 35,
+          "embedded": 0.9999999999737856,
+          "unembedded": 2.6214399999999638e-11,
+          "linear_cap": 1.0
+        },
+        {
+          "wave": 57,
+          "embedded": 1.0,
+          "unembedded": 1.0995116277759799e-26,
+          "linear_cap": 1.0
+        },
+        {
+          "wave": 60,
+          "embedded": 1.0,
+          "unembedded": 8.796093022207831e-29,
+          "linear_cap": 1.0
+        }
+      ],
+      "first_99_percent_wave": 23,
+      "first_99_9_percent_wave": 25,
+      "largest_bound_shortfall": 0.006399999999999961
+    }
+  },
+  "random_freeze_survival": {
+    "draws": 200000,
+    "nuD": 0.23,
+    "nuR": 0.4,
+    "freeze": 0.5,
+    "lag": 1.25,
+    "analytic": 0.7104782614471259,
+    "simulation_mean": 0.7104886694203493,
+    "MC_SE": 0.0001222560587969562,
+    "uniform_clock": 0.7082203534678
+  },
+  "Asgari_denominator_diagnostic": {
+    "hallucination_output_rate": 0.014693437956765905,
+    "omission_input_rate": 0.03452308933252672,
+    "noncomparable_sum": 0.04921652728929263,
+    "event_count_per_output_sentence": 0.14639587660589276,
+    "warning": "Event intensity only; not a probability of an erroneous output, not a task cost rate. Source has multiple configurations."
+  },
+  "central_ceiling_from_printed_costs": {
+    "margin_base": 0.6746139999999999,
+    "market_growth_for_score_1": 0.32538600000000006,
+    "score_at_G_15pct_k_0": 0.824614,
+    "warning": "Rounded input arithmetic; no raw calibration replication"
+  },
+  "environment": {
+    "python": "3.9.6 (default, Aug 25 2026, 21:26:21) \n[Clang 21.0.0 (clang-2100.3.34.2)]",
+    "platform": "macOS-26.7.2-arm64-arm-64bit",
+    "numpy": "2.0.2",
+    "scipy": "1.13.1",
+    "sympy": "1.14.0",
+    "algorithm_notes": "bounded scalar optimization xatol=1e-13; exact deterministic control enumeration depths0..6; Monte Carlo seed20261102; no fit to manuscript data"
+  }
+}

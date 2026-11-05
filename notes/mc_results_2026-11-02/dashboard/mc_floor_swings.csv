@@ -1,0 +1,9 @@
+component,kind,gstar_low,gstar_high,gstar_swing,gstar_central,score2036_swing
+Payment fees,cost floor,32.13,32.95,0.82,32.54,0.33
+Cash tax rate,cost floor,30.07,35.0,4.94,32.54,2.03
+Accountability floor (audit and SOX),cost floor,30.49,33.85,3.36,32.54,1.37
+Security floor,cost floor,32.07,33.53,1.46,32.54,0.59
+Maintenance floor,cost floor,32.17,34.41,2.24,32.54,0.91
+AI error and failure costs,cost floor,30.13,37.61,7.48,32.54,3.04
+Ancillary costs,cost floor,32.46,32.69,0.24,32.54,0.08
+Compute share,compute,27.36,46.95,19.58,32.54,5.78

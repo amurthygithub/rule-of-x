@@ -28,9 +28,9 @@
   "data/tasks/function_occ.csv": "08729b89c479016303d94f4869c10c9921c58e8d9c81cdb1de2ccdff6db88b12",
   "data/tasks/function_occ_by_industry.csv": "7c8bedc3a24e3d658b57f3db941e4e3ed259161026a0dc15ed963f1b29f5d649",
   "data/tasks/industry_function_shares.csv": "b3dc1759634942a3d75412573834a40ed43c558727af546251a027ec81b208cd",
-  "data/tasks/params.yaml": "144562867d5ca5e8f4a068e067e8a05028a753f002d22cd7696018df66287714",
+  "data/tasks/params.yaml": "0e0d1399eba2af900b40d0bd53f2ab2c8a371d51d322db9eefc262c377389df5",
   "data/tasks/_build/capability.json": "3b9fc72eb6f78e38c11dd589cc4f2086d4660f42bc56b5219ce95fd9c79827fc",
-  "engine/src/autofrontier/defaults.yaml": "577435ab139474d916fe567140ce245a2770d4f5cc96d4c5ae559be59042fa02",
+  "engine/src/autofrontier/defaults.yaml": "7306457babcdee6016e4915c6b1971b53e2699ad120a929fe0d598933971513c",
   "engine/src/autofrontier/priors/activity_attributes.csv": "96a395d343243c286baa923a068d581b1c2deafcba79f2ff4b1d972f76eba3df"
  },
  "parameters": {

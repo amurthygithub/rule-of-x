@@ -1,0 +1,225 @@
+id,metric,series,bin_lo,bin_hi,share,count,n,open_top
+score2036|All inputs move|0,score2036,All inputs move,20,22,0.000000,0,1000000,0
+score2036|All inputs move|1,score2036,All inputs move,22,24,0.000000,0,1000000,0
+score2036|All inputs move|2,score2036,All inputs move,24,26,0.000000,0,1000000,0
+score2036|All inputs move|3,score2036,All inputs move,26,28,0.000000,0,1000000,0
+score2036|All inputs move|4,score2036,All inputs move,28,30,0.000000,0,1000000,0
+score2036|All inputs move|5,score2036,All inputs move,30,32,0.000104,104,1000000,0
+score2036|All inputs move|6,score2036,All inputs move,32,34,0.001179,1179,1000000,0
+score2036|All inputs move|7,score2036,All inputs move,34,36,0.004892,4892,1000000,0
+score2036|All inputs move|8,score2036,All inputs move,36,38,0.011435,11435,1000000,0
+score2036|All inputs move|9,score2036,All inputs move,38,40,0.021528,21528,1000000,0
+score2036|All inputs move|10,score2036,All inputs move,40,42,0.036566,36566,1000000,0
+score2036|All inputs move|11,score2036,All inputs move,42,44,0.055071,55071,1000000,0
+score2036|All inputs move|12,score2036,All inputs move,44,46,0.073208,73208,1000000,0
+score2036|All inputs move|13,score2036,All inputs move,46,48,0.088018,88018,1000000,0
+score2036|All inputs move|14,score2036,All inputs move,48,50,0.097544,97544,1000000,0
+score2036|All inputs move|15,score2036,All inputs move,50,52,0.100470,100470,1000000,0
+score2036|All inputs move|16,score2036,All inputs move,52,54,0.097852,97852,1000000,0
+score2036|All inputs move|17,score2036,All inputs move,54,56,0.088626,88626,1000000,0
+score2036|All inputs move|18,score2036,All inputs move,56,58,0.077743,77743,1000000,0
+score2036|All inputs move|19,score2036,All inputs move,58,60,0.064489,64489,1000000,0
+score2036|All inputs move|20,score2036,All inputs move,60,62,0.052186,52186,1000000,0
+score2036|All inputs move|21,score2036,All inputs move,62,64,0.040005,40005,1000000,0
+score2036|All inputs move|22,score2036,All inputs move,64,66,0.030431,30431,1000000,0
+score2036|All inputs move|23,score2036,All inputs move,66,68,0.021786,21786,1000000,0
+score2036|All inputs move|24,score2036,All inputs move,68,70,0.014929,14929,1000000,0
+score2036|All inputs move|25,score2036,All inputs move,70,72,0.009843,9843,1000000,0
+score2036|All inputs move|26,score2036,All inputs move,72,74,0.006061,6061,1000000,0
+score2036|All inputs move|27,score2036,All inputs move,74,76,0.003282,3282,1000000,0
+score2036|All inputs move|28,score2036,All inputs move,76,78,0.001670,1670,1000000,0
+score2036|All inputs move|29,score2036,All inputs move,78,80,0.000736,736,1000000,0
+score2036|All inputs move|30,score2036,All inputs move,80,82,0.000265,265,1000000,0
+score2036|All inputs move|31,score2036,All inputs move,82,84,0.000066,66,1000000,0
+score2036|All inputs move|32,score2036,All inputs move,84,86,0.000015,15,1000000,0
+score2036|All inputs move|33,score2036,All inputs move,86,88,0.000000,0,1000000,0
+score2036|All inputs move|34,score2036,All inputs move,88,90,0.000000,0,1000000,0
+score2036|All inputs move|35,score2036,All inputs move,90,92,0.000000,0,1000000,0
+score2036|All inputs move|36,score2036,All inputs move,92,94,0.000000,0,1000000,0
+score2036|All inputs move|37,score2036,All inputs move,94,96,0.000000,0,1000000,0
+score2036|All inputs move|38,score2036,All inputs move,96,98,0.000000,0,1000000,0
+score2036|All inputs move|39,score2036,All inputs move,98,100,0.000000,0,1000000,1
+gstar|All inputs move|0,gstar,All inputs move,15,16.5,0.000000,0,1000000,0
+gstar|All inputs move|1,gstar,All inputs move,16.5,18,0.000000,0,1000000,0
+gstar|All inputs move|2,gstar,All inputs move,18,19.5,0.000000,0,1000000,0
+gstar|All inputs move|3,gstar,All inputs move,19.5,21,0.000000,0,1000000,0
+gstar|All inputs move|4,gstar,All inputs move,21,22.5,0.000017,17,1000000,0
+gstar|All inputs move|5,gstar,All inputs move,22.5,24,0.001016,1016,1000000,0
+gstar|All inputs move|6,gstar,All inputs move,24,25.5,0.009486,9486,1000000,0
+gstar|All inputs move|7,gstar,All inputs move,25.5,27,0.032833,32833,1000000,0
+gstar|All inputs move|8,gstar,All inputs move,27,28.5,0.068229,68229,1000000,0
+gstar|All inputs move|9,gstar,All inputs move,28.5,30,0.098737,98737,1000000,0
+gstar|All inputs move|10,gstar,All inputs move,30,31.5,0.108761,108761,1000000,0
+gstar|All inputs move|11,gstar,All inputs move,31.5,33,0.094855,94855,1000000,0
+gstar|All inputs move|12,gstar,All inputs move,33,34.5,0.072890,72890,1000000,0
+gstar|All inputs move|13,gstar,All inputs move,34.5,36,0.055043,55043,1000000,0
+gstar|All inputs move|14,gstar,All inputs move,36,37.5,0.044904,44904,1000000,0
+gstar|All inputs move|15,gstar,All inputs move,37.5,39,0.037391,37391,1000000,0
+gstar|All inputs move|16,gstar,All inputs move,39,40.5,0.032466,32466,1000000,0
+gstar|All inputs move|17,gstar,All inputs move,40.5,42,0.028797,28797,1000000,0
+gstar|All inputs move|18,gstar,All inputs move,42,43.5,0.025892,25892,1000000,0
+gstar|All inputs move|19,gstar,All inputs move,43.5,45,0.023542,23542,1000000,0
+gstar|All inputs move|20,gstar,All inputs move,45,46.5,0.021346,21346,1000000,0
+gstar|All inputs move|21,gstar,All inputs move,46.5,48,0.019666,19666,1000000,0
+gstar|All inputs move|22,gstar,All inputs move,48,49.5,0.018367,18367,1000000,0
+gstar|All inputs move|23,gstar,All inputs move,49.5,51,0.017044,17044,1000000,0
+gstar|All inputs move|24,gstar,All inputs move,51,52.5,0.015938,15938,1000000,0
+gstar|All inputs move|25,gstar,All inputs move,52.5,54,0.015285,15285,1000000,0
+gstar|All inputs move|26,gstar,All inputs move,54,55.5,0.014181,14181,1000000,0
+gstar|All inputs move|27,gstar,All inputs move,55.5,57,0.013520,13520,1000000,0
+gstar|All inputs move|28,gstar,All inputs move,57,58.5,0.012720,12720,1000000,0
+gstar|All inputs move|29,gstar,All inputs move,58.5,60,0.012241,12241,1000000,0
+gstar|All inputs move|30,gstar,All inputs move,60,61.5,0.011702,11702,1000000,0
+gstar|All inputs move|31,gstar,All inputs move,61.5,63,0.011012,11012,1000000,0
+gstar|All inputs move|32,gstar,All inputs move,63,64.5,0.010650,10650,1000000,0
+gstar|All inputs move|33,gstar,All inputs move,64.5,66,0.010281,10281,1000000,0
+gstar|All inputs move|34,gstar,All inputs move,66,67.5,0.009640,9640,1000000,0
+gstar|All inputs move|35,gstar,All inputs move,67.5,69,0.009218,9218,1000000,0
+gstar|All inputs move|36,gstar,All inputs move,69,70.5,0.008720,8720,1000000,0
+gstar|All inputs move|37,gstar,All inputs move,70.5,72,0.007808,7808,1000000,0
+gstar|All inputs move|38,gstar,All inputs move,72,73.5,0.006567,6567,1000000,0
+gstar|All inputs move|39,gstar,All inputs move,73.5,75,0.019235,19235,1000000,1
+gstar|Compute held at 6%|0,gstar,Compute held at 6%,15,16.5,0.000000,0,1000000,0
+gstar|Compute held at 6%|1,gstar,Compute held at 6%,16.5,18,0.000000,0,1000000,0
+gstar|Compute held at 6%|2,gstar,Compute held at 6%,18,19.5,0.000000,0,1000000,0
+gstar|Compute held at 6%|3,gstar,Compute held at 6%,19.5,21,0.000000,0,1000000,0
+gstar|Compute held at 6%|4,gstar,Compute held at 6%,21,22.5,0.000000,0,1000000,0
+gstar|Compute held at 6%|5,gstar,Compute held at 6%,22.5,24,0.000000,0,1000000,0
+gstar|Compute held at 6%|6,gstar,Compute held at 6%,24,25.5,0.000000,0,1000000,0
+gstar|Compute held at 6%|7,gstar,Compute held at 6%,25.5,27,0.000565,565,1000000,0
+gstar|Compute held at 6%|8,gstar,Compute held at 6%,27,28.5,0.015992,15992,1000000,0
+gstar|Compute held at 6%|9,gstar,Compute held at 6%,28.5,30,0.081684,81684,1000000,0
+gstar|Compute held at 6%|10,gstar,Compute held at 6%,30,31.5,0.188890,188890,1000000,0
+gstar|Compute held at 6%|11,gstar,Compute held at 6%,31.5,33,0.266572,266572,1000000,0
+gstar|Compute held at 6%|12,gstar,Compute held at 6%,33,34.5,0.249422,249422,1000000,0
+gstar|Compute held at 6%|13,gstar,Compute held at 6%,34.5,36,0.146152,146152,1000000,0
+gstar|Compute held at 6%|14,gstar,Compute held at 6%,36,37.5,0.044938,44938,1000000,0
+gstar|Compute held at 6%|15,gstar,Compute held at 6%,37.5,39,0.005576,5576,1000000,0
+gstar|Compute held at 6%|16,gstar,Compute held at 6%,39,40.5,0.000208,208,1000000,0
+gstar|Compute held at 6%|17,gstar,Compute held at 6%,40.5,42,0.000001,1,1000000,0
+gstar|Compute held at 6%|18,gstar,Compute held at 6%,42,43.5,0.000000,0,1000000,0
+gstar|Compute held at 6%|19,gstar,Compute held at 6%,43.5,45,0.000000,0,1000000,0
+gstar|Compute held at 6%|20,gstar,Compute held at 6%,45,46.5,0.000000,0,1000000,0
+gstar|Compute held at 6%|21,gstar,Compute held at 6%,46.5,48,0.000000,0,1000000,0
+gstar|Compute held at 6%|22,gstar,Compute held at 6%,48,49.5,0.000000,0,1000000,0
+gstar|Compute held at 6%|23,gstar,Compute held at 6%,49.5,51,0.000000,0,1000000,0
+gstar|Compute held at 6%|24,gstar,Compute held at 6%,51,52.5,0.000000,0,1000000,0
+gstar|Compute held at 6%|25,gstar,Compute held at 6%,52.5,54,0.000000,0,1000000,0
+gstar|Compute held at 6%|26,gstar,Compute held at 6%,54,55.5,0.000000,0,1000000,0
+gstar|Compute held at 6%|27,gstar,Compute held at 6%,55.5,57,0.000000,0,1000000,0
+gstar|Compute held at 6%|28,gstar,Compute held at 6%,57,58.5,0.000000,0,1000000,0
+gstar|Compute held at 6%|29,gstar,Compute held at 6%,58.5,60,0.000000,0,1000000,0
+gstar|Compute held at 6%|30,gstar,Compute held at 6%,60,61.5,0.000000,0,1000000,0
+gstar|Compute held at 6%|31,gstar,Compute held at 6%,61.5,63,0.000000,0,1000000,0
+gstar|Compute held at 6%|32,gstar,Compute held at 6%,63,64.5,0.000000,0,1000000,0
+gstar|Compute held at 6%|33,gstar,Compute held at 6%,64.5,66,0.000000,0,1000000,0
+gstar|Compute held at 6%|34,gstar,Compute held at 6%,66,67.5,0.000000,0,1000000,0
+gstar|Compute held at 6%|35,gstar,Compute held at 6%,67.5,69,0.000000,0,1000000,0
+gstar|Compute held at 6%|36,gstar,Compute held at 6%,69,70.5,0.000000,0,1000000,0
+gstar|Compute held at 6%|37,gstar,Compute held at 6%,70.5,72,0.000000,0,1000000,0
+gstar|Compute held at 6%|38,gstar,Compute held at 6%,72,73.5,0.000000,0,1000000,0
+gstar|Compute held at 6%|39,gstar,Compute held at 6%,73.5,75,0.000000,0,1000000,1
+payback|All inputs move|0,payback,All inputs move,3,3.5,0.000000,0,1000000,0
+payback|All inputs move|1,payback,All inputs move,3.5,4,0.000000,0,1000000,0
+payback|All inputs move|2,payback,All inputs move,4,4.5,0.000000,0,1000000,0
+payback|All inputs move|3,payback,All inputs move,4.5,5,0.000059,59,1000000,0
+payback|All inputs move|4,payback,All inputs move,5,5.5,0.001048,1048,1000000,0
+payback|All inputs move|5,payback,All inputs move,5.5,6,0.005255,5255,1000000,0
+payback|All inputs move|6,payback,All inputs move,6,6.5,0.014119,14119,1000000,0
+payback|All inputs move|7,payback,All inputs move,6.5,7,0.027334,27334,1000000,0
+payback|All inputs move|8,payback,All inputs move,7,7.5,0.042769,42769,1000000,0
+payback|All inputs move|9,payback,All inputs move,7.5,8,0.056897,56897,1000000,0
+payback|All inputs move|10,payback,All inputs move,8,8.5,0.069186,69186,1000000,0
+payback|All inputs move|11,payback,All inputs move,8.5,9,0.077456,77456,1000000,0
+payback|All inputs move|12,payback,All inputs move,9,9.5,0.082681,82681,1000000,0
+payback|All inputs move|13,payback,All inputs move,9.5,10,0.082460,82460,1000000,0
+payback|All inputs move|14,payback,All inputs move,10,10.5,0.080334,80334,1000000,0
+payback|All inputs move|15,payback,All inputs move,10.5,11,0.074407,74407,1000000,0
+payback|All inputs move|16,payback,All inputs move,11,11.5,0.066409,66409,1000000,0
+payback|All inputs move|17,payback,All inputs move,11.5,12,0.058286,58286,1000000,0
+payback|All inputs move|18,payback,All inputs move,12,12.5,0.050665,50665,1000000,0
+payback|All inputs move|19,payback,All inputs move,12.5,13,0.042053,42053,1000000,0
+payback|All inputs move|20,payback,All inputs move,13,13.5,0.035349,35349,1000000,0
+payback|All inputs move|21,payback,All inputs move,13.5,14,0.029228,29228,1000000,0
+payback|All inputs move|22,payback,All inputs move,14,14.5,0.024104,24104,1000000,0
+payback|All inputs move|23,payback,All inputs move,14.5,15,0.019092,19092,1000000,0
+payback|All inputs move|24,payback,All inputs move,15,15.5,0.015400,15400,1000000,0
+payback|All inputs move|25,payback,All inputs move,15.5,16,0.011947,11947,1000000,0
+payback|All inputs move|26,payback,All inputs move,16,16.5,0.009122,9122,1000000,0
+payback|All inputs move|27,payback,All inputs move,16.5,17,0.007066,7066,1000000,0
+payback|All inputs move|28,payback,All inputs move,17,17.5,0.005265,5265,1000000,0
+payback|All inputs move|29,payback,All inputs move,17.5,18,0.003833,3833,1000000,0
+payback|All inputs move|30,payback,All inputs move,18,18.5,0.002787,2787,1000000,0
+payback|All inputs move|31,payback,All inputs move,18.5,19,0.001900,1900,1000000,0
+payback|All inputs move|32,payback,All inputs move,19,19.5,0.001360,1360,1000000,0
+payback|All inputs move|33,payback,All inputs move,19.5,20,0.002129,2129,1000000,1
+payback|Central execution|0,payback,Central execution,3,3.5,0.000000,0,1000000,0
+payback|Central execution|1,payback,Central execution,3.5,4,0.000000,0,1000000,0
+payback|Central execution|2,payback,Central execution,4,4.5,0.000000,0,1000000,0
+payback|Central execution|3,payback,Central execution,4.5,5,0.000000,0,1000000,0
+payback|Central execution|4,payback,Central execution,5,5.5,0.000000,0,1000000,0
+payback|Central execution|5,payback,Central execution,5.5,6,0.000000,0,1000000,0
+payback|Central execution|6,payback,Central execution,6,6.5,0.000002,2,1000000,0
+payback|Central execution|7,payback,Central execution,6.5,7,0.006315,6315,1000000,0
+payback|Central execution|8,payback,Central execution,7,7.5,0.260211,260211,1000000,0
+payback|Central execution|9,payback,Central execution,7.5,8,0.727423,727423,1000000,0
+payback|Central execution|10,payback,Central execution,8,8.5,0.006049,6049,1000000,0
+payback|Central execution|11,payback,Central execution,8.5,9,0.000000,0,1000000,0
+payback|Central execution|12,payback,Central execution,9,9.5,0.000000,0,1000000,0
+payback|Central execution|13,payback,Central execution,9.5,10,0.000000,0,1000000,0
+payback|Central execution|14,payback,Central execution,10,10.5,0.000000,0,1000000,0
+payback|Central execution|15,payback,Central execution,10.5,11,0.000000,0,1000000,0
+payback|Central execution|16,payback,Central execution,11,11.5,0.000000,0,1000000,0
+payback|Central execution|17,payback,Central execution,11.5,12,0.000000,0,1000000,0
+payback|Central execution|18,payback,Central execution,12,12.5,0.000000,0,1000000,0
+payback|Central execution|19,payback,Central execution,12.5,13,0.000000,0,1000000,0
+payback|Central execution|20,payback,Central execution,13,13.5,0.000000,0,1000000,0
+payback|Central execution|21,payback,Central execution,13.5,14,0.000000,0,1000000,0
+payback|Central execution|22,payback,Central execution,14,14.5,0.000000,0,1000000,0
+payback|Central execution|23,payback,Central execution,14.5,15,0.000000,0,1000000,0
+payback|Central execution|24,payback,Central execution,15,15.5,0.000000,0,1000000,0
+payback|Central execution|25,payback,Central execution,15.5,16,0.000000,0,1000000,0
+payback|Central execution|26,payback,Central execution,16,16.5,0.000000,0,1000000,0
+payback|Central execution|27,payback,Central execution,16.5,17,0.000000,0,1000000,0
+payback|Central execution|28,payback,Central execution,17,17.5,0.000000,0,1000000,0
+payback|Central execution|29,payback,Central execution,17.5,18,0.000000,0,1000000,0
+payback|Central execution|30,payback,Central execution,18,18.5,0.000000,0,1000000,0
+payback|Central execution|31,payback,Central execution,18.5,19,0.000000,0,1000000,0
+payback|Central execution|32,payback,Central execution,19,19.5,0.000000,0,1000000,0
+payback|Central execution|33,payback,Central execution,19.5,20,0.000000,0,1000000,1
+realized|All inputs move|0,realized,All inputs move,0,2.5,0.000000,0,1000000,0
+realized|All inputs move|1,realized,All inputs move,2.5,5,0.000000,0,1000000,0
+realized|All inputs move|2,realized,All inputs move,5,7.5,0.000161,161,1000000,0
+realized|All inputs move|3,realized,All inputs move,7.5,10,0.004068,4068,1000000,0
+realized|All inputs move|4,realized,All inputs move,10,12.5,0.014970,14970,1000000,0
+realized|All inputs move|5,realized,All inputs move,12.5,15,0.027393,27393,1000000,0
+realized|All inputs move|6,realized,All inputs move,15,17.5,0.038300,38300,1000000,0
+realized|All inputs move|7,realized,All inputs move,17.5,20,0.046391,46391,1000000,0
+realized|All inputs move|8,realized,All inputs move,20,22.5,0.051453,51453,1000000,0
+realized|All inputs move|9,realized,All inputs move,22.5,25,0.054123,54123,1000000,0
+realized|All inputs move|10,realized,All inputs move,25,27.5,0.056060,56060,1000000,0
+realized|All inputs move|11,realized,All inputs move,27.5,30,0.055770,55770,1000000,0
+realized|All inputs move|12,realized,All inputs move,30,32.5,0.054797,54797,1000000,0
+realized|All inputs move|13,realized,All inputs move,32.5,35,0.052845,52845,1000000,0
+realized|All inputs move|14,realized,All inputs move,35,37.5,0.052794,52794,1000000,0
+realized|All inputs move|15,realized,All inputs move,37.5,40,0.053586,53586,1000000,0
+realized|All inputs move|16,realized,All inputs move,40,42.5,0.050166,50166,1000000,0
+realized|All inputs move|17,realized,All inputs move,42.5,45,0.045660,45660,1000000,0
+realized|All inputs move|18,realized,All inputs move,45,47.5,0.041616,41616,1000000,0
+realized|All inputs move|19,realized,All inputs move,47.5,50,0.038634,38634,1000000,0
+realized|All inputs move|20,realized,All inputs move,50,52.5,0.034869,34869,1000000,0
+realized|All inputs move|21,realized,All inputs move,52.5,55,0.031393,31393,1000000,0
+realized|All inputs move|22,realized,All inputs move,55,57.5,0.028853,28853,1000000,0
+realized|All inputs move|23,realized,All inputs move,57.5,60,0.025993,25993,1000000,0
+realized|All inputs move|24,realized,All inputs move,60,62.5,0.023148,23148,1000000,0
+realized|All inputs move|25,realized,All inputs move,62.5,65,0.020488,20488,1000000,0
+realized|All inputs move|26,realized,All inputs move,65,67.5,0.018220,18220,1000000,0
+realized|All inputs move|27,realized,All inputs move,67.5,70,0.016160,16160,1000000,0
+realized|All inputs move|28,realized,All inputs move,70,72.5,0.014433,14433,1000000,0
+realized|All inputs move|29,realized,All inputs move,72.5,75,0.012433,12433,1000000,0
+realized|All inputs move|30,realized,All inputs move,75,77.5,0.010931,10931,1000000,0
+realized|All inputs move|31,realized,All inputs move,77.5,80,0.009465,9465,1000000,0
+realized|All inputs move|32,realized,All inputs move,80,82.5,0.008043,8043,1000000,0
+realized|All inputs move|33,realized,All inputs move,82.5,85,0.006784,6784,1000000,0
+realized|All inputs move|34,realized,All inputs move,85,87.5,0.000000,0,1000000,0
+realized|All inputs move|35,realized,All inputs move,87.5,90,0.000000,0,1000000,1

@@ -1,0 +1,57 @@
+(1) Our extract versus the reviewer's texts
+  OK  extract: revenue 2023-25, Q1 25/26 [424b4]; also in F-1 text: True
+  OK  extract: operating income 2023-25, Q1 25/26 [424b4]; also in F-1 text: True
+  OK  extract: interest expense 2023-25, Q1 25/26 [424b4]; also in F-1 text: True
+  OK  extract: operating cash flow 2023-25 [424b4]; also in F-1 text: True
+  OK  extract: investing cash flow 2023-25 [424b4]; also in F-1 text: True
+  OK  json: interests paid 2023-25 (F-34/35) [424b4]; also in F-1 text: True
+  OK  json: income taxes paid 2023-25 [424b4]; also in F-1 text: True
+  OK  json: interests paid Q1 25/26 (F-6/7) [424b4]; also in F-1 text: True
+  OK  extract: reorganization expense 2023-25, Q1 25/26 [424b4]; also in F-1 text: True
+  OK  extract: adjusted operating income 2023-25 [424b4]; also in F-1 text: True
+  OK  extract: pro forma revenue components and total [424b4]; also in F-1 text: True
+  OK  extract: purchase prices AOL/Eventbrite/Vimeo [424b4]; also in F-1 text: True
+  OK  extract: pro forma operating income 508,758 [424b4]; also in F-1 text: True
+  OK  json: H1 interests paid [ex992]
+  OK  json: H1 2026 interests paid [ex992]
+  OK  extract: H1 acquisitions of businesses [ex992]
+  OK  extract: H1 2026 acquisitions of businesses [ex992]
+  OK  extract: H1 net investing [ex992]
+  OK  extract: H1 2026 net investing [ex992]
+  OK  extract: Q2 revenue 704,155 vs 311,100 [ex991]
+  OK  extract: Q2 operating income 240,251 [ex991]
+  OK  json: Q2 2026 interest expense 108,970 [ex991]
+  OK  extract: Q2 reorganization 50,799 [ex991]
+  OK  extract: Q2 organic growth 3% (footnote marker between "growth" and "was") [ex991]
+  24/24 found
+
+(2) Passages
+  [f1] organic 2024: Organic revenue growth 30 was 7% in 2024, with Evernote, Rem
+  [f1] organic 2025: Organic revenue growth was 13% in 2025, with Issuu, Meetup, 
+  [f1] subscription share: Subscriptions accounted for 95% of our revenue in 2023, 92% in 2024, and 93% in 2025, with adve
+  [f1] equity compensation (cash-flow statement): Equity compensation expense $14,900 $25,855 $55,523 Impairme
+  [f1] investing split: Acquisitions of businesses net of cash and cash equivalents acquired $(170,586) $(726,574) $(1,851,307) Purchase of intangible assets $(958) $(162,476) $(67) Purchase of property, plant, and equipment $(4,044) $(604) $(501) Proceeds from other investments $5,295 $— $— Net cash from investing activities $(170,294) $(889,654) $(1,
+  [424b4] organic 2024: Organic revenue growth 30 was 7% in 2024, with Evernote, Rem
+  [424b4] organic 2025: Organic revenue growth was 13% in 2025, with Issuu, Meetup, 
+  [424b4] subscription share: Subscriptions accounted for 95% of our revenue in 2023, 92% in 2024, and 93% in 2025, with adve
+  [424b4] equity compensation (cash-flow statement): Equity compensation expense $14,900 $25,855 $55,523 Impairme
+  [424b4] investing split: Acquisitions of businesses net of cash and cash equivalents acquired $(170,586) $(726,574) $(1,851,307) Purchase of intangible assets $(958) $(162,476) $(67) Purchase of property, plant, and equipment $(4,044) $(604) $(501) Proceeds from other investments $5,295 $— $— Net cash from investing activities $(170,294) $(889,654) $(1,
+  [424b4] definition of the footnoted measure: None
+
+(3) Recomputation (points of revenue)
+  2024: growth 73.37; GAAP op margin 18.98; interest expense 4.86; reorganization 7.72
+        organic + GAAP margin: 25.98 before interest, 21.12 after interest expense
+        with reorganization added back: 33.70 before, 28.84 after
+        same with after-tax interest (tau=24%): 22.29 / 30.00
+        SBC 3.85% of revenue; PP&E 0.090%
+        cash score after interest paid g+OCF/S = 103.90; minus SBC = 100.05; minus SBC and PP&E = 99.96
+        investing split: acquisitions 81.7%, intangibles 18.3%, PP&E 0.07% of the net outflow
+  2025: growth 94.68; GAAP op margin 21.27; interest expense 10.92; reorganization 6.02
+        organic + GAAP margin: 34.27 before interest, 23.35 after interest expense
+        with reorganization added back: 40.29 before, 29.37 after
+        same with after-tax interest (tau=24%): 25.97 / 31.99
+        SBC 4.25% of revenue; PP&E 0.038%
+        cash score after interest paid g+OCF/S = 116.92; minus SBC = 112.67; minus SBC and PP&E = 112.64
+        investing split: acquisitions 100.0%, intangibles 0.0%, PP&E 0.03% of the net outflow
+  pro forma ratio 2,608,496 / 1,306,404 = 1.997
+  k_acq: Eventbrite 1.730, AOL 2.296, Vimeo 3.230 (Vimeo annualized from 327 days, 1 Jan to 23 Nov 2025)

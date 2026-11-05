@@ -1,0 +1,450 @@
+rows: 10000
+Gstar_2025: min=2286.97%, max=8417.65%, central-col rows near 32.5: 0  [full box (claimed 19.6 to 94.5)]
+Gstar_2025_cc6: min=2665.86%, max=3986.51%, central-col rows near 32.5: 0  [compute at 6%, others joint (claimed 24.0 to 45.1)]
+columns: ['Gstar_2025', 'Gstar_2025_cc6']
+/claims: [{'id': 'C1', 'title': 'A cash-basis Rule of 100 needs market growth above about G*', 'quote': "complete automation keep
+/sensitivity_claims: [{'id': 'S1', 'title': 'Execution, not market growth, moves the 2036 score most', 'quote': 'execution, not market growth
+/group_swings/Gstar_2025/fees/low: 0.321252356655251
+/group_swings/Gstar_2025/fees/high: 0.32945235665525097
+/group_swings/Gstar_2025/fees/swing: 0.008199999999999985
+/group_swings/Gstar_2025/fees/method: all 2 vertices of the group
+/group_swings/Gstar_2025/tax/low: 0.3006701258011749
+/group_swings/Gstar_2025/tax/high: 0.35003458750932714
+/group_swings/Gstar_2025/tax/swing: 0.04936446170815223
+/group_swings/Gstar_2025/tax/method: all 2 vertices of the group
+/group_swings/Gstar_2025/accountability/low: 0.304852356655251
+/group_swings/Gstar_2025/accountability/high: 0.338472356655251
+/group_swings/Gstar_2025/accountability/swing: 0.03361999999999998
+/group_swings/Gstar_2025/accountability/method: all 2 vertices of the group
+/group_swings/Gstar_2025/security/low: 0.32074257005064144
+/group_swings/Gstar_2025/security/high: 0.33534118767610566
+/group_swings/Gstar_2025/security/swing: 0.014598617625464216
+/group_swings/Gstar_2025/security/method: all 64 vertices of the group
+/group_swings/Gstar_2025/maintenance/low: 0.32165878475829546
+/group_swings/Gstar_2025/maintenance/high: 0.34408915705266774
+/group_swings/Gstar_2025/maintenance/swing: 0.02243037229437228
+/group_swings/Gstar_2025/maintenance/method: all 16 vertices of the group
+/group_swings/Gstar_2025/ai_failure/low: 0.30131699876032714
+/group_swings/Gstar_2025/ai_failure/high: 0.37609854643403606
+/group_swings/Gstar_2025/ai_failure/swing: 0.07478154767370893
+/group_swings/Gstar_2025/ai_failure/method: all 64 vertices of the group
+/group_swings/Gstar_2025/ancillary/low: 0.324563106655251
+/group_swings/Gstar_2025/ancillary/high: 0.3269308566552509
+/group_swings/Gstar_2025/ancillary/swing: 0.0023677499999998908
+/group_swings/Gstar_2025/ancillary/method: all 4 vertices of the group
+/group_swings/Gstar_2025/compute/low: 0.2778408265182647
+/group_swings/Gstar_2025/compute/high: 0.8263071217237441
+/group_swings/Gstar_2025/compute/swing: 0.5484662952054794
+/group_swings/Gstar_2025/compute/method: all 128 vertices of the group
+/group_swings/Gstar_2025/execution/low: 0.325352356655251
+/group_swings/Gstar_2025/execution/high: 0.325352356655251
+/group_swings/Gstar_2025/execution/swing: 0.0
+/group_swings/Gstar_2025/execution/method: all 2048 vertices of the group
+/group_swings/Gstar_2025/market_growth/low: 0.325352356655251
+/group_swings/Gstar_2025/market_growth/high: 0.325352356655251
+/group_swings/Gstar_2025/market_growth/swing: 0.0
+/group_swings/Gstar_2025/market_growth/method: all 2 vertices of the group
+/group_swings/Gstar_2025/pass_through/low: 0.325352356655251
+/group_swings/Gstar_2025/pass_through/high: 0.325352356655251
+/group_swings/Gstar_2025/pass_through/swing: 0.0
+/group_swings/Gstar_2025/pass_through/method: all 2 vertices of the group
+/group_swings/Gstar_2025/capital/low: 0.325352356655251
+/group_swings/Gstar_2025/capital/high: 0.325352356655251
+/group_swings/Gstar_2025/capital/swing: 0.0
+/group_swings/Gstar_2025/capital/method: all 4 vertices of the group
+/group_swings/Gstar_2025/surplus/low: 0.325352356655251
+/group_swings/Gstar_2025/surplus/high: 0.325352356655251
+/group_swings/Gstar_2025/surplus/swing: 0.0
+/group_swings/Gstar_2025/surplus/method: all 32 vertices of the group
+/group_swings/Gstar_2025/discount/low: 0.325352356655251
+/group_swings/Gstar_2025/discount/high: 0.325352356655251
+/group_swings/Gstar_2025/discount/swing: 0.0
+/group_swings/Gstar_2025/discount/method: all 2 vertices of the group
+/group_swings/Gstar_2025/anchor/low: 0.325352356655251
+/group_swings/Gstar_2025/anchor/high: 0.325352356655251
+/group_swings/Gstar_2025/anchor/swing: 0.0
+/group_swings/Gstar_2025/anchor/method: all 2 vertices of the group
+/group_swings/Gstar_2025/maint_base/low: None
+/group_swings/Gstar_2025/maint_base/high: None
+/group_swings/Gstar_2025/maint_base/swing: 0.0
+/group_swings/Gstar_2025/maint_base/method: no effect on this output
+/group_swings/Gstar_2025/fullcost_target/low: 0.19637035382758994
+/group_swings/Gstar_2025/fullcost_target/high: 0.9453939399201657
+/group_swings/Gstar_2025/fullcost_target/swing: 0.7490235860925758
+/group_swings/Gstar_2025/fullcost_target/method: vertex search over the group's 28 dimensions
+/sobol/outputs/Gstar_2025/factors/f/S1: 0.00035145836703698937
+/sobol/outputs/Gstar_2025/factors/f/ST: 0.00034682328727038387
+/sobol/outputs/Gstar_2025/factors/f/S1_conf: 0.0015840114580418106
+/sobol/outputs/Gstar_2025/factors/f/ST_conf: 3.6680017550168656e-05
+/sobol/outputs/Gstar_2025/factors/f/S1_ci: [-0.0012325530910048212, 0.0019354698250788]
+/sobol/outputs/Gstar_2025/factors/f/ST_ci: [0.0003101432697202152, 0.0003835033048205525]
+/sobol/outputs/Gstar_2025/factors/tau/S1: 0.010491357341142924
+/sobol/outputs/Gstar_2025/factors/tau/ST: 0.010401209572383672
+/sobol/outputs/Gstar_2025/factors/tau/S1_conf: 0.008459397950214007
+/sobol/outputs/Gstar_2025/factors/tau/ST_conf: 0.0012045564022077498
+/sobol/outputs/Gstar_2025/factors/tau/S1_ci: [0.0020319593909289176, 0.01895075529135693]
+/sobol/outputs/Gstar_2025/factors/tau/ST_ci: [0.009196653170175921, 0.011605765974591422]
+/sobol/outputs/Gstar_2025/factors/a_min/S1: 0.005840424992827008
+/sobol/outputs/Gstar_2025/factors/a_min/ST: 0.005830111961432326
+/sobol/outputs/Gstar_2025/factors/a_min/S1_conf: 0.00645270777119658
+/sobol/outputs/Gstar_2025/factors/a_min/ST_conf: 0.0006135769225497123
+/sobol/outputs/Gstar_2025/factors/a_min/S1_ci: [-0.0006122827783695715, 0.01229313276402359]
+/sobol/outputs/Gstar_2025/factors/a_min/ST_ci: [0.005216535038882614, 0.006443688883982038]
+/sobol/outputs/Gstar_2025/factors/L0/S1: 0.00022732300143659193
+/sobol/outputs/Gstar_2025/factors/L0/ST: 0.00020299376725433678
+/sobol/outputs/Gstar_2025/factors/L0/S1_conf: 0.001280865121152394
+/sobol/outputs/Gstar_2025/factors/L0/ST_conf: 2.2380887949593593e-05
+/sobol/outputs/Gstar_2025/factors/L0/S1_ci: [-0.0010535421197158021, 0.001508188122588986]
+/sobol/outputs/Gstar_2025/factors/L0/ST_ci: [0.0001806128793047432, 0.00022537465520393036]
+/sobol/outputs/Gstar_2025/factors/Me/S1: 2.249385386934634e-06
+/sobol/outputs/Gstar_2025/factors/Me/ST: 4.695617242773847e-05
+/sobol/outputs/Gstar_2025/factors/Me/S1_conf: 0.0006034665595300272
+/sobol/outputs/Gstar_2025/factors/Me/ST_conf: 6.133840598798789e-06
+/sobol/outputs/Gstar_2025/factors/Me/S1_ci: [-0.0006012171741430926, 0.0006057159449169619]
+/sobol/outputs/Gstar_2025/factors/Me/ST_ci: [4.082233182893968e-05, 5.309001302653726e-05]
+/sobol/outputs/Gstar_2025/factors/sec_it/S1: -5.165667161980448e-06
+/sobol/outputs/Gstar_2025/factors/sec_it/ST: 6.667357715341417e-07
+/sobol/outputs/Gstar_2025/factors/sec_it/S1_conf: 6.612965381094777e-05
+/sobol/outputs/Gstar_2025/factors/sec_it/ST_conf: 7.752546023291178e-08
+/sobol/outputs/Gstar_2025/factors/sec_it/S1_ci: [-7.129532097292822e-05, 6.096398664896732e-05]
+/sobol/outputs/Gstar_2025/factors/sec_it/ST_ci: [5.892103113012299e-07, 7.442612317670534e-07]
+/sobol/outputs/Gstar_2025/factors/phi_pqc/S1: 1.4629305960228844e-05
+/sobol/outputs/Gstar_2025/factors/phi_pqc/ST: 8.18163911108159e-06
+/sobol/outputs/Gstar_2025/factors/phi_pqc/S1_conf: 0.0002521452130758835
+/sobol/outputs/Gstar_2025/factors/phi_pqc/ST_conf: 8.796032970652308e-07
+/sobol/outputs/Gstar_2025/factors/phi_pqc/S1_ci: [-0.00023751590711565466, 0.0002667745190361123]
+/sobol/outputs/Gstar_2025/factors/phi_pqc/ST_ci: [7.302035814016359e-06, 9.06124240814682e-06]
+/sobol/outputs/Gstar_2025/factors/aic_fixed/S1: -7.527300822635196e-06
+/sobol/outputs/Gstar_2025/factors/aic_fixed/ST: 3.672959676439499e-07
+/sobol/outputs/Gstar_2025/factors/aic_fixed/S1_conf: 4.841864093631494e-05
+/sobol/outputs/Gstar_2025/factors/aic_fixed/ST_conf: 3.8262411871811226e-08
+/sobol/outputs/Gstar_2025/factors/aic_fixed/S1_ci: [-5.594594175895014e-05, 4.0891340113679745e-05]
+/sobol/outputs/Gstar_2025/factors/aic_fixed/ST_ci: [3.2903355577213867e-07, 4.0555837951576115e-07]
+/sobol/outputs/Gstar_2025/factors/aic_pp/S1: 3.2210399780899545e-05
+/sobol/outputs/Gstar_2025/factors/aic_pp/ST: 2.6231362271570073e-05
+/sobol/outputs/Gstar_2025/factors/aic_pp/S1_conf: 0.0004339455708871206
+/sobol/outputs/Gstar_2025/factors/aic_pp/ST_conf: 2.564739034106114e-06
+/sobol/outputs/Gstar_2025/factors/aic_pp/S1_ci: [-0.00040173517110622106, 0.00046615597066802014]
+/sobol/outputs/Gstar_2025/factors/aic_pp/ST_ci: [2.366662323746396e-05, 2.8796101305676186e-05]
+/sobol/outputs/Gstar_2025/factors/delta_M/S1: -1.4029050566897118e-05
+/sobol/outputs/Gstar_2025/factors/delta_M/ST: 0.00031445008800913364
+/sobol/outputs/Gstar_2025/factors/delta_M/S1_conf: 0.0015839576784918638
+/sobol/outputs/Gstar_2025/factors/delta_M/ST_conf: 3.731977639972101e-05
+/sobol/outputs/Gstar_2025/factors/delta_M/S1_ci: [-0.0015979867290587609, 0.0015699286279249667]
+/sobol/outputs/Gstar_2025/factors/delta_M/ST_ci: [0.00027713031160941264, 0.00035176986440885465]
+/sobol/outputs/Gstar_2025/factors/kappa_rv/S1: 9.894913405847258e-06
+/sobol/outputs/Gstar_2025/factors/kappa_rv/ST: 4.548319174125332e-05
+/sobol/outputs/Gstar_2025/factors/kappa_rv/S1_conf: 0.0006061432558717383
+/sobol/outputs/Gstar_2025/factors/kappa_rv/ST_conf: 5.411326336897931e-06
+/sobol/outputs/Gstar_2025/factors/kappa_rv/S1_ci: [-0.000596248342465891, 0.0006160381692775855]
+/sobol/outputs/Gstar_2025/factors/kappa_rv/ST_ci: [4.0071865404355385e-05, 5.089451807815125e-05]
+/sobol/outputs/Gstar_2025/factors/T_up/S1: -2.972135694147387e-06
+/sobol/outputs/Gstar_2025/factors/T_up/ST: 1.1173717587349176e-05
+/sobol/outputs/Gstar_2025/factors/T_up/S1_conf: 0.00029907326559542414
+/sobol/outputs/Gstar_2025/factors/T_up/ST_conf: 1.571981397303447e-06
+/sobol/outputs/Gstar_2025/factors/T_up/S1_ci: [-0.00030204540128957153, 0.00029610112990127675]
+/sobol/outputs/Gstar_2025/factors/T_up/ST_ci: [9.601736190045728e-06, 1.2745698984652623e-05]
+/sobol/outputs/Gstar_2025/factors/B/S1: 0.0005251502660571199
+/sobol/outputs/Gstar_2025/factors/B/ST: 0.0005701666705081218
+/sobol/outputs/Gstar_2025/factors/B/S1_conf: 0.002216221992355932
+/sobol/outputs/Gstar_2025/factors/B/ST_conf: 5.67664184675399e-05
+/sobol/outputs/Gstar_2025/factors/B/S1_ci: [-0.001691071726298812, 0.0027413722584130515]
+/sobol/outputs/Gstar_2025/factors/B/ST_ci: [0.0005134002520405819, 0.0006269330889756617]
+/sobol/outputs/Gstar_2025/factors/u_rev/S1: 0.0005231666288022465
+/sobol/outputs/Gstar_2025/factors/u_rev/ST: 0.0006171398841785335
+/sobol/outputs/Gstar_2025/factors/u_rev/S1_conf: 0.002157806459311321
+/sobol/outputs/Gstar_2025/factors/u_rev/ST_conf: 7.595859674137999e-05
+/sobol/outputs/Gstar_2025/factors/u_rev/S1_ci: [-0.0016346398305090745, 0.0026809730881135678]
+/sobol/outputs/Gstar_2025/factors/u_rev/ST_ci: [0.0005411812874371535, 0.0006930984809199135]
+/sobol/outputs/Gstar_2025/factors/ell_e/S1: 0.0028018150117259176
+/sobol/outputs/Gstar_2025/factors/ell_e/ST: 0.0029624618203140233
+/sobol/outputs/Gstar_2025/factors/ell_e/S1_conf: 0.0047960219544750824
+/sobol/outputs/Gstar_2025/factors/ell_e/ST_conf: 0.0002801384250228775
+/sobol/outputs/Gstar_2025/factors/ell_e/S1_ci: [-0.001994206942749165, 0.007597836966201]
+/sobol/outputs/Gstar_2025/factors/ell_e/ST_ci: [0.0026823233952911456, 0.003242600245336901]
+/sobol/outputs/Gstar_2025/factors/mu_m/S1: -4.159027586356779e-05
+/sobol/outputs/Gstar_2025/factors/mu_m/ST: 0.00022418931881880875
+/sobol/outputs/Gstar_2025/factors/mu_m/S1_conf: 0.0013633923387225272
+/sobol/outputs/Gstar_2025/factors/mu_m/ST_conf: 3.4575131469952255e-05
+/sobol/outputs/Gstar_2025/factors/mu_m/S1_ci: [-0.001404982614586095, 0.0013218020628589593]
+/sobol/outputs/Gstar_2025/factors/mu_m/ST_ci: [0.00018961418734885648, 0.000258764450288761]
+/sobol/outputs/Gstar_2025/factors/d_m/S1: 0.0005601256203714035
+/sobol/outputs/Gstar_2025/factors/d_m/ST: 0.0003919221306134169
+/sobol/outputs/Gstar_2025/factors/d_m/S1_conf: 0.0017839574614496795
+/sobol/outputs/Gstar_2025/factors/d_m/ST_conf: 5.5613469859344985e-05
+/sobol/outputs/Gstar_2025/factors/d_m/S1_ci: [-0.001223831841078276, 0.002344083081821083]
+/sobol/outputs/Gstar_2025/factors/d_m/ST_ci: [0.0003363086607540719, 0.0004475356004727619]
+/sobol/outputs/Gstar_2025/factors/p_tail/S1: 8.943578810795756e-05
+/sobol/outputs/Gstar_2025/factors/p_tail/ST: 0.0001376337208339903
+/sobol/outputs/Gstar_2025/factors/p_tail/S1_conf: 0.0010379545085286467
+/sobol/outputs/Gstar_2025/factors/p_tail/ST_conf: 2.1982263263697108e-05
+/sobol/outputs/Gstar_2025/factors/p_tail/S1_ci: [-0.0009485187204206891, 0.0011273902966366042]
+/sobol/outputs/Gstar_2025/factors/p_tail/ST_ci: [0.0001156514575702932, 0.00015961598409768742]
+/sobol/outputs/Gstar_2025/factors/nu_cm/S1: 0.0011870112392962076
+/sobol/outputs/Gstar_2025/factors/nu_cm/ST: 0.001047355208653555
+/sobol/outputs/Gstar_2025/factors/nu_cm/S1_conf: 0.00308781820512115
+/sobol/outputs/Gstar_2025/factors/nu_cm/ST_conf: 0.00011073634461765828
+/sobol/outputs/Gstar_2025/factors/nu_cm/S1_ci: [-0.0019008069658249425, 0.004274829444417358]
+/sobol/outputs/Gstar_2025/factors/nu_cm/ST_ci: [0.0009366188640358967, 0.0011580915532712133]
+/sobol/outputs/Gstar_2025/factors/s_fin/S1: -1.3228655525150306e-05
+/sobol/outputs/Gstar_2025/factors/s_fin/ST: 0.00029663505661957265
+/sobol/outputs/Gstar_2025/factors/s_fin/S1_conf: 0.0014949827777824486
+/sobol/outputs/Gstar_2025/factors/s_fin/ST_conf: 4.7034431532958277e-05
+/sobol/outputs/Gstar_2025/factors/s_fin/S1_ci: [-0.001508211433307599, 0.0014817541222572983]
+/sobol/outputs/Gstar_2025/factors/s_fin/ST_ci: [0.00024960062508661436, 0.00034366948815253094]
+/sobol/outputs/Gstar_2025/factors/anc_fixed/S1: -7.237259406547589e-08
+/sobol/outputs/Gstar_2025/factors/anc_fixed/ST: 1.2192851095923326e-07
+/sobol/outputs/Gstar_2025/factors/anc_fixed/S1_conf: 3.1808380453918204e-05
+/sobol/outputs/Gstar_2025/factors/anc_fixed/ST_conf: 1.1665505443338776e-08
+/sobol/outputs/Gstar_2025/factors/anc_fixed/S1_ci: [-3.188075304798368e-05, 3.173600785985273e-05]
+/sobol/outputs/Gstar_2025/factors/anc_fixed/ST_ci: [1.1026300551589449e-07, 1.3359401640257203e-07]
+/sobol/outputs/Gstar_2025/factors/s_L/S1: 0.009319676307337231
+/sobol/outputs/Gstar_2025/factors/s_L/ST: 0.013921683079598509
+/sobol/outputs/Gstar_2025/factors/s_L/S1_conf: 0.010154801634920003
+/sobol/outputs/Gstar_2025/factors/s_L/ST_conf: 0.0019773868126137214
+/sobol/outputs/Gstar_2025/factors/s_L/S1_ci: [-0.0008351253275827725, 0.019474477942257234]
+/sobol/outputs/Gstar_2025/factors/s_L/ST_ci: [0.011944296266984789, 0.01589906989221223]
+/sobol/outputs/Gstar_2025/factors/kappa_2025/S1: 0.9581639266119885
+/sobol/outputs/Gstar_2025/factors/kappa_2025/ST: 0.9660610353207575
+/sobol/outputs/Gstar_2025/factors/kappa_2025/S1_conf: 0.08850387357489757
+/sobol/outputs/Gstar_2025/factors/kappa_2025/ST_conf: 0.06533088691841393
+/sobol/outputs/Gstar_2025/factors/kappa_2025/S1_ci: [0.8696600530370909, 1.046667800186886]
+/sobol/outputs/Gstar_2025/factors/kappa_2025/ST_ci: [0.9007301484023436, 1.0313919222391714]
+/sobol/outputs/Gstar_2025/factors/D/S1: 0.0
+/sobol/outputs/Gstar_2025/factors/D/ST: 0.0
+/sobol/outputs/Gstar_2025/factors/D/S1_conf: 0.0
+/sobol/outputs/Gstar_2025/factors/D/ST_conf: 0.0
+/sobol/outputs/Gstar_2025/factors/D/S1_ci: [0.0, 0.0]
+/sobol/outputs/Gstar_2025/factors/D/ST_ci: [0.0, 0.0]
+/sobol/outputs/Gstar_2025/factors/kappa_front/S1: 0.0
+/sobol/outputs/Gstar_2025/factors/kappa_front/ST: 0.0
+/sobol/outputs/Gstar_2025/factors/kappa_front/S1_conf: 0.0
+/sobol/outputs/Gstar_2025/factors/kappa_front/ST_conf: 0.0
+/sobol/outputs/Gstar_2025/factors/kappa_front/S1_ci: [0.0, 0.0]
+/sobol/outputs/Gstar_2025/factors/kappa_front/ST_ci: [0.0, 0.0]
+/sobol/outputs/Gstar_2025/factors/omega_2028/S1: 0.0
+/sobol/outputs/Gstar_2025/factors/omega_2028/ST: 0.0
+/sobol/outputs/Gstar_2025/factors/omega_2028/S1_conf: 0.0
+/sobol/outputs/Gstar_2025/factors/omega_2028/ST_conf: 0.0
+/sobol/outputs/Gstar_2025/factors/omega_2028/S1_ci: [0.0, 0.0]
+/sobol/outputs/Gstar_2025/factors/omega_2028/ST_ci: [0.0, 0.0]
+/sobol/outputs/Gstar_2025/factors/omega_2031/S1: 0.0
+/sobol/outputs/Gstar_2025/factors/omega_2031/ST: 0.0
+/sobol/outputs/Gstar_2025/factors/omega_2031/S1_conf: 0.0
+/sobol/outputs/Gstar_2025/factors/omega_2031/ST_conf: 0.0
+/sobol/outputs/Gstar_2025/factors/omega_2031/S1_ci: [0.0, 0.0]
+/sobol/outputs/Gstar_2025/factors/omega_2031/ST_ci: [0.0, 0.0]
+/sobol/outputs/Gstar_2025/factors/omega_2036/S1: 0.0
+/sobol/outputs/Gstar_2025/factors/omega_2036/ST: 0.0
+/sobol/outputs/Gstar_2025/factors/omega_2036/S1_conf: 0.0
+/sobol/outputs/Gstar_2025/factors/omega_2036/ST_conf: 0.0
+/sobol/outputs/Gstar_2025/factors/omega_2036/S1_ci: [0.0, 0.0]
+/sobol/outputs/Gstar_2025/factors/omega_2036/ST_ci: [0.0, 0.0]
+/sobol/outputs/Gstar_2025/factors/kappa_abs/S1: 0.0
+/sobol/outputs/Gstar_2025/factors/kappa_abs/ST: 0.0
+/sobol/outputs/Gstar_2025/factors/kappa_abs/S1_conf: 0.0
+/sobol/outputs/Gstar_2025/factors/kappa_abs/ST_conf: 0.0
+/sobol/outputs/Gstar_2025/factors/kappa_abs/S1_ci: [0.0, 0.0]
+/sobol/outputs/Gstar_2025/factors/kappa_abs/ST_ci: [0.0, 0.0]
+/sobol/outputs/Gstar_2025/factors/varpi/S1: 0.0
+/sobol/outputs/Gstar_2025/factors/varpi/ST: 0.0
+/sobol/outputs/Gstar_2025/factors/varpi/S1_conf: 0.0
+/sobol/outputs/Gstar_2025/factors/varpi/ST_conf: 0.0
+/sobol/outputs/Gstar_2025/factors/varpi/S1_ci: [0.0, 0.0]
+/sobol/outputs/Gstar_2025/factors/varpi/ST_ci: [0.0, 0.0]
+/sobol/outputs/Gstar_2025/factors/bbar/S1: 0.0
+/sobol/outputs/Gstar_2025/factors/bbar/ST: 0.0
+/sobol/outputs/Gstar_2025/factors/bbar/S1_conf: 0.0
+/sobol/outputs/Gstar_2025/factors/bbar/ST_conf: 0.0
+/sobol/outputs/Gstar_2025/factors/bbar/S1_ci: [0.0, 0.0]
+/sobol/outputs/Gstar_2025/factors/bbar/ST_ci: [0.0, 0.0]
+/sobol/outputs/Gstar_2025/factors/nuR/S1: 0.0
+/sobol/outputs/Gstar_2025/factors/nuR/ST: 0.0
+/sobol/outputs/Gstar_2025/factors/nuR/S1_conf: 0.0
+/sobol/outputs/Gstar_2025/factors/nuR/ST_conf: 0.0
+/sobol/outputs/Gstar_2025/factors/nuR/S1_ci: [0.0, 0.0]
+/sobol/outputs/Gstar_2025/factors/nuR/ST_ci: [0.0, 0.0]
+/sobol/outputs/Gstar_2025/factors/Tfrz/S1: 0.0
+/sobol/outputs/Gstar_2025/factors/Tfrz/ST: 0.0
+/sobol/outputs/Gstar_2025/factors/Tfrz/S1_conf: 0.0
+/sobol/outputs/Gstar_2025/factors/Tfrz/ST_conf: 0.0
+/sobol/outputs/Gstar_2025/factors/Tfrz/S1_ci: [0.0, 0.0]
+/sobol/outputs/Gstar_2025/factors/Tfrz/ST_ci: [0.0, 0.0]
+/sobol/outputs/Gstar_2025/factors/Tpar/S1: 0.0
+/sobol/outputs/Gstar_2025/factors/Tpar/ST: 0.0
+/sobol/outputs/Gstar_2025/factors/Tpar/S1_conf: 0.0
+/sobol/outputs/Gstar_2025/factors/Tpar/ST_conf: 0.0
+/sobol/outputs/Gstar_2025/factors/Tpar/S1_ci: [0.0, 0.0]
+/sobol/outputs/Gstar_2025/factors/Tpar/ST_ci: [0.0, 0.0]
+/sobol/outputs/Gstar_2025/factors/Temb/S1: 0.0
+/sobol/outputs/Gstar_2025/factors/Temb/ST: 0.0
+/sobol/outputs/Gstar_2025/factors/Temb/S1_conf: 0.0
+/sobol/outputs/Gstar_2025/factors/Temb/ST_conf: 0.0
+/sobol/outputs/Gstar_2025/factors/Temb/S1_ci: [0.0, 0.0]
+/sobol/outputs/Gstar_2025/factors/Temb/ST_ci: [0.0, 0.0]
+/sobol/outputs/Gstar_2025/factors/Tpb/S1: 0.0
+/sobol/outputs/Gstar_2025/factors/Tpb/ST: 0.0
+/sobol/outputs/Gstar_2025/factors/Tpb/S1_conf: 0.0
+/sobol/outputs/Gstar_2025/factors/Tpb/ST_conf: 0.0
+/sobol/outputs/Gstar_2025/factors/Tpb/S1_ci: [0.0, 0.0]
+/sobol/outputs/Gstar_2025/factors/Tpb/ST_ci: [0.0, 0.0]
+/sobol/outputs/Gstar_2025/factors/Phi/S1: 0.0
+/sobol/outputs/Gstar_2025/factors/Phi/ST: 0.0
+/sobol/outputs/Gstar_2025/factors/Phi/S1_conf: 0.0
+/sobol/outputs/Gstar_2025/factors/Phi/ST_conf: 0.0
+/sobol/outputs/Gstar_2025/factors/Phi/S1_ci: [0.0, 0.0]
+/sobol/outputs/Gstar_2025/factors/Phi/ST_ci: [0.0, 0.0]
+/sobol/outputs/Gstar_2025/factors/e/S1: 0.0
+/sobol/outputs/Gstar_2025/factors/e/ST: 0.0
+/sobol/outputs/Gstar_2025/factors/e/S1_conf: 0.0
+/sobol/outputs/Gstar_2025/factors/e/ST_conf: 0.0
+/sobol/outputs/Gstar_2025/factors/e/S1_ci: [0.0, 0.0]
+/sobol/outputs/Gstar_2025/factors/e/ST_ci: [0.0, 0.0]
+/sobol/outputs/Gstar_2025/factors/sec/S1: 0.0
+/sobol/outputs/Gstar_2025/factors/sec/ST: 0.0
+/sobol/outputs/Gstar_2025/factors/sec/S1_conf: 0.0
+/sobol/outputs/Gstar_2025/factors/sec/ST_conf: 0.0
+/sobol/outputs/Gstar_2025/factors/sec/S1_ci: [0.0, 0.0]
+/sobol/outputs/Gstar_2025/factors/sec/ST_ci: [0.0, 0.0]
+/sobol/outputs/Gstar_2025/factors/G/S1: 0.0
+/sobol/outputs/Gstar_2025/factors/G/ST: 0.0
+/sobol/outputs/Gstar_2025/factors/G/S1_conf: 0.0
+/sobol/outputs/Gstar_2025/factors/G/ST_conf: 0.0
+/sobol/outputs/Gstar_2025/factors/G/S1_ci: [0.0, 0.0]
+/sobol/outputs/Gstar_2025/factors/G/ST_ci: [0.0, 0.0]
+/sobol/outputs/Gstar_2025/factors/phi/S1: 0.0
+/sobol/outputs/Gstar_2025/factors/phi/ST: 0.0
+/sobol/outputs/Gstar_2025/factors/phi/S1_conf: 0.0
+/sobol/outputs/Gstar_2025/factors/phi/ST_conf: 0.0
+/sobol/outputs/Gstar_2025/factors/phi/S1_ci: [0.0, 0.0]
+/sobol/outputs/Gstar_2025/factors/phi/ST_ci: [0.0, 0.0]
+/sobol/outputs/Gstar_2025/factors/k_pre/S1: 0.0
+/sobol/outputs/Gstar_2025/factors/k_pre/ST: 0.0
+/sobol/outputs/Gstar_2025/factors/k_pre/S1_conf: 0.0
+/sobol/outputs/Gstar_2025/factors/k_pre/ST_conf: 0.0
+/sobol/outputs/Gstar_2025/factors/k_pre/S1_ci: [0.0, 0.0]
+/sobol/outputs/Gstar_2025/factors/k_pre/ST_ci: [0.0, 0.0]
+/sobol/outputs/Gstar_2025/factors/psi/S1: 0.0
+/sobol/outputs/Gstar_2025/factors/psi/ST: 0.0
+/sobol/outputs/Gstar_2025/factors/psi/S1_conf: 0.0
+/sobol/outputs/Gstar_2025/factors/psi/ST_conf: 0.0
+/sobol/outputs/Gstar_2025/factors/psi/S1_ci: [0.0, 0.0]
+/sobol/outputs/Gstar_2025/factors/psi/ST_ci: [0.0, 0.0]
+/sobol/outputs/Gstar_2025/factors/alpha/S1: 0.0
+/sobol/outputs/Gstar_2025/factors/alpha/ST: 0.0
+/sobol/outputs/Gstar_2025/factors/alpha/S1_conf: 0.0
+/sobol/outputs/Gstar_2025/factors/alpha/ST_conf: 0.0
+/sobol/outputs/Gstar_2025/factors/alpha/S1_ci: [0.0, 0.0]
+/sobol/outputs/Gstar_2025/factors/alpha/ST_ci: [0.0, 0.0]
+/sobol/outputs/Gstar_2025/factors/mu_2028/S1: 0.0
+/sobol/outputs/Gstar_2025/factors/mu_2028/ST: 0.0
+/sobol/outputs/Gstar_2025/factors/mu_2028/S1_conf: 0.0
+/sobol/outputs/Gstar_2025/factors/mu_2028/ST_conf: 0.0
+/sobol/outputs/Gstar_2025/factors/mu_2028/S1_ci: [0.0, 0.0]
+/sobol/outputs/Gstar_2025/factors/mu_2028/ST_ci: [0.0, 0.0]
+/sobol/outputs/Gstar_2025/factors/mu_2031/S1: 0.0
+/sobol/outputs/Gstar_2025/factors/mu_2031/ST: 0.0
+/sobol/outputs/Gstar_2025/factors/mu_2031/S1_conf: 0.0
+/sobol/outputs/Gstar_2025/factors/mu_2031/ST_conf: 0.0
+/sobol/outputs/Gstar_2025/factors/mu_2031/S1_ci: [0.0, 0.0]
+/sobol/outputs/Gstar_2025/factors/mu_2031/ST_ci: [0.0, 0.0]
+/sobol/outputs/Gstar_2025/factors/mu_2036/S1: 0.0
+/sobol/outputs/Gstar_2025/factors/mu_2036/ST: 0.0
+/sobol/outputs/Gstar_2025/factors/mu_2036/S1_conf: 0.0
+/sobol/outputs/Gstar_2025/factors/mu_2036/ST_conf: 0.0
+/sobol/outputs/Gstar_2025/factors/mu_2036/S1_ci: [0.0, 0.0]
+/sobol/outputs/Gstar_2025/factors/mu_2036/ST_ci: [0.0, 0.0]
+/sobol/outputs/Gstar_2025/factors/Pi_ub/S1: 0.0
+/sobol/outputs/Gstar_2025/factors/Pi_ub/ST: 0.0
+/sobol/outputs/Gstar_2025/factors/Pi_ub/S1_conf: 0.0
+/sobol/outputs/Gstar_2025/factors/Pi_ub/ST_conf: 0.0
+/sobol/outputs/Gstar_2025/factors/Pi_ub/S1_ci: [0.0, 0.0]
+/sobol/outputs/Gstar_2025/factors/Pi_ub/ST_ci: [0.0, 0.0]
+/sobol/outputs/Gstar_2025/factors/r/S1: 0.0
+/sobol/outputs/Gstar_2025/factors/r/ST: 0.0
+/sobol/outputs/Gstar_2025/factors/r/S1_conf: 0.0
+/sobol/outputs/Gstar_2025/factors/r/ST_conf: 0.0
+/sobol/outputs/Gstar_2025/factors/r/S1_ci: [0.0, 0.0]
+/sobol/outputs/Gstar_2025/factors/r/ST_ci: [0.0, 0.0]
+/sobol/outputs/Gstar_2025/factors/m0A/S1: 0.0
+/sobol/outputs/Gstar_2025/factors/m0A/ST: 0.0
+/sobol/outputs/Gstar_2025/factors/m0A/S1_conf: 0.0
+/sobol/outputs/Gstar_2025/factors/m0A/ST_conf: 0.0
+/sobol/outputs/Gstar_2025/factors/m0A/S1_ci: [0.0, 0.0]
+/sobol/outputs/Gstar_2025/factors/m0A/ST_ci: [0.0, 0.0]
+/sobol/outputs/Gstar_2025/factors/b_M/S1: 0.0
+/sobol/outputs/Gstar_2025/factors/b_M/ST: 0.0
+/sobol/outputs/Gstar_2025/factors/b_M/S1_conf: 0.0
+/sobol/outputs/Gstar_2025/factors/b_M/ST_conf: 0.0
+/sobol/outputs/Gstar_2025/factors/b_M/S1_ci: [0.0, 0.0]
+/sobol/outputs/Gstar_2025/factors/b_M/ST_ci: [0.0, 0.0]
+/sobol/outputs/Gstar_2025/groups/fees/S1: 0.00027612132371772596
+/sobol/outputs/Gstar_2025/groups/fees/ST: 0.00034649998842050116
+/sobol/outputs/Gstar_2025/groups/fees/S1_ci: [-0.0061881440132479735, 0.006406613569818292]
+/sobol/outputs/Gstar_2025/groups/fees/ST_ci: [0.00031647169112041467, 0.00038283955263170564]
+/sobol/outputs/Gstar_2025/groups/tax/S1: 0.009580434347130037
+/sobol/outputs/Gstar_2025/groups/tax/ST: 0.010427148061739446
+/sobol/outputs/Gstar_2025/groups/tax/S1_ci: [-0.016876318472142163, 0.03723898119595643]
+/sobol/outputs/Gstar_2025/groups/tax/ST_ci: [0.009393409309194538, 0.011635129513339011]
+/sobol/outputs/Gstar_2025/groups/accountability/S1: 0.00590992432708857
+/sobol/outputs/Gstar_2025/groups/accountability/ST: 0.005824659559046308
+/sobol/outputs/Gstar_2025/groups/accountability/S1_ci: [-0.014107263296117818, 0.0289720257766763]
+/sobol/outputs/Gstar_2025/groups/accountability/ST_ci: [0.0052485070038985875, 0.0064146258823582335]
+/sobol/outputs/Gstar_2025/groups/security/S1: 0.000620241697479248
+/sobol/outputs/Gstar_2025/groups/security/ST: 0.0002792726228246008
+/sobol/outputs/Gstar_2025/groups/security/S1_ci: [-0.00417276299831487, 0.005406710188988421]
+/sobol/outputs/Gstar_2025/groups/security/ST_ci: [0.00025339979921185004, 0.0003147631848009907]
+/sobol/outputs/Gstar_2025/groups/maintenance/S1: 0.0016231392690604575
+/sobol/outputs/Gstar_2025/groups/maintenance/ST: 0.0008990650702802608
+/sobol/outputs/Gstar_2025/groups/maintenance/S1_ci: [-0.005554701472950088, 0.010838964389975213]
+/sobol/outputs/Gstar_2025/groups/maintenance/ST_ci: [0.0008157370335765608, 0.0010209960573547114]
+/sobol/outputs/Gstar_2025/groups/ai_failure/S1: 0.005691727076030845
+/sobol/outputs/Gstar_2025/groups/ai_failure/ST: 0.0051054834714131525
+/sobol/outputs/Gstar_2025/groups/ai_failure/S1_ci: [-0.013787484224760302, 0.026828219943239515]
+/sobol/outputs/Gstar_2025/groups/ai_failure/ST_ci: [0.004596810911819948, 0.0057151338781186575]
+/sobol/outputs/Gstar_2025/groups/ancillary/S1: 0.00010764520401011677
+/sobol/outputs/Gstar_2025/groups/ancillary/ST: 0.0002867842857367325
+/sobol/outputs/Gstar_2025/groups/ancillary/S1_ci: [-0.00497988625350857, 0.005119932674192548]
+/sobol/outputs/Gstar_2025/groups/ancillary/ST_ci: [0.00023837464443372922, 0.00033436154120345464]
+/sobol/outputs/Gstar_2025/groups/compute/S1: 1.0037602829591292
+/sobol/outputs/Gstar_2025/groups/compute/ST: 1.0036248565312038
+/sobol/outputs/Gstar_2025/groups/compute/S1_ci: [0.6902200395196951, 1.3059381794416203]
+/sobol/outputs/Gstar_2025/groups/compute/ST_ci: [0.9555109732623718, 1.0639366140975894]
+/sobol/outputs/Gstar_2025/groups/execution/S1: 0.0
+/sobol/outputs/Gstar_2025/groups/execution/ST: 0.0
+/sobol/outputs/Gstar_2025/groups/execution/S1_ci: [0.0, 0.0]
+/sobol/outputs/Gstar_2025/groups/execution/ST_ci: [0.0, 0.0]
+/sobol/outputs/Gstar_2025/groups/market_growth/S1: 0.0
+/sobol/outputs/Gstar_2025/groups/market_growth/ST: 0.0
+/sobol/outputs/Gstar_2025/groups/market_growth/S1_ci: [0.0, 0.0]
+/sobol/outputs/Gstar_2025/groups/market_growth/ST_ci: [0.0, 0.0]
+/sobol/outputs/Gstar_2025/groups/pass_through/S1: 0.0
+/sobol/outputs/Gstar_2025/groups/pass_through/ST: 0.0
+/sobol/outputs/Gstar_2025/groups/pass_through/S1_ci: [0.0, 0.0]
+/sobol/outputs/Gstar_2025/groups/pass_through/ST_ci: [0.0, 0.0]
+/sobol/outputs/Gstar_2025/groups/capital/S1: 0.0
+/sobol/outputs/Gstar_2025/groups/capital/ST: 0.0
+/sobol/outputs/Gstar_2025/groups/capital/S1_ci: [0.0, 0.0]
+/sobol/outputs/Gstar_2025/groups/capital/ST_ci: [0.0, 0.0]
+/sobol/outputs/Gstar_2025/groups/surplus/S1: 0.0
+/sobol/outputs/Gstar_2025/groups/surplus/ST: 0.0
+/sobol/outputs/Gstar_2025/groups/surplus/S1_ci: [0.0, 0.0]
+/sobol/outputs/Gstar_2025/groups/surplus/ST_ci: [0.0, 0.0]
+/sobol/outputs/Gstar_2025/groups/discount/S1: 0.0
+/sobol/outputs/Gstar_2025/groups/discount/ST: 0.0
+/sobol/outputs/Gstar_2025/groups/discount/S1_ci: [0.0, 0.0]
+/sobol/outputs/Gstar_2025/groups/discount/ST_ci: [0.0, 0.0]
+/sobol/outputs/Gstar_2025/groups/anchor/S1: 0.0
+/sobol/outputs/Gstar_2025/groups/anchor/ST: 0.0
+/sobol/outputs/Gstar_2025/groups/anchor/S1_ci: [0.0, 0.0]
+/sobol/outputs/Gstar_2025/groups/anchor/ST_ci: [0.0, 0.0]
+/sobol/outputs/Gstar_2025/groups/maint_base/S1: 0.0
+/sobol/outputs/Gstar_2025/groups/maint_base/ST: 0.0
+/sobol/outputs/Gstar_2025/groups/maint_base/S1_ci: [0.0, 0.0]
+/sobol/outputs/Gstar_2025/groups/maint_base/ST_ci: [0.0, 0.0]
+/sobol/outputs/Gstar_2025/groups/fullcost_target/S1: 1.0286122126162895
+/sobol/outputs/Gstar_2025/groups/fullcost_target/ST: 1.0285804312817333
+/sobol/outputs/Gstar_2025/groups/fullcost_target/S1_ci: [0.7206406891307825, 1.3571281296251174]
+/sobol/outputs/Gstar_2025/groups/fullcost_target/ST_ci: [0.9718297822441608, 1.089733374291503]
+/sobol/outputs/Gstar_2025/var: 0.016178461028092922
+/sobol/outputs/Gstar_2025/mean: 0.39846803329972214

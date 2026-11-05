@@ -5,7 +5,6 @@ Reads (never writes) the outputs of the analysis scripts:
   notes/calibration_results.json   code/calibrate_horizons.py   (ceiling, thresholds, pace, horizons, anchor)
   notes/paper_stats.json           code/paper_stats.py          (statistics quoted only in the text)
   notes/empirics_revised.json      code/estimate_revised.py     (slopes, top quantiles, spend ratio, capital split)
-  notes/gap_decomposition.json     code/decompose_gap.py        (margin-gap decomposition)
   notes/empirics_organic.json      code/estimate_organic.py     (estimands E1, observed scores, and E2, organic frontier)
   data/panel.csv, data/panel_broad.csv                          (sample counts)
   notes/empirics_v3.json, notes/frontier_slope_v3.json         code/estimate_v3.py (audited sample, revision v2: every
@@ -40,7 +39,6 @@ OUT_DIR = os.path.join(BASE, 'paper1')
 CAL = json.load(open(os.path.join(BASE, 'notes', 'calibration_results.json')))
 STATS = json.load(open(os.path.join(BASE, 'notes', 'paper_stats.json')))
 EMP = json.load(open(os.path.join(BASE, 'notes', 'empirics_revised.json')))
-GAP = json.load(open(os.path.join(BASE, 'notes', 'gap_decomposition.json')))
 ORG = json.load(open(os.path.join(BASE, 'notes', 'empirics_organic.json')))
 MAX_ABSTRACT = 1920
 
@@ -99,14 +97,8 @@ num('TopDropOp', -EMP['top']['op']['diff_1619|q95']['diff'])           # 12 poin
 num('TopDropCash', -EMP['top']['cash']['diff_1619|q95']['diff'])       # 15 points, FCF after SBC
 num('ScaleSlope', -EMP['scale']['cash']['slope']['b'] * math.log(10))  # points per tenfold increase in revenue
 num('CapIntGap', -EMP['capint']['cash']['2023-25']['gap'])            # 2023-25, cash basis
-num('GapAvg', GAP['avg']['gap'])                                       # about 35 points
-num('GapAvgOne', GAP['avg']['gap'], 1)
-band40 = [b for b in GAP['bands'] if b['band'] == 4][0]                # growth 40 to 60%
-num('GapFast', band40['gap'])
-num('GapFastSM', band40['d_sms'])
-band0 = [b for b in GAP['bands'] if b['band'] == 0][0]                 # growth below 10%
-num('GapSlow', band0['gap'])
-num('GapSlowGM', band0['d_gm'])
+# round 3 (GLM-M2): the v2 gap macros GapAvg, GapAvgOne, GapFast, GapFastSM, GapSlow and GapSlowGM (from
+# notes/gap_decomposition.json, data/panel.csv) are retired; no text used them, and the v3 decomposition is GapV* below
 num('MedGrossMargin', CAL['pass_through']['gross_margin_median_2023_25'])   # median core firm 2023-25, audited panel
 ga = STATS['ga_median_by_size']
 num('GAsmall', ga['<1B']); num('GAmid', ga['1-10B']); num('GAlarge', ga['>10B'])
@@ -181,9 +173,23 @@ for tag, key in cases:
     for col, (G, kk) in zip('ABCDEF', [(0.05, 0), (0.15, 0), (0.30, 0), (0.15, 0.5), (0.05, 1.5), (0.30, 1.5)]):
         num('CeilTab' + tag + col, c['base'] + (1 - kk) * G, 1)
 cc = {float(k): v for k, v in CAL['cc_sensitivity'].items()}
-num('CcLo', min(cc)); num('CcHi', max(cc))
-num('GstarCcLo', cc[min(cc)][0]); num('GstarCcHi', cc[max(cc)][0])
-num('GstarAccCcLo', cc[min(cc)][1]); num('GstarAccCcHi', cc[max(cc)][1])
+# round 3 (GLM-M11, GPT-22): the low credible bound is the compute share per completed process; calibrate_horizons.py
+# block r3.compute_credible. Units corrected 3 Nov 2026: METR's run costs are kappa, compute per dollar of labor
+# replaced (KappaLoRuns 1% of the labor's cost per successful run, KappaLo 2% per completed task), and the compute share
+# is s_L x kappa (CcLaborShare 60% of revenue): CcLo 1.2% of revenue, CcLoRuns 0.6% (one decimal). Before: CcLo 2 and
+# CcLoRuns 1 (kappa printed as a share of revenue), GstarCcLo 29, GstarAccCcLo 24; earlier still min(cc) = 0.01.
+CCR = CAL['r3']['compute_credible']
+assert abs(CCR['hi'] - max(cc)) < 1e-12 and CCR['lo'] in cc and CCR['lo_successful_runs'] in cc
+assert all(abs(CCR[c_] - CCR['s_L'] * CCR[k_]) < 1e-15 for c_, k_ in
+           (('lo', 'kappa_lo'), ('lo_successful_runs', 'kappa_lo_successful_runs'), ('hi', 'kappa_hi'))), 'c_c != s_L x kappa'
+assert list(CAL['compute_share']['values']['prices2025']['bounds']) == [CCR['lo'], CCR['hi']], 'two ranges for c_c at 2025 prices'
+num('CcLo', CCR['lo'], 1); num('CcHi', CCR['hi'])
+num('GstarCcLo', cc[CCR['lo']][0]); num('GstarCcHi', cc[max(cc)][0])
+num('GstarAccCcLo', cc[CCR['lo']][1]); num('GstarAccCcHi', cc[max(cc)][1])
+num('CcLoRuns', CCR['lo_successful_runs'], 1); num('GstarCcLoRuns', cc[CCR['lo_successful_runs']][0])
+num('GstarAccCcLoRuns', cc[CCR['lo_successful_runs']][1]); num('CcSuccessRate', CCR['success_rate'])
+num('KappaLo', CCR['kappa_lo']); num('KappaLoRuns', CCR['kappa_lo_successful_runs'])   # % of the labor's cost
+num('CcLaborShare', CCR['s_L'])                         # s_L, labor cost the ceiling automates, % of revenue
 tau = {float(k): v for k, v in CAL['tau_sensitivity'].items()}
 num('TauLow', 0.09); num('GstarTauLow', tau[0.09][0]); num('GstarAccTauLow', tau[0.09][1])
 num('GstarTauLo', tau[0.15][0]); num('GstarTauHi', tau[0.21][0])
@@ -202,10 +208,71 @@ num('PsiAddMax', max(C[c_]['tau'] for c_ in C) * 1.5 * 0.30, 1)    # tau k G at 
 num('PsiFifteen', ps['psi']['foreign_15y'], 2, pct=False); num('PsiFive', ps['psi']['prior_5y'], 2, pct=False)
 cen = C['central']
 num('ReplCen', (1 - cen['tau']) * 0.25 * 0.5, 2)       # (1 - tau) delta_K k at delta_K = 0.25, k = 0.5, points
-num('OwnMarkupFive', 3.3 * 0.05)                        # Remark rem:owncompute at psi = 1: s_srv L_srv G = 0.6 x 5.5 x G
-num('OwnMarkupFifteen', 3.3 * 0.15)
-num('OwnMarkupFiveNone', (cen['tau'] * 0.6 + 3.3 * 0.05) / (1 - cen['tau']))      # psi = 0 sensitivity
-num('OwnMarkupFifteenNone', (cen['tau'] * 0.6 + 3.3 * 0.15) / (1 - cen['tau']))
+# Remark rem:owncompute on a stated cash basis (outside re-review GPT F03; author's decision, 5 November 2026). The
+# capacity's cost TCO is its cash cost: running cost (opex) plus straight-line replacement of the assets. Owning assets
+# with upfront cost K and replacement cash R a year needs capital kappa = K / TCO per dollar of TCO and replaces the share
+# s = R / TCO; owning pays on the cash ceiling at psi = 1 iff the vendor's markup over TCO exceeds kappa G, and at psi = 0
+# iff it exceeds (tau s + kappa G) / (1 - tau). Primary case: the firm owns only the servers (kappa = s_srv L_srv); also
+# reported: the firm owns the whole data center. Source data (USD millions, one-gigawatt AI data center): Epoch AI,
+# Michael and Cottier (2026), the two CSV tables behind https://epoch.ai/data-insights/ai-datacenter-cost-breakdown
+# (one_gw_dc_upfront_capex.csv, one_gw_dc_capex_opex.csv), fetched 5 November 2026. The page states lives of 5 years for
+# IT equipment and 14 years for the facility. Land and utility works are in the same tables; land is never replaced, and
+# utility works are put on the facility's life (their annualized-to-upfront ratio equals the facility's, as the network's
+# equals the servers', both checked below). The annualized capex column charges a return on capital (servers: 5,021 a
+# year on 21,188, a five-year annuity at about 6%, not the 1/5 of straight-line replacement), so the source's "60%" is
+# not a share of replacement cash; it is used here only to document that.
+EPOCH_DC = {
+    'upfront': {'servers': 21188, 'facility': 11433, 'network': 4925, 'land': 172, 'utility_works': 164},
+    'annualized_capex': {'servers': 5021, 'facility': 1387, 'network': 1167, 'utility_works': 20, 'land': 13},
+    'opex': 907, 'energy': 594, 'life_it': 5.0, 'life_facility': 14.0, 'life_it_meta': 5.5,
+    'source': 'Epoch AI (Michael and Cottier 2026), CSVs behind https://epoch.ai/data-insights/ai-datacenter-cost-breakdown',
+    'fetched': '2026-11-05',
+}
+
+
+def own_compute_factors(D, life_it):
+    """kappa (capital per dollar of cash TCO) and s (replacement share of cash TCO): servers only and whole data center."""
+    U = D['upfront']
+    life = {'servers': life_it, 'network': life_it, 'facility': D['life_facility'], 'utility_works': D['life_facility']}
+    repl = {a: U[a] / L_ for a, L_ in life.items()}                          # land: not replaced
+    tco = D['opex'] + sum(repl.values())
+    return dict(tco=tco, k_srv=U['servers'] / tco, s_srv=repl['servers'] / tco,
+                k_all=sum(U.values()) / tco, s_all=sum(repl.values()) / tco)
+
+
+_A, _U = EPOCH_DC['annualized_capex'], EPOCH_DC['upfront']
+assert abs(_A['network'] / _U['network'] - _A['servers'] / _U['servers']) < 0.005, 'network not on the IT life'
+assert abs(_A['utility_works'] / _U['utility_works'] - _A['facility'] / _U['facility']) < 0.005, 'utility works not on the facility life'
+_crf = _A['servers'] / _U['servers']
+_lo_r, _hi_r = 1e-6, 0.5                                   # rate at which a 5-year annuity equals the servers' annual charge
+for _ in range(200):
+    _mid = 0.5 * (_lo_r + _hi_r)
+    if _mid / (1 - (1 + _mid) ** -EPOCH_DC['life_it']) < _crf:
+        _lo_r = _mid
+    else:
+        _hi_r = _mid
+OWN = own_compute_factors(EPOCH_DC, EPOCH_DC['life_it'])
+OWNM = own_compute_factors(EPOCH_DC, EPOCH_DC['life_it_meta'])
+_tau0 = cen['tau']
+_bar = lambda f, G_, psi0=False, kk='srv': ((_tau0 * f['s_' + kk] + f['k_' + kk] * G_) / (1 - _tau0) if psi0 else f['k_' + kk] * G_)
+assert OWN['k_all'] > OWN['k_srv'] and OWNM['k_srv'] > OWN['k_srv'], 'owning more, or longer lives, must raise the bar'
+num('OwnKapSrv', OWN['k_srv'], 2, pct=False); num('OwnKapAll', OWN['k_all'], 2, pct=False)   # two decimals: kappa G reproduces the printed bars
+num('OwnSrvShare', OWN['s_srv'])                         # server replacement, % of the cash cost of the capacity
+num('OwnTcoCash', OWN['tco'] / 1000, 1, pct=False)       # cash cost, billion dollars a year
+num('OwnEpochKSrv', _U['servers'] / 1000, 1, pct=False); num('OwnEpochKFac', _U['facility'] / 1000, 1, pct=False)
+num('OwnEpochKNet', _U['network'] / 1000, 1, pct=False); num('OwnEpochOpex', EPOCH_DC['opex'] / 1000, 1, pct=False)
+num('OwnEpochKOther', (_U['land'] + _U['utility_works']) / 1000, 1, pct=False)   # land and utility works, up front
+num('OwnEpochLifeIT', EPOCH_DC['life_it'], 0, pct=False); num('OwnEpochLifeFac', EPOCH_DC['life_facility'], 0, pct=False)
+num('OwnLifeMeta', EPOCH_DC['life_it_meta'], 1, pct=False)
+num('OwnEpochCrf', _crf, 1); num('OwnEpochRate', 0.5 * (_lo_r + _hi_r)); num('OwnEpochSl', 1 / EPOCH_DC['life_it'])
+_ann_total = sum(_A.values()) + EPOCH_DC['opex']
+num('OwnEpochAnnTotal', _ann_total / 1000, 1, pct=False); num('OwnEpochAnnSrv', _A['servers'] / 1000, 1, pct=False)   # servers' annualized cost
+num('OwnEpochMarkup', _ann_total / OWN['tco'] - 1)       # markup over cash cost of a price equal to the annualized cost
+num('OwnMarkupFive', _bar(OWN, 0.05)); num('OwnMarkupFifteen', _bar(OWN, 0.15))                       # servers only, psi = 1
+num('OwnMarkupFiveAll', _bar(OWN, 0.05, kk='all')); num('OwnMarkupFifteenAll', _bar(OWN, 0.15, kk='all'))   # whole data center
+num('OwnMarkupFiveNone', _bar(OWN, 0.05, True)); num('OwnMarkupFifteenNone', _bar(OWN, 0.15, True))     # servers, psi = 0
+num('OwnMarkupFiveMeta', _bar(OWNM, 0.05)); num('OwnMarkupFifteenMeta', _bar(OWNM, 0.15))             # 5.5-year IT life
+num('OwnMarkupFiveAllMeta', _bar(OWNM, 0.05, kk='all')); num('OwnMarkupFifteenAllMeta', _bar(OWNM, 0.15, kk='all'))
 for tag, key in cases:                                    # input columns of Table tab:ceiling
     c = C[key]
     num('CeilCc' + tag, c['c_c'], 2, pct=False); num('CeilF' + tag, c['f'], 3, pct=False)
@@ -367,6 +434,13 @@ num('AminHumanCost', best_h[0] / 1e6, 2, pct=False); num('AminHumanProb', pyear(
 num('AminAltNCost', alt_N[0] / 1e6, 2, pct=False); num('AminAltCProb', pyear(alt_c, pca=0.01), 1)
 num('AminAltOneCost', best_alt / 1e6, 2, pct=False)
 num('AminAiLim', 1 - (1 - 0.005) ** 24, 1); num('AminHumLim', 1 - (1 - 0.002) ** 24, 1)
+# round 3 (GPT-8): the single-provider floor when a provider's bad state lasts the whole period instead of striking
+# opportunities independently: escape probability with three AI layers p_ca + (1 - p_ca)[1 - (1 - p_a^3)^N], against the
+# i.i.d. floor 1 - (1 - p_ca)^N of the example (AminAiLim)
+_pa_, _pca_ = 0.02, 0.005
+_pers3 = _pca_ + (1 - _pca_) * (1 - (1 - _pa_ ** 3) ** N_OPP)
+num('PersistEscapeThree', _pers3, 1); num('PersistEscapeThreeTwo', _pers3, 2)
+num('PersistIidFloor', 1 - (1 - _pca_) ** N_OPP, 1)
 put('ItgcRetest', f"{int(ITGC_UNITS['C_val']):,}".replace(',', '{,}'), f"{int(ITGC_UNITS['C_val']):,}")
 num('ItgcLine', c_line / REV, 3); num('ItgcLineFb', (c_line + c_fb) / REV, 2); num('ItgcLineRef', c_ref / REV, 3)
 num('AminFloor', floor_['Five'], 2); num('AminFloorOne', floor_['One'], 2); num('AminFloorOld', floor_old, 2)
@@ -405,6 +479,9 @@ for t, e in EPS.items():
     Pai = 0.005 + (1 - 0.005) * 0.02
     phm = ((Pbar(e) / Pai) - 0.002) / (1 - 0.002)
     num('AminPhm' + t, phm, 1)                                          # largest human miss rate on AI-missed items, 1 over 1
+    num('AminPhmTot' + t, 0.002 + (1 - 0.002) * phm, 1)                 # round 3 (DS-57): including the human common mode
+    if t == 'Five':
+        num('AminPhmTot', 0.002 + (1 - 0.002) * phm, 1)
 PCC_GRID = [0.0, 0.0001, 0.0002, 0.0005, 0.0008, 0.001, 0.0015, 0.002, 0.0025]
 PHM_GRID = [0.05, 0.10, 0.20, 0.50]
 dname = lambda b: 'none admissible' if b is None else f"{b[1]}H + {b[2]}AI, \\${b[0] / 1e6:.2f}m ({100 * b[0] / REV:.3f}\\%)"
@@ -719,6 +796,75 @@ for y, yn in [('2036', 'Six'), ('2028', 'Eight')]:
     gob = CAL['tornado'][y]['G_old_band']
     num('TornGOld' + yn + 'Lo', gob['low']); num('TornGOld' + yn + 'Hi', gob['high'])
 
+# ---------------------------------------------------------------------------------------------- round 3 (2 Nov 2026)
+# Outside reviews of v3 (notes/reviews/paper1_v3/author_reviews/*/issue_log.md; notes/r3_code_changes.md; the names and
+# values are listed in notes/r3_macro_contract.md). notes/calibration_results.json block 'r3' (code/calibrate_horizons.py).
+R3 = CAL['r3']
+# GPT-M1: the exact frontier-slope multiplier through the E1 growth distribution (both bases, alpha 0.25 to 0.45)
+EC = R3['ell_psi_cone']
+num('PsiMultLo', EC['multiplier_range'][0], 1, pct=False); num('PsiMultHi', EC['multiplier_range'][1], 1, pct=False)
+_stc = {}
+for b, B_ in [('op', 'Op'), ('cash', 'Cash')]:
+    _stc[b] = [EC['by_basis'][b]['by_alpha'][a_]['steepest'] for a_ in ('0.25', '0.30', '0.35', '0.45')]
+    num(f'PsiSteepCone{B_}Lo', min(_stc[b]), 2, pct=False); num(f'PsiSteepCone{B_}Hi', max(_stc[b]), 2, pct=False)
+num('PsiSteepConeLo', min(_stc['op'] + _stc['cash']), 2, pct=False)
+num('PsiSteepConeHi', max(_stc['op'] + _stc['cash']), 2, pct=False)
+_apx = EC['by_basis']['op']['by_alpha']
+num('PsiMultApproxLo', _apx['0.45']['multiplier_approx'], 1, pct=False)
+num('PsiMultApproxHi', _apx['0.25']['multiplier_approx'], 1, pct=False)
+# GPT-M2: period cash of the development-abroad loss at k = 1.5, G = 30% (psi_15 evaluated at G, not at r)
+PCC = R3['psi_period_cash']
+_lc = PCC['ceiling_k15_G30_loss_period_cash']
+num('KcapLossForCash', _lc['0.18']); num('KcapLossForCashLo', min(_lc.values())); num('KcapLossForCashHi', max(_lc.values()))
+num('KcapLossForCashLoOne', min(_lc.values()), 1); num('KcapLossForCashHiOne', max(_lc.values()), 1)
+num('PsiFifteenCashThirty', PCC['psi15_at_g']['0.30'], 2, pct=False)
+assert all(abs(PCC['ceiling_k15_G30_loss_pv'][t_] - loss['foreign_15y'][t_]) < 1e-12 for t_ in _lc)
+# GPT-M4: exit value at year 5 and the sale recovery below which a five-year owner rejects the program
+EXV = R3['exit_value']
+for pc, tg in [('central', 'Cen'), ('central_r10', 'CenTen'), ('fast', 'Fast'), ('slow', 'Slow')]:
+    num('PayExitFive' + tg, EXV[pc]['value_at_5'])                     # % of a year's revenue, at year 5
+    (num('PayExitBreak' + tg, EXV[pc]['breakeven_recovery'], 1) if EXV[pc]['npv'] > 0 else put('PayExitBreak' + tg, 'none'))
+num('PayNpvCenTen', R2['payback']['central_r10']['npv_points_years'])
+# GLM-M5: PV of gains over PV of the dip, gains counted only until the capped bound reaches the program (2042)
+num('PayRatioDoneCen', R3['payback_to_completion']['central']['ratio'], 1, pct=False)
+# GPT-4: the exact expected recurrence (the program is never embedded at a finite date; the bound is). The printed
+# central and fast numbers keep the bound; these macros report the exact recurrence beside them.
+EXR = R3['exact_recurrence']
+put('PayDoneShare', fmt(EXR['central']['share'], 0))
+for pc, tg in [('central', 'Cen'), ('fast', 'Fast'), ('slow', 'Slow')]:
+    v_ = EXR[pc]
+    put('PayDoneExact' + tg, str(int(math.floor(v_['year_share'] + 0.5))))            # year of 99% embedded
+    num('PayEmbAtBound' + tg, v_['embedded_at_bound_full'], 1)                       # exact share when the bound reaches one
+    (num('PayBackExact' + tg, v_['payback_undiscounted'], 1, pct=False) if v_['payback_undiscounted'] is not None
+     else put('PayBackExact' + tg, 'never'))
+    (num('PayBackDiscExact' + tg, v_['payback_discounted'], 1, pct=False) if v_['payback_discounted'] is not None
+     else put('PayBackDiscExact' + tg, 'never'))
+    num('PayNpvExact' + tg, v_['npv_points_years']); num('PayRatioExact' + tg, v_['ratio'], 1, pct=False)
+put('PaceFastDoneExact', str(int(math.floor(EXR['fast']['year_share'] + 0.5))))
+num('FastShareSixExact', EXR['fast']['realized_by_horizon']['2036'])
+# GPT-9: the central path net of the dip of transitions still in flight (the durable score CenR* less CenDip*)
+for y, yn in YN:
+    num('CenR' + yn + 'Net', CPA['path']['net'][y]['R_net'])
+# GLM-F1 / GPT-2: shape of the decision weight v'(s) in the worked example (Section S2.2)
+VS = R3['vprime_shape']
+_vpr = VS['profile']
+for zk, zn in [('0.01', 'OnePct'), ('0.1', 'TenPct'), ('0.5', 'FiftyPct')]:
+    num('Vp' + zn, _vpr[zk]['vprime'], 1, pct=False); num('Vs' + zn, _vpr[zk]['v_over_s'], 1, pct=False)
+for zk, zn in [('0.8', 'Eighty'), ('0.9', 'Ninety'), ('0.95', 'NinetyFive'), ('0.99', 'NinetyNine'), ('0.999', 'ThreeNines'),
+               ('0.9999', 'FourNines')]:
+    num('Vp' + zn, _vpr[zk]['vprime'], 2, pct=False)
+num('VpMin', VS['min']['vprime'], 1, pct=False); num('VpMinTwo', VS['min']['vprime'], 2, pct=False)
+num('VpMinAt', VS['min']['at_share_of_cap'], 0)                                        # percent of the share cap
+num('VpLimit', VS['limit_never_spend'], 1, pct=False); num('VpLimitTwo', VS['limit_never_spend'], 2, pct=False)
+num('VpSatLo', VS['near_saturation']['lo'], 2, pct=False); num('VpSatHi', VS['near_saturation']['hi'], 2, pct=False)
+num('VpSigmaOnePct', _vpr['0.01']['sigma'], 1); num('VpSigmaNinetyFive', _vpr['0.95']['sigma'], 2)
+num('VpGainShare', VS['near_saturation']['lo'] / _vpr['0.01']['vprime'])              # lowest retention gain / small-share gain
+num('VpGainShareSat', VS['near_saturation']['hi'] / _vpr['0.01']['vprime'])           # at 99.9% of the cap (GLM NB5)
+# (GLM NB7, 5 Nov 2026: the unused macro KaSlack, the slack of the after-tax Prop. 4(d) bound, was deleted.)
+# GPT-26: the execution cases' wave length T_par (years)
+for pc, tg in [('slow', 'Slow'), ('central', 'Cen'), ('fast', 'Fast')]:
+    num('PaceTpar' + tg, R3['pace_params'][pc]['Tpar'], 2, pct=False)
+
 # ---------------------------------------------------------------------------------------------- acquired growth
 # The treadmill of Proposition prop:acquired-score(f): the existing subscription base shrinks at -G_i = -ln NRR a year.
 # Read from sections/tables/acquired_macros.tex (generated by code/verify_part2_acquirer.py from the F-1 extract).
@@ -832,8 +978,56 @@ put('VRfourCN', str(len(_a4['core_v3_at_or_above_10pct']))); put('VRfourCNew', s
 _nl = V3B['R5']['no_listed_equity_v3']
 put('VRfiveFlagN', str(V3B['R5']['firm_years_no_listed_equity_v3'])); put('VRfiveFlagFirms', str(len(_nl)))
 assert sum(len(v) for v in _nl.values()) == V3B['R5']['firm_years_no_listed_equity_v3']
-_r2 = V3B['R2_named']
-put('VRtwoClassFirms', str(len(_r2['non_software']))); put('VRtwoClassN', str(_r2['firm_years_v3_non_software']))
+# R2 on the main sample (3 Nov 2026): the pre-set classifier on the descriptions of every core registrant, and the
+# independent readings of the same descriptions as a sensitivity
+_r2m, _rr = V3B['R2'], V3B['R2_readers']
+put('VRtwoDescribed', str(_r2m['n_described'])); put('VRtwoNewDesc', str(_r2m['n_other_file']))
+put('VRtwoClassFirms', str(len(_r2m['non_software'])))                 # firms the classifier classes not software
+put('VRtwoExclN', str(_r2m['excluded_firm_years'])); put('VRtwoExclFirms', str(_r2m['excluded_firms']))
+assert _r2m['excluded_firm_years'] == V3B['excluded']['R2_not_software']
+put('VRtwoReadN', str(_rr['n_firms'])); put('VRtwoReadAgree', str(_rr['agree']))
+num('VRtwoKappa', _rr['kappa'], 2, pct=False)
+# Lean formalization of the static model (formal/, Section supp:formal): the number of theorems whose axioms
+# formal/RuleOfX/Axioms.lean prints (each must depend only on propext, Classical.choice, Quot.sound; checked by lake build).
+_ax = [l for l in open(os.path.join(BASE, 'formal', 'RuleOfX', 'Axioms.lean')).read().split('\n') if l.startswith('#print axioms')]
+put('FormalNThm', str(len(_ax)))
+put('VRtwoReadA', str(_rr['non_software']['a'])); put('VRtwoReadB', str(_rr['non_software']['b']))
+put('VRtwoReadBoth', str(_rr['non_software']['both'])); put('VRtwoReadEither', str(_rr['non_software']['either']))
+put('VRtwoBothFirms', str(_rr['v3_firms_dropped']['both'])); put('VRtwoBothN', str(_rr['v3_firm_years_dropped']['both']))
+put('VRtwoEitherFirms', str(_rr['v3_firms_dropped']['either'])); put('VRtwoEitherN', str(_rr['v3_firm_years_dropped']['either']))
+put('VRtwoClassAlsoBoth', str(_rr['classifier_non_software']['also_both']))
+ROWS_E1 = [(v_, None) for v_ in ('E1', 'E1k2010', 'E1clean', 'E1r2both', 'E1r2either', 'E1nolist', 'E1nodebt')]   # E1 rows of tab:robust
+_rcs = [pd.read_csv(os.path.join(BASE, 'data', 'v3_inputs', f'business_class_reader_{x_}.csv')) for x_ in ('a', 'b')]
+_RSUB = set(pd.concat([r_.loc[r_['class'] != 'software', 'subclass'] for r_ in _rcs]).dropna())   # readers' sub-classes
+for _rd in ('both', 'either'):                                          # headline statistics of the two reader sensitivities
+    _vn = 'E1r2' + _rd
+    _tg = _rd.capitalize()
+    for b, B_ in [('op', 'Op'), ('cash', 'Cash')]:
+        num(f'VRtwo{_tg}Fall{B_}', -vrec(f'p95_change_{b}', _vn)['est'], 1)
+        num(f'VRtwo{_tg}Psi{B_}', vrec(f'cone_{b}_slope_c90_w60', _vn)['est'], 2, pct=False)
+# C1 and the data audit of 3 Nov 2026 (notes/data_audit/; code/audit/data_audit_compare.py, capsw_scan_parse.py)
+_AUD = os.path.join(BASE, 'notes', 'data_audit')
+_ac = pd.read_csv(os.path.join(_AUD, 'compare.csv'))
+_ad = json.load(open(os.path.join(_AUD, 'sample_design.json')))
+_face = _ac[_ac.resolved != 'match (XBRL instance)']                       # values compared with the face statements
+_ok = ['match', 'match (missing in filing)', 'definition', 'missing in panel']
+AUDIT = dict(firm_years=int(_ac.accn.nunique()), items=int(_ac['item'].nunique()), values=int(len(_face)),
+             wrong=int((~_face.resolved.isin(_ok)).sum()), equal=int((_face.resolved == 'match').sum()))
+assert AUDIT['firm_years'] == sum(s_['n'] for s_ in _ad['strata'].values())
+put('AuditFirmYears', str(AUDIT['firm_years'])); put('AuditTopN', str(_ad['strata']['top_decile']['n']))
+put('AuditItems', str(AUDIT['items'])); put('AuditValues', str(AUDIT['values'])); put('AuditWrong', str(AUDIT['wrong']))
+put('AuditEqual', str(AUDIT['equal']))
+_ak = pd.read_csv(os.path.join(_AUD, 'capitalized_software.csv'))
+put('AuditCapswN', str(len(_ak))); put('AuditCapswMatch', str(int((_ak.status == 'match').sum())))
+_cs = json.load(open(os.path.join(_AUD, 'capsw_summary.json')))
+_c1 = V3B['capsw']
+t_, p_ = thousands(_cs['n_scanned']); put('CapswScanned', t_, p_)
+put('CapswCandidates', str(_cs['n_candidates'])); put('CapswCombined', str(_cs['dropped']['combined_capex_line']))
+put('CapswNotOutflow', str(_cs['dropped']['not_outflow'])); put('CapswNotRead', str(_cs['n_not_read']))
+put('CapswKept', str(_cs['n_kept'])); put('CapswKeptFirms', str(_cs['n_kept_firms']))
+put('CapswVthree', str(_c1['v3'])); put('CapswVthreeFirms', str(_c1['v3_firms']))
+num('CapswMedRev', _c1['v3_share_of_revenue']['median'], 1); num('CapswMaxRev', _c1['v3_share_of_revenue']['max'], 1)
+assert _c1['n_filing_values'] == _cs['n_kept'] and _c1['core_v2'] == _cs['n_kept']
 RT = V3['routes']
 put('VAffected', str(RT['n_flagged'])); put('VAffAcqYear', str(RT['n_acq_year'])); put('VAffFollow', str(RT['n_following_only']))
 put('VAffKept', str(RT['n_kept_pro_forma'])); put('VAffDropped', str(RT['n_dropped'])); num('VAffDroppedShare', RT['share_dropped'], 1)
@@ -932,6 +1126,10 @@ put('FamBN', str(V3['families']['headline14B']['n']))
 SB5 = V3['families']['headline14B']['survivors_5pct']
 SB10 = V3['families']['headline14B']['survivors_10pct']
 put('HolmDiffFive', WORD[sum('psi_op_E1_2020_25_minus_2010_19' in SB5[t] for t in SB5)])
+# the GAAP P95 decline: number of the four procedures (Holm under three p-value types, Romano-Wolf) under which it survives
+TOP_FAM = {a_: [t for t in S_ if 'p95chg_op_E1' in S_[t]] for a_, S_ in (('10', SB10), ('5', SB5))}
+put('TopFamTen', WORD[len(TOP_FAM['10'])] if len(TOP_FAM['10']) < 4 else 'four')
+put('TopFamFive', WORD[len(TOP_FAM['5'])] if len(TOP_FAM['5']) < 4 else 'four')
 F38 = V3['families']['table38']
 put('ContrN', str(F38['n'])); put('ContrNEst', str(F38['n_estimable']))
 ex = F38['intervals_excluding_h0']
@@ -949,12 +1147,38 @@ for b, B_ in [('op', 'Op'), ('cash', 'Cash')]:
     num(f'DefDraw{B_}Share', float((_n < 30).mean()), 1)
     sgn(f'DefDraw{B_}Lo', float(_np13.quantile(_d[_ok], .05)), 3, False); sgn(f'DefDraw{B_}Hi', float(_np13.quantile(_d[_ok], .95)), 3, False)
     put(f'DefDraw{B_}Cell', str(int(vest(f'cone_{b}_cell60', 'E2'))))
+# GPT F10 (re-review, 5 Nov 2026): distinct firms in the 60% cell of Psi_chi (g >= 0.60 with a finite margin, the
+# cell of estimate_v3.py's f_cone), from the frames of code/estimate_organic.py executed up to its END OF FRAME
+# CONSTRUCTION marker as estimate_v3.py does (read only); the firm-year counts must equal the stored cell60 counts
+def _cell_firms():
+    os.environ.setdefault('ORGANIC_PANEL', 'v3')
+    src_ = os.path.join(BASE, 'code', 'estimate_organic.py')
+    txt_ = open(src_).read()
+    G_ = {'__file__': src_, '__name__': 'organic_frames'}
+    exec(compile(txt_[:txt_.index('# ==== END OF FRAME CONSTRUCTION')], src_, 'exec'), G_)
+    out_ = {}
+    for vn_ in ('E1', 'E2'):
+        d_ = G_['V'][vn_]
+        for b_, mc_ in (('op', 'm_op'), ('cash', 'm_fcf_sbc')):
+            c_ = d_[_np13.isfinite(d_.g) & _np13.isfinite(d_[mc_]) & (d_.g >= 0.60)]
+            out_[(vn_, b_)] = (len(c_), int(c_.cik.nunique()), int(c_.groupby('cik').size().max()))
+    return out_
+
+
+CELL60 = _cell_firms()
+for (vn_, b_), (n_, f_, mx_) in CELL60.items():
+    assert n_ == int(vest(f'cone_{b_}_cell60', vn_)), ('60% cell count differs from notes/empirics_v3.json', vn_, b_, n_)
+for (vn_, b_), tg_ in [(('E1', 'op'), 'OpEone'), (('E1', 'cash'), 'CashEone'), (('E2', 'op'), 'OpEtwo'), (('E2', 'cash'), 'CashEtwo')]:
+    put(f'CellSixty{tg_}N', str(CELL60[(vn_, b_)][0])); put(f'CellSixty{tg_}Firms', str(CELL60[(vn_, b_)][1]))
+put('CellSixtyMaxEone', str(max(CELL60[('E1', b_)][2] for b_ in ('op', 'cash'))))
+put('CellSixtyMaxEtwo', str(max(CELL60[('E2', b_)][2] for b_ in ('op', 'cash'))))
 # D1: the cash score before net interest (bridge rows cash_bni and its like-for-like basis cash_bnis)
 for k_, nm_ in [('bnis', 'Bnis'), ('bni', 'Bni')]:
     sgn(f'BridgeChange{nm_}', vest(f'bridge_cash_{k_}_p95_change')); ival(f'BridgeChange{nm_}', f'bridge_cash_{k_}_p95_change')
     num(f'BridgeLate{nm_}', vest(f'bridge_cash_{k_}_p95_2023_25'), 1)
 put('BridgeNBni', str(int(vest('bridge_cash_bni_n_2016_19')) + int(vest('bridge_cash_bni_n_2023_25'))))            # B13: 10% of the 36 estimable contrasts (was 38)
 num('ContrSpendHolm', [c for c in F38['contrasts'] if c['key'] == 'spend_ratio'][0]['holm_percentile'], 3, False)
+num('ContrLocalOpHolm', [c for c in F38['contrasts'] if c['key'] == 'slope_op_pooled'][0]['holm_basic'], 3, False)
 
 # ---- growth technology: the bounds on alpha (X - k) that each method gives (D-1)
 for e, tag in FOUR:
@@ -1167,6 +1391,20 @@ FB10 = V3['families']['headline14B']['survivors_10pct']
 # B13: the anchor's conclusion (Pi_lb median > 0, E1) added to family B; raw bootstrap p-values from
 # notes/calibration_anchor_v3.json, Holm over the 15 tests by interval type
 _ab = json.load(open(v3path('notes', 'calibration_anchor_v3.json')))['bootstrap']['E1']['Pi_lb_med']
+# the hand-set Table tab:anchor-firms of sections/appendix_data.tex against the E1 anchor's firm-years (a firm's name in the
+# table is the start of its EDGAR name)
+_afy = json.load(open(v3path('notes', 'calibration_anchor_v3.json')))['E1']['firm_years']
+_ANCHOR_FILE = {}
+for _d in _afy:
+    _ANCHOR_FILE.setdefault(_d['name'], []).append(int(_d['year']))
+_ANCHOR_FILE = {k_: sorted(v_) for k_, v_ in _ANCHOR_FILE.items()}
+_atab = re.search(r'\\label\{tab:anchor-firms\}.*?\\midrule(.*?)\\bottomrule',
+                  open(os.path.join(BASE, 'sections', 'appendix_data.tex')).read(), re.S).group(1)
+_ANCHOR_TABLE = {}
+for _r_ in [x_ for x_ in _atab.split(r'\\') if '&' in x_]:
+    _nm, _ys = (s_.strip() for s_ in _r_.split('&'))
+    _full = [k_ for k_ in _ANCHOR_FILE if k_.startswith(_nm.replace(r'\&', '&'))]
+    _ANCHOR_TABLE[_full[0] if len(_full) == 1 else _nm] = sorted(int(y_) for y_ in re.findall(r'\d{4}', _ys))
 
 
 def holm(ps):
@@ -1186,6 +1424,34 @@ for t in ('normal', 'percentile', 'basic'):
     ps15 = [(c['p_' + t] if c.get('p_' + t) is not None else 1.0) for c in V3['families']['headline14B']['contrasts']] + [_ab['p_' + t]]
     num('HolmAnchorFifteen' + t.capitalize(), holm(ps15)[-1], 3, False)     # counting the non-estimable test (p = 1)
 put('FamBNPlus', str(V3['families']['headline14B']['n_estimable'] + 1))
+put('FamBNAnchor', str(V3['families']['headline14B']['n'] + 1))   # round 3 audit F2: the family, its non-estimable member at p = 1, and the anchor
+# round 3 (GLM-F5): Holm over counterfactual families that add headline statistics the post hoc family omits, from the
+# stored p-values (the GLM log's verification_claude/f5_holm.py). 18 tests: family B (14, the non-estimable test at p = 1)
+# plus the anchor test and the frontier-point changes T(20%) on both bases and T(0) after SBC; 20 tests (the reviewer's):
+# those plus the spend ratio and the gross-margin part of the slow band's gap. Romano-Wolf needs the draws (not shown).
+_famB = V3['families']['headline14B']['contrasts']
+_keysB = [c['key'] for c in _famB]
+_iDiff, _iTop = _keysB.index('psi_op_E1_2020_25_minus_2010_19'), _keysB.index('p95chg_op_E1')
+_pE1 = lambda st, t: 1.0 if V3E[st]['E1'].get('p_' + t) is None else V3E[st]['E1']['p_' + t]
+for t in ('normal', 'percentile', 'basic'):                     # the stored family's Holm is reproduced with these p-values
+    _ps14 = [c['p_' + t] if c.get('p_' + t) is not None else 1.0 for c in _famB]
+    assert max(abs(a_ - c['holm_' + t]) for a_, c in zip(holm(_ps14), _famB)) < 1e-12, t
+FAM_CF = {'Eighteen': ['anchor', 'T_op_g20_change', 'T_cash_g20_change', 'T_cash_g00_change'],
+          'Twenty': ['T_op_g20_change', 'T_cash_g20_change', 'T_cash_g00_change', 'spend_ratio', 'anchor', 'gap_slow_gm']}
+HOLM_CF = {}
+for nm_, add_ in FAM_CF.items():
+    put(f'Fam{nm_}N', str(len(_famB) + len(add_)))
+    for t in ('normal', 'percentile', 'basic'):
+        _ps = ([c['p_' + t] if c.get('p_' + t) is not None else 1.0 for c in _famB]
+               + [_ab['p_' + t] if k_ == 'anchor' else _pE1(k_, t) for k_ in add_])
+        _h = holm(_ps)
+        HOLM_CF[(nm_, t)] = dict(diff=_h[_iDiff], top=_h[_iTop], anchor=_h[len(_famB) + add_.index('anchor')])
+        for part, pn in [('diff', 'Diff'), ('top', 'Top'), ('anchor', 'Anchor')]:
+            num(f'Holm{nm_}{pn}{t.capitalize()}', HOLM_CF[(nm_, t)][part], 3, False)
+# round 3 (GPT-14): Monte Carlo standard error of the Romano-Wolf p-value of the GAAP P95 decline at B draws
+_rwp, _B3 = FB['p95chg_op_E1']['romano_wolf'], V3['meta']['replications']
+num('HolmTopRWSe', math.sqrt(_rwp * (1 - _rwp) / _B3), 3, False); num('HolmTopRWSeTwo', math.sqrt(_rwp * (1 - _rwp) / _B3), 2, False)
+num('HolmTopRWDist', abs(0.10 - _rwp) / math.sqrt(_rwp * (1 - _rwp) / _B3), 1, False)   # distance to 0.10 in standard errors
 # B13: within-firm lead regressions in all four views (bounds), and the expected count of false exclusions
 for key, nm in [('E2imp4|op', 'ImpFourOp'), ('E2imp4|cash', 'ImpFourCash'), ('E2imp8|op', 'ImpEightOp'), ('E2imp8|cash', 'ImpEightCash'),
                 ('E2|op', 'EtwoOp'), ('E2|cash', 'EtwoCash')]:
@@ -1213,13 +1479,34 @@ def in_none(sets, key):
 
 CLAIMS = [
     # data.tex, sample rules and the bridge (status of notes/panel_v3_build.json as estimated)
-    ('data, appendix and discussion: R2 is a sensitivity on the named firms only, not applied to the main sample',
-     _R['R2'].startswith('main sample: not applied') and 'named firms' in _R['R2']),
-    ('data: the R2 classifier classes exactly Activision, Bally, EA and PLAYSTUDIOS non-software and misses THQ, Take-Two, '
-     'Roblox, CoreWeave and Unity', sorted(V3B['R2_named']['non_software']) == sorted(['Activision Blizzard, Inc.',
-     'BALLY TECHNOLOGIES, INC.', 'ELECTRONIC ARTS INC.', 'PLAYSTUDIOS, Inc.'])
-     and all(V3B['R2_named']['classes'][f] == 'software' for f in ('THQ INC', 'TAKE TWO INTERACTIVE SOFTWARE INC',
-                                                                  'Roblox Corp', 'CoreWeave, Inc.', 'Unity Software Inc.'))),
+    ('data, appendix and discussion: R2 applies to the main sample by the rule fixed in advance, on the business descriptions '
+     'of every core registrant', _R['R2'].startswith('applied to the main sample') and 'partial check' in _R['R2']
+     and V3B['R2']['n_described'] == V3B['R2']['n_core_registrants'] == V3B['firms_v2']
+     and V3B['excluded']['R2_not_software'] == V3B['R2']['excluded_firm_years'] > 0),
+    ('data: the R2 classifier classes exactly Bally and Inspired (gambling) and Activision, Changyou, EA, GCL Global, '
+     'PLAYSTUDIOS and Snail (games) as not software, and misses THQ, Take-Two, Roblox, Unity and CoreWeave (a partial check)',
+     V3B['R2']['non_software'] == {'BALLY TECHNOLOGIES, INC.': 'gambling', 'Inspired Entertainment, Inc.': 'gambling',
+                                   'Activision Blizzard, Inc.': 'interactive_entertainment', 'Changyou.com Ltd': 'interactive_entertainment',
+                                   'ELECTRONIC ARTS INC.': 'interactive_entertainment', 'GCL Global Holdings Ltd': 'interactive_entertainment',
+                                   'PLAYSTUDIOS, Inc.': 'interactive_entertainment', 'Snail, Inc.': 'interactive_entertainment'}
+     and all(V3B['R2']['named_classes'][f] == 'software' for f in ('THQ INC', 'TAKE TWO INTERACTIVE SOFTWARE INC',
+                                                                   'Roblox Corp', 'CoreWeave, Inc.', 'Unity Software Inc.'))),
+    ('data and robustness table: the independent readings are a sensitivity (rows of tab:robust), not part of the rule',
+     all(v_ in S3 for v_ in ('E1r2both', 'E2r2both', 'E1r2either', 'E2r2either'))
+     and set(V3B['excluded']) == {'R1_not_first_reported', 'R2_not_software', 'R3_captive_related_party'}
+     and _rr['n_firms'] == V3B['R2']['n_described']),
+    ('data: both readers class all firms the classifier excludes as not software, and also THQ, Take-Two, Roblox and '
+     'CoreWeave; the firms only the readers exclude include IT services, hardware, telecommunications, payments, online '
+     'education, advertising and e-commerce firms',
+     _rr['classifier_non_software']['also_both'] == _rr['classifier_non_software']['n'] == len(V3B['R2']['non_software'])
+     and all(f in _rr['both_firms'] for f in ('THQ INC', 'TAKE TWO INTERACTIVE SOFTWARE INC', 'Roblox Corp', 'CoreWeave, Inc.'))
+     and {'IT services or consulting', 'hardware', 'telecommunications', 'payments or transaction processing',
+          'education or content', 'internet media or advertising', 'e-commerce or marketplace'} <= _RSUB),
+    ('appendix: Table tab:anchor-firms lists exactly the firm-years of the E1 anchor in notes/calibration_anchor_v3.json',
+     _ANCHOR_TABLE == _ANCHOR_FILE),
+    ('appendix (data audit): no value of the seeded sample differs from the face statements; Box fiscal 2023 capitalized '
+     'software is 16,561 thousand from its filing', AUDIT['wrong'] == 0 and _c1['box_fy2023']['cap_sw'] == 16561e3
+     and _c1['box_fy2023']['cap_sw_xbrl'] == 0),
     ('data and discussion: R5 is a flag and sensitivity, not an exclusion; foreign filers not tested',
      _R['R5'].startswith('applied (flag and sensitivity') and 'foreign_not_tested' in V3B['R5']['status_counts_v3']),
     ('data: the R5 flag names Meditech, SunGard, Infor and Epicor among its firms',
@@ -1239,18 +1526,24 @@ CLAIMS = [
     ('data: CoreWeave 2025 GAAP operating margin of about zero', abs(cw3.m_op) < 0.01),
     ('empirics: period slopes on the 0-60% window are not defined under E2 (cells too thin)',
      V3E['cone_op_slope_c90_w60_2020_25_minus_2010_19']['E2'].get('est') is None),
-    ('empirics: the P95 and capital-intensity headline statistics do not survive Holm at 5%',
-     in_none(SB5, 'p95chg_op_E1') and in_none(SB5, 'capint_cash_E1')),
+    ('empirics (re-estimated 3 Nov, R2 and C1): at 5% the GAAP P95 decline survives only Holm with normal p-values, and the '
+     'cash decline survives under no procedure', TOP_FAM['5'] == ['holm_normal'] and in_none(SB5, 'p95chg_cash_E1')),
     # empirics.tex
     ('empirics: the P95 decline holds in every variant', min(_falls) > 0),
-    ('empirics (A2): the GAAP P95 decline survives Holm at 10% under the normal and percentile intervals and Romano-Wolf '
-     'but not the basic interval (Holm p 0.054 to 0.208), and at 5% under none',
+    ('empirics (robustness): among the E1 rows of tab:robust, the two R2 reader samples give smaller P95 falls and steeper '
+     'Psi slopes than every other E1 row, on both bases',
+     all(max(-vest(f'p95_change_{b}', r_) for r_ in ('E1r2both', 'E1r2either'))
+         < min(-vest(f'p95_change_{b}', v_) for v_, _ in ROWS_E1 if not v_.startswith('E1r2'))
+         and max(vest(f'cone_{b}_slope_c90_w60', r_) for r_ in ('E1r2both', 'E1r2either'))
+         < min(vest(f'cone_{b}_slope_c90_w60', v_) for v_, _ in ROWS_E1 if not v_.startswith('E1r2'))
+         for b in ('op', 'cash'))),
+    ('empirics (A2; text re-estimated 3 Nov): the GAAP decline "survives at a familywise level of 10% under the normal and '
+     'percentile types and under Romano and Wolf\'s procedure, but not under the basic type, and at 5% only under the normal '
+     'type" (TopFamTen three, TopFamFive one): Holm normal, percentile and Romano-Wolf below 0.10, Holm basic above; only Holm '
+     'normal below 0.05; its 90% interval excludes zero under all four interval types',
      all(FB['p95chg_op_E1'][t] < 0.10 for t in ('holm_normal', 'holm_percentile', 'romano_wolf'))
-     and FB['p95chg_op_E1']['holm_basic'] > 0.10 and in_none(SB5, 'p95chg_op_E1')),
-    ('empirics (editor text): the GAAP decline is "significant at 10% after familywise correction under most procedures": '
-     'three of the four (Holm normal, Holm percentile, Romano-Wolf; not Holm basic), and its 90% interval excludes zero under '
-     'all four interval types', sum(FB['p95chg_op_E1'][t] < 0.10 for t in ('holm_normal', 'holm_percentile', 'holm_basic',
-                                                                         'romano_wolf')) == 3
+     and FB['p95chg_op_E1']['holm_basic'] > 0.10 and TOP_FAM['5'] == ['holm_normal'] and FB['p95chg_op_E1']['holm_normal'] < 0.05
+     and len(TOP_FAM['10']) == 3 and M['TopFamTen'] == 'three' and M['TopFamFive'] == 'one'
      and types_pass('p95_change_op', lambda c: c[1] < 0) == 4),
     ('empirics (editor text): the cash decline is "not significant" after familywise correction: Holm (normal, percentile, '
      'basic) and Romano-Wolf all above 10%, although each of its four 90% intervals excludes zero before correction',
@@ -1261,20 +1554,24 @@ CLAIMS = [
     ('empirics: the P95 low year is 2024 and it recovered in 2025; the 2016-19 to 2025 interval includes zero',
      vest('p95_op_2024') == min(vest(f'p95_op_{y}') for y in range(2016, 2026)) and vest('p95_op_2025') > vest('p95_op_2024')
      and types_pass('p95_change_op_2016_19_to_2025', lambda c: c[0] < 0 < c[1]) == 4),
-    ('empirics (A4): composition (B) excludes zero under three of the four interval types (not the basic) on both bases; '
-     'within-bin (B) includes zero under all four; the size mix leaves the decline under all four',
-     all(types_pass(f'rw_{b}_composition_B', lambda c: c[1] < 0) == 3 and vci(f'rw_{b}_composition_B', 'E1') is not None
-         and vrec(f'rw_{b}_composition_B')['ci90_basic'][1] > 0
-         and types_pass(f'rw_{b}_within_B', lambda c: c[0] < 0 < c[1]) == 4
-         and types_pass(f'rw_{b}_within_size', lambda c: c[1] < 0) == 4 for b in ('op', 'cash'))),
+    ('empirics (A4; re-estimated 3 Nov): composition (B) excludes zero under the percentile and BC intervals on the GAAP '
+     'basis and under three of four (not the basic) after SBC; within-bin (B) includes zero under three of four (not the '
+     'basic) on both bases, so the bootstrap does not separate the two parts (their percentile intervals overlap); the size '
+     'mix leaves the decline under all four',
+     types_pass('rw_op_composition_B', lambda c: c[1] < 0) == 2 and vci('rw_op_composition_B')[1] < 0
+     and vrec('rw_op_composition_B')['ci90_bc'][1] < 0
+     and types_pass('rw_cash_composition_B', lambda c: c[1] < 0) == 3 and vrec('rw_cash_composition_B')['ci90_basic'][1] > 0
+     and all(types_pass(f'rw_{b}_within_B', lambda c: c[0] < 0 < c[1]) == 3 and vrec(f'rw_{b}_within_B')['ci90_basic'][1] < 0
+             and vci(f'rw_{b}_composition_B')[0] < vci(f'rw_{b}_within_B')[1]
+             and types_pass(f'rw_{b}_within_size', lambda c: c[1] < 0) == 4 for b in ('op', 'cash'))),
     ('empirics (A1): T(0) GAAP includes zero under all four interval types; T(20%) GAAP excludes zero under the basic, '
      'normal and BC intervals but not the percentile interval',
      types_pass('T_op_g00_change', lambda c: c[0] < 0 < c[1]) == 4
      and types_pass('T_op_g20_change', lambda c: c[1] < 0) == 3 and vci('T_op_g20_change')[0] < 0 < vci('T_op_g20_change')[1]),
-    ('empirics (A1): T(0) after SBC excludes zero under E1 with the percentile and basic intervals (not normal or BC) and in '
-     'two of the four views (percentile)',
+    ('empirics (A1; re-estimated 3 Nov): T(0) after SBC excludes zero under E1 with the percentile and normal intervals (not '
+     'basic or BC) and in two of the four views (percentile)',
      types_pass('T_cash_g00_change', lambda c: c[1] < 0) == 2 and vci('T_cash_g00_change')[1] < 0
-     and vrec('T_cash_g00_change')['ci90_basic'][1] < 0 and count_four('T_cash_g00_change', lambda c: c[1] < 0) == 2),
+     and vrec('T_cash_g00_change')['ci90_normal'][1] < 0 and count_four('T_cash_g00_change', lambda c: c[1] < 0) == 2),
     ('empirics: T(40%) has no interval under E1 and no estimate under E2',
      not V3E['T_op_g40_change']['E1']['estimable'] and V3E['T_op_g40_change']['E2'].get('est') is None),
     ('empirics [FLAG: test against a slope of -1, not of a zero null]: Psi slope above -1 in all four views, both bases, '
@@ -1286,16 +1583,15 @@ CLAIMS = [
     ('empirics: grid slopes all negative', max(grid_all) < 0),
     ('empirics: the local quantile is steeper than Psi in every view',
      all(vest(f'slope_{b}_pooled', e) < vest(f'cone_{b}_slope_c90_w60', e) for b in ('op', 'cash') for e, _ in FOUR)),
-    ('empirics (A3): GAAP steepening survives Holm at 10% under every procedure; its E1 interval excludes zero under all '
-     'four types; it holds in three of four views (E2 includes zero)',
+    ('empirics (A3; re-estimated 3 Nov): GAAP steepening survives Holm at 10% under every procedure; its E1 interval excludes '
+     'zero under all four types; its percentile interval excludes zero in all four views (PsiDiffOpCountNeg "all four")',
      in_all(FB10, 'psi_op_E1_2020_25_minus_2010_19')
      and types_pass('cone_op_slope_c90_w40_2020_25_minus_2010_19', lambda c: c[1] < 0) == 4
-     and vci('cone_op_slope_c90_w40_2020_25_minus_2010_19', 'E2')[1] > 0
-     and all(vci('cone_op_slope_c90_w40_2020_25_minus_2010_19', e)[1] < 0 for e in ('E1', 'E2imp4', 'E2imp8'))),
-    ('empirics: no cash steepening (E1 interval includes zero under the percentile, normal and BC intervals, not the basic; '
-     'positive in the other three views)',
-     types_pass('cone_cash_slope_c90_w40_2020_25_minus_2010_19', lambda c: c[0] < 0 < c[1]) == 3
-     and vrec('cone_cash_slope_c90_w40_2020_25_minus_2010_19')['ci90_basic'][1] < 0
+     and all(vci('cone_op_slope_c90_w40_2020_25_minus_2010_19', e)[1] < 0 for e in ('E1', 'E2', 'E2imp4', 'E2imp8'))
+     and M['PsiDiffOpCountNeg'] == 'all four'),
+    ('empirics (re-estimated 3 Nov): no cash steepening (E1 interval includes zero under all four interval types; positive '
+     'in the other three views)',
+     types_pass('cone_cash_slope_c90_w40_2020_25_minus_2010_19', lambda c: c[0] < 0 < c[1]) == 4
      and all(vest('cone_cash_slope_c90_w40_2020_25_minus_2010_19', e) > 0 for e in ('E2', 'E2imp4', 'E2imp8'))),
     ('empirics: the spend ratio is within 3.0 to 3.5 in the four views',
      3.0 <= half_up(min(vest('spend_ratio', e) for e, _ in FOUR), 1) and half_up(max(vest('spend_ratio', e) for e, _ in FOUR), 1) <= 3.5),
@@ -1321,10 +1617,10 @@ CLAIMS = [
     ('empirics (B13): the anchor test added to family B keeps Holm p below 10% under every type, below 5% only under '
      'normal and basic', all(HOLM_ANCHOR[t] < 0.10 for t in HOLM_ANCHOR) and HOLM_ANCHOR['holm_percentile'] > 0.05
      and HOLM_ANCHOR['holm_normal'] < 0.05 and HOLM_ANCHOR['holm_basic'] < 0.05),
-    ('empirics: no E1-E2 contrast survives Holm at 5%; at 10% only the spend ratio, percentile only',
+    ('empirics (re-estimated 3 Nov): no E1-E2 contrast survives Holm at 5%; at 10% only the local GAAP slope, basic only',
      all(not F38['survivors_5pct'][t] for t in F38['survivors_5pct'])
-     and F38['survivors_10pct']['holm_percentile'] == ['spend_ratio']
-     and not any(F38['survivors_10pct'][t] for t in ('holm_normal', 'holm_basic', 'romano_wolf'))),
+     and F38['survivors_10pct']['holm_basic'] == ['slope_op_pooled']
+     and not any(F38['survivors_10pct'][t] for t in ('holm_normal', 'holm_percentile', 'romano_wolf'))),
 ]
 # horizons.tex and levers_by_position.tex: qualitative statements about the calibration (notes/calibration_results.json)
 # and the generated lever table (sections/tables/levers_position_macros.tex, code/playbook/run_archetypes.py)
@@ -1389,7 +1685,7 @@ CLAIMS += [
     ('horizons: a guided dip slows the program (realized share below the central one by 2036)',
      V['public_guided_dip_1pt']['2036']['s'] < CAL['pace']['central']['2036']['s']
      and V['public_guided_dip_2pt']['2036']['s'] < CAL['pace']['central']['2036']['s']),
-    ('abstract and intro: the Psi slope is about a fifth of a point (absolute value 0.15 to 0.25 on both bases, E1)',
+    ('abstract, intro, summary box, conclusion: the baseline Psi slope is about a fifth of a point (absolute value 0.15 to 0.25 on both bases, E1)',
      all(0.15 <= abs(FS3['central'][b]['E1']['est']) <= 0.25 for b in ('op', 'cash'))),
     ('abstract: the GAAP P95 fall is the smaller of the two bases (written "by GAAP to cash points")',
      -vest('p95_change_op', 'E1') <= -vest('p95_change_cash', 'E1')),
@@ -1423,6 +1719,131 @@ CLAIMS += [
     ('levers: at the proxy calibration every switch weight exceeds screening weights of 2 to 3 (lpScreenBelowAll)',
      _lp.get('lpScreenBelowAll') == 'yes'),
 ]
+# round 3 (outside reviews of v3): qualitative statements about the new numbers (notes/r3_macro_contract.md)
+_EXV, _EXR, _VS = CAL['r3']['exit_value'], CAL['r3']['exact_recurrence'], CAL['r3']['vprime_shape']
+_vpp = {float(k_): v_['vprime'] for k_, v_ in _VS['profile'].items()}
+_PB = CAL['r2']['payback']
+CLAIMS += [
+    ('model (GPT-M1): evaluated at the E1 growth values, a common frontier with the measured Psi slope has a steepest slope '
+     'below one on both bases for alpha in [0.25, 0.45], and the exact multiplier is below the approximation '
+     '(beta+1)(beta+2)/6 at every alpha',
+     max(_stc['op'] + _stc['cash']) < 1.0
+     and all(v_['multiplier'] < v_['multiplier_approx'] for b in EC['by_basis'] for v_ in EC['by_basis'][b]['by_alpha'].values())),
+    ('horizons (GPT-M2): with deductions spread over 15 years and capital growing at 30%, faster than the discount rate, the '
+     'period cash loss exceeds the present-value loss at every tax rate',
+     all(PCC['ceiling_k15_G30_loss_period_cash'][t_] > PCC['ceiling_k15_G30_loss_pv'][t_] for t_ in _lc) and 0.30 > 0.10),
+    ('horizons (GPT-M4): under central execution the program fails a five-year cash-payback test but has a positive value '
+     'at year five, so an owner who sells at a price reflecting the remaining benefits gains (break-even recovery below '
+     'one at 9.34% and at 10%); slow execution has a negative NPV',
+     _PB['central']['hold']['5']['cum'] < 0 and _EXV['central']['value_at_5'] > 0
+     and 0 < _EXV['central']['breakeven_recovery'] < 1 and 0 < _EXV['central_r10']['breakeven_recovery'] < 1
+     and _EXV['central']['npv'] > 0 and _EXV['slow']['npv'] < 0),
+    ('horizons (GLM-M5): counting gains only until the bound reaches the program, the gains still exceed the dip in PV',
+     CAL['r3']['payback_to_completion']['central']['ratio'] > 1),
+    ('horizons (GPT-4): the exact recurrence embeds 99% of the program in the same calendar year as the bound reaches all '
+     'of it, central and fast, and leaves the printed central payback, discounted payback, NPV and PV ratio unchanged at '
+     'their printed rounding',
+     all(math.floor(_EXR[pc]['year_share'] + 0.5) == math.floor(_EXR[pc]['year_bound_full'] + 0.5) for pc in ('central', 'fast'))
+     and fmt(_EXR['central']['payback_undiscounted'], 1, False) == fmt(_PB['central']['payback_undiscounted'], 1, False)
+     and fmt(_EXR['central']['payback_discounted'], 1, False) == fmt(_PB['central']['payback_discounted'], 1, False)
+     and fmt(_EXR['central']['npv_points_years'], 0) == fmt(_PB['central']['npv_points_years'], 0)
+     and fmt(_EXR['central']['ratio'], 1, False) == fmt(_PB['central']['ratio'], 1, False)),
+    ('abstract, summary (GPT-9): the 2036 score net of the transitions in flight is below the durable score',
+     CPA['path']['net']['2036']['R_net'] < CPA['path']['net']['2036']['R']),
+    ('model (GLM-F1, GPT-2): in the worked example v\'(s) falls from 1% to 10% to 50% of the cap, reaches an interior '
+     'minimum between 70% and 90% of the cap, then rises toward the never-spend multiple (m0 - kG)/(r - G) (within 1% at '
+     '99.99% of the cap, and v\'(0.99 sbar) > v\'(0.5 sbar)), stays below its 1% value at every share from 50% on, and lies '
+     'below the revenue multiple v/s at every share',
+     _vpp[0.01] > _vpp[0.1] > _vpp[0.5] > _VS['min']['vprime'] and 0.7 < _VS['min']['at_share_of_cap'] < 0.9
+     and _VS['min']['vprime'] < _VS['limit_never_spend']
+     and abs(_vpp[0.9999] - _VS['limit_never_spend']) / _VS['limit_never_spend'] < 0.01 and _vpp[0.99] > _vpp[0.5]
+     and max(v_ for z_, v_ in _vpp.items() if z_ >= 0.5) < _vpp[0.01] and _VS['max_vprime_minus_v_over_s'] < 0),
+    ('horizons (GLM-F1, Section 7.4): near saturation the retention gain per point (v\' - k with k = 0) is still more than '
+     'half of its small-share value, while optimal growth spend falls below a tenth of its small-share value',
+     _VS['near_saturation']['lo'] > 0.5 * _vpp[0.01]
+     and _VS['profile']['0.95']['sigma'] < 0.1 * _VS['profile']['0.01']['sigma']),
+    ('empirics (GLM-F5; re-estimated 3 Nov): "the survival statements depend on the family": with 18 or 20 tests the 2020-25 '
+     'steepening keeps Holm p below 10% under the normal and basic types but not the percentile type (in family B it '
+     'survives at 10% under every procedure), and below 5% under the normal and basic types in both families; the anchor '
+     'fails 10% under the percentile type in both families',
+     all(HOLM_CF[(f_, t)]['diff'] < 0.05 for f_ in FAM_CF for t in ('normal', 'basic'))
+     and all(HOLM_CF[(f_, 'percentile')]['diff'] > 0.10 for f_ in FAM_CF) and in_all(FB10, 'psi_op_E1_2020_25_minus_2010_19')
+     and all(HOLM_CF[(f_, 'percentile')]['anchor'] > 0.10 for f_ in FAM_CF)),
+    ('empirics (GPT-14; re-estimated 3 Nov): the Romano-Wolf p of the GAAP P95 decline is below 0.10 by more than two Monte '
+     'Carlo standard errors at the stored number of draws, so the text states that it survives at 10% under that procedure',
+     _rwp < 0.10 and (0.10 - _rwp) > 2 * math.sqrt(_rwp * (1 - _rwp) / _B3)),
+    ('horizons (GLM-M11): counting failed attempts raises the low end of the compute-share range and of the threshold range',
+     CCR['lo'] > CCR['lo_successful_runs'] and CCR['G']['lo'][0] > CCR['G']['lo_successful_runs'][0]),
+    ('horizons (GLM-M11, GPT-22; units fixed 3 Nov): the floor of the compute share is the labor share times compute per '
+     'dollar of labor at the cost per completed task, below that kappa itself, and the top is the value test (c_c = s_L)',
+     abs(CCR['lo'] - CCR['s_L'] * CCR['kappa_lo']) < 1e-15 and CCR['lo'] < CCR['kappa_lo']
+     and abs(CCR['kappa_lo'] - CCR['kappa_lo_successful_runs'] / CCR['success_rate']) < 1e-15
+     and CCR['kappa_hi'] == 1.0 and CCR['hi'] == CCR['s_L'] == CAL['compute_share']['high_compute_case']['value_test_cap']),
+    ('horizons (GLM-M11): one range for the compute share at 2025 prices: the text\'s scenario range is the calibration\'s '
+     'bounds, and the central share lies inside it',
+     list(CAL['compute_share']['values']['prices2025']['bounds']) == [CCR['lo'], CCR['hi']]
+     and CCR['lo'] < CAL['compute_share']['values']['prices2025']['value'] < CCR['hi']),
+]
+# round 3: the specification curve (code/spec_curve.py; Supplement section supp:speccurve). The main text quotes it in
+# sections/empirics.tex, intro.tex, abstract.tex, exec_summary.tex and conclusion.tex; its own section's statements are
+# checked by code/spec_curve.py (check_text_claims). The first entry ties its stored results to this run's estimates.
+_SCJ = json.load(open(os.path.join(BASE, 'notes', 'spec_curve', 'results.json')))
+_SC, _SCD = _SCJ['claims'], _SCJ['derived']
+_SCB = _SCD.get('boot', {})
+_SC_BASE = dict(C1='p95_change_op', C2='p95_change_cash', C3='cone_op_slope_c90_w60', C4='cone_cash_slope_c90_w60',
+                C5='cone_op_slope_c90_w40_2020_25_minus_2010_19', C6='cone_cash_slope_c90_w40_2020_25_minus_2010_19',
+                C7='spend_ratio', C8a='anchor_p95_Pi_lb_med', C8b='anchor_p95_Pi_net_med', C8c='anchor_p95_Pi_ub_med')
+_r2 = {c: _SC[c]['influence']['r2']['levels'] for c in ('C3', 'C7')}
+CLAIMS += [
+    ('spec curve: its stored results are for this run\'s estimates (every claim\'s baseline equals the E1 estimate of '
+     'notes/empirics_v3.json) and its reproduction check passed without difference',
+     all(abs(_SC[c]['baseline'] - vest(st)) < 1e-12 for c, st in _SC_BASE.items())
+     and _SCJ['reproduction']['max_abs_diff'] == 0 and not _SCJ['reproduction']['json_failures']
+     and not _SCJ['reproduction']['macro_failures']),
+    ('empirics, intro: the P95 fall holds in every specification of the curve that measures the 95th percentile, both bases',
+     _SCD['decline']['p95_share_gaap'] == 1 and _SCD['decline']['p95_share_cash'] == 1),
+    ('empirics, intro, abstract, summary box, conclusion: at the paper\'s definition the baseline falls lie inside the ranges '
+     'the sample choices give, near their top (fewer than 15% of the samples fall further)',
+     all(_SCD['decline'][k][0] <= vest(st) <= _SCD['decline'][k][1] and _SCD['decline'][f'core_share_below_baseline_{b}'] < 0.15
+         for k, st, b in (('core_gaap', 'p95_change_op', 'gaap'), ('core_cash', 'p95_change_cash', 'cash')))),
+    ('empirics: across the sample choices an unadjusted interval below zero at the paper\'s definition holds in fewer '
+     'bootstrapped samples than the sign does (not all, on both bases)',
+     0 < _SCB['top_op_core'] < 1 and 0 < _SCB['top_cash_core'] < 1),
+    ('empirics, intro, conclusion: the Psi slope lies above -1 and below zero in every specification of the curve, both bases',
+     all(_SC[c][f'share_{t}'] == 1 for c in ('C3', 'C4') for t in ('a', 'b'))),
+    ('empirics, abstract, summary box, conclusion: about a fifth of a point is the baseline only: on both bases the baseline is '
+     'flatter than the central 90% of specifications and among the flattest (under 5% flatter)',
+     all(_SC[c]['baseline'] > _SC[c]['p95'] and _SCD[c]['share_above_baseline'] < 0.05 for c in ('C3', 'C4'))),
+    ('empirics, intro, summary box, conclusion: the GAAP steepening is fragile: negative in most specifications, but with '
+     'Psi_0.90 an interval below zero in a minority of the bootstrapped samples with the paper\'s split and a majority with '
+     'the 2010-15 against 2018-25 split',
+     _SC['C5']['share_a'] > 0.5 and _SCB['diff_op_c90_A'] < 0.5 < _SCB['diff_op_c90_B']),
+    ('empirics, intro, summary: no cash steepening in the samples that remove acquired growth (negative in under a fifth of '
+     'the pro forma and exclusion specifications); negative in most observed-growth specifications, with an interval below '
+     'zero in few of them (under 10%)',
+     _SCD['cash_steepening']['neg_share_organic'] < 0.2 and _SCD['cash_steepening']['neg_share_observed'] > 0.5
+     and _SCD['cash_steepening']['boot_below_zero_observed'] < 0.1),
+    ('empirics, intro, summary: across the sample choices the spend ratio is higher where acquired growth is removed or firms '
+     'are dropped under rule R2',
+     _SC['C7']['by_family']['pro forma']['median'] > _SC['C7']['by_family']['observed']['median']
+     and _SC['C7']['by_family']['exclusion']['median'] > _SC['C7']['by_family']['observed']['median']
+     and all(v_['median'] > _r2['C7']['none']['median'] for k_, v_ in _r2['C7'].items() if k_ != 'none')),
+    ('empirics (anchor): the netted median is positive in nearly all specifications of the curve (above 95%) but its interval '
+     'lies above zero in fewer than half of those bootstrapped; Pi_lb is positive in every specification',
+     _SC['C8b']['share_a'] > 0.95 and _SC['C8b']['boot']['share_interval_on_claimed_side'] < 0.5 and _SC['C8a']['share_a'] == 1),
+]
+# outside re-review of the 4 Nov build (GPT F09, F10, F11; 5 Nov 2026)
+_bni, _bnis = V3E['bridge_cash_bni_p95_change']['E1'], V3E['bridge_cash_bnis_p95_change']['E1']
+CLAIMS += [
+    ('data, appendix (F09): on the subsample that reports interest income, the 90% percentile interval of the like-for-like '
+     'change includes zero, that of the change net of interest income barely excludes it (upper end within 3 points of '
+     'zero), and both 95% intervals include zero',
+     _bnis['ci90'][0] < 0 < _bnis['ci90'][1] and -0.03 < _bni['ci90'][1] < 0 and _bni['ci95'][0] < 0 < _bni['ci95'][1]
+     and _bnis['ci95'][0] < 0 < _bnis['ci95'][1]),
+    ('empirics, spec curve (F10): no firm contributes more than four firm-years to the 60% cell under E1, or more than '
+     'three under E2, on either basis',
+     max(CELL60[('E1', b_)][2] for b_ in ('op', 'cash')) <= 4 and max(CELL60[('E2', b_)][2] for b_ in ('op', 'cash')) <= 3),
+]
 _failed = [c for c, ok in CLAIMS if not ok]
 os.makedirs(OUT_DIR, exist_ok=True)
 FLAGS = ['psi_op_E1_vs_m1', 'psi_cash_E1_vs_m1', 'gap_E1', 'gap_fast_sm_E1']
@@ -1444,7 +1865,8 @@ if _failed:
 ROWS = [('E1', r'E1: all firm-years (baseline)'),
         ('E1k2010', r'E1 plus fiscal-2010 years first reported in a later filing (R1 sensitivity)'),
         ('E1clean', r'E1 without all 16 firms the panels named as possibly not software'),
-        ('E1r2named', r'E1 without the named firms the R2 classifier classes non-software'),
+        ('E1r2both', r'E1 without the firms both independent readers class as not software (R2 sensitivity)'),
+        ('E1r2either', r'E1 without the firms either independent reader classes as not software'),
         ('E1nolist', r'E1 without the firm-years R5 flags as having no listed equity'),
         ('E1nodebt', r'E1 without the four debt-only filers a referee named'),
         ('E2', r'E2: organic growth, pro forma where disclosed (25\% flag)'),
@@ -1454,7 +1876,8 @@ ROWS = [('E1', r'E1: all firm-years (baseline)'),
         ('E2add', r'E2, ambiguous pro forma cases read additively'), ('E2max', r'E2, ambiguous pro forma cases read cumulatively'),
         ('E2testrule', r"E2 under the first test run's rule"),
         ('E2k2010', r'E2 plus fiscal-2010 years first reported in a later filing'),
-        ('E2clean', r'E2 without all 16 named firms'), ('E2r2named', r'E2 without the named firms R2 classes non-software'),
+        ('E2clean', r'E2 without all 16 named firms'), ('E2r2both', r'E2 without the firms both readers class as not software'),
+        ('E2r2either', r'E2 without the firms either reader classes as not software'),
         ('E2nolist', r'E2 without the firm-years R5 flags'), ('E2nodebt', r'E2 without the four named debt-only filers'),
         ('E2imp4', r'E2 plus the dropped years, organic growth imputed at $M=4$'),
         ('E2imp8', r'E2 plus the dropped years, organic growth imputed at $M=8$')]
@@ -1463,6 +1886,7 @@ COLS = [('cone_op_slope_c90_w60', 2, False), ('cone_cash_slope_c90_w60', 2, Fals
         ('gap_avg', 1, True)]
 
 
+assert [v_ for v_, _ in ROWS_E1] == [v_ for v_, _ in ROWS if v_.startswith('E1')]
 for b, B_ in [('op', 'Op'), ('cash', 'Cash')]:
     _pv = [vest(f'cone_{b}_slope_c90_w60', v_) for v_, _ in ROWS]
     num(f'PsiVar{B_}Lo', min(_pv), 2, False); num(f'PsiVar{B_}Hi', max(_pv), 2, False)
@@ -1490,8 +1914,9 @@ tl += [r'\bottomrule\end{tabular}',
        r'imputed rows. Change in P95: 2016--19 to 2023--25, points. Spend ratio: median selling-and-marketing share over growth '
        r'in excess of the year median, firm-years growing faster than the median. Margin gap: GAAP operating margin of the top '
        r'decile minus the 40th--60th percentiles within growth bands, average of bands, points. Sensitivity rows add back or '
-       r'remove firm-years by the rule named; R2 and R5 cannot be applied from the local data, so the firms the review panels '
-       r'named enter only these rows.',
+       r'remove firm-years by the rule named. Every row applies rule R2 by its keyword classifier; the reader rows also drop '
+       r'the firms that both, or either, of two independent readings of the business descriptions class as not software. '
+       r'Rule R5 is a flag, so the firm-years it flags, and the firms the review panels named, are removed only in these rows.',
        r'\end{table}']
 open(os.path.join(OUT_DIR, 'tab_robust_v3.tex'), 'w').write('\n'.join(tl) + '\n')
 
@@ -1644,12 +2069,35 @@ table_copy('tab_yearly_v3.tex', [], SEEDREF)
 # ---------------------------------------------------------------------------------------------- write macros
 os.makedirs(OUT_DIR, exist_ok=True)
 lines = ['% Generated by code/paper1_macros.py from notes/calibration_results.json, notes/paper_stats.json,',
-         '% notes/empirics_revised.json, notes/gap_decomposition.json and data/panel*.csv. Do not edit by hand.',
+         '% notes/empirics_revised.json, notes/empirics_v3.json (and companions) and data/panel*.csv. Do not edit by hand.',
          '% Values are rounded half up; percentages are given without the percent sign.',
          f"% v3 outputs (notes/empirics_v3.json and companions) read from {V3DIR if V3DIR else 'the live repository'}."]
 for k, v in M.items():
     lines.append(f"\\newcommand{{\\{k}}}{{{v}}}")
+# round 3: the stress-test macros (\St*, code/mc_report_tex.py) are a separate generated file, input from here
+lines.append('% Joint-parameter stress test (code/mc_report_tex.py from the stored output of code/mc_claims.py):')
+lines.append('\\IfFileExists{paper1/stress_macros.tex}{\\input{paper1/stress_macros.tex}}{}')
+# round 3: the specification-curve macros (\Sc*, code/spec_curve.py; Supplement section supp:speccurve)
+lines.append('% Specification curve of the empirical claims (code/spec_curve.py):')
+lines.append('\\IfFileExists{paper1/spec_macros.tex}{\\input{paper1/spec_macros.tex}}{}')
+# 4 Nov: the macros of the analyses added after the third review round (\Ex*, code/supp_extensions.py; Section supp:extensions)
+lines.append('% Analyses added after the third review round (code/supp_extensions.py):')
+lines.append('\\IfFileExists{paper1/ext_macros.tex}{\\input{paper1/ext_macros.tex}}{}')
 open(os.path.join(OUT_DIR, 'macros.tex'), 'w').write('\n'.join(lines) + '\n')
+_stf = os.path.join(OUT_DIR, 'stress_macros.tex')                 # so that the plain abstract can expand them too
+if os.path.exists(_stf):
+    for _k, _v in re.findall(r'\\newcommand\{\\(St[A-Za-z]+)\}\{(.*)\}', open(_stf).read()):
+        assert _k not in M, f"stress macro {_k} clashes with a paper1 macro"
+        PLAIN[_k] = _v.replace('{,}', ',').replace('$-$', '-')
+_scf = os.path.join(OUT_DIR, 'spec_macros.tex')
+if os.path.exists(_scf):
+    for _k, _v in re.findall(r'\\newcommand\{\\(Sc[A-Za-z]+)\}\{(.*)\}', open(_scf).read()):
+        assert _k not in M and _k not in PLAIN, f"specification-curve macro {_k} clashes with a paper1 or stress macro"
+        PLAIN[_k] = _v.replace('{,}', ',').replace('$-$', '-').replace('$+$', '+').replace('$>$', '>').replace('$<$', '<')
+_exf = os.path.join(OUT_DIR, 'ext_macros.tex')
+if os.path.exists(_exf):
+    for _k, _v in re.findall(r'\\newcommand\{\\(Ex[A-Za-z]+)\}\{(.*)\}', open(_exf).read()):
+        assert _k not in M and _k not in PLAIN, f"extension macro {_k} clashes with another macro"
 
 # ---------------------------------------------------------------------------------------------- plain abstract
 src = open(os.path.join(BASE, 'sections', 'abstract.tex')).read()

@@ -1,0 +1,17 @@
+{
+  "name": "verify_theory",
+  "command": [
+    "/workspace/scratch/2bd0abc7f371/rereview_20261104/repro_venv/bin/python",
+    "code/verify_theory.py"
+  ],
+  "cwd": "/workspace/scratch/2bd0abc7f371/rereview_20261104/work_pinned",
+  "start_utc": "2026-11-05T03:25:48.405015+00:00",
+  "python_driver": "/workspace/scratch/2bd0abc7f371/rereview_20261104/repro_venv/bin/python",
+  "platform": "Linux-6.18.57-x86_64-with-glibc2.39",
+  "env": {},
+  "commit": "eb7537bee7585f2902304f62a722edea6ced8539",
+  "status": "completed",
+  "exit_code": 0,
+  "elapsed_seconds": 111.21069683799942,
+  "finish_utc": "2026-11-05T03:27:39.617234+00:00"
+}

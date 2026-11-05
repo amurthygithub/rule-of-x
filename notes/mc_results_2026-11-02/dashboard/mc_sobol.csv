@@ -1,0 +1,17 @@
+output,driver,total_index,first_order
+2036 score (netted),Cash tax rate,0.0043,0.0098
+2036 score (netted),Accountability floor,0.0025,0.003
+2036 score (netted),AI error and failure costs,0.0021,0.0017
+2036 score (netted),Compute share,0.0173,0.0235
+2036 score (netted),Execution pace and yield,0.6064,0.5895
+2036 score (netted),Market growth,0.2094,0.2016
+2036 score (netted),Pass-through,0.0353,0.0509
+2036 score (netted),Capital intensity,0.0565,0.0506
+2036 score (netted),Anchor firm intercept,0.095,0.092
+Growth threshold G*,Payment fees,0.002,0.0017
+Growth threshold G*,Cash tax rate,0.065,0.0643
+Growth threshold G*,Accountability floor,0.0337,0.0343
+Growth threshold G*,Security,0.0016,0.0015
+Growth threshold G*,Maintenance,0.0052,0.0066
+Growth threshold G*,AI error and failure costs,0.0296,0.0314
+Growth threshold G*,Compute share,0.8808,0.8832

@@ -1,0 +1,10 @@
+id,basis,year,central,paper_lo,paper_hi,p05,p95,box_min,box_max,share_in_paper
+Central|2028,Central,2028,44.1,38.9,50.1,32.8,50.2,27.0,69.8,0.624
+Central|2031,Central,2031,49.1,44.4,54.4,36.1,55.2,27.2,90.5,0.489
+Central|2036,Central,2036,57.8,54.0,62.1,40.7,66.7,27.6,95.4,0.285
+All S&M buys growth|2028,All S&M buys growth,2028,56.2,49.5,66.5,46.7,78.6,37.0,138.2,0.677
+All S&M buys growth|2031,All S&M buys growth,2031,59.5,53.7,68.5,49.1,74.7,37.1,127.9,0.656
+All S&M buys growth|2036,All S&M buys growth,2036,65.5,61.3,72.3,52.8,77.6,37.4,121.8,0.501
+No S&M buys growth|2028,No S&M buys growth,2028,39.4,33.7,47.1,28.5,46.0,21.0,68.4,0.670
+No S&M buys growth|2031,No S&M buys growth,2031,45.0,40.0,51.7,31.9,51.6,21.2,90.0,0.513
+No S&M buys growth|2036,No S&M buys growth,2036,54.8,50.9,59.9,36.5,64.7,21.7,95.0,0.279

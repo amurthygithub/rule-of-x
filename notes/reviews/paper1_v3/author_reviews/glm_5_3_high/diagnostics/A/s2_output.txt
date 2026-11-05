@@ -1,0 +1,20 @@
+session: 2026-11-03T05:39:38.898322
+python 3.12.3 numpy 2.5.2 scipy 1.18.1
+PASS L1c  frontier strictly decreasing & concave for k>=0 over alpha x k x G grid (35 combos)
+PASS RS1c k<0: frontier peaks at Delta0 = (-k/(beta kappa))^(1/(beta-1)) (5 alpha x 3 G combos)
+PASS L1c  alpha=1/2: m*''(G+) -> -2*kappa (ell=0.5)  num=-7.993606 vs -8.000000
+PASS L1c  alpha=1/2: m*''(G+) -> -2*kappa (ell=1.2)  num=-1.387779 vs -1.388889
+PASS L1c  alpha=0.3: m*''(G+) -> 0  num=0.00e+00
+PASS L1c  alpha=0.7: m*''(G+) -> -infty (diverges like Delta^(beta-2))  num=-8.04e+03
+PASS L2   closed-form R* matches brute-grid + SLSQP optimum (400 draws, 49 corners, 26 binding caps)  bad_R=0 bad_sig=0 bad_corner=0 bad_cap=0
+PASS L2b  tangency m*'(g*) = -X and scipy bounded-optimum = closed form (200 draws)
+PASS L1a  hypograph convexity (midpoint below frontier) and frontier points undominated (100 draws)
+PASS LS1c example: S(G) ~ 0.486 and corner is a local max (S'(G)<0)
+PASS LS1c example: unique interior local max near g=0.739 with S ~ 0.595 (grid 2e6)  g=0.73929775, S=0.5954367910108987
+PASS LS1c example: under linear timing (2) the unique optimum is g=G (X=1<k=1.25)
+PASS LS1c example: m~ strictly convex just right of G (m~''>0)
+PASS LS1d asset-light: non-convex region ends about 2 points of excess growth (alpha=0.3,k=0.05,ell=0.86)  Delta0=0.0203, kappa=1.653
+PASS L3d  Rule-of-1000 example: Lambda ~ 8.71, Delta* ~ 13.14 (1314 pts), sigma* ~ 3.94 (394%), m ~ -3.34 (-334%)  Lambda=8.709 Delta=13.143 sigma=3.943 m=-3.343
+PASS S5   Rule-of-1000 range: Lambda in [6.8, 9.3] over alpha in [0.25, 0.45] (m0=0.5, G=0.2)  alpha=0.25: 9.35, alpha=0.45: 6.78
+
+TOTAL 16 checks, 0 failures

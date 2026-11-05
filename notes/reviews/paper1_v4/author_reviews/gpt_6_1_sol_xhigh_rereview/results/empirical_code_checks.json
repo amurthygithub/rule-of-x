@@ -1,0 +1,95 @@
+{
+  "scope": "Independent counts from committed filtered panel; no raw-data audit or author program run.",
+  "seed": "Not applicable: deterministic calculations.",
+  "numpy_version": "2.3.5",
+  "tail_support": [
+    {
+      "sample": "E1",
+      "period": "pooled",
+      "growth_threshold": 0.6,
+      "basis": "m_op",
+      "firm_years": 64,
+      "distinct_firms": 41,
+      "largest_firm_year_count": 4,
+      "largest_firm_share": 0.0625
+    },
+    {
+      "sample": "E1",
+      "period": "pooled",
+      "growth_threshold": 0.6,
+      "basis": "m_fcf_sbc",
+      "firm_years": 65,
+      "distinct_firms": 42,
+      "largest_firm_year_count": 4,
+      "largest_firm_share": 0.06153846153846154
+    },
+    {
+      "sample": "E1",
+      "period": "early2010_19",
+      "growth_threshold": 0.4,
+      "basis": "m_op",
+      "firm_years": 111,
+      "distinct_firms": 66,
+      "largest_firm_year_count": 5,
+      "largest_firm_share": 0.04504504504504504
+    },
+    {
+      "sample": "E1",
+      "period": "early2010_19",
+      "growth_threshold": 0.4,
+      "basis": "m_fcf_sbc",
+      "firm_years": 109,
+      "distinct_firms": 65,
+      "largest_firm_year_count": 5,
+      "largest_firm_share": 0.045871559633027525
+    },
+    {
+      "sample": "E1",
+      "period": "late2020_25",
+      "growth_threshold": 0.4,
+      "basis": "m_op",
+      "firm_years": 102,
+      "distinct_firms": 56,
+      "largest_firm_year_count": 4,
+      "largest_firm_share": 0.0392156862745098
+    },
+    {
+      "sample": "E1",
+      "period": "late2020_25",
+      "growth_threshold": 0.4,
+      "basis": "m_fcf_sbc",
+      "firm_years": 103,
+      "distinct_firms": 56,
+      "largest_firm_year_count": 4,
+      "largest_firm_share": 0.038834951456310676
+    },
+    {
+      "sample": "E1",
+      "period": "recent2023_25",
+      "growth_threshold": 0.4,
+      "basis": "m_op",
+      "firm_years": 15,
+      "distinct_firms": 13,
+      "largest_firm_year_count": 2,
+      "largest_firm_share": 0.13333333333333333
+    },
+    {
+      "sample": "E1",
+      "period": "recent2023_25",
+      "growth_threshold": 0.4,
+      "basis": "m_fcf_sbc",
+      "firm_years": 15,
+      "distinct_firms": 13,
+      "largest_firm_year_count": 2,
+      "largest_firm_share": 0.13333333333333333
+    }
+  ],
+  "infinity_quantile_demonstration": {
+    "array_size": 999,
+    "positive_infinity_count": 60,
+    "quantile_05_95": [
+      49.900000000000006,
+      "NaN"
+    ]
+  }
+}

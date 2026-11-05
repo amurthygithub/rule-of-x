@@ -1,0 +1,12 @@
+session: 2026-11-03T05:49:04.590680
+python 3.12.3 numpy 2.5.2 scipy 1.18.1
+PASS S2.2 lambda ~ 0.070 gives v0=10; lambda ~ 0.081 gives v0=15  lam10=0.0698 lam15=0.0808
+PASS S2.2 static optimum at v0=10: g0 = 7.6%, sigma0 = 10.7%, m0circ = 24.3%, v0 = m0circ/(r-g0) = 10  g0=0.0757 sig0=0.1071 m0=0.2429
+PASS S2.2 smaller root of (19) across r: 14.6, 10.0, 5.8, 3.7, 2.1, 1.35  r=0.0934: 14.57 vs 14.6; r=0.1: 10.00 vs 10.0; r=0.12: 5.82 vs 5.8; r=0.15: 3.74 vs 3.7; r=0.22: 2.09 vs 2.1; r=0.31: 1.35 vs 1.35
+PASS P2    HJB identity R*_{v'(s)}(s) = (r-G)v(s)/s + G v'(s) along the shot (max |resid| < 5e-3)  max|resid|=2.22e-16
+PASS P2    bounds (m0-kG)s/(r-G) <= v(s) <= v0 s hold on the grid
+PASS P2    small-share limit u(s) -> v0 as s -> 0 (within 0.01 for s < 1e-6*sbar)  u(smin)=9.9997
+PASS S2.2/P2  growth weight v'(s) = 9.1, 7.2, 5.4 and multiple v(s)/s = 9.4, 8.1, 6.5 at 1%, 10%, 50% of cap  s=1%sbar: v'=9.08 (claim 9.1), v/s=9.41 (claim 9.4); s=10%sbar: v'=7.25 (claim 7.2), v/s=8.10 (claim 8.1); s=50%sbar: v'=5.39 (claim 5.4), v/s=6.47 (claim 6.5)
+FAIL P2/S2.2  v'(s) <= v(s)/s on the interior, and v' falling with s (v' = Phi(u,s) exact)
+
+TOTAL 8 checks, 1 failures

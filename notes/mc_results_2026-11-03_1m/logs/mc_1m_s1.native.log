@@ -1,0 +1,23 @@
+[mc_claims 15:34:56] executing code/calibrate_horizons.py into /Users/amurthy/workspace/stress_runs_2026-11-03/mc_1m_s1/_shadow (outputs redirected)
+[mc_claims 15:34:59] reproduction checks: 87 passed, 0 failed; shadow outputs byte-identical: False (JSON: 69 leaves differ, max rel. 1.8736e-07, blocks ell_psi,r2,r3)
+[mc_claims 15:34:59] box: 51 dimensions; config e291b0637f62; checkpoint /Users/amurthy/workspace/stress_runs_2026-11-03/mc_1m_s1/ckpt/e291b0637f62
+[mc_claims 15:34:59] draws: 1000000 LHS + 100002 corners = 1100002 points, 0 chunks to run (5501 done)
+[mc_claims 15:35:42] searches: 142 extremum searches to run (0 done)
+[mc_claims 15:35:42]   search 10/142
+[mc_claims 15:35:42]   search 20/142
+[mc_claims 15:35:42]   search 30/142
+[mc_claims 15:35:43]   search 40/142
+[mc_claims 15:35:43]   search 50/142
+[mc_claims 15:35:44]   search 60/142
+[mc_claims 15:35:44]   search 70/142
+[mc_claims 15:35:44]   search 80/142
+[mc_claims 15:35:44]   search 90/142
+[mc_claims 15:35:45]   search 100/142
+[mc_claims 15:35:45]   search 110/142
+[mc_claims 15:35:45]   search 120/142
+[mc_claims 15:35:45]   search 130/142
+[mc_claims 15:35:46]   search 140/142
+[mc_claims 15:35:46]   search 142/142
+[mc_claims 15:36:04] sobol: N = 65536, 20 blocks, 4718592 evaluations to run (scrambled Sobol sequence (scipy.stats.qmc); factor indices by SALib)
+[mc_claims 15:39:49] failure scans: 254 univariate scans
+[mc_claims 15:40:01] wrote /Users/amurthy/workspace/stress_runs_2026-11-03/mc_1m_s1/mc_claims.json, /Users/amurthy/workspace/stress_runs_2026-11-03/mc_1m_s1/mc_claims_report.md and draws_lhs.csv

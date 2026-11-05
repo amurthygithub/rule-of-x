@@ -1,0 +1,22 @@
+{
+ "v3_rows": 1788,
+ "v3_firms": 292,
+ "v3_period": {
+  "2010-15": 465,
+  "2020-22": 458,
+  "2023-25": 447,
+  "2016-19": 418
+ },
+ "pass40": {
+  "R_op": 14.2,
+  "R_adj": 26.2,
+  "R_fcf": 29.8,
+  "R_fcf_sbc": 15.4
+ },
+ "capex_missing_share": 2.1,
+ "v3all_rows": 5678,
+ "v2_rows": 5678,
+ "v3all_src_later": 1146,
+ "acq_flag_share_core": 25.2,
+ "acq_flag_share_fast": 41.5
+}

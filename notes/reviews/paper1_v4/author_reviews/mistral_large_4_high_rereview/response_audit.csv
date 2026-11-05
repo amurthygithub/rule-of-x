@@ -1,0 +1,24 @@
+id,our_status,your_verdict,evidence,locator
+F-1,Already handled,resolved,16 'under (H)' qualifiers counted in new PDF text (grep=10 in raw text layer incl. table rows); abstract retains 'Under a verification hypothesis'; (H) still unproved as stated,new paper1.pdf abstract p.1; Prop 2 title; repo-v4 commit eb7537b
+F-2/Ed-3/RS-4,Fixed,resolved,"R2 applied to all 293 core registrants (8 firms/56 firm-years removed; blind readers kappa 0.95 in business_class_reader_{a,b}.csv); re-estimated headlines reproduced by me on v4 panel: Psi90 -0.200/-0.170, P95 fall 11.90/12.57, anchor 14/7 (v3 flag)",data/panel_v3.csv (1732 rows/284 firms); results/rereview_checks.json; paper4.txt M4.2
+F-3/M-1/Ed-1/RS-5,Already handled,resolved,"New abstract read in full: keeps 'central scenario, not a forecast', 'at central costs and fixed prices', compute range 28-78%, pass-through 36/39%, '54 to 62 from sampling alone', 53 while paying for changes",paper1.pdf p.1 abstract
+F-4/M-2/Ed-2/RS-3,Fixed,resolved,Column named in S8 + REPLICATION_README; I reproduced anchor 15 firm-years/8 firms with acq_flag vs 14/7 with acq_flag_v3 on v4 panel,results/rereview_checks.json anchor_v4
+F-5,Already handled,resolved,Scenario threshold 5%/1% both reported; no legal number claimed; my v3 Monte Carlo verified formula,appendix_proofs.tex rem:amin-values; S9
+F-6,Not valid (reviewer error),disagree-with-nothing: reviewer error confirmed,"I re-derived the author's rebuttal: my solvers used discount r not r-G and a boundary clamp pinning no-spend; policy bound reproduced by me: v/s 9.020 (s0=0.01), 7.332 (s0=0.1) vs no-spend 5.833; check 15q passes in v4 (202/202); F-6 withdrawn",scripts/rereview_checks.py f6_policy_bound; code/verify_theory.py:1259-1275
+F-7,Already handled,resolved,Conventions labeled in S2.1; unchanged,supp_model.tex S2.1
+F-8,Already handled,resolved,"'sensitivity set, not four independent replications' retained; v4 adds S11 spec curve with pre-registered design (notes/spec_curve/design.md dated 2026-11-03 14:36 UTC before run)",S11; notes/spec_curve/results.json
+M-3,Already handled,resolved,18-test family added; text says such survivals say little,M5.1
+M-4,Already handled,resolved,Disclosed in appendix_data,S8
+M-5/M-6/M-7,Already handled/valid no change,resolved,"Macros gate rerun on v4: 1730 macros, abstract 1916<1920 chars, idempotent",code/paper1_macros.py run
+M-8/Ed-5/RS-6,Partly valid -> Fixed,partly resolved,"Author's primary-source pass recorded (notes/legal_primary_source_pass_2026-11-03.md: 0 incorrect, 8 imprecise fixed, incl. AS 2201 .65 note, Reg G vs Item 10(e) prominence, 26 USC 59(k), ADS cite, EU AI Act Art 1(40)); I cannot re-fetch irs.gov/pcaobus.org/eur-lex from this sandbox; specialist read still advisable for journal",notes/legal_primary_source_pass_2026-11-03.md
+Empirical 7,Not valid (reviewer spec),reviewer error confirmed,"With stated g<=150% trim on v4 panel I get op +0.056 (0.065), lead -0.045 (0.052), cash -0.042 (0.043), matching their reproduction; trim now stated in Section 5",results/rereview_checks.json fe_v4
+Ed-4/RS-1,Partly valid -> Fixed,resolved,Singular ODE + free constant stated in S3 proof; solver-independent bound = check 15q,supp_proofs.tex; verify_theory.py 15q
+RS-2,Partly valid -> Fixed,resolved,Table cap: 'scenario value no source measures'; CcLo corrected to 1.2% (KappaLo=2% per completed task x 60% labor share); G* range recomputed by me 28.6%-76.8% at the two ends (printed 28-78%),paper1/macros.tex CcLo; results/rereview_checks.json gstar_range
+RS-7,Fixed,partly resolved,"Fresh-clone reproduction recorded at commit 3998b33 with fetch_raw_data.py (audit_2026-11-03_revision.md F1); I ran the quick gates on v4: verify_theory 202/202, supp_extensions 27/27, macros idempotent, headline stats re-derived; full ~1h pipeline not rerun by me",notes/reviews/paper1_v3/audit_2026-11-03_revision.md
+RS-8,Already handled,resolved,Post-hoc choices remain in Appendix A.4/Table 8,paper1_v4 Appendix A
+ST-1,new (stress test),resolved-as-conditional,"S10 Table S18: G* 19.6-94.5% full box, 24.0-45.1% at cc=6%; conditions now stated at each claim site; I spot-checked 5-dim corner span 20.8-87.4% consistent",sections/tables/tab_stress.tex; results/rereview_checks.json
+ST-2,new,resolved-as-conditional,"2036 netted score 27.6-95.4 over box (central 57.8); text now says interval [54,62] is anchor-sampling alone",tab_stress.tex row 5; abstract
+ST-3,new,resolved-as-conditional,"payback 3.51-29.07 full box, 4.99-9.29 central execution; text carries 'under central execution'",tab_stress.tex
+ST-4,new,resolved-as-conditional,"cumulative-negative-at-3/5y holds 'at all but a few points', central execution",M1/M7.3
+ST-5,new,resolved-as-conditional,41% realized under central execution; range 4.9-85.0% over box,tab_stress.tex
+ST-6,new,resolved-as-conditional,growth-engine-first count 0-1 over maintenance-base draws; text says 'at the central maintenance level',M7.5; tab_stress.tex

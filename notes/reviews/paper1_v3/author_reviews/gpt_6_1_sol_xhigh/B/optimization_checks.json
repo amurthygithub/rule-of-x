@@ -1,0 +1,810 @@
+[
+  {
+    "growth": 0.001,
+    "X": 9.880259179139054e-07,
+    "spend": 2.9640777537417166e-10,
+    "optimizer_spend": 2.965101871249828e-10,
+    "objective_error": 1.1102230246251565e-16,
+    "success": true
+  },
+  {
+    "growth": 0.00699,
+    "X": 9.230284357844329e-05,
+    "spend": 1.9355906298399553e-07,
+    "optimizer_spend": 1.9355957064429902e-07,
+    "objective_error": 1.1102230246251565e-16,
+    "success": true
+  },
+  {
+    "growth": 0.012979999999999998,
+    "X": 0.00039120940427855595,
+    "spend": 1.5233694202606963e-06,
+    "optimizer_spend": 1.523369790971757e-06,
+    "objective_error": 0.0,
+    "success": true
+  },
+  {
+    "growth": 0.01897,
+    "X": 0.0009482556576890438,
+    "spend": 5.39652294790835e-06,
+    "optimizer_spend": 5.396523100991773e-06,
+    "objective_error": 1.1102230246251565e-16,
+    "success": true
+  },
+  {
+    "growth": 0.02496,
+    "X": 0.0017988944953665023,
+    "spend": 1.3470121981304364e-05,
+    "optimizer_spend": 1.3470091490531635e-05,
+    "objective_error": 0.0,
+    "success": true
+  },
+  {
+    "growth": 0.03095,
+    "X": 0.0029715054307958345,
+    "spend": 2.7590427924939314e-05,
+    "optimizer_spend": 2.7590495520644094e-05,
+    "objective_error": 0.0,
+    "success": true
+  },
+  {
+    "growth": 0.03694,
+    "X": 0.004490152414997586,
+    "spend": 4.9759869063003245e-05,
+    "optimizer_spend": 4.9759838774781506e-05,
+    "objective_error": 0.0,
+    "success": true
+  },
+  {
+    "growth": 0.042929999999999996,
+    "X": 0.006375932983553578,
+    "spend": 8.211564089518654e-05,
+    "optimizer_spend": 8.211564384931429e-05,
+    "objective_error": 0.0,
+    "success": true
+  },
+  {
+    "growth": 0.04892,
+    "X": 0.008647755124276967,
+    "spend": 0.0001269144542038888,
+    "optimizer_spend": 0.0001269144923633719,
+    "objective_error": 0.0,
+    "success": true
+  },
+  {
+    "growth": 0.05491,
+    "X": 0.011322831362070294,
+    "spend": 0.00018652100102738395,
+    "optimizer_spend": 0.00018652100007518707,
+    "objective_error": 0.0,
+    "success": true
+  },
+  {
+    "growth": 0.060899999999999996,
+    "X": 0.014417015099217336,
+    "spend": 0.00026339886586270074,
+    "optimizer_spend": 0.00026339884960327887,
+    "objective_error": 0.0,
+    "success": true
+  },
+  {
+    "growth": 0.06688999999999999,
+    "X": 0.017945041252917952,
+    "spend": 0.0003601031428223045,
+    "optimizer_spend": 0.0003601030065609177,
+    "objective_error": 0.0,
+    "success": true
+  },
+  {
+    "growth": 0.07288,
+    "X": 0.02192070511095903,
+    "spend": 0.0004792742965460082,
+    "optimizer_spend": 0.0004792742866578949,
+    "objective_error": 0.0,
+    "success": true
+  },
+  {
+    "growth": 0.07887,
+    "X": 0.026356999343164877,
+    "spend": 0.000623632961458624,
+    "optimizer_spend": 0.0006236326832720652,
+    "objective_error": 0.0,
+    "success": true
+  },
+  {
+    "growth": 0.08485999999999999,
+    "X": 0.031266221566163974,
+    "spend": 0.0007959754686314025,
+    "optimizer_spend": 0.0007959756216076284,
+    "objective_error": 0.0,
+    "success": true
+  },
+  {
+    "growth": 0.09085,
+    "X": 0.036660060526911176,
+    "spend": 0.0009991699496609643,
+    "optimizer_spend": 0.0009991699696757813,
+    "objective_error": 1.1102230246251565e-16,
+    "success": true
+  },
+  {
+    "growth": 0.09684,
+    "X": 0.04254966635071067,
+    "spend": 0.0012361529068208466,
+    "optimizer_spend": 0.001236152910506839,
+    "objective_error": 1.1102230246251565e-16,
+    "success": true
+  },
+  {
+    "growth": 0.10282999999999999,
+    "X": 0.04894570864691399,
+    "spend": 0.0015099261660486498,
+    "optimizer_spend": 0.0015099264113509533,
+    "objective_error": 0.0,
+    "success": true
+  },
+  {
+    "growth": 0.10882,
+    "X": 0.055858425185259006,
+    "spend": 0.0018235541485979653,
+    "optimizer_spend": 0.0018235542917405443,
+    "objective_error": 0.0,
+    "success": true
+  },
+  {
+    "growth": 0.11481,
+    "X": 0.06329766312798413,
+    "spend": 0.0021801614111171576,
+    "optimizer_spend": 0.0021801615751432606,
+    "objective_error": 1.1102230246251565e-16,
+    "success": true
+  },
+  {
+    "growth": 0.12079999999999999,
+    "X": 0.07127291429941805,
+    "spend": 0.00258293041421091,
+    "optimizer_spend": 0.0025829303249597134,
+    "objective_error": 0.0,
+    "success": true
+  },
+  {
+    "growth": 0.12678999999999999,
+    "X": 0.07979334561845859,
+    "spend": 0.0030350994872893103,
+    "optimizer_spend": 0.0030350995237838326,
+    "objective_error": 1.1102230246251565e-16,
+    "success": true
+  },
+  {
+    "growth": 0.13277999999999998,
+    "X": 0.08886782556206752,
+    "spend": 0.003539960963439396,
+    "optimizer_spend": 0.0035399615617516572,
+    "objective_error": 1.1102230246251565e-16,
+    "success": true
+  },
+  {
+    "growth": 0.13877,
+    "X": 0.09850494733874894,
+    "spend": 0.004100859462659458,
+    "optimizer_spend": 0.0041008597651081904,
+    "objective_error": 0.0,
+    "success": true
+  },
+  {
+    "growth": 0.14476,
+    "X": 0.10871304930966431,
+    "spend": 0.004721190305420103,
+    "optimizer_spend": 0.004721190215897716,
+    "objective_error": 0.0,
+    "success": true
+  },
+  {
+    "growth": 0.15075,
+    "X": 0.11950023308792826,
+    "spend": 0.005404398041401554,
+    "optimizer_spend": 0.005404398508162594,
+    "objective_error": 0.0,
+    "success": true
+  },
+  {
+    "growth": 0.15674,
+    "X": 0.13087437966438092,
+    "spend": 0.006153975080578518,
+    "optimizer_spend": 0.006153975055962187,
+    "objective_error": 0.0,
+    "success": true
+  },
+  {
+    "growth": 0.16272999999999999,
+    "X": 0.14284316384422294,
+    "spend": 0.006973460415711119,
+    "optimizer_spend": 0.006973460705802898,
+    "objective_error": 1.1102230246251565e-16,
+    "success": true
+  },
+  {
+    "growth": 0.16871999999999998,
+    "X": 0.155414067228694,
+    "spend": 0.007866438426847576,
+    "optimizer_spend": 0.007866439029287856,
+    "objective_error": 0.0,
+    "success": true
+  },
+  {
+    "growth": 0.17471,
+    "X": 0.16859438993614523,
+    "spend": 0.00883653775972318,
+    "optimizer_spend": 0.008836539371367764,
+    "objective_error": 1.1102230246251565e-16,
+    "success": true
+  },
+  {
+    "growth": 0.1807,
+    "X": 0.18239126122496535,
+    "spend": 0.009887430271005368,
+    "optimizer_spend": 0.009887429942323282,
+    "objective_error": 0.0,
+    "success": true
+  },
+  {
+    "growth": 0.18669,
+    "X": 0.19681164915507063,
+    "spend": 0.011022830034228038,
+    "optimizer_spend": 0.01102283020452582,
+    "objective_error": 0.0,
+    "success": true
+  },
+  {
+    "growth": 0.19268,
+    "X": 0.21186236940371114,
+    "spend": 0.012246492401012115,
+    "optimizer_spend": 0.012246492663549534,
+    "objective_error": 1.1102230246251565e-16,
+    "success": true
+  },
+  {
+    "growth": 0.19866999999999999,
+    "X": 0.22755009333416976,
+    "spend": 0.01356221311280985,
+    "optimizer_spend": 0.01356221309809748,
+    "objective_error": 0.0,
+    "success": true
+  },
+  {
+    "growth": 0.20465999999999998,
+    "X": 0.24388135540175215,
+    "spend": 0.014973827458956774,
+    "optimizer_spend": 0.014973828376510453,
+    "objective_error": 0.0,
+    "success": true
+  },
+  {
+    "growth": 0.21064999999999998,
+    "X": 0.260862559969691,
+    "spend": 0.016485209477284622,
+    "optimizer_spend": 0.016485209759603693,
+    "objective_error": 0.0,
+    "success": true
+  },
+  {
+    "growth": 0.21664,
+    "X": 0.2784999875977519,
+    "spend": 0.018100271193953098,
+    "optimizer_spend": 0.018100271685503252,
+    "objective_error": 0.0,
+    "success": true
+  },
+  {
+    "growth": 0.22263,
+    "X": 0.29679980085806057,
+    "spend": 0.019822961899509016,
+    "optimizer_spend": 0.019822962461279934,
+    "objective_error": 1.1102230246251565e-16,
+    "success": true
+  },
+  {
+    "growth": 0.22862,
+    "X": 0.3157680497256961,
+    "spend": 0.0216572674584866,
+    "optimizer_spend": 0.021657266419100527,
+    "objective_error": 1.1102230246251565e-16,
+    "success": true
+  },
+  {
+    "growth": 0.23460999999999999,
+    "X": 0.3354106765856664,
+    "spend": 0.02360720965012895,
+    "optimizer_spend": 0.023607210201191532,
+    "objective_error": 0.0,
+    "success": true
+  },
+  {
+    "growth": 0.24059999999999998,
+    "X": 0.35573352089283594,
+    "spend": 0.025676845538044894,
+    "optimizer_spend": 0.02567684615923908,
+    "objective_error": 1.1102230246251565e-16,
+    "success": true
+  },
+  {
+    "growth": 0.24658999999999998,
+    "X": 0.37674232351704817,
+    "spend": 0.027870266866820665,
+    "optimizer_spend": 0.027870264278130805,
+    "objective_error": 0.0,
+    "success": true
+  },
+  {
+    "growth": 0.25257999999999997,
+    "X": 0.3984427308019673,
+    "spend": 0.03019159948378826,
+    "optimizer_spend": 0.030191596938711672,
+    "objective_error": 0.0,
+    "success": true
+  },
+  {
+    "growth": 0.25856999999999997,
+    "X": 0.42084029836295295,
+    "spend": 0.03264500278431262,
+    "optimizer_spend": 0.03264500328062977,
+    "objective_error": 0.0,
+    "success": true
+  },
+  {
+    "growth": 0.26455999999999996,
+    "X": 0.4439404946465003,
+    "spend": 0.03523466917910344,
+    "optimizer_spend": 0.035234671726550086,
+    "objective_error": 0.0,
+    "success": true
+  },
+  {
+    "growth": 0.27055,
+    "X": 0.46774870427135545,
+    "spend": 0.037964823582184566,
+    "optimizer_spend": 0.0379648253939921,
+    "objective_error": 0.0,
+    "success": true
+  },
+  {
+    "growth": 0.27654,
+    "X": 0.49227023116930996,
+    "spend": 0.04083972291826829,
+    "optimizer_spend": 0.04083972091301984,
+    "objective_error": 1.1102230246251565e-16,
+    "success": true
+  },
+  {
+    "growth": 0.28253,
+    "X": 0.5175103015418276,
+    "spend": 0.043863655648383765,
+    "optimizer_spend": 0.04386365406285809,
+    "objective_error": 0.0,
+    "success": true
+  },
+  {
+    "growth": 0.28852,
+    "X": 0.5434740666470339,
+    "spend": 0.04704094131270066,
+    "optimizer_spend": 0.047040942082819115,
+    "objective_error": 0.0,
+    "success": true
+  },
+  {
+    "growth": 0.29451,
+    "X": 0.5701666054301701,
+    "spend": 0.05037593008957182,
+    "optimizer_spend": 0.05037593028373035,
+    "objective_error": 1.1102230246251565e-16,
+    "success": true
+  },
+  {
+    "growth": 0.3005,
+    "X": 0.5975929270093557,
+    "spend": 0.05387300236989342,
+    "optimizer_spend": 0.05387300253524228,
+    "objective_error": 0.0,
+    "success": true
+  },
+  {
+    "growth": 0.30649,
+    "X": 0.6257579730273795,
+    "spend": 0.05753656834594847,
+    "optimizer_spend": 0.05753656673573628,
+    "objective_error": 0.0,
+    "success": true
+  },
+  {
+    "growth": 0.31248,
+    "X": 0.6546666198792548,
+    "spend": 0.061371067613960856,
+    "optimizer_spend": 0.061371064175510255,
+    "objective_error": 1.1102230246251565e-16,
+    "success": true
+  },
+  {
+    "growth": 0.31847,
+    "X": 0.6843236808243853,
+    "spend": 0.06538096878964261,
+    "optimizer_spend": 0.06538097006926186,
+    "objective_error": 1.1102230246251565e-16,
+    "success": true
+  },
+  {
+    "growth": 0.32445999999999997,
+    "X": 0.714733907991409,
+    "spend": 0.06957076913606779,
+    "optimizer_spend": 0.06957077251032395,
+    "objective_error": 0.0,
+    "success": true
+  },
+  {
+    "growth": 0.33044999999999997,
+    "X": 0.7459019942830727,
+    "spend": 0.07394499420325243,
+    "optimizer_spend": 0.0739449920760205,
+    "objective_error": 0.0,
+    "success": true
+  },
+  {
+    "growth": 0.33643999999999996,
+    "X": 0.7778325751878727,
+    "spend": 0.07850819747886234,
+    "optimizer_spend": 0.07850819613801809,
+    "objective_error": 2.220446049250313e-16,
+    "success": true
+  },
+  {
+    "growth": 0.34242999999999996,
+    "X": 0.8105302305046171,
+    "spend": 0.0832649600495088,
+    "optimizer_spend": 0.08326495672197015,
+    "objective_error": 0.0,
+    "success": true
+  },
+  {
+    "growth": 0.34842,
+    "X": 0.8439994859855713,
+    "spend": 0.08821989027212783,
+    "optimizer_spend": 0.08821989127551436,
+    "objective_error": 2.220446049250313e-16,
+    "success": true
+  },
+  {
+    "growth": 0.35441,
+    "X": 0.8782448149033696,
+    "spend": 0.09337762345497098,
+    "optimizer_spend": 0.09337762077724548,
+    "objective_error": 0.0,
+    "success": true
+  },
+  {
+    "growth": 0.3604,
+    "X": 0.9132706395464865,
+    "spend": 0.09874282154776609,
+    "optimizer_spend": 0.09874281999123613,
+    "objective_error": 2.220446049250313e-16,
+    "success": true
+  },
+  {
+    "growth": 0.36639,
+    "X": 0.9490813326476583,
+    "spend": 0.10432017284063264,
+    "optimizer_spend": 0.10432017779620491,
+    "objective_error": 0.0,
+    "success": true
+  },
+  {
+    "growth": 0.37238,
+    "X": 0.9856812187493301,
+    "spend": 0.11011439167136265,
+    "optimizer_spend": 0.11011439834412518,
+    "objective_error": 0.0,
+    "success": true
+  },
+  {
+    "growth": 0.37837,
+    "X": 1.0230745755098793,
+    "spend": 0.11613021814070192,
+    "optimizer_spend": 0.11613021809736074,
+    "objective_error": 2.220446049250313e-16,
+    "success": true
+  },
+  {
+    "growth": 0.38436,
+    "X": 1.0612656349540919,
+    "spend": 0.12237241783528643,
+    "optimizer_spend": 0.12237242140241991,
+    "objective_error": 0.0,
+    "success": true
+  },
+  {
+    "growth": 0.39035,
+    "X": 1.1002585846711124,
+    "spend": 0.1288457815579106,
+    "optimizer_spend": 0.1288457741161389,
+    "objective_error": 0.0,
+    "success": true
+  },
+  {
+    "growth": 0.39633999999999997,
+    "X": 1.1400575689628536,
+    "spend": 0.13555512506482123,
+    "optimizer_spend": 0.13555511868002862,
+    "objective_error": 0.0,
+    "success": true
+  },
+  {
+    "growth": 0.40232999999999997,
+    "X": 1.180666689945642,
+    "spend": 0.14250528880974903,
+    "optimizer_spend": 0.14250529032571518,
+    "objective_error": 0.0,
+    "success": true
+  },
+  {
+    "growth": 0.40831999999999996,
+    "X": 1.2220900086076738,
+    "spend": 0.14970113769440563,
+    "optimizer_spend": 0.1497011399672986,
+    "objective_error": 0.0,
+    "success": true
+  },
+  {
+    "growth": 0.41430999999999996,
+    "X": 1.26433154582469,
+    "spend": 0.1571475608251882,
+    "optimizer_spend": 0.15714756901773666,
+    "objective_error": 0.0,
+    "success": true
+  },
+  {
+    "growth": 0.42029999999999995,
+    "X": 1.3073952833360973,
+    "spend": 0.16484947127584854,
+    "optimizer_spend": 0.1648494760466204,
+    "objective_error": 0.0,
+    "success": true
+  },
+  {
+    "growth": 0.42629,
+    "X": 1.351285164683635,
+    "spend": 0.172811805855896,
+    "optimizer_spend": 0.17281180026782153,
+    "objective_error": 0.0,
+    "success": true
+  },
+  {
+    "growth": 0.43228,
+    "X": 1.3960050961145218,
+    "spend": 0.1810395248845156,
+    "optimizer_spend": 0.18103951402993732,
+    "objective_error": 0.0,
+    "success": true
+  },
+  {
+    "growth": 0.43827,
+    "X": 1.4415589474509194,
+    "spend": 0.18953761196979427,
+    "optimizer_spend": 0.1895376097854958,
+    "objective_error": 0.0,
+    "success": true
+  },
+  {
+    "growth": 0.44426,
+    "X": 1.4879505529274049,
+    "spend": 0.1983110737930586,
+    "optimizer_spend": 0.1983110708231611,
+    "objective_error": 2.220446049250313e-16,
+    "success": true
+  },
+  {
+    "growth": 0.45025,
+    "X": 1.535183711998054,
+    "spend": 0.2073649398981371,
+    "optimizer_spend": 0.20736493652011806,
+    "objective_error": 4.440892098500626e-16,
+    "success": true
+  },
+  {
+    "growth": 0.45624,
+    "X": 1.5832621901146318,
+    "spend": 0.21670426248536984,
+    "optimizer_spend": 0.2167042735466415,
+    "objective_error": 0.0,
+    "success": true
+  },
+  {
+    "growth": 0.46223,
+    "X": 1.6321897194772905,
+    "spend": 0.22633411621019636,
+    "optimizer_spend": 0.22633411622382726,
+    "objective_error": 0.0,
+    "success": true
+  },
+  {
+    "growth": 0.46821999999999997,
+    "X": 1.6819699997590956,
+    "spend": 0.2362595979861611,
+    "optimizer_spend": 0.23625960383044844,
+    "objective_error": 0.0,
+    "success": true
+  },
+  {
+    "growth": 0.47420999999999996,
+    "X": 1.7326066988056186,
+    "spend": 0.24648582679218367,
+    "optimizer_spend": 0.24648582692030302,
+    "objective_error": 0.0,
+    "success": true
+  },
+  {
+    "growth": 0.48019999999999996,
+    "X": 1.7841034533107583,
+    "spend": 0.2570179434839478,
+    "optimizer_spend": 0.2570179432757207,
+    "objective_error": 2.220446049250313e-16,
+    "success": true
+  },
+  {
+    "growth": 0.48618999999999996,
+    "X": 1.836463869469892,
+    "spend": 0.26786111060927004,
+    "optimizer_spend": 0.26786111823813497,
+    "objective_error": 2.220446049250313e-16,
+    "success": true
+  },
+  {
+    "growth": 0.49217999999999995,
+    "X": 1.8896915236113858,
+    "spend": 0.27902051222731555,
+    "optimizer_spend": 0.2790205023902167,
+    "objective_error": 0.0,
+    "success": true
+  },
+  {
+    "growth": 0.49816999999999995,
+    "X": 1.9437899628074378,
+    "spend": 0.29050135373153435,
+    "optimizer_spend": 0.29050135640802266,
+    "objective_error": 2.220446049250313e-16,
+    "success": true
+  },
+  {
+    "growth": 0.5041599999999999,
+    "X": 1.9987627054651749,
+    "spend": 0.30230886167619675,
+    "optimizer_spend": 0.3023088526289881,
+    "objective_error": 0.0,
+    "success": true
+  },
+  {
+    "growth": 0.51015,
+    "X": 2.0546132418988705,
+    "spend": 0.3144482836064127,
+    "optimizer_spend": 0.31444827440842277,
+    "objective_error": 0.0,
+    "success": true
+  },
+  {
+    "growth": 0.5161399999999999,
+    "X": 2.1113450348840974,
+    "spend": 0.3269248878915234,
+    "optimizer_spend": 0.3269248793063529,
+    "objective_error": 0.0,
+    "success": true
+  },
+  {
+    "growth": 0.52213,
+    "X": 2.168961520194604,
+    "spend": 0.3397439635617627,
+    "optimizer_spend": 0.33974395367112353,
+    "objective_error": 0.0,
+    "success": true
+  },
+  {
+    "growth": 0.5281199999999999,
+    "X": 2.227466107122623,
+    "spend": 0.35291082014807984,
+    "optimizer_spend": 0.3529108097875191,
+    "objective_error": 2.220446049250313e-16,
+    "success": true
+  },
+  {
+    "growth": 0.53411,
+    "X": 2.286862178983336,
+    "spend": 0.3664307875250367,
+    "optimizer_spend": 0.3664307993665825,
+    "objective_error": 2.220446049250313e-16,
+    "success": true
+  },
+  {
+    "growth": 0.5401,
+    "X": 2.3471530936041227,
+    "spend": 0.380309215756676,
+    "optimizer_spend": 0.38030920989994527,
+    "objective_error": 6.661338147750939e-16,
+    "success": true
+  },
+  {
+    "growth": 0.54609,
+    "X": 2.408342183799241,
+    "spend": 0.39455147494527815,
+    "optimizer_spend": 0.3945514839557774,
+    "objective_error": 2.220446049250313e-16,
+    "success": true
+  },
+  {
+    "growth": 0.55208,
+    "X": 2.4704327578305154,
+    "spend": 0.40916295508292133,
+    "optimizer_spend": 0.40916295534898456,
+    "objective_error": 4.440892098500626e-16,
+    "success": true
+  },
+  {
+    "growth": 0.55807,
+    "X": 2.533428099854591,
+    "spend": 0.42414906590575535,
+    "optimizer_spend": 0.42414908891061665,
+    "objective_error": 0.0,
+    "success": true
+  },
+  {
+    "growth": 0.56406,
+    "X": 2.597331470357304,
+    "spend": 0.43951523675092224,
+    "optimizer_spend": 0.439515229955428,
+    "objective_error": 2.220446049250313e-16,
+    "success": true
+  },
+  {
+    "growth": 0.57005,
+    "X": 2.66214610657565,
+    "spend": 0.4552669164160347,
+    "optimizer_spend": 0.4552669162335524,
+    "objective_error": 0.0,
+    "success": true
+  },
+  {
+    "growth": 0.57604,
+    "X": 2.727875222907857,
+    "spend": 0.47140957302115266,
+    "optimizer_spend": 0.47140960277490873,
+    "objective_error": 0.0,
+    "success": true
+  },
+  {
+    "growth": 0.5820299999999999,
+    "X": 2.7945220113119906,
+    "spend": 0.48794869387317535,
+    "optimizer_spend": 0.48794867224527627,
+    "objective_error": 2.220446049250313e-16,
+    "success": true
+  },
+  {
+    "growth": 0.58802,
+    "X": 2.8620896416935615,
+    "spend": 0.5048897853325944,
+    "optimizer_spend": 0.50488977048234,
+    "objective_error": 0.0,
+    "success": true
+  },
+  {
+    "growth": 0.5940099999999999,
+    "X": 2.930581262282508,
+    "spend": 0.5222383726825298,
+    "optimizer_spend": 0.5222383650633555,
+    "objective_error": 4.440892098500626e-16,
+    "success": true
+  },
+  {
+    "growth": 0.6,
+    "X": 2.9999999999999996,
+    "spend": 0.5399999999999999,
+    "optimizer_spend": 0.5400000080630458,
+    "objective_error": 4.440892098500626e-16,
+    "success": true
+  }
+]

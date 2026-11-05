@@ -1,0 +1,10 @@
+Completed diagnostics.py
+{
+  "python": "3.9.6 (default, Aug 25 2026, 21:26:21) \n[Clang 21.0.0 (clang-2100.3.34.2)]",
+  "platform": "macOS-26.7.2-arm64-arm-64bit",
+  "numpy": "2.0.2",
+  "scipy": "1.13.1",
+  "sympy": "1.14.0",
+  "algorithm_notes": "bounded scalar optimization xatol=1e-13; exact deterministic control enumeration depths0..6; Monte Carlo seed20261102; no fit to manuscript data"
+}
+Checks: 18 threshold/pcc combinations; 3 security optimizations; symbolic derivative and integral; 2 200-wave recurrences; 200000 Poisson draws.

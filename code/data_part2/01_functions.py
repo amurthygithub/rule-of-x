@@ -9,8 +9,9 @@ cost_bucket is the income-statement line where the function's cost usually sits 
 (cogs = cost of revenue, rnd = research and development, sm = sales and marketing, ga = general and administrative).
 Where practice varies (customer success, professional services) the alternative is given in cost_bucket_alt.
 """
+import os
 import sys
-sys.path.insert(0, '/home/claude/paper/code/data_part2')
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import pandas as pd
 from common import write_csv
 

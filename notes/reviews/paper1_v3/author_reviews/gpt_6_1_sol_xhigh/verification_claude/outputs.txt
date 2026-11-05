@@ -1,0 +1,77 @@
+===== python3 m1_check.py
+optimality: max |argmax spend - implied spend| = 2.1692631579917077e-08 ; max spend = 0.5399999999999999 ; max weight X(W)= 2.9999999999999996 ; margin at W = 0.2600000000000001
+cone LS slope (reviewer F): -0.2199999999999978
+frontier own LS slope on grid: -0.807421826640948 ; steepest frontier slope at W: -2.9999999999999996
+paper approx multiplier (b+1)(b+2)/6 = 3.851851851851853 -> implied steepest slope -0.8474074074073992  ratio true/implied 3.540209790209824
+paper exact-LS mapping: ell_hat=(S_b/b)^alpha = 1.0661945636072638  steepest=beta W^(b-1) b/S_b = 0.8174165946760917
+  sampled n=1000: 12 grid pts with >=30 obs; cone LS slope = -0.0948 (population on same pts -0.1075)
+  sampled n=10000: 12 grid pts with >=30 obs; cone LS slope = -0.1092 (population on same pts -0.1075)
+  sampled n=100000: 12 grid pts with >=30 obs; cone LS slope = -0.1069 (population on same pts -0.1075)
+  sampled n=1000000: 12 grid pts with >=30 obs; cone LS slope = -0.1077 (population on same pts -0.1075)
+
+same frontier (steepest slope 3, own LS slope -0.8074), other growth laws:
+  uniform on [0,.6]: cone slope -0.8294 ; paper-implied steepest 3.195 (true 3)
+  truncated exponential rate 3 (right-skewed): cone slope -0.8291 ; paper-implied steepest 3.194 (true 3)
+  truncated exponential rate 6 (right-skewed): cone slope -0.8271 ; paper-implied steepest 3.186 (true 3)
+  truncated exponential rate 10 (right-skewed): cone slope -0.8243 ; paper-implied steepest 3.175 (true 3)
+  reviewer F, chi=0.900: cone slope -0.2200
+  reviewer F, chi=0.990: cone slope -0.4121
+  reviewer F, chi=0.999: cone slope -0.5598
+===== python3 m1_empirical2.py
+op   alpha=0.25 b=0.2154: ell via E1 F 1.0011; steepest 0.860 = 3.994 b | paper exact-LS map (ell_psi) steepest 1.017 = 4.721 b
+op   alpha=0.30 b=0.2154: ell via E1 F 1.1185; steepest 0.697 = 3.235 b | paper exact-LS map (ell_psi) steepest 0.800 = 3.716 b
+op   alpha=0.35 b=0.2154: ell via E1 F 1.2495; steepest 0.585 = 2.719 b | paper exact-LS map (ell_psi) steepest 0.658 = 3.055 b
+op   alpha=0.45 b=0.2154: ell via E1 F 1.5550; steepest 0.446 = 2.072 b | paper exact-LS map (ell_psi) steepest 0.486 = 2.257 b
+cash alpha=0.25 b=0.1613: ell via E1 F 1.0762; steepest 0.644 = 3.994 b | paper exact-LS map (ell_psi) steepest 0.762 = 4.721 b
+cash alpha=0.30 b=0.1613: ell via E1 F 1.2199; steepest 0.522 = 3.235 b | paper exact-LS map (ell_psi) steepest 0.599 = 3.716 b
+cash alpha=0.35 b=0.1613: ell via E1 F 1.3826; steepest 0.438 = 2.719 b | paper exact-LS map (ell_psi) steepest 0.493 = 3.055 b
+cash alpha=0.45 b=0.1613: ell via E1 F 1.7710; steepest 0.334 = 2.072 b | paper exact-LS map (ell_psi) steepest 0.364 = 2.257 b
+E1-F implied steepest slope range over alpha .25-.45 and both bases: 0.33 - 0.86  (paper PsiSteepLo/Hi 0.36-1.02, unused in text)
+===== python3 m234_check.py
+M2: psi15(.10) closed form 0.532426 schedule 0.532426 ; psi5 0.796065
+  1 dollar deducted next year, tau=.2, r=.1: cash today -1, next year +.2, PV -0.8181818181818181 ; PV-equivalent cost today -0.8181818181818181
+  g=0.05: cash factor 0.709277 vs PV factor 0.532426; PV-equivalent minus period cash score at k=1.5,tau=.18: -0.2387 points
+  g=0.10: cash factor 0.532426 vs PV factor 0.532426; PV-equivalent minus period cash score at k=1.5,tau=.18: +0.0000 points
+  g=0.15: cash factor 0.419062 vs PV factor 0.532426; PV-equivalent minus period cash score at k=1.5,tau=.18: +0.4591 points
+  g=0.30: cash factor 0.250563 vs PV factor 0.532426; PV-equivalent minus period cash score at k=1.5,tau=.18: +2.2831 points
+  vintage simulation g=.30: D_t/S_t at t=1,5,15,100 = [np.float64(0.03808), np.float64(0.08807), np.float64(0.11275), np.float64(0.11275)]  steady state k g psi_15(g) = 0.11275
+  KcapLossFor tau=0.15: PV-equivalent 41.41 points (paper 40-41), period cash at mature balanced growth 43.31
+  KcapLossFor tau=0.18: PV-equivalent 40.69 points (paper 40-41), period cash at mature balanced growth 42.97
+  KcapLossFor tau=0.21: PV-equivalent 39.97 points (paper 40-41), period cash at mature balanced growth 42.63
+  psi15(G=.30) = 0.2506  (replaces psi15=0.53 in the period-cash reading of the Table 4 note)
+
+M3: actual C/S_t=1.5; k*g_simple=3.0; k*g_log=2.07944; k*g_simple/(1+g_total)=1.5
+  lowest-priced deal: k=1.73: instantaneous net effect per point 1-k=-0.73; annual simple-growth units (full-year recognition) 1-k/(1+g)=+0.111
+  middle deal: k=2.3: instantaneous net effect per point 1-k=-1.30; annual simple-growth units (full-year recognition) 1-k/(1+g)=-0.181
+  highest-priced deal: k=3.2: instantaneous net effect per point 1-k=-2.20; annual simple-growth units (full-year recognition) 1-k/(1+g)=-0.644
+  note: the marginal annual derivative X - k*b/(a+b)^2 differs from the average k/(1+g) unless a is small; no single annual coefficient is universal
+
+M4 toy: continuous flow .2/yr from t=6 at r=.10: TV at 5 = 1.809675, NPV with exit = 0.097623, full-horizon NPV = 0.097623
+  D-specialist toy: pay 14, 2/yr for 20y at 10%: cash through 5y -4, TV5 15.2122, NPV 3.0271
+  central      r=0.0934: NPV   98.0% of a year's revenue; disc. cum. cash at 5y  -7.8; exit value at 5y  165.4; 5-year owner with full exit value: NPV   98.0; break-even recovery of continuation value   7.4%
+  central_r10  r=0.1000: NPV   85.5% of a year's revenue; disc. cum. cash at 5y  -7.7; exit value at 5y  150.2; 5-year owner with full exit value: NPV   85.5; break-even recovery of continuation value   8.3%
+  fast         r=0.0934: NPV  212.2% of a year's revenue; disc. cum. cash at 5y  -0.0; exit value at 5y  331.7; 5-year owner with full exit value: NPV  212.2; break-even recovery of continuation value   0.0%
+  slow         r=0.0934: NPV   -2.0% of a year's revenue; disc. cum. cash at 5y  -7.8; exit value at 5y    9.0; 5-year owner with full exit value: NPV   -2.0; break-even recovery of continuation value 134.6%
+===== python3 a1_check.py
+A1: v0=1.1270166538, Delta0=0.0225403331, a=(r-G)/Delta0-1=3.43649167, forced linear coeff (v0-k)/(1-a)=-0.462557154 (per unit z=s/sbar)
+   integrated to z=1.0e-07: (u-v0)/z = -0.462552  (forced coeff -0.462557); claimed homogeneous mode (u-v0)/z^a = -5.255e+16
+===== python3 a2_shoot.py
+lambda=0.0697996109 Delta0=0.035714 a=0.6800
+ C -1000.0 -1
+ C -100.0 -1
+ C -10 1
+ C -1 1
+ C 0 1
+ C 1 1
+ C 10 1
+ C 100.0 1
+ C 1000.0 1
+C* -19.4635286563612 reached z = 0.9610033053235412
+  z=0.01  weight v'(s)=9.0817  v/s=9.4126
+  z=0.1   weight v'(s)=7.2462  v/s=8.0958
+  z=0.5   weight v'(s)=5.3914  v/s=6.4737
+  z=0.7   weight v'(s)=5.1226  v/s=6.1203
+  z=0.8   weight v'(s)=5.0835  v/s=5.9924
+  z=0.9   weight v'(s)=5.1416  v/s=5.8934
+  z=0.95  weight v'(s)=4.9971  v/s=5.8548
+  saturation slope b/rho = 5.8333

@@ -3275,8 +3275,8 @@ part1_ceiling:
       - 0.2478
       - 0.3009
       cc:
-      - 0.2333
-      - 0.3891
+      - 0.2349
+      - 0.7171
       f:
       - 0.2702
       - 0.2784
@@ -3336,18 +3336,22 @@ part1_ceiling:
   c_c_compute_share:
     value: 0.06
     range:
-    - 0.01
-    - 0.2
+    - 0.012
+    - 0.6
     quality: working_paper
     assumed: false
     grounding: b
     basis: 2025 prices, no price path (b-anchored)
-    source: 'c_c = s_L x kappa (assumptions round 2, Section 2; read 29 Oct 2026). kappa at 2025 prices 0.10 [0.01, 0.35]
-      (b): METR agent runs (ai_cost.inference_cost_usd_per_human_hour: median 0.08-1.14% of the human baseline cost across
-      6 recent agents, METR TH1.0; c); Stevens (2026), Payrolls to Prompts, arXiv:2602.00139: about $0.03 of AI spend per
-      $1 of displaced freelance labor (a, preprint); AI-native products, inference 13-23% of revenue at 2025 prices (ICONIQ
-      2026 via SaaStr, secondary; the revenue mapping is the auditor''s calculation); central 0.10 = geometric middle of the
-      field analogs. s_L 0.60 [0.50, 0.65] (c): labor cost the ceiling automates, share of revenue'
+    source: 'c_c = s_L x kappa (assumptions round 2, Section 2; read 29 Oct 2026). kappa at 2025 prices 0.10 (b), bounds [0.02,
+      1.0] (Paper 1 round 3, GLM-M11 / GPT-22, units corrected 3 Nov 2026): the floor is the cost per completed task of METR
+      agent runs, about 1% of the human cost per successful run at the 50% success rate of the time-horizon definition, so
+      2%, and c_c floor = kappa floor x s_L = 0.012 of revenue (it was 0.02, kappa itself); the top is the value test kappa
+      < 1, c_c = s_L = 0.6. The analog evidence supports the central kappa 0.10, not the bounds: METR agent runs (ai_cost.inference_cost_usd_per_human_hour:
+      median 0.08-1.14% of the human baseline cost per successful run across 6 recent agents, METR TH1.0; c); Stevens (2026),
+      Payrolls to Prompts, arXiv:2602.00139: about $0.03 of AI spend per $1 of displaced freelance labor (a, preprint); AI-native
+      products, inference 13-23% of revenue at 2025 prices, kappa up to about 0.35 (ICONIQ 2026 via SaaStr, secondary; the
+      revenue mapping is the auditor''s calculation); central 0.10 = geometric middle of the field analogs. s_L 0.60 [0.50,
+      0.65] (c): labor cost the ceiling automates, share of revenue'
     by_horizon:
       '2028':
         value: 0.12
@@ -3377,8 +3381,8 @@ part1_ceiling:
       - 0.65
       kappa_2025: 0.1
       kappa_2025_range:
-      - 0.01
-      - 0.35
+      - 0.02
+      - 1.0
       D: 5.0
       D_range:
       - 3.0
@@ -3415,8 +3419,9 @@ part1_ceiling:
       note: 'within the value-test cap c_c <= s_L = 0.60 (Paper 1 round 2, B2, 2 Nov 2026; code/calibrate_horizons.py
         CC_VALUE_TEST_FACTOR = 1.0), so feasible at full automation (G* 61.3%, Paper 1 macro GstarHigh). Before round 2 the
         cap was s_L x 0.5 = 0.30, a factor with no source, and the case was labelled infeasible. Credible range of c_c at
-        2025 prices against the cap: 1-60% (G* 28-78%, Paper 1 macros GstarCcLo, GstarCcHi); the old cap 0.30 gives G* 52.8%
-        (GstarCcOldCap)'
+        2025 prices: 1.2-60% of revenue, s_L x kappa from 0.02 per completed task to the value test (Paper 1 round 3,
+        3 Nov 2026; G* 28-78%, Paper 1 macros CcLo, CcHi, GstarCcLo, GstarCcHi; before: 1-60%, then 2-60%); the old cap 0.30
+        gives G* 52.8% (GstarCcOldCap)'
     previous:
       value: 0.2
       range:

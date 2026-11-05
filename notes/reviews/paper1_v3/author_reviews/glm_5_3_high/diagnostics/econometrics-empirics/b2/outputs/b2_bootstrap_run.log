@@ -1,0 +1,57 @@
+frames: E1 n=1788, E2 n=1378
+firm universe: 292
+sample point estimates: {"psi_op": -0.2154, "p95_chg_op": -11.9355, "T40_chg_op": -9.8836, "psi_op_E2": -0.2871, "cell60_op_E2": 37, "psi_cash": -0.1613, "p95_chg_cash": -12.7054, "T40_chg_cash": 1.6438, "psi_cash_E2": -0.2214, "cell60_cash_E2": 38}
+draw 50/199
+draw 100/199
+draw 150/199
+=== B2 own reduced bootstrap (seed 20261103, B=199) vs published (B=999) ===
+
+p95_chg_op:
+  my point est = -11.9355  (published -11.9)
+  my 90% percentile interval (B=199 finite draws) = (np.float64(-20.516), np.float64(-7.325))  (published (-20.3, -6.4))
+  my NaN-draw share = 0.000 (rule: >5% => no interval)
+
+p95_chg_cash:
+  my point est = -12.7054  (published -12.7)
+  my 90% percentile interval (B=199 finite draws) = (np.float64(-24.0), np.float64(-5.126))  (published (-21.6, -4.2))
+  my NaN-draw share = 0.000 (rule: >5% => no interval)
+
+psi_op:
+  my point est = -0.2154  (published -0.2154)
+  my 90% percentile interval (B=199 finite draws) = (np.float64(-0.422), np.float64(-0.029))  (published (-0.417, -0.048))
+  my NaN-draw share = 0.000 (rule: >5% => no interval)
+
+psi_cash:
+  my point est = -0.1613  (published -0.1613)
+  my 90% percentile interval (B=199 finite draws) = (np.float64(-0.309), np.float64(0.023))  (published (-0.31, 0.01))
+  my NaN-draw share = 0.000 (rule: >5% => no interval)
+
+T40_chg_op:
+  my point est = -9.8836  (published -9.9)
+  my 90% percentile interval (B=186 finite draws) = None
+  my NaN-draw share = 0.065 (rule: >5% => no interval)
+  published: E1 T(40%) undefined in 5.8% of draws => dagger (no interval)
+
+T40_chg_cash:
+  my point est = 1.6438  (published 1.6)
+  my 90% percentile interval (B=186 finite draws) = None
+  my NaN-draw share = 0.065 (rule: >5% => no interval)
+  published: E1 T(40%) undefined in 5.8% of draws => dagger (no interval)
+
+=== E2 cell-thinness claim (16.8% GAAP / 13.0% cash draws below 30 at the 60% cell) ===
+E2 cell60 (op): sample n = 37; my draws with cell60 < 30: 0.151
+E2 cell60 (cash): sample n = 38; my draws with cell60 < 30: 0.126
+
+=== conditional E2 primary-slope interval on draws meeting the >=30 rule ===
+psi_op_E2 on cell60>=30 draws (n=169): 90% interval [-0.512, -0.102]  (published: [-0.505, -0.080])
+psi_op_E2 full-sample point est (mine) = -0.2871
+psi_cash_E2 on cell60>=30 draws (n=174): 90% interval [-0.425, -0.061]  (published: [-0.413, -0.046])
+psi_cash_E2 full-sample point est (mine) = -0.2214
+
+=== 99-draw subset (first 99 of the same stream) ===
+p95_chg_op: 90% interval [-20.316, -7.364] (n=99 finite)
+p95_chg_cash: 90% interval [-23.382, -4.829] (n=99 finite)
+psi_op: 90% interval [-0.399, -0.061] (n=99 finite)
+psi_cash: 90% interval [-0.296, 0.010] (n=99 finite)
+
+[wrote /root/tmp/ruleof40/diagnostics/econometrics-empirics/b2/outputs/b2_bootstrap.txt and .npz]

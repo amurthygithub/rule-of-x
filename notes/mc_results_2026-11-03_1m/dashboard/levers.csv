@@ -1,0 +1,73 @@
+id,code,position,basis,lever,points,rank
+A1|netted|engineering (R&D),A1,Growth corner,Central,Engineering (R&D),3.18,1
+A1|netted|overhead (G&A),A1,Growth corner,Central,Back office (G&A),2.37,3
+A1|netted|growth engine,A1,Growth corner,Central,Growth engine (S&M),2.40,2
+A1|netted|cost of revenue,A1,Growth corner,Central,Cost of revenue,0.95,4
+A1|all|engineering (R&D),A1,Growth corner,All S&M buys growth,Engineering (R&D),3.18,2
+A1|all|overhead (G&A),A1,Growth corner,All S&M buys growth,Back office (G&A),2.37,3
+A1|all|growth engine,A1,Growth corner,All S&M buys growth,Growth engine (S&M),4.97,1
+A1|all|cost of revenue,A1,Growth corner,All S&M buys growth,Cost of revenue,1.18,4
+A1|none|engineering (R&D),A1,Growth corner,No S&M buys growth,Engineering (R&D),3.18,1
+A1|none|overhead (G&A),A1,Growth corner,No S&M buys growth,Back office (G&A),2.37,2
+A1|none|growth engine,A1,Growth corner,No S&M buys growth,Growth engine (S&M),0.00,4
+A1|none|cost of revenue,A1,Growth corner,No S&M buys growth,Cost of revenue,0.74,3
+A2|netted|engineering (R&D),A2,Balanced upper quartile,Central,Engineering (R&D),2.02,1
+A2|netted|overhead (G&A),A2,Balanced upper quartile,Central,Back office (G&A),1.01,2
+A2|netted|growth engine,A2,Balanced upper quartile,Central,Growth engine (S&M),0.00,4
+A2|netted|cost of revenue,A2,Balanced upper quartile,Central,Cost of revenue,0.73,3
+A2|all|engineering (R&D),A2,Balanced upper quartile,All S&M buys growth,Engineering (R&D),2.02,2
+A2|all|overhead (G&A),A2,Balanced upper quartile,All S&M buys growth,Back office (G&A),1.01,3
+A2|all|growth engine,A2,Balanced upper quartile,All S&M buys growth,Growth engine (S&M),2.52,1
+A2|all|cost of revenue,A2,Balanced upper quartile,All S&M buys growth,Cost of revenue,0.88,4
+A2|none|engineering (R&D),A2,Balanced upper quartile,No S&M buys growth,Engineering (R&D),2.02,1
+A2|none|overhead (G&A),A2,Balanced upper quartile,No S&M buys growth,Back office (G&A),1.01,2
+A2|none|growth engine,A2,Balanced upper quartile,No S&M buys growth,Growth engine (S&M),0.00,4
+A2|none|cost of revenue,A2,Balanced upper quartile,No S&M buys growth,Cost of revenue,0.73,3
+A3|netted|engineering (R&D),A3,Mature cash generator,Central,Engineering (R&D),1.46,1
+A3|netted|overhead (G&A),A3,Mature cash generator,Central,Back office (G&A),1.06,2
+A3|netted|growth engine,A3,Mature cash generator,Central,Growth engine (S&M),0.00,4
+A3|netted|cost of revenue,A3,Mature cash generator,Central,Cost of revenue,0.72,3
+A3|all|engineering (R&D),A3,Mature cash generator,All S&M buys growth,Engineering (R&D),1.46,2
+A3|all|overhead (G&A),A3,Mature cash generator,All S&M buys growth,Back office (G&A),1.06,3
+A3|all|growth engine,A3,Mature cash generator,All S&M buys growth,Growth engine (S&M),1.89,1
+A3|all|cost of revenue,A3,Mature cash generator,All S&M buys growth,Cost of revenue,0.83,4
+A3|none|engineering (R&D),A3,Mature cash generator,No S&M buys growth,Engineering (R&D),1.46,1
+A3|none|overhead (G&A),A3,Mature cash generator,No S&M buys growth,Back office (G&A),1.06,2
+A3|none|growth engine,A3,Mature cash generator,No S&M buys growth,Growth engine (S&M),0.00,4
+A3|none|cost of revenue,A3,Mature cash generator,No S&M buys growth,Cost of revenue,0.72,3
+A4|netted|engineering (R&D),A4,Sub-40 grower,Central,Engineering (R&D),2.61,1
+A4|netted|overhead (G&A),A4,Sub-40 grower,Central,Back office (G&A),1.88,2
+A4|netted|growth engine,A4,Sub-40 grower,Central,Growth engine (S&M),1.65,3
+A4|netted|cost of revenue,A4,Sub-40 grower,Central,Cost of revenue,0.89,4
+A4|all|engineering (R&D),A4,Sub-40 grower,All S&M buys growth,Engineering (R&D),2.61,2
+A4|all|overhead (G&A),A4,Sub-40 grower,All S&M buys growth,Back office (G&A),1.88,3
+A4|all|growth engine,A4,Sub-40 grower,All S&M buys growth,Growth engine (S&M),4.23,1
+A4|all|cost of revenue,A4,Sub-40 grower,All S&M buys growth,Cost of revenue,1.09,4
+A4|none|engineering (R&D),A4,Sub-40 grower,No S&M buys growth,Engineering (R&D),2.61,1
+A4|none|overhead (G&A),A4,Sub-40 grower,No S&M buys growth,Back office (G&A),1.88,2
+A4|none|growth engine,A4,Sub-40 grower,No S&M buys growth,Growth engine (S&M),0.00,4
+A4|none|cost of revenue,A4,Sub-40 grower,No S&M buys growth,Cost of revenue,0.76,3
+A5|netted|engineering (R&D),A5,Stalled,Central,Engineering (R&D),2.54,1
+A5|netted|overhead (G&A),A5,Stalled,Central,Back office (G&A),1.97,2
+A5|netted|growth engine,A5,Stalled,Central,Growth engine (S&M),0.66,4
+A5|netted|cost of revenue,A5,Stalled,Central,Cost of revenue,0.88,3
+A5|all|engineering (R&D),A5,Stalled,All S&M buys growth,Engineering (R&D),2.54,2
+A5|all|overhead (G&A),A5,Stalled,All S&M buys growth,Back office (G&A),1.97,3
+A5|all|growth engine,A5,Stalled,All S&M buys growth,Growth engine (S&M),3.23,1
+A5|all|cost of revenue,A5,Stalled,All S&M buys growth,Cost of revenue,1.10,4
+A5|none|engineering (R&D),A5,Stalled,No S&M buys growth,Engineering (R&D),2.54,1
+A5|none|overhead (G&A),A5,Stalled,No S&M buys growth,Back office (G&A),1.97,2
+A5|none|growth engine,A5,Stalled,No S&M buys growth,Growth engine (S&M),0.00,4
+A5|none|cost of revenue,A5,Stalled,No S&M buys growth,Cost of revenue,0.82,3
+A6|netted|engineering (R&D),A6,Near-frontier elite,Central,Engineering (R&D),1.96,1
+A6|netted|overhead (G&A),A6,Near-frontier elite,Central,Back office (G&A),1.61,2
+A6|netted|growth engine,A6,Near-frontier elite,Central,Growth engine (S&M),0.00,4
+A6|netted|cost of revenue,A6,Near-frontier elite,Central,Cost of revenue,0.92,3
+A6|all|engineering (R&D),A6,Near-frontier elite,All S&M buys growth,Engineering (R&D),1.96,2
+A6|all|overhead (G&A),A6,Near-frontier elite,All S&M buys growth,Back office (G&A),1.61,3
+A6|all|growth engine,A6,Near-frontier elite,All S&M buys growth,Growth engine (S&M),2.17,1
+A6|all|cost of revenue,A6,Near-frontier elite,All S&M buys growth,Cost of revenue,1.08,4
+A6|none|engineering (R&D),A6,Near-frontier elite,No S&M buys growth,Engineering (R&D),1.96,1
+A6|none|overhead (G&A),A6,Near-frontier elite,No S&M buys growth,Back office (G&A),1.61,2
+A6|none|growth engine,A6,Near-frontier elite,No S&M buys growth,Growth engine (S&M),0.00,4
+A6|none|cost of revenue,A6,Near-frontier elite,No S&M buys growth,Cost of revenue,0.92,3

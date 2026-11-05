@@ -17,10 +17,10 @@ FULL MODE (O*NET 31.0 files present in data/raw/onet_31_0/):
 INTERIM MODE (no O*NET files): writes activities_iwa_interim.csv and occ_activity_iwa_interim.csv at the IWA level
   from microsoft/working-with-ai (SOC x IWA relevance-importance weights from O*NET 29.0).
 """
-import sys
-sys.path.insert(0, '/home/claude/paper/code/data_part2')
-import glob
 import os
+import sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import glob
 import re
 import numpy as np
 import pandas as pd

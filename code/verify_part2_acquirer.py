@@ -1125,8 +1125,9 @@ ok = all(round(100 * R_gaap[y], 1) == target[y][0] and round(100 * R_int[y], 1) 
 print("  -> bounds (points): " + "; ".join(f"{y}: GAAP {100*R_gaap[y]:.1f}, after interest {100*R_int[y]:.1f}, "
                                           f"OCF {100*R_ocf[y]:.1f}, fully charged {100*R_full[y]:.1f}" for y in YRS))
 check("E7 rem:acquired-bounds: the coordinator's bounds recomputed from the tables: GAAP 92.3 / 115.9, after interest "
-      "87.5 / 105.0, operating cash flow 103.9 / 116.9, fully charged -28.7 / -24.8 (2024 / 2025); net investing outflow "
-      "132.6% / 141.8% of revenue", ok)
+      "87.5 / 105.0, operating cash flow 103.9 / 116.9, fully charged after interest -28.7 / -24.8 (2024 / 2025; round-1 "
+      "basis, operating cash flow after interest paid less the net investing outflow, kept as a regression check; Table 3 "
+      "uses the before-interest -25.0 / -16.5 of acqRAllInvU*); net investing outflow 132.6% / 141.8% of revenue", ok)
 
 
 def crf(r, L):
@@ -1740,6 +1741,210 @@ for k, v in {"acqIntPaidShTwentyThree": pct(cfin_paid["2023"]), "acqIntPaidShTwe
              "acqCouponEur": f"{nt_e_c:g}"}.items():
     mac(k, v)
 
+# ----------------------------------------------------------------------------------------------
+# I (round 3, 2 Nov 2026; GLM-F2, GLM-M6, GLM-5, GLM-6, GPT-M3, GPT-17, DS-67 to DS-69): the raw filings. The final
+# prospectus and the F-1, downloaded from sec.gov (data/v3_inputs/raw/*.htm.gz, README_retrieval.md section 5), are
+# decompressed, their SHA-256 checked, split into printed pages and searched for every figure that
+# data/v3_inputs/bending_spoons_annual_2024_2025.json lists, on the page it gives; the annual organic rows of
+# Table tab:acquired-score, the cash score on the panel's basis and the annual investing split follow from them.
+# ----------------------------------------------------------------------------------------------
+import gzip
+import hashlib
+from html.parser import HTMLParser
+
+BSA = json.loads((ROOT / "data" / "v3_inputs" / "bending_spoons_annual_2024_2025.json").read_text(encoding="utf-8"))
+README5 = (ROOT / "data" / "v3_inputs" / "README_retrieval.md").read_text(encoding="utf-8")
+README5 = README5[README5.index("## 5."):]
+README_SHA = dict(re.findall(r"\| `raw/([^`]+)` \|[^\n]*\| ([0-9a-f]{64}) \|", README5))
+
+
+class _PageText(HTMLParser):
+    """text of an EDGAR HTML document split at its page-break rules; each page labelled by its last line"""
+
+    def __init__(self):
+        super().__init__(convert_charrefs=True)
+        self.pages, self.skip = [[]], 0
+
+    def handle_starttag(self, tag, attrs):
+        st = (dict(attrs).get("style") or "").replace(" ", "").lower()
+        if "page-break-after:always" in st or "page-break-before:always" in st:
+            self.pages.append([])
+        self.skip += tag in ("script", "style")
+        if tag in ("p", "div", "tr", "br", "table", "li", "td", "th"):
+            self.pages[-1].append("\n" if tag not in ("td", "th") else " ")
+
+    def handle_endtag(self, tag):
+        self.skip -= tag in ("script", "style")
+
+    def handle_data(self, d):
+        if not self.skip:
+            self.pages[-1].append(d)
+
+
+def raw_document(rel):
+    """(sha256 of the decompressed bytes, [(printed page, normalized text)]) of a gzip'd raw filing"""
+    raw = gzip.decompress((ROOT / rel).read_bytes())
+    p = _PageText()
+    p.feed(raw.decode("utf-8", errors="replace"))
+    out = []
+    for pg in p.pages:
+        t = "".join(pg).replace("​", " ").replace("\xa0", " ")
+        lines = [ln.strip() for ln in t.split("\n") if ln.strip() and ln.strip() != "Table of Contents"]
+        out.append((lines[-1] if lines else "", re.sub(r"\s+", " ", t)))
+    return hashlib.sha256(raw).hexdigest(), out
+
+
+DOCS = {k: raw_document(v["file"]) for k, v in BSA["documents"].items()}
+ex99 = {f: hashlib.sha256(gzip.decompress((ROOT / "data" / "v3_inputs" / "raw" / f).read_bytes())).hexdigest()
+        for f in ("bsp_ex99-1_2026-08-13.htm.gz", "bsp_ex99-2_2026-08-13.htm.gz")}
+ok = all(DOCS[k][0] == v["sha256_uncompressed"] == README_SHA[Path(v["file"]).name] for k, v in BSA["documents"].items())
+ok &= all(ex99[f] == README_SHA[f] for f in ex99) and len(README_SHA) == 4
+check("I1 raw filings: the final prospectus and the F-1 (and the 6-K exhibits 99.1 and 99.2) decompress to the SHA-256 "
+      "recorded in data/v3_inputs/README_retrieval.md section 5 and in the figures file", ok,
+      "; ".join(f"{k} {DOCS[k][0][:12]}" for k in DOCS))
+
+
+def find_figure(key, doc):
+    """values of figure `key` read from document `doc` on the pages the JSON gives, in the JSON's order"""
+    f = BSA["figures"][key]
+    pg = [(lab, t) for lab, t in DOCS[doc][1] if re.search(f.get("page_anchor", ""), t)]
+    vals = []
+    for rx in f["regex"]:
+        hits = [(lab, m) for lab, t in pg for m in [re.search(rx, t)] if m]
+        if not hits:
+            return None, None
+        vals += [(0.0 if g == "—" else float(g.replace(",", ""))) for g in hits[0][1].groups()]
+    pages = sorted({lab for rx in f["regex"] for lab, t in pg if re.search(rx, t)})
+    return [v * f["scale"] for v in vals], pages
+
+
+ok, bad = True, []
+FIG = {}
+for key, f in BSA["figures"].items():
+    for doc in BSA["documents"]:
+        vals, pages = find_figure(key, doc)
+        want = [float(v) for v in f["values"].values()]
+        good = vals is not None and all(abs(a - b) < 1e-9 for a, b in zip(vals, want)) and len(vals) == len(want) \
+            and pages == sorted(f["pages"][doc])
+        ok &= good
+        if not good:
+            bad.append(f"{key}/{doc}: {vals} on {pages}")
+    FIG[key] = {k: float(v) for k, v in f["values"].items()}
+_, _org_pages = find_figure("organic_revenue_growth", "424b4")
+org_def = all(re.search(BSA["figures"]["organic_revenue_growth"]["definition_regex"], t) for lab, t in DOCS["424b4"][1]
+              if lab in _org_pages)
+check("I2 every figure of the figures file is found in both the final prospectus and the F-1, with the same values, on the "
+      "printed pages it gives: organic growth 7% (2024) and 13% (2025) with the company's definition (estimated "
+      "pre-acquisition revenue) on the same page, subscriptions 95/92/93%, equity compensation, the investing lines, interest "
+      "paid, the 2025 pro forma revenue row and the three purchase prices", ok and org_def, "; ".join(bad))
+org = {y: FIG["organic_revenue_growth"][y] for y in YRS}
+SBC = FIG["equity_compensation_expense"]
+PPE = FIG["purchase_of_property_plant_and_equipment"]
+ACQ = FIG["acquisitions_of_businesses_net_of_cash_acquired"]
+INTG = FIG["purchase_of_intangible_assets"]
+OTHI = FIG["proceeds_from_other_investments"]
+NINV = FIG["net_cash_from_investing_activities"]
+SUBS = FIG["subscription_share_of_revenue"]
+PFR = FIG["pro_forma_revenue_2025"]
+PXS = FIG["acquisition_prices_usd_million"]
+_i3 = dict(
+    cash=all(abs(FIG["net_cash_from_operating_activities"][y] - OCF[y]) < 0.5 and abs(NINV[y] - CFI[y]) < 0.5
+             for y in ("2023",) + tuple(YRS)),
+    interest_paid=all(abs(FIG["interests_paid"][y] - IP[y]) < 0.5 for y in ("2023", "2024", "2025")),
+    investing_adds_up=all(abs(ACQ[y] + INTG[y] + PPE[y] + OTHI[y] - NINV[y]) < 1.5 for y in ("2023",) + tuple(YRS)),
+    pro_forma=sorted([PFR["column_2"], PFR["column_3"], PFR["vimeo_2025-01-01_to_2025-11-23"]]) == sorted([pf_eb, pf_aol, pf_vim])
+    and PFR["historical"] == pf_bs and PFR["pro_forma_combined"] == pf_tot and PFR["vimeo_2025-01-01_to_2025-11-23"] == pf_vim,
+    prices=(PXS["AOL"], PXS["Eventbrite"], PXS["Vimeo"]) == (px_aol, px_eb, px_vim))
+ok = all(_i3.values())
+check("I3 the raw filings reproduce the extract and the cash-interest file: operating and investing cash flows 2023-25, "
+      "interest paid, the investing lines adding up to the net investing outflow (rounding of $1 thousand in 2023 and 2025), and (DS-69) the 2025 pro forma revenue "
+      "components, total ($2,608.5 million) and the three purchase prices behind acqPfRev, acqPfRatio and acqKEb to acqKVim", ok,
+      ", ".join(k for k, v in _i3.items() if not v))
+# Table tab:acquired-score, annual organic rows on the company's organic growth (method of the Q2 column, A12/A14)
+R_org = {y: org[y] + mop[y] for y in YRS}
+R_org_int = {y: R_org[y] - cfin[y] for y in YRS}
+R_org_xr = {y: R_org[y] + reorg_sh[y] for y in YRS}
+R_org_int_xr = {y: R_org_int[y] + reorg_sh[y] for y in YRS}
+sbc_sh = {y: SBC[y] / REV[y] for y in ("2023",) + tuple(YRS)}
+ppe_rev = {y: -PPE[y] / REV[y] for y in YRS}
+R_ocf_sbc = {y: g_y[y] + (OCF[y] - SBC[y]) / REV[y] for y in YRS}                      # after interest paid and SBC
+R_fcf_sbc = {y: g_y[y] + (OCF[y] - SBC[y] + PPE[y]) / REV[y] for y in YRS}            # and capex: the panel's FCF after SBC
+acq_sh_y = {y: ACQ[y] / NINV[y] for y in YRS}
+intg_sh_y = {y: INTG[y] / NINV[y] for y in YRS}
+ppe_sh_y = {y: PPE[y] / NINV[y] for y in YRS}
+print("  -> annual organic scores (company measure): " + "; ".join(
+    f"{y}: g_org {org[y]:.2f}, before interest {100*R_org[y]:.2f}, after {100*R_org_int[y]:.2f}, before reorganization "
+    f"{100*R_org_xr[y]:.2f}, after interest and before reorganization {100*R_org_int_xr[y]:.2f}" for y in YRS))
+print("  -> SBC / revenue " + ", ".join(f"{y} {v:.4f}" for y, v in sbc_sh.items()) + "; cash score after interest paid and SBC "
+      + ", ".join(f"{y} {100*R_ocf_sbc[y]:.2f}" for y in YRS) + "; and capex (panel basis) "
+      + ", ".join(f"{y} {100*R_fcf_sbc[y]:.2f}" for y in YRS) + "; acquisitions / intangibles / PP&E share of the net investing "
+      "outflow " + ", ".join(f"{y} {acq_sh_y[y]:.4f} / {intg_sh_y[y]:.4f} / {ppe_sh_y[y]:.5f}" for y in YRS))
+check("I4 (GLM-F2) Table 3 annual organic rows, the company's organic growth plus the GAAP operating margin: 26.0 / 34.3 before "
+      "interest, 21.1 / 23.4 after interest expense, 33.7 / 40.3 with reorganization added back and 28.8 / 29.4 after interest "
+      "with it added back (2024 / 2025); every 2025 organic score lies inside the Q2 2026 range (21.6 to 44.3)",
+      [round(100 * R_org[y], 1) for y in YRS] == [26.0, 34.3] and [round(100 * R_org_int[y], 1) for y in YRS] == [21.1, 23.4]
+      and [round(100 * R_org_xr[y], 1) for y in YRS] == [33.7, 40.3]
+      and [round(100 * R_org_int_xr[y], 1) for y in YRS] == [28.8, 29.4]
+      and all(R_q2_org_int <= v["2025"] <= R_q2_org_xr for v in (R_org, R_org_int, R_org_xr, R_org_int_xr)))
+check("I5 (GLM-F2, GPT-17) the 2025 cash score on the panel's basis (free cash flow after SBC, after interest paid): operating "
+      "cash flow less equity compensation (4.25% of revenue) and purchases of property and equipment gives 112.6 (100.0 in "
+      "2024), 4.29 points below Table 3's 116.9; capex is under 0.1% of revenue in both years",
+      round(100 * R_fcf_sbc["2025"], 1) == 112.6 and round(100 * R_fcf_sbc["2024"], 1) == 100.0
+      and round(100 * (R_ocf["2025"] - R_fcf_sbc["2025"]), 2) == 4.29 and round(100 * sbc_sh["2025"], 2) == 4.25
+      and max(ppe_rev.values()) < 0.001)
+check("I6 (GLM-F2, GLM-6) the annual investing split: acquisitions of businesses were 81.7% of the 2024 net investing outflow "
+      "and purchases of intangible assets (including the Mosaic asset deal) 18.3%; in 2025 acquisitions were 99.97%",
+      round(100 * acq_sh_y["2024"], 1) == 81.7 and round(100 * intg_sh_y["2024"], 1) == 18.3
+      and round(100 * acq_sh_y["2025"], 2) == 99.97 and abs(acq_sh_y["2024"] + intg_sh_y["2024"] + ppe_sh_y["2024"] - 1) < 1e-12)
+# GPT-M3: the instantaneous charge per point of run-rate revenue (k^acq) against the annual score, which divides growth by
+# last year's revenue: with full-year recognition the average charge per point of simple annual growth is k^acq/(1 + g_t)
+ann_f = 1 / (1 + g25)
+full_ann = {nm: 1 - kk * ann_f for nm, kk in k_deal.items()}                  # net effect per point at X = 1, 2025 growth
+ann_ann = (ann_pts[0] * ann_f, ann_pts[1] * ann_f)
+uc_ann_hi = uc_pts_hi * ann_f
+print(f"  -> GPT-M3 annual units at 2025 growth ({g25:.4f}): average charge factor 1/(1+g) {ann_f:.3f}; net effect per point "
+      "of simple annual growth at X = 1: " + ", ".join(f"{nm} {v:+.3f}" for nm, v in full_ann.items())
+      + f"; annuity {ann_ann[0]:.3f}-{ann_ann[1]:.3f}, user cost up to {uc_ann_hi:.3f}")
+check("I7 (GPT-M3) per point of simple annual acquired growth with full-year recognition at 2025 growth, the full charge is "
+      "k^acq/(1+g): the net effect at X = 1 is +0.11 (Eventbrite), -0.18 (AOL) and -0.66 (Vimeo, at its unrounded 3.23; the "
+      "review's -0.64 uses 3.2) instead of -0.7 to -2.2 per point of run-rate revenue; the annual identity holds on the "
+      "review's example (C/S 1.5 = k g_simple/(1+g))",
+      [round(full_ann[nm], 2) for nm in ("Eventbrite", "AOL", "Vimeo")] == [0.11, -0.18, -0.66]
+      and abs((300 / 100) * (100 / 100) / (1 + 1.0) - 300 / 200) < 1e-12 and ann_f < 0.52)
+# GLM-M6: the coupon variant on the interest-expense basis (the basis of the 87-114 range) beside the interest-paid one
+coupon25_exp = [b for _, b in g_coupon]
+check("I8 (GLM-M6) charged at the notes' coupon, the 2025 charged scores are 86.0 to 112.8 with interest paid added back and "
+      "86.7 to 113.7 with interest expense added back, the basis of the 87-114 range",
+      (round(100 * min(coupon25), 1), round(100 * max(coupon25), 1)) == (86.0, 112.8)
+      and (round(100 * min(coupon25_exp), 1), round(100 * max(coupon25_exp), 1)) == (86.7, 113.7)
+      and min(coupon25_exp) > min(coupon25))
+R3_MACROS = {
+    "acqOrgGTwentyFour": pct(org["2024"], 0), "acqOrgGTwentyFive": pct(org["2025"], 0),
+    "acqROrgTwentyFour": num(100 * R_org["2024"], 1), "acqROrgTwentyFive": num(100 * R_org["2025"], 1),
+    "acqROrgIntTwentyFour": num(100 * R_org_int["2024"], 1), "acqROrgIntTwentyFive": num(100 * R_org_int["2025"], 1),
+    "acqROrgNoReorgTwentyFour": num(100 * R_org_xr["2024"], 1), "acqROrgNoReorgTwentyFive": num(100 * R_org_xr["2025"], 1),
+    "acqROrgIntNoReorgTwentyFour": num(100 * R_org_int_xr["2024"], 1),
+    "acqROrgIntNoReorgTwentyFive": num(100 * R_org_int_xr["2025"], 1),
+    "acqROrgIntTwentyFiveR": num(100 * R_org_int["2025"], 0), "acqROrgNoReorgTwentyFiveR": num(100 * R_org_xr["2025"], 0),
+    "acqSubsTwentyThree": pct(SUBS["2023"], 0), "acqSubsTwentyFour": pct(SUBS["2024"], 0), "acqSubsTwentyFive": pct(SUBS["2025"], 0),
+    "acqSbcTwentyThree": pct(sbc_sh["2023"]), "acqSbcTwentyFour": pct(sbc_sh["2024"]), "acqSbcTwentyFive": pct(sbc_sh["2025"]),
+    "acqSbcTwentyFiveTwo": pct(sbc_sh["2025"], 2), "acqSbcUsdTwentyFive": musd(SBC["2025"]),
+    "acqROcfSbcTwentyFour": num(100 * R_fcf_sbc["2024"], 1), "acqROcfSbcTwentyFive": num(100 * R_fcf_sbc["2025"], 1),
+    "acqROcfSbcOnlyTwentyFive": num(100 * R_ocf_sbc["2025"], 1),
+    "acqAcqShareTwentyFour": pct(acq_sh_y["2024"]), "acqAcqShareTwentyFive": pct(acq_sh_y["2025"]),
+    "acqAcqShareTwentyFiveTwo": pct(acq_sh_y["2025"], 2),
+    "acqIntangShareTwentyFour": pct(intg_sh_y["2024"]), "acqIntangTwentyFour": musd(-INTG["2024"]),
+    "acqCapexRevTwentyFour": pct(ppe_rev["2024"], 2), "acqCapexRevTwentyFive": pct(ppe_rev["2025"], 2),
+    **{f"acqFullAnn{nm_}": ("\\ensuremath{+}" if full_ann[full_] > 0 else "") + minus(f"{full_ann[full_]:.2f}")
+       for nm_, full_ in (("Eb", "Eventbrite"), ("Aol", "AOL"), ("Vim", "Vimeo"))},
+    "acqAnnFactor": num(ann_f, 2), "acqAnnPtsAnnLo": num(ann_ann[0], 2), "acqUcPtsAnnHi": num(uc_ann_hi, 2),
+    "acqChCouponExpLo": num(100 * min(coupon25_exp), 1), "acqChCouponExpHi": num(100 * max(coupon25_exp), 1),
+    "acqPfPage": BSA["figures"]["pro_forma_revenue_2025"]["pages"]["424b4"][0],
+    "acqOrgPage": BSA["figures"]["organic_revenue_growth"]["pages"]["424b4"][0],
+}
+for k, v in R3_MACROS.items():
+    mac(k, v)
+
 MACROS.parent.mkdir(parents=True, exist_ok=True)
 MACROS_P1.parent.mkdir(parents=True, exist_ok=True)
 stamp = ("% Generated by code/verify_part2_acquirer.py from notes/case_bending_spoons_f1_extract.md and "
@@ -1757,6 +1962,7 @@ with open(MACROS, "w", encoding="utf-8") as fh:
     for k in sorted(MAC):
         fh.write(f"\\providecommand{{\\{k}}}{{{MAC[k]}}}\n")
 REQUIRED_P1 = {"acqGiTwentyFour", "acqGiTwentyFive"}          # read by code/paper1_macros.py (AcqTreadLo/Hi)
+REQUIRED_P1 |= set(R3_MACROS)       # round 3: written before the editor's text uses them (notes/r3_macro_contract.md)
 with open(MACROS_P1, "w", encoding="utf-8") as fh:
     fh.write(stamp)
     for k in sorted((used_p1 | REQUIRED_P1) & set(MAC)):

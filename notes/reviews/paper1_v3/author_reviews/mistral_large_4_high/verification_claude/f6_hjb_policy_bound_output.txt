@@ -1,0 +1,3 @@
+lambda 0.0698 | no-spend v/s 5.8333
+s0=0.01: best simple policy v/s = 9.020 (spend 0.05 of revenue until share 0.4)
+s0=0.1: best simple policy v/s = 7.333 (spend 0.05 of revenue until share 0.4)

@@ -90,9 +90,9 @@ audit fee (Audit Analytics), with the S&P 500 fee ratio as the low bound.
 
 **Growth spend basis.** Only selling and marketing above a maintenance level buys growth (finance.sm_basis =
 netted, the central basis of Paper 1 since 2 November 2026, author decision 7). Growth spend is the S&M share less
-finance.sm_maint_base (25.1 percent of revenue: the median S&M share, in the previous year, of firm-years growing at
+finance.sm_maint_base (25.7 percent of revenue: the median S&M share, in the previous year, of firm-years growing at
 or below the year's median; class c, Paper 1 empirics), and zero below it; the rest of S&M is a cost line like
-overhead, and the spend ratio is finance.spend_ratio_netted (0.99). All S&M as growth spend (finance.spend_ratio,
+overhead, and the spend ratio is finance.spend_ratio_netted (0.94). All S&M as growth spend (finance.spend_ratio,
 3.3) and none of it are bounds: the report and the lever map state the ranking on each. The lead lever depends on the
 basis. At the six panel positions of Part II, cutting G&A comes before automating the growth engine at five on the
 netted basis and at none on the all-S&M bound, and automating the growth engine leads only where S&M is well above

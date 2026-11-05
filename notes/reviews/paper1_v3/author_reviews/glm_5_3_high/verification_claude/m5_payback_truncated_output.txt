@@ -1,0 +1,6 @@
+stored-style central: ratio 3.8675787910791333 complete_years 17.317808219178083 npv 0.9804411803606716
+T=17.32: pv_gain 0.7195 pv_dip 0.3419 ratio 2.104
+T=10.00: pv_gain 0.3024 pv_dip 0.2490 ratio 1.214
+T=20.00: pv_gain 0.8479 pv_dip 0.3419 ratio 2.480
+T=50.00: pv_gain 1.2898 pv_dip 0.3419 ratio 3.772
+T=200.00: pv_gain 1.3223 pv_dip 0.3419 ratio 3.868

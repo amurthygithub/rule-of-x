@@ -1,7 +1,7 @@
 """sha256 of every raw input file (excluding .git internals) -> data/raw/CHECKSUMS.sha256, plus git commit of each clone."""
-import sys
-sys.path.insert(0, '/home/claude/paper/code/data_part2')
 import os
+import sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import subprocess
 from common import RAW, sha256, save_meta
 
@@ -10,7 +10,7 @@ for root, dirs, files in os.walk(RAW):
     dirs[:] = sorted(d for d in dirs if d != '.git')
     for f in sorted(files):
         p = os.path.join(root, f)
-        if f == 'CHECKSUMS.sha256':
+        if f == 'CHECKSUMS.sha256' or (root == RAW and f == 'README.md'):   # the manifest and the shipped README are not raw inputs
             continue
         lines.append(f'{sha256(p)}  {os.path.relpath(p, RAW)}  {os.path.getsize(p)}')
 for d in sorted(os.listdir(RAW)):

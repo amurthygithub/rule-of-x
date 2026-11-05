@@ -1,0 +1,41 @@
+{
+  "purpose": "F audit freeze; hashes do not certify earlier immutability",
+  "files": [
+    {
+      "path": "work/reports/F_audit.md",
+      "sha256": "2f6de3b878182de1c9f4c3214f2d4ea8e713f3f6e94ff9c12e5a5a9bf0f62d36"
+    },
+    {
+      "path": "work/report_complete_draft.txt",
+      "sha256": "958a20a593e88f96fa6168b5e205669313594ee00a57d6c5aa1daf67f51c4606"
+    },
+    {
+      "path": "work/reports/A_first.md",
+      "sha256": "6b9f09de365fc385d0f6bed09cb0b9d28d5a371eea89ec92def3e5d2a1da5a69"
+    },
+    {
+      "path": "work/reports/B_first.md",
+      "sha256": "ce12e6117c610c28499de9e6f4e713d44904aaee04148b4a2a41ba94f1512ddf"
+    },
+    {
+      "path": "work/reports/C_first.md",
+      "sha256": "65a0ac7d99876fc9c8afb28c4968213932cb9b9d9966bea7f219db5af88f5633"
+    },
+    {
+      "path": "work/reports/D_first.md",
+      "sha256": "decd4d0b843666d552142545d56e8bcc244b84a2b5c8b5ae9cc3bf018b599e52"
+    },
+    {
+      "path": "work/reports/E_first.md",
+      "sha256": "d41ff2188ce8764a8125cf340503d64e716feaa91aedb51e95f41898a8204544"
+    },
+    {
+      "path": "work/reports/A_crosscheck.md",
+      "sha256": "d8a1291e1b987199a15636531f4a5134a7a247e39247e5503ef9eab03e735e94"
+    },
+    {
+      "path": "outputs/review_bundle/E_specialist/E_addendum.md",
+      "sha256": "c7e802525d38dc87149e373df300d0d4d4a93b9d3da6e384f932433c72c3230d"
+    }
+  ]
+}

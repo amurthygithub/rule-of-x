@@ -1,0 +1,22 @@
+[
+  {
+    "route": "GitHub connector repository metadata",
+    "url": "https://api.github.com/repos/amurthygithub/rule-of-x",
+    "result": "404 Not Found"
+  },
+  {
+    "route": "GitHub connector directory inventory",
+    "url": "https://api.github.com/repos/amurthygithub/rule-of-x/contents",
+    "result": "404 Not Found"
+  },
+  {
+    "route": "web open exact supplied repository",
+    "url": "https://github.com/amurthygithub/rule-of-x",
+    "result": "cache miss / unavailable"
+  },
+  {
+    "route": "read-only git ls-remote",
+    "url": "https://github.com/amurthygithub/rule-of-x.git",
+    "result": "initial restricted network DNS failure; alternate approved connection Repository not found; no checkout created"
+  }
+]

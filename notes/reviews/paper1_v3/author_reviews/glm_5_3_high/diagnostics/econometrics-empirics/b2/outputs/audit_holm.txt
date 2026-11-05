@@ -1,0 +1,58 @@
+Families present: ['table38', 'referee32', 'headline14A', 'headline14B', 'method']
+headline14B members: 14
+
+- psi_op_E1_vs_m1                               Psi_0.90 slope, GAAP, E1, against -1
+    h0=-1.0 est=-0.2154  p(n/p/b)=1.814e-12/0.002/0.002  Holm=2.177e-11/0.028/0.028  RW=0.001
+- psi_cash_E1_vs_m1                             Psi_0.90 slope, FCF after SBC, E1, against -1
+    h0=-1.0 est=-0.1613  p(n/p/b)=4.464e-18/0.002/0.002  Holm=5.803e-17/0.028/0.028  RW=0.001
+- psi_op_E1_vs_0                                Psi_0.90 slope, GAAP, E1, against 0
+    h0=0.0 est=-0.2154  p(n/p/b)=0.05306/0.044/0.09  Holm=0.3184/0.264/0.45  RW=0.284
+- psi_cash_E1_vs_0                              Psi_0.90 slope, FCF after SBC, E1, against 0
+    h0=0.0 est=-0.1613  p(n/p/b)=0.09558/0.132/0.058  Holm=0.4779/0.62/0.348  RW=0.333
+- size_cash_E1                                  Size gradient of P95, FCF after SBC, E1
+    h0=0.0 est=-0.0406  p(n/p/b)=0.2268/0.248/0.18  Holm=0.9071/0.744/0.72  RW=0.501
+- capint_cash_E1                                Capital-intensity gap, FCF after SBC, 2023-25, E1
+    h0=0.0 est=-0.1253  p(n/p/b)=0.0115/0.008/0.022  Holm=0.09202/0.064/0.198  RW=0.107
+- p95chg_op_E1                                  Change in P95, GAAP, E1
+    h0=0.0 est=-0.1194  p(n/p/b)=0.005989/0.006/0.026  Holm=0.0539/0.06/0.208  RW=0.097
+- p95chg_cash_E1                                Change in P95, FCF after SBC, E1
+    h0=0.0 est=-0.1271  p(n/p/b)=0.02209/0.022/0.048  Holm=0.1546/0.154/0.336  RW=0.154
+- T40_cash_E1                                   Change in T(40%), FCF after SBC, E1
+    h0=0.0 est=0.0164  p(n/p/b)=None/None/None  Holm=1/1/1  RW=1
+- gap_E1                                        Near-frontier margin gap, E1
+    h0=0.0 est=0.3449  p(n/p/b)=1.682e-35/0.002/0.002  Holm=2.354e-34/0.028/0.028  RW=0.001
+- gap_fast_sm_E1                                S&M part of the gap, 40-60% band, E1
+    h0=0.0 est=0.2943  p(n/p/b)=1.69e-08/0.002/0.002  Holm=1.859e-07/0.028/0.028  RW=0.001
+- d_psi_op                                      E1 - E2, Psi_0.90 slope, GAAP
+    h0=0.0 est=0.0717  p(n/p/b)=0.5272/0.55/0.444  Holm=1/1/1  RW=0.501
+- d_size_cash                                   E1 - E2, size gradient, FCF after SBC
+    h0=0.0 est=-0.0297  p(n/p/b)=0.3141/0.124/0.432  Holm=0.9423/0.62/1  RW=0.501
+- psi_op_E1_2020_25_minus_2010_19               Psi_0.90 GAAP slope 2020-25 minus 2010-19 (g 0-40%), E1
+    h0=0.0 est=-0.3810  p(n/p/b)=0.00373/0.006/0.004  Holm=0.0373/0.06/0.04  RW=0.064
+
+--- Claim-by-claim checks ---
+
+GAAP P95 decline survives 10% under normal+percentile+RW, not basic; Holm p 0.054-0.208; RW 0.097; not at 5% under any
+  !! key p95_change_op not found in headline14B
+
+Cash P95 decline survives no procedure, even at 10%
+  !! key p95_change_cash not found in headline14B
+
+STEEPENING: candidates ['cone_op_slope_c90_w40_2020_25_minus_2010_19']
+  psi_op_E1_2020_25_minus_2010_19: est=-0.3810 p=0.00373/0.006/0.004 Holm=0.0373/0.06/0.04 RW=0.064
+
+Psi slope negative (GAAP): Holm p 0.26-0.45
+  -> (0.31837241708798775, 0.264, 0.44999999999999996)
+
+Psi slope negative (cash): Holm p 0.35-0.62
+  -> (0.4778919141848069, 0.62, 0.34800000000000003)
+
+Psi slope above -1 survives Holm at 5% on both bases
+  -> (2.177333132564398e-11, 0.028, 0.028)
+
+--- §5.1 disclosure check: members that 'say little' ---
+  psi_op_E1_vs_m1: h0=-1.0  Holm(n/p/b)=2.18e-11/0.028/0.028
+  psi_cash_E1_vs_m1: h0=-1.0  Holm(n/p/b)=5.8e-17/0.028/0.028
+  capint_cash_E1: h0=0.0  Holm(n/p/b)=0.092/0.064/0.19799999999999998
+  gap_E1: h0=0.0  Holm(n/p/b)=2.35e-34/0.028/0.028
+  gap_fast_sm_E1: h0=0.0  Holm(n/p/b)=1.86e-07/0.028/0.028

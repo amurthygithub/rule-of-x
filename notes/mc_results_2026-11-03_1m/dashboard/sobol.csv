@@ -1,0 +1,33 @@
+id,output,group,st,st_lo,st_hi,s1
+2036 score|fees,2036 score,Payment fees,0.000,0.000,0.000,0.000
+2036 score|tax,2036 score,Cash tax rate,0.004,0.004,0.004,0.003
+2036 score|accountability,2036 score,"Accountability floor (audit, SOX)",0.002,0.002,0.003,0.002
+2036 score|security,2036 score,Security,0.000,0.000,0.000,0.000
+2036 score|maintenance,2036 score,Upkeep of AI builds,0.000,0.000,0.000,0.000
+2036 score|ai_failure,2036 score,AI errors and failures,0.002,0.002,0.002,0.002
+2036 score|ancillary,2036 score,Other AI running costs,0.000,0.000,0.000,-0.000
+2036 score|compute,2036 score,AI compute cost,0.017,0.017,0.017,0.014
+2036 score|execution,2036 score,Execution: pace and success of change,0.600,0.594,0.606,0.592
+2036 score|market_growth,2036 score,Market growth,0.204,0.201,0.207,0.198
+2036 score|pass_through,2036 score,Savings passed to customers,0.037,0.036,0.037,0.033
+2036 score|capital,2036 score,Capital needs,0.059,0.058,0.060,0.054
+2036 score|surplus,2036 score,Growth surplus (all S&M bound only),0.000,0.000,0.000,0.000
+2036 score|discount,2036 score,Discount rate,0.000,0.000,0.000,0.000
+2036 score|anchor,2036 score,Starting margin (anchor firms),0.092,0.091,0.093,0.087
+2036 score|maint_base,2036 score,Maintenance level of selling spend,0.000,0.000,0.000,0.000
+Rule-of-100 growth threshold|fees,Rule-of-100 growth threshold,Payment fees,0.000,0.000,0.000,0.000
+Rule-of-100 growth threshold|tax,Rule-of-100 growth threshold,Cash tax rate,0.010,0.010,0.011,0.010
+Rule-of-100 growth threshold|accountability,Rule-of-100 growth threshold,"Accountability floor (audit, SOX)",0.006,0.006,0.006,0.006
+Rule-of-100 growth threshold|security,Rule-of-100 growth threshold,Security,0.000,0.000,0.000,0.000
+Rule-of-100 growth threshold|maintenance,Rule-of-100 growth threshold,Upkeep of AI builds,0.001,0.001,0.001,0.001
+Rule-of-100 growth threshold|ai_failure,Rule-of-100 growth threshold,AI errors and failures,0.005,0.005,0.005,0.005
+Rule-of-100 growth threshold|ancillary,Rule-of-100 growth threshold,Other AI running costs,0.000,0.000,0.000,0.000
+Rule-of-100 growth threshold|compute,Rule-of-100 growth threshold,AI compute cost,0.977,0.969,0.984,0.977
+Rule-of-100 growth threshold|execution,Rule-of-100 growth threshold,Execution: pace and success of change,0.000,0.000,0.000,0.000
+Rule-of-100 growth threshold|market_growth,Rule-of-100 growth threshold,Market growth,0.000,0.000,0.000,0.000
+Rule-of-100 growth threshold|pass_through,Rule-of-100 growth threshold,Savings passed to customers,0.000,0.000,0.000,0.000
+Rule-of-100 growth threshold|capital,Rule-of-100 growth threshold,Capital needs,0.000,0.000,0.000,0.000
+Rule-of-100 growth threshold|surplus,Rule-of-100 growth threshold,Growth surplus (all S&M bound only),0.000,0.000,0.000,0.000
+Rule-of-100 growth threshold|discount,Rule-of-100 growth threshold,Discount rate,0.000,0.000,0.000,0.000
+Rule-of-100 growth threshold|anchor,Rule-of-100 growth threshold,Starting margin (anchor firms),0.000,0.000,0.000,0.000
+Rule-of-100 growth threshold|maint_base,Rule-of-100 growth threshold,Maintenance level of selling spend,0.000,0.000,0.000,0.000

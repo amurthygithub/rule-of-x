@@ -1,0 +1,14 @@
+[    31s] point estimates done
+[    38s] bootstrap chunks 8/32
+[    43s] bootstrap chunks 16/32
+[    44s] bootstrap chunks 24/32
+[    44s] bootstrap chunks 32/32
+[    44s] bootstrap done {}
+[    52s] summaries done
+[    52s] families done {'table38': {'holm_normal': ['slope_cash_pooled', 'slope_cash_2010_19', 'spend_ratio'], 'holm_percentile': [], 'holm_basic': [], 'romano_wolf': []}, 'referee32': {'holm_normal': ['slope_cash_pooled', 'slope_cash_2010_19', 'spend_ratio', 'gap_ga', 'gap_slow'], 'holm_percentile': [], 'holm_basic': [], 'romano_wolf': []}, 'headline14A': {'holm_normal': ['slope_cash_E2', 'weight_E2', 'capint_cash_E2', 'gap_E2'], 'holm_percentile': [], 'holm_basic': [], 'romano_wolf': []}, 'headline14B': {'holm_normal': ['psi_op_E1_vs_m1', 'psi_cash_E1_vs_m1', 'psi_cash_E1_vs_0', 'size_cash_E1', 'gap_E1', 'gap_fast_sm_E1'], 'holm_percentile': [], 'holm_basic': [], 'romano_wolf': []}}
+[    89s] solver check done
+[   429s] within-firm done
+[   448s] wrote /root/tmp/ruleof40/diagnostics/econometrics-empirics/rerun/notes/empirics_v3.json
+[   449s] wrote notes/bootstrap_draws_v3.npz, notes/calibration_anchor_v3.json, notes/frontier_slope_v3.json
+[   449s] wrote sections/tables/tab_estimands_v3.tex, tab_contrasts_v3.tex, tab_grid_v3.tex, tab_yearly_v3.tex, tab_bridge_v3.tex
+[   449s] wrote notes/inference_v3.md, notes/sample_audit.md

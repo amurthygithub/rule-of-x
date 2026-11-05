@@ -1,0 +1,593 @@
+{
+ "356028": {
+  "2011-03-31": {
+   "value": 170000000,
+   "accn": "0000950123-11-050920",
+   "label": "capitalized software development costs"
+  }
+ },
+ "713425": {
+  "2013-04-30": {
+   "value": 3418000,
+   "accn": "0001193125-13-289120",
+   "label": "capitalized computer software development costs"
+  },
+  "2014-04-30": {
+   "value": 2949000,
+   "accn": "0001193125-14-267720",
+   "label": "capitalized computer software development costs"
+  },
+  "2015-04-30": {
+   "value": 2747000,
+   "accn": "0001193125-15-250260",
+   "label": "capitalized computer software development costs"
+  },
+  "2016-04-30": {
+   "value": 3246000,
+   "accn": "0001193125-16-648270",
+   "label": "capitalized computer software development costs"
+  },
+  "2017-04-30": {
+   "value": 3724000,
+   "accn": "0001193125-17-228535",
+   "label": "capitalized computer software development costs"
+  },
+  "2018-04-30": {
+   "value": 4804000,
+   "accn": "0001193125-18-217611",
+   "label": "capitalized computer software development costs"
+  },
+  "2019-04-30": {
+   "value": 5961000,
+   "accn": "0001628280-19-008742",
+   "label": "capitalized computer software development costs"
+  },
+  "2020-04-30": {
+   "value": 3170000,
+   "accn": "0001628280-20-010300",
+   "label": "capitalized computer software development costs"
+  },
+  "2021-04-30": {
+   "value": 620000,
+   "accn": "0001628280-21-013701",
+   "label": "capitalized computer software development costs"
+  }
+ },
+ "816761": {
+  "2010-12-31": {
+   "value": 49000000,
+   "accn": "0001193125-11-051934",
+   "label": "additions to capitalized software"
+  },
+  "2011-12-31": {
+   "value": 68000000,
+   "accn": "0001193125-12-087334",
+   "label": "additions to capitalized software"
+  },
+  "2012-12-31": {
+   "value": 81000000,
+   "accn": "0001193125-13-082775",
+   "label": "additions to capitalized software"
+  },
+  "2013-12-31": {
+   "value": 78000000,
+   "accn": "0001193125-14-071369",
+   "label": "additions to capitalized software"
+  },
+  "2015-12-31": {
+   "value": 68000000,
+   "accn": "0000816761-16-000045",
+   "label": "additions to capitalized software"
+  },
+  "2016-12-31": {
+   "value": 65000000,
+   "accn": "0000816761-17-000010",
+   "label": "additions to capitalized software"
+  },
+  "2017-12-31": {
+   "value": 9000000,
+   "accn": "0000816761-18-000007",
+   "label": "additions to capitalized software"
+  },
+  "2018-12-31": {
+   "value": 7000000,
+   "accn": "0000816761-19-000010",
+   "label": "additions to capitalized software"
+  },
+  "2019-12-31": {
+   "value": 5000000,
+   "accn": "0000816761-20-000008",
+   "label": "additions to capitalized software"
+  },
+  "2020-12-31": {
+   "value": 7000000,
+   "accn": "0000816761-21-000009",
+   "label": "additions to capitalized software"
+  },
+  "2021-12-31": {
+   "value": 3000000,
+   "accn": "0000816761-22-000009",
+   "label": "additions to capitalized software"
+  },
+  "2022-12-31": {
+   "value": 2000000,
+   "accn": "0000816761-23-000008",
+   "label": "additions to capitalized software"
+  },
+  "2023-12-31": {
+   "value": 1000000,
+   "accn": "0000816761-24-000023",
+   "label": "additions to capitalized software"
+  },
+  "2024-12-31": {
+   "value": 2000000,
+   "accn": "0000816761-25-000027",
+   "label": "additions to capitalized software"
+  },
+  "2025-12-31": {
+   "value": 1000000,
+   "accn": "0001628280-26-012671",
+   "label": "additions to capitalized software"
+  }
+ },
+ "859014": {
+  "2011-03-31": {
+   "value": 15531000,
+   "accn": "0001140361-11-030346",
+   "label": "capitalized software"
+  },
+  "2012-03-31": {
+   "value": 27436000,
+   "accn": "0001140361-12-027503",
+   "label": "purchase of capitalized software"
+  },
+  "2013-03-31": {
+   "value": 31797000,
+   "accn": "0001140361-13-023182",
+   "label": "purchase of capitalized software"
+  },
+  "2014-03-31": {
+   "value": 23443000,
+   "accn": "0001140361-14-023703",
+   "label": "purchase of capitalized software"
+  }
+ },
+ "883241": {
+  "2010-10-31": {
+   "value": 2852000,
+   "accn": "0001193125-10-282648",
+   "label": "capitalization of software development costs"
+  },
+  "2011-10-31": {
+   "value": 2885000,
+   "accn": "0001193125-11-343034",
+   "label": "capitalization of software development costs"
+  },
+  "2012-10-31": {
+   "value": 3302000,
+   "accn": "0001193125-12-510596",
+   "label": "capitalization of software development costs"
+  },
+  "2013-10-31": {
+   "value": 3609000,
+   "accn": "0001193125-13-479653",
+   "label": "capitalization of software development costs"
+  },
+  "2015-10-31": {
+   "value": 3682000,
+   "accn": "0000883241-15-000014",
+   "label": "capitalization of software development costs"
+  },
+  "2016-10-31": {
+   "value": 4131000,
+   "accn": "0000883241-16-000027",
+   "label": "capitalization of software development costs"
+  },
+  "2017-10-31": {
+   "value": 3226000,
+   "accn": "0000883241-17-000014",
+   "label": "capitalization of software development costs"
+  },
+  "2018-10-31": {
+   "value": 2950000,
+   "accn": "0000883241-18-000012",
+   "label": "capitalization of software development costs"
+  },
+  "2019-10-31": {
+   "value": 4259000,
+   "accn": "0000883241-19-000019",
+   "label": "capitalization of software development costs"
+  },
+  "2020-10-31": {
+   "value": 4045000,
+   "accn": "0000883241-20-000015",
+   "label": "capitalization of software development costs"
+  },
+  "2021-10-31": {
+   "value": 1976000,
+   "accn": "0000883241-21-000022",
+   "label": "capitalization of software development costs"
+  },
+  "2022-10-31": {
+   "value": 2493000,
+   "accn": "0000883241-22-000017",
+   "label": "capitalization of software development costs"
+  },
+  "2023-10-31": {
+   "value": 2204000,
+   "accn": "0000883241-23-000019",
+   "label": "capitalization of software development costs"
+  }
+ },
+ "935494": {
+  "2010-12-31": {
+   "value": 15759000,
+   "accn": "0000935494-11-000009",
+   "label": "capitalization of internally developed software"
+  },
+  "2011-12-31": {
+   "value": 12065000,
+   "accn": "0000935494-12-000008",
+   "label": "capitalization of internally developed software"
+  },
+  "2012-12-31": {
+   "value": 11721000,
+   "accn": "0000935494-13-000005",
+   "label": "capitalization of internally developed software"
+  },
+  "2013-12-31": {
+   "value": 14883000,
+   "accn": "0000935494-14-000006",
+   "label": "capitalization of internally developed software"
+  },
+  "2015-12-31": {
+   "value": 31356000,
+   "accn": "0000935494-16-000038",
+   "label": "capitalization of internally developed software"
+  },
+  "2016-12-31": {
+   "value": 31859000,
+   "accn": "0000935494-17-000007",
+   "label": "capitalization of internally developed software"
+  }
+ },
+ "1003935": {
+  "2010-12-31": {
+   "value": 1311000,
+   "accn": "0001178913-11-000967",
+   "label": "capitalization of software development costs"
+  }
+ },
+ "1019671": {
+  "2017-01-31": {
+   "value": 2440000,
+   "accn": "0001193125-17-126138",
+   "label": "investment in capitalized software"
+  }
+ },
+ "1036188": {
+  "2012-01-31": {
+   "value": 285000,
+   "accn": "0001140361-12-019472",
+   "label": "capitalized software costs"
+  },
+  "2013-01-31": {
+   "value": 492000,
+   "accn": "0001140361-13-016410",
+   "label": "capitalized software costs"
+  },
+  "2014-01-31": {
+   "value": 366000,
+   "accn": "0001140361-14-016579",
+   "label": "capitalized software costs"
+  },
+  "2016-01-31": {
+   "value": 153000,
+   "accn": "0001567619-16-002175",
+   "label": "capitalized software costs"
+  },
+  "2017-01-31": {
+   "value": 146000,
+   "accn": "0001437749-17-006306",
+   "label": "capitalized software costs"
+  },
+  "2018-01-31": {
+   "value": 1019000,
+   "accn": "0001437749-18-006885",
+   "label": "capitalized software costs"
+  },
+  "2019-01-31": {
+   "value": 1067000,
+   "accn": "0001437749-19-007282",
+   "label": "capitalized software costs"
+  },
+  "2020-01-31": {
+   "value": 1243000,
+   "accn": "0001437749-20-007629",
+   "label": "capitalized software costs"
+  },
+  "2021-01-31": {
+   "value": 1268000,
+   "accn": "0001437749-21-008761",
+   "label": "capitalized software costs"
+  }
+ },
+ "1107843": {
+  "2015-12-31": {
+   "value": 99000,
+   "accn": "0001107843-16-000022",
+   "label": "capitalized software development costs"
+  }
+ },
+ "1111665": {
+  "2013-12-31": {
+   "value": 1954000,
+   "accn": "0001564590-14-000555",
+   "label": "capitalized software development costs"
+  }
+ },
+ "1124610": {
+  "2010-12-31": {
+   "value": 64149000,
+   "accn": "0001193125-11-050075",
+   "label": "capitalized software development costs"
+  },
+  "2011-12-31": {
+   "value": 73998000,
+   "accn": "0001445305-12-000443",
+   "label": "capitalized software development costs"
+  }
+ },
+ "1254419": {
+  "2010-12-31": {
+   "value": 17968000,
+   "accn": "0000950123-11-020380",
+   "label": "capitalized software development costs"
+  },
+  "2011-12-31": {
+   "value": 31997000,
+   "accn": "0001193125-12-082656",
+   "label": "capitalized software development costs"
+  }
+ },
+ "1280058": {
+  "2011-12-31": {
+   "value": 1012000,
+   "accn": "0001193125-12-088252",
+   "label": "capitalized software development costs"
+  }
+ },
+ "1372612": {
+  "2019-01-31": {
+   "value": 2761000,
+   "accn": "0001564590-19-008669",
+   "label": "capitalized internal-use software costs"
+  },
+  "2020-01-31": {
+   "value": 7957000,
+   "accn": "0001564590-20-011799",
+   "label": "capitalized internal-use software costs"
+  },
+  "2023-01-31": {
+   "value": 12064000,
+   "accn": "0000950170-23-007573",
+   "label": "capitalized internal-use software costs"
+  },
+  "2024-01-31": {
+   "value": 16561000,
+   "accn": "0000950170-24-029241",
+   "label": "capitalized internal-use software costs"
+  },
+  "2025-01-31": {
+   "value": 27633000,
+   "accn": "0000950170-25-036261",
+   "label": "capitalized internal-use software costs"
+  },
+  "2026-01-31": {
+   "value": 35174000,
+   "accn": "0001193125-26-098466",
+   "label": "capitalized internal-use software costs"
+  }
+ },
+ "1402436": {
+  "2011-12-31": {
+   "value": 1406000,
+   "accn": "0001193125-12-107371",
+   "label": "additions to capitalized software"
+  },
+  "2012-12-31": {
+   "value": 1105000,
+   "accn": "0001193125-13-085529",
+   "label": "additions to capitalized software"
+  },
+  "2013-12-31": {
+   "value": 2399000,
+   "accn": "0001193125-14-073044",
+   "label": "additions to capitalized software"
+  },
+  "2015-12-31": {
+   "value": 4273000,
+   "accn": "0001564590-16-013602",
+   "label": "additions to capitalized software"
+  },
+  "2016-12-31": {
+   "value": 9621000,
+   "accn": "0001564590-17-002806",
+   "label": "additions to capitalized software"
+  },
+  "2017-12-31": {
+   "value": 10404000,
+   "accn": "0001564590-18-003827",
+   "label": "additions to capitalized software"
+  },
+  "2018-12-31": {
+   "value": 55500000,
+   "accn": "0001564590-19-005753",
+   "label": "additions to capitalized software"
+  },
+  "2019-12-31": {
+   "value": 67400000,
+   "accn": "0001564590-20-007695",
+   "label": "additions to capitalized software"
+  },
+  "2020-12-31": {
+   "value": 71600000,
+   "accn": "0001564590-21-008862",
+   "label": "additions to capitalized software"
+  },
+  "2021-12-31": {
+   "value": 85300000,
+   "accn": "0000950170-22-002107",
+   "label": "additions to capitalized software"
+  },
+  "2022-12-31": {
+   "value": 144900000,
+   "accn": "0000950170-23-005072",
+   "label": "additions to capitalized software"
+  },
+  "2023-12-31": {
+   "value": 194900000,
+   "accn": "0000950170-24-022080",
+   "label": "additions to capitalized software"
+  },
+  "2024-12-31": {
+   "value": 194300000,
+   "accn": "0000950170-25-030421",
+   "label": "additions to capitalized software"
+  },
+  "2025-12-31": {
+   "value": 221900000,
+   "accn": "0001193125-26-076745",
+   "label": "additions to capitalized software"
+  }
+ },
+ "1410384": {
+  "2017-12-31": {
+   "value": 970000,
+   "accn": "0001410384-18-000012",
+   "label": "capitalized software development costs"
+  },
+  "2019-12-31": {
+   "value": 177000,
+   "accn": "0001410384-20-000025",
+   "label": "capitalized software development costs"
+  },
+  "2020-12-31": {
+   "value": 952000,
+   "accn": "0001410384-21-000022",
+   "label": "capitalized software development costs"
+  }
+ },
+ "1477333": {
+  "2019-12-31": {
+   "value": 13990000,
+   "accn": "0001477333-20-000010",
+   "label": "capitalized internal-use software"
+  },
+  "2020-12-31": {
+   "value": 18587000,
+   "accn": "0001477333-21-000009",
+   "label": "capitalized internal-use software"
+  },
+  "2021-12-31": {
+   "value": 14752000,
+   "accn": "0001477333-22-000008",
+   "label": "capitalized internal-use software"
+  },
+  "2022-12-31": {
+   "value": 19758000,
+   "accn": "0001477333-23-000017",
+   "label": "capitalized internal-use software"
+  },
+  "2023-12-31": {
+   "value": 20546000,
+   "accn": "0001477333-24-000013",
+   "label": "capitalized internal-use software"
+  },
+  "2024-12-31": {
+   "value": 28477000,
+   "accn": "0001477333-25-000043",
+   "label": "capitalized internal-use software"
+  },
+  "2025-12-31": {
+   "value": 26935000,
+   "accn": "0001477333-26-000016",
+   "label": "capitalized internal-use software"
+  }
+ },
+ "1488075": {
+  "2011-12-31": {
+   "value": 18718000,
+   "accn": "0001144204-12-016248",
+   "label": "capitalized software development costs"
+  },
+  "2012-12-31": {
+   "value": 18013000,
+   "accn": "0001488075-13-000005",
+   "label": "capitalized software development costs"
+  },
+  "2013-12-31": {
+   "value": 20495000,
+   "accn": "0001488075-14-000008",
+   "label": "capitalized software development costs"
+  },
+  "2015-12-31": {
+   "value": 25440000,
+   "accn": "0001488075-16-000145",
+   "label": "capitalized software development costs"
+  }
+ },
+ "1552670": {
+  "2012-12-31": {
+   "value": 2159866,
+   "accn": "0001062993-13-002004",
+   "label": "capitalized and purchased software development costs"
+  }
+ },
+ "1651562": {
+  "2021-12-31": {
+   "value": 12090000,
+   "accn": "0000950170-22-002807",
+   "label": "capitalized internal-use software costs"
+  },
+  "2022-12-31": {
+   "value": 12299000,
+   "accn": "0000950170-23-004143",
+   "label": "capitalized internal-use software costs"
+  },
+  "2023-12-31": {
+   "value": 15254000,
+   "accn": "0001651562-24-000012",
+   "label": "capitalized internal-use software costs"
+  },
+  "2024-12-31": {
+   "value": 17219000,
+   "accn": "0001651562-25-000013",
+   "label": "capitalized internal-use software costs"
+  },
+  "2025-12-31": {
+   "value": 18100000,
+   "accn": "0001651562-26-000015",
+   "label": "capitalized internal-use software costs"
+  }
+ },
+ "1806837": {
+  "2024-12-31": {
+   "value": 21344000,
+   "accn": "0001558370-25-001820",
+   "label": "capitalized software additions"
+  }
+ },
+ "1868912": {
+  "2023-12-31": {
+   "value": 5218000,
+   "accn": "0001558370-24-002987",
+   "label": "capitalization of software development costs"
+  },
+  "2024-12-31": {
+   "value": 7257000,
+   "accn": "0001558370-25-002043",
+   "label": "capitalization of software development costs"
+  }
+ }
+}

@@ -1,0 +1,27 @@
+# Evidence boundary and blindness record (first pass)
+
+## Supplied files (this review's inputs)
+| File | SHA-256 | Pages (PDF) | Role |
+|---|---|---|---|
+| `/root/.dsh/attachments/v1/files/bd/bd87f45f.../paper1 Nov 2.pdf` | bd87f45fed9c45587eec3d41b3b6dc3b08bbb73ef794773fe8fbbb74a5c6f9cf (652,952 B) | 82 | Main manuscript, "The Rule of 40 as a Price Line: Efficient Frontiers, Economic Profit and the Limits of AI Automation", Akshaya Bangalore Sreenivasa Murthy, LaTeX/pdfTeX, created 2026-11-03 01:48 CET |
+| `/root/.dsh/attachments/v1/files/ac/acf9d62b.../Supplement Nov 2.pdf` | acf9d62bb96961a45400f2e52013cb4da79ed0d34d8cf0574ec7553226de02c2 (524,024 B) | 57 | Supplementary Appendix (same title, "Supplementary Appendix") |
+| GitHub repo `https://github.com/amurthygithub/rule-of-x`, local checkout at `work/repo/rule-of-x` (git HEAD 62e574b) | — | — | LaTeX sources (`sections/`, `paper1/`), code (`code/`, ~43k lines incl. `engine/`), data (`data/`: SEC XBRL extract of 661 registrants / 240,318 facts; panels v2/v3; v3_inputs raw SEC frames), notes, README with replication instructions |
+| Workspace copies `sources/paper1_nov_2.pdf`, `sources/supplement_nov2.pdf` | identical hashes to the attachments above | 82/57 | Confirm the workspace copies are the same documents |
+
+Hashes of the repo's own built PDFs (`paper1/paper1.pdf` = 01397df7..., `paper1/supplement.pdf` = a4b545a3...) DIFFER from the supplied attachments: the attachments are the authoritative reviewed versions; repo PDFs differ (build metadata or content), so the review reads the attachment PDFs for page-level claims and the repo sources/code/data for verification.
+
+## Verbatim copies
+Working copies: `/root/tmp/review/paper.pdf`, `/root/tmp/review/supplement.pdf`. Text layers: `/root/tmp/review/text/`. Page-image renders and audit scripts: `/root/outputs/referee-review/`.
+
+## Blindness / exposure statement
+The manuscript's own Appendix A (main paper PDF pp. 74-78) and Supplementary Section S7 (supplement PDF pp. 43-48) disclose that the paper was produced with AI agents and reviewed by 20+ internal agent panels; the repo ships those referee reports under `notes/referee1..3/`, `notes/reviews/paper1_v1..v3/` (including a prior round of AI referee reports and responses), and prior review outputs exist under `/root/outputs/rule-of-40-*/`, `/root/outputs/theory-audit/` from an earlier session on the same documents. **This first-pass assessment was produced WITHOUT reading those embedded reports or prior outputs.** They were inventoried (names, sizes) but not opened for content; the one exception is `notes/referee1_report.md`, whose first 40 lines were displayed in a directory peek early in the session before the blindness rule was applied — its content (front-matter inconsistencies, weight-pricing critique, calibration anchor critique) was NOT used in any finding below. Exposure is recorded, not concealed: the review is blind to other critiques in substance, not in letter. No claim below rests on those documents.
+
+## Capabilities actually used
+Full-document text extraction (pdftotext, pypdf) of both PDFs; page-image rendering (pdftoppm at 130 dpi) and visual inspection of equation-heavy pages (paper PDF pp. 15, 16, 18, 21, 24, 26; supplement pp. 1, 15, 20, 26) to verify notation against layout; LaTeX source reading (all `sections/*.tex`, ~4,000 lines); independent Python execution (numpy 2.5.2, scipy 1.18.1, sympy 1.14.0, pandas, statsmodels via system python 3.12) of symbolic and numerical audits; execution of the author's own `code/verify_theory.py` (191/191 PASS) and `code/verify_part2_acquirer.py` (82/82 PASS); independent recomputation of headline statistics directly from `data/panel_v3.csv`. Web search was attempted for citation checks but returned non-relevant results in this environment, so external-source verification is limited to the repo's own recorded verification notes (access levels stated in the citation ledger), not to fresh fetches. Not available/used: fresh SEC EDGAR retrieval, reading of the excluded registrant's data, the engine's full test suite, and the companion paper (part2/ is present but only its Paper-1-facing verification scripts were run).
+
+## Coverage ledger
+- Main PDF: all 82 pages text-read; sections mapped to PDF pages: exec summary p.2, intro p.2, literature p.7, model pp.12-35, data p.36, empirics pp.39-52, horizons pp.53-64, discussion pp.65-68, conclusion p.69, appendices pp.74-82. Equation-heavy pages image-verified: 15-18, 21, 24, 26.
+- Supplement: all 57 pages text-read (S1-S9: theory, discussion, pass-through tables, proofs, data/appendix, protocol records, full-cost floors, glossary, references).
+- Code: `verify_theory.py` (3,082 lines), `estimate_v3.py` + `estimate_v3_report.py` (2,515 lines), `build_panel_v3.py`, `calibrate_horizons.py` (1,336 lines), `paper1_macros.py` (1,681 lines), `verify_part2_acquirer.py` read/run; engine (50 modules, 43k lines) NOT executed (not needed for Paper 1 claims; synthetic example only).
+- Data: `panel_v3.csv` (1,788 rows x 292 firms), `panel_v3_all.csv` (5,678), `panel_v2_all.csv`, `companyfacts_extract.json` (661 registrants), v3_inputs raw SEC frames; spot-recomputed.
+- Unread/limited: session transcripts (not shipped); `notes/reviews/*` and `notes/referee*` reports (deliberately unread); engine tests; part2 proofs files beyond the acquirer section; figures/*.pdf inspected only via the built PDF pages that embed them.

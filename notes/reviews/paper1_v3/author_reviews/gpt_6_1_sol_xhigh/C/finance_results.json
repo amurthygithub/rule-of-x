@@ -1,0 +1,230 @@
+{
+  "method": "independent arithmetic + symbolic-engine identities; deterministic, no random draws",
+  "environment": {
+    "python": "3.9.6 (default, Aug 25 2026, 21:26:21) \n[Clang 21.0.0 (clang-2100.3.34.2)]",
+    "platform": "macOS-26.7.2-arm64-arm-64bit",
+    "sympy": "1.14.0"
+  },
+  "case_reconciliation": [
+    {
+      "year": 2024,
+      "simple_growth": 0.7336869327532443,
+      "log_growth": 0.5502503157795029,
+      "gaap_score": 0.9234662795410539,
+      "gaap_score_after_interest_expense": 0.8748784630794629,
+      "ocf_score_after_interest": 1.03902049060933,
+      "ocf_score_with_expense_addback_tax24": 1.0759472311201392,
+      "ocf_score_with_cash_addback_tax24": 1.060729178298678,
+      "ppe_sbc_deduction_pp": 3.942907639187963,
+      "ppe_sbc_afterinterest_score": 0.9995914142174505,
+      "ppe_sbc_beforeinterest_cashaddback_score_tax24": 1.0213001019067984,
+      "intangible_cash_share": 0.24212096511005837
+    },
+    {
+      "year": 2025,
+      "simple_growth": 0.9467970488173065,
+      "log_growth": 0.6661854830613361,
+      "gaap_score": 1.159480874035233,
+      "gaap_score_after_interest_expense": 1.0503255132127003,
+      "ocf_score_after_interest": 1.1692397235182412,
+      "ocf_score_with_expense_addback_tax24": 1.2521977977433663,
+      "ocf_score_with_cash_addback_tax24": 1.245379692471184,
+      "ppe_sbc_deduction_pp": 4.288413078955668,
+      "ppe_sbc_afterinterest_score": 1.1263555927286846,
+      "ppe_sbc_beforeinterest_cashaddback_score_tax24": 1.2024955616816273,
+      "intangible_cash_share": 5.1285819700490814e-05
+    }
+  ],
+  "q2_2026": {
+    "simple_growth": 1.263436194149791,
+    "gaap_score": 1.6046266990812335,
+    "gaap_afterinterest_score": 1.4498738392705386,
+    "organic_company_score": 0.3711905049314427
+  },
+  "acquisition_bridge": {
+    "S_prior": 100.0,
+    "S_continuing": 100.0,
+    "S_acquired_recognized": 100.0,
+    "S_current": 200.0,
+    "price": 300.0,
+    "price_per_recognized_revenue": 3.0,
+    "true_cash_charge_current_margin": 1.5,
+    "simple_acquired_growth_prior_base": 1.0,
+    "log_acquired_growth": 0.6931471805599453,
+    "instantaneous_like_charge_using_simple": 3.0,
+    "instantaneous_like_charge_using_log": 2.0794415416798357,
+    "correct_simple_annual_formula": 1.5,
+    "true_score": -0.30000000000000004
+  },
+  "tax_one_vintage": {
+    "I": 1.0,
+    "r": 0.1,
+    "tau": 0.2,
+    "psi": 0.9090909090909091,
+    "true_t0_capital_cash": -1.0,
+    "true_t1_tax_cash": 0.2,
+    "pv_cash": -0.8181818181818181,
+    "equivalent_t0_cash": -0.8181818181818181
+  },
+  "tax_halfyear": [
+    {
+      "T": 5,
+      "rate": 0.1,
+      "psi": 0.796065221575774
+    },
+    {
+      "T": 15,
+      "rate": 0.1,
+      "psi": 0.5324255654415851
+    }
+  ],
+  "tax_balanced_growth": [
+    {
+      "simple_growth": 0.05,
+      "k": 1.5,
+      "tau": 0.18,
+      "psi_wacc": 0.5324255654415851,
+      "actual_vintage_deduction_per_current_investment": 0.7092766326090071,
+      "model_cash_margin_overstatement_pp": -0.23874894067601962
+    },
+    {
+      "simple_growth": 0.15,
+      "k": 1.5,
+      "tau": 0.18,
+      "psi_wacc": 0.5324255654415851,
+      "actual_vintage_deduction_per_current_investment": 0.4190615237352284,
+      "model_cash_margin_overstatement_pp": 0.4591243689107447
+    },
+    {
+      "simple_growth": 0.3,
+      "k": 1.5,
+      "tau": 0.18,
+      "psi_wacc": 0.5324255654415851,
+      "actual_vintage_deduction_per_current_investment": 0.2505628604884751,
+      "model_cash_margin_overstatement_pp": 2.2830879101201913
+    },
+    {
+      "simple_growth": 0.5,
+      "k": 1.5,
+      "tau": 0.18,
+      "psi_wacc": 0.5324255654415851,
+      "actual_vintage_deduction_per_current_investment": 0.1662860569565798,
+      "model_cash_margin_overstatement_pp": 4.942883364547572
+    }
+  ],
+  "symbolic_residuals": {
+    "score_e": "0",
+    "score_roic": "0",
+    "value": "0"
+  },
+  "horizon_counterexample": {
+    "initial_cost": 1,
+    "benefit_flow_after_t6": 0.2,
+    "r_cont": 0.1,
+    "H": 5,
+    "cash_pv_through_H": -1,
+    "terminal_at_H": 1.809674836071919,
+    "total_npv_including_sale": 0.09762327218805278,
+    "full_horizon_npv": 0.09762327218805278
+  },
+  "acquirer_charge_scenarios": [
+    {
+      "NRR": 0.91,
+      "T": 10.603253052640087,
+      "H2_time": 2025.75,
+      "tax_on_interest": 0.24,
+      "annuity_end": 0.9270065706468881,
+      "annuity_timeweighted": 1.044452549513813,
+      "usercost_end": 0.8747989534089724,
+      "usercost_timeweighted": 1.0092340298000608
+    },
+    {
+      "NRR": 0.91,
+      "T": 10.603253052640087,
+      "H2_time": 2025.75,
+      "tax_on_interest": 0,
+      "annuity_end": 0.9532038572442959,
+      "annuity_timeweighted": 1.0706498361112209,
+      "usercost_end": 0.9009962400063802,
+      "usercost_timeweighted": 1.0354313163974687
+    },
+    {
+      "NRR": 0.91,
+      "T": 10.603253052640087,
+      "H2_time": 2025.8972602739725,
+      "tax_on_interest": 0.24,
+      "annuity_end": 0.9270065706468881,
+      "annuity_timeweighted": 1.0654427271633025,
+      "usercost_end": 0.8723488501714766,
+      "usercost_timeweighted": 1.035213094432323
+    },
+    {
+      "NRR": 0.91,
+      "T": 10.603253052640087,
+      "H2_time": 2025.8972602739725,
+      "tax_on_interest": 0,
+      "annuity_end": 0.9532038572442959,
+      "annuity_timeweighted": 1.0916400137607103,
+      "usercost_end": 0.8985461367688844,
+      "usercost_timeweighted": 1.0614103810297308
+    },
+    {
+      "NRR": 0.95,
+      "T": 19.495725746223673,
+      "H2_time": 2025.75,
+      "tax_on_interest": 0.24,
+      "annuity_end": 1.0108489561187572,
+      "annuity_timeweighted": 1.098014440889326,
+      "usercost_end": 0.9524938571113196,
+      "usercost_timeweighted": 1.0599063075661141
+    },
+    {
+      "NRR": 0.95,
+      "T": 19.495725746223673,
+      "H2_time": 2025.75,
+      "tax_on_interest": 0,
+      "annuity_end": 1.037046242716165,
+      "annuity_timeweighted": 1.1242117274867338,
+      "usercost_end": 0.9786911437087275,
+      "usercost_timeweighted": 1.086103594163522
+    },
+    {
+      "NRR": 0.95,
+      "T": 19.495725746223673,
+      "H2_time": 2025.8972602739725,
+      "tax_on_interest": 0.24,
+      "annuity_end": 1.0108489561187572,
+      "annuity_timeweighted": 1.1135928287395493,
+      "usercost_end": 0.9514657518479628,
+      "usercost_timeweighted": 1.0799499658187668
+    },
+    {
+      "NRR": 0.95,
+      "T": 19.495725746223673,
+      "H2_time": 2025.8972602739725,
+      "tax_on_interest": 0,
+      "annuity_end": 1.037046242716165,
+      "annuity_timeweighted": 1.1397901153369572,
+      "usercost_end": 0.9776630384453706,
+      "usercost_timeweighted": 1.1061472524161746
+    }
+  ],
+  "charge_ranges_tax24": {
+    "annuity_end": [
+      92.70065706468881,
+      101.08489561187572
+    ],
+    "annuity_timeweighted": [
+      104.4452549513813,
+      111.35928287395494
+    ],
+    "usercost_end": [
+      87.23488501714766,
+      95.24938571113196
+    ],
+    "usercost_timeweighted": [
+      100.92340298000609,
+      107.99499658187668
+    ]
+  }
+}

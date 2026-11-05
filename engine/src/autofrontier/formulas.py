@@ -81,7 +81,7 @@ def ell_from_growth(g, G, sigma, alpha, floor: float = 1e-4) -> float:
     return max((float(g) - float(G)) / sigma ** alpha, floor)
 
 
-def growth_spend_split(sm_share, rd_share, rd_expansion_share, basis="netted", maint_base=0.2506) -> dict:
+def growth_spend_split(sm_share, rd_share, rd_expansion_share, basis="netted", maint_base=0.2574) -> dict:
     """Growth spend sigma and the maintenance S&M cost line on an S&M basis (Paper 1 round 2, decisions 4 and 7):
     netted (central) sigma = max(sm - b_M, 0) + theta rd, maintenance min(sm, b_M); all sigma = sm + theta rd, maintenance
     0; none sigma = theta rd, maintenance sm. theta = rd_expansion_share.
@@ -228,12 +228,12 @@ def effective_wage(w_loaded, omega_h, tau):
     return _a(w_loaded) - _a(omega_h) / (1.0 - tau)
 
 
-def own_compute_markup_threshold(G, psi, tau, k_c=3.3, L_srv=5.5):
+def own_compute_markup_threshold(G, psi, tau, k_c=3.0, L_srv=5.5):
     """Owning compute instead of renting it raises the cash ceiling iff the vendor markup upsilon_c exceeds
     [(1 - psi) tau s_srv + (1 - psi tau) s_srv L_srv G]/(1 - tau) (Part I rem:owncompute, after FT-3: growth and
     replacement servers take the same deduction rate psi), with k_c = s_srv L_srv the capital per dollar a year of
-    compute (3.3 = 0.6 x 5.5 in Part I) and s_srv = k_c/L_srv. At psi = 1 (domestic servers under current law) the bar
-    is s_srv L_srv G whatever the tax rate: 16.5 percent at G = 5 percent; at psi = 0 and tau = 0.18 it is 33 percent.
+    compute and s_srv = k_c/L_srv; at psi = 1 the bar is k_c G whatever the tax rate. Part I (cash basis, 5 Nov 2026) has
+    k_c = 3.05 for servers alone (bars 15 and 46 percent at G = 5 and 15 percent); the defaults are defaults.yaml's.
 
     Implements: rem:owncompute, cor:ceiling | Spec: 13.1, 24.4 | Notes: accounting 4.3 | Status: theory"""
     s_srv = float(k_c) / float(L_srv)

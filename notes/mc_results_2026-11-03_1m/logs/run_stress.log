@@ -1,0 +1,85 @@
+[15:01:09] start in /Users/amurthy/workspace/stress_runs_2026-11-03
+[15:01:09] cores 12, memory 24 GB, free disk 81 GB
+[15:01:09] installing uv into /Users/amurthy/workspace/stress_runs_2026-11-03/.uv (download from astral.sh)
+downloading uv 0.13.7 aarch64-apple-darwin
+installing to /Users/amurthy/workspace/stress_runs_2026-11-03/.uv/bin
+  uv
+  uvx
+everything's installed!
+[31mWARN(B[m: The following commands are shadowed by other commands in your PATH: uv uvx
+[15:01:09] creating Python 3.13 environment in /Users/amurthy/workspace/stress_runs_2026-11-03/venv
+Using CPython 3.13.5 interpreter at: /Library/Frameworks/Python.framework/Versions/3.13/bin/python3.13
+Creating virtual environment at: workspace/stress_runs_2026-11-03/venv
+Activate with: source workspace/stress_runs_2026-11-03/venv/bin/activate
+[15:01:10] code at commit 06a6338
+[15:01:10] installing the pinned packages (download from PyPI)
+Using Python 3.13.5 environment at: workspace/stress_runs_2026-11-03/venv
+Resolved 34 packages in 399ms
+Downloading pillow (4.6MiB)
+Downloading pydantic-core (1.8MiB)
+Downloading statsmodels (11.0MiB)
+Downloading sympy (6.0MiB)
+Downloading pulp (15.6MiB)
+Downloading pandas (9.5MiB)
+Downloading numpy (5.2MiB)
+Downloading matplotlib (8.9MiB)
+Downloading scipy (19.5MiB)
+Downloading fonttools (3.0MiB)
+ Downloaded pydantic-core
+ Downloaded fonttools
+ Downloaded pillow
+ Downloaded numpy
+ Downloaded sympy
+ Downloaded matplotlib
+ Downloaded pandas
+ Downloaded statsmodels
+ Downloaded pulp
+ Downloaded scipy
+Prepared 34 packages in 1.35s
+Installed 34 packages in 110ms
+ + annotated-types==0.8.0
+ + contourpy==1.4.0
+ + cycler==0.12.1
+ + dill==0.4.1
+ + et-xmlfile==2.0.0
+ + fonttools==4.68.0
+ + formulaic==1.2.2
+ + interface-meta==2.0.1
+ + kiwisolver==1.5.1
+ + matplotlib==3.11.2
+ + mpmath==1.3.0
+ + multiprocess==0.70.19
+ + narwhals==2.28.0
+ + numpy==2.5.3
+ + openpyxl==3.1.5
+ + packaging==26.3
+ + pandas==3.0.5
+ + patsy==1.0.3
+ + pillow==13.0.0
+ + pulp==3.3.0
+ + pydantic==2.13.5
+ + pydantic-core==2.46.5
+ + pyparsing==3.3.3
+ + python-dateutil==4.0.0
+ + pyyaml==6.0.3
+ + salib==1.6.0
+ + scipy==1.18.1
+ + statsmodels==0.15.0
+ + sympy==1.14.0
+ + typing-extensions==4.16.0
+ + typing-inspection==0.4.4
+ + tzdata==2026.6
+ + wrapt==2.5.2
+ + xlrd==2.0.2
+numpy 2.5.3 pandas 3.0.5 scipy 1.18.1
+[15:01:15] reproduction checks
+[15:01:21] reproduction checks: 87 passed, 0 failed; shadow outputs byte-identical: False (JSON: 69 leaves differ, max rel. 1.8736e-07, blocks ell_psi,r2,r3)
+[15:01:21] seed 2: draws on 11 workers (resumes if interrupted)
+[15:34:25] seed 2: 5501 of 5501 chunks
+[15:34:55] seed 1: searches, Sobol, sub-box, analysis
+[15:40:01] seed 2: searches, Sobol, sub-box, analysis, comparison with seed 1
+-rw-r--r--  1 amurthy  staff  70627508 Nov  3 15:40 /Users/amurthy/workspace/stress_runs_2026-11-03/mc_1m_s1/draws_lhs.csv.gz
+-rw-r--r--  1 amurthy  staff    380972 Nov  3 15:39 /Users/amurthy/workspace/stress_runs_2026-11-03/mc_1m_s1/mc_claims.json
+-rw-r--r--  1 amurthy  staff  70626250 Nov  3 15:45 /Users/amurthy/workspace/stress_runs_2026-11-03/mc_1m_s2/draws_lhs.csv.gz
+-rw-r--r--  1 amurthy  staff    423006 Nov  3 15:44 /Users/amurthy/workspace/stress_runs_2026-11-03/mc_1m_s2/mc_claims.json
+[15:45:23] DONE. You can tell Claude the run has finished.

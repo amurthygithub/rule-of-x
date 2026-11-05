@@ -1,0 +1,3 @@
+paper1.pdf: 87 pages (build folder /tmp/r3_paper1_build2)
+supplement.pdf: 72 pages (build folder /tmp/r3_paper1_build2)
+wrote /root/Paper Review/work/repo/rule-of-x-r3/paper1/paper1.pdf and /root/Paper Review/work/repo/rule-of-x-r3/paper1/supplement.pdf

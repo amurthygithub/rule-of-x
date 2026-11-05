@@ -1,0 +1,40 @@
+[
+  {
+    "file": "paper1_nov_2.pdf",
+    "sha256": "bd87f45fed9c45587eec3d41b3b6dc3b08bbb73ef794773fe8fbbb74a5c6f9cf",
+    "bytes": 652952,
+    "pages": 82,
+    "metadata": {
+      "format": "PDF 1.5",
+      "title": "The Rule of 40 as a Price Line: Efficient Frontiers, Economic Profit and the Limits of AI Automation",
+      "author": "Akshaya Bangalore Sreenivasa Murthy",
+      "subject": "",
+      "keywords": "",
+      "creator": "LaTeX with hyperref",
+      "producer": "pdfTeX-1.40.25",
+      "creationDate": "D:20261102164859-08'00'",
+      "modDate": "D:20261102164859-08'00'",
+      "trapped": "",
+      "encryption": null
+    }
+  },
+  {
+    "file": "supplement_nov2.pdf",
+    "sha256": "acf9d62bb96961a45400f2e52013cb4da79ed0d34d8cf0574ec7553226de02c2",
+    "bytes": 524024,
+    "pages": 57,
+    "metadata": {
+      "format": "PDF 1.5",
+      "title": "Supplementary Appendix: The Rule of 40 as a Price Line: Efficient Frontiers, Economic Profit and the Limits of AI Automation",
+      "author": "Akshaya Bangalore Sreenivasa Murthy",
+      "subject": "",
+      "keywords": "",
+      "creator": "LaTeX with hyperref",
+      "producer": "pdfTeX-1.40.25",
+      "creationDate": "D:20261102164900-08'00'",
+      "modDate": "D:20261102164900-08'00'",
+      "trapped": "",
+      "encryption": null
+    }
+  }
+]

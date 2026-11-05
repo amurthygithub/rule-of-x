@@ -1,0 +1,50 @@
+{
+ "Favorable": {
+  "base_calc": 77.69,
+  "margin_paper": 77.7,
+  "gstar_calc": 22.31,
+  "gstar_paper": 22.3,
+  "Rmax_G005": 82.7,
+  "paper_a": "83",
+  "Rmax_G015": 92.7,
+  "paper_b": "93",
+  "Rmax_G030": 107.7,
+  "paper_c": "108"
+ },
+ "Central": {
+  "base_calc": 67.49,
+  "margin_paper": 67.5,
+  "gstar_calc": 32.51,
+  "gstar_paper": 32.5,
+  "Rmax_G005": 72.5,
+  "paper_a": "72",
+  "Rmax_G015": 82.5,
+  "paper_b": "82",
+  "Rmax_G030": 97.5,
+  "paper_c": "97"
+ },
+ "Conservative": {
+  "base_calc": 50.48,
+  "margin_paper": 50.5,
+  "gstar_calc": 49.52,
+  "gstar_paper": 49.5,
+  "Rmax_G005": 55.5,
+  "paper_a": "56",
+  "Rmax_G015": 65.5,
+  "paper_b": "66",
+  "Rmax_G030": 80.5,
+  "paper_c": "81"
+ },
+ "HighCompute": {
+  "base_calc": 38.79,
+  "margin_paper": 39.0,
+  "gstar_calc": 61.21,
+  "gstar_paper": 61.3,
+  "Rmax_G005": 43.8,
+  "paper_a": null,
+  "Rmax_G015": 53.8,
+  "paper_b": null,
+  "Rmax_G030": 68.8,
+  "paper_c": null
+ }
+}

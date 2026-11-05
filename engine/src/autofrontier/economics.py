@@ -133,6 +133,13 @@ def _class_multiplier(gwa_ids, cm: dict) -> np.ndarray:
     return out
 
 
+def owned_compute_share(fin: dict, default: float) -> float:
+    """The firm's owned share of compute: the firm file's value when it gives one, an explicit 0 included, else the
+    configured default (an `or` here replaced an explicit 0 by the default; outside re-review of Paper 1, 5 Nov 2026)."""
+    v = fin.get("owned_compute_share")
+    return float(default if v is None else v)
+
+
 def effective_psi(p: Params, firm) -> float:
     """Tax deductibility of AI development (prop:acct-tax): finance.psi if set, else the domestic share at sec. 174A
     (psi = 1) and the foreign share amortized over 15 years (psi_15)."""
@@ -303,7 +310,7 @@ def build_econ(firm: Firm, p: Params, horizon: int | None = None, overrides: dic
     price = F.inference_price(years[None, None, :], TF_eff[:, :, None], price_at_TF[:, :, None], pr.delta_pi,
                               pr.floor_share * pr.pi_h0, pr.s_E, energy[None, None, :])        # (U, L, T) $/human-hour
     retry = 1.0 / (1.0 - np.minimum(e_cap, pr.retry_cap))
-    own = float(firm.fin.get("owned_compute_share") or p.capital.owned_compute_share)
+    own = owned_compute_share(firm.fin, p.capital.owned_compute_share)
     rent_fac = (1.0 - own) + own * p.capital.owned_opex_share
     piA_n = price * cmult[:, None, None] * t[:, None, None] * retry                            # market value of inference
     infA = piA_n * rent_fac * (1.0 + pr.tau_A) * (1.0 + sec.finops_share)                    # cash spend per unit

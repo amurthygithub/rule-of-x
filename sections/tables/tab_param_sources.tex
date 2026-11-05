@@ -53,7 +53,7 @@ Parameter & Value used & Source & What the source measures & Class\\
 Change capacity: employees whose work changes a year
 & \PaceCapCen\% [\PaceCapSlow, \PaceCapFast\%]: slow, central and fast cases
 & \citet{wef2025futurejobs}
-& Forum survey of over 1,000 employers (more than 14 million workers, 55 economies): 59 of 100 workers need training by 2030, about 12 a year. Measures workers whose work changes, the concept needed, from stated expectations, not outcomes.
+& Forum survey of over 1,000 employers (more than 14 million workers, 55 economies): 59 of 100 workers need training by 2030, about 12 a year if spread evenly. Employers' expectations of training need, cumulative over 2025--2030: a proxy for work changed, not a measure of it.
 & b\\
 Change capacity: one-year workforce reductions
 & 6\% to 22\% of headcount in a year (bracket)
@@ -85,6 +85,11 @@ Embedding time
 & \citet{salesforce2023form8k,salesforce2024form10k,mckinsey2021losing}
 & Salesforce: reduction announced 4 January 2023, employee actions ``substantially complete'' by the end of fiscal 2024 (31 January 2024), about 13 months. McKinsey: about half of transformation value within 18 months. An analogy from disclosed restructurings, not a measurement of automation programs. Gartner's 8 months from prototype to production is secondary and was not verified.
 & b\\
+Wave length (parallel run) $T_{\rm par}$
+& \PaceTparCen{} years (central), \PaceTparFast{} (fast), \PaceTparSlow{} (slow)
+& none; scenario
+& The calendar time one wave of transitions takes; with the binding capacity $\rho$ it sets the capacity of a wave, $c_w=\rho T_{\rm par}$ (\autoref{prop:expected}(e)), and so the number of waves by each horizon.
+& d\\
 Leadership turnover hazard
 & 0.204 a year (1 over 4.9 years)
 & \citet{kornferry2020tenure}
@@ -99,7 +104,7 @@ Disruption rate of work in flight
 \midrule
 \multicolumn{5}{@{}l}{\emph{Compute and AI costs (``Taxes, fees and compute''; \autoref{rem:owncompute})}}\\
 Compute share: upper bound
-& 55\% of revenue for AI products sold to customers, an upper bound; the calibration uses \CcCen\% at 2025 prices, with credible bounds of \CcLo{} to \CcHi\%
+& 55\% of revenue for AI products sold to customers, an upper bound; the calibration uses \CcCen\% at 2025 prices, with a scenario range of \CcLo{} to \CcHi\% of revenue (labor at \CcLaborShare\% of revenue replaced at \KappaLo\% of its cost per completed task, up to the value test)
 & \citet{iconiq2026state}
 & Proprietary survey, Q2 2026, of about 300 executives at software companies building AI products (87\% North America). Gross margin of AI products 45\% in 2025, so cost of revenue 55\%; projected 53\% and 59\% in 2026 and 2027. Cost of products sold to customers, including talent and hosting, so an upper bound for a firm's own automation.
 & d\\
@@ -109,9 +114,9 @@ Compute share: bound from internal spending
 & Same survey: spending on AI for internal productivity, ``direct and indirect'', not itemized; the report does not say what it includes and says many companies underestimate it. All-in spend at partial adoption: if it contains more than compute, it bounds today's internal compute share from above; it is not a measure of compute at full automation.
 & d\\
 Compute per dollar of labor replaced, agent runs
-& 0.01 (single-attempt runs; our computation)
+& 0.02 per completed task (0.01 per successful run; our computation)
 & \citet{kwa2025measuring,metr2026evalanalysis}
-& Kwa et al. report that, at a human wage of 143.61 dollars an hour, more than 80\% of successful runs cost under 10\% of the human cost. The 0.4\% to 1.1\% of human cost used here comes from METR's public run data and is our computation (software tasks, 50\% success, no review); the run file carries per-run generation and human costs (fields generation\_cost and human\_cost, checked at the source on 2 November 2026).
+& Kwa et al. report that, at a human wage of 143.61 dollars an hour, more than 80\% of successful runs cost under 10\% of the human cost. The 0.4\% to 1.1\% of human cost used here comes from METR's public run data and is our computation (software tasks, successful runs only, no review); at a 50\% success rate the cost per completed task is about twice that if a failed attempt costs as much as a successful one, and in our reading of the same data failed runs cost more per dollar of human cost, so it is a low scenario value, not a measured floor; the run file carries per-run generation and human costs (fields generation\_cost and human\_cost, checked at the source on 2 November 2026).
 & c\\
 Compute per dollar of labor replaced, field evidence
 & 0.03
@@ -128,15 +133,15 @@ Rise in cost of frontier runs
 & \citet{gundlach2025price}
 & Cost of running the record-performance model on each benchmark, driven by token volume, not per-token price; no interval reported. The cap (compute cheaper than the labor replaced) is our assumption.
 & d\\
-Servers' share of compute cost
-& 60\%
+Owned capital per dollar a year of the cash cost of compute
+& \OwnKapSrv{} if the firm owns the servers only (server replacement \OwnSrvShare\% of the cash cost); \OwnKapAll{} if it owns the whole data center
 & \citet{michael2026servers}
-& Epoch AI model of a one-gigawatt AI data center: servers 5 of 8.5 billion dollars a year of annualized cost, energy 0.6 billion; IT equipment assumed to last 5 years. A cost model, not a measurement of cloud prices.
+& Epoch AI model of a one-gigawatt AI data center, from its two cost tables (read on 5 November 2026): servers \OwnEpochKSrv, facility \OwnEpochKFac{}, network \OwnEpochKNet{} and land and utility works \OwnEpochKOther{} billion dollars up front; running cost \OwnEpochOpex{} billion a year; IT equipment assumed to last \OwnEpochLifeIT{} years and the facility and utility works \OwnEpochLifeFac, land not replaced. The source's 60\% (servers \OwnEpochAnnSrv{} of \OwnEpochAnnTotal{} billion dollars a year) is a share of an annualized cost that includes a return on capital, not replacement cash; our conversion to a cash cost, running cost plus straight-line replacement, gives \OwnTcoCash{} billion a year (\autoref{rem:owncompute}). A cost model, not a measurement of cloud prices.
 & b\\
 Server book life
-& 5.5 years
+& 5.5 years (sensitivity)
 & \citet{meta2025q4release}
-& Meta extended the estimated useful life of certain servers and network assets to 5.5 years from fiscal 2025, lowering depreciation by about 2.9 billion dollars. A company accounting estimate, not an economic life.
+& Meta extended the estimated useful life of certain servers and network assets to 5.5 years from fiscal 2025, lowering depreciation by about 2.9 billion dollars. A company accounting estimate, not an economic life; used in \autoref{rem:owncompute} only as a sensitivity to Epoch's 5 years.
 & b\\
 
 \midrule
@@ -195,8 +200,8 @@ Manual step pass rate $q_M$
 AI error rate with no review $\bar u$ (per unit)
 & 0.050 favorable; 0.085 central and conservative
 & \citet{asgari2025framework,magesh2025hallucination,vectara2026leaderboard}
-& Asgari et al.: GPT-4 clinical notes from 450 transcript-note pairs, 191 of 12,999 sentences hallucinated (1.47\%; 44\% of them major) and 3.45\% of transcript sentences omitted (figures read in the preprint). Magesh et al. (peer reviewed): 202 preregistered legal queries, tools tested in spring 2024, about 17\% (Lexis+ AI) to 33\% (Westlaw AI-AR) hallucinated. Vectara: vendor leaderboard scored by its own classifier, 1.8\% to 24.2\% of summaries by model (May 2026).
-& a\\
+& Asgari et al.: GPT-4 clinical notes from 450 transcript-note pairs, 191 of 12,999 sentences hallucinated (1.47\%; 44\% of them major) and 3.45\% of transcript sentences omitted (figures read in the preprint). Magesh et al. (peer reviewed): 202 preregistered legal queries, tools tested in spring 2024, about 17\% (Lexis+ AI) to 33\% (Westlaw AI-AR) hallucinated. Vectara: vendor leaderboard scored by its own classifier, 1.8\% to 24.2\% of summaries by model (May 2026). The value adds an omission rate per source sentence (3.45\%, Asgari et al.) to a hallucination rate (1.5\% per output sentence, favorable, Asgari et al.; 5\% per summary or answer, central and conservative, a scenario value within the ranges of Magesh et al. and Vectara). The two rates have different denominators and come from summarization of a given source (Asgari et al.) and retrieval-based legal research (Magesh et al.), so the sum is a scenario value.
+& d\\
 Catch rate of ordinary errors
 & 0.65 [0.45, 0.85]
 & \citet{panko1999applying}
@@ -271,7 +276,7 @@ Remote threshold $\bar\pi$
 Cash tax rate $\tau$
 & 15\% to 21\%, central 18\%
 & \citet{usc2026sec55,usc2026sec59,usc2026sec11}
-& 26 U.S.C.\ 55(b)(2)(A): 15\% of adjusted financial statement income for applicable corporations, which under section 59(k)(1) are those with average annual adjusted financial statement income above \$1 billion, so the 15\% is not a floor for a firm with \$1 billion of revenue. 26 U.S.C.\ 11(b): 21\% of taxable income. Federal only; the range is a scenario.
+& 26 U.S.C.\ 55(b)(2)(A): 15\% of adjusted financial statement income for applicable corporations, which under section 59(k)(1)--(2) are those whose adjusted financial statement income averages above \$1 billion over three years (\$100 million for a US member of a foreign-parented group whose group income exceeds \$1 billion), so the 15\% is not a floor for a firm with \$1 billion of revenue. 26 U.S.C.\ 11(b): 21\% of taxable income. Federal only; the range is a scenario.
 & a\\
 Effective rate, sensitivity case
 & 9\%
@@ -294,7 +299,7 @@ Model-risk guidance
 EU AI Act high-risk dates
 & 2 December 2027 (Annex III); 2 August 2028 (Annex I)
 & \citet{eu2026reg1744}
-& Regulation (EU) 2026/1744 (Digital Omnibus on AI), recital 40. The operative article text was not reached.
+& Regulation (EU) 2026/1744 (Digital Omnibus on AI), Article 1, point (40), amending Article 113, third paragraph, point (c), of Regulation (EU) 2024/1689 (Chapter III, Sections 1 to 3, except Article 6(5)).
 & a\\
 Disclosure of a reported metric
 & conditions for key performance indicators

@@ -1,0 +1,37 @@
+total spec rows: 155328
+=== Table S19 checks ===
+C1: n_defined=5760 point=94.3% interval=29.0% baseline=-0.1190123421 median=-0.05 min=-0.14 max=0.03
+   paper S19: n=5740? 94.3% point, 29.0% interval, baseline -11.9, median -4.9, -14.4 to +2.6
+C2: n_defined=17280 point=100.0% interval=42.2% baseline=-0.1256567137 median=-0.07 min=-0.14 max=-0.01
+   paper S19: 100% point, 42.2% interval, baseline -12.6, median -7.2, -13.6 to -1.0
+C3: n_defined=8360 point=100.0% interval=100.0% baseline=-0.200117167 median=-0.43 min=-0.64 max=-0.15
+   paper S19: GAAP above -1: 100%/100%
+   C3 below zero: 100.0% point, 96.1% interval (paper 100%/96.1%)
+   C3 above -0.5: 65.5% (paper 65.5%)
+C4: n_defined=23520 point=100.0% interval=100.0% baseline=-0.1694573628 median=-0.37 min=-0.64 max=-0.09
+   paper S19: cash above -1: 100%/100%
+   C4 below zero: 100.0% point, 99.2% interval (paper 100%/99.2%)
+   C4 above -0.5: 87.9% (paper 87.9%)
+C5: n_defined=6080 point=91.9% interval=18.4% baseline=-0.4066918816 median=-0.24 min=-0.49 max=0.20
+   paper S19: steepening GAAP: 91.9% point, 18.4% interval, baseline -0.41, median -0.24, -0.49 to +0.20
+C6: n_defined=17800 point(non-negative)=74.4% (paper 74.4%) interval(not below zero)=99.0% (paper 99.0%) baseline=-0.15 median=0.12
+C7: n_defined=960 point=32.5% interval=nan% baseline=3.067496236 median=3.65 min=3.05 max=3.80
+   paper S19: spend ratio 3.0-3.5: 960 samples, 32.5%, baseline 3.07, median 3.65, 3.05-3.80
+C7s: n=3840 holds=31.0% (paper 31.0%) median=2.93 range 2.05 to 3.80
+C8a: n_defined=4096 point=100.0% interval=99.2% baseline=0.1916641016 median=0.16 min=0.06 max=0.28
+   paper S19: anchor Pi_lb > 0: 100%/99.2%, baseline +19.2, median +16.4, +6.3 to +28.1
+C8b: n_defined=4096 point=99.7% interval=38.4% baseline=0.1234579442 median=0.10 min=-0.00 max=0.27
+   paper S19: Pi_net > 0: 99.7%/38.4%, baseline +12.3, median +9.8, -0.2 to +27.1
+C8c: n=4096 above zero=22.3% (paper 22.3%) baseline=-0.02 median=-0.10 range -0.18 to 0.18
+
+total defined specifications: 95888 of 155328 rows; paper §5.9 says 155,328 specifications
+
+=== Forward pairing (GLM-M9, S11) ===
+forward rows: 138240 claims: ['C1', 'C2', 'C3', 'C4', 'C5', 'C6']
+['claim', 'sid', 'acq', 'r1', 'r2', 'r5', 'debt', 'trim', 'family', 'measure', 'quantile', 'late', 'estimator', 'window', 'split', 'benchmark', 'cutoff', 'tail', 'value', 'baseline', 'holds_a', 'holds_b', 'holds_c']
+  claim=C1 value=-0.1105526693 boot=(None,None)
+  claim=C2 value=-0.1113398072 boot=(None,None)
+  claim=C3 value=-0.2881116651 boot=(None,None)
+  claim=C5 value=-0.3039824239 boot=(None,None)
+  claim=C4 value=-0.2409144619 boot=(None,None)
+  claim=C6 value=-0.0827814777 boot=(None,None)

@@ -16,7 +16,7 @@ import zipfile
 import numpy as np
 import pandas as pd
 
-BASE = os.environ.get('PAPER_ROOT', '/home/claude/paper')   # PAPER_ROOT: a scratch checkout (code/regenerate_all.sh)
+BASE = os.environ.get('PAPER_ROOT', os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))   # repository root; PAPER_ROOT overrides
 RAW = f'{BASE}/data/raw'
 OUT = os.environ.get('PART2_OUT', f'{BASE}/data/tasks')     # override only for tests
 NOTES = f'{BASE}/notes'

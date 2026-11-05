@@ -162,5 +162,9 @@
    -0.008015016845139923,
    0.012846705532747102
   ]
+ },
+ "meta": {
+  "panel": "data/panel.csv (first version, v2)",
+  "status": "v2 reproduction reference for code/estimate_organic.py; not a source of any Paper 1 number (the v3 decomposition is in notes/empirics_v3.json, gap_* keys)"
  }
 }

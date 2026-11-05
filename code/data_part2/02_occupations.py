@@ -12,8 +12,9 @@ Inputs
 - occ_exposure.csv: Eloundou et al. (2024) occupation scores (occ_level.csv, O*NET-SOC -> SOC by simple mean),
   Tomlinson et al. AI applicability score, and (when downloaded) Anthropic Economic Index occupation shares.
 """
+import os
 import sys
-sys.path.insert(0, '/home/claude/paper/code/data_part2')
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import re
 import numpy as np
 import pandas as pd

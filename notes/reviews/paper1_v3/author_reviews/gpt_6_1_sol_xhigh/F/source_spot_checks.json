@@ -1,0 +1,38 @@
+[
+  {
+    "id": "BCG",
+    "url": "https://www.bcg.com/publications/2020/increasing-odds-of-success-in-digital-transformation",
+    "access": "Primary full article relevant outcome definitions",
+    "checked": "30/44/26 categories; limited rather than zero woe value"
+  },
+  {
+    "id": "MCK",
+    "url": "https://www.mckinsey.com/capabilities/people-and-organization/our-insights/successful-transformations",
+    "access": "Primary full article relevant survey methods/value passages",
+    "checked": "Success-conditioned67% versus other37%;1,034 respondents"
+  },
+  {
+    "id": "WEF",
+    "url": "https://www.weforum.org/publications/the-future-of-jobs-report-2025",
+    "access": "Primary key findings; PDF request timed out",
+    "checked": "59 per100 expected training need by2030; not annual process capacity"
+  },
+  {
+    "id": "ASGARI",
+    "url": "https://www.nature.com/articles/s41746-025-01670-7",
+    "access": "Primary full article relevant results/methods",
+    "checked": "18 configurations x25 transcripts; output/input sentence denominators differ"
+  },
+  {
+    "id": "WOOD",
+    "url": "https://academic.oup.com/cje/article/49/5/1073/8315769",
+    "access": "Primary full text2.1 and3.1 equations5-6",
+    "checked": "Downward opportunity frontier and perpetual gross-profit valuation; not dynamic equivalence"
+  },
+  {
+    "id": "AS2201",
+    "url": "https://pcaobus.org/oversight/standards/auditing-standards/details/AS2201",
+    "access": "Currently effective primary text.34,.62-.68,A7,A10",
+    "checked": "Aggregation, assertion scope, magnitude and qualitative probability evaluation; December15,2026 amendment not treated as effective"
+  }
+]

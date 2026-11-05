@@ -1,0 +1,78 @@
+{
+ "panel_v4": {
+  "rows": 1732,
+  "firms": 284,
+  "periods": {
+   "2020-22": 446,
+   "2010-15": 444,
+   "2023-25": 437,
+   "2016-19": 405
+  }
+ },
+ "psi90_v4": {
+  "gaap": -0.20011716699021648,
+  "cash": -0.1694573628470725
+ },
+ "p95_fall_v4": {
+  "gaap_pts": 11.901234210099753,
+  "cash_pts": 12.5656713653989
+ },
+ "anchor_v4": {
+  "acq_flag_v3": {
+   "n": 14,
+   "firms": 7,
+   "cut": 0.4440525234009638
+  },
+  "acq_flag": {
+   "n": 15,
+   "firms": 8,
+   "cut": 0.4440525234009638
+  }
+ },
+ "fe_v4": {
+  "op_now": [
+   0.049407676579776225,
+   0.06168458713859653
+  ],
+  "op_lead": [
+   -0.04458271181150525,
+   0.05178068625030736
+  ],
+  "cash_now": [
+   -0.04180030902808326,
+   0.04336220088136897
+  ]
+ },
+ "gstar_range": {
+  "cc_lo": 1.2,
+  "gstar_at_lo": 28.599235665525093,
+  "gstar_at_hi": 76.81523566552511
+ },
+ "cc_floor_check": {
+  "kappa_lo_pct": 2.0,
+  "labor_share_pct": 60,
+  "cc_lo_pct": 1.2,
+  "note": "cost/completed task = run cost / success rate; 1%/0.5 = 2%; x0.6 = 1.2% of revenue"
+ },
+ "f6_policy_bound": {
+  "0.01": {
+   "no_spend": 5.833,
+   "policy": 9.02
+  },
+  "0.1": {
+   "no_spend": 5.833,
+   "policy": 7.332
+  }
+ },
+ "gstar_corner_range_5dims": {
+  "lo": 20.8,
+  "hi": 87.4,
+  "note": "paper full-box 51-dim range 19.6-94.5%; this 5-dim corner subset gives the span of the five main cost dims only"
+ },
+ "lean": {
+  "theorems_lemmas": 265,
+  "sorry": 0,
+  "admit": 0,
+  "sorryAx_mentions": 1
+ }
+}

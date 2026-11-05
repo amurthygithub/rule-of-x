@@ -1,0 +1,30 @@
+headline14B members: 14
+keys: ['psi_op_E1_vs_m1', 'psi_cash_E1_vs_m1', 'psi_op_E1_vs_0', 'psi_cash_E1_vs_0', 'size_cash_E1', 'capint_cash_E1', 'p95chg_op_E1', 'p95chg_cash_E1', 'T40_cash_E1', 'gap_E1', 'gap_fast_sm_E1', 'd_psi_op', 'd_size_cash', 'psi_op_E1_2020_25_minus_2010_19']
+
+member estimability:
+  psi_op_E1_vs_m1: p_normal=1.6679836507728612e-12 p_percentile=0.002 p_basic=0.002
+  psi_cash_E1_vs_m1: p_normal=1.360024535651953e-18 p_percentile=0.002 p_basic=0.002
+  psi_op_E1_vs_0: p_normal=0.07735710417178934 p_percentile=0.064 p_basic=0.142
+  psi_cash_E1_vs_0: p_normal=0.07255511513322124 p_percentile=0.138 p_basic=0.02
+  size_cash_E1: p_normal=0.2239062377652068 p_percentile=0.3 p_basic=0.15
+  capint_cash_E1: p_normal=0.007459634981449531 p_percentile=0.002 p_basic=0.01
+  p95chg_op_E1: p_normal=0.00505504404784757 p_percentile=0.008 p_basic=0.03
+  p95chg_cash_E1: p_normal=0.01513815109473999 p_percentile=0.024 p_basic=0.036
+  T40_cash_E1: p_normal=None p_percentile=None p_basic=None
+  gap_E1: p_normal=5.023070320273236e-41 p_percentile=0.002 p_basic=0.002
+  gap_fast_sm_E1: p_normal=2.993633517109203e-09 p_percentile=0.002 p_basic=0.002
+  d_psi_op: p_normal=0.5254521792946446 p_percentile=0.478 p_basic=0.498
+  d_size_cash: p_normal=0.20710807312203916 p_percentile=0.138 p_basic=0.238
+  psi_op_E1_2020_25_minus_2010_19: p_normal=0.002866580408326798 p_percentile=0.012 p_basic=0.002
+
+=== F5: 18-test family (14 + T20 GAAP + T20 cash + T0 cash + anchor) ===
+  normal: steepening Holm = 0.037, p95chg_op = 0.061, anchor = 0.004 (unadj: steep 0.002867, p95 0.005055, anchor 0.0002532)
+  percentile: steepening Holm = 0.132, p95chg_op = 0.104, anchor = 0.120 (unadj: steep 0.012, p95 0.008, anchor 0.01)
+  basic: steepening Holm = 0.036, p95chg_op = 0.270, anchor = 0.036 (unadj: steep 0.002, p95 0.03, anchor 0.002)
+  paper M 5.1 claims: steepening 0.037/0.132/0.036; p95 0.061/0.104/0.270; anchor 0.004/0.120/0.036
+
+=== M1: §5.8 anchor count ===
+  normal: anchor unadj p = 0.0002532; Holm 14-test (13 estimable + anchor) = 0.003; 15-test (all 14 + anchor) = 0.003
+  percentile: anchor unadj p = 0.01; Holm 14-test (13 estimable + anchor) = 0.080; 15-test (all 14 + anchor) = 0.090
+  basic: anchor unadj p = 0.002; Holm 14-test (13 estimable + anchor) = 0.028; 15-test (all 14 + anchor) = 0.030
+  paper M 5.8 should print the 14-test values with the count sentence; response says 15-test = 0.006/0.096/0.030

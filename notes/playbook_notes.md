@@ -162,8 +162,9 @@ diagnosed here). Record fields: spec Section 4.
   2. Paper 2's main file needs `\usepackage{longtable}` (Table tab:playbook-steps), `\input{part2/theory_playbook.tex}`
      after theory_acquirer, `\input{part2/proofs_playbook.tex}` after proofs_acquirer (it also holds
      app:playbook-tables), and part2/validation_backtest.tex somewhere (sec:backtest is cited).
-  3. `code/regenerate_all.sh`: run `python3 code/playbook/run_archetypes.py --jobs 3` after paper1_macros.py, then
-     `python3 code/verify_part2_playbook.py`.
+  3. `code/regenerate_all.sh`: run `python3 code/playbook/run_archetypes.py --jobs 3`, then
+     `python3 code/verify_part2_playbook.py`, before paper1_macros.py, which reads `\lpRatio` and the lever table
+     (stages `playbook` and `verify_playbook`; order corrected 3 Nov 2026).
   4. Notation table: new symbols r_sigma (\mathsf r_\sigma), X^ddagger_0, h^ddagger, Delta R_sigma, Delta R_lambda,
      Delta R_a, Delta R_h, Delta R_G, Delta R_k, x (common proportion), a_GA, a_RD; vartheta reused from Part I.
 - Data agent: W5 (physical_override, licensed_override in process_activities.csv; the engine already reads them),

@@ -1,0 +1,31 @@
+Claim / locator,Status,Audit result
+"Lemma 1, main p. 14 eq 4; proof supplement p. 11",Checked,"Inversion and concavity rederived for k>=0,0<alpha<1,ell>0; at k=0 slope at G is 0, with strict decrease on any nontrivial interval"
+"Lemma 2, main pp. 15-16 eqs 5-7; supplement pp. 11-12",Checked,"Interior FOC, unique zero-spend corner X<=k, binding-cap truncation and equality case"
+"Lemma 3, main p. 16 eqs 8-10; supplement pp. 12-13",Checked,"Saturation derivative, small-share supremum, strict threshold on open share domain"
+"Proposition 1 / Corollary 1, main pp. 17-18 eqs 11-13; supplement pp. 13-14","Checked, scoped",Positive-part budget and period-rate logarithmic bound; no-share-loss/single-market assumptions essential
+"PropositionsS 1-S2, supplement p. 4 and p. 13",Checked,Myopic decay bound; sharpness as a supremum over paths/horizons rather than finite equality
+"Lemma 4 / Corollary 2, main pp. 18-19; supplement p. 14",Checked,Envelope derivatives and finite-change convexity bounds; random optimization checks supplement hand derivation
+"Corollary 3(v), main p. 20; Proposition 9(a), p. 64","Ambiguous, rescued",da>g*dk is first order in complete context; repeat qualification beside iff; exact finite bracket already in Corollary 2
+"Proposition 2(a)-(c), main pp. 20-21 eqs 16-18; supplement p. 15","Conditional, proof checked",H includes bounded differentiable HJB solution; verification and discounted terminal condition follow; general existence/regularity unproved
+"Proposition 2(d)-(e), main p. 21 eq 19; supplement pp. 15-16",Checked within hypotheses,Smallest simple root and limit argument; double-root boundary is outside those parts
+"Local HJB asymptotic, supplement p. 16",Corrected locally,Explicit share-forcing term omitted; theorem's limits and conditional verification survive
+"Worked dynamic weights, main pp. 21-22 / supplement p. 6",Checked numbers; scope correction,"9.1,7.2,5.4 reproduced at 1%,10%,50% of cap; profile rises again near saturation"
+"Lemma 5, main p. 22 eqs 20-21; supplement pp. 16-17",Checked,Duration/persistence derivatives rederived; numerical illustration does not identify actual firm decision weights
+"Proposition 3 / S3, main pp. 23-25; supplement pp. 4,17-18",Checked,"Possibility versus choice envelopes, observational equivalence and local covariance expansion; common-G/support/cap hypotheses matter"
+"Common-frontier cone-to-technology mapping, main p. 23 / supplement p. 7",Corrected,Exact quantile transformation retains density ratio; M1 counterexample
+"Proposition 4, main pp. 25-26 eqs 24-25; supplement pp. 18-19","Checked, conditional","Cournot, homogeneous product, one-time entry and scarce-input assumptions; not a general theorem for differentiated AI markets"
+"Remark 2 eq 27 PV factors, main pp. 27-28 / supplement pp. 19-20",Checked arithmetic,"psi5=.796065,psi15=.532426 for adopted half-year schedule"
+Remark 2 formula as period cash margin,Corrected interpretation,PV equivalence does not preserve timing; M2
+"Proposition 5, main pp. 29-30 / supplement pp. 20-21",Checked model; regulatory mapping conditional,Independent-type/common-mode reliability product and threshold algebra; no numerical threshold endorsed by standards
+"Corollary 4/Table 4, main pp. 30-31,57",Checked conditional arithmetic,"Central printed costs imply 32.5386% at k=0, rounded 32.5; scenario cost structure, fixed prices and saturation explicit"
+"Proposition 6, main pp. 33 / supplement pp. 21-22",Checked within packing model,"Set inclusion, wave packing and fractional-knapsack upper bound; upper bound is not automatically a feasible integer schedule"
+"Proposition 7, main pp. 33-34 / supplement pp. 22-24","Checked portions, conditional model",Uniform/random clocks distinct; retries and persistent shares explicit; no universal finite exact fluid completion
+"Lemma S3, supplement p. 5 / proof p. 24",Checked,Expectation of frontier versus expected maximized score; flexibility gap is not generally zero
+"Remark 3, main p. 35 / supplement pp. 24-25",Checked identities,"e=m+k(g-r),ROIC=(m+kg)/k; constant-growth value formulas require g<r and defined capital; not empirical capital measurement"
+"Proposition 8, main pp. 48-49 / supplement p. 26",Checked instantaneously; annual bridge ambiguous,M3; direct C/S case arithmetic survives
+"Proposition 9 and Table 7, main pp. 64-65 / supplement p. 25",Checked algebra; inputs unreplicated,"Lever ratio at own revealed weight needs no estimated weight; rankings reverse with spend attribution, as disclosed"
+"Tables 2,S4-S10,S12",Untested as replications,Internal comparisons only; no panel/author-code execution
+Table 3 annual/quarterly case inputs,Partly independently reproduced,Selected original filing sections and four 2025 capital-charge conventions checked; not every filing line or acquisition vintage
+Table 5/Table 6 horizon scenarios and payback,Partly checked / untested full path,"Printed arithmetic, execution recurrences and source transport audited; complete dated calibration/payback not rerun"
+"Lemma S4 / Table S16 floors, supplement pp. 49-52",Checked selected formulas; inputs conditional,"Security optimum, capped Pareto expectation, common-mode sum and selected arithmetic; full enterprise error/loss calibration not identified"
+Main p. 70 absolute Rule of 100/1000 rhetoric,Scope correction,Budget constrains excess over saturated score; cost/market-growth scenarios must accompany absolute-score wording

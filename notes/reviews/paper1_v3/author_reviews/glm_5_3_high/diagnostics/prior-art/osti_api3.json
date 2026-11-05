@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<records>
+<record>
+  <osti_id>1836026</osti_id>
+  <title>Feasibility Study of Developing Alternative Common-Cause Failure Model for Event Assessment</title>
+  <description>This report is a revision of the original report, INL/LTD-14-33376. The original report, which was a limited distribution to the Nuclear Regulatory Commission (NRC) only and not available to the public, was revised as this report for public distribution. The report presents the feasibility study of alternative common-cause failure (CCF) models that could be used for event assessment in the Standardized Plant Analysis Risk (SPAR) models. The current CCF model used by the SPAR models is the alpha factor model. The proposed alternative CCF models are the partial alpha factor model and general dependency model. These alternative CCF models are reviewed and compared to the current alpha factor model, with the partial alpha factor model being identified as the preferred CCF model that could be used for event assessment in the SPAR models.</description>
+  <authors>
+      <author>Ma, Zhegang [Idaho National Lab. (INL), Idaho Falls, ID (United States)] (ORCID:0000000229738557)</author><author>Knudsen, James K. [Idaho National Lab. (INL), Idaho Falls, ID (United States)] (ORCID:0000000211928504)</author><author>Schroeder, John A. [Idaho National Lab. (INL), Idaho Falls, ID (United States)]</author><author>Smith, Curtis L. [Idaho National Lab. (INL), Idaho Falls, ID (United States)] (ORCID:0000000232479728)</author>
+  </authors>
+  <product_type>Technical Report</product_type>
+  <doi>10.2172/1836026</doi>
+  <journal_name></journal_name>
+  <journal_volume></journal_volume>
+  <journal_issue></journal_issue>
+  
+  <article_type></article_type>
+  
+  <publication_date>2021-09-01T00:00:00</publication_date>
+  <publisher></publisher>
+  <country_publication>United States</country_publication>
+  <format>48 p.</format>
+  <language>English</language>
+  <availability></availability>
+  <research_orgs>
+      <research_org>Idaho National Laboratory (INL), Idaho Falls, ID (United States)</research_org>
+  </research_orgs>
+  <sponsor_orgs>
+      <sponsor_org>USNRC</sponsor_org>
+  </sponsor_orgs>
+  <contributing_org></contributing_org>
+  <subjects>
+      <subject>21 SPECIFIC NUCLEAR REACTORS AND ASSOCIATED PLANTS</subject><subject>42 ENGINEERING</subject><subject>Causal Alpha Factor Model</subject><subject>Common Cause Failure</subject><subject>Event Assessment</subject><subject>Partial Alpha Factor Model</subject><subject>PRA</subject><subject>SAPHIRE</subject><subject>SPAR</subject>
+  </subjects>
+  <doe_contract_number>AC07-05ID14517; </doe_contract_number>
+    <report_number>INL/EXT-21-33376-Rev001</report_number>
+  
+  <entry_date>2026-04-01T14:07:46</entry_date>
+  <links>
+      <link rel="citation" href="https://www.osti.gov/biblio/1836026" /><link rel="fulltext" href="https://www.osti.gov/servlets/purl/1836026" />
+  </links>
+</record>
+<record>
+  <osti_id>1634823</osti_id>
+  <title>Common-Cause Component Group Modeling Issues in Probabilistic Risk Assess</title>
+  <description>Common cause failures (CCFs) have been recognized as significant risk contributors in probabilistic risk assessments (PRAs) for commercial nuclear power plants (NPPs) since 1980s. A series of reports including those of United States Nuclear Regulatory Commission (NRC) regulations (NUREGs) have been published from late 1980s to early 2000s to provide guidelines for performing CCF event data analysis and modeling CCF in PRA. However, there are still some issues existed in CCF modeling and CCF parameter estimations. One of such issues is the modeling of multiple common-cause component group (CCCG) for the same component in a PRA model. This paper exams the CCCG definition and the requirements from the PRA standard, investigates the CCCG modeling practices and issues existing in PRAs, and presents systematic approaches and guidelines to model CCCG in PRA properly and consistently.</description>
+  <authors>
+      <author>Ma, Zhegang [Idaho National Laboratory] (ORCID:0000000229738557)</author><author>Buell, Robert F [Idaho National Laboratory] (ORCID:0000000199323915)</author><author>Knudsen, James K [Idaho National Laboratory] (ORCID:0000000211928504)</author><author>Zhang, Sai [Idaho National Laboratory] (ORCID:0000000236018873)</author>
+  </authors>
+  <product_type>Conference</product_type>
+  
+  <journal_name></journal_name>
+  <journal_volume></journal_volume>
+  <journal_issue></journal_issue>
+  
+  <article_type></article_type>
+  <conference_info>2020 ANS Annual Meeting, Phoenix, AZ, 06/07/2020 - 06/11/2020</conference_info>
+  <publication_date>2020-06-08T00:00:00</publication_date>
+  <publisher></publisher>
+  <country_publication>United States</country_publication>
+  <format></format>
+  <language>English</language>
+  <availability></availability>
+  <research_orgs>
+      <research_org>Idaho National Laboratory (INL), Idaho Falls, ID (United States)</research_org>
+  </research_orgs>
+  <sponsor_orgs>
+      <sponsor_org>USDOE Office of Nuclear Energy (NE)</sponsor_org>
+  </sponsor_orgs>
+  <contributing_org></contributing_org>
+  <subjects>
+      <subject>99 GENERAL AND MISCELLANEOUS</subject><subject>Common-Cause Component Group</subject><subject>Common-Cause Failures</subject><subject>Nuclear Power Plants</subject><subject>PRA</subject>
+  </subjects>
+  <doe_contract_number>AC07-05ID14517; </doe_contract_number>
+    <report_number>INL/CON-20-57077-Rev000</report_number>
+  
+  <entry_date>2020-06-25T23:10:44</entry_date>
+  <links>
+      <link rel="citation" href="https://www.osti.gov/biblio/1634823" /><link rel="fulltext" href="https://www.osti.gov/servlets/purl/1634823" />
+  </links>
+</record>
+<record>
+  <osti_id>1835896</osti_id>
+  <title>Developing Generic Prior Distributions for Common Cause Failure Alpha Factors and Causal Alpha Factors</title>
+  <description>This report is a revision of the original report, INL/LTD-17-43723. Distribution of the original report was to the Nuclear Regulatory Commission (NRC) only, and the report was not made available to the public. The original report was revised as this report for public distribution. This report presents the latest update of generic prior distributions for common cause failure (CCF) alpha factors, as well as the development of new generic prior distributions for CCF causal alpha factors. The history of CCF treatment and parameter estimations is reviewed. The existing process for developing generic prior distributions is reviewed and used to develop new priors for CCF alpha factors and causal alpha factors. For causal alpha factors, different priors are developed for the five different CCF cause groups: Component (GC), Design (GD), Environment (GE), Human (GH), and Other (GO). These generic prior distributions could be used in the Standardized Plant Analysis Risk (SPAR) models for CCF parameter estimation. The issues and preliminary thoughts regarding prior distribution development are documented. Potential future work is then proposed for improving the process of developing priors.</description>
+  <authors>
+      <author>Ma, Zhegang [Idaho National Lab. (INL), Idaho Falls, ID (United States)] (ORCID:0000000229738557)</author><author>Atwood, Corwin L. [Statwood Consulting, Silver Spring, MD (United States)]</author><author>Schroeder, John A. [Idaho National Lab. (INL), Idaho Falls, ID (United States)]</author>
+  </authors>
+  <product_type>Technical Report</product_type>
+  <doi>10.2172/1835896</doi>
+  <journal_name></journal_name>
+  <journal_volume></journal_volume>
+  <journal_issue></journal_issue>
+  
+  <article_type></article_type>
+  
+  <publication_date>2021-08-01T00:00:00</publication_date>
+  <publisher></publisher>
+  <country_publication>United States</country_publication>
+  <format>96 p.</format>
+  <language>English</language>
+  <availability></availability>
+  <research_orgs>
+      <research_org>Idaho National Laboratory (INL), Idaho Falls, ID (United States)</research_org>
+  </research_orgs>
+  <sponsor_orgs>
+      <sponsor_org>USNRC</sponsor_org>
+  </sponsor_orgs>
+  <contributing_org></contributing_org>
+  <subjects>
+      <subject>21 SPECIFIC NUCLEAR REACTORS AND ASSOCIATED PLANTS</subject><subject>Alpha Factor Model</subject><subject>Causal Alpha Factor Model</subject><subject>Common-Cause Failure</subject><subject>Prior Distributions</subject><subject>Probabilistic Risk Assessment</subject>
+  </subjects>
+  <doe_contract_number>AC07-05ID14517; </doe_contract_number>
+    <report_number>INL/EXT-21-43723-Rev001</report_number>
+  
+  <entry_date>2026-04-01T14:07:46</entry_date>
+  <links>
+      <link rel="citation" href="https://www.osti.gov/biblio/1835896" /><link rel="fulltext" href="https://www.osti.gov/servlets/purl/1835896" />
+  </links>
+</record>
+<record>
+  <osti_id>2341474</osti_id>
+  <title>Developing Component-Specific Prior Distributions for Common Cause Failure Alpha Factors</title>
+  <description>This report presents the development of component-specific common cause failure (CCF) prior distributions for five component categories: pump, valve, strainer, generator, and other. For ease in comparing these component-specific CCF priors with the 2015 generic CCF priors, the same method used to develop the 2015 generic CCF priors was also employed in this report, along with the same set of failure data (1997–2015) featured in INL/EXT-21-43723. For selected CCF templates, this report also evaluates the effects of applying component-specific priors to CCF parameters.</description>
+  <authors>
+      <author>Zhang, Sai [Idaho National Laboratory (INL), Idaho Falls, ID (United States)] (ORCID:0000000236018873)</author><author>Atwood, Corwin L. [Statwood Consulting, Silver Spring, MD (United States)]</author><author>Ma, Zhegang [Idaho National Laboratory (INL), Idaho Falls, ID (United States)] (ORCID:0000000229738557)</author>
+  </authors>
+  <product_type>Technical Report</product_type>
+  <doi>10.2172/2341474</doi>
+  <journal_name></journal_name>
+  <journal_volume></journal_volume>
+  <journal_issue></journal_issue>
+  
+  <article_type></article_type>
+  
+  <publication_date>2023-01-01T00:00:00</publication_date>
+  <publisher></publisher>
+  <country_publication>United States</country_publication>
+  <format>92 p.</format>
+  <language>English</language>
+  <availability></availability>
+  <research_orgs>
+      <research_org>Idaho National Laboratory (INL), Idaho Falls, ID (United States)</research_org>
+  </research_orgs>
+  <sponsor_orgs>
+      <sponsor_org>USDOE</sponsor_org>
+  </sponsor_orgs>
+  <contributing_org></contributing_org>
+  <subjects>
+      <subject>99 GENERAL AND MISCELLANEOUS</subject><subject>Common Cause Failure</subject><subject>Component-Specific CCF Priors</subject><subject>Nuclear Operating Experience</subject><subject>Prior Distribution</subject>
+  </subjects>
+  <doe_contract_number>AC07-05ID14517; </doe_contract_number>
+    <report_number>INL/EXT-21-65527-Rev.001</report_number>
+  
+  <entry_date>2026-08-21T14:54:41</entry_date>
+  <links>
+      <link rel="citation" href="https://www.osti.gov/biblio/2341474" /><link rel="fulltext" href="https://www.osti.gov/servlets/purl/2341474" />
+  </links>
+</record>
+<record>
+  <osti_id>6564737</osti_id>
+  <title>Procedures for treating common cause failures in safety and reliability studies: Analytical background and techniques</title>
+  <description>Volume I of this report presents a framework for the inclusion of the impact of common cause failures in risk and reliability evaluations. Common cause failures are defined as that subset of dependent failures for which causes are not explicitly included in the logic model as basic events. The emphasis here is on providing procedures for a practical, systematic approach that can be used to perform and clearly document the analysis. The framework and the methods discussed for performing the different stages of the analysis integrate insights obtained from engineering assessments of the system and the historical evidence from multiple failure events into a systematic, reproducible, and defensible analysis. This document, Volume 2, contains a series of appendices that provide additional background and methodological detail on several important topics discussed in Volume I.</description>
+  <authors>
+      <author>Mosleh, A</author><author>Fleming, K N</author><author>Parry, G W</author><author>Paula, H M</author><author>Worledge, D H</author><author>Rasmuson, D M</author>
+  </authors>
+  <product_type>Technical Report</product_type>
+  <doi>10.2172/6564737</doi>
+  <journal_name></journal_name>
+  <journal_volume></journal_volume>
+  <journal_issue></journal_issue>
+  
+  <article_type></article_type>
+  
+  <publication_date>1989-01-01T00:00:00</publication_date>
+  <publisher></publisher>
+  <country_publication>United States</country_publication>
+  <format>Pages: 130</format>
+  <language>English</language>
+  <availability>NTIS, PC A07/MF A01 - GPO - OSTI.</availability>
+  <research_orgs>
+      <research_org>Nuclear Regulatory Commission, Washington, DC (USA). Div. of Systems Research</research_org><research_org>Electric Power Research Inst., Palo Alto, CA (USA)</research_org><research_org>Pickard, Lowe and Garrick, Inc., Newport Beach, CA (USA)</research_org>
+  </research_orgs>
+  <sponsor_orgs>
+      
+  </sponsor_orgs>
+  <contributing_org></contributing_org>
+  <subjects>
+      <subject>22 GENERAL STUDIES OF NUCLEAR REACTORS</subject><subject>220200  -- Nuclear Reactor Technology-- Components &amp; Accessories</subject><subject>220900*  -- Nuclear Reactor Technology-- Reactor Safety</subject><subject>CLASSIFICATION</subject><subject>DATA</subject><subject>DATA COMPILATION</subject><subject>DECISION TREE ANALYSIS</subject><subject>FAILURE MODE ANALYSIS</subject><subject>FAILURES</subject><subject>INFORMATION</subject><subject>MATHEMATICAL MODELS</subject><subject>NUCLEAR FACILITIES</subject><subject>NUCLEAR POWER PLANTS</subject><subject>POWER PLANTS</subject><subject>REACTOR COMPONENTS</subject><subject>REACTOR SAFETY</subject><subject>RELIABILITY</subject><subject>RISK ASSESSMENT</subject><subject>SAFETY</subject><subject>STATISTICAL MODELS</subject><subject>SYSTEM FAILURE ANALYSIS</subject><subject>SYSTEMS ANALYSIS</subject><subject>THERMAL POWER PLANTS</subject>
+  </subjects>
+  <doe_contract_number>NONE; </doe_contract_number>
+    <report_number>NUREG/CR-4780-Vol.2; EPRI-NP-5613-Vol.2; PLG-0547-Vol.2</report_number>
+      <other_identifiers><identifier>ON: TI89006721</identifier></other_identifiers>
+  
+  <entry_date>2022-07-21T22:36:05</entry_date>
+  <links>
+      <link rel="citation" href="https://www.osti.gov/biblio/6564737" /><link rel="fulltext" href="https://www.osti.gov/servlets/purl/6564737" />
+  </links>
+</record>
+<record>
+  <osti_id>5578886</osti_id>
+  <title>Procedures for treating common cause failures in safety and reliability studies: Procedural framework and examples</title>
+  <description>This report presents a framework for the inclusion of the impact of common cause failures in risk and reliability evaluations. Common cause failures are defined as that cutset of dependent failures for which causes are not explicitly included in the logic model as basic events. The emphasis here is on providing procedures for a practical, systematic approach that can be used to perform and clearly document the analysis. The framework comprises four major stages: (1) System Logic Model Development; (2) Identification of Common Cause Component Groups; (3) Common Cause Modeling and Data Analysis; and (4) System Quantification and Interpretation of Results. The framework and the methods discussed for performing the different stages of the analysis integrate insights obtained from engineering assessments of the system and the historical evidence from multiple failure events into a systematic, reproducible, and defensible analysis. 22 figs., 34 tabs.</description>
+  <authors>
+      <author>Mosleh, A</author><author>Fleming, K N</author><author>Parry, G W</author><author>Paula, H M</author><author>Worledge, D H</author><author>Rasmuson, D M</author>
+  </authors>
+  <product_type>Technical Report</product_type>
+  
+  <journal_name></journal_name>
+  <journal_volume></journal_volume>
+  <journal_issue></journal_issue>
+  
+  <article_type></article_type>
+  
+  <publication_date>1988-01-01T00:00:00</publication_date>
+  <publisher></publisher>
+  <country_publication>United States</country_publication>
+  <format>Pages: 201</format>
+  <language>English</language>
+  <availability>NTIS, PC A10/MF A01 - GPO.</availability>
+  <research_orgs>
+      <research_org>Pickard, Lowe and Garrick, Inc., Newport Beach, CA (USA)</research_org>
+  </research_orgs>
+  <sponsor_orgs>
+      
+  </sponsor_orgs>
+  <contributing_org></contributing_org>
+  <subjects>
+      <subject>21 SPECIFIC NUCLEAR REACTORS AND ASSOCIATED PLANTS</subject><subject>210100  -- Power Reactors, Nonbreeding, Light-Water Moderated, Boiling Water Cooled</subject><subject>210200  -- Power Reactors, Nonbreeding, Light-Water Moderated, Nonboiling Water Cooled</subject><subject>22 GENERAL STUDIES OF NUCLEAR REACTORS</subject><subject>220900*  -- Nuclear Reactor Technology-- Reactor Safety</subject><subject>BWR TYPE REACTORS</subject><subject>FAILURE MODE ANALYSIS</subject><subject>FAILURES</subject><subject>PWR TYPE REACTORS</subject><subject>REACTOR SAFETY</subject><subject>REACTORS</subject><subject>RELIABILITY</subject><subject>RISK ASSESSMENT</subject><subject>SAFETY</subject><subject>SYSTEM FAILURE ANALYSIS</subject><subject>SYSTEMS ANALYSIS</subject><subject>WATER COOLED REACTORS</subject><subject>WATER MODERATED REACTORS</subject>
+  </subjects>
+  <doe_contract_number>NONE; </doe_contract_number>
+    <report_number>NUREG/CR-4780-Vol.1; EPRI-NP-5613-Vol.1</report_number>
+      <other_identifiers><identifier>ON: TI88900441</identifier></other_identifiers>
+  
+  <entry_date>1988-03-01T00:00:00</entry_date>
+  <links>
+      <link rel="citation" href="https://www.osti.gov/biblio/5578886" />
+  </links>
+</record>
+<record>
+  <osti_id>6573115</osti_id>
+  <title>Procedures for treating common cause failures in safety and reliability studies: Volume 2, Analytic background and techniques: Final report</title>
+  <description>This report presents a framework for the inclusion of the impact of common cause failures in risk and reliability evaluations. Common cause failures are defined as that subset of dependent failures for which causes are not explicitly included in the logic model as basic events. The emphasis here is on providing procedures for a practical, systematic approach that can be used to perform and clearly document the analysis. The framework and the methods discussed for performing the different stages of the analysis integrate insights obtained from engineering assessments of the system and the historical evidence from multiple failure events into a systematic, reproducible, and defensible analysis. This document, Volume 2, contains a series of appendices that provide additional background and methodological detail on several important topics discussed in Volume 1.</description>
+  <authors>
+      <author>Mosleh, A</author><author>Fleming, K N</author><author>Parry, G W</author><author>Paula, H M</author><author>Worledge, D H</author><author>Rasmuson, D M</author>
+  </authors>
+  <product_type>Technical Report</product_type>
+  
+  <journal_name></journal_name>
+  <journal_volume></journal_volume>
+  <journal_issue></journal_issue>
+  
+  <article_type></article_type>
+  
+  <publication_date>1988-12-01T00:00:00</publication_date>
+  <publisher></publisher>
+  <country_publication>United States</country_publication>
+  <format>Pages: 131</format>
+  <language>English</language>
+  <availability>Research Reports Center, Box 50490, Palo Alto, CA 94303.</availability>
+  <research_orgs>
+      <research_org>Electric Power Research Inst., Palo Alto, CA (USA)</research_org><research_org>Pickard, Lowe and Garrick, Inc., Newport Beach, CA (USA)</research_org>
+  </research_orgs>
+  <sponsor_orgs>
+      
+  </sponsor_orgs>
+  <contributing_org></contributing_org>
+  <subjects>
+      <subject>22 GENERAL STUDIES OF NUCLEAR REACTORS</subject><subject>220200*  -- Nuclear Reactor Technology-- Components &amp; Accessories</subject><subject>220900  -- Nuclear Reactor Technology-- Reactor Safety</subject><subject>DOCUMENT TYPES</subject><subject>FAILURES</subject><subject>MATHEMATICAL MODELS</subject><subject>NUCLEAR FACILITIES</subject><subject>NUCLEAR POWER PLANTS</subject><subject>POWER PLANTS</subject><subject>PROGRESS REPORT</subject><subject>REACTOR COMPONENTS</subject><subject>REACTOR SAFETY</subject><subject>RELIABILITY</subject><subject>RISK ASSESSMENT</subject><subject>SAFETY</subject><subject>SYSTEMS ANALYSIS</subject><subject>THERMAL POWER PLANTS</subject>
+  </subjects>
+  <doe_contract_number>NONE; </doe_contract_number>
+    <report_number>EPRI-NP-5613-Vol.2</report_number>
+      <other_identifiers><identifier>ON: TI89004725</identifier></other_identifiers>
+  
+  <entry_date>1989-04-01T00:00:00</entry_date>
+  <links>
+      <link rel="citation" href="https://www.osti.gov/biblio/6573115" />
+  </links>
+</record>
+<record>
+  <osti_id>5528675</osti_id>
+  <title>Procedures for treating common cause failures in safety and reliability studies: Volume 1, Procedural framework and examples: Final report</title>
+  <description>This report presents a framework for the inclusion of the impact of common cause failures in risk and reliability evaluations. Common cause failures are defined as that cutset of dependent failures for which causes are not explicitly included in the logic model as basic events. The emphasis here is on providing procedures for a practical, systematic approach that can be used to perform and clearly document the analysis. The framework comprises four major stages: (1) system logic model development; (2) identification of common cause component groups; (3) common cause modeling and data analysis; (4) system quantification and interpretation of results. The framework and the methods discussed for performing the different stages of the analysis integrate insights obtained from engineering assessments of the system and the historical evidence from multiple failure events into a systematic, reproducible, and defensible analysis. 22 figs., 34 tabs.</description>
+  <authors>
+      <author>Mosleh, A</author><author>Fleming, K N</author><author>Parry, G W</author><author>Paula, H M</author><author>Worledge, D H</author><author>Rasmuson, D M</author>
+  </authors>
+  <product_type>Technical Report</product_type>
+  
+  <journal_name></journal_name>
+  <journal_volume></journal_volume>
+  <journal_issue></journal_issue>
+  
+  <article_type></article_type>
+  
+  <publication_date>1988-02-01T00:00:00</publication_date>
+  <publisher></publisher>
+  <country_publication>United States</country_publication>
+  <format>Pages: 205</format>
+  <language>English</language>
+  <availability>Research Reports Center, Box 50490, Palo Alto, CA 94303.</availability>
+  <research_orgs>
+      <research_org>Pickard, Lowe and Garrick, Inc., Newport Beach, CA (USA)</research_org>
+  </research_orgs>
+  <sponsor_orgs>
+      
+  </sponsor_orgs>
+  <contributing_org></contributing_org>
+  <subjects>
+      <subject>22 GENERAL STUDIES OF NUCLEAR REACTORS</subject><subject>220200  -- Nuclear Reactor Technology-- Components &amp; Accessories</subject><subject>220900*  -- Nuclear Reactor Technology-- Reactor Safety</subject><subject>FAILURE MODE ANALYSIS</subject><subject>FAILURES</subject><subject>MATHEMATICAL MODELS</subject><subject>NUCLEAR FACILITIES</subject><subject>NUCLEAR POWER PLANTS</subject><subject>POWER PLANTS</subject><subject>PROBABILISTIC ESTIMATION</subject><subject>REACTOR COMPONENTS</subject><subject>RELIABILITY</subject><subject>RISK ASSESSMENT</subject><subject>SAFETY</subject><subject>SYSTEM FAILURE ANALYSIS</subject><subject>SYSTEMS ANALYSIS</subject><subject>THERMAL POWER PLANTS</subject>
+  </subjects>
+  <doe_contract_number>NONE; </doe_contract_number>
+    <report_number>EPRI-NP-5613-Vol.1; NUREG/CR-4780</report_number>
+      <other_identifiers><identifier>ON: TI88920199</identifier></other_identifiers>
+  
+  <entry_date>1988-03-01T00:00:00</entry_date>
+  <links>
+      <link rel="citation" href="https://www.osti.gov/biblio/5528675" />
+  </links>
+</record>
+</records>

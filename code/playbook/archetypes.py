@@ -24,7 +24,7 @@ Part I state of each archetype (sections/model.tex), with the conventions of Pap
   k      = capital intensity: capex and capitalized software over revenue, divided by growth (anchor convention
            k = kg/g for g > 0, k = 0 otherwise);
   alpha (X_hat - k) = r_sigma, Paper 1's median ratio of growth spend to excess growth on the same basis (netted:
-           spend_maint_ratio, 0.99; all S&M: SPEND_RATIO 3.3; class c; Section sec:empirics), common to all firms as in
+           spend_maint_ratio, 0.94 since 3 Nov 2026; all S&M: SPEND_RATIO 3.3; class c; Section sec:empirics), common to all firms as in
            Assumption ass:hetero (one weight X across firms);
   Delta  = sigma / r_sigma (Proposition prop:score(b): sigma* = alpha (X - k) Delta*), firm-specific zero-spend
            growth G_i = g - Delta (Remark rem:assumptions(b)), opportunity ell = Delta / sigma^alpha (eq. growth);
@@ -50,8 +50,8 @@ SPEND_RATIO = 3.3          # Paper 1, Section sec:empirics: median prior-year S&
 PERIOD = "2023-25"
 # Maintenance-netted basis, central (author decision of 2 Nov 2026): Paper 1's maintenance base and netted spend ratio
 _E3 = json.load(open(os.path.join(ROOT, "notes", "empirics_v3.json")))["estimates"]
-MAINT_BASE = float(_E3["spend_maint_base"]["E1"]["est"])            # 0.2506 (Paper 1 macro MaintBase 25.1)
-SPEND_RATIO_NET = float(_E3["spend_maint_ratio"]["E1"]["est"])      # 0.9875: median (S&M - b_M)/(g - G), E1
+MAINT_BASE = float(_E3["spend_maint_base"]["E1"]["est"])            # Paper 1 macro MaintBase (25.7 since the re-estimation of 3 Nov 2026)
+SPEND_RATIO_NET = float(_E3["spend_maint_ratio"]["E1"]["est"])      # median (S&M - b_M)/(g - G), E1; Paper 1 macro AlphaNet (0.94 since 3 Nov 2026)
 BASIS = "netted"
 BASES = ("netted", "all", "none")
 

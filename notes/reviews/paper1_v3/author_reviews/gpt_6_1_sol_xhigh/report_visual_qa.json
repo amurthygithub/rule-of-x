@@ -1,0 +1,38 @@
+{
+  "pages": 20,
+  "rendered_all_pages_as_contact_sheets": true,
+  "contact_sheets_inspected": 2,
+  "detail_pages_inspected": [
+    1,
+    9,
+    20
+  ],
+  "mechanical_margin_issues": [],
+  "limitation": "Visual review covers rendered report layout; not proof of factual correctness.",
+  "final_pages": 21,
+  "final_addendum_rendered_inspected": true,
+  "final_margin_issues": [],
+  "frozen_prefix_preserved": true,
+  "frozen_hash_checks": [
+    {
+      "file": "source_pdfs/paper1_nov_2.pdf",
+      "hash_ok": true
+    },
+    {
+      "file": "source_pdfs/supplement_nov2.pdf",
+      "hash_ok": true
+    },
+    {
+      "file": "first_assessment/referee_report.txt",
+      "hash_ok": true
+    },
+    {
+      "file": "first_assessment/referee_report.html",
+      "hash_ok": true
+    },
+    {
+      "file": "first_assessment/referee_report.pdf",
+      "hash_ok": true
+    }
+  ]
+}
