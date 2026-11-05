@@ -11,8 +11,13 @@ You are {MODEL}. On 2 and 3 November 2026 you reviewed the third version of this
    - the items we most want you to check;
    - a key from the old section numbers to the new ones.
 3. The repository at commit `{COMMIT}`, which holds the code, data, LaTeX sources, stored outputs and the review archive.
-   - It is branch `review-round-3` of `https://github.com/amurthygithub/rule-of-x`.
-   - If you cannot clone it, use `repository.zip`, an archive of exactly that commit.
+   - It is branch `review-round-3` of `https://github.com/amurthygithub/rule-of-x` (a private repository). Do not review `main`: it still holds the 2 November version you reviewed. If you have access, check out the exact commit:
+     ```
+     git clone --branch review-round-3 https://github.com/amurthygithub/rule-of-x.git
+     cd rule-of-x && git checkout {COMMIT}
+     ```
+     If you already have a clone, run `git fetch origin && git checkout {COMMIT}`, and confirm with `git rev-parse HEAD`.
+   - If you cannot clone it, use `repository.zip`, an archive of exactly that commit; it unpacks to a folder named `rule-of-x-` followed by the first seven characters of the commit.
    - Your first review is archived in it under `notes/reviews/paper1_v3/author_reviews/{FOLDER}/`, with our issue log and verification scripts.
 
 ## Rules
