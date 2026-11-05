@@ -272,8 +272,8 @@ time for the first two." (Table S16 is tab:amin-pcc.) New macros `StAminFloorMin
 100,032). Wording note: the log's "within the 0.5 to 4.6% band" would be wrong at the lower end (0.26 < 0.5), so the
 sentence says "below 4.6%, the top of the band", asserted in code.
 
-**NB4.** `sections/model.tex` §3.5: "of Proposition 3, which in the worked example" → "of Proposition 3 (under its
-hypothesis (H), stated in Section 3.6), which ...".
+**NB4.** `sections/model.tex` §3.5: "of Proposition 2, which in the worked example" → "of Proposition 2 (under its
+hypothesis (H), stated in Section 3.6), which ..." (Proposition 2 is prop:dynamic; this record said 3 until 5 November).
 
 **NB5.** `sections/model.tex` §3.5: "although near saturation the retention gain of (iii) is still about 56% of its
 small-share value" → "although the retention gain of (iii) never falls below about 56% of its small-share value, and is
@@ -393,3 +393,18 @@ tools/check_sync.py`: `TRACEABILITY.md` unchanged (the docstring keeps its line 
 `python3 code/verify_theory.py > notes/verify_theory_output.txt`: 203/203, output identical to the committed record;
 `cd engine && python3 -m pytest -q`: 192 passed; `bash code/build_paper1.sh`: 88 + 73 pages, no overfull box, undefined
 reference or multiply defined label in either log.
+
+### Plain-language abstract (author's decision, 5 November 2026, 13:00)
+
+The author found the abstract hard to follow and chose a version written in the manner of Simplified Technical English
+(ASD-STE100): short sentences (at most 20 words, about 11 on average), one idea each, one word for one thing, conditions
+in their own sentences, and the cost of computing in cents per dollar of revenue so that it cannot be confused with the
+market's growth rate. `sections/abstract.tex` (previous version kept in the session scratchpad); 1,890 characters of
+plain text (`paper1/abstract_plain.txt`). New macros `TopFallOpRound` (12) and `TopFallCashRound` (13), and a CLAIMS check
+that "12 to 13 points" is GAAP then cash and that "significant on operating margins under most tests" has at least three
+of four familywise procedures at 10%. Kept: the unproved assumption behind the decision weight, central costs and fixed
+prices, the cost of computing with its range, pass-through, a scenario that is not a forecast, the lasting and netted 2036
+scores, the sampling-only interval, free entry into a market for the same product with the normal return, the sample's
+classification. Left to the text: the "fifth of a point" trade-off at the top, the 70% pass-through case, the ranges across
+samples, the acquisitions sentence and the cap set by AI's full costs. Table 8's row "After the re-reviews" records the
+decision. Gates: paper1_macros (1,766 macros, all CLAIMS), verify_theory 203/203 (output unchanged), build 89 + 73 pages.
