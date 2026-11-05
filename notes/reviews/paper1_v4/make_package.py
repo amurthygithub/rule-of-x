@@ -18,7 +18,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(HERE)))
 OUT = os.path.join(ROOT, 'dist', 'rereview')
 REV = {'deepseek': ('DeepSeek V4 Pro (high effort)', 'deepseek_v4_pro_high'),
-       'gpt': ('GPT-6.2 Sol (extra-high effort)', 'gpt_6_2_sol_xhigh'),
+       'gpt': ('GPT-6.1 Sol (extra-high effort)', 'gpt_6_1_sol_xhigh'),
        'glm': ('GLM 5.3 (high effort)', 'glm_5_3_high'),
        'mistral': ('Mistral Large 4 (high effort)', 'mistral_large_4_high')}
 

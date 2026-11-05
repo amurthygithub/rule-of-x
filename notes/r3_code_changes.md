@@ -1,7 +1,7 @@
 # Round 3 code, data and generated-output changes (coding agent, 2-3 Nov 2026)
 
 Scope: the code side of the round-3 plan approved by the author at 23:23 on 2 Nov 2026 (outside reviews of v3:
-`notes/reviews/paper1_v3/author_reviews/{deepseek_v4_pro_high,gpt_6_2_sol_xhigh,glm_5_3_high}/issue_log.md`). The macro
+`notes/reviews/paper1_v3/author_reviews/{deepseek_v4_pro_high,gpt_6_1_sol_xhigh,glm_5_3_high}/issue_log.md`). The macro
 names and values for the editor are in `notes/r3_macro_contract.md`. Nothing was committed; prose files were not edited.
 
 ## Changed printed numbers (old -> new)

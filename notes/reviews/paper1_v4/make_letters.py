@@ -142,7 +142,7 @@ Six of your findings we classify as not valid; each is explained in the table. P
                  'X-1, X-2: the two defects found during verification',
                  'The new S4 (machine-checked proofs) against the theorems you checked by hand, and S12']),
     'gpt': dict(
-        name='GPT-6.2 Sol (extra-high effort)', sec='GPT-6.2 Sol', folder='gpt_6_2_sol_xhigh',
+        name='GPT-6.1 Sol (extra-high effort)', sec='GPT-6.1 Sol', folder='gpt_6_1_sol_xhigh',
         verdict='Major revision: "a promising analytical synthesis ... rather than an identified estimate of the economic limits of AI", with six majors (M1 to M6) and narrow proof, wording, citation and transport items.',
         intro="""Your six major findings shaped this revision more than any other review's. We verified each of your 43 findings. All six majors led to changes:
 

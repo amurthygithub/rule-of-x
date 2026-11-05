@@ -365,10 +365,15 @@ These replace the two corresponding lines of "Not done, and why" above. The dash
 
 ### Model label of the GPT re-review
 
-The author stated on 5 November that the GPT re-review ran on GPT-6.1 Sol (the first review was GPT-6.2 Sol; the package
-names no version, and the re-review prompt had called it GPT-6.2 Sol). A.2, the decision row, S8.4, the agents table,
-`notes/agent_log.md`, `engine/CHANGELOG.md` and the issue log now say GPT-6.1 Sol, and the archive folder is renamed
-`author_reviews/gpt_6_1_sol_xhigh_rereview/`. The letters and records of the first round keep GPT-6.2 Sol.
+The author stated on 5 November (10:21 and 10:42 UTC−8) that both GPT reviews, of the third version and of the
+4 November build, ran on GPT-6.1 Sol; the records had called the model GPT-6.2 Sol, and neither package names a version.
+Every record now says GPT-6.1 Sol: in the paper A.2, the decision table, S8.4, the agents table, the table of outside
+findings by classification and the table of errors caught by safeguard; in the notes the issue logs of both rounds, `paper1_v3/response_to_outside_reviews.md`,
+`paper1_v2/response_to_reviewers_r2.md`, `r3_text_changes.md`, `r3_code_changes.md`, `notes/agent_log.md`,
+`engine/CHANGELOG.md`, `paper1_v4/README.md` and the generators `make_letters.py` and `make_package.py`. The archive folders
+are renamed `paper1_v3/author_reviews/gpt_6_1_sol_xhigh/` (from `gpt_6_2_sol_xhigh`) and
+`paper1_v4/author_reviews/gpt_6_1_sol_xhigh_rereview/`. Left as sent: the letter `response_gpt.md`, the prompt and the
+packages in `dist/rereview/`, whose hashes the reviewers recorded, and the reviewers' own files.
 
 ### DeepSeek V4 Pro re-review (received 10:27 UTC−8)
 

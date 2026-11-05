@@ -1,6 +1,7 @@
-# Issue log: GPT-6.2 Sol (extra-high effort) referee review of Paper 1 v3
+# Issue log: GPT-6.1 Sol (extra-high effort) referee review of Paper 1 v3
 
-- **Reviewer:** OpenAI GPT-6.2 Sol, extra-high effort, run outside the project workflow by the author. A coordinator plus five specialist contexts (A theory/control, B econometrics, C finance/tax/acquisitions, D reliability/controls, E sources/transport) and an adversarial audit F, all on one model family. Second of several commissioned reviews.
+- **Reviewer:** OpenAI GPT-6.1 Sol, extra-high effort, run outside the project workflow by the author. A coordinator plus five specialist contexts (A theory/control, B econometrics, C finance/tax/acquisitions, D reliability/controls, E sources/transport) and an adversarial audit F, all on one model family. Second of several commissioned reviews.
+- **Model label:** recorded as GPT-6.2 Sol until 5 November 2026, when the author stated that every GPT review of this paper ran on GPT-6.1 Sol; the records, and this folder's name (formerly `gpt_6_2_sol_xhigh`), were corrected then.
 - **Review date (as stated):** 2 November 2026, America/Los_Angeles (coordinator freeze 20:58:59 PT; post-freeze protocol addendum after that). **Verified:** 2 November 2026.
 - **Build reviewed:** the PDFs of the 16:49 build of 2 November 2026: `paper1_nov_2.pdf` (82 pp., SHA-256 bd87f45f...c6f9cf) and `supplement_nov2.pdf` (57 pp., SHA-256 acf9d62b...02c2). Same text as the current sources apart from the licence and repository-URL footnote. Printed page numbers equal PDF page numbers.
 - **Reviewer's verdict:** MAJOR REVISION ("a promising analytical synthesis ... rather than an identified estimate of the economic limits of AI"). Six majors (M1 to M6), plus narrow proof, wording, citation and transport items.
