@@ -208,10 +208,68 @@ num('PsiAddMax', max(C[c_]['tau'] for c_ in C) * 1.5 * 0.30, 1)    # tau k G at 
 num('PsiFifteen', ps['psi']['foreign_15y'], 2, pct=False); num('PsiFive', ps['psi']['prior_5y'], 2, pct=False)
 cen = C['central']
 num('ReplCen', (1 - cen['tau']) * 0.25 * 0.5, 2)       # (1 - tau) delta_K k at delta_K = 0.25, k = 0.5, points
-num('OwnMarkupFive', 3.3 * 0.05)                        # Remark rem:owncompute at psi = 1: s_srv L_srv G = 0.6 x 5.5 x G
-num('OwnMarkupFifteen', 3.3 * 0.15)
-num('OwnMarkupFiveNone', (cen['tau'] * 0.6 + 3.3 * 0.05) / (1 - cen['tau']))      # psi = 0 sensitivity
-num('OwnMarkupFifteenNone', (cen['tau'] * 0.6 + 3.3 * 0.15) / (1 - cen['tau']))
+# Remark rem:owncompute on a stated cash basis (outside re-review GPT F03; author's decision, 5 November 2026). The
+# capacity's cost TCO is its cash cost: running cost (opex) plus straight-line replacement of the assets. Owning assets
+# with upfront cost K and replacement cash R a year needs capital kappa = K / TCO per dollar of TCO and replaces the share
+# s = R / TCO; owning pays on the cash ceiling at psi = 1 iff the vendor's markup over TCO exceeds kappa G, and at psi = 0
+# iff it exceeds (tau s + kappa G) / (1 - tau). Primary case: the firm owns only the servers (kappa = s_srv L_srv); also
+# reported: the firm owns the whole data center. Source data (USD millions, one-gigawatt AI data center): Epoch AI,
+# Michael and Cottier (2026), the two CSV tables behind https://epoch.ai/data-insights/ai-datacenter-cost-breakdown
+# (one_gw_dc_upfront_capex.csv, one_gw_dc_capex_opex.csv), fetched 5 November 2026. The page states lives of 5 years for
+# IT equipment and 14 years for the facility. Land and utility works are in the same tables; land is never replaced, and
+# utility works are put on the facility's life (their annualized-to-upfront ratio equals the facility's, as the network's
+# equals the servers', both checked below). The annualized capex column charges a return on capital (servers: 5,021 a
+# year on 21,188, a five-year annuity at about 6%, not the 1/5 of straight-line replacement), so the source's "60%" is
+# not a share of replacement cash; it is used here only to document that.
+EPOCH_DC = {
+    'upfront': {'servers': 21188, 'facility': 11433, 'network': 4925, 'land': 172, 'utility_works': 164},
+    'annualized_capex': {'servers': 5021, 'facility': 1387, 'network': 1167, 'utility_works': 20, 'land': 13},
+    'opex': 907, 'energy': 594, 'life_it': 5.0, 'life_facility': 14.0, 'life_it_meta': 5.5,
+    'source': 'Epoch AI (Michael and Cottier 2026), CSVs behind https://epoch.ai/data-insights/ai-datacenter-cost-breakdown',
+    'fetched': '2026-11-05',
+}
+
+
+def own_compute_factors(D, life_it):
+    """kappa (capital per dollar of cash TCO) and s (replacement share of cash TCO): servers only and whole data center."""
+    U = D['upfront']
+    life = {'servers': life_it, 'network': life_it, 'facility': D['life_facility'], 'utility_works': D['life_facility']}
+    repl = {a: U[a] / L_ for a, L_ in life.items()}                          # land: not replaced
+    tco = D['opex'] + sum(repl.values())
+    return dict(tco=tco, k_srv=U['servers'] / tco, s_srv=repl['servers'] / tco,
+                k_all=sum(U.values()) / tco, s_all=sum(repl.values()) / tco)
+
+
+_A, _U = EPOCH_DC['annualized_capex'], EPOCH_DC['upfront']
+assert abs(_A['network'] / _U['network'] - _A['servers'] / _U['servers']) < 0.005, 'network not on the IT life'
+assert abs(_A['utility_works'] / _U['utility_works'] - _A['facility'] / _U['facility']) < 0.005, 'utility works not on the facility life'
+_crf = _A['servers'] / _U['servers']
+_lo_r, _hi_r = 1e-6, 0.5                                   # rate at which a 5-year annuity equals the servers' annual charge
+for _ in range(200):
+    _mid = 0.5 * (_lo_r + _hi_r)
+    if _mid / (1 - (1 + _mid) ** -EPOCH_DC['life_it']) < _crf:
+        _lo_r = _mid
+    else:
+        _hi_r = _mid
+OWN = own_compute_factors(EPOCH_DC, EPOCH_DC['life_it'])
+OWNM = own_compute_factors(EPOCH_DC, EPOCH_DC['life_it_meta'])
+_tau0 = cen['tau']
+_bar = lambda f, G_, psi0=False, kk='srv': ((_tau0 * f['s_' + kk] + f['k_' + kk] * G_) / (1 - _tau0) if psi0 else f['k_' + kk] * G_)
+assert OWN['k_all'] > OWN['k_srv'] and OWNM['k_srv'] > OWN['k_srv'], 'owning more, or longer lives, must raise the bar'
+num('OwnKapSrv', OWN['k_srv'], 1, pct=False); num('OwnKapAll', OWN['k_all'], 1, pct=False)
+num('OwnSrvShare', OWN['s_srv'])                         # server replacement, % of the cash cost of the capacity
+num('OwnTcoCash', OWN['tco'] / 1000, 1, pct=False)       # cash cost, billion dollars a year
+num('OwnEpochKSrv', _U['servers'] / 1000, 1, pct=False); num('OwnEpochKFac', _U['facility'] / 1000, 1, pct=False)
+num('OwnEpochKNet', _U['network'] / 1000, 1, pct=False); num('OwnEpochOpex', EPOCH_DC['opex'] / 1000, 1, pct=False)
+num('OwnEpochCrf', _crf, 1); num('OwnEpochRate', 0.5 * (_lo_r + _hi_r)); num('OwnEpochSl', 1 / EPOCH_DC['life_it'])
+_ann_total = sum(_A.values()) + EPOCH_DC['opex']
+num('OwnEpochAnnTotal', _ann_total / 1000, 1, pct=False)
+num('OwnEpochMarkup', _ann_total / OWN['tco'] - 1)       # markup over cash cost of a price equal to the annualized cost
+num('OwnMarkupFive', _bar(OWN, 0.05)); num('OwnMarkupFifteen', _bar(OWN, 0.15))                       # servers only, psi = 1
+num('OwnMarkupFiveAll', _bar(OWN, 0.05, kk='all')); num('OwnMarkupFifteenAll', _bar(OWN, 0.15, kk='all'))   # whole data center
+num('OwnMarkupFiveNone', _bar(OWN, 0.05, True)); num('OwnMarkupFifteenNone', _bar(OWN, 0.15, True))     # servers, psi = 0
+num('OwnMarkupFiveMeta', _bar(OWNM, 0.05)); num('OwnMarkupFifteenMeta', _bar(OWNM, 0.15))             # 5.5-year IT life
+num('OwnMarkupFiveAllMeta', _bar(OWNM, 0.05, kk='all')); num('OwnMarkupFifteenAllMeta', _bar(OWNM, 0.15, kk='all'))
 for tag, key in cases:                                    # input columns of Table tab:ceiling
     c = C[key]
     num('CeilCc' + tag, c['c_c'], 2, pct=False); num('CeilF' + tag, c['f'], 3, pct=False)

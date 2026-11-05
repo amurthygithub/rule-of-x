@@ -1,9 +1,14 @@
 # Open questions: new analyses for the business dashboard (3 November 2026)
 
-Answers to questions Paper 1 does not address, built for the dashboard "Rule of 40 and AI: business guide" at the
-author's request ("let us try to answer all the types and sub types of questions"; 18:13). They are not part of
-Paper 1; whether to add them is to be decided after review ("lets build the dashboard, lets see if we should include it
-in the paper").
+Answers to questions Paper 1 did not address, built for the dashboard "Rule of 40 and AI: business guide" at the
+author's request ("let us try to answer all the types and sub types of questions"; 18:13). Whether to add them to the
+paper was left to be decided after review ("lets build the dashboard, lets see if we should include it in the paper");
+on 4 November 2026 the author added three of them to Paper 1's Supplementary Appendix, Section S12
+(`sections/supp_extensions.tex`, formatted and checked by `code/supp_extensions.py`): S12.1 is `valuation.json`
+(`code/biz_valuation.py`), S12.2 the do-nothing paths of `paths.json` (`code/biz_open_questions.py`) and S12.3 the
+payback grid of the million-draw stress test. The valuation interval was revised on 5 November 2026 (outside
+re-review, GPT F08): percentiles over the bootstrap samples with a positive margin coefficient, with the share of the
+others reported beside them.
 
 | Question | File | Method |
 |---|---|---|

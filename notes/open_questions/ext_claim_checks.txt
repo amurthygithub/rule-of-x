@@ -1,3 +1,5 @@
+ok   valuation: in both all-firm-year samples at most one bootstrap sample in twenty has beta_m <= 0, so both upper ends are given
+ok   valuation: every interval contains its point estimate
 ok   valuation: in the score-of-40 cash subsample neither coefficient is significant at 5%
 ok   valuation: the registrants that report no float are mostly foreign private issuers (Form 20-F or 40-F firm-years over half)
 ok   valuation: equal weights rejected at 0.1% in every sample but the score-of-40 one, on both bases
@@ -8,6 +10,7 @@ ok   valuation: the weight on the cash basis is between 3.5 and 5.5 in each peri
 ok   valuation: the score alone explains about half the within-year variation that growth and margin explain (0.4 to 0.6)
 ok   valuation: among firm-years scoring 40 or more the score explains under 1% of the within-year variation (both bases)
 ok   valuation: the margin coefficient is positive in every sample except the cash score-of-40 sample
+ok   nothing: at seven tenths with fast rivals the price falls at every horizon (2028, 2031, 2036), so the omitted growth term is a loss common to both firms
 ok   nothing: with the in-flight dip held at its fixed-price value the gap still widens in every row and column (positive shares)
 ok   nothing: at fixed prices the firm that does not automate keeps its 2025 score in every year, whatever rivals do
 ok   nothing: at fixed prices the gap is the same at every rivals' pace

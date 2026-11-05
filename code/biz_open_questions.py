@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-"""New analyses for the business dashboard's open questions (3 November 2026). Not part of Paper 1.
+"""Supplement Section S12.2 (supp:ext-nothing) of Paper 1, added on 4 November 2026 after the third review round;
+first written for the business dashboard's open questions (3 November 2026).
 
 Two score paths computed with Paper 1's own calibration, executed unchanged in a shadow tree (as code/mc_claims.py does;
 nothing in the repository is overwritten):

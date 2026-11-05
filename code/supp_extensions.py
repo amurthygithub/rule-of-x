@@ -73,6 +73,20 @@ put('ExMultMed', fnum(V['median_multiple'], 1))
 for b, _ in BASIS:
     for s, _ in SAMPLES:
         assert V[b].get(s), (b, s)
+# Interval convention (revision of 5 November 2026, outside re-review GPT F08): weight_ci90 is the 5th to 95th percentile of
+# beta_g / beta_m over the bootstrap samples with beta_m > 0, and weight_share_bm_nonpositive the share of samples with
+# beta_m <= 0; the table gives no upper end where that share exceeds one in twenty. A missing or non-finite end is an
+# error here (it was printed as infinity before), never a table entry.
+MAX_BAD = 0.05
+for b, _ in BASIS:
+    for s, _ in SAMPLES:
+        r = V[b][s]
+        if r['weight'] is None:
+            assert 'weight_ci90' not in r, (b, s)
+            continue
+        ci, bad = r.get('weight_ci90'), r.get('weight_share_bm_nonpositive')
+        if ci is None or bad is None or not all(isinstance(x, (int, float)) and math.isfinite(x) for x in list(ci) + [bad]):
+            sys.exit(f'supp_extensions: valuation interval for {b}/{s} is missing or not finite ({ci}, {bad}); rerun code/biz_valuation.py')
 c, g = V['cash']['all'], V['gaap']['all']
 put('ExNCash', fint(c['n'])); put('ExNGaap', fint(g['n'])); put('ExFirmsCash', str(c['firms']))
 put('ExWCash', fnum(c['weight'], 1)); put('ExWCashLo', fnum(c['weight_ci90'][0], 1)); put('ExWCashHi', fnum(c['weight_ci90'][1], 1))
@@ -85,6 +99,12 @@ put('ExRFullGaap', fnum(100 * g['r2_within_full'], 0)); put('ExRScoreGaap', fnum
 t = V['cash']['top40']
 put('ExTopN', fint(t['n'])); put('ExTopRScore', fnum(100 * t['r2_within_score'], 1)); put('ExTopRFull', fnum(100 * t['r2_within_full'], 1))
 put('ExTopPCash', fnum(t['equal_weights_p'], 2)); put('ExTopPGaap', fnum(V['gaap']['top40']['equal_weights_p'], 2))
+put('ExWCashBad', fnum(100 * c['weight_share_bm_nonpositive'], 1)); put('ExWGaapBad', fnum(100 * g['weight_share_bm_nonpositive'], 1))
+claim('valuation: in both all-firm-year samples at most one bootstrap sample in twenty has beta_m <= 0, so both upper ends are given',
+      c['weight_share_bm_nonpositive'] <= MAX_BAD and g['weight_share_bm_nonpositive'] <= MAX_BAD)
+claim('valuation: every interval contains its point estimate',
+      all(V[b][s]['weight_ci90'][0] <= V[b][s]['weight'] <= V[b][s]['weight_ci90'][1]
+          for b, _ in BASIS for s, _ in SAMPLES if V[b][s]['weight'] is not None))
 claim('valuation: in the score-of-40 cash subsample neither coefficient is significant at 5%',
       abs(t['beta_g'] / t['beta_g_se']) < 1.96 and abs(t['beta_m'] / t['beta_m_se']) < 1.96)
 put('ExBoot', '999')
@@ -115,23 +135,24 @@ claim('valuation: the margin coefficient is positive in every sample except the 
 
 rows = []
 for b, bl in BASIS:
-    rows.append(r'\multicolumn{9}{@{}l}{\emph{' + bl + r'}}\\')
+    rows.append(r'\multicolumn{10}{@{}l}{\emph{' + bl + r'}}\\')
     for s, sl in SAMPLES:
         r = V[b][s]
         w = '' if r['weight'] is None else fnum(r['weight'], 1)
-        ci = r.get('weight_ci90')
-        civ = '' if not ci else (fnum(ci[0], 1) + ' to ' + (fnum(ci[1], 1) if np.isfinite(ci[1]) else r'$\infty$'))
+        ci, bad = r.get('weight_ci90'), r.get('weight_share_bm_nonpositive')
+        civ = '' if not ci else (fnum(ci[0], 1) + ' to ' + fnum(ci[1], 1) if bad <= MAX_BAD else 'from ' + fnum(ci[0], 1))
+        bs = '' if bad is None else fnum(100 * bad, 1)
         p = r['equal_weights_p']
         ps = '$<$0.001' if p < 0.001 else fnum(p, 2)
         rows.append(f"\\quad {sl} & {fint(r['n'])} & {r['firms']} & {fnum(r['beta_g'], 2)} & {fnum(r['beta_m'], 2)} & {w or '--'} & "
-                    f"{civ or '--'} & {ps} & {fnum(100 * r['r2_within_full'], 1)} / {fnum(100 * r['r2_within_score'], 1)}\\\\")
+                    f"{civ or '--'} & {bs or '--'} & {ps} & {fnum(100 * r['r2_within_full'], 1)} / {fnum(100 * r['r2_within_score'], 1)}\\\\")
 tab = (r"""\begin{table}[!ht]\centering\footnotesize\setlength{\tabcolsep}{3.5pt}
 \caption{Public float over revenue against growth and margin, with year effects: the weight the market's valuations put on growth}\label{tab:ext-valuation}
-\begin{tabular}{@{}lrrrrrrrr@{}}\toprule
-Sample & Firm-years & Firms & $\beta_g$ & $\beta_m$ & Weight & 90\% interval & $p$, equal & Within $R^2$ (\%)\\\midrule
+\begin{tabular}{@{}lrrrrrrrrr@{}}\toprule
+Sample & Firm-years & Firms & $\beta_g$ & $\beta_m$ & Weight & 90\% interval & $\beta_m\le0$ (\%) & $p$, equal & Within $R^2$ (\%)\\\midrule
 """ + '\n'.join(rows) + r"""
 \bottomrule\end{tabular}
-\par\vspace{2pt}\footnotesize\raggedright Notes: OLS of $\log(\text{public float}/\text{revenue})$ on revenue growth and the margin, both as fractions and winsorized at the 1st and 99th percentiles, with fiscal-year effects; standard errors clustered by firm. Weight: $\beta_g/\beta_m$, the points of margin that one point of growth is worth in the multiple, shown where $\beta_m>0$; interval: 5th to 95th percentile over """ + M['ExBoot'] + r""" firm-cluster bootstrap samples ($\infty$ where more than one in twenty bootstrap samples give $\beta_m\le0$). $p$, equal: test of $\beta_g=\beta_m$, the Rule of 40's equal weights. Within $R^2$: share of the variation within fiscal years explained by growth and the margin entered separately / by their sum, the score, alone. Public float is the market value of common equity held by non-affiliates at the end of the second fiscal quarter after the fiscal year (10-K cover page); the core sample of Section~\ref{sec:data}, under estimand E1. Code: \texttt{code/biz\_valuation.py}.
+\par\vspace{2pt}\footnotesize\raggedright Notes: OLS of $\log(\text{public float}/\text{revenue})$ on revenue growth and the margin, both as fractions and winsorized at the 1st and 99th percentiles, with fiscal-year effects; standard errors clustered by firm. Weight: $\beta_g/\beta_m$, the points of margin that one point of growth is worth in the multiple, shown where $\beta_m>0$; interval: 5th to 95th percentile of the ratio over those of the """ + M['ExBoot'] + r""" firm-cluster bootstrap samples that give $\beta_m>0$; $\beta_m\le0$: share of the bootstrap samples that do not, in which the ratio is not a weight; where that share exceeds one in twenty no upper end is given (``from'' the lower end). $p$, equal: test of $\beta_g=\beta_m$, the Rule of 40's equal weights. Within $R^2$: share of the variation within fiscal years explained by growth and the margin entered separately / by their sum, the score, alone. Public float is the market value of common equity held by non-affiliates at the end of the second fiscal quarter after the fiscal year (10-K cover page); the core sample of Section~\ref{sec:data}, under estimand E1. Code: \texttt{code/biz\_valuation.py}.
 \end{table}
 """)
 open(os.path.join(BASE, 'sections', 'tables', 'tab_ext_valuation.tex'), 'w').write(tab)
@@ -143,6 +164,12 @@ put('ExNoneFixed', fnum(100 * dn['0.0|central']['2036']['R'], 1))
 put('ExNoneHalfCen', fnum(100 * dn['0.5|central']['2036']['R'], 1)); put('ExNoneHalfFast', fnum(100 * dn['0.5|fast']['2036']['R'], 1))
 put('ExNoneSevenFast', fnum(100 * dn['0.7|fast']['2036']['R'], 1)); put('ExNoneSevenCen', fnum(100 * dn['0.7|central']['2036']['R'], 1))
 put('ExPriceSevenFast', fnum(100 * (1 - dn['0.7|fast']['2036']['price']), 0))
+# revenue growth lost while the price falls (outside re-review GPT F04): d log S = d log p + d log Q; the paths, like the
+# paper's pass-through path, use the market's growth at a fixed price, so both firms omit the same average term
+_p36 = dn['0.7|fast']['2036']['price']
+put('ExPriceFallYr', fnum(100 * (1 - _p36 ** (1 / 11)), 0))
+claim('nothing: at seven tenths with fast rivals the price falls at every horizon (2028, 2031, 2036), so the omitted growth term is a loss common to both firms',
+      1 > dn['0.7|fast']['2028']['price'] > dn['0.7|fast']['2031']['price'] > _p36)
 ad = P['adopter']
 put('ExAdoptFixed', fnum(100 * ad['0.0']['2036']['R_net'], 1)); put('ExAdoptHalf', fnum(100 * ad['0.5']['2036']['R_net'], 1))
 put('ExAdoptSeven', fnum(100 * ad['0.7']['2036']['R_net'], 1))
@@ -175,7 +202,7 @@ tab = (r"""\begin{table}[!ht]\centering\footnotesize\setlength{\tabcolsep}{4pt}
 Share of rivals' savings passed to price & Score & Gap & Score & Gap & Score & Gap\\\midrule
 """ + '\n'.join(rows) + r"""
 \bottomrule\end{tabular}
-\par\vspace{2pt}\footnotesize\raggedright Notes: Paper 1's pass-through scenario (Section~\ref{sec:horizons-ceiling}): rivals realize the share of their program that the slow, central or fast pace gives by 2036 and pass the stated share of each unit-cost saving into price; the firm that does nothing has the anchor intercept and no program, so its margin falls with the price and its volume and growth are held as in the paper's path. Score: its durable cash score in 2036. Gap: the score of the same firm automating at the central pace, after the cost of its changes in flight (Section~\ref{sec:horizons}; valued, as in the paper, at the long-run target with the stated share passed), less the score of the firm that does nothing; the automating firm faces the same price. The quarter row is not one of the paper's cases. Code: \texttt{code/biz\_open\_questions.py}.
+\par\vspace{2pt}\footnotesize\raggedright Notes: Paper 1's pass-through scenario (Section~\ref{sec:horizons-ceiling}): rivals realize the share of their program that the slow, central or fast pace gives by 2036 and pass the stated share of each unit-cost saving into price; the firm that does nothing has the anchor intercept and no program, so its margin falls with the price; its volume path is the paper's, and growth is the market's growth at a fixed price for both firms, as in the paper's pass-through path. Score: its durable cash score in 2036. Gap: the score of the same firm automating at the central pace, after the cost of its changes in flight (Section~\ref{sec:horizons}; valued, as in the paper, at the long-run target with the stated share passed), less the score of the firm that does nothing; the automating firm faces the same price. The quarter row is not one of the paper's cases. Code: \texttt{code/biz\_open\_questions.py}.
 \end{table}
 """)
 open(os.path.join(BASE, 'sections', 'tables', 'tab_ext_nothing.tex'), 'w').write(tab)

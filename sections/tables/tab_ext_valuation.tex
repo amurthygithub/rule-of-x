@@ -1,19 +1,19 @@
 \begin{table}[!ht]\centering\footnotesize\setlength{\tabcolsep}{3.5pt}
 \caption{Public float over revenue against growth and margin, with year effects: the weight the market's valuations put on growth}\label{tab:ext-valuation}
-\begin{tabular}{@{}lrrrrrrrr@{}}\toprule
-Sample & Firm-years & Firms & $\beta_g$ & $\beta_m$ & Weight & 90\% interval & $p$, equal & Within $R^2$ (\%)\\\midrule
-\multicolumn{9}{@{}l}{\emph{Free cash flow after SBC}}\\
-\quad All firm-years & 1{,}247 & 217 & 2.81 & 0.58 & 4.8 & 3.1 to 15.8 & $<$0.001 & 18.8 / 10.4\\
-\quad 2010--19 & 647 & 137 & 2.50 & 0.52 & 4.8 & 2.5 to $\infty$ & $<$0.001 & 19.4 / 12.1\\
-\quad 2020--25 & 600 & 163 & 3.17 & 0.63 & 5.0 & 3.1 to 16.6 & $<$0.001 & 18.9 / 9.2\\
-\quad Without acquisition-affected years & 898 & 202 & 3.30 & 0.84 & 3.9 & 2.8 to 8.0 & $<$0.001 & 21.6 / 12.6\\
-\quad Score of 40 or more & 181 & 79 & 0.37 & $-$0.91 & -- & -- & 0.02 & 3.8 / 0.3\\
-\multicolumn{9}{@{}l}{\emph{GAAP operating margin}}\\
-\quad All firm-years & 1{,}272 & 219 & 2.87 & 0.65 & 4.4 & 3.1 to 7.7 & $<$0.001 & 19.9 / 9.9\\
-\quad 2010--19 & 653 & 139 & 2.56 & 0.63 & 4.1 & 2.6 to 11.1 & $<$0.001 & 20.2 / 11.3\\
-\quad 2020--25 & 619 & 167 & 3.22 & 0.67 & 4.8 & 3.2 to 9.0 & $<$0.001 & 20.2 / 9.0\\
-\quad Without acquisition-affected years & 911 & 203 & 3.34 & 0.83 & 4.0 & 3.0 to 6.3 & $<$0.001 & 22.9 / 12.0\\
-\quad Score of 40 or more & 171 & 60 & 0.55 & 0.39 & 1.4 & 0.2 to $\infty$ & 0.80 & 0.6 / 0.5\\
+\begin{tabular}{@{}lrrrrrrrrr@{}}\toprule
+Sample & Firm-years & Firms & $\beta_g$ & $\beta_m$ & Weight & 90\% interval & $\beta_m\le0$ (\%) & $p$, equal & Within $R^2$ (\%)\\\midrule
+\multicolumn{10}{@{}l}{\emph{Free cash flow after SBC}}\\
+\quad All firm-years & 1{,}247 & 217 & 2.81 & 0.58 & 4.8 & 3.1 to 14.5 & 0.7 & $<$0.001 & 18.8 / 10.4\\
+\quad 2010--19 & 647 & 137 & 2.50 & 0.52 & 4.8 & from 2.5 & 6.1 & $<$0.001 & 19.4 / 12.1\\
+\quad 2020--25 & 600 & 163 & 3.17 & 0.63 & 5.0 & 3.1 to 13.9 & 1.5 & $<$0.001 & 18.9 / 9.2\\
+\quad Without acquisition-affected years & 898 & 202 & 3.30 & 0.84 & 3.9 & 2.8 to 7.9 & 0.2 & $<$0.001 & 21.6 / 12.6\\
+\quad Score of 40 or more & 181 & 79 & 0.37 & $-$0.91 & -- & -- & -- & 0.02 & 3.8 / 0.3\\
+\multicolumn{10}{@{}l}{\emph{GAAP operating margin}}\\
+\quad All firm-years & 1{,}272 & 219 & 2.87 & 0.65 & 4.4 & 3.1 to 7.7 & 0.1 & $<$0.001 & 19.9 / 9.9\\
+\quad 2010--19 & 653 & 139 & 2.56 & 0.63 & 4.1 & 2.6 to 10.1 & 0.8 & $<$0.001 & 20.2 / 11.3\\
+\quad 2020--25 & 619 & 167 & 3.22 & 0.67 & 4.8 & 3.2 to 9.0 & 0.2 & $<$0.001 & 20.2 / 9.0\\
+\quad Without acquisition-affected years & 911 & 203 & 3.34 & 0.83 & 4.0 & 3.0 to 6.3 & 0.0 & $<$0.001 & 22.9 / 12.0\\
+\quad Score of 40 or more & 171 & 60 & 0.55 & 0.39 & 1.4 & from 0.0 & 32.6 & 0.80 & 0.6 / 0.5\\
 \bottomrule\end{tabular}
-\par\vspace{2pt}\footnotesize\raggedright Notes: OLS of $\log(\text{public float}/\text{revenue})$ on revenue growth and the margin, both as fractions and winsorized at the 1st and 99th percentiles, with fiscal-year effects; standard errors clustered by firm. Weight: $\beta_g/\beta_m$, the points of margin that one point of growth is worth in the multiple, shown where $\beta_m>0$; interval: 5th to 95th percentile over 999 firm-cluster bootstrap samples ($\infty$ where more than one in twenty bootstrap samples give $\beta_m\le0$). $p$, equal: test of $\beta_g=\beta_m$, the Rule of 40's equal weights. Within $R^2$: share of the variation within fiscal years explained by growth and the margin entered separately / by their sum, the score, alone. Public float is the market value of common equity held by non-affiliates at the end of the second fiscal quarter after the fiscal year (10-K cover page); the core sample of Section~\ref{sec:data}, under estimand E1. Code: \texttt{code/biz\_valuation.py}.
+\par\vspace{2pt}\footnotesize\raggedright Notes: OLS of $\log(\text{public float}/\text{revenue})$ on revenue growth and the margin, both as fractions and winsorized at the 1st and 99th percentiles, with fiscal-year effects; standard errors clustered by firm. Weight: $\beta_g/\beta_m$, the points of margin that one point of growth is worth in the multiple, shown where $\beta_m>0$; interval: 5th to 95th percentile of the ratio over those of the 999 firm-cluster bootstrap samples that give $\beta_m>0$; $\beta_m\le0$: share of the bootstrap samples that do not, in which the ratio is not a weight; where that share exceeds one in twenty no upper end is given (``from'' the lower end). $p$, equal: test of $\beta_g=\beta_m$, the Rule of 40's equal weights. Within $R^2$: share of the variation within fiscal years explained by growth and the margin entered separately / by their sum, the score, alone. Public float is the market value of common equity held by non-affiliates at the end of the second fiscal quarter after the fiscal year (10-K cover page); the core sample of Section~\ref{sec:data}, under estimand E1. Code: \texttt{code/biz\_valuation.py}.
 \end{table}

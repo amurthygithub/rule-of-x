@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
-"""Does the market pay for a higher Rule-of-40 score? New analysis for the business dashboard (3 November 2026).
-Not part of Paper 1, which states that it does not test whether any version of the score predicts valuation (Section 8.6).
+"""Does the market pay for a higher Rule-of-40 score? Supplement Section S12.1 (supp:ext-valuation) of Paper 1, added
+on 4 November 2026 after the third review round; first written for the business dashboard's open questions
+(3 November 2026). It is a descriptive association across firms: Paper 1 still does not test whether any version of the
+score predicts returns or default (Section 8.6), and S12.1 says so.
 
 Data: Paper 1's core sample (data/panel_v3.csv: SEC-registered software firm-years 2010-25 after the paper's sample
 rules) and public float from the 10-K cover pages (data/v3_inputs/public_float.csv, retrieved 3 Nov 2026; see
@@ -14,7 +16,8 @@ understates equity value where insiders hold much of it, ignores debt and cash, 
 Tests, on the GAAP operating margin and on free cash flow after SBC (the paper's basis):
   (a) log multiple on growth and margin with year fixed effects, standard errors clustered by firm; the market's
       implied weight on growth is the ratio of the two coefficients (points of margin worth one point of growth), with a
-      firm-cluster bootstrap interval; and a test of the Rule-of-40 restriction (equal coefficients);
+      firm-cluster bootstrap interval (5th to 95th percentile over the samples with beta_m > 0, and the share of samples
+      with beta_m <= 0 reported beside it); and a test of the Rule-of-40 restriction (equal coefficients);
   (b) how much of the variation the score alone explains, against growth and margin entered separately;
   (c) the same by period (2010-19, 2020-25) and among firm-years scoring at least 40;
   (d) median multiple by score decile, for the dashboard.
@@ -70,10 +73,17 @@ def fit(df, f):
 
 
 def weight_ci(df, mcol, B=999):
-    """Firm-cluster bootstrap of the ratio beta_g / beta_m (year fixed effects)."""
+    """Firm-cluster bootstrap of the ratio beta_g / beta_m (year fixed effects).
+
+    Returns the 5th and 95th percentiles of the ratio over the bootstrap samples with beta_m > 0 only, the share of
+    samples with beta_m <= 0 (in which the ratio is not a weight) and the number of samples with beta_m > 0. Revision of
+    5 November 2026 (outside re-review, GPT F08): the earlier version set the ratio to +infinity when beta_m <= 0 and took
+    the percentiles over all samples, which pushed the finite 95th percentiles up and returned NaN where the
+    interpolation met +infinity; the random draws (seed 20261103) are unchanged."""
     firms = df.cik.unique()
     idx = {c: df.index[df.cik == c].to_numpy() for c in firms}
     out = []
+    n_bad = 0
     X = pd.get_dummies(df.year.astype(str), drop_first=True, dtype=float)
     Z = np.column_stack([np.ones(len(df)), df.g_w.to_numpy(), df[mcol].to_numpy(), X.to_numpy()])
     y = df.lm.to_numpy()
@@ -85,9 +95,10 @@ def weight_ci(df, mcol, B=999):
         if b[2] > 0:
             out.append(b[1] / b[2])
         else:
-            out.append(np.inf)
+            n_bad += 1
     out = np.array(out)
-    return float(np.quantile(out, 0.05)), float(np.quantile(out, 0.95)), float(np.mean(out <= 0) + np.mean(~np.isfinite(out)))
+    assert len(out) + n_bad == B and np.all(np.isfinite(out))
+    return float(np.quantile(out, 0.05)), float(np.quantile(out, 0.95)), n_bad / B, int(len(out))
 
 
 def analyse(df, key):
@@ -106,8 +117,8 @@ def analyse(df, key):
     r['r2_within_full'] = (r['r2_full'] - r['r2_years']) / (1 - r['r2_years'])
     r['r2_within_score'] = (r['r2_score'] - r['r2_years']) / (1 - r['r2_years'])
     if bm > 0:
-        lo, hi, bad = weight_ci(df, mcol)
-        r.update(weight_ci90=[lo, hi], weight_share_nonpositive=bad)
+        lo, hi, bad, n_pos = weight_ci(df, mcol)
+        r.update(weight_ci90=[lo, hi], weight_share_bm_nonpositive=bad, weight_boot_bm_positive=n_pos)
     return r
 
 
@@ -150,7 +161,8 @@ for key in BASES:
                       'weight_lo': '' if ci[0] is None or not np.isfinite(ci[0]) else f'{ci[0]:.2f}',
                       'weight_hi': '' if ci[1] is None or not np.isfinite(ci[1]) else f'{ci[1]:.2f}',
                       'beta_g': f"{r['beta_g']:.2f}", 'beta_m': f"{r['beta_m']:.2f}", 'equal_weights_p': f"{r['equal_weights_p']:.3f}",
-                      'r2_within_full': f"{r['r2_within_full']:.3f}", 'r2_within_score': f"{r['r2_within_score']:.3f}"})
+                      'r2_within_full': f"{r['r2_within_full']:.3f}", 'r2_within_score': f"{r['r2_within_score']:.3f}",
+                      'share_bm_nonpositive': '' if 'weight_share_bm_nonpositive' not in r else f"{r['weight_share_bm_nonpositive']:.3f}"})
 with open(os.path.join(OUT_D, 'valuation_weights.csv'), 'w', newline='') as fh:
     w = csv.DictWriter(fh, fieldnames=list(wrows[0].keys()), lineterminator='\n'); w.writeheader(); w.writerows(wrows)
 json.dump(RES, open(os.path.join(OUT_N, 'valuation.json'), 'w'), indent=1, default=float)
