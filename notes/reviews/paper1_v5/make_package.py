@@ -41,6 +41,10 @@ dirty = sh('git', 'status', '--porcelain', '--untracked-files=no')
 if dirty:
     sys.exit('commit first; tracked files differ from HEAD:\n' + dirty)
 commit = sh('git', 'rev-parse', 'HEAD')
+sh('git', 'fetch', '-q', 'origin')                       # the prompt sends reviewers to main and review-round-3
+assert sh('git', 'rev-parse', 'origin/review-round-3') == commit, 'push review-round-3 first'
+assert subprocess.run(['git', 'merge-base', '--is-ancestor', commit, 'origin/main'], cwd=ROOT).returncode == 0, \
+    'merge into main and push it first: the prompt says the commit is on main'
 subprocess.run([sys.executable, os.path.join(ROOT, 'code', 'purge_excluded.py'), '--check'], cwd=ROOT, check=True)
 for key, (_, f1, f2) in REV.items():
     for d in (os.path.join(ROOT, 'notes', 'reviews', 'paper1_v3', 'author_reviews', f1),

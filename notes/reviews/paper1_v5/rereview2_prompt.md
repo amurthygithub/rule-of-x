@@ -27,7 +27,7 @@ You are {MODEL}. You have reviewed this paper by Akshaya Bangalore Sreenivasa Mu
   - their responses in `notes/reviews/paper1_v4/` and `notes/reviews/paper1_v5/` (any `response_*.md` other than `response_{KEY}.md`);
   - the joint records `notes/reviews/paper1_v3/response_to_outside_reviews.md`, `notes/reviews/paper1_v4/rereview_changes_2026-11-05.md` and `notes/reviews/paper1_v4/rereview_fixes_audit_2026-11-05.md`.
 
-  After that you may read them; say whether you did. If you see any of them earlier by accident, say so.
+  After that you may read them; say whether you did. If you see any of them earlier by accident, say so. The paper's protocol appendix (A.2, Table 8, S8.4) and `notes/reviews/paper1_v4/fresh_clone_reproduction_2026-11-05.md` name the other reviewers' verdicts; reading those is allowed.
 - **Sources of truth.** The PDFs are the ground truth for what the paper says, and the repository for code and data; report any disagreement between them. Treat `RESPONSE.md` as the author's claims, to be checked, not as evidence.
 - **Work on a copy.** Do not modify the repository.
 - **The excluded registrant.** One registrant is excluded from all data at the author's request and is identified in the code only by a digest (`code/exclusions.py`). Do not try to recover it or name it.

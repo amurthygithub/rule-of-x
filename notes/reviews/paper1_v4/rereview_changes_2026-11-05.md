@@ -272,8 +272,8 @@ time for the first two." (Table S16 is tab:amin-pcc.) New macros `StAminFloorMin
 100,032). Wording note: the log's "within the 0.5 to 4.6% band" would be wrong at the lower end (0.26 < 0.5), so the
 sentence says "below 4.6%, the top of the band", asserted in code.
 
-**NB4.** `sections/model.tex` §3.5: "of Proposition 3, which in the worked example" → "of Proposition 3 (under its
-hypothesis (H), stated in Section 3.6), which ...".
+**NB4.** `sections/model.tex` §3.5: "of Proposition 2, which in the worked example" → "of Proposition 2 (under its
+hypothesis (H), stated in Section 3.6), which ..." (Proposition 2 is prop:dynamic; this record said 3 until 5 November).
 
 **NB5.** `sections/model.tex` §3.5: "although near saturation the retention gain of (iii) is still about 56% of its
 small-share value" → "although the retention gain of (iii) never falls below about 56% of its small-share value, and is
