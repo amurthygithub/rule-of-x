@@ -1,0 +1,43 @@
+{
+  "commit": "eb7537bee7585f2902304f62a722edea6ced8539",
+  "method": "read-only static inspection; no full author job executed",
+  "file_sha256": {
+    "code/calibrate_horizons.py": "a8e7ff3071b6b59e1716d01aabca3820c5d158f14c17bfe563f982614b7e0c1a",
+    "code/paper1_macros.py": "0f360fe007fa69d4ae661c5684984c6bbf230b8a4ee96131e00b85a5662d24ab",
+    "code/verify_theory.py": "9fed86f223652177f19e9a6ae8753e2cfb8b65c9d02fcdf719f234a96577d3ad",
+    "code/data_part2/08_params.py": "32dd6b27a43e553c8e77ee7212a303f88b681584224c09d8d3f24ccaea2041c6",
+    "data/tasks/params.yaml": "0e0d1399eba2af900b40d0bd53f2ab2c8a371d51d322db9eefc262c377389df5",
+    "engine/src/autofrontier/economics.py": "2c65cfdacd4224f52cfb4aadd9cee19883f9d08cdb11b453a41fb058c346bcec",
+    "engine/src/autofrontier/defaults.yaml": "7306457babcdee6016e4915c6b1971b53e2699ad120a929fe0d598933971513c",
+    "sections/appendix_proofs.tex": "ee149cc3eacfda179e8d160d0f7e64672bb242be6013d3803c9cb1114c374c67"
+  },
+  "mixed_compute_normalized_example": [
+    {
+      "owned_share": 0,
+      "annual_rented_reference_price": 1,
+      "annual_operations": 1.0,
+      "capital_stock": 0,
+      "replacement_at_delta_point25": 0.0,
+      "operations_plus_replacement": 1.0,
+      "annual_economic_operations_plus_capital_at_r_point0893": 1.0
+    },
+    {
+      "owned_share": 0.5,
+      "annual_rented_reference_price": 1,
+      "annual_operations": 0.65,
+      "capital_stock": 1.5,
+      "replacement_at_delta_point25": 0.375,
+      "operations_plus_replacement": 1.025,
+      "annual_economic_operations_plus_capital_at_r_point0893": 1.15895
+    },
+    {
+      "owned_share": 1,
+      "annual_rented_reference_price": 1,
+      "annual_operations": 0.30000000000000004,
+      "capital_stock": 3,
+      "replacement_at_delta_point25": 0.75,
+      "operations_plus_replacement": 1.05,
+      "annual_economic_operations_plus_capital_at_r_point0893": 1.3179
+    }
+  ]
+}

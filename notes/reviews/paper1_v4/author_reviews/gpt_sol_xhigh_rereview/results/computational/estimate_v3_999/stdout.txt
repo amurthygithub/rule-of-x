@@ -1,0 +1,58 @@
+[     5s] point estimates done
+[    16s] bootstrap chunks 8/384
+[    22s] bootstrap chunks 16/384
+[    29s] bootstrap chunks 24/384
+[    62s] bootstrap chunks 32/384
+[    79s] bootstrap chunks 40/384
+[    99s] bootstrap chunks 48/384
+[   127s] bootstrap chunks 56/384
+[   141s] bootstrap chunks 64/384
+[   159s] bootstrap chunks 72/384
+[   168s] bootstrap chunks 80/384
+[   176s] bootstrap chunks 88/384
+[   187s] bootstrap chunks 96/384
+[   213s] bootstrap chunks 104/384
+[   229s] bootstrap chunks 112/384
+[   250s] bootstrap chunks 120/384
+[   257s] bootstrap chunks 128/384
+[   266s] bootstrap chunks 136/384
+[   275s] bootstrap chunks 144/384
+[   282s] bootstrap chunks 152/384
+[   291s] bootstrap chunks 160/384
+[   296s] bootstrap chunks 168/384
+[   300s] bootstrap chunks 176/384
+[   303s] bootstrap chunks 184/384
+[   306s] bootstrap chunks 192/384
+[   310s] bootstrap chunks 200/384
+[   313s] bootstrap chunks 208/384
+[   316s] bootstrap chunks 216/384
+[   316s] bootstrap chunks 224/384
+[   317s] bootstrap chunks 232/384
+[   317s] bootstrap chunks 240/384
+[   317s] bootstrap chunks 248/384
+[   318s] bootstrap chunks 256/384
+[   318s] bootstrap chunks 264/384
+[   318s] bootstrap chunks 272/384
+[   318s] bootstrap chunks 280/384
+[   319s] bootstrap chunks 288/384
+[   319s] bootstrap chunks 296/384
+[   320s] bootstrap chunks 304/384
+[   320s] bootstrap chunks 312/384
+[   323s] bootstrap chunks 320/384
+[   325s] bootstrap chunks 328/384
+[   326s] bootstrap chunks 336/384
+[   326s] bootstrap chunks 344/384
+[   326s] bootstrap chunks 352/384
+[   326s] bootstrap chunks 360/384
+[   327s] bootstrap chunks 368/384
+[   327s] bootstrap chunks 376/384
+[   327s] bootstrap chunks 384/384
+[   327s] bootstrap done {}
+[   328s] summaries done
+[   328s] families done {'table38': {'holm_normal': [], 'holm_percentile': [], 'holm_basic': ['slope_op_pooled'], 'romano_wolf': []}, 'referee32': {'holm_normal': [], 'holm_percentile': [], 'holm_basic': ['slope_op_pooled'], 'romano_wolf': []}, 'headline14A': {'holm_normal': ['slope_cash_E2', 'weight_E2', 'gap_E2', 'gap_fast_sm_E2'], 'holm_percentile': ['slope_op_E2', 'slope_cash_E2', 'weight_E2', 'gap_E2', 'gap_fast_sm_E2'], 'holm_basic': ['slope_cash_E2', 'weight_E2', 'gap_E2', 'gap_fast_sm_E2', 'd_slope_op'], 'romano_wolf': ['slope_cash_E2', 'weight_E2', 'gap_E2', 'gap_fast_sm_E2']}, 'headline14B': {'holm_normal': ['psi_op_E1_vs_m1', 'psi_cash_E1_vs_m1', 'p95chg_op_E1', 'gap_E1', 'gap_fast_sm_E1', 'psi_op_E1_2020_25_minus_2010_19'], 'holm_percentile': ['psi_op_E1_vs_m1', 'psi_cash_E1_vs_m1', 'capint_cash_E1', 'gap_E1', 'gap_fast_sm_E1'], 'holm_basic': ['psi_op_E1_vs_m1', 'psi_cash_E1_vs_m1', 'gap_E1', 'gap_fast_sm_E1', 'psi_op_E1_2020_25_minus_2010_19'], 'romano_wolf': ['psi_op_E1_vs_m1', 'psi_cash_E1_vs_m1', 'gap_E1', 'gap_fast_sm_E1', 'psi_op_E1_2020_25_minus_2010_19']}}
+[   335s] solver check done
+[   338s] within-firm done
+[   340s] wrote /workspace/scratch/2bd0abc7f371/rereview_20261104/work_pinned/notes/empirics_v3.json
+[   341s] wrote notes/bootstrap_draws_v3.npz, notes/calibration_anchor_v3.json, notes/frontier_slope_v3.json
+[   341s] wrote sections/tables/tab_estimands_v3.tex, tab_contrasts_v3.tex, tab_grid_v3.tex, tab_yearly_v3.tex, tab_bridge_v3.tex
+[   341s] wrote notes/inference_v3.md, notes/sample_audit.md

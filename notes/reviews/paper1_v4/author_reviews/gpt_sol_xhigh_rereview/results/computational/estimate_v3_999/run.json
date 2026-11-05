@@ -1,0 +1,22 @@
+{
+  "name": "estimate_v3_999",
+  "command": [
+    "/workspace/scratch/2bd0abc7f371/rereview_20261104/repro_venv/bin/python",
+    "code/estimate_v3.py"
+  ],
+  "cwd": "/workspace/scratch/2bd0abc7f371/rereview_20261104/work_pinned",
+  "start_utc": "2026-11-05T03:30:33.800204+00:00",
+  "python_driver": "/workspace/scratch/2bd0abc7f371/rereview_20261104/repro_venv/bin/python",
+  "platform": "Linux-6.18.57-x86_64-with-glibc2.39",
+  "env": {
+    "MKL_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "V3_JOBS": "6"
+  },
+  "commit": "eb7537bee7585f2902304f62a722edea6ced8539",
+  "status": "completed",
+  "exit_code": 0,
+  "elapsed_seconds": 342.69729982100034,
+  "finish_utc": "2026-11-05T03:36:16.499208+00:00"
+}

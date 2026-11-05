@@ -1,0 +1,3 @@
+paper1.pdf: 87 pages (build folder /workspace/scratch/2bd0abc7f371/rereview_20261104/results/computational/pdf_build)
+supplement.pdf: 72 pages (build folder /workspace/scratch/2bd0abc7f371/rereview_20261104/results/computational/pdf_build)
+clean; NO_COPY=1, so the PDFs stay in /workspace/scratch/2bd0abc7f371/rereview_20261104/results/computational/pdf_build

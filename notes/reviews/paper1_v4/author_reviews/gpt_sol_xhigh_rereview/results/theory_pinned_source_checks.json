@@ -1,0 +1,107 @@
+{
+  "commit": "eb7537bee7585f2902304f62a722edea6ced8539",
+  "seed": null,
+  "method": "Deterministic cone reconstruction and source scan",
+  "input_hashes": {
+    "data/panel_v3.csv": "03b698206b9182a33e8866451fb723447f03f26ac0545475e6e661531aa74924",
+    "notes/frontier_slope_v3.json": "1ad5d0c39087da75da70f8331639b038807499c45ef087be207296685d4a7274",
+    "notes/calibration_results.json": "7770ace48243b60943dfd3e6a3584aa45059d57f4e726045849c77712f59a173"
+  },
+  "cone_reconstruction": [
+    {
+      "basis": "op",
+      "alpha": 0.25,
+      "observed_cone_slope": -0.20011716699021673,
+      "multiplier": 4.00620560417249,
+      "steepest_at_window_end": 0.8017105158873283,
+      "growth_values_used": 1726,
+      "values_above_window": 64,
+      "max_growth": 3.1279666835836046,
+      "implied_frontier_slope_at_max_growth": 113.59263791020807
+    },
+    {
+      "basis": "op",
+      "alpha": 0.3,
+      "observed_cone_slope": -0.20011716699021673,
+      "multiplier": 3.2435171878961317,
+      "steepest_at_window_end": 0.6490834707258484,
+      "growth_values_used": 1726,
+      "values_above_window": 64,
+      "max_growth": 3.1279666835836046,
+      "implied_frontier_slope_at_max_growth": 30.588574789267728
+    },
+    {
+      "basis": "op",
+      "alpha": 0.35,
+      "observed_cone_slope": -0.20011716699021673,
+      "multiplier": 2.7246126279788436,
+      "steepest_at_window_end": 0.5452417602568955,
+      "growth_values_used": 1726,
+      "values_above_window": 64,
+      "max_growth": 3.1279666835836046,
+      "implied_frontier_slope_at_max_growth": 11.70486578119375
+    },
+    {
+      "basis": "op",
+      "alpha": 0.45,
+      "observed_cone_slope": -0.20011716699021673,
+      "multiplier": 2.076226533110815,
+      "steepest_at_window_end": 0.41548857183605575,
+      "growth_values_used": 1726,
+      "values_above_window": 64,
+      "max_growth": 3.1279666835836046,
+      "implied_frontier_slope_at_max_growth": 3.1262803571034654
+    },
+    {
+      "basis": "cash",
+      "alpha": 0.25,
+      "observed_cone_slope": -0.1694573628470725,
+      "multiplier": 3.99392068705251,
+      "steepest_at_window_end": 0.6767992670482863,
+      "growth_values_used": 1683,
+      "values_above_window": 65,
+      "max_growth": 3.1279666835836046,
+      "implied_frontier_slope_at_max_growth": 95.89423184080421
+    },
+    {
+      "basis": "cash",
+      "alpha": 0.3,
+      "observed_cone_slope": -0.1694573628470725,
+      "multiplier": 3.2346659597823426,
+      "steepest_at_window_end": 0.5481379632359105,
+      "growth_values_used": 1683,
+      "values_above_window": 65,
+      "max_growth": 3.1279666835836046,
+      "implied_frontier_slope_at_max_growth": 25.83143746447406
+    },
+    {
+      "basis": "cash",
+      "alpha": 0.35,
+      "observed_cone_slope": -0.1694573628470725,
+      "multiplier": 2.7178814210306292,
+      "steepest_at_window_end": 0.4605650181389043,
+      "growth_values_used": 1683,
+      "values_above_window": 65,
+      "max_growth": 3.1279666835836046,
+      "implied_frontier_slope_at_max_growth": 9.887085168034435
+    },
+    {
+      "basis": "cash",
+      "alpha": 0.45,
+      "observed_cone_slope": -0.1694573628470725,
+      "multiplier": 2.0718921544323723,
+      "steepest_at_window_end": 0.3510973805936493,
+      "growth_values_used": 1683,
+      "values_above_window": 65,
+      "max_growth": 3.1279666835836046,
+      "implied_frontier_slope_at_max_growth": 2.6417786644045407
+    }
+  ],
+  "formal_source_scan": {
+    "source_files": 17,
+    "main_axiom_prints": 35,
+    "new_axiom_declarations": [],
+    "placeholder_tokens": [],
+    "scope": "Static text scan; not a Lean kernel or elaboration check."
+  }
+}

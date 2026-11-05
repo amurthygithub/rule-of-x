@@ -1,0 +1,7 @@
+{
+  "check": "Performance diagnostic only, arbitrary plausible targets; not calibration reproduction",
+  "n_calls": 100,
+  "elapsed_s": 0.25214600000072096,
+  "seconds_per_call": 0.0025214600000072096,
+  "estimated_9_calls_x_1m_cpu_hours": 6.303650000018024
+}

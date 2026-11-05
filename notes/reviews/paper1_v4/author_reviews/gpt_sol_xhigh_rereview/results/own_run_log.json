@@ -1,0 +1,26 @@
+[
+  {
+    "script": "scripts/theory_independent_checks.py",
+    "elapsed_seconds": 0.031391,
+    "exit_code": 0,
+    "scope": "independent printed-formula/source-unit checks, not author-pipeline reproduction"
+  },
+  {
+    "script": "scripts/execution_checks.py",
+    "elapsed_seconds": 0.028807,
+    "exit_code": 0,
+    "scope": "independent printed-formula/source-unit checks, not author-pipeline reproduction"
+  },
+  {
+    "script": "scripts/check_controls_and_cost_units.py",
+    "elapsed_seconds": 0.035711,
+    "exit_code": 0,
+    "scope": "independent printed-formula/source-unit checks, not author-pipeline reproduction"
+  },
+  {
+    "script": "scripts/empirical_arithmetic.py",
+    "elapsed_seconds": 0.034763,
+    "exit_code": 0,
+    "scope": "independent printed-formula/source-unit checks, not author-pipeline reproduction"
+  }
+]

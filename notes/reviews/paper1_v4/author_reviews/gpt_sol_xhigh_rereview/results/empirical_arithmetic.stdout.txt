@@ -1,0 +1,31 @@
+{
+  "scope": "Printed-number arithmetic only; not independent reproduction of raw data, code or bootstrap.",
+  "random_seed": "Not applicable: no random simulation",
+  "sample_flow": {
+    "E2": 1330,
+    "unaffected": 1273
+  },
+  "valuation_match_counts": {
+    "matched": 1277,
+    "unmatched": 455,
+    "total": 1732
+  },
+  "kappa_range_consistent_with_unknown_dispute_split": [
+    0.9525198509155729,
+    0.9525352340839138
+  ],
+  "current_RW_binomial_style_MC_SE": 0.008333333333333333,
+  "current_RW_approximate_MC_band_95": [
+    0.058666666666666666,
+    0.09133333333333332
+  ],
+  "interest_income_printed_interval": [
+    -35.9,
+    -2.3
+  ],
+  "interest_income_printed_interval_contains_zero": false,
+  "valuation_point_ratios_from_rounded_coefficients": {
+    "cash": 4.844827586206897,
+    "GAAP": 4.415384615384616
+  }
+}

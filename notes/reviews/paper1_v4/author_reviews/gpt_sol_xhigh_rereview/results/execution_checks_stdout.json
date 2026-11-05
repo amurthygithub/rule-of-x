@@ -1,0 +1,77 @@
+{
+  "scope": "Printed-parameter calculations only; not a run of the repository or its stored outputs",
+  "seed": "not applicable: exact enumeration/deterministic arithmetic",
+  "lhs_counterexample": {
+    "n": 2,
+    "d": 2,
+    "event": "coordinates fall in same half of [0,1]",
+    "share_possible_values": [
+      1.0,
+      0.0
+    ],
+    "each_value_probability": 0.5,
+    "true_share_variance": 0.25,
+    "iid_binomial_share_variance": 0.125,
+    "true_se_over_iid_se": 1.4142135623730951,
+    "implication": "The iid share standard error need not overstate randomized-LHS error; iid order-statistic/binomial laws do not automatically apply to dependent LHS outputs."
+  },
+  "program_recurrence": {
+    "central": {
+      "rho": 0.1,
+      "Tpar": 0.17,
+      "p": 0.7,
+      "b": 0.67,
+      "cw": 0.017,
+      "upper_bound_whole_program_wave": 85,
+      "exact_99_percent_wave": 84,
+      "upper_bound_program_time": 15.530000000000001,
+      "exact_99_program_time": 15.360000000000001,
+      "benefit_shortfall_bound": 0.01139,
+      "finite_exact_completion": "never: U>0 geometrically after capacity becomes slack"
+    },
+    "fast": {
+      "rho": 0.22,
+      "Tpar": 0.08,
+      "p": 0.8,
+      "b": 0.85,
+      "cw": 0.0176,
+      "upper_bound_whole_program_wave": 72,
+      "exact_99_percent_wave": 71,
+      "upper_bound_program_time": 6.68,
+      "exact_99_program_time": 6.6000000000000005,
+      "benefit_shortfall_bound": 0.014960000000000001,
+      "finite_exact_completion": "never: U>0 geometrically after capacity becomes slack"
+    },
+    "note": "Values from supplement S2.7/S2.9 and TableS11 pp38-39. Dates here are program time; calendar freeze law is deliberately not guessed."
+  },
+  "price_revenue_identity": {
+    "identity": "S=p*Q; dlog(S)=dlog(p)+dlog(Q)",
+    "illustrative_price_ratio": 0.71,
+    "years": 11,
+    "illustrative_constant_quantity_log_growth": 0.129,
+    "constant_log_price_growth": -0.03113548263152509,
+    "implied_revenue_log_growth": 0.09786451736847492,
+    "note": "Example of the accounting identity only. Not a correction to S12.2's actual path, whose year-by-year prices have not been provided in the PDFs."
+  },
+  "central_execution_exception": {
+    "printed_min_payback_years": 4.99,
+    "less_than_five": true,
+    "implication": "The condition 'central execution' alone does not imply failure of a five-year cash-payback test; main pp5/64 need central-other-input or exception qualifiers."
+  },
+  "positive_capital_counterexample": {
+    "after_tax_intercept": 0.675,
+    "capital_intensity": 0.5,
+    "deductibility_psi": 0,
+    "market_growth": 0.7,
+    "mature_cash_score": 1.025,
+    "note": "Static score counterexample only: no claim that 70% mature software-market growth is empirically plausible. Shows negligible capital needs are not a mathematical necessity of score>100."
+  },
+  "negative_cash_capital_counterexample": {
+    "after_tax_intercept": 0.675,
+    "capital_intensity": -0.3,
+    "deductibility_psi": 0,
+    "market_growth": 0.26,
+    "mature_cash_score": 1.0130000000000001,
+    "note": "Matches the negative cash capital extension acknowledged on main p60: sustained score>100 at growth below32.5%, so the central k=0 threshold is not a universal necessary condition."
+  }
+}

@@ -1,0 +1,14 @@
+fields differing >1e-9 or non-equal: 1818
+max numeric diff excluding nothing: 8.29076481835278e-05
+  /meta/workers: diff=2 values=(4, 2)
+  /sfa_detail/E2|cash|separate_frontiers/2023-25|pre-2019/shortfall: diff=3.461532782633725e-09 values=(0.15581525032988394, 0.15581525379141672)
+  /sfa_detail/E2|cash|separate_frontiers/2016-19|pre-2019/shortfall: diff=3.2630089741303436e-09 values=(0.17571547580584604, 0.175715479068855)
+  /sfa_detail/E2|op|separate_frontiers/2023-25|pre-2019/shortfall: diff=2.4387492081334727e-08 values=(0.21858727281262266, 0.21858724842513058)
+  /sfa_detail/E2|op|separate_frontiers/2016-19|pre-2019/shortfall: diff=5.724813345597823e-09 values=(0.2316683698528311, 0.23166837557764444)
+  /sfa_detail/E2|op|separate_frontiers/2023-25|2019+/shortfall: diff=3.43932282653725e-09 values=(0.28718199756718177, 0.28718199412785894)
+  /sfa_detail/E1|cash|separate_frontiers/2023-25|pre-2019/shortfall: diff=1.4135658199521117e-09 values=(0.1446510339661269, 0.1446510325525611)
+  /sfa_detail/E1|cash|separate_frontiers/2016-19|pre-2019/shortfall: diff=2.2675955557716065e-09 values=(0.18574030189945817, 0.18574030416705373)
+  /sfa_detail/E1|cash|separate_frontiers/2023-25|2019+/shortfall: diff=2.092635453809777e-09 values=(0.25768519995088635, 0.2576852020435218)
+  /sfa_detail/E1|op|separate_frontiers/2023-25|pre-2019/shortfall: diff=7.167669707763835e-09 values=(0.22208862435192026, 0.22208863151958996)
+  /sfa_detail/E1|op|separate_frontiers/2016-19|pre-2019/shortfall: diff=2.6715775147678755e-09 values=(0.25316496276229117, 0.25316496009071365)
+  /sfa_detail/E1|op|separate_frontiers/2023-25|2019+/shortfall: diff=4.616345528063448e-09 values=(0.2951628416660672, 0.29516284628241274)

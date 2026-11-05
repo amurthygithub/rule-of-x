@@ -1,0 +1,17 @@
+[
+  {
+    "path": "notes/bootstrap_draws_v3.npz",
+    "baseline_sha256": "b9e8b326cfe997cd170b1dd8d02189079cad50d01050bf698e9339e2b85482a8",
+    "reproduced_sha256": "3bc638a24b2fb6fa25c82acf132bf28ae9fca85ec1fd9ad10628bddd32fae9ca"
+  },
+  {
+    "path": "notes/empirics_v3.json",
+    "baseline_sha256": "92b18f9763a753955019029362981f0c755ee1a0714d83cd2313d5d880a16c81",
+    "reproduced_sha256": "cc9229e5c7786541388a66f53a6e51198ea216f518aae5e2c835097d472ba49b"
+  },
+  {
+    "path": "notes/open_questions/valuation.json",
+    "baseline_sha256": "c5347fe2af66a6b48516b175321fe24480285ddee843ceb3b84d8e175432b708",
+    "reproduced_sha256": "19ee5e8bb7bef07c5f6ed557ee522acb33f9f1cd4b7d05df97486f0fd3644f59"
+  }
+]

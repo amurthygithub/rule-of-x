@@ -1,0 +1,35 @@
+{
+  "seed": null,
+  "scope": "Independent deterministic printed-formula checks, not repository reproduction",
+  "control": {
+    "three_human_annual_escape": 0.049767180838856784,
+    "one_human_one_AI_annual_escape": 0.030558840819406186,
+    "one_human_two_AI_annual_escape": 0.006702130690855568,
+    "three_AI_independent_opportunities_annual_escape": 0.11351671131178032,
+    "three_AI_period_persistent_common_mode_escape": 0.005191022425351252,
+    "per_objective_threshold_for_ten_independent_objectives_at_firm_five_percent": 0.005116196891823743
+  },
+  "epoch_source_units": {
+    "upfront_servers_USDm": 21188,
+    "annualized_servers_USDm": 5021,
+    "annual_total_TCO_USDm": 8514,
+    "source_implied_server_CRF": 0.23697375873135737,
+    "source_implied_server_K_over_economic_TCO": 2.488607000234907,
+    "paper_implied_K_over_TCO": 3.3,
+    "paper_implied_server_K_USDm": 28096.199999999997,
+    "cash_replacement_at_paper_5point5yr_life_USDm": 3852.3636363636365,
+    "cash_replacement_share_of_source_economic_TCO_at_5point5yr_life": 0.45247400004271043
+  },
+  "acquisition_case": {
+    "revenue_2024_USD_thousand": 671053,
+    "revenue_2025_USD_thousand": 1306404,
+    "CFO_2025_USD_thousand": 290600,
+    "SBC_2025_USD_thousand": 55523,
+    "PPE_cash_2025_USD_thousand": 501,
+    "simple_growth_2025_percent": 94.67970488173066,
+    "panel_basis_cash_score_2025": 112.63555927286846,
+    "SBC_share_2024_percent": 3.8528998454667516,
+    "SBC_share_2025_percent": 4.250063533179629
+  },
+  "successful_run_cost_identity": "expected total cost per success = c_success + ((1-p)/p)*c_failure"
+}

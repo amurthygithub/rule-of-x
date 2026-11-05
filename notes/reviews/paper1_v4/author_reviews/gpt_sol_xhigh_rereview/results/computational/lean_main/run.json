@@ -1,0 +1,22 @@
+{
+  "name": "lean_main",
+  "command": [
+    "lake",
+    "build"
+  ],
+  "cwd": "/workspace/scratch/2bd0abc7f371/rereview_20261104/work_pinned/formal",
+  "start_utc": "2026-11-05T03:37:21.245002+00:00",
+  "python_driver": "/workspace/scratch/2bd0abc7f371/rereview_20261104/repro_venv/bin/python",
+  "platform": "Linux-6.18.57-x86_64-with-glibc2.39",
+  "env": {
+    "LD_PRELOAD": "/workspace/scratch/2bd0abc7f371/rereview_20261104/lean_proc_compat.so",
+    "LEAN_NUM_THREADS": "4",
+    "REVIEW_COMMAND_CWD": "formal"
+  },
+  "commit": "eb7537bee7585f2902304f62a722edea6ced8539",
+  "status": "completed",
+  "exit_code": 0,
+  "elapsed_seconds": 34.96312833799948,
+  "finish_utc": "2026-11-05T03:37:56.209607+00:00",
+  "environment_record_note": "These three explicit command env settings were added from the original shell invocation; the initial recorder filtered them out."
+}

@@ -1,0 +1,45 @@
+session: 2026-11-05T03:48:32.417789
+python 3.12.3 numpy 2.5.2
+
+worked example: lam=0.0698, v0=10, never-spend multiple ulim=5.8333
+  s/sbar  v' (grad)   v' (Phi)     v/s
+  0.0100     9.0772     9.0747  9.4086
+  0.1000     7.2440     7.2385  8.0923
+  0.5000     5.3932     5.3883  6.4732
+  0.7000     5.1232     5.1221  6.1202
+  0.7500     5.0943     5.0938  6.0527
+  0.8000     5.0837     5.0837  5.9924
+  0.8500     5.0961     5.0965  5.9392
+  0.9000     5.1421     5.1428  5.8934
+  0.9500     5.2520     5.2528  5.8563
+  0.9800     5.3999     5.4007  5.8398
+  0.9900     5.4955     5.4961  5.8358
+  0.9950     5.5737     5.5742  5.8343
+  0.9990     5.6969     5.6972  5.8334
+  0.9999     5.7810     5.7811  5.8333
+
+[grad] min v' = 5.0837 at 80.11% of cap; ratio to 1% value: 0.5601
+
+[Phi] min v' = 5.0837 at 79.91% of cap; ratio to 1% value: 0.5602
+
+SENTENCE NUMBERS (supp S2.2 p.6; main 3.6 p.23):
+  9.1 / 7.2 / 5.4 at 1/10/50%:      grad 9.08/7.24/5.39  Phi 9.07/7.24/5.39
+  'about 5.1 near 80%':             grad 5.084  Phi 5.084
+  'rises toward 5.8 (never-spend)': ulim = 5.8333; v'(0.9999) grad 5.781 Phi 5.781
+  macro claims (15p): min 5.08 at 80%; VpSatHi 5.70 at 99.9%; VpNinetyNine 5.50; VpFourNines 5.78
+    grad: min 5.0837, at 99.9% 5.697, at 99% 5.496, at 99.99% 5.781
+    Phi:  min 5.0837, at 99.9% 5.697, at 99% 5.496, at 99.99% 5.781
+
+RETENTION RATIO (main 3.5 p.21 'still about 56% of its small-share value'):
+  at the minimum: v'-k = 5.084 vs 1% value 9.077 -> ratio 56.0%
+  near saturation (0.9999): 5.781 -> ratio 63.7%
+  vs small-share limit v0=10: 58.3%
+  15o's own claim: >= half from min to 99.9%: min ratio 56.0% >= 50%: True; sigma(0.95)=0.0006 < 0.1*sigma(0.01)=0.0092: True
+
+ACCEPTANCE-TEST DISPUTE:
+  MY round-1 test (i):  v'(0.95) > v'(0.5)?     grad: 5.2520 > 5.3932 -> False   (Phi: 5.2528 > 5.3883 -> False)
+  MY round-1 test (ii): v'(0.99) within 1% of ulim? grad: |5.4955-5.8333|/5.8333 = 5.79% -> False
+  AUTHOR's 15l: v'(0.99) > v'(0.5)?    grad: 5.4955 > 5.3932 -> True   (Phi: 5.4961 > 5.3883 -> True)
+  AUTHOR's 15m: v'(0.9999) within 1% of ulim? grad: 0.897% -> True   (Phi: 0.895%)
+  15n: interior min below limit, 70-90% of cap: grad min 5.0837 at 80.1% -> True
+  15n second part: v' < v/s at every share (z in 0.02-0.9999): max gap -0.0523 -> True

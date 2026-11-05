@@ -1,0 +1,222 @@
+{
+  "scope": "Independent reimplementation of data matching and point regressions from committed processed data; no author program imported or executed, no raw SEC audit.",
+  "inference_scope": "Fieller sets are asymptotic Wald diagnostics, using normal critical value and firm-cluster covariance. Signed ratio parameter; not a test of screening-weight model or a finite-sample coverage proof.",
+  "seed": "Not applicable: deterministic calculations; no bootstrap rerun.",
+  "matched": 1277,
+  "results": [
+    {
+      "basis": "cash",
+      "sample": "all",
+      "n": 1247,
+      "firms": 217,
+      "beta_g": 2.8059191551926164,
+      "beta_m": 0.5792695963696703,
+      "max_coefficient_difference_from_committed": 8.881784197001252e-16,
+      "max_standard_error_difference_from_committed": 5.828670879282072e-16,
+      "fieller90_diagnostic": {
+        "shape": "bounded interval between roots",
+        "roots": [
+          3.009676878498047,
+          13.703822244691661
+        ]
+      },
+      "committed_ci": [
+        3.082422081783114,
+        15.835872736741173
+      ],
+      "committed_nonpositive_or_nonfinite_share": 0.007007007007007007
+    },
+    {
+      "basis": "cash",
+      "sample": "2010-19",
+      "n": 647,
+      "firms": 137,
+      "beta_g": 2.5015691336290233,
+      "beta_m": 0.522785011536866,
+      "max_coefficient_difference_from_committed": 8.881784197001252e-16,
+      "max_standard_error_difference_from_committed": 7.771561172376096e-16,
+      "fieller90_diagnostic": {
+        "shape": "two unbounded exterior intervals",
+        "roots": [
+          -118.06972286830715,
+          2.499192881129218
+        ]
+      },
+      "committed_ci": [
+        2.5278977934857565,
+        null
+      ],
+      "committed_nonpositive_or_nonfinite_share": 0.06106106106106106
+    },
+    {
+      "basis": "cash",
+      "sample": "2020-25",
+      "n": 600,
+      "firms": 163,
+      "beta_g": 3.1696491064586434,
+      "beta_m": 0.6345542619028309,
+      "max_coefficient_difference_from_committed": 1.7763568394002505e-15,
+      "max_standard_error_difference_from_committed": 3.2751579226442118e-15,
+      "fieller90_diagnostic": {
+        "shape": "bounded interval between roots",
+        "roots": [
+          3.1023824072638417,
+          16.197574954668777
+        ]
+      },
+      "committed_ci": [
+        3.077810308555204,
+        16.600175568271894
+      ],
+      "committed_nonpositive_or_nonfinite_share": 0.015015015015015015
+    },
+    {
+      "basis": "cash",
+      "sample": "top40",
+      "n": 181,
+      "firms": 79,
+      "beta_g": 0.3737279405545767,
+      "beta_m": -0.9078694591501589,
+      "max_coefficient_difference_from_committed": 1.9984014443252818e-15,
+      "max_standard_error_difference_from_committed": 2.9976021664879227e-15,
+      "fieller90_diagnostic": {
+        "shape": "two unbounded exterior intervals",
+        "roots": [
+          0.37245996314346497,
+          2.2554044627845053
+        ]
+      },
+      "committed_ci": [],
+      "committed_nonpositive_or_nonfinite_share": null
+    },
+    {
+      "basis": "cash",
+      "sample": "no_acq",
+      "n": 898,
+      "firms": 202,
+      "beta_g": 3.297772159426996,
+      "beta_m": 0.8449513372622032,
+      "max_coefficient_difference_from_committed": 6.661338147750939e-15,
+      "max_standard_error_difference_from_committed": 6.106226635438361e-16,
+      "fieller90_diagnostic": {
+        "shape": "bounded interval between roots",
+        "roots": [
+          2.7265843556317146,
+          7.322250680341389
+        ]
+      },
+      "committed_ci": [
+        2.8025849160925653,
+        8.02712639999772
+      ],
+      "committed_nonpositive_or_nonfinite_share": 0.002002002002002002
+    },
+    {
+      "basis": "gaap",
+      "sample": "all",
+      "n": 1272,
+      "firms": 219,
+      "beta_g": 2.8655302160486724,
+      "beta_m": 0.6515202287946108,
+      "max_coefficient_difference_from_committed": 3.1086244689504383e-15,
+      "max_standard_error_difference_from_committed": 1.6653345369377348e-16,
+      "fieller90_diagnostic": {
+        "shape": "bounded interval between roots",
+        "roots": [
+          3.129271320721773,
+          7.628736850873127
+        ]
+      },
+      "committed_ci": [
+        3.1259396314425167,
+        7.730907825495461
+      ],
+      "committed_nonpositive_or_nonfinite_share": 0.001001001001001001
+    },
+    {
+      "basis": "gaap",
+      "sample": "2010-19",
+      "n": 653,
+      "firms": 139,
+      "beta_g": 2.564789187642708,
+      "beta_m": 0.6297905542223732,
+      "max_coefficient_difference_from_committed": 3.219646771412954e-15,
+      "max_standard_error_difference_from_committed": 1.6653345369377348e-16,
+      "fieller90_diagnostic": {
+        "shape": "bounded interval between roots",
+        "roots": [
+          2.601307794912566,
+          9.90102897946704
+        ]
+      },
+      "committed_ci": [
+        2.6154836289443995,
+        11.125437065378009
+      ],
+      "committed_nonpositive_or_nonfinite_share": 0.008008008008008008
+    },
+    {
+      "basis": "gaap",
+      "sample": "2020-25",
+      "n": 619,
+      "firms": 167,
+      "beta_g": 3.2201741529427204,
+      "beta_m": 0.6660960561429692,
+      "max_coefficient_difference_from_committed": 1.7763568394002505e-15,
+      "max_standard_error_difference_from_committed": 9.43689570931383e-16,
+      "fieller90_diagnostic": {
+        "shape": "bounded interval between roots",
+        "roots": [
+          3.3621399716801497,
+          9.317508216985313
+        ]
+      },
+      "committed_ci": [
+        3.2429389348052453,
+        9.005774127010737
+      ],
+      "committed_nonpositive_or_nonfinite_share": 0.002002002002002002
+    },
+    {
+      "basis": "gaap",
+      "sample": "top40",
+      "n": 171,
+      "firms": 60,
+      "beta_g": 0.5491862076878338,
+      "beta_m": 0.39238084678366086,
+      "max_coefficient_difference_from_committed": 8.881784197001252e-16,
+      "max_standard_error_difference_from_committed": 9.769962616701378e-15,
+      "fieller90_diagnostic": {
+        "shape": "all real numbers",
+        "roots": null
+      },
+      "committed_ci": [
+        0.16647823150943458,
+        null
+      ],
+      "committed_nonpositive_or_nonfinite_share": 0.36436436436436437
+    },
+    {
+      "basis": "gaap",
+      "sample": "no_acq",
+      "n": 911,
+      "firms": 203,
+      "beta_g": 3.3424570642462577,
+      "beta_m": 0.827976366182217,
+      "max_coefficient_difference_from_committed": 7.105427357601002e-15,
+      "max_standard_error_difference_from_committed": 2.7755575615628914e-16,
+      "fieller90_diagnostic": {
+        "shape": "bounded interval between roots",
+        "roots": [
+          3.010697658896377,
+          6.32604024068503
+        ]
+      },
+      "committed_ci": [
+        3.026071069525615,
+        6.33014625111437
+      ],
+      "committed_nonpositive_or_nonfinite_share": 0.0
+    }
+  ]
+}

@@ -1,0 +1,2 @@
+/workspace/scratch/2bd0abc7f371/rereview_20261104/work_pinned/code/verify_theory.py:2797: RuntimeWarning: overflow encountered in exp
+  lbs.append(mo * np.trapezoid(np.exp(-(r_ - G_ - D_) * tt) / (1 + (s0v / 0.5) * (np.exp(D_ * tt) - 1)), tt))

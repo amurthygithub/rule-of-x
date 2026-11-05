@@ -1,0 +1,20 @@
+[
+  {
+    "path": "notes/open_questions/valuation.json",
+    "baseline_exists": true,
+    "reproduced_exists": true,
+    "bytes_identical": false
+  },
+  {
+    "path": "notes/open_questions/paths.json",
+    "baseline_exists": true,
+    "reproduced_exists": true,
+    "bytes_identical": true
+  },
+  {
+    "path": "notes/mc_results_2026-11-03_1m/dashboard/paths.csv",
+    "baseline_exists": false,
+    "reproduced_exists": true,
+    "bytes_identical": null
+  }
+]

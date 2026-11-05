@@ -1,0 +1,4 @@
+/workspace/scratch/2bd0abc7f371/rereview_20261104/repro_venv/lib/python3.12/site-packages/numpy/lib/_function_base_impl.py:4608: RuntimeWarning: invalid value encountered in scalar subtract
+  diff_b_a = b - a
+/workspace/scratch/2bd0abc7f371/rereview_20261104/repro_venv/lib/python3.12/site-packages/numpy/lib/_function_base_impl.py:4608: RuntimeWarning: invalid value encountered in scalar subtract
+  diff_b_a = b - a

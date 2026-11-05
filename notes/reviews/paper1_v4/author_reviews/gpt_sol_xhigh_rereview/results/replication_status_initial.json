@@ -1,0 +1,82 @@
+{
+  "pinned_repository": "https://github.com/amurthygithub/rule-of-x",
+  "pinned_commit": "eb7537bee7585f2902304f62a722edea6ced8539",
+  "expected_repository_archive_sha256": "57fd5603b0d1ccf51600288706da0e4d8d394c56ec320494be0dcfe82de32981",
+  "attachment_members": [
+    "paper1.pdf",
+    "supplement.pdf",
+    "RESPONSE.md",
+    "PROMPT.md",
+    "MANIFEST.txt"
+  ],
+  "access_attempts": [
+    {
+      "method": "connected GitHub repository metadata",
+      "result": "HTTP 404 Not Found",
+      "scope": "Current connection could not access the named repository; this does not establish that it does not exist."
+    },
+    {
+      "method": "git clone --no-checkout --filter=blob:none --single-branch --branch review-round-3 https://github.com/amurthygithub/rule-of-x.git",
+      "result": "exit 128; could not read Username for https://github.com: No such device or address",
+      "scope": "No repository checkout obtained; no source tree was modified."
+    },
+    {
+      "method": "Library exact-title search for repository.zip, then simpler repository title search",
+      "result": "No matching result returned",
+      "scope": "Search result is not proof that no differently named archive exists; no archive was provided in the attached ZIP."
+    },
+    {
+      "method": "retry after user supplied the same repository URL: connected GitHub metadata and exact code/REPLICATION_README.md at pinned commit",
+      "result": "Both requests again returned HTTP404 Not Found"
+    },
+    {
+      "method": "public web fetch of repository and raw README URL",
+      "result": "DisabledError; no content obtained"
+    },
+    {
+      "method": "git ls-remote with terminal prompts disabled",
+      "result": "could not read Username for https://github.com: terminal prompts disabled"
+    }
+  ],
+  "required_commands": [
+    {
+      "command": "python3 code/verify_theory.py",
+      "status": "not executed: source checkout unavailable",
+      "runtime_seconds": null,
+      "committed_output_comparison": "not possible"
+    },
+    {
+      "command": "python3 code/paper1_macros.py",
+      "status": "not executed: source checkout unavailable",
+      "runtime_seconds": null,
+      "committed_output_comparison": "not possible"
+    },
+    {
+      "command": "python3 code/supp_extensions.py",
+      "status": "not executed: source checkout unavailable",
+      "runtime_seconds": null,
+      "committed_output_comparison": "not possible"
+    },
+    {
+      "command": "bash code/build_paper1.sh",
+      "status": "not executed: source checkout unavailable",
+      "runtime_seconds": null,
+      "committed_output_comparison": "not possible"
+    },
+    {
+      "command": "bash code/regenerate_all.sh --skip-raw",
+      "status": "not executed: source/data checkout unavailable",
+      "runtime_seconds": null,
+      "committed_output_comparison": "not possible"
+    },
+    {
+      "command": "Lean/lake build of formal/ with repository-pinned toolchain",
+      "status": "not executed: formalization unavailable; lean and lake absent on PATH",
+      "runtime_seconds": null,
+      "committed_output_comparison": "not possible"
+    }
+  ],
+  "differences_observed_between_reruns_and_committed_outputs": null,
+  "difference_status": "Not measured. This must not be described as no differences.",
+  "restricted_material": "No other-reviewer folders, other response letters or joint response were read. This remains true through the Part B freeze."
+}

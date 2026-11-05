@@ -1,0 +1,36 @@
+[
+  {
+    "name": "paper1.pdf",
+    "bytes": 680970,
+    "sha256": "9e986ecac307d445b0f9a636788100d8fc680f3a5508b609b430ab457788c55b",
+    "manifest_match": true
+  },
+  {
+    "name": "supplement.pdf",
+    "bytes": 699953,
+    "sha256": "1da736731466b00d583ee0055480bae7ad809c114edb25ad232a6d8078f2b81f",
+    "manifest_match": true
+  },
+  {
+    "name": "RESPONSE.md",
+    "bytes": 27755,
+    "sha256": "b068918d515709ea3af8d99c1428094cec6ddbd3d85f9b190d5fe888d52845f1",
+    "manifest_match": true
+  },
+  {
+    "name": "PROMPT.md",
+    "bytes": 5909,
+    "sha256": "4fc5f4065ec94a924672d7eedaf65fa6a2dec80298bf29dfa98417e4e80415fc",
+    "manifest_match": true
+  },
+  {
+    "name": "MANIFEST.txt",
+    "bytes": 689,
+    "sha256": "22eb33b10ca4e39b299583c3ab21891b129bbe8b6409841a83cecac28b532e01"
+  },
+  {
+    "name": "rereview_gpt.zip",
+    "bytes": 1345377,
+    "sha256": "7f08cbcea2944359d42b28a975780a0ca976eb86c1060996969742e380e0f020"
+  }
+]

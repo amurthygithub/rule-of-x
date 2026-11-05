@@ -1,0 +1,14 @@
+[
+  {
+    "file": "paper1",
+    "sha256": "ceaa6bb4b89a1285c9126c1760e68e5ed4276daeef9cb573951e5fc3b1ec595e",
+    "text_identical_to_attachment": true,
+    "page_count": 87
+  },
+  {
+    "file": "supplement",
+    "sha256": "cf89afead6d85a8cc8d86c322ebaac208d500b8b4c41de386af93a930a7d5e02",
+    "text_identical_to_attachment": true,
+    "page_count": 72
+  }
+]

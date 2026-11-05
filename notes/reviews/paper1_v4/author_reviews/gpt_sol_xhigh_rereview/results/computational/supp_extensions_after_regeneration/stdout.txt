@@ -1,0 +1,1 @@
+wrote paper1/ext_macros.tex (64 macros) and three tables; 27 of 27 text checks pass

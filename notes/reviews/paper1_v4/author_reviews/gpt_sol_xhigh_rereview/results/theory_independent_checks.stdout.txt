@@ -1,0 +1,62 @@
+{
+  "seed": 20261104,
+  "scope": "Independent closed-form checks; author repository and Lean not executed.",
+  "static_1000_draw_max_relative_error": 5.129517421855458e-15,
+  "uniform_growth_cone": {
+    "growth": 0.3,
+    "quantile_growth": 0.37,
+    "finite_difference": -0.2063906335281196,
+    "chain_rule": -0.20639063356761206
+  },
+  "common_frontier_capped_weight_counterexample": {
+    "alpha": 0.3,
+    "ell": 1.0,
+    "spend_cap": 1.0,
+    "X": 10.0,
+    "uncapped_spend": 4.803986656673092,
+    "chosen_growth": 1.0,
+    "frontier_steepest_slope_magnitude": 3.3333333333333335,
+    "X_exceeds_frontier_slope": true
+  },
+  "free_entry_without_scarce_input": [
+    {
+      "u": 0.85,
+      "full_cost": 1.0,
+      "competitive_score": 0.15
+    },
+    {
+      "u": 0.35,
+      "full_cost": 0.5,
+      "competitive_score": 0.19999999999999998
+    }
+  ],
+  "general_concave_growth_counterexample": {
+    "phi": "sigma",
+    "ell": 1,
+    "X": 2,
+    "k": 0,
+    "G": 0,
+    "m0": 0,
+    "unbounded_score": "sigma",
+    "scores_at_spend_1_10_100": [
+      1,
+      10,
+      100
+    ]
+  },
+  "annual_acquisition_identity": {
+    "growth": 0.7,
+    "acquired_growth": 0.5,
+    "cash_over_current_revenue": 0.8823529411764706,
+    "corrected_identity": 0.8823529411764706
+  },
+  "tax_shields": {
+    "psi_5_at_discount_10pct": 0.7960652215757744,
+    "psi_15_at_discount_10pct": 0.5324255654415856,
+    "psi_15_at_growth_30pct": 0.2505628604884752
+  },
+  "temporal_common_mode_sensitivity": {
+    "independent_annual_escape": 0.11351671131178032,
+    "period_persistent_annual_escape": 0.005191022425351252
+  }
+}

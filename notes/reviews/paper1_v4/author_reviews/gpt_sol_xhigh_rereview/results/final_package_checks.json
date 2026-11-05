@@ -1,0 +1,19 @@
+{
+  "csv_rows": 49,
+  "csv_columns": [
+    "id",
+    "our_status",
+    "your_verdict",
+    "evidence",
+    "locator"
+  ],
+  "part_b_sha256": "85de8d0a40cb04f00202c73bf11b5e83f9b692618bfda30d1c328e2cf3c3e327",
+  "frozen_exact_text_occurs": true,
+  "all_parts_present": true,
+  "verdict_first": true,
+  "report_words": 10254,
+  "zip_files": 132,
+  "zip_integrity_ok": true,
+  "no_proprietary_source_cache": true,
+  "all_runs_completed": true
+}

@@ -1,0 +1,21 @@
+{
+  "name": "biz_valuation",
+  "command": [
+    "/workspace/scratch/2bd0abc7f371/rereview_20261104/repro_venv/bin/python",
+    "code/biz_valuation.py"
+  ],
+  "cwd": "/workspace/scratch/2bd0abc7f371/rereview_20261104/work_pinned",
+  "start_utc": "2026-11-05T03:33:31.721250+00:00",
+  "python_driver": "/workspace/scratch/2bd0abc7f371/rereview_20261104/repro_venv/bin/python",
+  "platform": "Linux-6.18.57-x86_64-with-glibc2.39",
+  "env": {
+    "MKL_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1"
+  },
+  "commit": "eb7537bee7585f2902304f62a722edea6ced8539",
+  "status": "completed",
+  "exit_code": 0,
+  "elapsed_seconds": 9.356637277000118,
+  "finish_utc": "2026-11-05T03:33:41.080176+00:00"
+}
