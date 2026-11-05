@@ -55,6 +55,7 @@ ok   horizons (B7): under central execution the cumulative cash effect is negati
 ok   horizons: no single tornado input lifts the 2036 central score to 100
 ok   horizons: a guided dip slows the program (realized share below the central one by 2036)
 ok   abstract, intro, summary box, conclusion: the baseline Psi slope is about a fifth of a point (absolute value 0.15 to 0.25 on both bases, E1)
+ok   abstract (plain language, 5 Nov): "fell by 12 to 13 points" is GAAP then cash in whole points, the GAAP fall the smaller; "significant on operating margins under most tests, not on cash" needs at least three of four familywise procedures at 10% on GAAP
 ok   abstract: the GAAP P95 fall is the smaller of the two bases (written "by GAAP to cash points")
 ok   discussion: the E1 spend ratio exceeds one and the lower-quartile anchor surplus (upper bound) is negative
 ok   accountability floor (C1): the bottom-up floors at 1% and 5% differ by less than 0.01% of revenue

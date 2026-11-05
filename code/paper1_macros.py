@@ -1243,6 +1243,8 @@ num('TopYearMinOp', vest('p95_op_2024'), 1); num('TopYearLastOp', vest('p95_op_2
 _vars = [k for k in V3E['p95_change_op'] if k not in ('E1_minus_E2', 'E1all')]
 _falls = [-vest(f'p95_change_{b}', v_) for b in ('op', 'cash') for v_ in _vars]
 num('TopFallAllLo', min(_falls)); num('TopFallAllHi', max(_falls))
+# whole points for the plain-language abstract (5 Nov 2026): GAAP and cash falls of the baseline, E1
+num('TopFallOpRound', -vest('p95_change_op', 'E1'), 0); num('TopFallCashRound', -vest('p95_change_cash', 'E1'), 0)
 put('TopCount', WORD[count_four('p95_change_op', lambda c: c[1] < 0)])
 put('TopCountCash', WORD[count_four('p95_change_cash', lambda c: c[1] < 0)])
 est_se('SlopeYearFeOp', 'slope_yearfe_op')
@@ -1687,6 +1689,11 @@ CLAIMS += [
      and V['public_guided_dip_2pt']['2036']['s'] < CAL['pace']['central']['2036']['s']),
     ('abstract, intro, summary box, conclusion: the baseline Psi slope is about a fifth of a point (absolute value 0.15 to 0.25 on both bases, E1)',
      all(0.15 <= abs(FS3['central'][b]['E1']['est']) <= 0.25 for b in ('op', 'cash'))),
+    ('abstract (plain language, 5 Nov): "fell by 12 to 13 points" is GAAP then cash in whole points, the GAAP fall the '
+     'smaller; "significant on operating margins under most tests, not on cash" needs at least three of four '
+     'familywise procedures at 10% on GAAP',
+     M['TopFallOpRound'] == fmt(-vest('p95_change_op', 'E1'), 0) and int(M['TopFallOpRound']) <= int(M['TopFallCashRound'])
+     and len(TOP_FAM['10']) >= 3),
     ('abstract: the GAAP P95 fall is the smaller of the two bases (written "by GAAP to cash points")',
      -vest('p95_change_op', 'E1') <= -vest('p95_change_cash', 'E1')),
     ('discussion: the E1 spend ratio exceeds one and the lower-quartile anchor surplus (upper bound) is negative',
@@ -2103,7 +2110,7 @@ if os.path.exists(_exf):
 src = open(os.path.join(BASE, 'sections', 'abstract.tex')).read()
 body = src.split(r'\begin{abstract}', 1)[1].split(r'\end{abstract}', 1)[0]
 body = re.sub(r'(?<!\\)%.*', '', body)                       # comments
-body = body.replace(r'\noindent', '')
+body = body.replace(r'\noindent', '').replace(r'\smallskip', ' ')   # paragraph spacing of the plain-language abstract
 
 
 def expand(m):

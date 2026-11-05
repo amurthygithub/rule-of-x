@@ -17,6 +17,7 @@ Thank you for the re-review, and for accepting the two rows we had called review
 1. **RS-7:** the reproduction record, `notes/reviews/paper1_v4/fresh_clone_reproduction_2026-11-05.md`, and, if you can, a run of your own on the commit the prompt gives.
 2. Whether the fixes the other re-reviews led to (below) introduced any error, in particular Remark S11 and its two tables, Table S20 and the abstract.
 3. Whether your release recommendation stands.
+4. **The plain-language abstract** (item 5 of the next section): is it accurate, does it claim nothing stronger than the text, and does it keep every condition that matters?
 
 ## What changed since your re-review
 
@@ -33,9 +34,10 @@ The build you read was of 4 November (main paper 87 pages, supplement 72; commit
    - qualifiers in §1, §3.5, §3.7, §4.6, §7.3, S4(a), S7 and executive summary item 9;
    - bibliography notes, search dates in A.6, and relabelled checks in `code/verify_theory.py`;
    - an explicit-zero bug fixed in the companion engine.
-2. **The audit of the fixes.** An agent on `claude-fable-5-1` that had not made them audited them; its ten findings, all minor, were fixed or answered. Among them: the abstract keeps "from sampling alone" and says "its margin at zero growth"; Remark S11 and Table S11 list land and utility works and print $\kappa$ to two decimals.
+2. **The audit of the fixes.** An agent on `claude-fable-5-1` that had not made them audited them; its ten findings, all minor, were fixed or answered. Among them: the abstract kept "from sampling alone" and said "its margin at zero growth" (since replaced, item 5 below); Remark S11 and Table S11 list land and utility works and print $\kappa$ to two decimals.
 3. **The introduction** now says the verification hypothesis is "which we check numerically but do not prove" (from the DeepSeek re-review; kept by the author).
 4. **The reproduction you asked for** (RS-7, below).
+5. **A plain-language abstract.** At the author's decision (5 November, 13:00), the abstract is now written for business readers in short sentences, one idea each (1,890 characters). It keeps the conditions: the unproved assumption behind the decision weight, central costs and fixed prices, the cost of computing and its range (now in cents per dollar of revenue), pass-through, a scenario that is not a forecast, the lasting and the netted 2036 score, an interval from sampling error alone, free entry into a market for the same product, and the sample's classification. Left to the text: the "fifth of a point" trade-off at the top, the 70% pass-through case, the ranges across samples, the acquisitions sentence and the cap set by AI's full costs. Please judge it as an abstract.
 
 ## Your points, one by one
 

@@ -1,0 +1,395 @@
+<title>Rule of 40 Easy-Read Edition</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&family=Lexend:wght@400;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+<style>
+/* Layout: one reading column whose width, type and spacing the reader sets; a sticky tool bar; contents in a drawer. */
+:root {
+  --bg: #f6f7f9; --surface: #ffffff; --ink: #1d2128; --muted: #4b5563; --rule: #d5dbe3;
+  --accent: #0d5c75; --accent-soft: #e2eff3; --hl: #fff0a8; --kp: #eef3f6; --figbg: #ffffff;
+  --font-atkinson: "Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
+  --font-lexend: "Lexend", "Segoe UI", system-ui, sans-serif;
+  --font-serif: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --font-system: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --rfont: var(--font-atkinson); --rsize: 19px; --rlh: 1.8; --rmeasure: 66ch; --rls: 0; --rws: 0;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #13171c; --surface: #1a1f26; --ink: #e6e9ed; --muted: #aab3bf; --rule: #2f3743;
+  --accent: #6ec4db; --accent-soft: #1c3640; --hl: #4d4518; --kp: #1d252e; --figbg: #f2f2f2; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #13171c; --surface: #1a1f26; --ink: #e6e9ed; --muted: #aab3bf; --rule: #2f3743;
+  --accent: #6ec4db; --accent-soft: #1c3640; --hl: #4d4518; --kp: #1d252e; --figbg: #f2f2f2; color-scheme: dark }
+:root[data-bg="light"] {
+  --bg: #f6f7f9; --surface: #ffffff; --ink: #1d2128; --muted: #4b5563; --rule: #d5dbe3;
+  --accent: #0d5c75; --accent-soft: #e2eff3; --hl: #fff0a8; --kp: #eef3f6; --figbg: #ffffff; color-scheme: light }
+:root[data-bg="cream"] {
+  --bg: #f7f1df; --surface: #fbf7ea; --ink: #2a2620; --muted: #5d5547; --rule: #ddd3bb;
+  --accent: #7a4b12; --accent-soft: #efe3c6; --hl: #ffe28a; --kp: #f0e7cf; --figbg: #fffdf6; color-scheme: light }
+:root[data-bg="dark"] {
+  --bg: #13171c; --surface: #1a1f26; --ink: #e6e9ed; --muted: #aab3bf; --rule: #2f3743;
+  --accent: #6ec4db; --accent-soft: #1c3640; --hl: #4d4518; --kp: #1d252e; --figbg: #f2f2f2; color-scheme: dark }
+
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body { background: var(--bg); color: var(--ink); font-family: var(--rfont); }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 30; background: var(--surface); }
+button, select { font: inherit; font-size: 15px; color: var(--ink); }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+
+.bar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: var(--surface); border-bottom: 1px solid var(--rule);
+  padding-block: 8px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  font-family: var(--font-atkinson); }
+.bar-inner { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; max-width: 1100px; margin: 0 auto; }
+.bar .grow { flex: 1 1 auto; }
+.btn { display: inline-flex; align-items: center; gap: 6px; min-height: 40px; padding: 0 14px; border-radius: 8px; border: 1px solid var(--rule);
+  background: var(--surface); cursor: pointer; }
+.btn:hover { border-color: var(--accent); }
+.btn[aria-pressed="true"], .btn.on { background: var(--accent-soft); border-color: var(--accent); }
+.btn.primary { background: var(--accent); color: var(--surface); border-color: var(--accent); font-weight: 700; }
+.listen-group { display: inline-flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+.status { font-size: 14px; color: var(--muted); min-width: 0; }
+
+.panel { background: var(--surface); border-bottom: 1px solid var(--rule); font-family: var(--font-atkinson);
+  padding-block: 14px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.panel-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 14px 24px; }
+.panel fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
+.panel legend { font-weight: 700; font-size: 15px; margin-bottom: 6px; }
+.seg { display: flex; flex-wrap: wrap; gap: 6px; }
+.seg .btn { min-height: 36px; padding: 0 12px; }
+.panel select { min-height: 36px; border-radius: 8px; border: 1px solid var(--rule); background: var(--surface); padding: 0 8px; max-width: 100%; }
+.sizeval { font-variant-numeric: tabular-nums; min-width: 3.5em; text-align: center; align-self: center; }
+
+.toc { position: fixed; z-index: 40; top: 0; bottom: 0; left: 0; width: min(380px, 88vw); background: var(--surface); border-right: 1px solid var(--rule);
+  overflow-y: auto; font-family: var(--font-atkinson); font-size: 16px; line-height: 1.4;
+  padding: calc(16px + env(safe-area-inset-top, 0px)) 16px calc(16px + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px));
+  box-shadow: 0 0 0 100vmax rgba(0,0,0,.25); }
+.toc ul { list-style: none; margin: 8px 0 0; padding: 0; display: grid; gap: 2px; }
+.toc a { display: block; padding: 8px 10px; border-radius: 6px; color: var(--ink); text-decoration: none; }
+.toc a:hover, .toc a.here { background: var(--accent-soft); }
+.toc .toc-head { font-weight: 700; color: var(--muted); padding: 14px 10px 4px; font-size: 14px; letter-spacing: .04em; text-transform: uppercase; }
+.toc-top { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+
+.reader { max-width: var(--rmeasure); margin: 0 auto; font-size: var(--rsize); line-height: var(--rlh); letter-spacing: var(--rls); word-spacing: var(--rws);
+  padding-block: 24px 96px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  text-align: left; hyphens: none; overflow-wrap: break-word; box-sizing: content-box; }
+.howto { font-size: .9em; background: var(--kp); border-radius: 8px; padding: 12px 16px; margin: 0 0 28px; }
+.howto p { margin: 0 0 .5em; } .howto p:last-child { margin: 0; }
+.reader a { color: var(--accent); text-underline-offset: 3px; }
+.reader h1, .reader h2, .reader h3, .reader h4, .reader h5, .reader h6 { line-height: 1.3; text-wrap: balance; font-weight: 700; }
+.reader h1 { font-size: 1.55em; margin: .2em 0 .6em; }
+.reader h2 { font-size: 1.35em; margin: 2.2em 0 .5em; padding-top: .6em; border-top: 2px solid var(--rule); }
+.reader h3 { font-size: 1.15em; margin: 1.8em 0 .4em; }
+.reader h4, .reader h5, .reader h6 { font-size: 1.02em; margin: 1.4em 0 .3em; }
+.reader .ltx_tag { color: var(--accent); }
+.reader .ltx_p, .reader p { margin: 0 0 1em; }
+.reader .ltx_para { margin: 0; }
+.reader .ltx_authors { color: var(--muted); margin-bottom: 1em; display: block; }
+.reader .ltx_author_notes { display: none; }
+.reader .ltx_dates, .reader .ltx_date { color: var(--muted); display: block; margin-bottom: 1.5em; }
+.reader .ltx_abstract { background: var(--surface); border: 1px solid var(--rule); border-radius: 8px; padding: 4px 18px 8px; margin: 1em 0 2em; }
+.reader .ltx_abstract h6, .reader .ltx_title_abstract { font-size: 1em; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin: 1em 0 .4em; }
+.reader ul, .reader ol { padding-left: 1.4em; }
+.reader li { margin: .3em 0; }
+.reader .ltx_enumerate, .reader .ltx_itemize { padding-left: 1.4em; }
+.reader .ltx_item .ltx_tag { margin-right: .3em; }
+.reader .ltx_theorem { border: 1px solid var(--rule); border-radius: 8px; padding: .2em 1em .4em; margin: 1.2em 0; background: var(--surface); }
+.reader .ltx_title_theorem { font-size: 1em; margin: .6em 0 .3em; }
+.reader .ltx_proof { margin: 1em 0; }
+.reader .ltx_title_proof { font-size: 1em; font-style: italic; }
+
+.secbar { margin: .2em 0 1em; }
+.listen { font-family: var(--font-atkinson); font-size: 14px; min-height: 34px; padding: 0 12px; border-radius: 8px; border: 1px solid var(--rule);
+  background: var(--surface); color: var(--ink); cursor: pointer; }
+.listen:hover { border-color: var(--accent); }
+.keypoints { background: var(--kp); border-radius: 8px; padding: 10px 18px 4px; margin: 0 0 1.6em; }
+.keypoints .kp-title { font-weight: 700; margin: 0 0 .2em; }
+.keypoints ul { margin: 0 0 .6em; }
+
+.scroll { overflow-x: auto; max-width: 100%; margin: 1.2em 0; -webkit-overflow-scrolling: touch; }
+.tablebox table { border-collapse: collapse; font-size: .82em; line-height: 1.45; letter-spacing: 0; word-spacing: 0; }
+.tablebox td, .tablebox th { padding: 5px 9px; vertical-align: top; }
+.reader .ltx_border_t { border-top: 1px solid var(--rule); } .reader .ltx_border_b { border-bottom: 1px solid var(--rule); }
+.reader .ltx_border_tt { border-top: 2px solid var(--muted); } .reader .ltx_border_bb { border-bottom: 2px solid var(--muted); }
+.reader .ltx_border_r { border-right: 1px solid var(--rule); } .reader .ltx_border_l { border-left: 1px solid var(--rule); }
+.reader .ltx_align_center { text-align: center; } .reader .ltx_align_right { text-align: right; } .reader .ltx_align_left { text-align: left; }
+.reader .ltx_transformed_outer, .reader .ltx_transformed_inner { width: auto !important; height: auto !important; transform: none !important; display: block; }
+.reader .ltx_inline-block { display: block; max-width: 100%; overflow-x: auto; }
+.reader .ltx_flex_figure, .reader .ltx_flex_cell { max-width: 100%; min-width: 0; display: block; }
+.eqbox table { margin: 0 auto; border-collapse: collapse; } .eqbox td { padding: 0 4px; }
+.eqbox .ltx_eqn_eqno, .eqbox .ltx_tag_equation { color: var(--muted); font-size: .9em; }
+.eqshow { display: none; font-family: var(--font-atkinson); font-size: 14px; min-height: 32px; padding: 0 10px; margin: .4em 0; border-radius: 6px;
+  border: 1px dashed var(--rule); background: transparent; color: var(--muted); cursor: pointer; }
+:root[data-eq="fold"] .eqshow { display: inline-block; }
+:root[data-eq="fold"] .eqbox:not(.open) { display: none; }
+math { font-size: 1.04em; }
+/* a long inline formula scrolls inside itself instead of widening the page (browsers do not break MathML lines) */
+.reader math.ltx_Math { display: inline-block; max-width: 100%; overflow-x: auto; overflow-y: hidden; vertical-align: middle; padding-block: 2px; }
+.reader .ltx_equation math, .reader .eqbox math { display: block; overflow: visible; max-width: none; }
+
+.reader figure { margin: 1.6em 0; }
+.reader .ltx_figure img, .reader figure img { display: block; max-width: 100%; height: auto; margin: 0 auto; background: var(--figbg); border-radius: 6px; padding: 8px; box-sizing: border-box; }
+.reader figcaption, .reader .ltx_caption { font-size: .9em; color: var(--muted); margin: .6em 0; }
+.reader .ltx_table .ltx_caption { color: var(--ink); }
+.reader .ltx_note_outer { display: none; }
+.reader .ltx_note.open .ltx_note_outer { display: block; font-size: .88em; color: var(--muted); border-left: 2px solid var(--rule); padding-left: .7em; margin: .3em 0 .6em; }
+.reader .ltx_note_mark { cursor: pointer; color: var(--accent); }
+.reader .ltx_bibliography { font-size: .9em; }
+.reader .ltx_bibitem { margin: .5em 0; }
+.reader .ltx_bibblock { display: inline; }
+.reader .ltx_page_footer, .reader .ltx_page_logo { display: none; }
+
+:root[data-skim] .reader section.ltx_subsection, :root[data-skim] .reader section.ltx_paragraph, :root[data-skim] .reader section.ltx_subsubsection,
+:root[data-skim] .reader section > .ltx_para, :root[data-skim] .reader section > figure, :root[data-skim] .reader section > .ltx_theorem,
+:root[data-skim] .reader section > .scroll, :root[data-skim] .reader section > .eqshow, :root[data-skim] .reader section > .ltx_proof,
+:root[data-skim] .reader section > table, :root[data-skim] .reader .ltx_bibliography { display: none; }
+
+.speaking { background: var(--hl); border-radius: 4px; box-shadow: 0 0 0 4px var(--hl); }
+.reader .ltx_p:hover { background: color-mix(in srgb, var(--accent-soft) 45%, transparent); border-radius: 4px; box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent-soft) 45%, transparent); }
+.toplink { position: fixed; right: max(16px, env(safe-area-inset-right, 0px)); bottom: calc(16px + env(safe-area-inset-bottom, 0px)); z-index: 15; }
+@media (max-width: 560px) { .bar .label-long { display: none; } .reader h2 { margin-top: 1.6em; } }
+</style>
+
+<header class="bar" role="toolbar" aria-label="Reading tools">
+  <div class="bar-inner">
+    <button class="btn" id="btn-toc" type="button" aria-expanded="false" aria-controls="toc">Contents</button>
+    <button class="btn" id="btn-settings" type="button" aria-expanded="false" aria-controls="settings">Reading settings</button>
+    <button class="btn" id="btn-skim" type="button" aria-pressed="false">Key points only</button>
+    <span class="grow"></span>
+    <span class="listen-group" id="listen-group">
+      <button class="btn primary" id="btn-play" type="button">Listen from here</button>
+      <button class="btn" id="btn-stop" type="button" disabled>Stop</button>
+      <span class="status" id="speak-status" aria-live="polite"></span>
+    </span>
+  </div>
+</header>
+
+<section class="panel" id="settings" hidden aria-label="Reading settings">
+  <div class="panel-inner">
+    <fieldset><legend>Typeface</legend><div class="seg" id="opt-font">
+      <button class="btn" type="button" id="font-atkinson" data-v="atkinson">Atkinson Hyperlegible</button>
+      <button class="btn" type="button" id="font-lexend" data-v="lexend">Lexend</button>
+      <button class="btn" type="button" id="font-serif" data-v="serif">Serif</button>
+      <button class="btn" type="button" id="font-system" data-v="system">System</button></div></fieldset>
+    <fieldset><legend>Text size</legend><div class="seg">
+      <button class="btn" type="button" id="size-down" aria-label="Smaller text">A−</button>
+      <span class="sizeval" id="size-val">19 px</span>
+      <button class="btn" type="button" id="size-up" aria-label="Larger text">A+</button></div></fieldset>
+    <fieldset><legend>Line spacing</legend><div class="seg" id="opt-lh">
+      <button class="btn" type="button" id="lh-15" data-v="1.5">Normal</button>
+      <button class="btn" type="button" id="lh-18" data-v="1.8">Relaxed</button>
+      <button class="btn" type="button" id="lh-21" data-v="2.1">Wide</button></div></fieldset>
+    <fieldset><legend>Line length</legend><div class="seg" id="opt-measure">
+      <button class="btn" type="button" id="m-55" data-v="55ch">Short</button>
+      <button class="btn" type="button" id="m-66" data-v="66ch">Medium</button>
+      <button class="btn" type="button" id="m-80" data-v="80ch">Long</button></div></fieldset>
+    <fieldset><legend>Letter and word spacing</legend><div class="seg" id="opt-ls">
+      <button class="btn" type="button" id="ls-0" data-v="0">Normal</button>
+      <button class="btn" type="button" id="ls-1" data-v="1">Wider</button></div></fieldset>
+    <fieldset><legend>Background</legend><div class="seg" id="opt-bg">
+      <button class="btn" type="button" id="bg-auto" data-v="auto">Follow app</button>
+      <button class="btn" type="button" id="bg-light" data-v="light">Light</button>
+      <button class="btn" type="button" id="bg-cream" data-v="cream">Cream</button>
+      <button class="btn" type="button" id="bg-dark" data-v="dark">Dark</button></div></fieldset>
+    <fieldset><legend>Equations</legend><div class="seg" id="opt-eq">
+      <button class="btn" type="button" id="eq-show" data-v="show">Show</button>
+      <button class="btn" type="button" id="eq-fold" data-v="fold">Fold away</button></div></fieldset>
+    <fieldset id="voice-set"><legend>Reading voice</legend><div class="seg">
+      <select id="voice" aria-label="Voice"></select>
+      <select id="rate" aria-label="Speed">
+        <option value="0.8">Slow</option><option value="1" selected>Normal speed</option><option value="1.2">Faster</option><option value="1.5">Fast</option>
+      </select></div></fieldset>
+  </div>
+</section>
+
+<nav class="toc" id="toc" hidden aria-label="Contents">
+  <div class="toc-top"><strong>Contents</strong><button class="btn" id="btn-toc-close" type="button">Close</button></div>
+  <ul><!--TOC--></ul>
+</nav>
+
+<main class="reader" id="reader">
+  <div class="howto">
+    <p><strong>How to use this page.</strong> It holds the full paper and its Supplementary Appendix, as written.</p>
+    <p>Use <em>Reading settings</em> to change the typeface, size, spacing and background. Use <em>Listen</em> to hear a section read aloud; equations and tables are skipped. <em>Key points only</em> shows each section's title and its main points.</p>
+    <p>The key points and the figure descriptions are the only words added to the paper.</p>
+  </div>
+<!--BODY-->
+</main>
+<button class="btn toplink" id="btn-top" type="button">Back to top</button>
+
+<script>
+(function () {
+  const root = document.documentElement;
+  const store = { get(k) { try { return localStorage.getItem('r40-' + k); } catch (e) { return null; } },
+                  set(k, v) { try { localStorage.setItem('r40-' + k, v); } catch (e) {} } };
+  const FONTS = { atkinson: 'var(--font-atkinson)', lexend: 'var(--font-lexend)', serif: 'var(--font-serif)', system: 'var(--font-system)' };
+  const S = { font: store.get('font') || 'atkinson', size: parseInt(store.get('size') || '19', 10), lh: store.get('lh') || '1.8',
+              measure: store.get('measure') || '66ch', ls: store.get('ls') || '0', bg: store.get('bg') || 'auto', eq: store.get('eq') || 'show',
+              rate: store.get('rate') || '1', voice: store.get('voice') || '' };
+  function mark(groupId, v) { document.querySelectorAll('#' + groupId + ' [data-v]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.v === v))); }
+  function apply() {
+    root.style.setProperty('--rfont', FONTS[S.font] || FONTS.atkinson);
+    root.style.setProperty('--rsize', S.size + 'px');
+    root.style.setProperty('--rlh', S.lh);
+    root.style.setProperty('--rmeasure', S.measure);
+    root.style.setProperty('--rls', S.ls === '1' ? '0.05em' : '0');
+    root.style.setProperty('--rws', S.ls === '1' ? '0.14em' : '0');
+    if (S.bg === 'auto') root.removeAttribute('data-bg'); else root.setAttribute('data-bg', S.bg);
+    root.setAttribute('data-eq', S.eq);
+    document.getElementById('size-val').textContent = S.size + ' px';
+    mark('opt-font', S.font); mark('opt-lh', S.lh); mark('opt-measure', S.measure); mark('opt-ls', S.ls); mark('opt-bg', S.bg); mark('opt-eq', S.eq);
+    Object.keys(S).forEach(k => store.set(k, String(S[k])));
+  }
+  function seg(groupId, key) { document.querySelectorAll('#' + groupId + ' [data-v]').forEach(b => b.addEventListener('click', () => { S[key] = b.dataset.v; apply(); })); }
+  seg('opt-font', 'font'); seg('opt-lh', 'lh'); seg('opt-measure', 'measure'); seg('opt-ls', 'ls'); seg('opt-bg', 'bg'); seg('opt-eq', 'eq');
+  document.getElementById('size-down').addEventListener('click', () => { S.size = Math.max(15, S.size - 2); apply(); });
+  document.getElementById('size-up').addEventListener('click', () => { S.size = Math.min(30, S.size + 2); apply(); });
+  apply();
+
+  function toggle(btnId, elId) {
+    const btn = document.getElementById(btnId), el = document.getElementById(elId);
+    btn.addEventListener('click', () => { el.hidden = !el.hidden; btn.setAttribute('aria-expanded', String(!el.hidden)); });
+  }
+  toggle('btn-settings', 'settings');
+  const toc = document.getElementById('toc'), btnToc = document.getElementById('btn-toc');
+  function closeToc() { toc.hidden = true; btnToc.setAttribute('aria-expanded', 'false'); }
+  btnToc.addEventListener('click', () => { toc.hidden = !toc.hidden; btnToc.setAttribute('aria-expanded', String(!toc.hidden)); if (!toc.hidden) toc.querySelector('a').focus(); });
+  document.getElementById('btn-toc-close').addEventListener('click', closeToc);
+  toc.addEventListener('click', e => { if (e.target.closest('a')) closeToc(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && !toc.hidden) closeToc(); });
+  const skim = document.getElementById('btn-skim');
+  skim.addEventListener('click', () => { const on = !root.hasAttribute('data-skim'); if (on) root.setAttribute('data-skim', ''); else root.removeAttribute('data-skim');
+    skim.setAttribute('aria-pressed', String(on)); });
+  document.getElementById('btn-top').addEventListener('click', () => window.scrollTo(0, 0));
+  document.querySelectorAll('.eqshow').forEach(b => b.addEventListener('click', () => {
+    const box = b.nextElementSibling; const open = box.classList.toggle('open'); b.textContent = open ? 'Hide equation' : 'Show equation'; }));
+  document.querySelectorAll('.ltx_note_mark').forEach(m => { m.setAttribute('role', 'button'); m.setAttribute('tabindex', '0');
+    const t = () => m.closest('.ltx_note').classList.toggle('open'); m.addEventListener('click', t);
+    m.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); t(); } }); });
+
+  // which section is on screen
+  const sections = Array.from(document.querySelectorAll('#doc section.ltx_section, #doc section.ltx_appendix'));
+  let current = sections.length ? sections[0].id : null;
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver(entries => { entries.forEach(en => { if (en.isIntersecting) { current = en.target.id;
+      document.querySelectorAll('.toc a').forEach(a => a.classList.toggle('here', a.dataset.toc === current)); } }); },
+      { rootMargin: '-20% 0px -70% 0px' });
+    sections.forEach(s => io.observe(s));
+  }
+
+  // read-aloud
+  const synth = window.speechSynthesis;
+  const group = document.getElementById('listen-group'), status = document.getElementById('speak-status');
+  const btnPlay = document.getElementById('btn-play'), btnStop = document.getElementById('btn-stop');
+  if (!synth || typeof SpeechSynthesisUtterance === 'undefined') {
+    group.innerHTML = '<span class="status">Read-aloud is not available in this browser. Your device’s own read-aloud works on this page.</span>';
+    document.getElementById('voice-set').hidden = true;
+    document.querySelectorAll('.secbar').forEach(b => b.remove());
+    return;
+  }
+  const voiceSel = document.getElementById('voice'), rateSel = document.getElementById('rate');
+  rateSel.value = S.rate;
+  rateSel.addEventListener('change', () => { S.rate = rateSel.value; store.set('rate', S.rate); });
+  function loadVoices() {
+    const vs = synth.getVoices().filter(v => /^en(-|_|$)/i.test(v.lang));
+    voiceSel.innerHTML = '';
+    vs.forEach(v => { const o = document.createElement('option'); o.value = v.name; o.textContent = v.name + ' (' + v.lang + ')'; voiceSel.appendChild(o); });
+    if (S.voice && vs.some(v => v.name === S.voice)) voiceSel.value = S.voice;
+  }
+  loadVoices();
+  if ('onvoiceschanged' in synth) synth.onvoiceschanged = loadVoices;
+  voiceSel.addEventListener('change', () => { S.voice = voiceSel.value; store.set('voice', S.voice); });
+
+  const GREEK = { alpha: 'alpha', beta: 'beta', gamma: 'gamma', delta: 'delta', epsilon: 'epsilon', varepsilon: 'epsilon', zeta: 'zeta',
+    eta: 'eta', theta: 'theta', vartheta: 'theta', kappa: 'kappa', lambda: 'lambda', mu: 'mu', nu: 'nu', xi: 'xi', pi: 'pi', rho: 'rho',
+    sigma: 'sigma', tau: 'tau', upsilon: 'upsilon', phi: 'phi', varphi: 'phi', chi: 'chi', psi: 'psi', omega: 'omega',
+    Gamma: 'capital gamma', Delta: 'capital delta', Theta: 'capital theta', Lambda: 'capital lambda', Pi: 'capital pi', Sigma: 'capital sigma',
+    Phi: 'capital phi', Psi: 'capital psi', Omega: 'capital omega' };
+  const WORDS = { le: 'at most', leq: 'at most', ge: 'at least', geq: 'at least', neq: 'not equal to', approx: 'about', times: 'times',
+    cdot: 'times', infty: 'infinity', to: 'to', in: 'in', ln: 'log', log: 'log', exp: 'exp', max: 'max', min: 'min', sum: 'sum of',
+    int: 'integral of', partial: 'partial', pm: 'plus or minus', ldots: '', dots: '', cdots: '', quad: '', qquad: '', mid: 'given', prime: 'prime' };
+  function texToWords(tex) {
+    let s = ' ' + tex + ' ';
+    for (let i = 0; i < 4; i++) {
+      s = s.replace(/\\(?:d|t)?frac\s*\{([^{}]*)\}\s*\{([^{}]*)\}/g, ' $1 over $2 ')
+           .replace(/\\(?:hat|widehat)\s*\{([^{}]*)\}/g, ' $1 hat ').replace(/\\(?:bar|overline)\s*\{([^{}]*)\}/g, ' $1 bar ')
+           .replace(/\\tilde\s*\{([^{}]*)\}/g, ' $1 tilde ').replace(/\\(?:mathrm|text|textrm|mathit|mathbf|mathcal|mathbb|operatorname|boldsymbol|mathsf)\s*\{([^{}]*)\}/g, ' $1 ')
+           .replace(/\^\s*\{\s*\*\s*\}|\^\s*\*/g, ' star ').replace(/\^\s*\{?\s*2\s*\}?(?![0-9])/g, ' squared ')
+           .replace(/\^\s*\{([^{}]*)\}/g, ' to the power $1 ').replace(/_\s*\{([^{}]*)\}/g, ' sub $1 ');
+    }
+    s = s.replace(/\\(hat|bar|tilde)\s*([A-Za-z])/g, ' $2 $1 ').replace(/\^\s*([A-Za-z0-9])/g, ' to the power $1 ').replace(/_\s*([A-Za-z0-9])/g, ' sub $1 ')
+         .replace(/\\%/g, ' percent ').replace(/%/g, ' percent ')
+         .replace(/\\([A-Za-z]+)/g, (m, w) => ' ' + (GREEK[w] || (w in WORDS ? WORDS[w] : w)) + ' ')
+         .replace(/\\[,;:! ]/g, ' ').replace(/[{}]/g, ' ').replace(/&/g, ' ')
+         .replace(/<=|≤/g, ' at most ').replace(/>=|≥/g, ' at least ').replace(/=/g, ' equals ').replace(/</g, ' less than ').replace(/>/g, ' greater than ')
+         .replace(/\+/g, ' plus ').replace(/(^|[^0-9])-(?=[0-9A-Za-z\s])/g, '$1 minus ').replace(/−/g, ' minus ').replace(/\//g, ' over ')
+         .replace(/[()[\]|]/g, ' ').replace(/\s+/g, ' ');
+    return s.trim();
+  }
+  function textOf(el) {
+    const c = el.cloneNode(true);
+    c.querySelectorAll('math').forEach(m => { const w = texToWords(m.getAttribute('alttext') || m.textContent || ''); m.replaceWith(document.createTextNode(' ' + w + ' ')); });
+    c.querySelectorAll('.ltx_note_outer, .eqshow, .listen, sup.ltx_note_mark').forEach(x => x.remove());
+    return (c.textContent || '').replace(/\s+/g, ' ').trim();
+  }
+  const SEL = 'h1, h2, h3, h4, h5, h6, .keypoints li, .ltx_abstract .ltx_p, .ltx_p, figcaption, .eqbox, .tablebox';
+  function blocks(scope) {
+    const out = [];
+    scope.querySelectorAll(SEL).forEach(el => {
+      if (el.closest('.tablebox') && !el.classList.contains('tablebox')) return;
+      if (el.closest('.eqbox') && !el.classList.contains('eqbox')) return;
+      if (el.closest('.ltx_note_outer')) return;
+      if (el.offsetParent === null && !el.classList.contains('eqbox')) return;
+      if (el.classList.contains('eqbox')) { out.push({ el, text: 'Equation.' }); return; }
+      if (el.classList.contains('tablebox')) { out.push({ el, text: 'A table follows. It is skipped.' }); return; }
+      const t = textOf(el);
+      if (t) out.push({ el, text: t });
+    });
+    return out;
+  }
+  function chunks(t) { const parts = t.match(/[^.!?;]+[.!?;]*\s*/g) || [t]; const out = []; let cur = '';
+    parts.forEach(p => { if ((cur + p).length > 220 && cur) { out.push(cur); cur = p; } else cur += p; }); if (cur.trim()) out.push(cur); return out; }
+  let queue = [], qi = 0, playing = false, paused = false, lit = null, endless = false;
+  function light(el) { if (lit) lit.classList.remove('speaking'); lit = el; if (el) { el.classList.add('speaking');
+    const r = el.getBoundingClientRect(); if (r.top < 90 || r.bottom > window.innerHeight - 40) el.scrollIntoView({ block: 'center' }); } }
+  function speakNext() {
+    if (!playing) return;
+    if (qi >= queue.length) { stop('Finished.'); return; }
+    const item = queue[qi];
+    light(item.el);
+    const pieces = chunks(item.text); let pi = 0;
+    const say = () => {
+      if (!playing) return;
+      if (pi >= pieces.length) { qi++; speakNext(); return; }
+      const u = new SpeechSynthesisUtterance(pieces[pi++]);
+      u.rate = parseFloat(S.rate) || 1; u.lang = 'en-US';
+      const v = synth.getVoices().find(x => x.name === voiceSel.value); if (v) u.voice = v;
+      u.onend = say; u.onerror = e => { if (e.error !== 'interrupted' && e.error !== 'canceled') { qi++; speakNext(); } };
+      synth.speak(u);
+    };
+    say();
+  }
+  function start(scope, label) {
+    synth.cancel();
+    queue = blocks(scope); qi = 0; playing = true; paused = false;
+    btnPlay.textContent = 'Pause'; btnStop.disabled = false; status.textContent = label;
+    speakNext();
+  }
+  function stop(msg) { playing = false; paused = false; synth.cancel(); light(null); btnPlay.textContent = 'Listen from here'; btnStop.disabled = true; status.textContent = msg || ''; }
+  btnPlay.addEventListener('click', () => {
+    if (playing && !paused) { synth.pause(); paused = true; btnPlay.textContent = 'Resume'; status.textContent = 'Paused.'; return; }
+    if (playing && paused) { synth.resume(); paused = false; btnPlay.textContent = 'Pause'; status.textContent = 'Reading.'; return; }
+    const idx = Math.max(0, sections.findIndex(s => s.id === current));
+    // read from the section on screen to the end of the document
+    const scopeNodes = sections.slice(idx);
+    queue = []; synth.cancel();
+    scopeNodes.forEach(s => { queue = queue.concat(blocks(s)); });
+    qi = 0; playing = true; paused = false; btnPlay.textContent = 'Pause'; btnStop.disabled = false; status.textContent = 'Reading from here.';
+    speakNext();
+  });
+  btnStop.addEventListener('click', () => stop('Stopped.'));
+  document.querySelectorAll('.listen').forEach(b => b.addEventListener('click', () => {
+    const sec = document.getElementById(b.dataset.sec); if (sec) start(sec, 'Reading this section.'); }));
+  window.addEventListener('beforeunload', () => synth.cancel());
+})();
+</script>
