@@ -38,6 +38,7 @@ The build you read was of 4 November (main paper 87 pages, supplement 72; commit
 3. **The introduction** now says the verification hypothesis is "which we check numerically but do not prove" (from the DeepSeek re-review; kept by the author).
 4. **The reproduction you asked for** (RS-7, below).
 5. **A plain-language abstract.** At the author's decision (5 November, 13:00), the abstract is now written for business readers in short sentences, one idea each (1,890 characters). It keeps the conditions: the unproved assumption behind the decision weight, central costs and fixed prices, the cost of computing and its range (now in cents per dollar of revenue), pass-through, a scenario that is not a forecast, the lasting and the netted 2036 score, an interval from sampling error alone, free entry into a market for the same product, and the sample's classification. Left to the text: the "fifth of a point" trade-off at the top, the 70% pass-through case, the ranges across samples, the acquisitions sentence and the cap set by AI's full costs. Please judge it as an abstract.
+6. **AI contributions note.** At the author's decision (13:07), the title-page note now names the research agents (Claude Opus 5.5, Claude Fable 5.1 and Claude Sonnet 5.5, by Anthropic) and the four outside reviewers, and says that no AI model is an author, as arXiv's policy requires.
 
 ## Your points, one by one
 
