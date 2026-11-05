@@ -1,12 +1,14 @@
+ok   valuation: in the score-of-40 cash subsample neither coefficient is significant at 5%
 ok   valuation: the registrants that report no float are mostly foreign private issuers (Form 20-F or 40-F firm-years over half)
 ok   valuation: equal weights rejected at 0.1% in every sample but the score-of-40 one, on both bases
 ok   valuation: among firm-years scoring 40 or more, equal weights are rejected at 5% on the cash basis only
-ok   valuation: the 90% interval of the weight lies above the screening range (upper end 2.8) on both bases, all firm-years
+ok   valuation: the 90% interval of the weight lies above the screening range (upper end 2.8) for the all-firm-year samples, both bases
 ok   valuation: both point estimates lie inside Bessemer's reported range of about 2 to 9
 ok   valuation: the weight on the cash basis is between 3.5 and 5.5 in each period and without acquisition-affected years
 ok   valuation: the score alone explains about half the within-year variation that growth and margin explain (0.4 to 0.6)
 ok   valuation: among firm-years scoring 40 or more the score explains under 1% of the within-year variation (both bases)
 ok   valuation: the margin coefficient is positive in every sample except the cash score-of-40 sample
+ok   nothing: with the in-flight dip held at its fixed-price value the gap still widens in every row and column (positive shares)
 ok   nothing: at fixed prices the firm that does not automate keeps its 2025 score in every year, whatever rivals do
 ok   nothing: at fixed prices the gap is the same at every rivals' pace
 ok   nothing: the gap rises with the share passed to price at every rivals' pace and with the rivals' pace at every positive share
@@ -15,7 +17,8 @@ ok   nothing: the do-nothing score falls with the share passed and with the pace
 ok   nothing: the grid at pass-through 0.5 and 0.7 with rivals at the central and fast pace equals the stored paths
 ok   payback: every draw of the stress test pays back (no infinite payback dropped from the medians)
 ok   payback: the grid equals the companion page heatmap (matrices.csv)
-ok   payback: within each band of the success share, median payback moves by at most a quarter of a year across change capacity
+ok   payback: within each band of the success share, median payback moves by less than a fifth of a year across change capacity
+ok   payback: the central values of the benefit share, success share, embedding and payback times and freeze time lie toward their favorable ends
 ok   payback: in every row, median payback falls as the success share rises
 ok   payback: the rank correlation of payback with change capacity is below 0.05 in absolute value, with the success share below -0.25
 ok   payback: the 2036 score rises with change capacity (rank correlation above 0.3)

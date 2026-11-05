@@ -109,6 +109,12 @@ R['grids'] = {
                              for ph in (0.0, 0.25, 0.5, 0.7)],
                      'none': [[do_nothing(ph, rp)['2036']['R'] for rp in ('slow', 'central', 'fast')] for ph in (0.0, 0.25, 0.5, 0.7)],
                      'note': '2036: automating at the central pace (net of its dip) minus doing nothing, rivals at each pace'}}
+# the same gap with the automating firm's in-flight dip held at its fixed-price value (Supplement S12.2 sensitivity: the
+# paper's convention values the transitions at the long-run target with the share passed, whatever the rivals' pace)
+_dip0 = central_path(phi=0.0)['2036']['dip']
+R['grids']['gap_phi_pace']['gap_dip_fixed'] = [[adopt_vs_rivals(ph, rp)['2036']['R_net'] + central_path(phi=ph)['2036']['dip'] - _dip0
+                                                 - do_nothing(ph, rp)['2036']['R'] for rp in ('slow', 'central', 'fast')]
+                                                for ph in (0.0, 0.25, 0.5, 0.7)]
 gg = R['grids']['gstar_cc_k']['G']
 assert abs(gg[CC_G.index(0.06)][K_G.index(0.0)] - 0.325352356655251) < 1e-12          # the paper's 32.5%
 assert abs(gg[CC_G.index(0.06)][K_G.index(-0.3)] - 0.325352356655251 / 1.3) < 1e-12     # 25% at k = -0.3 (Section 7.2)

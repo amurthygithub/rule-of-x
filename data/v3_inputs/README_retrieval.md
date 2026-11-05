@@ -164,7 +164,9 @@ These files were read from sec.gov on 3 Nov 2026 through the browser on the auth
 
 **Derived file.** `code/audit/capsw_scan_parse.py` reads the fiscal-year value of each capitalized-software line (121 candidate firm-years, `notes/data_audit/capsw_missed.csv`) and keeps a line when it is an outflow, is not a combined capital-expenditure line ("capital expenditures, including capitalization of software costs", "capitalized software and expenditures") and cannot be contained in the panel's capex: the capex came from PaymentsToAcquirePropertyPlantAndEquipment or, where it came from PaymentsToAcquireProductiveAssets, it is smaller than the software line, so the two are separate lines of the statement (7 firm-years: MedAssets 2010-11, Coursera 2021-25). Kept: 109 firm-years of 23 firms, written to `capitalized_software_filings.json` ({cik: {fy_end: {value (dollars), accn, label}}}; SHA-256 2fe3b7da3671ed46f906b09a89cba1fa1170a5961064cdda78d7e344d3ae7004); dropped: 9 combined lines and 3 lines that are not outflows (non-cash add-backs). Counts in `notes/data_audit/capsw_summary.json`. `build_panel_v3.py` uses the value where the XBRL cap_sw is 0 and recomputes the free-cash-flow margins, scores and capital intensity (column `cap_sw_source`; `cap_sw_xbrl` keeps the XBRL value). Check: Box, Inc. (CIK 1372612), fiscal year ending 31 Jan 2024, "Capitalized internal-use software costs" 16,561 thousand.
 
-# Third retrieval (3 Nov 2026): public float values
+# Fifth retrieval (3 Nov 2026, evening): public float values
+
+## 8. Public float from the XBRL frames (data.sec.gov)
 
 **Approval and method.** The author approved this retrieval on 3 Nov 2026 at about 18:15 UTC−8 ("Yes, fetch it"),
 for public float, debt and cash from data.sec.gov XBRL frames, up to roughly 120 files and 50 MB, kept for the core

@@ -60,7 +60,7 @@ _um = P.merge(m[['cik', 'fy_end']].assign(hit=1), on=['cik', 'fy_end'], how='lef
 _um = _um[_um.hit.isna()]
 _pos = set(F.cik)
 UNMATCHED = dict(total=int(len(_um)), registrant_without_float=int((~_um.cik.isin(_pos)).sum()),
-                 fy2025=int((_um.year == 2025).sum()))
+                 fy2025=int(((_um.year == 2025) & _um.cik.isin(_pos)).sum()))   # 2025 years of registrants that do report float
 
 BASES = {'gaap': ('m_op_w', 'R_op_w', 'GAAP operating margin'), 'cash': ('m_fcf_sbc_w', 'R_fcf_sbc_w', 'Free cash flow after SBC')}
 

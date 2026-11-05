@@ -85,6 +85,8 @@ put('ExRFullGaap', fnum(100 * g['r2_within_full'], 0)); put('ExRScoreGaap', fnum
 t = V['cash']['top40']
 put('ExTopN', fint(t['n'])); put('ExTopRScore', fnum(100 * t['r2_within_score'], 1)); put('ExTopRFull', fnum(100 * t['r2_within_full'], 1))
 put('ExTopPCash', fnum(t['equal_weights_p'], 2)); put('ExTopPGaap', fnum(V['gaap']['top40']['equal_weights_p'], 2))
+claim('valuation: in the score-of-40 cash subsample neither coefficient is significant at 5%',
+      abs(t['beta_g'] / t['beta_g_se']) < 1.96 and abs(t['beta_m'] / t['beta_m_se']) < 1.96)
 put('ExBoot', '999')
 _P = pd.read_csv(os.path.join(BASE, 'data', 'panel_v3.csv'))
 _F = pd.read_csv(os.path.join(BASE, 'data', 'v3_inputs', 'public_float.csv'))
@@ -97,7 +99,7 @@ claim('valuation: equal weights rejected at 0.1% in every sample but the score-o
       all(V[b][s]['equal_weights_p'] < 0.001 for b, _ in BASIS for s, _ in SAMPLES if s != 'top40'))
 claim('valuation: among firm-years scoring 40 or more, equal weights are rejected at 5% on the cash basis only',
       V['cash']['top40']['equal_weights_p'] < 0.05 and V['gaap']['top40']['equal_weights_p'] > 0.10)
-claim('valuation: the 90% interval of the weight lies above the screening range (upper end 2.8) on both bases, all firm-years',
+claim('valuation: the 90% interval of the weight lies above the screening range (upper end 2.8) for the all-firm-year samples, both bases',
       c['weight_ci90'][0] > SCREEN_HI and g['weight_ci90'][0] > SCREEN_HI)
 claim("valuation: both point estimates lie inside Bessemer's reported range of about 2 to 9",
       all(BESSEMER[0] <= V[b]['all']['weight'] <= BESSEMER[1] for b, _ in BASIS))
@@ -148,6 +150,11 @@ gp = P['grids']['gap_phi_pace']
 GAP = np.array(gp['gap']) * 100; NONE = np.array(gp['none']) * 100
 put('ExGapFixed', fnum(GAP[0, 1], 1)); put('ExGapSevenFast', fnum(GAP[3, 2], 1)); put('ExGapHalfFast', fnum(GAP[2, 2], 1))
 put('ExGapSevenSlow', fnum(GAP[3, 0], 1))
+GAPD = np.array(gp['gap_dip_fixed']) * 100
+put('ExGapSevenFastDipFixed', fnum(GAPD[3, 2], 1))
+claim('nothing: with the in-flight dip held at its fixed-price value the gap still widens in every row and column (positive shares)',
+      all(np.all(np.diff(GAPD[:, j]) > 0) for j in range(3)) and all(np.all(np.diff(GAPD[i]) > 0) for i in range(1, 4))
+      and abs(GAPD[0, 1] - GAP[0, 1]) < 1e-9)
 claim('nothing: at fixed prices the firm that does not automate keeps its 2025 score in every year, whatever rivals do',
       all(abs(dn[f'0.0|{p}'][h]['R'] - dn['0.0|central']['2028']['R']) < 1e-12 for p in ('central', 'fast') for h in H))
 claim("nothing: at fixed prices the gap is the same at every rivals' pace", np.ptp(GAP[0]) < 1e-9)
@@ -168,7 +175,7 @@ tab = (r"""\begin{table}[!ht]\centering\footnotesize\setlength{\tabcolsep}{4pt}
 Share of rivals' savings passed to price & Score & Gap & Score & Gap & Score & Gap\\\midrule
 """ + '\n'.join(rows) + r"""
 \bottomrule\end{tabular}
-\par\vspace{2pt}\footnotesize\raggedright Notes: Paper 1's pass-through scenario (Section~\ref{sec:horizons-ceiling}): rivals realize the share of their program that the slow, central or fast pace gives by 2036 and pass the stated share of each unit-cost saving into price; the firm that does nothing has the anchor intercept and no program, so its margin falls with the price and its volume and growth are held as in the paper's path. Score: its durable cash score in 2036. Gap: the score of the same firm automating at the central pace, after the cost of its changes in flight (Section~\ref{sec:horizons}), less the score of the firm that does nothing; the automating firm faces the same price. The quarter row is not one of the paper's cases. Code: \texttt{code/biz\_open\_questions.py}.
+\par\vspace{2pt}\footnotesize\raggedright Notes: Paper 1's pass-through scenario (Section~\ref{sec:horizons-ceiling}): rivals realize the share of their program that the slow, central or fast pace gives by 2036 and pass the stated share of each unit-cost saving into price; the firm that does nothing has the anchor intercept and no program, so its margin falls with the price and its volume and growth are held as in the paper's path. Score: its durable cash score in 2036. Gap: the score of the same firm automating at the central pace, after the cost of its changes in flight (Section~\ref{sec:horizons}; valued, as in the paper, at the long-run target with the stated share passed), less the score of the firm that does nothing; the automating firm faces the same price. The quarter row is not one of the paper's cases. Code: \texttt{code/biz\_open\_questions.py}.
 \end{table}
 """)
 open(os.path.join(BASE, 'sections', 'tables', 'tab_ext_nothing.tex'), 'w').write(tab)
@@ -193,7 +200,6 @@ if os.path.exists(mx):                                   # same grid as the comp
     claim('payback: the grid equals the companion page heatmap (matrices.csv)',
           all(abs(G[int(r.row), int(r.col)] - float(r.value)) < 1e-3 for r in sub.itertuples()))
 spread_down = float(max(G[:, b].max() - G[:, b].min() for b in range(K)))
-put('ExPbSpreadDown', fnum(spread_down, 1))
 put('ExPbLowWin', fnum(G[2, 0], 1)); put('ExPbHighWin', fnum(G[2, K - 1], 1))
 put('ExPbBoxMed', fnum(float(np.median(pbv)), 1))
 put('ExKapLo', fnum(100 * ek[0], 0)); put('ExKapHi', fnum(100 * ek[-1], 0))
@@ -203,8 +209,12 @@ rk = D.rank()
 put('ExRhoKap', fnum(float(np.corrcoef(rk.payback_years, rk.kappa_abs)[0, 1]), 2))
 put('ExRhoWin', fnum(float(np.corrcoef(rk.payback_years, rk.varpi)[0, 1]), 2))
 put('ExRhoKapScore', fnum(float(np.corrcoef(rk.R2036_net, rk.kappa_abs)[0, 1]), 2))
-claim('payback: within each band of the success share, median payback moves by at most a quarter of a year across change capacity',
-      spread_down <= 0.25)
+claim('payback: within each band of the success share, median payback moves by less than a fifth of a year across change capacity',
+      spread_down < 0.2)
+put('ExPbRowLab', f"{fnum(100 * ek[2], 1)}--{fnum(100 * ek[3], 1)}")
+FAV = [('bbar', +1), ('varpi', +1), ('Temb', -1), ('Tpb', -1), ('Tfrz', -1)]
+claim('payback: the central values of the benefit share, success share, embedding and payback times and freeze time lie toward their favorable ends',
+      all(((dims[n]['central'] - dims[n]['lo']) / (dims[n]['hi'] - dims[n]['lo']) > 0.5) == (sgn > 0) for n, sgn in FAV))
 claim('payback: in every row, median payback falls as the success share rises', all(np.all(np.diff(G[a]) < 0) for a in range(K)))
 claim('payback: the rank correlation of payback with change capacity is below 0.05 in absolute value, with the success share below -0.25',
       abs(float(np.corrcoef(rk.payback_years, rk.kappa_abs)[0, 1])) < 0.05 and float(np.corrcoef(rk.payback_years, rk.varpi)[0, 1]) < -0.25)

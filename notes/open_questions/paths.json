@@ -476,7 +476,29 @@
      0.21139570438193286
     ]
    ],
-   "note": "2036: automating at the central pace (net of its dip) minus doing nothing, rivals at each pace"
+   "note": "2036: automating at the central pace (net of its dip) minus doing nothing, rivals at each pace",
+   "gap_dip_fixed": [
+    [
+     0.11636919303309251,
+     0.11636919303309251,
+     0.11636919303309251
+    ],
+    [
+     0.11734962252087938,
+     0.1246444596617518,
+     0.1346970397062769
+    ],
+    [
+     0.11834209124822198,
+     0.13381847344597242,
+     0.15774479731971103
+    ],
+    [
+     0.11914488423736264,
+     0.14190764148403878,
+     0.18094727240985134
+    ]
+   ]
   }
  },
  "anchor_R_observed": 0.535182541359124
