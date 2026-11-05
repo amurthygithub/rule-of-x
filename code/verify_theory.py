@@ -1817,7 +1817,7 @@ check("20k2 [text] the thresholds of Remark rem:owncompute and Section sec:horiz
       and printed('OwnMarkupFiveNone', thr_own0[0]) and printed('OwnMarkupFifteenNone', thr_own0[1])
       and printed('OwnMarkupFiveMeta', thr_meta[0]) and printed('OwnMarkupFifteenMeta', thr_meta[1])
       and printed('OwnMarkupFiveAllMeta', thr_meta[2]) and printed('OwnMarkupFifteenAllMeta', thr_meta[3])
-      and printed('OwnKapSrv', O5['ksrv'], 1, pct=False) and printed('OwnKapAll', O5['kall'], 1, pct=False)
+      and printed('OwnKapSrv', O5['ksrv'], 2, pct=False) and printed('OwnKapAll', O5['kall'], 2, pct=False)
       and printed('OwnSrvShare', O5['ssrv']))
 check("20k3 [text] Remark rem:owncompute no longer states the factor 3.3, the 60% share as replacement cash or the old "
       "bars 16.5%/49.5% and 33%/74%, and Section sec:horizons-ceiling no longer types a factor",

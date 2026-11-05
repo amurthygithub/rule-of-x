@@ -116,7 +116,7 @@ Compute share: bound from internal spending
 Compute per dollar of labor replaced, agent runs
 & 0.02 per completed task (0.01 per successful run; our computation)
 & \citet{kwa2025measuring,metr2026evalanalysis}
-& Kwa et al. report that, at a human wage of 143.61 dollars an hour, more than 80\% of successful runs cost under 10\% of the human cost. The 0.4\% to 1.1\% of human cost used here comes from METR's public run data and is our computation (software tasks, successful runs only, no review); at a 50\% success rate the cost per completed task is about twice that if a failed attempt costs as much as a successful one, and failed runs cost more per dollar of human cost in the same data, so it is a low scenario value, not a measured floor; the run file carries per-run generation and human costs (fields generation\_cost and human\_cost, checked at the source on 2 November 2026).
+& Kwa et al. report that, at a human wage of 143.61 dollars an hour, more than 80\% of successful runs cost under 10\% of the human cost. The 0.4\% to 1.1\% of human cost used here comes from METR's public run data and is our computation (software tasks, successful runs only, no review); at a 50\% success rate the cost per completed task is about twice that if a failed attempt costs as much as a successful one, and in our reading of the same data failed runs cost more per dollar of human cost, so it is a low scenario value, not a measured floor; the run file carries per-run generation and human costs (fields generation\_cost and human\_cost, checked at the source on 2 November 2026).
 & c\\
 Compute per dollar of labor replaced, field evidence
 & 0.03
@@ -136,7 +136,7 @@ Rise in cost of frontier runs
 Owned capital per dollar a year of the cash cost of compute
 & \OwnKapSrv{} if the firm owns the servers only (server replacement \OwnSrvShare\% of the cash cost); \OwnKapAll{} if it owns the whole data center
 & \citet{michael2026servers}
-& Epoch AI model of a one-gigawatt AI data center, from its two cost tables (read on 5 November 2026): servers \OwnEpochKSrv, facility \OwnEpochKFac{} and network \OwnEpochKNet{} billion dollars up front; running cost \OwnEpochOpex{} billion a year; IT equipment assumed to last 5 years and the facility 14. The source's 60\% (servers 5 of 8.5 billion dollars a year) is a share of an annualized cost that includes a return on capital, not replacement cash; our conversion to a cash cost, running cost plus straight-line replacement, gives \OwnTcoCash{} billion a year (\autoref{rem:owncompute}). A cost model, not a measurement of cloud prices.
+& Epoch AI model of a one-gigawatt AI data center, from its two cost tables (read on 5 November 2026): servers \OwnEpochKSrv, facility \OwnEpochKFac{}, network \OwnEpochKNet{} and land and utility works \OwnEpochKOther{} billion dollars up front; running cost \OwnEpochOpex{} billion a year; IT equipment assumed to last \OwnEpochLifeIT{} years and the facility and utility works \OwnEpochLifeFac, land not replaced. The source's 60\% (servers \OwnEpochAnnSrv{} of \OwnEpochAnnTotal{} billion dollars a year) is a share of an annualized cost that includes a return on capital, not replacement cash; our conversion to a cash cost, running cost plus straight-line replacement, gives \OwnTcoCash{} billion a year (\autoref{rem:owncompute}). A cost model, not a measurement of cloud prices.
 & b\\
 Server book life
 & 5.5 years (sensitivity)

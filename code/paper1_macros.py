@@ -256,14 +256,17 @@ OWNM = own_compute_factors(EPOCH_DC, EPOCH_DC['life_it_meta'])
 _tau0 = cen['tau']
 _bar = lambda f, G_, psi0=False, kk='srv': ((_tau0 * f['s_' + kk] + f['k_' + kk] * G_) / (1 - _tau0) if psi0 else f['k_' + kk] * G_)
 assert OWN['k_all'] > OWN['k_srv'] and OWNM['k_srv'] > OWN['k_srv'], 'owning more, or longer lives, must raise the bar'
-num('OwnKapSrv', OWN['k_srv'], 1, pct=False); num('OwnKapAll', OWN['k_all'], 1, pct=False)
+num('OwnKapSrv', OWN['k_srv'], 2, pct=False); num('OwnKapAll', OWN['k_all'], 2, pct=False)   # two decimals: kappa G reproduces the printed bars
 num('OwnSrvShare', OWN['s_srv'])                         # server replacement, % of the cash cost of the capacity
 num('OwnTcoCash', OWN['tco'] / 1000, 1, pct=False)       # cash cost, billion dollars a year
 num('OwnEpochKSrv', _U['servers'] / 1000, 1, pct=False); num('OwnEpochKFac', _U['facility'] / 1000, 1, pct=False)
 num('OwnEpochKNet', _U['network'] / 1000, 1, pct=False); num('OwnEpochOpex', EPOCH_DC['opex'] / 1000, 1, pct=False)
+num('OwnEpochKOther', (_U['land'] + _U['utility_works']) / 1000, 1, pct=False)   # land and utility works, up front
+num('OwnEpochLifeIT', EPOCH_DC['life_it'], 0, pct=False); num('OwnEpochLifeFac', EPOCH_DC['life_facility'], 0, pct=False)
+num('OwnLifeMeta', EPOCH_DC['life_it_meta'], 1, pct=False)
 num('OwnEpochCrf', _crf, 1); num('OwnEpochRate', 0.5 * (_lo_r + _hi_r)); num('OwnEpochSl', 1 / EPOCH_DC['life_it'])
 _ann_total = sum(_A.values()) + EPOCH_DC['opex']
-num('OwnEpochAnnTotal', _ann_total / 1000, 1, pct=False)
+num('OwnEpochAnnTotal', _ann_total / 1000, 1, pct=False); num('OwnEpochAnnSrv', _A['servers'] / 1000, 1, pct=False)   # servers' annualized cost
 num('OwnEpochMarkup', _ann_total / OWN['tco'] - 1)       # markup over cash cost of a price equal to the annualized cost
 num('OwnMarkupFive', _bar(OWN, 0.05)); num('OwnMarkupFifteen', _bar(OWN, 0.15))                       # servers only, psi = 1
 num('OwnMarkupFiveAll', _bar(OWN, 0.05, kk='all')); num('OwnMarkupFifteenAll', _bar(OWN, 0.15, kk='all'))   # whole data center

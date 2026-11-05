@@ -133,6 +133,10 @@ claim('valuation: the margin coefficient is positive in every sample except the 
       all(V[b][s]['beta_m'] > 0 for b, _ in BASIS for s, _ in SAMPLES if (b, s) != ('cash', 'top40'))
       and V['cash']['top40']['beta_m'] <= 0)
 
+claim('valuation: Table note: the GAAP score-of-40 interval has a lower end that prints as zero, and no bootstrap interval exists '
+      'for the cash score-of-40 sample (point beta_m not positive)',
+      abs(V['gaap']['top40']['weight_ci90'][0]) < 0.05 and not V['cash']['top40'].get('weight_ci90'))
+
 rows = []
 for b, bl in BASIS:
     rows.append(r'\multicolumn{10}{@{}l}{\emph{' + bl + r'}}\\')
@@ -152,7 +156,7 @@ tab = (r"""\begin{table}[!ht]\centering\footnotesize\setlength{\tabcolsep}{2.6pt
 Sample & Firm-years & Firms & $\beta_g$ & $\beta_m$ & Weight & 90\% interval & $\beta_m\le0$ (\%) & $p$, equal & Within $R^2$ (\%)\\\midrule
 """ + '\n'.join(rows) + r"""
 \bottomrule\end{tabular}
-\par\vspace{2pt}\footnotesize\raggedright Notes: OLS of $\log(\text{public float}/\text{revenue})$ on revenue growth and the margin, both as fractions and winsorized at the 1st and 99th percentiles, with fiscal-year effects; standard errors clustered by firm. Weight: $\beta_g/\beta_m$, the points of margin that one point of growth is worth in the multiple, shown where $\beta_m>0$; interval: 5th to 95th percentile of the ratio over those of the """ + M['ExBoot'] + r""" firm-cluster bootstrap samples that give $\beta_m>0$; $\beta_m\le0$: share of the bootstrap samples that do not, in which the ratio is not a weight; where that share exceeds one in twenty no upper end is given (``from'' the lower end). $p$, equal: test of $\beta_g=\beta_m$, the Rule of 40's equal weights. Within $R^2$: share of the variation within fiscal years explained by growth and the margin entered separately / by their sum, the score, alone. Public float is the market value of common equity held by non-affiliates at the end of the second fiscal quarter after the fiscal year (10-K cover page); the core sample of Section~\ref{sec:data}, under estimand E1. Code: \texttt{code/biz\_valuation.py}.
+\par\vspace{2pt}\footnotesize\raggedright Notes: OLS of $\log(\text{public float}/\text{revenue})$ on revenue growth and the margin, both as fractions and winsorized at the 1st and 99th percentiles, with fiscal-year effects; standard errors clustered by firm. Weight: $\beta_g/\beta_m$, the points of margin that one point of growth is worth in the multiple, shown where $\beta_m>0$; interval: 5th to 95th percentile of the ratio over those of the """ + M['ExBoot'] + r""" firm-cluster bootstrap samples that give $\beta_m>0$; $\beta_m\le0$: share of the bootstrap samples that do not, in which the ratio is not a weight; where that share exceeds one in twenty no upper end is given (``from'' the lower end); a lower end at zero, as in the GAAP row of firm-years scoring at least 40, comes from samples in which $\beta_g$ is negative. No bootstrap is run where the point estimate of $\beta_m$ is not positive (--). $p$, equal: test of $\beta_g=\beta_m$, the Rule of 40's equal weights. Within $R^2$: share of the variation within fiscal years explained by growth and the margin entered separately / by their sum, the score, alone. Public float is the market value of common equity held by non-affiliates at the end of the second fiscal quarter after the fiscal year (10-K cover page); the core sample of Section~\ref{sec:data}, under estimand E1. Code: \texttt{code/biz\_valuation.py}.
 \end{table}
 """)
 open(os.path.join(BASE, 'sections', 'tables', 'tab_ext_valuation.tex'), 'w').write(tab)

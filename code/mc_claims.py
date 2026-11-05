@@ -1058,6 +1058,8 @@ def _claims(snap):
     claim("P3b", "The program is still running in 2036",
           "Over the life of the program, which completes in 2042 ... while it is transforming the dip is 3.6 to 4.2 points",
           "Sec. 7.3 'Pace'",
+          # Paper 1 calls this year "the year the upper bound reaches the whole program" (re-review F12, 5 Nov 2026,
+          # code/mc_report_tex.py); the string below is kept so that the stored run of 3 Nov matches this code.
           [T("P3b.full", "complete_year", ">", 2036.0, "expected completion date after 2036",
              note="depends on the execution dimensions only; under central execution it is fixed at 2042")])
     claim("P4", "The central path rises from 2028 to 2036",

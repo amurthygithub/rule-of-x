@@ -1,0 +1,79 @@
+id,our_status,your_verdict,evidence,locator
+DS-1,Already handled,resolved,"Verdict confirmed; two missed defects (X-1, X-2) genuinely fixed",REREVIEW Part A
+DS-2,Already handled,resolved,"Provenance note only; numbers confirmed by independent rerun",panel_v3.csv
+DS-3,Already handled,resolved,"Confirmed; new sample 284 firms / 1732 firm-years reproduces",panel_v3.csv
+DS-4,Already handled,resolved,"verify_theory.py now 202/202 pass (was 191)",code/verify_theory.py
+DS-5,Already handled,resolved,"verify_part2_acquirer.py unchanged and passing",code/verify_part2_acquirer.py
+DS-6,Already handled,resolved,"Fair: CLAIMS gate tests text vs pipeline outputs only; A.6 already says so",paper1_macros.py
+DS-7,Already handled,resolved,"Fair: seed rule is 20261030 + CRC32 mod 1e6 (S7 states it)",supplement S7
+DS-8,Already handled,resolved,"Fair: paper says 'chosen before estimate', not 'pre-registered'; A.4 lists post-hoc choices",Appendix A.4
+DS-9,Already handled,resolved,"Score budget correct and sharp; confirmed",Prop 1
+DS-10,Already handled,resolved,"Remark S1(b) already states finiteness needs g>=G",Remark S1(b)
+DS-11,Already handled,resolved,"Remark S1(c)/Lemma S1 already state k>=0 and installed-ahead timing",Lemma S1
+DS-12,Already handled,resolved,"Closed forms (5)-(7) confirmed",Lemma 2
+DS-13,Not valid,accept (reviewer error),"Theory-auditor used ell=0.588 (lambda=0.6 at h=0.98), not caption's ell=0.6; with ell=0.6, g*=37.5% matches Fig 1 '38%'. Author is correct.",Fig 1 caption
+DS-14,Already handled,resolved,"Cor 1 numbers 1.8/9.6/5.0/0.43/0.30 confirmed",Cor 1
+DS-15,Already handled,resolved,"Lemmas 3-5, Cor 2-3, Prop 3, Remark 3, Prop 9 OK",Sections 3.3-3.11
+DS-16,Already handled,resolved,"Prop 2 HJB/root/singularity confirmed",Prop 2
+DS-17,Fixed,resolved,"'under (H)' qualifier now present at decision-weight statements (grep confirms across model/discussion/empirics/literature/S6/glossary)",sections/*.tex
+DS-18,Fixed,resolved,"Covered by DS-17",sections/*.tex
+DS-19,Already handled,resolved,"M 7.5 uses revealed weight, not v'(s); M 8.1 covered by DS-17",Section 7.5
+DS-20,Fixed,resolved,"Proof of Prop 2(e) now 'uses only g<r, m>0 and k>=0'",supplement S3 (line 901)
+DS-21,Not valid,accept (observation),"Not a defect: worked example lambda=0.070 < threshold 0.0822, inside root-existence region; Prop 2(d)/(e) cover both",S2.2
+DS-22,Already handled,resolved,"Prop 4 free entry correct",Prop 4
+DS-23,Already handled,resolved,"Prop 5 formula/admissibility/inadmissibility correct",Prop 5
+DS-24,Already handled,resolved,"Props 6-7 correct",Props 6-7
+DS-25,Already handled,resolved,"26 USC 174A real (Pub L 119-21 s70302(a)); verified",Cornell LII
+DS-26,Already handled,resolved,"Lemma 5 screening weight confirmed",Lemma 5
+DS-27,Already handled,resolved,"Paper already states non-identification (Prop 3(iv))",Prop 3
+DS-28,Already handled,resolved,"Paper already states modest strength (familywise p-values)",Section 5
+DS-29,Already handled,resolved,"Paper already states 32.5% is scenario bound; now with joint stress range",Section 7.2
+DS-30,Already handled,resolved,"Abstract already carries compute-share condition; now 'at central costs'",abstract
+DS-31,Already handled,resolved,"Paper already flags Ganapati energy->manufacturing transport",Table S11
+DS-32,Already handled,resolved,"Already disclosed; A.6 now also states outside reviews' limits",Appendix A.6
+DS-33,Already handled,resolved,"Confirmation",Appendix A.2
+DS-34,Not valid,accept (auditor error),"Published AFL abstract says 1756; 1771 is MPRA preprint. Paper uses published figure correctly.",AFL v13
+DS-35,Fixed,resolved,"Lee URL now has /1/ and DOI 10.24135/afl.v13i.761 added (refs_paper1.bib + built PDF)",paper1/refs_paper1.bib
+DS-36,Already handled,resolved,"'Only' dropped; second peer-reviewed study (Nei, Ruus, Indov 2026) now cited",Section 2
+DS-37,Fixed,resolved,"'exposed tasks' -> 'vision tasks'",literature.tex line 27
+DS-38,Fixed,resolved,"Kwa pin-cited to Figure 14",supp_model.tex line 37
+DS-39,Not valid,disagree with classification (partly),"URL still resolves (HTTP 200), but canonical slug/title is now 'ai-rule-of-60-software-benchmarks'; the cited title IS stale. Reviewer's title point was valid; only the 'broken' implication was wrong.",vistaequitypartners.com
+DS-40,Not valid,accept (year correct),"Mosleh et al. NUREG/CR-4780 is January 1989; year correct",refs
+DS-41,Already handled,resolved,"Kim et al. 60% caveat correct",S2.6
+DS-42,Already handled,resolved,"Bessemer/Feld attributions correct",Section 2
+DS-43,Already handled,resolved,"Brynjolfsson/Acemoglu correct",refs
+DS-44,Already handled,resolved,"ICONIQ 45/53/59 correct",Table S11
+DS-45,Already handled,resolved,"Arkolakis/Gourio-Rudanko correct",refs
+DS-46,Already handled,resolved,"8 method refs bibliographic-only; acknowledged",citation ledger
+DS-47,Already handled,resolved,"Bounded novelty opinion; acknowledged",citation ledger
+DS-48,Already handled,resolved,"AS 2201 A7, Item 308(a)(3), FAS 5 correct",reliability audit
+DS-49,Already handled,resolved,"404(b) scope correct",reliability audit
+DS-50,Fixed,resolved,"AS 2201 '.03' -> 'paragraphs .03 and .06'",discussion.tex line 22
+DS-51,Already handled,resolved,"No fabricated threshold confirmed",reliability audit
+DS-52,Already handled,resolved,"Independence/shared-tooling/automation-bias caveats disclosed",S2.6
+DS-53,Already handled,resolved,"Break-even (not parameterized) automation bias; disclosed",Remark S10
+DS-54,Already handled,resolved,"Common-mode floor conditional on beta-factor; disclosed",Prop 5
+DS-55,Already handled,resolved,"Multiversion literature used correctly",S2.6
+DS-56,Already handled,resolved,"Remark S10 numbers reproduce",reliability audit
+DS-57,Fixed,resolved,"Miss rate stated 'apart from its common mode of 0.002, at most 8.4% (8.6% including it)'",appendix_proofs.tex line 31
+DS-58,Already handled,resolved,"Floor understated (conservative); disclosed",Section 8.5
+DS-59,Not valid,accept (overstated),"Fair nitpick: each regulatory claim checked by one party, not two; my phrasing overstated redundancy",REREVIEW Part A
+DS-60,Already handled,resolved,"Table 3 reproduces",acquirer audit
+DS-61,Already handled,resolved,"r=8.93%, T_life 10.6-19.5, charged ranges correct",acquirer audit
+DS-62,Already handled,resolved,"ASC 230/350/805 correct; double-charge exactly (1-tau)c_fin",acquirer audit
+DS-63,Already handled,resolved,"Prop 8 net weight and flag arithmetic correct",acquirer audit
+DS-64,Already handled,resolved,"Fully-charged = lower bound (Vimeo timing) correct",acquirer audit
+DS-65,Fixed,resolved,"E7 relabelled 'after interest, round-1 basis'; Table 3 uses -25.0/-16.5",verify_part2_acquirer.py line 1128
+DS-66,Already handled,resolved,"Interest-expense-vs-paid and outflow-proxy caveats disclosed",acquirer audit
+DS-67,Fixed,resolved,"4 filings in data/v3_inputs/raw/ with SHA-256 hashes (uncompressed hashes verified match README)",data/v3_inputs/raw
+DS-68,Fixed,resolved,"Ex. 99.1 and 99.2 archived in full",data/v3_inputs/raw
+DS-69,Fixed,resolved,"Pro forma re-verified vs 424B4 p.143 (2,608,496k; components match)",notes/case_bending_spoons_f1_extract.md line 232
+DS-70,Already handled,resolved,"Working tree clean",repo
+X-1,Fixed,resolved,"'MPRA Paper No. 121568' -> 'MPRA Paper 121568'; other notes 'U.S.'->'US'",paper1/refs_paper1.bib
+X-2,Fixed,resolved,"\todo{R2: finalize...} removed; A.6 sentence finalized",appendix A.6
+ST-1,Partly,resolved,"'at central costs'/'central cost inputs' now stated wherever 32.5% appears; stress range 24.0-45.1% (compute=6%) and 19.6-94.5% (box) stated",abstract; M 1; M 7.2; S10
+ST-2,Partly,resolved,"'from sampling alone' / 'anchor sampling alone' now stated; joint range 40.7-66.7 stated",abstract; M 1; M 9; S10
+ST-3,Partly,resolved,"'under central execution' with range 4.99-9.29 stated in M 1/M 7.3/M 9; abstract compresses to 'central scenario' (minor)",M 1; M 7.3
+ST-4,Partly,resolved,"'at all but a few points' and 'for central execution' stated",M 1; M 7.3; S10
+ST-5,Partly,resolved,"'under central execution' with range 4.9-85.0% stated",M 1; M 7.3; S10
+ST-6,Partly,resolved,"'at the central maintenance level' with 0-1 range stated",M 7.5; S10
