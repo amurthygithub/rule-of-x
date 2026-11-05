@@ -108,7 +108,7 @@ PY="${PYTHON:-python3}"
 LOGDIR="$ROOT/build_logs"
 
 STAGES=(panel params engine_defaults invoice_chain labor_macros empirics empirics_v3 calibrate backtest playbook
-        verify_playbook stress_report acquired_macros paper1_macros verify_theory verify_part2 engine_tests latex_p1
+        verify_playbook stress_report extensions acquired_macros paper1_macros verify_theory verify_part2 engine_tests latex_p1
         latex_p2)
 
 # folders of data/raw/ (code/fetch_raw_data.py sources) that a stage reads; every other stage reads none
@@ -272,6 +272,11 @@ stage_backtest() { run backtest gen "$PY" code/validation/backtest.py; }
 stage_playbook() { run run_archetypes gen "$PY" code/playbook/run_archetypes.py; }
 stage_verify_playbook() { run verify_part2_playbook check "$PY" code/verify_part2_playbook.py; }
 stage_stress_report() { run mc_report_tex pre "$PY" code/mc_report_tex.py; }   # reads the committed MC outputs only
+stage_extensions() {   # Supplement S12 (added 4 Nov 2026): reads the calibration, the panel, the float file and the stored MC run
+  run biz_open_questions gen "$PY" code/biz_open_questions.py
+  run biz_valuation gen "$PY" code/biz_valuation.py
+  run supp_extensions gen "$PY" code/supp_extensions.py
+}
 stage_acquired_macros() { run verify_part2_acquirer pre "$PY" code/verify_part2_acquirer.py; }
 stage_paper1_macros() {
   run paper1_macros gen "$PY" code/paper1_macros.py

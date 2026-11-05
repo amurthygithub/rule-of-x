@@ -1982,6 +1982,9 @@ lines.append('\\IfFileExists{paper1/stress_macros.tex}{\\input{paper1/stress_mac
 # round 3: the specification-curve macros (\Sc*, code/spec_curve.py; Supplement section supp:speccurve)
 lines.append('% Specification curve of the empirical claims (code/spec_curve.py):')
 lines.append('\\IfFileExists{paper1/spec_macros.tex}{\\input{paper1/spec_macros.tex}}{}')
+# 4 Nov: the macros of the analyses added after the third review round (\Ex*, code/supp_extensions.py; Section supp:extensions)
+lines.append('% Analyses added after the third review round (code/supp_extensions.py):')
+lines.append('\\IfFileExists{paper1/ext_macros.tex}{\\input{paper1/ext_macros.tex}}{}')
 open(os.path.join(OUT_DIR, 'macros.tex'), 'w').write('\n'.join(lines) + '\n')
 _stf = os.path.join(OUT_DIR, 'stress_macros.tex')                 # so that the plain abstract can expand them too
 if os.path.exists(_stf):
@@ -1993,6 +1996,10 @@ if os.path.exists(_scf):
     for _k, _v in re.findall(r'\\newcommand\{\\(Sc[A-Za-z]+)\}\{(.*)\}', open(_scf).read()):
         assert _k not in M and _k not in PLAIN, f"specification-curve macro {_k} clashes with a paper1 or stress macro"
         PLAIN[_k] = _v.replace('{,}', ',').replace('$-$', '-').replace('$+$', '+').replace('$>$', '>').replace('$<$', '<')
+_exf = os.path.join(OUT_DIR, 'ext_macros.tex')
+if os.path.exists(_exf):
+    for _k, _v in re.findall(r'\\newcommand\{\\(Ex[A-Za-z]+)\}\{(.*)\}', open(_exf).read()):
+        assert _k not in M and _k not in PLAIN, f"extension macro {_k} clashes with another macro"
 
 # ---------------------------------------------------------------------------------------------- plain abstract
 src = open(os.path.join(BASE, 'sections', 'abstract.tex')).read()
