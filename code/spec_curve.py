@@ -46,8 +46,9 @@ Run    : python3 code/spec_curve.py      (about 15 minutes on 2 shared cores, ne
          <system temp folder>/spec_curve_cache.pkl)
 Deterministic: every random draw comes from a generator seeded by the rule above; the subset of bootstrapped samples is
 drawn from its own seeded generator (crc32('spec_curve_subset')). Only the subset's size K depends on the machine (the
-timing rule of design.md, section 5); SC_BOOT_K=169 fixes it at the value of the reported run, so that
-    SC_BOOT_K=169 python3 code/spec_curve.py
+timing rule of design.md, section 5); SC_BOOT_K fixes it at the value of the reported run (\ScBootK in
+paper1/spec_macros.tex, meta.bootstrap.samples in results.json: 206 for the run of 3 November 2026), so that
+    SC_BOOT_K=206 python3 code/spec_curve.py
 reproduces every reported number.
 """
 import gzip
