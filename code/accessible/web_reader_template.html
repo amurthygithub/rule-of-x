@@ -1,4 +1,4 @@
-<title>Rule of 40 Easy-Read Edition</title>
+<title>Rule of 40, Easy Read</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -124,7 +124,7 @@ button, select { font: inherit; font-size: 15px; color: var(--ink); }
 :root[data-eq="fold"] .eqbox:not(.open) { display: none; }
 math { font-size: 1.04em; }
 /* a long inline formula scrolls inside itself instead of widening the page (browsers do not break MathML lines) */
-.reader math.ltx_Math { display: inline-block; max-width: 100%; overflow-x: auto; overflow-y: hidden; vertical-align: middle; padding-block: 2px; }
+.reader math.ltx_Math, .reader math.ltx_math_unparsed { display: inline-block; max-width: 100%; overflow-x: auto; overflow-y: hidden; vertical-align: middle; padding-block: 2px; }
 .reader .ltx_equation math, .reader .eqbox math { display: block; overflow: visible; max-width: none; }
 
 .reader figure { margin: 1.6em 0; }
@@ -147,17 +147,19 @@ math { font-size: 1.04em; }
 .speaking { background: var(--hl); border-radius: 4px; box-shadow: 0 0 0 4px var(--hl); }
 .reader .ltx_p:hover { background: color-mix(in srgb, var(--accent-soft) 45%, transparent); border-radius: 4px; box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent-soft) 45%, transparent); }
 .toplink { position: fixed; right: max(16px, env(safe-area-inset-right, 0px)); bottom: calc(16px + env(safe-area-inset-bottom, 0px)); z-index: 15; }
-@media (max-width: 560px) { .bar .label-long { display: none; } .reader h2 { margin-top: 1.6em; } }
+.bar .label-short { display: none; }
+@media (max-width: 560px) { .bar .label-long { display: none; } .bar .label-short { display: inline; }
+  .bar-inner { gap: 6px; } .bar .btn { padding: 0 11px; } .reader h2 { margin-top: 1.6em; } }
 </style>
 
 <header class="bar" role="toolbar" aria-label="Reading tools">
   <div class="bar-inner">
     <button class="btn" id="btn-toc" type="button" aria-expanded="false" aria-controls="toc">Contents</button>
-    <button class="btn" id="btn-settings" type="button" aria-expanded="false" aria-controls="settings">Reading settings</button>
-    <button class="btn" id="btn-skim" type="button" aria-pressed="false">Key points only</button>
+    <button class="btn" id="btn-settings" type="button" aria-expanded="false" aria-controls="settings"><span class="label-long">Reading settings</span><span class="label-short">Settings</span></button>
+    <button class="btn" id="btn-skim" type="button" aria-pressed="false">Key points<span class="label-long">&nbsp;only</span></button>
     <span class="grow"></span>
     <span class="listen-group" id="listen-group">
-      <button class="btn primary" id="btn-play" type="button">Listen from here</button>
+      <button class="btn primary" id="btn-play" type="button">Listen<span class="label-long">&nbsp;from here</span></button>
       <button class="btn" id="btn-stop" type="button" disabled>Stop</button>
       <span class="status" id="speak-status" aria-live="polite"></span>
     </span>
@@ -375,7 +377,7 @@ math { font-size: 1.04em; }
     btnPlay.textContent = 'Pause'; btnStop.disabled = false; status.textContent = label;
     speakNext();
   }
-  function stop(msg) { playing = false; paused = false; synth.cancel(); light(null); btnPlay.textContent = 'Listen from here'; btnStop.disabled = true; status.textContent = msg || ''; }
+  function stop(msg) { playing = false; paused = false; synth.cancel(); light(null); btnPlay.innerHTML = 'Listen<span class="label-long">&nbsp;from here</span>'; btnStop.disabled = true; status.textContent = msg || ''; }
   btnPlay.addEventListener('click', () => {
     if (playing && !paused) { synth.pause(); paused = true; btnPlay.textContent = 'Resume'; status.textContent = 'Paused.'; return; }
     if (playing && paused) { synth.resume(); paused = false; btnPlay.textContent = 'Pause'; status.textContent = 'Reading.'; return; }
