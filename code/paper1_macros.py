@@ -855,9 +855,9 @@ num('VpMinAt', VS['min']['at_share_of_cap'], 0)                                 
 num('VpLimit', VS['limit_never_spend'], 1, pct=False); num('VpLimitTwo', VS['limit_never_spend'], 2, pct=False)
 num('VpSatLo', VS['near_saturation']['lo'], 2, pct=False); num('VpSatHi', VS['near_saturation']['hi'], 2, pct=False)
 num('VpSigmaOnePct', _vpr['0.01']['sigma'], 1); num('VpSigmaNinetyFive', _vpr['0.95']['sigma'], 2)
-num('VpGainShare', VS['near_saturation']['lo'] / _vpr['0.01']['vprime'])              # near-cap retention gain / small-share gain
-# GLM-M3: the slack of the after-tax Prop. 4(d) bound when customer acquisition is deducted in full, tau (1 - psi_15) k_a G
-num('KaSlack', C['central']['tau'] * (1 - ps['psi']['foreign_15y']) * 2.0 * 0.05, 2)    # k_a = 0.10/0.05 = 2, G = 5%
+num('VpGainShare', VS['near_saturation']['lo'] / _vpr['0.01']['vprime'])              # lowest retention gain / small-share gain
+num('VpGainShareSat', VS['near_saturation']['hi'] / _vpr['0.01']['vprime'])           # at 99.9% of the cap (GLM NB5)
+# (GLM NB7, 5 Nov 2026: the unused macro KaSlack, the slack of the after-tax Prop. 4(d) bound, was deleted.)
 # GPT-26: the execution cases' wave length T_par (years)
 for pc, tg in [('slow', 'Slow'), ('central', 'Cen'), ('fast', 'Fast')]:
     num('PaceTpar' + tg, R3['pace_params'][pc]['Tpar'], 2, pct=False)
@@ -1144,6 +1144,31 @@ for b, B_ in [('op', 'Op'), ('cash', 'Cash')]:
     num(f'DefDraw{B_}Share', float((_n < 30).mean()), 1)
     sgn(f'DefDraw{B_}Lo', float(_np13.quantile(_d[_ok], .05)), 3, False); sgn(f'DefDraw{B_}Hi', float(_np13.quantile(_d[_ok], .95)), 3, False)
     put(f'DefDraw{B_}Cell', str(int(vest(f'cone_{b}_cell60', 'E2'))))
+# GPT F10 (re-review, 5 Nov 2026): distinct firms in the 60% cell of Psi_chi (g >= 0.60 with a finite margin, the
+# cell of estimate_v3.py's f_cone), from the frames of code/estimate_organic.py executed up to its END OF FRAME
+# CONSTRUCTION marker as estimate_v3.py does (read only); the firm-year counts must equal the stored cell60 counts
+def _cell_firms():
+    os.environ.setdefault('ORGANIC_PANEL', 'v3')
+    src_ = os.path.join(BASE, 'code', 'estimate_organic.py')
+    txt_ = open(src_).read()
+    G_ = {'__file__': src_, '__name__': 'organic_frames'}
+    exec(compile(txt_[:txt_.index('# ==== END OF FRAME CONSTRUCTION')], src_, 'exec'), G_)
+    out_ = {}
+    for vn_ in ('E1', 'E2'):
+        d_ = G_['V'][vn_]
+        for b_, mc_ in (('op', 'm_op'), ('cash', 'm_fcf_sbc')):
+            c_ = d_[_np13.isfinite(d_.g) & _np13.isfinite(d_[mc_]) & (d_.g >= 0.60)]
+            out_[(vn_, b_)] = (len(c_), int(c_.cik.nunique()), int(c_.groupby('cik').size().max()))
+    return out_
+
+
+CELL60 = _cell_firms()
+for (vn_, b_), (n_, f_, mx_) in CELL60.items():
+    assert n_ == int(vest(f'cone_{b_}_cell60', vn_)), ('60% cell count differs from notes/empirics_v3.json', vn_, b_, n_)
+for (vn_, b_), tg_ in [(('E1', 'op'), 'OpEone'), (('E1', 'cash'), 'CashEone'), (('E2', 'op'), 'OpEtwo'), (('E2', 'cash'), 'CashEtwo')]:
+    put(f'CellSixty{tg_}N', str(CELL60[(vn_, b_)][0])); put(f'CellSixty{tg_}Firms', str(CELL60[(vn_, b_)][1]))
+put('CellSixtyMaxEone', str(max(CELL60[('E1', b_)][2] for b_ in ('op', 'cash'))))
+put('CellSixtyMaxEtwo', str(max(CELL60[('E2', b_)][2] for b_ in ('op', 'cash'))))
 # D1: the cash score before net interest (bridge rows cash_bni and its like-for-like basis cash_bnis)
 for k_, nm_ in [('bnis', 'Bnis'), ('bni', 'Bni')]:
     sgn(f'BridgeChange{nm_}', vest(f'bridge_cash_{k_}_p95_change')); ival(f'BridgeChange{nm_}', f'bridge_cash_{k_}_p95_change')
@@ -1803,6 +1828,18 @@ CLAIMS += [
     ('empirics (anchor): the netted median is positive in nearly all specifications of the curve (above 95%) but its interval '
      'lies above zero in fewer than half of those bootstrapped; Pi_lb is positive in every specification',
      _SC['C8b']['share_a'] > 0.95 and _SC['C8b']['boot']['share_interval_on_claimed_side'] < 0.5 and _SC['C8a']['share_a'] == 1),
+]
+# outside re-review of the 4 Nov build (GPT F09, F10, F11; 5 Nov 2026)
+_bni, _bnis = V3E['bridge_cash_bni_p95_change']['E1'], V3E['bridge_cash_bnis_p95_change']['E1']
+CLAIMS += [
+    ('data, appendix (F09): on the subsample that reports interest income, the 90% percentile interval of the like-for-like '
+     'change includes zero, that of the change net of interest income barely excludes it (upper end within 3 points of '
+     'zero), and both 95% intervals include zero',
+     _bnis['ci90'][0] < 0 < _bnis['ci90'][1] and -0.03 < _bni['ci90'][1] < 0 and _bni['ci95'][0] < 0 < _bni['ci95'][1]
+     and _bnis['ci95'][0] < 0 < _bnis['ci95'][1]),
+    ('empirics, spec curve (F10): no firm contributes more than four firm-years to the 60% cell under E1, or more than '
+     'three under E2, on either basis',
+     max(CELL60[('E1', b_)][2] for b_ in ('op', 'cash')) <= 4 and max(CELL60[('E2', b_)][2] for b_ in ('op', 'cash')) <= 3),
 ]
 _failed = [c for c, ok in CLAIMS if not ok]
 os.makedirs(OUT_DIR, exist_ok=True)

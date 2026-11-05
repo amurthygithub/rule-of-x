@@ -1,5 +1,16 @@
 # Changelog
 
+## Explicit zero for the owned compute share (5 Nov 2026)
+
+Source: outside re-review of Paper 1's 4 November build (GPT Sol, extra-high effort, item ENG), verified in
+notes/reviews/paper1_v4/author_reviews/gpt_sol_xhigh_rereview/issue_log.md.
+
+- **Fix.** economics.build_econ read the owned compute share as `firm.fin.get("owned_compute_share") or default`, which
+  replaced an explicit 0 in a firm file by the configured default. The new helper economics.owned_compute_share keeps
+  an explicit 0 and falls back to the default only when the value is missing or None. impute already filled the field
+  with an `is not None` test and the shipped default is 0.0, so no shipped result changes.
+- **Test.** tests/test_formulas.py::test_owned_compute_share_keeps_explicit_zero (explicit 0 with a nonzero default).
+
 ## Paper 1 re-estimation carried into the defaults (3 Nov 2026)
 
 Source: Paper 1's re-estimation of 3 Nov 2026 (commit cff6848: R2 in the main sample, capitalized software from the

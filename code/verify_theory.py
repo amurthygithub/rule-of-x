@@ -1291,7 +1291,7 @@ for s0v in [0.005, 0.05]:
 
     sol = solve_ivp(rhs, (0, 600), [s0v, 0.0], rtol=1e-9, atol=1e-12, max_step=0.5)
     payoff = sol.y[1, -1]
-    check(f"15l closed-loop simulation from s0={s0v}: discounted payoff matches v(s0) within 0.5%",
+    check(f"15r closed-loop simulation from s0={s0v}: discounted payoff matches v(s0) within 0.5%",
           abs(payoff - at(v_h, s0v)) / at(v_h, s0v) < 5e-3, f"payoff={payoff:.6f}, v(s0)={at(v_h, s0v):.6f}")
 # lower bound of Proposition prop:dynamic(d) with the constant policy sigma0
 D0 = ex[10.0][2] - G_
@@ -1303,7 +1303,7 @@ for s0v in [1e-2, 1e-3, 1e-4, 1e-6]:
     tt = np.linspace(0, 3000, 600001)
     lbs.append(mo * np.trapezoid(integrand(tt), tt))
 print("     constant-policy lower bound v(s0)/s0 >= " + ", ".join(f"{lb:.4f}" for lb in lbs) + " (s0 = 1e-2 ... 1e-6)")
-check("15m constant-policy lower bound increases to v0 as s0 -> 0 and lies below the HJB value",
+check("15s constant-policy lower bound increases to v0 as s0 -> 0 and lies below the HJB value",
       all(np.diff(lbs) > 0) and abs(lbs[-1] - 10) < 0.01
       and all(lb <= at(v_h, sv) / sv + 1e-6 for lb, sv in zip(lbs, [1e-2, 1e-3, 1e-4, 1e-6])))
 # implication for measurement (decision D-1): sigma*/Delta* = alpha (X - k) identifies only the product; conditional
@@ -1316,7 +1316,7 @@ for _ in range(200):
     D_, sg, _ = closed_form(0.3, 0.05, k_, X_, lam_ * h_, a_)
     rho_ = sg / D_
     ok &= abs(rho_ - a_ * (X_ - k_)) < 1e-9 * (1 + rho_) and X_ - k_ > rho_ and abs(rho_ / a_ - (X_ - k_)) < 1e-9 * X_
-check("15n [arithmetic] implication: the spend ratio identifies only alpha (X - k); X - k = rho/alpha > rho for every "
+check("15t [arithmetic] implication: the spend ratio identifies only alpha (X - k); X - k = rho/alpha > rho for every "
       "alpha < 1 (200 draws), and 1/alpha lies in [2.22, 4] for alpha in [0.25, 0.45]",
       ok and abs(1 / 0.45 - 2.222) < 1e-3 and 1 / 0.25 == 4)
 
@@ -1752,32 +1752,77 @@ check("20j product mix: with AI products at c_c = 0.40 and the rest at 0.20, an 
       "midway between the central and high-compute thresholds (linear in the share); 1 - 0.59 - 0.025 = 0.385 ~ 0.40",
       abs(blend['G100'] - 0.5 * (FCR['central']['G100'] + FCR['high compute']['G100'])) < 1e-12
       and abs((1 - 0.59 - 0.025) - 0.385) < 1e-12)
-# owning the compute (Remark rem:owncompute, revision v2): one deduction rate psi for growth and replacement servers;
-# own - buy = (1-tau) ups TCO - (1-psi) tau s_srv TCO - (1 - psi tau) s_srv L_srv TCO G
+# owning the compute (Remark rem:owncompute, revision v2; cash basis after the outside re-review, GPT F03, 5 Nov 2026):
+# one deduction rate psi for growth and replacement; with TCO the cash cost (running cost plus straight-line replacement),
+# owned capital kappa TCO and replacement s TCO: own - buy = (1-tau) ups TCO - (1-psi) tau s TCO - (1 - psi tau) kappa TCO G
 ok = True
 for _ in range(500):
     TCO, ups, G_ = RNG.uniform(0.02, 0.4), RNG.uniform(0, 1.5), RNG.uniform(0, 0.4)
-    tau_, ssrv, L = RNG.uniform(0.1, 0.3), RNG.uniform(0.3, 0.8), RNG.uniform(3, 7)
+    tau_, s_own, kap = RNG.uniform(0.1, 0.3), RNG.uniform(0.3, 0.95), RNG.uniform(1, 8)
     psi_ = RNG.uniform(0, 1)
     api = (1 - tau_) * (1 - (1 + ups) * TCO)
-    kc = ssrv * L * TCO
-    own = (1 - tau_) * (1 - (1 - ssrv) * TCO) - (1 - psi_ * tau_) * (kc / L) - (1 - psi_ * tau_) * kc * G_
-    ok &= abs((own - api) - ((1 - tau_) * ups * TCO - (1 - psi_) * tau_ * ssrv * TCO
-                             - (1 - psi_ * tau_) * ssrv * L * TCO * G_)) < 1e-12
-    own1 = (1 - tau_) * (1 - (1 - ssrv) * TCO) - (1 - tau_) * (kc / L) - (1 - tau_) * kc * G_
-    ok &= abs((own1 - api) - (1 - tau_) * (ups - ssrv * L * G_) * TCO) < 1e-12        # psi = 1: tax-free threshold
-thr_own = [3.3 * G_ for G_ in [0.05, 0.15]]
-thr_own0 = [(0.18 * 0.6 + 3.3 * G_) / 0.82 for G_ in [0.05, 0.15]]
-print(f"     owning pays on the cash ceiling iff markup > 3.3 G at psi = 1: {100 * thr_own[0]:.1f}% at G = 5%, "
-      f"{100 * thr_own[1]:.1f}% at G = 15%; at psi = 0 (tau 0.18): {100 * thr_own0[0]:.1f}% and {100 * thr_own0[1]:.1f}%")
-check("20k Remark rem:owncompute (FT-3): with one deduction rate for growth and replacement servers, owning raises the "
-      "cash ceiling iff (1-tau) ups > (1-psi) tau s_srv + (1-psi tau) s_srv L_srv G (500 draws); at psi = 1 iff "
-      "ups > 3.3 G, thresholds 16.5% and 49.5%; at psi = 0, 33% and 74%",
-      ok and round(100 * thr_own[0], 1) == 16.5 and round(100 * thr_own[1], 1) == 49.5
-      and round(100 * thr_own0[0]) == 33 and round(100 * thr_own0[1]) == 74 and abs(0.6 * 5.5 - 3.3) < 1e-12)
-check("20k2 [text] the thresholds of Remark rem:owncompute printed in Section sec:horizons-ceiling (macros "
-      "OwnMarkupFive, OwnMarkupFifteen) are those at psi = 1", printed('OwnMarkupFive', thr_own[0])
-      and printed('OwnMarkupFifteen', thr_own[1]))
+    kc = kap * TCO
+    own = (1 - tau_) * (1 - (1 - s_own) * TCO) - (1 - psi_ * tau_) * (s_own * TCO) - (1 - psi_ * tau_) * kc * G_
+    ok &= abs((own - api) - ((1 - tau_) * ups * TCO - (1 - psi_) * tau_ * s_own * TCO
+                             - (1 - psi_ * tau_) * kap * TCO * G_)) < 1e-12
+    own1 = (1 - tau_) * (1 - (1 - s_own) * TCO) - (1 - tau_) * (s_own * TCO) - (1 - tau_) * kc * G_
+    ok &= abs((own1 - api) - (1 - tau_) * (ups - kap * G_) * TCO) < 1e-12        # psi = 1: tax-free threshold
+    thr0 = (tau_ * s_own + kap * G_) / (1 - tau_)                                  # psi = 0: zero of own - buy
+    own0 = (1 - tau_) * (1 - (1 - s_own) * TCO) - s_own * TCO - kc * G_
+    ok &= abs(own0 - (1 - tau_) * (1 - (1 + thr0) * TCO)) < 1e-12
+# Epoch AI's cost tables, read from the single transcription in code/paper1_macros.py (dict EPOCH_DC; CSVs fetched
+# 5 Nov 2026) and recomputed here independently: lives 5 years for IT equipment (servers, network), 14 for the facility
+# and utility works, land never replaced
+import ast as _ast20k
+_src20k = open(_osh.path.join(_ROOT, 'code', 'paper1_macros.py')).read()
+_m20k = _reh.search(r'^EPOCH_DC = (\{.*?\n\})', _src20k, _reh.S | _reh.M)
+ED = _ast20k.literal_eval(_m20k.group(1)) if _m20k else None
+
+
+def _own20k(L_it):
+    U_ = ED['upfront']
+    rep = U_['servers'] / L_it + U_['network'] / L_it + (U_['facility'] + U_['utility_works']) / ED['life_facility']
+    T_ = ED['opex'] + rep
+    return dict(T=T_, ksrv=U_['servers'] / T_, ssrv=U_['servers'] / L_it / T_, kall=sum(U_.values()) / T_)
+
+
+ok_src = ED is not None and ED['fetched'] == '2026-11-05' and ED['life_it'] == 5 and ED['life_facility'] == 14 \
+    and ED['upfront']['servers'] == 21188 and ED['upfront']['facility'] == 11433 and ED['upfront']['network'] == 4925 \
+    and ED['annualized_capex']['servers'] == 5021 and ED['annualized_capex']['facility'] == 1387 \
+    and ED['annualized_capex']['network'] == 1167 and ED['opex'] == 907
+O5, O55 = (_own20k(5.0), _own20k(5.5)) if ED else ({}, {})
+thr_own = [O5['ksrv'] * G_ for G_ in [0.05, 0.15]] if ED else [0, 0]
+thr_all = [O5['kall'] * G_ for G_ in [0.05, 0.15]] if ED else [0, 0]
+thr_own0 = [(0.18 * O5['ssrv'] + O5['ksrv'] * G_) / 0.82 for G_ in [0.05, 0.15]] if ED else [0, 0]
+thr_meta = [O55['ksrv'] * G_ for G_ in [0.05, 0.15]] + [O55['kall'] * G_ for G_ in [0.05, 0.15]] if ED else [0] * 4
+print(f"     cash basis (Epoch AI tables): TCO {O5.get('T', 0):,.0f} m a year; servers only kappa = {O5.get('ksrv', 0):.3f} "
+      f"(s_srv {O5.get('ssrv', 0):.3f}), whole data center {O5.get('kall', 0):.3f}; bars at psi = 1: "
+      f"{100 * thr_own[0]:.1f}% / {100 * thr_own[1]:.1f}% (servers), {100 * thr_all[0]:.1f}% / {100 * thr_all[1]:.1f}% (whole); "
+      f"psi = 0 servers {100 * thr_own0[0]:.1f}% / {100 * thr_own0[1]:.1f}%; 5.5-year IT life "
+      + ' / '.join(f'{100 * x:.1f}%' for x in thr_meta))
+check("20k Remark rem:owncompute (FT-3; cash basis, re-review F03): with one deduction rate for growth and replacement, "
+      "owning raises the cash ceiling iff (1-tau) ups > (1-psi) tau s + (1-psi tau) kappa G (500 draws; at psi = 1 iff "
+      "ups > kappa G, at psi = 0 iff ups > (tau s + kappa G)/(1 - tau)); kappa and s derived from Epoch AI's tables as "
+      "transcribed: servers only kappa = 3.05, bars about 15% and 46%; whole data center kappa = 5.44, about 27% and 82%; "
+      "5.5-year IT life 16%/49% and 29%/88% (the verification log's values)",
+      ok and ok_src and abs(O5['ksrv'] - O5['ssrv'] * 5.0) < 1e-12 and 3.0 < O5['ksrv'] < 3.1 and 5.4 < O5['kall'] < 5.5
+      and round(100 * thr_own[0]) == 15 and round(100 * thr_own[1]) == 46
+      and round(100 * thr_all[0]) == 27 and round(100 * thr_all[1]) == 82
+      and [round(100 * x) for x in thr_meta] == [16, 49, 29, 88])
+check("20k2 [text] the thresholds of Remark rem:owncompute and Section sec:horizons-ceiling (macros OwnMarkupFive, "
+      "OwnMarkupFifteen, OwnMarkupFiveAll, OwnMarkupFifteenAll, OwnMarkupFiveNone, OwnMarkupFifteenNone, the 5.5-year "
+      "sensitivities and OwnKapSrv, OwnKapAll) are those of the cash basis computed here",
+      printed('OwnMarkupFive', thr_own[0]) and printed('OwnMarkupFifteen', thr_own[1])
+      and printed('OwnMarkupFiveAll', thr_all[0]) and printed('OwnMarkupFifteenAll', thr_all[1])
+      and printed('OwnMarkupFiveNone', thr_own0[0]) and printed('OwnMarkupFifteenNone', thr_own0[1])
+      and printed('OwnMarkupFiveMeta', thr_meta[0]) and printed('OwnMarkupFifteenMeta', thr_meta[1])
+      and printed('OwnMarkupFiveAllMeta', thr_meta[2]) and printed('OwnMarkupFifteenAllMeta', thr_meta[3])
+      and printed('OwnKapSrv', O5['ksrv'], 1, pct=False) and printed('OwnKapAll', O5['kall'], 1, pct=False)
+      and printed('OwnSrvShare', O5['ssrv']))
+check("20k3 [text] Remark rem:owncompute no longer states the factor 3.3, the 60% share as replacement cash or the old "
+      "bars 16.5%/49.5% and 33%/74%, and Section sec:horizons-ceiling no longer types a factor",
+      all(t_ not in open(_osh.path.join(_ROOT, 'sections', f_)).read() for f_ in ('appendix_proofs.tex', 'horizons.tex', 'supp_proofs.tex')
+          for t_ in ('3.3 times', 's_{\\rm srv}L_{\\rm srv}=3.3', '16.5\\%', '49.5\\%', '0.6\\times5.5')))
 import json as _json
 import os as _os
 _cal = _os.path.join(_os.path.dirname(_os.path.dirname(_os.path.abspath(__file__))), 'notes', 'calibration_results.json')

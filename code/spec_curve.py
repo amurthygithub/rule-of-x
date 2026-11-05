@@ -1129,7 +1129,7 @@ def write_outputs(R):
         ('C4', 'b', r'\quad below zero', 'share_b', 'share_interval_below_zero'),
         ('C4', 'c', r'\quad above $-0.5$', 'share_c', None),
         ('C5', 'a', r'GAAP frontier steepened: late minus early $\Psi$ slope below zero', 'share_a', None),
-        ('C6', 'a', r'Cash frontier did not steepen: difference not negative (point) / interval not below zero', 'share_a', None),
+        ('C6', 'a', r'Cash frontier: no steepening detected (point not negative / interval not below zero)', 'share_a', None),
         ('C7', 'a', r'Spend ratio between 3.0 and 3.5 (samples varied)', 'share_a', None),
         ('C7s', 'a', r'\quad benchmark growth also varied (secondary)', 'share_a', None),
         ('C8a', 'a', r'Anchor: median surplus $\Pi_{lb}$ above zero (no S\&M buys growth), points', 'share_a', None),

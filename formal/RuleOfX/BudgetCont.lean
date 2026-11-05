@@ -16,13 +16,17 @@ Continuous time on `[0, T]`, `T ≥ 0`. The spend path `σ` is measurable and no
 
 **The share path.** The paper takes "the induced share path from `s(0) = s₀`", i.e. the
 (Carathéodory) solution of `ṡ = s λ h(s) σ^α`: an absolutely continuous function that satisfies
-the equation almost everywhere. Here the share path is a hypothesis with exactly those
-properties: `s` is absolutely continuous on `[0,T]` (`AbsolutelyContinuousOnInterval s 0 T`),
-satisfies `ṡ(t) = s(t) λ h(s(t)) σ(t)^α` for almost every `t ∈ [0,T]`, and stays in `(0, s̄)` on
-`[0,T]` (Assumption ass:market). The existence (and uniqueness) of this solution, which the
-paper's proof obtains from the explicit logistic formula, is not formalized; the paper also
-derives `s < s̄` from that formula, whereas here it is assumed. Every measurable spend path for
-which the induced share path exists is covered.
+the equation almost everywhere. In the general statements (`prop_budget_a`,
+`prop_budget_c_continuous`, `cor_transient_b`, `cor_transient_b_optimum`) the share path is a
+hypothesis with exactly those properties: `s` is absolutely continuous on `[0,T]`
+(`AbsolutelyContinuousOnInterval s 0 T`), satisfies `ṡ(t) = s(t) λ h(s(t)) σ(t)^α` for almost
+every `t ∈ [0,T]`, and stays in `(0, s̄)` on `[0,T]` (Assumption ass:market). Existence is also
+formalized: `induced` (section "The induced share path" below) constructs the logistic solution
+from the integrated spend `z(t) = λ ∫_0^t σ^α`, and `induced_isPath` proves that it has those
+properties, `s < s̄` included, for every measurable spend path with `∫_0^T σ^α < ∞`; the four
+`_induced` theorems therefore need no share-path hypothesis. Uniqueness of the solution is not
+formalized. (Header revised on 5 November 2026: the earlier text, written before `induced`
+existed, said that existence was not formalized; outside re-review of Paper 1, item ED-1.)
 -/
 
 noncomputable section

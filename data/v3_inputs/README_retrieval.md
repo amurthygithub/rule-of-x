@@ -131,6 +131,8 @@ The author approved this download at 23:23 (decision 3 of the outside-review pla
 | `raw/bsp_ex99-1_2026-08-13.htm.gz` | Form 6-K of 13 Aug 2026, Exhibit 99.1 | https://www.sec.gov/Archives/edgar/data/2004711/000200471126000011/bsp_ex99-1.htm | 261,276 | 69e4c0c145f8b188d2ae00d18373b36a1ce0a85da8cb9d1a7383837b16a402f0 |
 | `raw/bsp_ex99-2_2026-08-13.htm.gz` | Form 6-K of 13 Aug 2026, Exhibit 99.2 | https://www.sec.gov/Archives/edgar/data/2004711/000200471126000011/bsp_ex99-2.htm | 757,525 | 04f118132aca7fa9a33202619ce7d2ca8b65b4413ba72ff2ac6a8f74e5e1a82f |
 
+The hashes identify the archived copies. EDGAR serves the same documents with a different byte layout over time (an outside reviewer's fetch of the F-1 on 4 November 2026 had 9,425,671 bytes and a different digest, with every figure the paper uses identical), so a fresh download will not match them; the figures do. (Note added 5 November 2026 after the outside re-review of the 4 November build, GLM item NB10; the reviewer's fetch was not reproduced here.)
+
 These are the primary sources for the case study in Section 6. They replace the GLM reviewers' text extractions, which were used only to cross-check. In these copies the 424B4 states:
 - annual organic revenue growth of 7% (2024) and 13% (2025);
 - a subscription share of 95%, 92% and 93% of revenue (2023 to 2025);

@@ -73,7 +73,7 @@ ROWS = [
     ('P1.full.net', r'No Rule of 100 on the central path (highest score, 2028--36)', 'full box', 'pct'),
     ('P2b.full.net', r'A completed program: 2036 target plus market growth below 100', 'full box', 'pct'),
     ('P3.full', r'Less than half of the program realized by 2036 (realized share)', 'full box', 'pctsign'),
-    ('P3b.full', r'Program still running in 2036 (expected completion year)', 'full box', 'yr1'),
+    ('P3b.full', r'Program still running in 2036 (year the upper bound reaches the whole program)', 'full box', 'yr1'),
     ('P4.full.net', r'The central path rises from 2028 to 2036 (smallest step, points)', 'full box', 'pct'),
     ('P6.full', r'Netted path between the no-S\&M and all-S\&M bounds (smallest gap, points)', 'full box', 'pct'),
     ('B1.full.net', r'Flow crossing before payback (years between them)', 'full box', 'x2'),
@@ -213,13 +213,25 @@ num('StPayMin', PB['min'], 2, False); num('StPayMax', PB['max'], 2, False)
 num('StPayCen', PB['central'], 1, False)
 num('StRatioCenMin', QUANT['net.B.pb.ratio']['min'], 2, False); num('StRatioMin', QUANT['net.pb.ratio']['min'], 2, False)
 num('StNpvMin', QUANT['net.pb.npv']['min'], 0); num('StNpvMax', QUANT['net.pb.npv']['max'], 0)
+# outside re-review GLM NB3 (5 Nov 2026): over the accountability sub-box at 5%, the example's floor where some design is
+# admissible, and the share of points with no admissible design (admissibility depends on the probabilities and the number
+# of opportunities, not on the audit fee)
+_A4 = AMIN['A4.Five']
+assert AMIN['A1.Five']['quantity']['n_inf'] == 0 and _A4['n_points'] == AMIN['A1.Five']['n_points']
+num('StAminFloorMin', _A4['quantity']['min'], 2); num('StAminFloorMax', _A4['quantity']['max'], 1)
+num('StAminNoDesignShare', _A4['quantity']['n_inf'] / _A4['n_points'], 0)
+assert _A4['quantity']['max'] < max(map(float, CAL['amin_sensitivity']))   # below the top of the band the ceiling uses
 LV = TESTS['L1.full.net']
 num('StLeverMin', LV['quantity']['min'], 0, False); num('StLeverMax', LV['quantity']['max'], 0, False)
 num('StLeverOneShare', LV['share_holds_uniform'], 1)
 assert abs((D.levers_growth_engine_first_count == 1).mean() - LV['share_holds_uniform']) < 1e-12
 # Monte Carlo precision (3 Nov 2026, with the million-draw rerun). Shares of draws: standard error as for independent
-# draws, sqrt(p(1-p)/N), which overstates it for a Latin hypercube; the largest over the shares quoted in S10.
-# Percentiles: distribution-free 95% intervals from the order statistics of the draws (ranks Nq -/+ 1.96 sqrt(Nq(1-q))).
+# draws, sqrt(p(1-p)/N); for a Latin hypercube of N points the variance of any square-integrable statistic's mean is at
+# most N/(N-1) times the independent-draw variance (Owen 1997, LHS is never worse than N-1 independent draws), so the
+# figure is conservative to within a factor 1 + 1/(N-1) (outside re-review GPT F05, 5 Nov 2026: the earlier comment said
+# it overstates the error, which is not true in general). The largest over the shares quoted in S10.
+# Percentiles: 95% intervals from the order statistics of the draws (ranks Nq -/+ 1.96 sqrt(Nq(1-q))), the intervals of
+# independent draws, applied to the Latin hypercube as an approximation.
 _N = len(D)
 _SH = {'StNetSixInPaper': L36['share_in_paper_interval_uniform'], 'StLeverOneShare': LV['share_holds_uniform']}
 put('StMcShareSeMax', fnum(max(100 * math.sqrt(p_ * (1 - p_) / _N) for p_ in _SH.values()), 2))
@@ -324,7 +336,18 @@ if J2 is not None:
             _dmax = max(_dmax, abs(100 * (b_[2] - a_[2])), abs(100 * (b_[3] - a_[3])))
     put('StSeedTwo', str(J2['meta']['args']['seed'])); put('StSeedTwoDraws', f"{J2['design']['n_lhs']:,}".replace(',', '{,}'))
     put('StSeedTwoAgree', str(_agree)); put('StSeedTwoRows', str(len(ROWS)))
-    num('StSeedTwoMaxDiff', _dmax / 100, 2)
+    # outside re-review GLM NB2 (5 Nov 2026): the largest move is rounded up, so that "no value moves by more than" holds
+    # at full precision, and the rows in years and ratios, whose extremes come from the tails of the draws, are reported too
+    put('StSeedTwoMaxDiff', fnum(math.ceil(_dmax * 100 - 1e-9) / 100, 2))
+    YEAR_ROWS, RATIO_ROWS = ('B1.full.net', 'B2.full.net', 'B2.B.net'), ('B4.full.net', 'B4.B.net', 'R1.full')
+    assert {t_ for t_, _, _, k_ in ROWS if k_ == 'x2'} == set(YEAR_ROWS + RATIO_ROWS)
+    _mv = lambda t_: max(abs(row_values(t_, J2)[i_] - row_values(t_)[i_]) for i_ in (2, 3))
+    _dyr = max(_mv(t_) for t_ in YEAR_ROWS)
+    put('StSeedTwoMaxDiffYr', fnum(math.ceil(_dyr * 100 - 1e-9) / 100, 2))
+    _r1, _r2 = row_values('B4.full.net')[3], row_values('B4.full.net', J2)[3]
+    assert all(_mv(t_) < 0.01 for t_ in RATIO_ROWS if t_ != 'B4.full.net') and abs(_r2 - _r1) > 1, 'ratio rows: text names B4 max only'
+    assert _agree == len(ROWS), 'the text says no verdict changes across seeds'
+    num('StSeedTwoRatioMaxOne', _r1, 1, False); num('StSeedTwoRatioMaxTwo', _r2, 1, False)
     _L2, _Q2 = J2['levels']['net.R_2036'], {q['key']: q for q in J2['quantities']}
     num('StSeedTwoNetSixPFive', _L2['lhs_p05']); num('StSeedTwoNetSixPNinetyFive', _L2['lhs_p95'])
     num('StSeedTwoGstarMin', _Q2['Gstar_2025']['min']); num('StSeedTwoGstarMax', _Q2['Gstar_2025']['max'])

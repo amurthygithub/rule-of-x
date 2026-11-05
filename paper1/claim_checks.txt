@@ -89,6 +89,8 @@ ok   empirics, intro, summary box, conclusion: the GAAP steepening is fragile: n
 ok   empirics, intro, summary: no cash steepening in the samples that remove acquired growth (negative in under a fifth of the pro forma and exclusion specifications); negative in most observed-growth specifications, with an interval below zero in few of them (under 10%)
 ok   empirics, intro, summary: across the sample choices the spend ratio is higher where acquired growth is removed or firms are dropped under rule R2
 ok   empirics (anchor): the netted median is positive in nearly all specifications of the curve (above 95%) but its interval lies above zero in fewer than half of those bootstrapped; Pi_lb is positive in every specification
+ok   data, appendix (F09): on the subsample that reports interest income, the 90% percentile interval of the like-for-like change includes zero, that of the change net of interest income barely excludes it (upper end within 3 points of zero), and both 95% intervals include zero
+ok   empirics, spec curve (F10): no firm contributes more than four firm-years to the 60% cell under E1, or more than three under E2, on either basis
 
 # Interval claims are checked under the percentile, basic, normal and BC 90% intervals (TYPES4); Holm under the
 # normal, percentile and basic p-values and Romano-Wolf (the outputs carry no BC p-value).

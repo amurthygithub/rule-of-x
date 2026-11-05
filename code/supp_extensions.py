@@ -63,7 +63,7 @@ def claim(text, ok):
 
 # ------------------------------------------------------------------------------------------------ (a) valuation
 SAMPLES = [('all', 'All firm-years'), ('2010-19', '2010--19'), ('2020-25', '2020--25'),
-           ('no_acq', 'Without acquisition-affected years'), ('top40', 'Score of 40 or more')]
+           ('no_acq', 'No acquisition-affected years'), ('top40', 'Score of 40 or more')]
 BASIS = [('cash', 'Free cash flow after SBC'), ('gaap', 'GAAP operating margin')]
 put('ExPanelN', fint(V['n_panel'])); put('ExMatchN', fint(V['n_matched'])); put('ExMatchFirms', str(V['firms']))
 U = V['unmatched']
@@ -146,7 +146,7 @@ for b, bl in BASIS:
         ps = '$<$0.001' if p < 0.001 else fnum(p, 2)
         rows.append(f"\\quad {sl} & {fint(r['n'])} & {r['firms']} & {fnum(r['beta_g'], 2)} & {fnum(r['beta_m'], 2)} & {w or '--'} & "
                     f"{civ or '--'} & {bs or '--'} & {ps} & {fnum(100 * r['r2_within_full'], 1)} / {fnum(100 * r['r2_within_score'], 1)}\\\\")
-tab = (r"""\begin{table}[!ht]\centering\footnotesize\setlength{\tabcolsep}{3.5pt}
+tab = (r"""\begin{table}[!ht]\centering\footnotesize\setlength{\tabcolsep}{2.6pt}
 \caption{Public float over revenue against growth and margin, with year effects: the weight the market's valuations put on growth}\label{tab:ext-valuation}
 \begin{tabular}{@{}lrrrrrrrrr@{}}\toprule
 Sample & Firm-years & Firms & $\beta_g$ & $\beta_m$ & Weight & 90\% interval & $\beta_m\le0$ (\%) & $p$, equal & Within $R^2$ (\%)\\\midrule
