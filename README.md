@@ -1,6 +1,6 @@
 # Rule of X: growth, profitability and the limits of AI automation
 
-What can AI do for a software company's growth and margins, and where does it stop? This repository holds a three-part research series on that question by Akshaya Bangalore Sreenivasa Murthy (independent researcher), with the code and data behind every number.
+What can AI do for a software company's growth and margins, and where does it stop? This repository holds Part 1 of a planned three-part research series on that question by Akshaya Bangalore Sreenivasa Murthy (independent researcher), with the code and data behind every number. Parts 2 and 3 are not written yet.
 
 ## Read the paper
 
@@ -40,8 +40,8 @@ Nothing here is investment advice.
 | Part | Status | Where |
 |---|---|---|
 | 1. *The Rule of 40 as a Price Line* | working paper, November 2026 | `papers/`; source `paper1/*.tex`, `sections/` (the pipeline's copies are `paper1/paper1.pdf` and `paper1/supplement.pdf`, same text) |
-| 2. *The Economics of AI Transformation*: the effects of AI on the model's parameters, derived from the tasks a company automates | in preparation (sections and checks; no main document yet) | `part2/` |
-| 3. The autofrontier engine: applies both papers to a company's own financial and organizational data | in preparation | `engine/` (see `engine/README.md`) |
+| 2. *The Economics of AI Transformation* (planned) | not written yet; early working material only | `part2/` |
+| 3. A software engine that applies the series to a company's own data (planned) | not written yet; early working code only | `engine/` (see `engine/README.md`) |
 
 ## How it was made
 
