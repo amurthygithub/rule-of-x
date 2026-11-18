@@ -1,6 +1,6 @@
 # Rule of X: growth, profitability and the limits of AI automation
 
-Code, data and manuscripts for a three-part series by Akshaya Bangalore Sreenivasa Murthy (independent researcher).
+What can AI do for a software company's growth and margins, and where does it stop? This repository holds a three-part research series on that question by Akshaya Bangalore Sreenivasa Murthy (independent researcher), with the code and data behind every number.
 
 ## Read the paper
 
@@ -11,13 +11,41 @@ Code, data and manuscripts for a three-part series by Akshaya Bangalore Sreeniva
 
 Download both into one folder: the links between them work by file name.
 
+## What Part 1 finds
+
+The paper measures "moving the needle" with the Rule of 40 score: revenue growth plus profit margin. It places 284 software companies on that score from their SEC filings (2010 to 2025), then uses an economic model to ask what AI automation can change, with scenarios out to 2036. The AI results are scenarios, not forecasts.
+
+**What AI can move**
+
+- **Costs.** Automating G&A, support, maintenance engineering and human service delivery raises margins.
+- **Growth.** Cheaper customer acquisition buys more growth per dollar.
+- **Market size.** If labor budgets shift to software, the market grows. If customers need fewer seats, it can shrink.
+
+**Where it stops**
+
+1. **AI has its own cost floor.** Computing, vendor fees, controls, security, maintenance and errors do not go to zero.
+2. **Full automation does not make a mature company a Rule of 100 company.** At the paper's central costs and fixed prices, a mature, asset-light company's score on a cash basis stays below 100 unless its market grows more than 32.5% a year. The bar is 28% to 78% depending on what computing costs, and 36% if half the savings go to customers as lower prices (Section 7.2).
+3. **Competition takes the savings.** If rivals can enter freely and sell the same product, lower costs become lower prices. Only a company with something rivals cannot copy earns more than a normal return (Proposition 4).
+4. **It costs before it pays.** In the central scenario, a top company captures 41% of its program's benefits by 2036, and the program pays back after 7.5 years. Its cumulative effect is negative at three and at five years at all but a few points of the stress test. Execution, not market growth, moves the 2036 result most (Section 7.3).
+5. **Accountability stays.** Internal control over financial reporting is pass-fail. In the paper's illustrative example, no control design built only from AI on a single model provider passes, because those AI layers can fail together (Proposition 5).
+
+**Where to start.** Counting as growth spend only selling and marketing above a maintenance level, cutting G&A cost outranks automating the growth engine at 5 of the 6 company positions examined (Section 7.5).
+
+**The yardstick itself.** The Rule of 40 is a pass mark, not a measure of value: when growth lasts, a point of growth is worth more than a point of margin. The margin used changes who passes: in 2023 to 2025, 29% of company-years cleared 40 on free cash flow before stock-based pay, and 9% after it. On operating margin, the score that only the top 5% reach fell about 12 points from 2016–19 to 2023–25, because fewer companies grew fast.
+
+Nothing here is investment advice.
+
+## The series
+
 | Part | Status | Where |
 |---|---|---|
 | 1. *The Rule of 40 as a Price Line* | working paper, November 2026 | `papers/`; source `paper1/*.tex`, `sections/` (the pipeline's copies are `paper1/paper1.pdf` and `paper1/supplement.pdf`, same text) |
-| 2. *The Economics of AI Transformation* | in preparation (sections and checks; no main document yet) | `part2/` |
-| 3. The autofrontier engine | in preparation | `engine/` (see `engine/README.md`) |
+| 2. *The Economics of AI Transformation*: the effects of AI on the model's parameters, derived from the tasks a company automates | in preparation (sections and checks; no main document yet) | `part2/` |
+| 3. The autofrontier engine: applies both papers to a company's own financial and organizational data | in preparation | `engine/` (see `engine/README.md`) |
 
-The papers were produced in a documented collaboration between the author and AI research agents. Part 1's Appendix A describes the protocol and the author's decisions; the agent log, every review report, the issue logs and the responses to reviewers are in `notes/` and `notes/reviews/`.
+## How it was made
+
+The author directed the research and made its decisions; AI agents drafted the text, code and proofs, and four AI models from other developers reviewed it. Part 1's Appendix A describes the protocol and the author's decisions; the agent log, every review report, the issue logs and the responses to reviewers are in `notes/` and `notes/reviews/`.
 
 ## Reproducing the results
 
