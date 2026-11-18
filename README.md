@@ -1,14 +1,23 @@
 # Rule of X: growth, profitability and the limits of AI automation
 
-Code, data and manuscripts for three papers by Akshaya Bangalore Sreenivasa Murthy (independent researcher).
+Code, data and manuscripts for a three-part series by Akshaya Bangalore Sreenivasa Murthy (independent researcher).
 
-| Paper | Status | Where |
+## Read the paper
+
+**Part 1: *The Rule of 40 as a Price Line: Efficient Frontiers, Economic Profit and the Limits of AI Automation*** (working paper, November 2026)
+
+- [The paper (PDF, 89 pages)](papers/Rule-of-40-as-a-Price-Line.pdf)
+- [Supplementary Appendix (PDF, 73 pages)](papers/Rule-of-40-as-a-Price-Line-Supplementary-Appendix.pdf)
+
+Download both into one folder: the links between them work by file name.
+
+| Part | Status | Where |
 |---|---|---|
-| 1. *The Rule of 40 as a Price Line: Efficient Frontiers, Economic Profit and the Limits of AI Automation* | final review before arXiv (q-fin.GN, cross-listed econ.GN) | `paper1/paper1.pdf`, `paper1/supplement.pdf`; source `paper1/*.tex`, `sections/` |
+| 1. *The Rule of 40 as a Price Line* | working paper, November 2026 | `papers/`; source `paper1/*.tex`, `sections/` (the pipeline's copies are `paper1/paper1.pdf` and `paper1/supplement.pdf`, same text) |
 | 2. *The Economics of AI Transformation* | in preparation (sections and checks; no main document yet) | `part2/` |
 | 3. The autofrontier engine | in preparation | `engine/` (see `engine/README.md`) |
 
-The papers were produced in a documented collaboration between the author and AI research agents. Paper 1's Appendix A describes the protocol and the author's decisions; the agent log, every review report, the issue logs and the responses to reviewers are in `notes/` and `notes/reviews/`.
+The papers were produced in a documented collaboration between the author and AI research agents. Part 1's Appendix A describes the protocol and the author's decisions; the agent log, every review report, the issue logs and the responses to reviewers are in `notes/` and `notes/reviews/`.
 
 ## Reproducing the results
 
